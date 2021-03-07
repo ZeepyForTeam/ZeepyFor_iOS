@@ -21,6 +21,12 @@
 		DA61C47125F362430063263A /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C47025F362430063263A /* UIImageView+.swift */; };
 		DA61C47725F363F10063263A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47625F363F10063263A /* Moya */; };
 		DA61C47925F363F10063263A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47825F363F10063263A /* RxMoya */; };
+		DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48325F4DA8D0063263A /* UIViewController+.swift */; };
+		DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48825F4DAD50063263A /* UINavigationController+.swift */; };
+		DA61C48E25F4DB080063263A /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48D25F4DB080063263A /* UITextField+.swift */; };
+		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
+		DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49725F4DCE90063263A /* UICollectionView+.swift */; };
+		DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49C25F4DCF60063263A /* UIScrollView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +66,12 @@
 		DA61C46025F3620D0063263A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DA61C46525F362280063263A /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		DA61C47025F362430063263A /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		DA61C48325F4DA8D0063263A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		DA61C48825F4DAD50063263A /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		DA61C48D25F4DB080063263A /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITextField+.swift"; path = "../../../../../../Downloads/UITextField+.swift"; sourceTree = "<group>"; };
+		DA61C49225F4DB2A0063263A /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		DA61C49725F4DCE90063263A /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		DA61C49C25F4DCF60063263A /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +210,12 @@
 				DA61C46025F3620D0063263A /* UIView+.swift */,
 				DA61C46525F362280063263A /* UIImage+.swift */,
 				DA61C47025F362430063263A /* UIImageView+.swift */,
+				DA61C48325F4DA8D0063263A /* UIViewController+.swift */,
+				DA61C48825F4DAD50063263A /* UINavigationController+.swift */,
+				DA61C48D25F4DB080063263A /* UITextField+.swift */,
+				DA61C49225F4DB2A0063263A /* UITextView+.swift */,
+				DA61C49725F4DCE90063263A /* UICollectionView+.swift */,
+				DA61C49C25F4DCF60063263A /* UIScrollView+.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -338,14 +356,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
+				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
+				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				DA61C3FA25F32F440063263A /* SceneDelegate.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
+				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
+				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
+				DA61C48E25F4DB080063263A /* UITextField+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
