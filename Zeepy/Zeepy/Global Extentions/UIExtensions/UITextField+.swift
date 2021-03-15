@@ -13,5 +13,5 @@ extension UITextField {
     self.leftView = paddingView
     self.leftViewMode = ViewMode.always
   }
-
+  
 }

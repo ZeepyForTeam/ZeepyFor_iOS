@@ -14,8 +14,8 @@
 		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
 		A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9225FF2C2800FCEACF /* LoninManager.swift */; };
 		A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */; };
-		A45F4F9F25FF2F6D00FCEACF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4F9E25FF2F6D00FCEACF /* SwiftPackageProductDependency */; };
-		A45F4FA125FF2F6D00FCEACF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4FA025FF2F6D00FCEACF /* SwiftPackageProductDependency */; };
+		A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */; };
+		A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */; };
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		A45F4FAB25FF360E00FCEACF /* UILable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILable+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
@@ -31,8 +31,8 @@
 		DA61C46125F3620D0063263A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C46025F3620D0063263A /* UIView+.swift */; };
 		DA61C46625F362280063263A /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C46525F362280063263A /* UIImage+.swift */; };
 		DA61C47125F362430063263A /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C47025F362430063263A /* UIImageView+.swift */; };
-		DA61C47725F363F10063263A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47625F363F10063263A /* SwiftPackageProductDependency */; };
-		DA61C47925F363F10063263A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47825F363F10063263A /* SwiftPackageProductDependency */; };
+		DA61C47725F363F10063263A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47625F363F10063263A /* Moya */; };
+		DA61C47925F363F10063263A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47825F363F10063263A /* RxMoya */; };
 		DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48325F4DA8D0063263A /* UIViewController+.swift */; };
 		DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48825F4DAD50063263A /* UINavigationController+.swift */; };
 		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
@@ -112,10 +112,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA61C47925F363F10063263A /* BuildFile in Frameworks */,
-				A45F4FA125FF2F6D00FCEACF /* BuildFile in Frameworks */,
-				DA61C47725F363F10063263A /* BuildFile in Frameworks */,
-				A45F4F9F25FF2F6D00FCEACF /* BuildFile in Frameworks */,
+				DA61C47925F363F10063263A /* RxMoya in Frameworks */,
+				A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */,
+				DA61C47725F363F10063263A /* Moya in Frameworks */,
+				A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */,
 				47D5629BAB84F625E98FC800 /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +167,13 @@
 			path = Bases;
 			sourceTree = "<group>";
 		};
+		A45F4FE025FF433E00FCEACF /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		ADBD48E34196C65DA344C8F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +187,6 @@
 				130316D4734D8367F8414476 /* Pods-ZeepyTests.release.xcconfig */,
 				B3513F30D30BBE80E93FD6AA /* Pods-ZeepyTests.develop.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -216,6 +222,7 @@
 				A45F4F7225FF2AD600FCEACF /* Configuration */,
 				A45F4F9725FF2D5E00FCEACF /* Bases */,
 				DA61C43125F332D30063263A /* Global Extentions */,
+				A45F4FE025FF433E00FCEACF /* Scene */,
 			);
 			path = Zeepy;
 			sourceTree = "<group>";
@@ -306,10 +313,10 @@
 			);
 			name = Zeepy;
 			packageProductDependencies = (
-				DA61C47625F363F10063263A /* SwiftPackageProductDependency */,
-				DA61C47825F363F10063263A /* SwiftPackageProductDependency */,
-				A45F4F9E25FF2F6D00FCEACF /* SwiftPackageProductDependency */,
-				A45F4FA025FF2F6D00FCEACF /* SwiftPackageProductDependency */,
+				DA61C47625F363F10063263A /* Moya */,
+				DA61C47825F363F10063263A /* RxMoya */,
+				A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */,
+				A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -386,8 +393,8 @@
 			);
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
-				DA61C47525F363F10063263A /* RemoteSwiftPackageReference */,
-				A45F4F9D25FF2F6D00FCEACF /* RemoteSwiftPackageReference */,
+				DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */,
+				A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1027,7 +1034,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A45F4F9D25FF2F6D00FCEACF /* RemoteSwiftPackageReference */ = {
+		A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
 			requirement = {
@@ -1035,7 +1042,7 @@
 				minimumVersion = 5.1.1;
 			};
 		};
-		DA61C47525F363F10063263A /* RemoteSwiftPackageReference */ = {
+		DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -1046,24 +1053,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A45F4F9E25FF2F6D00FCEACF /* SwiftPackageProductDependency */ = {
+		A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A45F4F9D25FF2F6D00FCEACF /* RemoteSwiftPackageReference */;
+			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
 		};
-		A45F4FA025FF2F6D00FCEACF /* SwiftPackageProductDependency */ = {
+		A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A45F4F9D25FF2F6D00FCEACF /* RemoteSwiftPackageReference */;
+			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorViewExtended;
 		};
-		DA61C47625F363F10063263A /* SwiftPackageProductDependency */ = {
+		DA61C47625F363F10063263A /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA61C47525F363F10063263A /* RemoteSwiftPackageReference */;
+			package = DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		DA61C47825F363F10063263A /* SwiftPackageProductDependency */ = {
+		DA61C47825F363F10063263A /* RxMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA61C47525F363F10063263A /* RemoteSwiftPackageReference */;
+			package = DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */

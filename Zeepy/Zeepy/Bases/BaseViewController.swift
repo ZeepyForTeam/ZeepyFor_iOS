@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import NVActivityIndicatorView
+import RxSwift
 class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate{
   private let dimLoadingView: UIView = {
     let view = UIView()
@@ -17,7 +18,7 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     return view
   }()
 
-  func swipeRecognizer() {
+  private func swipeRecognizer() {
     let popGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer!
     if let targets = popGestureRecognizer?.value(forKey: "targets") as? NSMutableArray {
       let gestureRecognizer = UIPanGestureRecognizer()
@@ -97,23 +98,6 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
-  func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-    // return UIModalPresentationStyle.FullScreen
-    return UIModalPresentationStyle.none
-  }
-
-  func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-    popoverPresentationController.sourceView?.removeFromSuperview()
-  }
-
-  func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-    popoverPresentationController.sourceView?.removeFromSuperview()
-    return true
-  }
-
-  ///HUD LOGIC LAST
-
   func showLoadingHUD() {
     self.view.addSubview(dimLoadingView)
     dimLoadingView.customAnchorEdgesToSuperView(dimLoadingView)
