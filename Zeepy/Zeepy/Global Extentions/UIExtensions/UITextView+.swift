@@ -13,7 +13,6 @@ extension UITextView{
     if self.text == "" {
       self.text = placeholder
       self.textColor = UIColor.gray
-      
     }
     else {
       self.textColor == UIColor.black

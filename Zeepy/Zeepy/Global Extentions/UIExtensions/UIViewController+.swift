@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 import RxSwift
 extension UIViewController {
-  static var disposebag = DisposeBag()
+  open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
 }
+
 

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
+		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
+		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
+		A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9225FF2C2800FCEACF /* LoninManager.swift */; };
+		A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */; };
+		A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */; };
+		A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */; };
+		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C3F725F32F440063263A /* AppDelegate.swift */; };
 		DA61C3FA25F32F440063263A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C3F925F32F440063263A /* SceneDelegate.swift */; };
 		DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA61C40025F32F440063263A /* Zeepy.xcdatamodeld */; };
@@ -23,7 +31,6 @@
 		DA61C47925F363F10063263A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47825F363F10063263A /* RxMoya */; };
 		DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48325F4DA8D0063263A /* UIViewController+.swift */; };
 		DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48825F4DAD50063263A /* UINavigationController+.swift */; };
-		DA61C48E25F4DB080063263A /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48D25F4DB080063263A /* UITextField+.swift */; };
 		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
 		DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49725F4DCE90063263A /* UICollectionView+.swift */; };
 		DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49C25F4DCF60063263A /* UIScrollView+.swift */; };
@@ -48,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A45F4F4B25FF278B00FCEACF /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		A45F4F7325FF2AF300FCEACF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		A45F4F9225FF2C2800FCEACF /* LoninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoninManager.swift; sourceTree = "<group>"; };
+		A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A45F4FA525FF309900FCEACF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		DA61C3F425F32F440063263A /* Zeepy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zeepy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA61C3F725F32F440063263A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA61C3F925F32F440063263A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +82,6 @@
 		DA61C47025F362430063263A /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		DA61C48325F4DA8D0063263A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		DA61C48825F4DAD50063263A /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
-		DA61C48D25F4DB080063263A /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITextField+.swift"; path = "../../../../../../Downloads/UITextField+.swift"; sourceTree = "<group>"; };
 		DA61C49225F4DB2A0063263A /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		DA61C49725F4DCE90063263A /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		DA61C49C25F4DCF60063263A /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
@@ -82,7 +94,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA61C47925F363F10063263A /* RxMoya in Frameworks */,
+				A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */,
 				DA61C47725F363F10063263A /* Moya in Frameworks */,
+				A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +117,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A45F4F7225FF2AD600FCEACF /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A45F4F7325FF2AF300FCEACF /* Environment.swift */,
+				A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */,
+				A45F4F9225FF2C2800FCEACF /* LoninManager.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		A45F4F9725FF2D5E00FCEACF /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
 		DA61C3EB25F32F440063263A = {
 			isa = PBXGroup;
 			children = (
@@ -129,10 +161,9 @@
 				DA61C40825F32F450063263A /* Info.plist */,
 				DA61C42D25F332B00063263A /* Zeepy.entitlements */,
 				DA61C45025F361730063263A /* Supports */,
+				A45F4F7225FF2AD600FCEACF /* Configuration */,
+				A45F4F9725FF2D5E00FCEACF /* Bases */,
 				DA61C43125F332D30063263A /* Global Extentions */,
-				DA61C43425F332F10063263A /* Tool */,
-				DA61C43325F332E50063263A /* Scene */,
-				DA61C43225F332DF0063263A /* Network */,
 			);
 			path = Zeepy;
 			sourceTree = "<group>";
@@ -162,27 +193,6 @@
 				DAB0FFF825F9014900D8208F /* RxMoya+.swift */,
 			);
 			path = "Global Extentions";
-			sourceTree = "<group>";
-		};
-		DA61C43225F332DF0063263A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		DA61C43325F332E50063263A /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Scene;
-			sourceTree = "<group>";
-		};
-		DA61C43425F332F10063263A /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tool;
 			sourceTree = "<group>";
 		};
 		DA61C45025F361730063263A /* Supports */ = {
@@ -215,10 +225,11 @@
 				DA61C47025F362430063263A /* UIImageView+.swift */,
 				DA61C48325F4DA8D0063263A /* UIViewController+.swift */,
 				DA61C48825F4DAD50063263A /* UINavigationController+.swift */,
-				DA61C48D25F4DB080063263A /* UITextField+.swift */,
 				DA61C49225F4DB2A0063263A /* UITextView+.swift */,
 				DA61C49725F4DCE90063263A /* UICollectionView+.swift */,
 				DA61C49C25F4DCF60063263A /* UIScrollView+.swift */,
+				A45F4F4B25FF278B00FCEACF /* UITextField+.swift */,
+				A45F4FA525FF309900FCEACF /* UIFont+.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -242,6 +253,8 @@
 			packageProductDependencies = (
 				DA61C47625F363F10063263A /* Moya */,
 				DA61C47825F363F10063263A /* RxMoya */,
+				A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */,
+				A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -316,6 +329,7 @@
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
 				DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */,
+				A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -359,21 +373,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
+				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
+				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				DA61C3FA25F32F440063263A /* SceneDelegate.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
+				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
+				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
+				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
-				DA61C48E25F4DB080063263A /* UITextField+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,10 +439,133 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A45F4F5325FF281000FCEACF /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "$(inherited)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEV;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Develop;
+		};
+		A45F4F5425FF281000FCEACF /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://baseurl.com";
+				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				INFOPLIST_FILE = Zeepy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
+				PRODUCT_NAME = "$(TARGET_NAME).dev";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Develop;
+		};
+		A45F4F5525FF281000FCEACF /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				INFOPLIST_FILE = ZeepyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.ZeepyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zeepy.app/Zeepy";
+			};
+			name = Develop;
+		};
+		A45F4F5625FF281000FCEACF /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				INFOPLIST_FILE = ZeepyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.ZeepyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Zeepy;
+			};
+			name = Develop;
+		};
 		DA61C41F25F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -485,6 +627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BASE_URL = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -541,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://baseurl.com";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -563,6 +707,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://baseurl.com";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -672,6 +817,7 @@
 			buildConfigurations = (
 				DA61C41F25F32F450063263A /* Debug */,
 				DA61C42025F32F450063263A /* Release */,
+				A45F4F5325FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -681,6 +827,7 @@
 			buildConfigurations = (
 				DA61C42225F32F450063263A /* Debug */,
 				DA61C42325F32F450063263A /* Release */,
+				A45F4F5425FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -690,6 +837,7 @@
 			buildConfigurations = (
 				DA61C42525F32F450063263A /* Debug */,
 				DA61C42625F32F450063263A /* Release */,
+				A45F4F5525FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -699,6 +847,7 @@
 			buildConfigurations = (
 				DA61C42825F32F450063263A /* Debug */,
 				DA61C42925F32F450063263A /* Release */,
+				A45F4F5625FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -706,6 +855,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -717,6 +874,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
 		DA61C47625F363F10063263A /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */;

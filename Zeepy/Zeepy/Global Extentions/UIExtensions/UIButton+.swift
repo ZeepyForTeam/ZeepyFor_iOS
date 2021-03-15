@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import UIKit
+extension UIButton {
+  func roundBtn() {
+    self.setRounded(radius: 15)
+  }
+}
