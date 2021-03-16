@@ -108,7 +108,6 @@ extension UIView {
       // borderWidth 변수가 nil 일 경우의 default
       self.layer.borderWidth = 1.0
     }
-
   }
 }
 
@@ -155,4 +154,3 @@ extension CALayer {
     }
   }
 }
-

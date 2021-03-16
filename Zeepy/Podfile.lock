@@ -1,0 +1,126 @@
+PODS:
+  - DynamicBlurView (4.1.0)
+  - Firebase/Analytics (7.8.1):
+    - Firebase/Core
+  - Firebase/Core (7.8.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 7.8.1)
+  - Firebase/CoreOnly (7.8.1):
+    - FirebaseCore (= 7.8.0)
+  - Firebase/Messaging (7.8.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.8.0)
+  - FirebaseAnalytics (7.8.1):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleAppMeasurement (= 7.8.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30907.0)
+  - FirebaseCore (7.8.0):
+    - FirebaseCoreDiagnostics (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.8.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30907.0)
+  - FirebaseInstallations (7.8.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (7.8.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseMessaging (7.8.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstanceID (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Reachability (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - GoogleAppMeasurement (7.8.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30907.0)
+  - GoogleDataTransport (8.3.0):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30907.0)
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.3.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.3.0):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.3.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.3.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.3.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.3.0)"
+  - GoogleUtilities/Reachability (7.3.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.3.0):
+    - GoogleUtilities/Logger
+  - nanopb (2.30907.0):
+    - nanopb/decode (= 2.30907.0)
+    - nanopb/encode (= 2.30907.0)
+  - nanopb/decode (2.30907.0)
+  - nanopb/encode (2.30907.0)
+  - PopupDialog (1.1.1):
+    - DynamicBlurView (~> 4.0)
+  - PromisesObjC (1.2.12)
+
+DEPENDENCIES:
+  - Firebase/Analytics
+  - Firebase/Messaging
+  - PopupDialog (~> 1.1)
+
+SPEC REPOS:
+  trunk:
+    - DynamicBlurView
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleUtilities
+    - nanopb
+    - PopupDialog
+    - PromisesObjC
+
+SPEC CHECKSUMS:
+  DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
+  Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
+  FirebaseAnalytics: 3b98b563d7d64c07900511198b4805cfd9f9f61c
+  FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
+  FirebaseCoreDiagnostics: 066f996579cf097bdad3d7dc9a918d6b9e129c50
+  FirebaseInstallations: 7f7ed0e7e27fb51f57291e1876e2ddb1524126c1
+  FirebaseInstanceID: aaecc93b4528bbcafea12c477e26827719ca1183
+  FirebaseMessaging: 1d5cac3728c042d3d4700ecb56bbac893660a963
+  GoogleAppMeasurement: 50a254ee92c1b94fbe2abea7e3da35e4c6dedce0
+  GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
+  GoogleUtilities: abda45f519bc4073aa1171d2f8742108def46017
+  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  PopupDialog: 720c92befd8bc23c13442254945213db5612f149
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+
+PODFILE CHECKSUM: 6b2d9f7d18c79319ccfb0cb3f347471284097feb
+
+COCOAPODS: 1.10.1
