@@ -38,6 +38,18 @@
 		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
 		DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49725F4DCE90063263A /* UICollectionView+.swift */; };
 		DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49C25F4DCF60063263A /* UIScrollView+.swift */; };
+		DAB000052608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
+		DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
+		DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
+		DAB000082608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		DAB000092608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		DAB0000A2608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		DAB0000B2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
+		DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
+		DAB0000D2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
+		DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
+		DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
+		DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
 		DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB0FFF825F9014900D8208F /* RxMoya+.swift */; };
 		F9E672345AAEABBC4CBE6CB7 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A99D718B4BD19EDB0B5FA40 /* Pods_ZeepyTests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +114,10 @@
 		DA61C49225F4DB2A0063263A /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		DA61C49725F4DCE90063263A /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		DA61C49C25F4DCF60063263A /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
+		DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFB.otf; sourceTree = "<group>"; };
+		DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFEB.otf; sourceTree = "<group>"; };
+		DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFL.otf; sourceTree = "<group>"; };
+		DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFR.otf; sourceTree = "<group>"; };
 		DAB0FFF825F9014900D8208F /* RxMoya+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxMoya+.swift"; sourceTree = "<group>"; };
 		E421B9444B768186D75ED67B /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		E9C1C8D986301FD9973D74E2 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +273,7 @@
 		DA61C45025F361730063263A /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				DAB000002608CBEB00D8208F /* Font */,
 				DA61C45125F361940063263A /* Lottie */,
 				DA61C3F725F32F440063263A /* AppDelegate.swift */,
 				DA61C3F925F32F440063263A /* SceneDelegate.swift */,
@@ -292,6 +309,17 @@
 				A45F4FAA25FF360E00FCEACF /* UILable+.swift */,
 			);
 			path = UIExtensions;
+			sourceTree = "<group>";
+		};
+		DAB000002608CBEB00D8208F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */,
+				DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */,
+				DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */,
+				DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,9 +440,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB0000B2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
+				DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				DA61C40725F32F450063263A /* LaunchScreen.storyboard in Resources */,
 				DA61C40425F32F450063263A /* Assets.xcassets in Resources */,
+				DAB000052608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 				A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */,
+				DAB000082608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +454,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
+				DAB000092608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
+				DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
+				DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +465,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB0000D2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
+				DAB0000A2608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
+				DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
+				DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
