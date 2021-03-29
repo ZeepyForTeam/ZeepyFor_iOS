@@ -8,5 +8,35 @@
 import Foundation
 import UIKit
 extension UIButton {
-  
+  public typealias UIBUttonTargetClosure = (UIBUtton) -> ()
+  private class UIBUttonClosureWrapper: NSObject {
+    let closure: UIBUttonTargetClosure
+    init(_ closure: @escaping UIBUttonTargetClosure) {
+      self.closure = closure
+    }
+  }
+  private struct AssociatedKeys {
+    static var targetClosure = "targetClosure"
+  }
+  private var targetClosure: UIBUttonTargetClosure? {
+    get {
+      guard let closureWrapper = objc_getAssociatedObject(self, &AssociatedKeys.targetClosure) as? UIBUttonClosureWrapper else { return nil }
+      return closureWrapper.closure
+      
+    }
+    set(newValue) {
+      guard let newValue = newValue else { return }
+      objc_setAssociatedObject(self, &AssociatedKeys.targetClosure, UIBUttonClosureWrapper(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+  }
+  @objc
+  func closureAction() {
+    guard let targetClosure = targetClosure else { return }
+    targetClosure(self)
+    
+  }
+  public func addAction(for event: UIButton.Event, closure: @escaping UIButtonTargetClosure) {
+    targetClosure = closure
+    addTarget(self, action: #selector(UIButton.closureAction), for: event)
+  }
 }

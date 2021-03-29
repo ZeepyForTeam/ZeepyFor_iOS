@@ -23,4 +23,16 @@ extension UIFont {
   class func appGothicNeoRegularFont(fontSize: CGFloat) -> UIFont {
       return UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)!
   }
+  class func nanumRoundSemiBold(fontSize: CGFloat) -> UIFont{
+    return UIFont(name: "NanumSquareRoundOTFEB", size: fontSize)
+  }
+  class func nanumRoundSemiBold(fontSize: CGFloat) -> UIFont{
+    return UIFont(name: "NanumSquareRoundOTFB", size: fontSize)
+  }
+  class func nanumRoundRegular(fontSize: CGFloat) -> UIFont{
+    return UIFont(name: "NanumSquareRoundOTFR", size: fontSize)
+  }
+  class func nanumRoundLite(fontSize: CGFloat) -> UIFont{
+    return UIFont(name: "NanumSquareRoundOTFL", size: fontSize)
+  }
 }
