@@ -80,7 +80,7 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    self.view.backgroundColor = .white
     swipeRecognizer()
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -111,5 +111,5 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     loading.stopAnimating()
     dimLoadingView.removeFromSuperview()
   }
-
 }
+

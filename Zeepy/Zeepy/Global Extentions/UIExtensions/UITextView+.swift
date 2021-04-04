@@ -8,15 +8,5 @@
 import Foundation
 import UIKit
 extension UITextView{
-  static var placeHolder : String?
-  func setPlaceholder(_ placeholder : String) {
-    if self.text == "" {
-      self.text = placeholder
-      self.textColor = UIColor.gray
-    }
-    else {
-      self.textColor == UIColor.black
-    }
-    
-  }
+
 }
