@@ -7,16 +7,8 @@
 
 import Foundation
 import UIKit
-import NVActivityIndicatorView
 import RxSwift
 class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate{
-  private let dimLoadingView: UIView = {
-    let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = .clear
-
-    return view
-  }()
 
   private func swipeRecognizer() {
     let popGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer!
@@ -26,12 +18,6 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
       self.view.addGestureRecognizer(gestureRecognizer)
     }
   }
-  private let loading: NVActivityIndicatorView = {
-    let loading = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50), type: NVActivityIndicatorType.ballScaleMultiple, color: .black, padding: 0)
-    loading.translatesAutoresizingMaskIntoConstraints = false
-
-    return loading
-  }()
 
   enum HudAction: Int {
     case show = 1, hideWithSucces, hideWithError, hideWithInfo, dismiss
@@ -97,19 +83,6 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
-  func showLoadingHUD() {
-    self.view.addSubview(dimLoadingView)
-    dimLoadingView.customAnchorEdgesToSuperView(dimLoadingView)
-    dimLoadingView.addSubview(loading)
-    loading.centerXAnchor.constraint(equalTo: dimLoadingView.centerXAnchor).isActive = true
-    loading.centerYAnchor.constraint(equalTo: dimLoadingView.centerYAnchor).isActive = true
-    loading.startAnimating()
-  }
-
-  func hideLoadingHUD() {
-    loading.stopAnimating()
-    dimLoadingView.removeFromSuperview()
   }
 }
 

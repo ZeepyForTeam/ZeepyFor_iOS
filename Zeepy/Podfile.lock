@@ -1,5 +1,4 @@
 PODS:
-  - DynamicBlurView (4.1.0)
   - Firebase/Analytics (7.8.1):
     - Firebase/Core
   - Firebase/Core (7.8.1):
@@ -79,8 +78,6 @@ PODS:
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
-  - PopupDialog (1.1.1):
-    - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.12)
   - RxCocoa (6.1.0):
     - RxRelay (= 6.1.0)
@@ -92,12 +89,10 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Messaging
-  - PopupDialog (~> 1.1)
   - RxCocoa (= 6.1.0)
 
 SPEC REPOS:
   trunk:
-    - DynamicBlurView
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -109,14 +104,12 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
-    - PopupDialog
     - PromisesObjC
     - RxCocoa
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
-  DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
   FirebaseAnalytics: 3b98b563d7d64c07900511198b4805cfd9f9f61c
   FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
@@ -128,12 +121,11 @@ SPEC CHECKSUMS:
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleUtilities: abda45f519bc4073aa1171d2f8742108def46017
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
-  PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
 
-PODFILE CHECKSUM: a5b41d0ccb4b00eea517724994cd6c9eff8d6633
+PODFILE CHECKSUM: 67eef74c641485f49ff6ae52a3ffa0c3b1bb1ead
 
 COCOAPODS: 1.10.0

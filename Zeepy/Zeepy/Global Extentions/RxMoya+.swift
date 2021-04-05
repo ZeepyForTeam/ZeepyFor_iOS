@@ -20,4 +20,13 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
       return .just(response)
     }
   }
+  public func filter500StatusCode() -> Single<Element> {
+    return flatMap { response in
+      guard response.statusCode != 500 else {
+        MessageAlertView.shared.showAlertView(title: "서버 에러입니다.", grantMessage: "확인")
+        throw MoyaError.statusCode(response)
+      }
+      return .just(response)
+    }
+  }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,6 @@
 		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
 		A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9225FF2C2800FCEACF /* LoninManager.swift */; };
 		A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */; };
-		A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */; };
-		A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */; };
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		A45F4FAB25FF360E00FCEACF /* UILable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILable+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
@@ -25,6 +23,11 @@
 		DA4744B226197F5400709883 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744B126197F5400709883 /* HomeViewController.swift */; };
 		DA4744CA2619894800709883 /* LoadingHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744C92619894800709883 /* LoadingHud.swift */; };
 		DA4744D22619899200709883 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744D12619899200709883 /* UIApplication+.swift */; };
+		DA47457A261B269300709883 /* MessageAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA474579261B269300709883 /* MessageAlertView.swift */; };
+		DA47457F261B26C500709883 /* BaseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47457E261B26C500709883 /* BaseAlert.swift */; };
+		DA474598261B281D00709883 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA474597261B281D00709883 /* MyPageViewController.swift */; };
+		DA4745A1261B283100709883 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4745A0261B283100709883 /* SearchViewController.swift */; };
+		DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4745A6261B284600709883 /* CommunityViewController.swift */; };
 		DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C3F725F32F440063263A /* AppDelegate.swift */; };
 		DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA61C40025F32F440063263A /* Zeepy.xcdatamodeld */; };
 		DA61C40425F32F450063263A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA61C40325F32F450063263A /* Assets.xcassets */; };
@@ -100,6 +103,12 @@
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DA4744C92619894800709883 /* LoadingHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingHud.swift; sourceTree = "<group>"; };
 		DA4744D12619899200709883 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
+		DA4744EE26199CD900709883 /* ZeepyRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeepyRelease.entitlements; sourceTree = "<group>"; };
+		DA474579261B269300709883 /* MessageAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertView.swift; sourceTree = "<group>"; };
+		DA47457E261B26C500709883 /* BaseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlert.swift; sourceTree = "<group>"; };
+		DA474597261B281D00709883 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		DA4745A0261B283100709883 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DA4745A6261B284600709883 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DA61C3F425F32F440063263A /* Zeepy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zeepy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA61C3F725F32F440063263A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA61C40125F32F440063263A /* Zeepy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Zeepy.xcdatamodel; sourceTree = "<group>"; };
@@ -138,10 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA61C47925F363F10063263A /* RxMoya in Frameworks */,
-				A45F4FA125FF2F6D00FCEACF /* NVActivityIndicatorViewExtended in Frameworks */,
 				DA61C47725F363F10063263A /* Moya in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
-				A45F4F9F25FF2F6D00FCEACF /* NVActivityIndicatorView in Frameworks */,
 				47D5629BAB84F625E98FC800 /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +203,12 @@
 		A45F4FE025FF433E00FCEACF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DA4745C7261B298600709883 /* Login */,
+				DA4745C3261B297D00709883 /* Onboarding */,
 				DA02AF97261206C30016C30A /* Home */,
+				DA474594261B27E700709883 /* Search */,
+				DA474595261B27FD00709883 /* Community */,
+				DA474593261B279800709883 /* MyPage */,
 				DA4744A6261978B900709883 /* TabbarViewController.swift */,
 			);
 			path = Scene;
@@ -231,6 +243,7 @@
 		DA02AF98261206CC0016C30A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA474583261B274E00709883 /* Repository */,
 				DA02AF9E261207000016C30A /* Response */,
 				DA02AF9D261206FA0016C30A /* Request */,
 			);
@@ -286,14 +299,84 @@
 			isa = PBXGroup;
 			children = (
 				DA4744C92619894800709883 /* LoadingHud.swift */,
+				DA474579261B269300709883 /* MessageAlertView.swift */,
+				DA47457E261B26C500709883 /* BaseAlert.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		DA474583261B274E00709883 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		DA474593261B279800709883 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				DA474596261B280500709883 /* ViewController */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		DA474594261B27E700709883 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DA47459F261B282200709883 /* ViewController */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		DA474595261B27FD00709883 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				DA4745A5261B283600709883 /* ViewController */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		DA474596261B280500709883 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA474597261B281D00709883 /* MyPageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DA47459F261B282200709883 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA4745A0261B283100709883 /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DA4745A5261B283600709883 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA4745A6261B284600709883 /* CommunityViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DA4745C3261B297D00709883 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DA4745C7261B298600709883 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		DA61C3EB25F32F440063263A = {
 			isa = PBXGroup;
 			children = (
-				DA4744C82619893900709883 /* Util */,
 				DA61C3F625F32F440063263A /* Zeepy */,
 				DA61C41025F32F450063263A /* ZeepyTests */,
 				DA61C41B25F32F450063263A /* ZeepyUITests */,
@@ -316,12 +399,10 @@
 		DA61C3F625F32F440063263A /* Zeepy */ = {
 			isa = PBXGroup;
 			children = (
-				DA61C40825F32F450063263A /* Info.plist */,
-				DA61C42D25F332B00063263A /* Zeepy.entitlements */,
-				A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */,
 				DA61C45025F361730063263A /* Supports */,
 				A45F4F7225FF2AD600FCEACF /* Configuration */,
 				A45F4F9725FF2D5E00FCEACF /* Bases */,
+				DA4744C82619893900709883 /* Util */,
 				DA61C43125F332D30063263A /* Global Extentions */,
 				A45F4FE025FF433E00FCEACF /* Scene */,
 			);
@@ -358,6 +439,10 @@
 		DA61C45025F361730063263A /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				DA4744EE26199CD900709883 /* ZeepyRelease.entitlements */,
+				DA61C40825F32F450063263A /* Info.plist */,
+				DA61C42D25F332B00063263A /* Zeepy.entitlements */,
+				A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */,
 				DAB000002608CBEB00D8208F /* Font */,
 				DA61C45125F361940063263A /* Lottie */,
 				DA61C3F725F32F440063263A /* AppDelegate.swift */,
@@ -420,6 +505,7 @@
 				DA61C3F125F32F440063263A /* Frameworks */,
 				DA61C3F225F32F440063263A /* Resources */,
 				A477406A003A0E8C792B5071 /* [CP] Embed Pods Frameworks */,
+				DA4744FC2619A4D200709883 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -429,8 +515,6 @@
 			packageProductDependencies = (
 				DA61C47625F363F10063263A /* Moya */,
 				DA61C47825F363F10063263A /* RxMoya */,
-				A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */,
-				A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */,
 				DA47445A2612144800709883 /* SnapKit */,
 			);
 			productName = Zeepy;
@@ -482,6 +566,7 @@
 		DA61C3EC25F32F440063263A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
@@ -509,7 +594,6 @@
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
 				DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */,
-				A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
@@ -663,6 +747,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DA4744FC2619A4D200709883 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -678,7 +779,9 @@
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
+				DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
+				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
@@ -692,9 +795,12 @@
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILable+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
+				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
+				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
+				DA4745A1261B283100709883 /* SearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,12 +911,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "https://baseurl.com";
-				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
-				INFOPLIST_FILE = Zeepy/Info.plist;
+				DYLIB_CURRENT_VERSION = 6;
+				INFOPLIST_FILE = Zeepy/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -818,9 +925,10 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
 				PRODUCT_NAME = "$(TARGET_NAME).dev";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Develop;
 		};
@@ -993,12 +1101,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "https://baseurl.com";
-				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
-				INFOPLIST_FILE = Zeepy/Info.plist;
+				DYLIB_CURRENT_VERSION = 6;
+				INFOPLIST_FILE = Zeepy/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1006,9 +1115,10 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Dist";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
 		};
@@ -1019,12 +1129,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "https://baseurl.com";
-				CODE_SIGN_ENTITLEMENTS = Zeepy/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/ZeepyRelease.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
-				INFOPLIST_FILE = Zeepy/Info.plist;
+				DYLIB_CURRENT_VERSION = 6;
+				INFOPLIST_FILE = Zeepy/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1032,9 +1143,10 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Dist";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
 		};
@@ -1137,7 +1249,7 @@
 				A45F4F5325FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Develop;
 		};
 		DA61C42125F32F450063263A /* Build configuration list for PBXNativeTarget "Zeepy" */ = {
 			isa = XCConfigurationList;
@@ -1147,7 +1259,7 @@
 				A45F4F5425FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Develop;
 		};
 		DA61C42425F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyTests" */ = {
 			isa = XCConfigurationList;
@@ -1157,7 +1269,7 @@
 				A45F4F5525FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Develop;
 		};
 		DA61C42725F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyUITests" */ = {
 			isa = XCConfigurationList;
@@ -1167,19 +1279,11 @@
 				A45F4F5625FF281000FCEACF /* Develop */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Develop;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.1;
-			};
-		};
 		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1199,16 +1303,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A45F4F9E25FF2F6D00FCEACF /* NVActivityIndicatorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
-			productName = NVActivityIndicatorView;
-		};
-		A45F4FA025FF2F6D00FCEACF /* NVActivityIndicatorViewExtended */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A45F4F9D25FF2F6D00FCEACF /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
-			productName = NVActivityIndicatorViewExtended;
-		};
 		DA47445A2612144800709883 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;

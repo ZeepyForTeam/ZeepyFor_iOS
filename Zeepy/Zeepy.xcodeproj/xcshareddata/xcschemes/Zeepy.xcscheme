@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA61C3F325F32F440063263A"
-               BuildableName = "Zeepy.app"
+               BuildableName = "Zeepy.dev.app"
                BlueprintName = "Zeepy"
                ReferencedContainer = "container:Zeepy.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA61C3F325F32F440063263A"
-            BuildableName = "Zeepy.app"
+            BuildableName = "Zeepy.dev.app"
             BlueprintName = "Zeepy"
             ReferencedContainer = "container:Zeepy.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA61C3F325F32F440063263A"
-            BuildableName = "Zeepy.app"
+            BuildableName = "Zeepy.dev.app"
             BlueprintName = "Zeepy"
             ReferencedContainer = "container:Zeepy.xcodeproj">
          </BuildableReference>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA61C3F325F32F440063263A"
-               BuildableName = "Zeepy.app"
+               BuildableName = "Zeepy.dev.app"
                BlueprintName = "Zeepy"
                ReferencedContainer = "container:Zeepy.xcodeproj">
             </BuildableReference>
@@ -45,14 +45,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA61C3F325F32F440063263A"
-            BuildableName = "Zeepy.app"
+            BuildableName = "Zeepy.dev.app"
             BlueprintName = "Zeepy"
             ReferencedContainer = "container:Zeepy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Develop"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA61C3F325F32F440063263A"
-            BuildableName = "Zeepy.app"
+            BuildableName = "Zeepy.dev.app"
             BlueprintName = "Zeepy"
             ReferencedContainer = "container:Zeepy.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Develop"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
