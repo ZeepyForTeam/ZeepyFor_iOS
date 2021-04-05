@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 class SearchViewController : BaseViewController {
+  var MapView : MTMapView?
   override func viewDidLoad() {
     super.viewDidLoad()
+    MapView = MTMapView(frame: self.view.bounds)
+    if let mapView = MapView {
+      mapView.baseMapType = .standard
+      self.view.add(mapView)
+    }
   }
 }
