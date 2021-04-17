@@ -31,7 +31,7 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let tab1NavigationController =  HomeViewController()
-    let tab2NavigationController =  SearchViewController()
+    let tab2NavigationController =  SelectAddressViewController()
     let tab3NavigationController = CommunityViewController()
     let tab4NavigationController = MyPageViewController()
     
@@ -55,6 +55,13 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
       tabBarItem.accessibilityIdentifier = imageNames[ind]
       tabBarItem.imageInsets.top = 15
       tabBarItem.imageInsets.bottom = -15
+    }
+    for family in UIFont.familyNames {
+      print("\(family)")
+          
+      for fontname in UIFont.fontNames(forFamilyName: family) {
+        print("   \(fontname)")
+      }
     }
   }
 }

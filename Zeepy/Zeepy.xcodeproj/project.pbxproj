@@ -20,6 +20,9 @@
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
 		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
+		CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
@@ -87,9 +90,6 @@
 		DAB000052608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
 		DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
 		DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
-		DAB000082608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
-		DAB000092608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
-		DAB0000A2608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		DAB0000B2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
 		DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
 		DAB0000D2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */; };
@@ -831,6 +831,7 @@
 				DA474648261B50A800709883 /* th_line.png in Resources */,
 				DA474643261B50A800709883 /* detail_button.png in Resources */,
 				DA474654261B50A800709883 /* map_pin.png in Resources */,
+				CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DA474641261B50A800709883 /* shadow_balloon.png in Resources */,
 				DA47464F261B50A800709883 /* point_sprite.png in Resources */,
 				DA474647261B50A800709883 /* copyright.png in Resources */,
@@ -849,7 +850,6 @@
 				DA474653261B50A800709883 /* map_present_direction.png in Resources */,
 				DA474650261B50A800709883 /* map_pinup_custom.png in Resources */,
 				DA47464A261B50A800709883 /* daum_copyright.png in Resources */,
-				DAB000082608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
 				DA474645261B50A800709883 /* map_pinup@3x.png in Resources */,
 				DA47464C261B50A800709883 /* map_present_tracking.png in Resources */,
 			);
@@ -859,8 +859,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
-				DAB000092608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
@@ -870,8 +870,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB0000D2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
-				DAB0000A2608CC0300D8208F /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
