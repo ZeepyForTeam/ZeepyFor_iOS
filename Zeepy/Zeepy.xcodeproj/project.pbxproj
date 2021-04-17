@@ -15,8 +15,11 @@
 		A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9225FF2C2800FCEACF /* LoninManager.swift */; };
 		A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */; };
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
-		A45F4FAB25FF360E00FCEACF /* UILable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILable+.swift */; };
+		A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILabel+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
+		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
+		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
+		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
@@ -127,12 +130,14 @@
 		A45F4F9225FF2C2800FCEACF /* LoninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoninManager.swift; sourceTree = "<group>"; };
 		A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A45F4FA525FF309900FCEACF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		A45F4FAA25FF360E00FCEACF /* UILable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable+.swift"; sourceTree = "<group>"; };
+		A45F4FAA25FF360E00FCEACF /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A89926076A191DC05C0E51EA /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
 		C2C9C676CD77AF28E7B9A7E7 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2D50A99D489780B3B46FA51 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9AEAD7CB9C40CF584E02710 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
+		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		DA47449E261976B000709883 /* UITextView+RxCocoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+RxCocoa.swift"; sourceTree = "<group>"; };
 		DA4744A6261978B900709883 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +235,7 @@
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
+				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
 				DA61C47925F363F10063263A /* RxMoya in Frameworks */,
@@ -325,6 +331,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CC79C2A2262B1D7C00CA9A0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC79C2A5262B1D9A00CA9A0A /* Storyboard */,
+				DA47459F261B282200709883 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC79C2A3262B1D8400CA9A0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC79C2A4262B1D8A00CA9A0A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CC79C2A5262B1D9A00CA9A0A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		DA02AF97261206C30016C30A /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,7 +455,9 @@
 		DA474594261B27E700709883 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				DA47459F261B282200709883 /* ViewController */,
+				CC79C2A3262B1D8400CA9A0A /* Model */,
+				CC79C2A4262B1D8A00CA9A0A /* ViewModel */,
+				CC79C2A2262B1D7C00CA9A0A /* View */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -443,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				DA4745A0261B283100709883 /* SearchViewController.swift */,
+				CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -638,7 +678,7 @@
 				DA61C49C25F4DCF60063263A /* UIScrollView+.swift */,
 				A45F4F4B25FF278B00FCEACF /* UITextField+.swift */,
 				A45F4FA525FF309900FCEACF /* UIFont+.swift */,
-				A45F4FAA25FF360E00FCEACF /* UILable+.swift */,
+				A45F4FAA25FF360E00FCEACF /* UILabel+.swift */,
 				DA47449E261976B000709883 /* UITextView+RxCocoa.swift */,
 				DA4744D12619899200709883 /* UIApplication+.swift */,
 			);
@@ -679,6 +719,7 @@
 				DA61C47625F363F10063263A /* Moya */,
 				DA61C47825F363F10063263A /* RxMoya */,
 				DA47445A2612144800709883 /* SnapKit */,
+				CC79C2B9262B1EAF00CA9A0A /* Then */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -758,6 +799,7 @@
 			packageReferences = (
 				DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */,
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -780,6 +822,7 @@
 				DAB0000B2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
 				DA474640261B50A800709883 /* map_pin_custom.png in Resources */,
 				DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
+				CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */,
 				DA474646261B50A800709883 /* map_pin_shadow@3x.png in Resources */,
 				DA47464D261B50A800709883 /* map_pin_red.png in Resources */,
 				DA474652261B50A800709883 /* noimage256.png in Resources */,
@@ -983,12 +1026,13 @@
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
-				A45F4FAB25FF360E00FCEACF /* UILable+.swift in Sources */,
+				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
+				CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
 				DA4745A1261B283100709883 /* SearchViewController.swift in Sources */,
 			);
@@ -1646,6 +1690,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
 		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1665,6 +1717,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		DA47445A2612144800709883 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
