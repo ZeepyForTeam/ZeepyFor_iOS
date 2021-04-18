@@ -7,9 +7,11 @@ target 'Zeepy' do
 
   # Pods for Zeepy
   # add the Firebase pod for Google Analytics
+  pod 'RxSwift', '5.1.2'
+  pod 'RxCocoa', '5.1.1'
+  pod 'Moya', '~> 14.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
-  pod 'RxCocoa', '6.1.0'
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 

@@ -23,6 +23,12 @@
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
+		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
+		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
+		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
+		DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */; };
+		DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* Kingfisher */; };
+		DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB7F262C5B3200620B7E /* Identifiable.swift */; };
 		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
@@ -77,8 +83,6 @@
 		DA61C46125F3620D0063263A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C46025F3620D0063263A /* UIView+.swift */; };
 		DA61C46625F362280063263A /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C46525F362280063263A /* UIImage+.swift */; };
 		DA61C47125F362430063263A /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C47025F362430063263A /* UIImageView+.swift */; };
-		DA61C47725F363F10063263A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47625F363F10063263A /* Moya */; };
-		DA61C47925F363F10063263A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = DA61C47825F363F10063263A /* RxMoya */; };
 		DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48325F4DA8D0063263A /* UIViewController+.swift */; };
 		DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C48825F4DAD50063263A /* UINavigationController+.swift */; };
 		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
@@ -138,6 +142,11 @@
 		C9AEAD7CB9C40CF584E02710 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
+		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
+		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
+		DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA2EDB7F262C5B3200620B7E /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		DA47449E261976B000709883 /* UITextView+RxCocoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+RxCocoa.swift"; sourceTree = "<group>"; };
 		DA4744A6261978B900709883 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
@@ -238,9 +248,7 @@
 				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
-				DA61C47925F363F10063263A /* RxMoya in Frameworks */,
 				DA47465A261B50A800709883 /* DaumMap.framework in Frameworks */,
-				DA61C47725F363F10063263A /* Moya in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */,
 			);
@@ -334,6 +342,7 @@
 		CC79C2A2262B1D7C00CA9A0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DA2EDB6A262C58DD00620B7E /* Cell */,
 				CC79C2A5262B1D9A00CA9A0A /* Storyboard */,
 				DA47459F261B282200709883 /* ViewController */,
 			);
@@ -343,6 +352,7 @@
 		CC79C2A3262B1D8400CA9A0A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA2EDB70262C58FE00620B7E /* BuildingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,12 +437,22 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		DA2EDB6A262C58DD00620B7E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */,
+				DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DA4744C82619893900709883 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				DA4744C92619894800709883 /* LoadingHud.swift */,
 				DA474579261B269300709883 /* MessageAlertView.swift */,
 				DA47457E261B26C500709883 /* BaseAlert.swift */,
+				DA2EDB7F262C5B3200620B7E /* Identifiable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -481,6 +501,7 @@
 		DA47459F261B282200709883 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */,
 				DA4745A0261B283100709883 /* SearchViewController.swift */,
 				CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */,
 			);
@@ -716,10 +737,9 @@
 			);
 			name = Zeepy;
 			packageProductDependencies = (
-				DA61C47625F363F10063263A /* Moya */,
-				DA61C47825F363F10063263A /* RxMoya */,
 				DA47445A2612144800709883 /* SnapKit */,
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
+				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -797,9 +817,9 @@
 			);
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
-				DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */,
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
+				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1004,10 +1024,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
 				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
+				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
@@ -1015,6 +1037,7 @@
 				DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
+				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
@@ -1024,8 +1047,10 @@
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
+				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
+				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
@@ -1399,7 +1424,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "https://baseurl.com";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
@@ -1465,7 +1490,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1482,7 +1507,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "https://baseurl.com";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/ZeepyRelease.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
@@ -1548,7 +1573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1698,20 +1723,20 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.1;
+			};
+		};
 		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.1;
-			};
-		};
-		DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1722,20 +1747,15 @@
 			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
+		DA2EDB7A262C5A7D00620B7E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		DA47445A2612144800709883 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		DA61C47625F363F10063263A /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
-		DA61C47825F363F10063263A /* RxMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DA61C47525F363F10063263A /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 
