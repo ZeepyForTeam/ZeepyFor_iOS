@@ -15,6 +15,9 @@ extension UIButton {
       self.closure = closure
     }
   }
+  func setNormalImage(name: String){
+    self.setImage(UIImage(named: name), for: .normal)
+  }
   private struct AssociatedKeys {
     static var targetClosure = "targetClosure"
   }

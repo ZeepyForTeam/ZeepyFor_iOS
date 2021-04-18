@@ -16,21 +16,40 @@ final class LookAroundViewController: BaseViewController {
     v.backgroundColor = .white
     return v
   }()
-  private let currentLocation = UILabel()
-  private let locationDropDown = UIButton()
-  private let filterButton = UIButton()
-  private let mapButton = UIButton()
+  
+  private let currentLocation = UILabel().then{
+    $0.adjustsFontSizeToFitWidth = true
+    $0.font = .nanumRoundExtraBold(fontSize: 20)
+    $0.text = "한강로동 2가"
+    $0.textColor = .blackText
+  }
+  private let locationDropDown = UIButton().then{
+    $0.setImage(UIImage(named: ""), for: .normal)
+  }
+  private let filterButton = UIButton().then{
+    $0.setNormalImage(name: "iconFilter")
+  }
+  private let mapButton = UIButton().then{
+    $0.setNormalImage(name: "iconMap")
+  }
   private var tableViewHeader: UICollectionView!
   private let tableView = UITableView()
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationController?.isNavigationBarHidden = true
     setupCollectionView()
     layout()
     
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setUpNavigation()
+    self.navigationController?.isNavigationBarHidden = true
+  }
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    self.navigationController?.isNavigationBarHidden = false
+
+
   }
 }
 extension LookAroundViewController {
@@ -51,7 +70,7 @@ extension LookAroundViewController {
     self.view.adds([headerView,tableViewHeader,tableView])
     
     headerView.snp.makeConstraints{
-      $0.leading.trailing.top.equalToSuperview()
+      $0.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide)
       $0.height.equalTo(60)
     }
     tableViewHeader.snp.makeConstraints{
@@ -90,17 +109,4 @@ extension LookAroundViewController {
   }
 }
 extension LookAroundViewController {
-  func setUpNavigation() {
-    guard let navigationBar = navigationController?.navigationBar else { return }
-    let title = UILabel().then {
-      $0.adjustsFontSizeToFitWidth = true
-      $0.font = .nanumRoundExtraBold(fontSize: 20)
-      $0.text = "둘러보기"
-      $0.textColor = .blackText
-      
-    }
-    let customV = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: navigationBar.bounds.width - 60.0 * 2.0, height: navigationBar.bounds.height)))
-    
-    self.tabBarController?.navigationItem.titleView = title
-  }
 }
