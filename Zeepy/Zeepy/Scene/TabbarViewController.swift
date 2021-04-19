@@ -54,5 +54,12 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
       tabBarItem.imageInsets.top = 15
       tabBarItem.imageInsets.bottom = -15
     }
+    for family in UIFont.familyNames {
+      print("\(family)")
+          
+      for fontname in UIFont.fontNames(forFamilyName: family) {
+        print("   \(fontname)")
+      }
+    }
   }
 }
