@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>44</string>
+	<string>78</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>6873893d1c0e49a180bb28faaa47aa3e</string>
 	<key>LSRequiresIPhoneOS</key>
