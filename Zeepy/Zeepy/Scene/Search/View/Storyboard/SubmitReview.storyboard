@@ -9,13 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Select Address View Controller-->
         <scene sceneID="tng-kT-LPz">
             <objects>
-                <viewController id="78e-eu-ue9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectAddressViewController" id="78e-eu-ue9" customClass="SelectAddressViewController" customModule="Zeepy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Fk-a2-657">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-4L-ubT">
+                                <rect key="frame" x="186" y="367" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6tG-0P-iLe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -24,24 +33,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZb-N0-VVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="700" y="105.80357142857143"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cc2-w1-u8e">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dRx-Gi-KYE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="glP-nz-1pE">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="78e-eu-ue9" kind="relationship" relationship="rootViewController" id="e8B-Mg-2eG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vgr-Av-z2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-210.1449275362319" y="105.80357142857143"/>
         </scene>
     </scenes>
     <resources>
