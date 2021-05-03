@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		1FE1921DB0EB6647174899B5 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC549BA9438B4352CE6BACF /* Pods_ZeepyTests.framework */; };
 		372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F844D26385B39000E0AFC /* ConditionViewController.swift */; };
-		37ACEFEA26399A4000D7496A /* ReusableButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACEFE826399A4000D7496A /* ReusableButtonViewController.swift */; };
-		37ACEFEB26399A4000D7496A /* ReusableButtonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37ACEFE926399A4000D7496A /* ReusableButtonViewController.xib */; };
+		374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800B9263C297D00098436 /* ReusableOptionCell.swift */; };
+		374800BE263F177700098436 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800BD263F177700098436 /* RangeSliderTrackLayer.swift */; };
+		374800C0263F17A400098436 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800BF263F17A400098436 /* RangeSlider.swift */; };
+		37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37625BFA263A602100D72302 /* ReusableButtonCell.swift */; };
 		937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
@@ -129,8 +131,10 @@
 		1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3DD26A738AA36CE3135AC6 /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
 		372F844D26385B39000E0AFC /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
-		37ACEFE826399A4000D7496A /* ReusableButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonViewController.swift; sourceTree = "<group>"; };
-		37ACEFE926399A4000D7496A /* ReusableButtonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableButtonViewController.xib; sourceTree = "<group>"; };
+		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
+		374800BD263F177700098436 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
+		374800BF263F17A400098436 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
 		8DDF2ECAF5C0B590EC0DC314 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		90EDA8664B208E2EB1A7FE65 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		933E3929B0FFED71DB104BC5 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -511,8 +515,10 @@
 				DA4745A0261B283100709883 /* SearchViewController.swift */,
 				CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */,
 				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
-				37ACEFE826399A4000D7496A /* ReusableButtonViewController.swift */,
-				37ACEFE926399A4000D7496A /* ReusableButtonViewController.xib */,
+				37625BFA263A602100D72302 /* ReusableButtonCell.swift */,
+				374800B9263C297D00098436 /* ReusableOptionCell.swift */,
+				374800BF263F17A400098436 /* RangeSlider.swift */,
+				374800BD263F177700098436 /* RangeSliderTrackLayer.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -849,7 +855,6 @@
 				DA474642261B50A800709883 /* map_pinup.png in Resources */,
 				DA47463F261B50A800709883 /* map_pinup_custom@3x.png in Resources */,
 				DAB0000B2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
-				37ACEFEB26399A4000D7496A /* ReusableButtonViewController.xib in Resources */,
 				DA474640261B50A800709883 /* map_pin_custom.png in Resources */,
 				DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */,
@@ -1043,18 +1048,20 @@
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
-				37ACEFEA26399A4000D7496A /* ReusableButtonViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
+				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
+				374800BE263F177700098436 /* RangeSliderTrackLayer.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
+				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
@@ -1062,6 +1069,7 @@
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
+				374800C0263F17A400098436 /* RangeSlider.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
