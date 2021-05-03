@@ -16,7 +16,6 @@ final class LookAroundViewController: BaseViewController {
     v.backgroundColor = .white
     return v
   }()
-  
   private let currentLocation = UILabel().then{
     $0.adjustsFontSizeToFitWidth = true
     $0.font = .nanumRoundExtraBold(fontSize: 20)
@@ -27,18 +26,24 @@ final class LookAroundViewController: BaseViewController {
     $0.setImage(UIImage(named: ""), for: .normal)
   }
   private let filterButton = UIButton().then{
-    $0.setNormalImage(name: "iconFilter")
+    $0.setImageByName("iconFilter")
   }
   private let mapButton = UIButton().then{
-    $0.setNormalImage(name: "iconMap")
+    $0.setImageByName("iconMap")
   }
   private var tableViewHeader: UICollectionView!
   private let tableView = UITableView()
+  private let loadViewTrigger = PublishSubject<Void>()
+  private let viewModel: LookAroundViewModel = LookAroundViewModel()
+  private let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.isNavigationBarHidden = true
     setupCollectionView()
+    setupTableView()
     layout()
+    bind()
+    bindAction()
     
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +55,28 @@ final class LookAroundViewController: BaseViewController {
     self.navigationController?.isNavigationBarHidden = false
 
 
+  }
+}
+extension LookAroundViewController {
+  private func bind() {
+    let buildingSelection = Observable.zip(tableView.rx.itemSelected,
+                                           tableView.rx.modelSelected(BuildingModel.self).asObservable())
+    let inputs = LookAroundViewModel.Input(loadTrigger: loadViewTrigger,
+                                           filterAction: filterButton.rx.tap.asObservable(),
+                                           mapSelectAction: mapButton.rx.tap.asObservable(),
+                                           buildingSelect: buildingSelection)
+    let outputs = viewModel.transForm(inputs: inputs)
+    
+    outputs.buildingUsecase
+      .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
+                                                        cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
+        cell.bind(model: data)
+      }.disposed(by: disposeBag)
+    
+    loadViewTrigger.onNext(())
+  }
+  private func bindAction() {
+    
   }
 }
 extension LookAroundViewController {
@@ -65,6 +92,11 @@ extension LookAroundViewController {
   }
   private func setupTableView() {
     self.tableView.backgroundColor = .white
+    self.tableView.separatorStyle = .none
+    self.tableView.rowHeight = UITableView.automaticDimension
+    self.tableView.estimatedRowHeight = 108
+    self.tableView.register(LookAroundTableViewCell.self,
+                            forCellReuseIdentifier: LookAroundTableViewCell.identifier)
   }
   private func layout() {
     self.view.adds([headerView,tableViewHeader,tableView])
@@ -109,4 +141,5 @@ extension LookAroundViewController {
   }
 }
 extension LookAroundViewController {
+  
 }

@@ -15,8 +15,21 @@ extension UIButton {
       self.closure = closure
     }
   }
-  func setNormalImage(name: String){
+  /** 매번 setimage할때 귀찮아서 만듦 (normal 상태)
+   - Parameter name: UIImage 이름을 적어주세요
+   - Returns: 없음
+   */
+  func setImageByName(_ name: String){
     self.setImage(UIImage(named: name), for: .normal)
+  }
+  /** 매번 setimage할때 귀찮아서 만듦 (selected상태)
+   - Parameter name: UIImage 이름을 적어주세요
+   - parameter selected: selected일 때 이름을 적어주세요
+   - Returns: 없음
+   */
+  func setImageByName(_ name: String, _ selected: String){
+    self.setImage(UIImage(named: name), for: .normal)
+    self.setImage(UIImage(named: name), for: .selected)
   }
   private struct AssociatedKeys {
     static var targetClosure = "targetClosure"

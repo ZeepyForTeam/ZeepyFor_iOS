@@ -23,6 +23,7 @@
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
+		DA1B27CF262D93ED00EC156F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1B27CE262D93ED00EC156F /* File.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
@@ -142,6 +143,7 @@
 		C9AEAD7CB9C40CF584E02710 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		DA1B27CE262D93ED00EC156F /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = File.swift; path = Zeepy/Scene/Search/File.swift; sourceTree = SOURCE_ROOT; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 		CC79C2A4262B1D8A00CA9A0A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DA1B27CE262D93ED00EC156F /* File.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1035,6 +1038,7 @@
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */,
+				DA1B27CF262D93ED00EC156F /* File.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
