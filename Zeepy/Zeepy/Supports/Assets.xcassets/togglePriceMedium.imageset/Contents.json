@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "btnReady.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "togglePriceMedium.png"
     },
     {
+      "filename" : "togglePriceMedium@2x.png",
       "scale" : "2x",
-      "filename" : "btnReady@2x.png",
       "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "btnReady@3x.png"
+      "filename" : "togglePriceMedium@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

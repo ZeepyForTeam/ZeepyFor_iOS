@@ -32,6 +32,7 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let tab1NavigationController =  HomeViewController()
+
 //    let tab2NavigationController =  LookAroundViewController()
     let tab2NavigationController = LenderInformationViewController()
     let tab3NavigationController = CommunityViewController()
