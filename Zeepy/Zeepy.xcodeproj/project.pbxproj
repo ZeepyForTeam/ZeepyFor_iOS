@@ -18,6 +18,9 @@
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILabel+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
+		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
+		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
+		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
 		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
@@ -142,6 +145,9 @@
 		C2C9C676CD77AF28E7B9A7E7 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2D50A99D489780B3B46FA51 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9AEAD7CB9C40CF584E02710 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
+		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
+		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
@@ -506,6 +512,9 @@
 				DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */,
 				DA4745A0261B283100709883 /* SearchViewController.swift */,
 				CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */,
+				CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */,
+				CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */,
+				CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */,
 				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
 			);
 			path = ViewController;
@@ -1036,6 +1045,7 @@
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
+				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				DA4745A7261B284600709883 /* CommunityViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
@@ -1043,6 +1053,7 @@
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
+				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
@@ -1050,6 +1061,7 @@
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
+				CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */,
 				372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */,
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
