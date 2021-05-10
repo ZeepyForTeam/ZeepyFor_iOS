@@ -26,6 +26,7 @@
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
+		CC5495172649677F00313146 /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495162649677F00313146 /* DetailInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
 		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
@@ -158,6 +159,7 @@
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
 		CC5495112649615300313146 /* AdditionalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationViewController.swift; sourceTree = "<group>"; };
+		CC5495162649677F00313146 /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				374800BF263F17A400098436 /* RangeSlider.swift */,
 				374800BD263F177700098436 /* RangeSliderTrackLayer.swift */,
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
+				CC5495162649677F00313146 /* DetailInformationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1075,6 +1078,7 @@
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
+				CC5495172649677F00313146 /* DetailInformationViewController.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
