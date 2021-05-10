@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1FE1921DB0EB6647174899B5 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC549BA9438B4352CE6BACF /* Pods_ZeepyTests.framework */; };
 		371628A826456EC10006AE80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628A726456EC10006AE80 /* MapViewController.swift */; };
+		371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AD264665570006AE80 /* MapDetailModalView.swift */; };
+		371628B02646665F0006AE80 /* tendencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AF2646665F0006AE80 /* tendencyButton.swift */; };
 		372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F844D26385B39000E0AFC /* ConditionViewController.swift */; };
 		374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800B9263C297D00098436 /* ReusableOptionCell.swift */; };
 		37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37625BFA263A602100D72302 /* ReusableButtonCell.swift */; };
@@ -133,6 +135,8 @@
 		1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3DD26A738AA36CE3135AC6 /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
+		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };
 		372F844D26385B39000E0AFC /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
 		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
@@ -458,6 +462,8 @@
 				374800B9263C297D00098436 /* ReusableOptionCell.swift */,
 				DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */,
 				DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */,
+				371628AD264665570006AE80 /* MapDetailModalView.swift */,
+				371628AF2646665F0006AE80 /* tendencyButton.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1063,6 +1069,7 @@
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
+				371628B02646665F0006AE80 /* tendencyButton.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
@@ -1085,6 +1092,7 @@
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
+				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,
 				CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
 				DA4745A1261B283100709883 /* SearchViewController.swift in Sources */,

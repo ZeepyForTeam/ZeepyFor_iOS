@@ -12,27 +12,52 @@ import SnapKit
 
 class MapViewController: UIViewController {
     
+    var tendencyButton = UIView().then{
+        $0.frame.size = CGSize(width: 60, height: 70)
+    }
+
+    func makeTendencyButton(){
+        tendencyButton.addSubview(circleButton)
+        tendencyButton.addSubview(buttonTitle)
+
+        circleButton.snp.makeConstraints(){
+            $0.top.leading.trailing.equalToSuperview()
+        }
+    }
+    var circleButton = UIButton()
+
+    var buttonTitle = UILabel().then{
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+
+    func makeButton(imageName: String, buttonName: String) {
+        circleButton.setImage(UIImage(named: imageName), for: .normal)
+        buttonTitle.text = buttonName
+    }
+
     var items = [MTMapPOIItem]()
     
     func poiItem(name: String, latitude: Double, longitude: Double, imageName: String, tag: Int) -> MTMapPOIItem {
         let item = MTMapPOIItem()
         item.itemName = name
+        item.markerType = .customImage
         item.customImage = UIImage(named: imageName)
+        item.markerSelectedType = .customImage
+        item.customSelectedImage = UIImage(named: "iconMapAct")
         item.mapPoint = MTMapPoint(geoCoord: .init(latitude: latitude, longitude: longitude))
         item.showAnimationType = .noAnimation
         item.tag = tag
-        item.customImageAnchorPointOffset = .init(offsetX: 30, offsetY: 0)
+        item.customImageAnchorPointOffset = .init(offsetX: 30, offsetY: 10)
         
         return item
     }
     
     func makeMarkerArray(){
-        items.append(poiItem(name: "달봉이네", latitude: 37.4981688, longitude: 127.0484572, imageName: "iconMapAct", tag: 1))
+        items.append(poiItem(name: "달봉이네", latitude: 37.4981688, longitude: 127.0484572, imageName: "iconSoso", tag: 1))
         mapView.addPOIItems(items)
         mapView.fitAreaToShowAllPOIItems()
     }
-    
-    
+
     var searchView = UIView().then{
         $0.setRounded(radius: 15)
         $0.borderWidth = 3
@@ -59,12 +84,14 @@ class MapViewController: UIViewController {
         $0.baseMapType = .standard
     }
 
+    var tendencyStackView = UIStackView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.view.add(searchView)
         self.view.add(mapView)
-        //initMapView()
+        initMapView()
         addConstraint()
         makeMarkerArray()
     }
@@ -73,8 +100,8 @@ class MapViewController: UIViewController {
     
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-            $0.top.equalTo(100)
-            $0.height.equalTo(30)
+            $0.top.equalTo(95)//?
+            $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)
         searchView.addSubview(searchTextField)

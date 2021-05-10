@@ -36,7 +36,7 @@ class ConditionViewController: UIViewController {
     
     let buildingTitle = UILabel().then {
         $0.text = "건물유형"
-        $0.font = UIFont.systemFont(ofSize: 16)
+//        $0.font = UIFont.systemFont(ofSize: 16)
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let buildingCollectionView: UICollectionView = {
@@ -366,9 +366,8 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
             
-            
             return cell!
-            //
+
         }
         else if(collectionView == self.transactionCollectionView){
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
