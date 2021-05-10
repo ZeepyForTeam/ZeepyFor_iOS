@@ -47,7 +47,8 @@ extension UIButton {
     self.titleLabel?.font = font
   }
   
-  func setupImagedButton(imageName: String, state: UIControl.State? = .normal) {
+  func setupImagedButton(imageName: String, state: UIControl.State? = .normal, radius: CGFloat) {
     self.setBackgroundImage(UIImage(named: imageName), for: state ?? .normal)
+    self.setRounded(radius: radius)
   }
 }
