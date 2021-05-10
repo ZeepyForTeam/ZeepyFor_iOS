@@ -25,6 +25,7 @@
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
+		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
 		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
@@ -156,6 +157,7 @@
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
+		CC5495112649615300313146 /* AdditionalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
@@ -456,8 +458,10 @@
 		DA2EDB6A262C58DD00620B7E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				37625BFA263A602100D72302 /* ReusableButtonCell.swift */,
 				DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */,
 				DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */,
+				374800B9263C297D00098436 /* ReusableOptionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -524,10 +528,9 @@
 				CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */,
 				CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */,
 				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
-				37625BFA263A602100D72302 /* ReusableButtonCell.swift */,
-				374800B9263C297D00098436 /* ReusableOptionCell.swift */,
 				374800BF263F17A400098436 /* RangeSlider.swift */,
 				374800BD263F177700098436 /* RangeSliderTrackLayer.swift */,
+				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
+				CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */,
 				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
 				374800BE263F177700098436 /* RangeSliderTrackLayer.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,

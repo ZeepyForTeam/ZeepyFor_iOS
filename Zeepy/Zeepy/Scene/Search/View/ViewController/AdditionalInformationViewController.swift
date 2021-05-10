@@ -1,40 +1,36 @@
 //
-//  CommunicationTendencyViewController.swift
+//  AdditionalInformationViewController.swift
 //  Zeepy
 //
-//  Created by 노한솔 on 2021/05/03.
+//  Created by 노한솔 on 2021/05/10.
 //
 
-import SnapKit
-import Then
 import UIKit
 
-class CommunicationTendencyViewController: BaseViewController {
-  // MARK: - Constants
-  let titleLabelNumberOfLine = 2
+class AdditionalInformationViewController: BaseViewController {
   
-  // MARK: - Components
+  let titleLabelNumberOfLine = 2
   let titleLabel = UILabel()
-  let tendencyTableContainerView = UIView()
-  let tendencyTableView = UITableView()
+  let reviewTitleLabel = UILabel()
+  let reviewTextField = UITextField()
+  let assessTitleLabel = UILabel()
+  let assessTableView = UITableView()
   let nextButton = UIButton()
   let separatorView = UIView()
   
-  // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .white
     layout()
   }
   
+  
 }
-// MARK: - Extensions
-extension CommunicationTendencyViewController {
-  // MARK: - Helpers
+
+extension AdditionalInformationViewController {
   func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
-    let titleText = NSMutableAttributedString(string: "임대인의 소통성향은 \n어땠나요?",
+    let titleText = NSMutableAttributedString(string: "집에 대한 정보를\n조금 더 알려주세요!",
                                               attributes: [
                                                 .font: UIFont.nanumRoundExtraBold(fontSize: 24),
                                                 .foregroundColor: UIColor.mainBlue])
@@ -43,10 +39,11 @@ extension CommunicationTendencyViewController {
                            range: NSMakeRange(0, titleText.length))
     titleText.addAttribute(NSAttributedString.Key.font,
                            value: UIFont.nanumRoundRegular(fontSize: 24),
-                           range: NSRange(location: 3, length: 1))
+                           range: NSRange(location: 9, length: 1))
     titleText.addAttribute(NSAttributedString.Key.font,
                            value: UIFont.nanumRoundRegular(fontSize: 24),
-                           range: NSRange(location: 9, length: 8))
+                           range: NSRange(location: 15, length: 6))
+
     self.view.add(self.titleLabel) {
       $0.attributedText = titleText
       $0.numberOfLines = self.titleLabelNumberOfLine
@@ -56,24 +53,54 @@ extension CommunicationTendencyViewController {
       }
     }
   }
-  func layoutTendencyTableContainerView() {
-    self.view.add(self.tendencyTableContainerView) {
-      $0.backgroundColor = .clear
+  func layoutReviewTitleLabel() {
+    self.view.add(reviewTitleLabel) {
+      $0.text = "상세리뷰"
+      $0.textColor = .blackText
+      $0.font = .nanumRoundExtraBold(fontSize: 18)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.titleLabel.snp.leading)
-        $0.top.equalTo(self.titleLabel.snp.bottom).offset(100)
-        $0.centerX.equalTo(self.view.snp.centerX)
+        $0.top.equalTo(self.titleLabel.snp.bottom).offset(32)
       }
     }
   }
-  func layoutTendencyTableView() {
-    self.tendencyTableContainerView.add(self.tendencyTableView) {
-      $0.estimatedRowHeight = UITableView.automaticDimension
-      $0.backgroundColor = .gray244
+  func layoutReviewTextField() {
+    self.view.add(self.reviewTextField) {
+      $0.textColor = .blackText
+      $0.font = .nanumRoundRegular(fontSize: 10)
+      $0.setRounded(radius: 8)
+      $0.setBorder(borderColor: .grayText, borderWidth: 1)
+      $0.backgroundColor = .clear
+      $0.textAlignment = .left
+      $0.contentVerticalAlignment = .top
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.tendencyTableContainerView.snp.leading)
-        $0.trailing.equalTo(self.tendencyTableContainerView.snp.trailing)
-        $0.top.equalTo(self.tendencyTableContainerView.snp.top)
+        $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
+        $0.centerX.equalTo(self.view.snp.centerX)
+        $0.top.equalTo(self.reviewTitleLabel.snp.bottom).offset(12)
+        $0.height.equalTo(self.view.frame.height*163/812)
+      }
+    }
+  }
+  func layoutAssessTitleLabel() {
+    self.view.add(assessTitleLabel) {
+      $0.text = "종합평가"
+      $0.textColor = .blackText
+      $0.font = .nanumRoundExtraBold(fontSize: 18)
+      $0.snp.makeConstraints {
+        $0.leading.equalTo(self.titleLabel.snp.leading)
+        $0.top.equalTo(self.reviewTextField.snp.bottom).offset(32)
+      }
+    }
+  }
+  func layoutAssessTableView() {
+    self.view.add(assessTableView) {
+      $0.estimatedRowHeight = UITableView.automaticDimension
+      $0.backgroundColor = .clear
+      $0.separatorStyle = .none
+      $0.snp.makeConstraints {
+        $0.leading.equalTo(self.assessTitleLabel.snp.leading)
+        $0.centerX.equalTo(self.view.snp.centerX)
+        $0.top.equalTo(self.assessTitleLabel.snp.bottom).offset(12)
       }
     }
   }
@@ -85,14 +112,14 @@ extension CommunicationTendencyViewController {
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
       $0.setRounded(radius: 8)
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.tendencyTableContainerView.snp.leading)
-        $0.trailing.equalTo(self.tendencyTableContainerView.snp.trailing)
+        $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
+        $0.centerX.equalTo(self.view.snp.centerX)
         $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }
   }
-  func layoutseparatorView() {
+  func layoutSeparatorView() {
     self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
@@ -104,10 +131,11 @@ extension CommunicationTendencyViewController {
   }
   func layout() {
     layoutTitleLabel()
-    layoutTendencyTableContainerView()
-    layoutTendencyTableView()
+    layoutReviewTitleLabel()
+    layoutReviewTextField()
+    layoutAssessTitleLabel()
+    layoutAssessTableView()
     layoutNextButton()
-    layoutseparatorView()
+    layoutSeparatorView()
   }
 }
-
