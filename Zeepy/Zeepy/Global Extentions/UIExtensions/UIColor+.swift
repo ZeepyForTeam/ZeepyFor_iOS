@@ -51,5 +51,8 @@ extension UIColor {
   @nonobjc class var grayText: UIColor {
     return UIColor(red: 154.0 / 255.0, green: 159.0 / 255.0, blue: 163.0 / 255.0, alpha: 1.0)
   }
+  @nonobjc class var blueText: UIColor {
+    return UIColor(red: 117.0 / 255.0, green: 152.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
+  }
 
 }

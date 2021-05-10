@@ -39,4 +39,16 @@ extension UIButton {
     targetClosure = closure
     addTarget(self, action: #selector(UIButton.closureAction), for: event)
   }
+  
+  func setupTitledButton(title: String, state: UIControl.State? = .normal, color: UIColor, radius: CGFloat, font: UIFont) {
+    self.setTitle(title, for: state ?? .normal)
+    self.setTitleColor(color, for: state ?? .normal)
+    self.setRounded(radius: radius)
+    self.titleLabel?.font = font
+  }
+  
+  func setupImagedButton(imageName: String, state: UIControl.State? = .normal, radius: CGFloat) {
+    self.setBackgroundImage(UIImage(named: imageName), for: state ?? .normal)
+    self.setRounded(radius: radius)
+  }
 }
