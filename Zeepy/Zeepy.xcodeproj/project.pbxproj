@@ -27,7 +27,6 @@
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
-		CC5495172649677F00313146 /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495162649677F00313146 /* DetailInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
 		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
@@ -36,7 +35,7 @@
 		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC8D7212264A4E09002BB7FF /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = CC8D7211264A4E09002BB7FF /* Differentiator */; };
 		CC8D7214264A4E09002BB7FF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CC8D7213264A4E09002BB7FF /* RxDataSources */; };
-		CC8D722E264A4FEC002BB7FF /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */; };
+		CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */; };
 		CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */; };
 		CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */; };
 		CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */; };
@@ -170,10 +169,9 @@
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
 		CC5495112649615300313146 /* AdditionalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationViewController.swift; sourceTree = "<group>"; };
-		CC5495162649677F00313146 /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
-		CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
+		CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAndFurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -382,6 +380,7 @@
 		CC79C2A2262B1D7C00CA9A0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CC8D7256264AD8D9002BB7FF /* ReusableView */,
 				DA2EDB6A262C58DD00620B7E /* Cell */,
 				CC79C2A5262B1D9A00CA9A0A /* Storyboard */,
 				DA47459F261B282200709883 /* ViewController */,
@@ -410,6 +409,17 @@
 				CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		CC8D7256264AD8D9002BB7FF /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */,
+				CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */,
+				CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */,
+				CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */,
+			);
+			path = ReusableView;
 			sourceTree = "<group>";
 		};
 		DA02AF97261206C30016C30A /* Home */ = {
@@ -488,10 +498,6 @@
 				371628AF2646665F0006AE80 /* tendencyButton.swift */,
 				CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */,
 				CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */,
-				CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */,
-				CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */,
-				CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */,
-				CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -560,8 +566,7 @@
 				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
 				371628A726456EC10006AE80 /* MapViewController.swift */,
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
-				CC5495162649677F00313146 /* DetailInformationViewController.swift */,
-				CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */,
+				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1109,12 +1114,11 @@
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
-				CC8D722E264A4FEC002BB7FF /* DetailInfoViewController.swift in Sources */,
+				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
 				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
-				CC5495172649677F00313146 /* DetailInformationViewController.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,

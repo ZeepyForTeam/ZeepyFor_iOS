@@ -34,7 +34,7 @@ extension ReviewCollectionViewCell {
     self.contentView.add(containerView) {
       $0.backgroundColor = .clear
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.titleLabel.snp.bottom).offset(4)
+        $0.top.equalTo(self.titleLabel.snp.bottom)
         $0.leading.equalTo(self.titleLabel.snp.leading)
         $0.trailing.equalTo(self.contentView.snp.trailing)
         $0.bottom.equalTo(self.contentView.snp.bottom)
