@@ -34,6 +34,15 @@
 		CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
+		CC8D7212264A4E09002BB7FF /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = CC8D7211264A4E09002BB7FF /* Differentiator */; };
+		CC8D7214264A4E09002BB7FF /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CC8D7213264A4E09002BB7FF /* RxDataSources */; };
+		CC8D722E264A4FEC002BB7FF /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */; };
+		CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */; };
+		CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */; };
+		CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */; };
+		CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */; };
+		CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */; };
+		CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */; };
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
@@ -164,6 +173,13 @@
 		CC5495162649677F00313146 /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
+		CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAndFurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
+				CC8D7212264A4E09002BB7FF /* Differentiator in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
@@ -271,6 +288,7 @@
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
 				DA47465A261B50A800709883 /* DaumMap.framework in Frameworks */,
+				CC8D7214264A4E09002BB7FF /* RxDataSources in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */,
 			);
@@ -463,13 +481,17 @@
 			isa = PBXGroup;
 			children = (
 				37625BFA263A602100D72302 /* ReusableButtonCell.swift */,
-
 				374800B9263C297D00098436 /* ReusableOptionCell.swift */,
 				DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */,
 				DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */,
 				371628AD264665570006AE80 /* MapDetailModalView.swift */,
 				371628AF2646665F0006AE80 /* tendencyButton.swift */,
-
+				CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */,
+				CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */,
+				CC8D723C264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift */,
+				CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */,
+				CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */,
+				CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -536,11 +558,10 @@
 				CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */,
 				CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */,
 				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
-
 				371628A726456EC10006AE80 /* MapViewController.swift */,
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC5495162649677F00313146 /* DetailInformationViewController.swift */,
-
+				CC8D722D264A4FEC002BB7FF /* DetailInfoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -777,6 +798,8 @@
 				DA47445A2612144800709883 /* SnapKit */,
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
 				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
+				CC8D7211264A4E09002BB7FF /* Differentiator */,
+				CC8D7213264A4E09002BB7FF /* RxDataSources */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -857,6 +880,7 @@
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CC8D7210264A4E09002BB7FF /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1068,6 +1092,7 @@
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
+				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
@@ -1084,11 +1109,15 @@
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
+				CC8D722E264A4FEC002BB7FF /* DetailInfoViewController.swift in Sources */,
+				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
+				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
 				CC5495172649677F00313146 /* DetailInformationViewController.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
+				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
@@ -1097,6 +1126,8 @@
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
+				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
+				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
@@ -1771,6 +1802,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		CC8D7210264A4E09002BB7FF /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1794,6 +1833,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		CC8D7211264A4E09002BB7FF /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC8D7210264A4E09002BB7FF /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		CC8D7213264A4E09002BB7FF /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC8D7210264A4E09002BB7FF /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		DA2EDB7A262C5A7D00620B7E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

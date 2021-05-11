@@ -4,9 +4,12 @@
 //
 //  Created by 노한솔 on 2021/05/10.
 //
+import RxDataSources
+import RxSwift
 import SnapKit
 import Then
 import UIKit
+
 
 class DetailInformationViewController: BaseViewController {
   
@@ -40,8 +43,6 @@ class DetailInformationViewController: BaseViewController {
     super.viewDidLoad()
     layout()
   }
- 
-  
 }
 
 extension DetailInformationViewController {
