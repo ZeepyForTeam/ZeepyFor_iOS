@@ -18,7 +18,6 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
       self.view.addGestureRecognizer(gestureRecognizer)
     }
   }
-  
 
   enum HudAction: Int {
     case show = 1, hideWithSucces, hideWithError, hideWithInfo, dismiss
@@ -75,13 +74,10 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidAppear(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidDisappear(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-    self.navigationController?.isNavigationBarHidden = true
-
   }
 
   deinit {
     NotificationCenter.default.removeObserver(self)
-    print("deinit")
   }
 
   override func didReceiveMemoryWarning() {

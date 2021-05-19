@@ -19,7 +19,6 @@ class SelectAddressViewController: BaseViewController {
   let addressTableContainerView = UIView()
   let addressTableView = UITableView()
   let addressTableFooterLabel = UILabel()
-
   let separatorView = UIView()
   let nextButton = UIButton()
   
@@ -122,7 +121,6 @@ extension SelectAddressViewController {
       }
     }
   }
-
   func layoutseparatorView() {
     self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
@@ -141,7 +139,6 @@ extension SelectAddressViewController {
     layoutAddressTableView()
     layoutAddressTableFooterLabel()
     layoutNextButton()
-
     layoutseparatorView()
   }
 }
