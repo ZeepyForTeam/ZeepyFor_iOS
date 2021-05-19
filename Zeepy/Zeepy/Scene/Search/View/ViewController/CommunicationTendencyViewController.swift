@@ -18,7 +18,7 @@ class CommunicationTendencyViewController: BaseViewController {
   let tendencyTableContainerView = UIView()
   let tendencyTableView = UITableView()
   let nextButton = UIButton()
-  let separatorView = UIView()
+  let seperatorView = UIView()
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -92,8 +92,9 @@ extension CommunicationTendencyViewController {
       }
     }
   }
-  func layoutseparatorView() {
-    self.view.add(self.separatorView) {
+  func layoutSeperatorView() {
+    self.view.add(self.seperatorView) {
+
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
         $0.width.equalTo(self.view.snp.width)
@@ -107,6 +108,7 @@ extension CommunicationTendencyViewController {
     layoutTendencyTableContainerView()
     layoutTendencyTableView()
     layoutNextButton()
+
     layoutseparatorView()
   }
 }

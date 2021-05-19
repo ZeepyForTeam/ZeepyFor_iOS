@@ -12,6 +12,7 @@ extension UIViewController {
   open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
+  
 }
 extension UIViewController {
   func hideKeyboardWhenTappedAround() {
@@ -62,7 +63,6 @@ extension UIViewController {
   
   func setupNavigationBar(_ color: UIColor) {
     guard let navigationBar = self.navigationController?.navigationBar else { return }
-    
     navigationBar.isTranslucent = true
     navigationBar.backgroundColor = color
     navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
