@@ -28,7 +28,7 @@ struct BuildingDetailInfo {
   let buildingType: String
   let contractType: String
   let options: [String]
-  let ownderInfo: [ReviewDetailInfo]
+  let ownerInfo: [OwnerTypeCount]
   let review: [ReviewInfo]
   let filters : [String]
 }
@@ -40,4 +40,15 @@ struct ReviewDetailInfo {
   let houseReview: String
   let totalReview: String
   let createdAt: String
+}
+struct OwnerTypeCount {
+  let type: ValidateType
+  let count : Int
+}
+enum ValidateType: String {
+  case business = "비지니스형"
+  case kind = "친절형"
+  case free = "방목형"
+  case cute = "츤데레형"
+  case bad = "할많하않"
 }

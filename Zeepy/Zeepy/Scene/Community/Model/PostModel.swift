@@ -1,0 +1,26 @@
+//
+//  PostModel.swift
+//  Zeepy
+//
+//  Created by 김태훈 on 2021/05/19.
+//
+
+import Foundation
+struct PostModel {
+  let type: PostType
+  let status: Bool
+  let postTitle: String
+  let postConent: String
+  let postedAt: String
+}
+enum PostType : String {
+  case total  = "전체 보기"
+  case deal  = "공동 구매"
+  case share  = "무료 나눔"
+  case friend  = "동네 친구"
+}
+extension PostModel : Comparable {
+  static func < (lhs: PostModel, rhs: PostModel) -> Bool {
+    return rhs.status
+  }
+}
