@@ -84,6 +84,7 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
+  - RangeSeekSlider (1.8.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Messaging
   - Moya (~> 14.0)
+  - RangeSeekSlider
   - RxCocoa (= 5.1.1)
   - RxSwift (= 5.1.2)
 
@@ -114,6 +116,7 @@ SPEC REPOS:
     - Moya
     - nanopb
     - PromisesObjC
+    - RangeSeekSlider
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -133,10 +136,11 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 6d63f81e9263577aa60efc04084aca3d40fcab37
+PODFILE CHECKSUM: 3a6e0f5acf6a53e891bb4c7b8cd4e27fdf78f7fe
 
 COCOAPODS: 1.10.0

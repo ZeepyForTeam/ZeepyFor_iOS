@@ -8,5 +8,10 @@
 import Foundation
 import UIKit
 extension UILabel {
-
+  func setupLabel(text: String, color: UIColor, font: UIFont, align: NSTextAlignment? = .left) {
+    self.font = font
+    self.text = text
+    self.textColor = color
+    self.textAlignment = align ?? .left
+  }
 }

@@ -19,7 +19,8 @@ class SelectAddressViewController: BaseViewController {
   let addressTableContainerView = UIView()
   let addressTableView = UITableView()
   let addressTableFooterLabel = UILabel()
-  let seperatorView = UIView()
+
+  let separatorView = UIView()
   let nextButton = UIButton()
   
   // MARK: - LifeCycles
@@ -121,8 +122,9 @@ extension SelectAddressViewController {
       }
     }
   }
-  func layoutSeperatorView() {
-    self.view.add(self.seperatorView) {
+
+  func layoutseparatorView() {
+    self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
         $0.width.equalTo(self.view.snp.width)
@@ -139,7 +141,8 @@ extension SelectAddressViewController {
     layoutAddressTableView()
     layoutAddressTableFooterLabel()
     layoutNextButton()
-    layoutSeperatorView()
+
+    layoutseparatorView()
   }
 }
 

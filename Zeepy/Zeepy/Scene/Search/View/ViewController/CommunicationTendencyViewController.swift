@@ -94,6 +94,7 @@ extension CommunicationTendencyViewController {
   }
   func layoutSeperatorView() {
     self.view.add(self.seperatorView) {
+
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
         $0.width.equalTo(self.view.snp.width)
@@ -107,7 +108,8 @@ extension CommunicationTendencyViewController {
     layoutTendencyTableContainerView()
     layoutTendencyTableView()
     layoutNextButton()
-    layoutSeperatorView()
+
+    layoutseparatorView()
   }
 }
 

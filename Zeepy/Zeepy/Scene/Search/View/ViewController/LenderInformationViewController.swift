@@ -33,7 +33,8 @@ class LenderInformationViewController: BaseViewController {
   }()
   let detailTextFieldFooterLabel = UILabel()
   let nextButton = UIButton()
-  let seperatorView = UIView()
+
+  let separatorView = UIView()
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -215,8 +216,9 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutSeperatorView() {
-    self.view.add(self.seperatorView) {
+
+  func layoutseparatorView() {
+    self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
         $0.width.equalTo(self.view.snp.width)
@@ -239,6 +241,7 @@ extension LenderInformationViewController {
     layoutDetailTextField()
     layoutDetailTextFieldFooterLabel()
     layoutNextButton()
-    layoutSeperatorView()
+
+    layoutseparatorView()
   }
 }

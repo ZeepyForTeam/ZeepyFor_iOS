@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
+import RangeSeekSlider
+
 class ConditionViewController: UIViewController {
     let cellName = "ReusableButtonCell"
     let optionCellName = "ReusableOptionCell"
@@ -20,17 +22,22 @@ class ConditionViewController: UIViewController {
         var title = String()
         var image = String()
         //var selected = Bool //?이거 추가하가
+    struct ListModel {
+        var title = String()
+        var image = String()
+        var selected = Bool()
     }
     
     struct OptionModel {
         var name = String()
     }
     
-    var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1"), ListModel(title: "투룸", image: "btnOption2"), ListModel(title: "오피스텔", image: "btnReady")]
+
+    var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1", selected : true), ListModel(title: "투룸", image: "btnOption2", selected : true), ListModel(title: "오피스텔", image: "btnReady", selected : true)]
     
-    let transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1"), ListModel(title: "전세", image: "btnOption2"), ListModel(title: "매매", image: "btnOption3")]
+    var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1"), ListModel(title: "전세", image: "btnOption2"), ListModel(title: "매매", image: "btnOption3")]
     
-    var optionList : [OptionModel] = [OptionModel(name: "에어컨"),OptionModel(name: "세탁기"),OptionModel(name: "침대"),OptionModel(name: "옷장"),OptionModel(name: "책상"),OptionModel(name: "냉장고"),OptionModel(name: "인덕션"),OptionModel(name: "가스레인지"),OptionModel(name: "전자레인지")]
+    var optionList : [OptionModel] = [OptionModel(name: "에어컨", selected : true),OptionModel(name: "세탁기", selected : true),OptionModel(name: "침대", selected : true),OptionModel(name: "옷장", selected : true),OptionModel(name: "책상", selected : true),OptionModel(name: "냉장고", selected : true),OptionModel(name: "인덕션", selected : true),OptionModel(name: "가스레인지", selected : true),OptionModel(name: "전자레인지", selected : true)]
     
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -38,6 +45,7 @@ class ConditionViewController: UIViewController {
     let buildingTitle = UILabel().then {
         $0.text = "건물유형"
         $0.font = UIFont.systemFont(ofSize: 16)
+
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let buildingCollectionView: UICollectionView = {
@@ -86,26 +94,55 @@ class ConditionViewController: UIViewController {
     
     let priceLabel = UILabel().then{
         $0.text = "0000부터"
+
         $0.textColor = .black
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let priceSliderView = UIView()
     
-    let priceSlider = RangeSlider().then{
-        //        $0.layer.masksToBounds = false
-        $0.minimumValue = 0
-        $0.maximumValue = 10
-        $0.upperValue = 0.5
-        $0.lowerValue = 0
-        $0.thumbImage = UIImage(named: "togglePriceMedium")
-        $0.trackHighlightTintColor = .mainBlue
-        $0.trackTintColor = .mainYellow
+
+    let priceSlider = RangeSeekSlider().then{
+        $0.minValue = 0
+        $0.maxValue = 100
+        $0.selectedMinValue = 0
+        $0.selectedMaxValue = 20
+        $0.lineHeight = 10
+        $0.colorBetweenHandles = .mainBlue
+        $0.tintColor = .mainYellow
+        $0.hideLabels = true
+        $0.handleImage = UIImage(named:"togglePriceMedium")
+        $0.enableStep = true
+        $0.step = 25
+        $0.setupStyle()
+        $0.addTarget(self, action: #selector(sliderValuechanged), for: .touchUpInside)
     }
+    let firstSection = UILabel().then{
+        $0.text = "최소"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+    let secondSection = UILabel().then{
+        $0.text = "5천만"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+    let thirdSection = UILabel().then{
+        $0.text = "1억"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+    let fourthSection = UILabel().then{
+        $0.text = "최대"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+    
+    let priceSection = UIStackView().then{
+        $0.distribution = .fillEqually
+    }
+    
     let optionTitle = UILabel().then {
         $0.text = "가구옵션"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
-    let optionCollectionView : UICollectionView = {
+
+        let optionCollectionView : UICollectionView = {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.isPagingEnabled = true
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
@@ -119,6 +156,7 @@ class ConditionViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         return collectionView
     }()
+
     let nextButton = UIButton().then {
         $0.frame.size = CGSize(width: 2, height: 300) // 엥 이거 반영이 안돼
         $0.backgroundColor = .mainBlue
@@ -132,7 +170,8 @@ class ConditionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.view.addSubview(scrollView) // 메인뷰에
+
+        self.view.addSubview(scrollView)
         addConstraint()
         self.initCollectionView()
     }
@@ -162,7 +201,8 @@ class ConditionViewController: UIViewController {
             $0.centerX.top.bottom.equalToSuperview()
         }
         
-        _ = [buildingTitle,buildingCollectionView,transactionTitle,transactionCollectionView,priceTitle,priceShowView,priceSliderView,optionTitle,optionCollectionView,nextButton].map { self.contentView.addSubview($0)}
+
+        _ = [buildingTitle,buildingCollectionView,transactionTitle,transactionCollectionView,priceTitle,priceShowView,priceSliderView,priceSection,optionTitle,optionCollectionView,nextButton].map { self.contentView.addSubview($0)}
         
         
         buildingTitle.snp.makeConstraints {
@@ -196,31 +236,44 @@ class ConditionViewController: UIViewController {
         priceShowView.snp.makeConstraints {
             $0.top.equalTo(priceTitle.snp.bottom).offset(5)
             $0.leading.equalToSuperview().offset(16)
-            $0.height.equalTo(30)
-            $0.width.equalTo(100) // ?이렇게 안하면 아예 안뜨는데 이렇게 하면 ~부터 ~까지 이렇게 할 때 안 좋은데.. sizetofix이 잇으면 좋겠다
+
+            $0.size.equalTo(priceLabel).offset(15)
         }
         priceLabel.snp.makeConstraints {
             $0.center.equalTo(priceShowView)
-            $0.trailing.leading.top.bottom.equalTo(priceShowView).inset(3)
         }
         
         priceSliderView.snp.makeConstraints {
-            $0.top.equalTo(priceShowView.snp.bottom).offset(5)
+            $0.top.equalTo(priceShowView.snp.bottom)
             $0.leading.trailing.equalToSuperview().offset(16)
             $0.height.equalTo(80)
         }
         
         priceSliderView.addSubview(priceSlider)
         priceSlider.addTarget(self, action: #selector(SliderValuechanged), for: .valueChanged)
+
         
         priceSlider.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().offset(-30)
+        }        
+        optionTitle.snp.makeConstraints {
+            $0.top.equalTo(priceSliderView.snp.bottom)
+        priceSection.addSubview(firstSection)
+        priceSection.addSubview(secondSection)
+        priceSection.addSubview(thirdSection)
+        priceSection.addSubview(fourthSection)
+        
+        priceSection.snp.makeConstraints{
+            $0.top.equalTo(priceSliderView.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(30)
         }
         
         optionTitle.snp.makeConstraints {
-            $0.top.equalTo(priceSliderView.snp.bottom)
+            $0.top.equalTo(priceSection.snp.bottom)
             $0.leading.trailing.equalToSuperview().offset(16)
         }
         
@@ -229,6 +282,7 @@ class ConditionViewController: UIViewController {
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(180)
+
         }
         
         nextButton.snp.makeConstraints {
@@ -243,10 +297,14 @@ class ConditionViewController: UIViewController {
     func setPriceLabel(price : Float) {
         priceLabel.text = "\(String(price))부터"
     }
+
+
     @objc func onTapBuildingButton(sender: UIButton) {
         print("BuildingButton was tapped.")
         sender.isSelected.toggle()
         buildingCollectionView.reloadInputViews()
+
+        print(buildingList)
     }
     
     @objc func onTapTransactionButton(sender: UIButton) {
@@ -254,6 +312,7 @@ class ConditionViewController: UIViewController {
         sender.isSelected.toggle()
         transactionCollectionView.reloadInputViews()
     }
+
     @objc func onTapOptionButton(sender: UIButton) {
         print("OptionButton was tapped.")
         sender.isSelected.toggle()
@@ -263,14 +322,12 @@ class ConditionViewController: UIViewController {
         {sender.backgroundColor = .mainBlue}
         optionCollectionView.reloadInputViews()
     }
-    //    @objc func SliderValuechanged(sender: UISlider) {
-    //        print("slider value changed")
-    //        print(sender.value)
-    //        setPriceLabel(price: sender.value)
-    //    }
-    @objc func SliderValuechanged(sender: RangeSlider) {
-        let values = "(\(priceSlider.lowerValue) \(priceSlider.upperValue))"
-        print("Range slider value changed: \(values)")
+
+
+
+    @objc func sliderValuechanged(sender: RangeSeekSlider) {
+        setPriceLabel(value: "\(Int(round(sender.selectedMinValue)))부터 \(Int(round(sender.selectedMaxValue)))까지")
+        priceLabel.reloadInputViews()
     }
 }
 
@@ -319,6 +376,10 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: ReusableButtonCell?
         var optioncell: ReusableOptionCell?
+
+        func buildingToggle(){
+            buildingList[indexPath.row].selected.toggle()
+        }
         
         if(collectionView == self.buildingCollectionView){
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
@@ -326,8 +387,10 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
+
+
             return cell!
-            //
+
         }
         else if(collectionView == self.transactionCollectionView){
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
@@ -335,12 +398,19 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = transactionList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapTransactionButton), for: .touchUpInside)
+            if cell!.circleButton.isTouchInside {
+                transactionList[indexPath.row].selected.toggle()
+            }
             return cell!
         }
         else if(collectionView == self.optionCollectionView){
             optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.optionCellName, for:indexPath) as? ReusableOptionCell)
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
+
+            if optioncell!.squareButton.isTouchInside {
+                optionList[indexPath.row].selected.toggle()
+            }
             return optioncell!
         }
         return UICollectionViewCell()
