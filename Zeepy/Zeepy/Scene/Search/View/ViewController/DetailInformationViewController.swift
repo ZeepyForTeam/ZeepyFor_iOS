@@ -81,7 +81,7 @@ extension DetailInformationViewController {
   func layoutNumberOfRoomTitleLabel() {
     self.contentScrollView.add(numberOfRoomTitleLabel) {
       $0.text = "방의 개수는 몇 개인가요?"
-      $0.textColor = .blueText
+      $0.textColor = .blackText
       $0.font = .nanumRoundExtraBold(fontSize: 14)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.titleLabel.snp.leading)
