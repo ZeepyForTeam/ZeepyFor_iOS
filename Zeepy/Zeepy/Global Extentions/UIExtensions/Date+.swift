@@ -74,7 +74,7 @@ enum DateFormat: String {
 
   case yyyyMMDot = "yyyy.MM"
 
-  case yyyyMMddDot = "yyyy. MM. dd"
+  case yyyyMMddDot = "yyyy.MM.dd"
   case yyyyMMddKR = "yyyy'년 'M'월 'd'일('E')'"
 }
 

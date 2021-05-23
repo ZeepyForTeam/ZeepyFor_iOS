@@ -19,6 +19,8 @@ class ReusableSimpleImageCell  : UICollectionViewCell{
   override func prepareForReuse() {
     super.prepareForReuse()
     plusImage.isHidden = true
+    layout()
+
   }
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -28,8 +30,11 @@ class ReusableSimpleImageCell  : UICollectionViewCell{
     fatalError("init(coder:) has not been implemented")
   }
   func bindCell(model : String, over : Bool) {
-    layout()
     plusImage.isHidden = !over
+    imageView.kf.setImage(with: URL(string: model))
+    imageView.setRounded(radius: 6)
+  }
+  func bindCell(model: String) {
     imageView.kf.setImage(with: URL(string: model))
     imageView.setRounded(radius: 6)
   }
