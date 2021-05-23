@@ -3,15 +3,15 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "iconAngry.png"
+      "filename" : "emoji3Map.png"
     },
     {
+      "filename" : "emoji3Map@2x.png",
       "idiom" : "universal",
-      "filename" : "iconAngry@2x.png",
       "scale" : "2x"
     },
     {
-      "filename" : "iconAngry@3x.png",
+      "filename" : "emoji3Map@3x.png",
       "scale" : "3x",
       "idiom" : "universal"
     }

@@ -11,6 +11,7 @@
 		371628A826456EC10006AE80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628A726456EC10006AE80 /* MapViewController.swift */; };
 		371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AD264665570006AE80 /* MapDetailModalView.swift */; };
 		371628B02646665F0006AE80 /* tendencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AF2646665F0006AE80 /* tendencyButton.swift */; };
+		372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */; };
 		372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F844D26385B39000E0AFC /* ConditionViewController.swift */; };
 		374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800B9263C297D00098436 /* ReusableOptionCell.swift */; };
 		37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37625BFA263A602100D72302 /* ReusableButtonCell.swift */; };
@@ -99,7 +100,6 @@
 		DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */; };
 		DA4C7837265A01F00040010F /* TapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7830265A01F00040010F /* TapCell.swift */; };
 		DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */; };
-		DA4C7839265A01F00040010F /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7833265A01F00040010F /* CommunityViewController.swift */; };
 		DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */; };
 		DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */; };
 		DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0E6265A01940059B879 /* LookAroundDetailViewModel.swift */; };
@@ -166,6 +166,7 @@
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
 		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };
+		372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		372F844D26385B39000E0AFC /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
 		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
@@ -262,7 +263,6 @@
 		DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA4C7830265A01F00040010F /* TapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapCell.swift; sourceTree = "<group>"; };
 		DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postSimpleCollectionViewCell.swift; sourceTree = "<group>"; };
-		DA4C7833265A01F00040010F /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundDetailViewController.swift; sourceTree = "<group>"; };
 		DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewModel.swift; sourceTree = "<group>"; };
 		DA61A0E6265A01940059B879 /* LookAroundDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundDetailViewModel.swift; sourceTree = "<group>"; };
@@ -540,6 +540,7 @@
 				371628AF2646665F0006AE80 /* tendencyButton.swift */,
 				CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */,
 				CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */,
+				372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1191,6 +1192,7 @@
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
 				DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */,
+				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
