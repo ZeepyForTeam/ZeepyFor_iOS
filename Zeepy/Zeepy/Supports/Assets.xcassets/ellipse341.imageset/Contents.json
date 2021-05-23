@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "idiom" : "universal",
+      "scale" : "1x",
       "filename" : "ellipse341.png"
     },
     {
-      "filename" : "ellipse341@2x.png",
       "idiom" : "universal",
+      "filename" : "ellipse341@2x.png",
       "scale" : "2x"
     },
     {
