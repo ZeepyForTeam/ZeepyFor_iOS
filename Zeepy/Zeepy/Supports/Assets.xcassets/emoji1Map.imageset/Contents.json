@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "filename" : "emoji1Map.png",
       "scale" : "1x",
-      "filename" : "iconAngry.png"
+      "idiom" : "universal"
     },
     {
+      "filename" : "emoji1Map@2x.png",
       "idiom" : "universal",
-      "filename" : "iconAngry@2x.png",
       "scale" : "2x"
     },
     {
-      "filename" : "iconAngry@3x.png",
+      "idiom" : "universal",
       "scale" : "3x",
-      "idiom" : "universal"
+      "filename" : "emoji1Map@3x.png"
     }
   ],
   "info" : {
