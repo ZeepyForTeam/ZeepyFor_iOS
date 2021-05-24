@@ -19,7 +19,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>485</string>
+=======
+	<string>483</string>
+>>>>>>> 💄: mapView에서 modalView coner rounded적용, customSelectedImage Size조절
 	<key>KAKAO_APP_KEY</key>
 	<string>c9eed0a8848e4d0bae872569d18063a8</string>
 	<key>LSRequiresIPhoneOS</key>

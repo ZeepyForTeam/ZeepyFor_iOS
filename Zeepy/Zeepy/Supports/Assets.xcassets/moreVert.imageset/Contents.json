@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "map.png",
+      "filename" : "moreVert.png",
       "scale" : "1x"
     },
     {
-      "filename" : "map@2x.png",
+      "idiom" : "universal",
       "scale" : "2x",
-      "idiom" : "universal"
+      "filename" : "moreVert@2x.png"
     },
     {
-      "filename" : "map@3x.png",
-      "scale" : "3x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "moreVert@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
