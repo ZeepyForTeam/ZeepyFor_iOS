@@ -22,6 +22,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<string>485</string>
 =======
 	<string>483</string>
@@ -32,6 +33,9 @@
 =======
 	<string>527</string>
 >>>>>>> :art: 리뷰작성 뷰 간 트랜지션 구현 완료
+=======
+	<string>492</string>
+>>>>>>> 💄: 코드 조금 정리했음
 	<key>KAKAO_APP_KEY</key>
 	<string>c9eed0a8848e4d0bae872569d18063a8</string>
 	<key>LSRequiresIPhoneOS</key>

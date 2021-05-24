@@ -11,9 +11,7 @@ import Then
 import RangeSeekSlider
 
 class ConditionViewController: UIViewController {
-    let cellName = "ReusableButtonCell"
-    let optionCellName = "ReusableOptionCell"
-    
+    // MARK: - Structs
     struct ListModel {
         var title = String()
         var image = String()
@@ -24,19 +22,19 @@ class ConditionViewController: UIViewController {
         var name = String()
         var selected = Bool()
     }
-    
+    // MARK: - Arrays
     var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1", selected : true), ListModel(title: "투룸", image: "btnOption2", selected : true), ListModel(title: "오피스텔", image: "btnReady", selected : true)]
     
     var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1"), ListModel(title: "전세", image: "btnOption2"), ListModel(title: "매매", image: "btnOption3")]
     
     var optionList : [OptionModel] = [OptionModel(name: "에어컨", selected : true),OptionModel(name: "세탁기", selected : true),OptionModel(name: "침대", selected : true),OptionModel(name: "옷장", selected : true),OptionModel(name: "책상", selected : true),OptionModel(name: "냉장고", selected : true),OptionModel(name: "인덕션", selected : true),OptionModel(name: "가스레인지", selected : true),OptionModel(name: "전자레인지", selected : true)]
-    var indexNumber = 0
+    
+    // MARK: - Components
     let scrollView = UIScrollView()
     let contentView = UIView()
     
     let buildingTitle = UILabel().then {
         $0.text = "건물유형"
-//        $0.font = UIFont.systemFont(ofSize: 16)
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let buildingCollectionView: UICollectionView = {
@@ -196,27 +194,28 @@ class ConditionViewController: UIViewController {
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.view.addSubview(scrollView)
-        addConstraint()
+        addConstraints()
         self.initCollectionView()
     }
-    override func viewDidLayoutSubviews() {
-        let margin: CGFloat = 20
-        let width = view.bounds.width - 2 * margin
-        let height: CGFloat = 30
-        
-        depositPriceSlider.frame = CGRect(x: 0, y: 0,
-                                   width: width, height: height)
-    }
+//    override func viewDidLayoutSubviews() {
+//        let margin: CGFloat = 20
+//        let width = view.bounds.width - 2 * margin
+//        let height: CGFloat = 30
+//
+//        depositPriceSlider.frame = CGRect(x: 0, y: 0,
+//                                   width: width, height: height)
+//    }
     
     override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
     }
     
-    func addConstraint()
+    func addConstraints()
     {
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview() // 스크롤뷰가 표현될 영역
@@ -230,7 +229,6 @@ class ConditionViewController: UIViewController {
         }
         
         _ = [buildingTitle,buildingCollectionView,transactionTitle,transactionCollectionView,priceTitle,depositTitle,depositPriceShowView,depositPriceSliderView,rentTitle,rentPriceShowView,rentPriceSliderView,priceSection,optionTitle,optionCollectionView,seperateLine,nextButton].map { self.contentView.addSubview($0)}
-        
         
         buildingTitle.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview().offset(16)
@@ -377,20 +375,19 @@ class ConditionViewController: UIViewController {
             rentPriceShowView.isHidden = false
             rentPriceSliderView.isHidden = false
             rentTitle.isHidden = false
-            optionTitle.snp.makeConstraints{
-                $0.top.equalTo(rentPriceSliderView.snp.bottom).offset(16)
-            }
+            addConstraints()
         transactionCollectionView.reloadInputViews()
-        print(transactionList)
     }
     }
+    
     @objc func onTapOptionButton(sender: UIButton) {
         print("OptionButton was tapped.")
         sender.isSelected.toggle()
         if sender.isSelected {
             sender.backgroundColor = .mainYellow
-        } else
-        {sender.backgroundColor = .mainBlue}
+        } else {
+            sender.backgroundColor = .mainBlue
+        }
         optionCollectionView.reloadInputViews()
     }
 
@@ -404,7 +401,7 @@ class ConditionViewController: UIViewController {
     }
     
 }
-
+// MARK: - Extensions
 extension ConditionViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -415,19 +412,20 @@ extension ConditionViewController: UICollectionViewDelegateFlowLayout{
     }
     
 }
+
 extension ConditionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     public func initCollectionView() {
         self.buildingCollectionView.dataSource = self
         self.buildingCollectionView.delegate = self
-        self.buildingCollectionView.register(ReusableButtonCell.self, forCellWithReuseIdentifier: self.cellName)
+        self.buildingCollectionView.register(ReusableButtonCell.self, forCellWithReuseIdentifier: ReusableButtonCell.identifier)
         
         self.transactionCollectionView.dataSource = self
         self.transactionCollectionView.delegate = self
-        self.transactionCollectionView.register(ReusableButtonCell.self, forCellWithReuseIdentifier: self.cellName)
+        self.transactionCollectionView.register(ReusableButtonCell.self, forCellWithReuseIdentifier: ReusableButtonCell.identifier)
         
         self.optionCollectionView.dataSource = self
         self.optionCollectionView.delegate = self
-        self.optionCollectionView.register(ReusableOptionCell.self, forCellWithReuseIdentifier: self.optionCellName)
+        self.optionCollectionView.register(ReusableOptionCell.self, forCellWithReuseIdentifier: ReusableOptionCell.identifier)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -453,7 +451,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
 
         
         if(collectionView == self.buildingCollectionView){
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
             cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = buildingList[indexPath.row].title
@@ -462,22 +460,17 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
 
         }
         else if(collectionView == self.transactionCollectionView){
-            cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
+            cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell)
             cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
             cell?.circleButton.tag = indexPath.row
             cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = transactionList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapTransactionButton), for: .touchUpInside)
-//            if cell!.circleButton.isSelected {
-//
-//                self.indexNumber = indexPath.row
-//                print(indexNumber)
-//            }
             
             return cell!
         }
         else if(collectionView == self.optionCollectionView){
-            optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.optionCellName, for:indexPath) as? ReusableOptionCell)
+            optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableOptionCell.identifier, for:indexPath) as? ReusableOptionCell)
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
             if optioncell!.squareButton.isTouchInside {
