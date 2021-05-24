@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "iconSmile.png",
       "idiom" : "universal",
+      "filename" : "iconSmile.png",
       "scale" : "1x"
     },
     {
@@ -11,8 +11,8 @@
       "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
+      "idiom" : "universal",
       "filename" : "iconSmile@3x.png"
     }
   ],
