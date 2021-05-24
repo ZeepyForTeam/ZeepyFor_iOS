@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "emoji4Map.png"
+      "filename" : "emoji4Map.png",
+      "idiom" : "universal"
     },
     {
       "filename" : "emoji4Map@2x.png",
