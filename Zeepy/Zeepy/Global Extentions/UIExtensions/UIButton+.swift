@@ -31,6 +31,7 @@ extension UIButton {
     self.setImage(UIImage(named: name), for: .normal)
     self.setImage(UIImage(named: name), for: .selected)
   }
+  
   private struct AssociatedKeys {
     static var targetClosure = "targetClosure"
   }

@@ -16,6 +16,13 @@ extension UITextField {
   class func textFieldWithInsets(insets: UIEdgeInsets) -> UITextField {
     return fourInsetTextField(insets: insets)
   }
+  func configureTextField(textColor: UIColor, font: UIFont, placeholder: String? = "") {
+    self.autocorrectionType = .no
+    self.autocapitalizationType = .none
+    self.textColor = textColor
+    self.font = font
+    self.placeholder = placeholder ?? ""
+  }
 }
 class fourInsetTextField: UITextField {
   var insets: UIEdgeInsets

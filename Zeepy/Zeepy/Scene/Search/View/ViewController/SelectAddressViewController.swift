@@ -108,11 +108,21 @@ extension SelectAddressViewController {
   }
   func layoutNextButton() {
     self.view.add(self.nextButton) {
-      $0.backgroundColor = .gray244
-      $0.setTitle("다음으로", for: .normal)
-      $0.setTitleColor(.grayText, for: .normal)
-      $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
+      $0.tag = 1
       $0.setRounded(radius: 8)
+      $0.setTitle("다음으로", for: .normal)
+      $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
+      if $0.tag == 0 {
+        $0.backgroundColor = .gray244
+        $0.setTitleColor(.grayText, for: .normal)
+        $0.isUserInteractionEnabled = false
+      }
+      else if $0.tag == 1 {
+        $0.backgroundColor = .mainBlue
+        $0.setTitleColor(.white, for: .normal)
+        $0.isUserInteractionEnabled = true
+      }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.addressTableContainerView.snp.leading)
         $0.trailing.equalTo(self.addressTableContainerView.snp.trailing)
@@ -140,6 +150,11 @@ extension SelectAddressViewController {
     layoutAddressTableFooterLabel()
     layoutNextButton()
     layoutseparatorView()
+  }
+  @objc func nextButtonClicked() {
+    let navigation = UINavigationController()
+    let nextViewController = CommunicationTendencyViewController()
+    navigation.pushViewController(nextViewController, animated: true)
   }
 }
 
