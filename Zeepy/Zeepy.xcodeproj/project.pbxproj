@@ -46,7 +46,6 @@
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
-		CCD0D996265CBDCC001B15DE /* DetailAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */; };
 		CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
@@ -131,6 +130,10 @@
 		DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
 		DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
 		DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB0FFF825F9014900D8208F /* RxMoya+.swift */; };
+		DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */; };
+		DAB3E00E265D2CB500B7B4F2 /* CommunityViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */; };
+		DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E013265D34F300B7B4F2 /* HalfView.swift */; };
+		DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E019265D357B00B7B4F2 /* SettingView.swift */; };
 		DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D38D265A02BA00B281E2 /* FilterModel.swift */; };
 		DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D392265A033100B281E2 /* Dropdown.swift */; };
 		DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D397265A033600B281E2 /* CalendarService.swift */; };
@@ -200,7 +203,6 @@
 		CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
-		CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddressViewController.swift; sourceTree = "<group>"; };
 		CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendencyTableViewCell.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
@@ -298,6 +300,10 @@
 		DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFL.otf; sourceTree = "<group>"; };
 		DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFR.otf; sourceTree = "<group>"; };
 		DAB0FFF825F9014900D8208F /* RxMoya+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxMoya+.swift"; sourceTree = "<group>"; };
+		DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAddressViewController.swift; sourceTree = "<group>"; };
+		DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommunityViewController copy.swift"; sourceTree = "<group>"; };
+		DAB3E013265D34F300B7B4F2 /* HalfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfView.swift; sourceTree = "<group>"; };
+		DAB3E019265D357B00B7B4F2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		DAF4D38D265A02BA00B281E2 /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		DAF4D392265A033100B281E2 /* Dropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		DAF4D397265A033600B281E2 /* CalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
@@ -559,6 +565,8 @@
 				DA47457E261B26C500709883 /* BaseAlert.swift */,
 				DAF4D392265A033100B281E2 /* Dropdown.swift */,
 				DA2EDB7F262C5B3200620B7E /* Identifiable.swift */,
+				DAB3E013265D34F300B7B4F2 /* HalfView.swift */,
+				DAB3E019265D357B00B7B4F2 /* SettingView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -621,15 +629,7 @@
 				371628A726456EC10006AE80 /* MapViewController.swift */,
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		DA4745A5261B283600709883 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DA4745A6261B284600709883 /* CommunityViewController.swift */,
-				CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */,
+				DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -748,7 +748,7 @@
 		DA4C7832265A01F00040010F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DA4C7833265A01F00040010F /* CommunityViewController.swift */,
+				DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */,
 				DAF4D3A3265A0C0D00B281E2 /* PostDetailViewController.swift */,
 			);
 			name = ViewController;
@@ -764,6 +764,7 @@
 				DA61C3F525F32F440063263A /* Products */,
 				ADBD48E34196C65DA344C8F3 /* Pods */,
 				2D8F617ECD8EE937832C4EA3 /* Frameworks */,
+				DAB3DFC6265D25F500B7B4F2 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -875,6 +876,13 @@
 				DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		DAB3DFC6265D25F500B7B4F2 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1193,11 +1201,13 @@
 				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
 				DA4C7837265A01F00040010F /* TapCell.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
+				DAB3E00E265D2CB500B7B4F2 /* CommunityViewController copy.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
+				DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */,
 				DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */,
 				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
@@ -1206,6 +1216,7 @@
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
+				DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
@@ -1213,7 +1224,6 @@
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				371628A826456EC10006AE80 /* MapViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
-				DA4C7839265A01F00040010F /* CommunityViewController.swift in Sources */,
 				DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DAF4D39E265A035B00B281E2 /* String+.swift in Sources */,
@@ -1234,6 +1244,7 @@
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
+				DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
@@ -1253,7 +1264,6 @@
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
-				CCD0D996265CBDCC001B15DE /* DetailAddressViewController.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */,
 				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,

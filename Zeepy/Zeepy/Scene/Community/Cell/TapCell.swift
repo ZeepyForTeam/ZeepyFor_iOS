@@ -75,8 +75,10 @@ extension TapCell {
     postCollectionView.rx.modelSelected(PostModel.self)
       .bind{[weak self] _ in
         let vc = PostDetailViewControlelr()
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
-        
+
       }.disposed(by: disposeBag)
   }
 }

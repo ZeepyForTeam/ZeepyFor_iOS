@@ -9,13 +9,9 @@ import Foundation
 struct BuildingModel {
   let buildingName: String
   let buildingImage: String
-  let ownderInfo: OwnerInfo
+  let ownderInfo: ValidateType
   let review : ReviewInfo
   let filters : [String]
-}
-struct OwnerInfo {
-  let ownerStatusImage: String
-  let ownerStatusLabel: String
 }
 struct ReviewInfo {
   let reviewrName: String
@@ -51,4 +47,20 @@ enum ValidateType: String {
   case free = "방목형"
   case cute = "츤데레형"
   case bad = "할많하않"
+}
+extension ValidateType {
+  var image : String {
+    switch self {
+    case .business:
+      return "emoji1"
+    case .kind:
+      return "emoji2"
+    case .free:
+      return "emoji3"
+    case .cute:
+      return "emoji4"
+    case .bad:
+      return "emoji5"
+    }
+  }
 }
