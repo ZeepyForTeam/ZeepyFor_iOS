@@ -66,6 +66,17 @@ extension UIView {
 // View for UILabel Accessory
 //
 extension UIView {
+  func addUnderBar() {
+    let underBar = UIView().then{
+      $0.backgroundColor = .gray244
+    }
+    self.add(underBar)
+    underBar.snp.makeConstraints{
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.height.equalTo(1)
+    }
+  }
+  
   @discardableResult
   func add<T: UIView>(_ subview: T, then closure: ((T) -> Void)? = nil) -> T {
     addSubview(subview)
@@ -132,7 +143,6 @@ extension CALayer {
       shadowPath = UIBezierPath(rect: rect).cgPath
     }
   }
-
   func dismissShadow(
     color: UIColor = .white,
     alpha: Float = 0,

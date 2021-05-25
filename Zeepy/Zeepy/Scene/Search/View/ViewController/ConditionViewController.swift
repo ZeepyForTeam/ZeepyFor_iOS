@@ -30,7 +30,7 @@ class ConditionViewController: UIViewController {
     var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1"), ListModel(title: "전세", image: "btnOption2"), ListModel(title: "매매", image: "btnOption3")]
     
     var optionList : [OptionModel] = [OptionModel(name: "에어컨", selected : true),OptionModel(name: "세탁기", selected : true),OptionModel(name: "침대", selected : true),OptionModel(name: "옷장", selected : true),OptionModel(name: "책상", selected : true),OptionModel(name: "냉장고", selected : true),OptionModel(name: "인덕션", selected : true),OptionModel(name: "가스레인지", selected : true),OptionModel(name: "전자레인지", selected : true)]
-    
+    var indexNumber = 0
     let scrollView = UIScrollView()
     let contentView = UIView()
     
@@ -78,33 +78,71 @@ class ConditionViewController: UIViewController {
         $0.text = "가격"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
-    let priceShowView = UIView().then{
+    let depositTitle = UILabel().then{
+        $0.text = "보증금"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 12.0)
+        $0.textColor = .mainBlue
+    }
+    let depositPriceShowView = UIView().then{
         $0.backgroundColor = UIColor(white: 247.0 / 255.0, alpha: 1.0)
         $0.setRounded(radius: 20)
     }
     
-    let priceLabel = UILabel().then{
+    let depositPriceLabel = UILabel().then{
         $0.text = "00부터 000까지"
         $0.textColor = .black
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
-    let priceSliderView = UIView()
     
-    let priceSlider = RangeSeekSlider().then{
+    let depositPriceSliderView = UIView()
+    
+    let depositPriceSlider = RangeSeekSlider().then{
         $0.minValue = 0
-        $0.maxValue = 100
+        $0.maxValue = 50000000
         $0.selectedMinValue = 0
-        $0.selectedMaxValue = 20
+        $0.selectedMaxValue = 10000000
         $0.lineHeight = 10
         $0.colorBetweenHandles = .mainBlue
         $0.tintColor = .mainYellow
         $0.hideLabels = true
         $0.handleImage = UIImage(named:"togglePriceMedium")
         $0.enableStep = true
-        $0.step = 25
+        $0.step = 5000000
         $0.setupStyle()
-        $0.addTarget(self, action: #selector(sliderValuechanged), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(sliderDepositValuechanged), for: .touchUpInside)
     }
+    let rentTitle = UILabel().then{
+        $0.text = "월세"
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 12.0)
+        $0.textColor = .mainBlue
+    }
+    
+    let rentPriceShowView = UIView().then{
+        $0.backgroundColor = UIColor(white: 247.0 / 255.0, alpha: 1.0)
+        $0.setRounded(radius: 20)
+    }
+    let rentPriceLabel = UILabel().then{
+        $0.text = "00부터 000까지"
+        $0.textColor = .black
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
+    }
+    let rentPriceSliderView = UIView()
+    let rentPriceSlider = RangeSeekSlider().then{
+        $0.minValue = 0
+        $0.maxValue = 200
+        $0.selectedMinValue = 0
+        $0.selectedMaxValue = 150
+        $0.lineHeight = 10
+        $0.colorBetweenHandles = .mainBlue
+        $0.tintColor = .mainYellow
+        $0.hideLabels = true
+        $0.handleImage = UIImage(named:"togglePriceMedium")
+        $0.enableStep = true
+        $0.step = 20
+        $0.setupStyle()
+        $0.addTarget(self, action: #selector(sliderRentValuechanged), for: .touchUpInside)
+    }
+    
     let firstSection = UILabel().then{
         $0.text = "최소"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
@@ -145,7 +183,9 @@ class ConditionViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         return collectionView
     }()
-    
+    let seperateLine = UIView().then{
+        $0.backgroundColor = .gray244
+    }
     let nextButton = UIButton().then {
         $0.frame.size = CGSize(width: 2, height: 300) // 엥 이거 반영이 안돼
         $0.backgroundColor = .mainBlue
@@ -168,7 +208,7 @@ class ConditionViewController: UIViewController {
         let width = view.bounds.width - 2 * margin
         let height: CGFloat = 30
         
-        priceSlider.frame = CGRect(x: 0, y: 0,
+        depositPriceSlider.frame = CGRect(x: 0, y: 0,
                                    width: width, height: height)
     }
     
@@ -186,10 +226,10 @@ class ConditionViewController: UIViewController {
         
         contentView.snp.makeConstraints {
             $0.width.equalToSuperview()
-            $0.centerX.top.bottom.equalToSuperview()
+            $0.trailing.leading.top.bottom.equalToSuperview()
         }
         
-        _ = [buildingTitle,buildingCollectionView,transactionTitle,transactionCollectionView,priceTitle,priceShowView,priceSliderView,priceSection,optionTitle,optionCollectionView,nextButton].map { self.contentView.addSubview($0)}
+        _ = [buildingTitle,buildingCollectionView,transactionTitle,transactionCollectionView,priceTitle,depositTitle,depositPriceShowView,depositPriceSliderView,rentTitle,rentPriceShowView,rentPriceSliderView,priceSection,optionTitle,optionCollectionView,seperateLine,nextButton].map { self.contentView.addSubview($0)}
         
         
         buildingTitle.snp.makeConstraints {
@@ -217,45 +257,70 @@ class ConditionViewController: UIViewController {
             $0.top.equalTo(transactionCollectionView.snp.bottom)
             $0.leading.trailing.equalToSuperview().offset(16)
         }
-        
-        priceShowView.addSubview(priceLabel)
-        
-        priceShowView.snp.makeConstraints {
-            $0.top.equalTo(priceTitle.snp.bottom).offset(5)
-            $0.leading.equalToSuperview().offset(16)
-            $0.size.equalTo(priceLabel).offset(15)
-        }
-        priceLabel.snp.makeConstraints {
-            $0.center.equalTo(priceShowView)
-        }
-        
-        priceSliderView.snp.makeConstraints {
-            $0.top.equalTo(priceShowView.snp.bottom)
+        depositTitle.snp.makeConstraints {
+            $0.top.equalTo(priceTitle.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview().offset(16)
+        }
+        depositPriceShowView.addSubview(depositPriceLabel)
+        
+        depositPriceShowView.snp.makeConstraints {
+            $0.top.equalTo(depositTitle.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().offset(16)
+            $0.height.equalTo(20)
+        }
+    
+        depositPriceLabel.snp.makeConstraints {
+            $0.center.left.right.equalToSuperview()
+        }
+        
+        depositPriceSliderView.snp.makeConstraints {
+            $0.top.equalTo(depositPriceShowView.snp.bottom)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(80)
         }
         
-        priceSliderView.addSubview(priceSlider)
+        depositPriceSliderView.addSubview(depositPriceSlider)
         
-        priceSlider.snp.makeConstraints {
+        depositPriceSlider.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().offset(-30)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
-        priceSection.addSubview(firstSection)
-        priceSection.addSubview(secondSection)
-        priceSection.addSubview(thirdSection)
-        priceSection.addSubview(fourthSection)
-        
-        priceSection.snp.makeConstraints{
-            $0.top.equalTo(priceSliderView.snp.bottom).offset(10)
+        rentTitle.snp.makeConstraints {
+            $0.top.equalTo(depositPriceSliderView.snp.bottom).offset(5)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        rentPriceShowView.snp.makeConstraints {
+            $0.top.equalTo(rentTitle.snp.bottom).offset(5)
+            $0.leading.equalToSuperview().offset(16)
+            $0.height.equalTo(20)
+        }
+        rentPriceShowView.addSubview(rentPriceLabel)
+
+        rentPriceLabel.snp.makeConstraints {
+            $0.center.equalTo(rentPriceShowView)
+            $0.right.equalToSuperview()
+            $0.left.equalToSuperview()
+        }
+        rentPriceSliderView.snp.makeConstraints{
+            $0.top.equalTo(rentPriceShowView.snp.bottom)
+            $0.centerX.equalTo(depositPriceSliderView)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(30)
+            $0.height.equalTo(80)
         }
-        
+
+        rentPriceSliderView.addSubview(rentPriceSlider)
+
+        rentPriceSlider.snp.makeConstraints{
+            $0.center.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+
         optionTitle.snp.makeConstraints {
-            $0.top.equalTo(priceSection.snp.bottom)
+            $0.top.equalTo(rentPriceSliderView.snp.bottom)
             $0.leading.trailing.equalToSuperview().offset(16)
         }
         
@@ -267,8 +332,13 @@ class ConditionViewController: UIViewController {
     
         }
         
+        seperateLine.snp.makeConstraints{
+            $0.top.equalTo(optionCollectionView.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(3)
+        }
         nextButton.snp.makeConstraints {
-            $0.top.equalTo(optionCollectionView.snp.bottom)
+            $0.top.equalTo(seperateLine.snp.bottom).offset(10)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(50)
@@ -276,23 +346,44 @@ class ConditionViewController: UIViewController {
         }
     }
     
-    func setPriceLabel(value : String) {
-        priceLabel.text = value
+    func setDepositPriceLabel(value : String) {
+        depositPriceLabel.text = value
+    }
+    
+    func setRentPriceLabel(value : String) {
+        rentPriceLabel.text = value
     }
     
     @objc func onTapBuildingButton(sender: UIButton) {
         print("BuildingButton was tapped.")
         sender.isSelected.toggle()
         buildingCollectionView.reloadInputViews()
+        
         print(buildingList)
     }
     
-    @objc func onTapTransactionButton(sender: UIButton) {
+    @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
         print("TransactionButton was tapped.")
         sender.isSelected.toggle()
+        transactionList[sender.tag].selected = sender.isSelected
+        if transactionList[0].selected {
+            rentPriceShowView.isHidden = true
+            rentPriceSliderView.isHidden = true
+            rentTitle.isHidden = true
+            optionTitle.snp.makeConstraints{
+                $0.top.equalTo(depositPriceSliderView.snp.bottom).offset(16)
+            }
+        }else {
+            rentPriceShowView.isHidden = false
+            rentPriceSliderView.isHidden = false
+            rentTitle.isHidden = false
+            optionTitle.snp.makeConstraints{
+                $0.top.equalTo(rentPriceSliderView.snp.bottom).offset(16)
+            }
         transactionCollectionView.reloadInputViews()
+        print(transactionList)
     }
-    
+    }
     @objc func onTapOptionButton(sender: UIButton) {
         print("OptionButton was tapped.")
         sender.isSelected.toggle()
@@ -303,10 +394,15 @@ class ConditionViewController: UIViewController {
         optionCollectionView.reloadInputViews()
     }
 
-    @objc func sliderValuechanged(sender: RangeSeekSlider) {
-        setPriceLabel(value: "\(Int(round(sender.selectedMinValue)))부터 \(Int(round(sender.selectedMaxValue)))까지")
-        priceLabel.reloadInputViews()
+    @objc func sliderDepositValuechanged(sender: RangeSeekSlider) {
+        setDepositPriceLabel(value: "\(Int(round(sender.selectedMinValue)))부터 \(Int(round(sender.selectedMaxValue)))까지")
+        depositPriceLabel.reloadInputViews()
     }
+    @objc func sliderRentValuechanged(sender: RangeSeekSlider) {
+        setRentPriceLabel(value: "\(Int(round(sender.selectedMinValue)))부터 \(Int(round(sender.selectedMaxValue)))까지")
+        rentPriceLabel.reloadInputViews()
+    }
+    
 }
 
 extension ConditionViewController: UICollectionViewDelegateFlowLayout{
@@ -354,30 +450,30 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: ReusableButtonCell?
         var optioncell: ReusableOptionCell?
-        
-        func buildingToggle(){
-            buildingList[indexPath.row].selected.toggle()
-        }
+
         
         if(collectionView == self.buildingCollectionView){
-            cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell
             cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
-            
             return cell!
 
         }
         else if(collectionView == self.transactionCollectionView){
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: self.cellName, for:indexPath) as? ReusableButtonCell)
             cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
+            cell?.circleButton.tag = indexPath.row
             cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = transactionList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapTransactionButton), for: .touchUpInside)
-            if cell!.circleButton.isTouchInside {
-                transactionList[indexPath.row].selected.toggle()
-            }
+//            if cell!.circleButton.isSelected {
+//
+//                self.indexNumber = indexPath.row
+//                print(indexNumber)
+//            }
+            
             return cell!
         }
         else if(collectionView == self.optionCollectionView){

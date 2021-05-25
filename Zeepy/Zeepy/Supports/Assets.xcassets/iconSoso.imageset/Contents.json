@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "iconSoso.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "idiom" : "universal"
     },
     {
       "filename" : "iconSoso@2x.png",
@@ -11,9 +11,9 @@
       "idiom" : "universal"
     },
     {
-      "scale" : "3x",
+      "idiom" : "universal",
       "filename" : "iconSoso@3x.png",
-      "idiom" : "universal"
+      "scale" : "3x"
     }
   ],
   "info" : {
