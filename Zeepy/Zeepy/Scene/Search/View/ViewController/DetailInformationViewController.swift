@@ -4,7 +4,7 @@
 //
 //  Created by 노한솔 on 2021/05/11.
 //
-
+ 
 import RxDataSources
 import RxSwift
 import SnapKit
@@ -88,6 +88,7 @@ extension DetailInformationViewController {
   }
   func layoutNumberOfRoomCollectionView() {
     self.contentScrollView.add(numberOfRoomCollectionView) {
+
   // MARK: - Helpers
   func layoutCollectionView() {
     self.view.add(contentCollectionView) {
