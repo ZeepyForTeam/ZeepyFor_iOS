@@ -67,6 +67,7 @@ extension UIViewController {
     navigationBar.backgroundColor = color
     navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     navigationBar.shadowImage = UIImage()
+    navigationBar.titleTextAttributes = [.font: UIFont.nanumRoundExtraBold(fontSize: 20)]
   }
   
   func setTabBarHidden(
@@ -95,5 +96,16 @@ extension UIViewController {
         }
       }
     }
+  }
+  func setupNavigationItem(titleText: String) {
+    let backButton = UIButton(type: .custom)
+    backButton.setImage(UIImage(named: "btnBack"), for: .normal)
+    backButton.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+    let backItem = UIBarButtonItem(customView: backButton)
+    self.navigationItem.leftBarButtonItem = backItem
+    self.navigationItem.title = titleText
+  }
+  @objc func backButtonClicked() {
+    self.navigationController?.popViewController(animated: false)
   }
 }

@@ -31,12 +31,16 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
 //  }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    let tab1NavigationController =  HomeViewController()
+    let tab1NavigationController =  UINavigationController()
+    tab1NavigationController.viewControllers = [HomeViewController()]
 
-//    let tab2NavigationController =  LookAroundViewController()
-    let tab2NavigationController = SelectAddressViewController()
-    let tab3NavigationController = MapViewController()
-    let tab4NavigationController = MyPageViewController()
+    let tab2NavigationController = UINavigationController()
+    tab2NavigationController.viewControllers = [SelectAddressViewController()]
+    
+    let tab3NavigationController = UINavigationController()
+    tab3NavigationController.viewControllers = [MapViewController()]
+    let tab4NavigationController = UINavigationController()
+    tab4NavigationController.viewControllers = [MyPageViewController()]
     let vc = [tab1NavigationController, tab2NavigationController, tab3NavigationController, tab4NavigationController]
     self.setViewControllers(vc, animated: true)
 
@@ -59,3 +63,4 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
     }
   }
 }
+

@@ -27,6 +27,8 @@ class SelectAddressViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
 }
 // MARK: - Extensions
@@ -70,6 +72,7 @@ extension SelectAddressViewController {
       $0.setTitle("직접 등록하기", for: .normal)
       $0.setTitleColor(.blackText, for: .normal)
       $0.titleLabel?.font = .nanumRoundBold(fontSize: 10)
+      $0.addTarget(self, action: #selector(self.submitButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.centerY.equalTo(self.addressLabel.snp.centerY)
         $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
@@ -151,10 +154,20 @@ extension SelectAddressViewController {
     layoutNextButton()
     layoutseparatorView()
   }
+  
   @objc func nextButtonClicked() {
-    let navigation = UINavigationController()
+    let navigation = self.navigationController
     let nextViewController = CommunicationTendencyViewController()
-    navigation.pushViewController(nextViewController, animated: true)
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
+  
+  @objc func submitButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SearchAddressViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
+  }
+ 
 }
 

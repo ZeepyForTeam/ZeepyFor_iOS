@@ -21,6 +21,8 @@ class DetailInformationViewController: BaseViewController {
     register()
     contentCollectionView.dataSource = self
     contentCollectionView.delegate = self
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
   
   // MARK: - Properties
@@ -67,6 +69,7 @@ extension DetailInformationViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.snp.leading).offset(16)
         $0.centerX.equalTo(self.view.snp.centerX)
@@ -92,6 +95,12 @@ extension DetailInformationViewController {
     self.contentCollectionView.register(SecondSectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SecondSectionCollectionReusableView.identifier)
     self.contentCollectionView.register(ThirdSectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ThirdSectionCollectionReusableView.identifier)
     self.contentCollectionView.register(EmptySectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EmptySectionCollectionReusableView.identifier)
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SelectAddressViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }
 

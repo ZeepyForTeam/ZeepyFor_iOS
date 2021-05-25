@@ -40,6 +40,8 @@ class LenderInformationViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
 }
 // MARK: - Extensions
@@ -216,6 +218,7 @@ extension LenderInformationViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.detailTextField.snp.leading)
         $0.trailing.equalTo(self.detailTextField.snp.trailing)
@@ -249,5 +252,11 @@ extension LenderInformationViewController {
     layoutDetailTextFieldFooterLabel()
     layoutNextButton()
     layoutseparatorView()
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = AdditionalInformationViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }
