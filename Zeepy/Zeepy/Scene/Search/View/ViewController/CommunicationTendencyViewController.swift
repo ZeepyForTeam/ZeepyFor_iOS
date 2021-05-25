@@ -25,6 +25,8 @@ class CommunicationTendencyViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
   
 }
@@ -93,6 +95,7 @@ extension CommunicationTendencyViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.tendencyTableContainerView.snp.leading)
         $0.trailing.equalTo(self.tendencyTableContainerView.snp.trailing)
@@ -117,6 +120,12 @@ extension CommunicationTendencyViewController {
     layoutTendencyTableView()
     layoutNextButton()
     layoutseparatorView()
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = LenderInformationViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }
 
