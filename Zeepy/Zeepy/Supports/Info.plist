@@ -19,27 +19,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	<string>485</string>
-=======
-	<string>483</string>
->>>>>>> 💄: mapView에서 modalView coner rounded적용, customSelectedImage Size조절
-=======
-	<string>491</string>
->>>>>>> :art: 상세 주소 뷰 구현완료
-=======
-	<string>527</string>
->>>>>>> :art: 리뷰작성 뷰 간 트랜지션 구현 완료
-=======
-	<string>492</string>
->>>>>>> 💄: 코드 조금 정리했음
-=======
-	<string>554</string>
->>>>>>> 💄: mapView Detail 수정
+
 	<key>KAKAO_APP_KEY</key>
 	<string>c9eed0a8848e4d0bae872569d18063a8</string>
 	<key>LSRequiresIPhoneOS</key>

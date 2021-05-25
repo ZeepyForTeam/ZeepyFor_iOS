@@ -241,7 +241,7 @@ class ConditionViewController: UIViewController {
     func addConstraints()
     {
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview() // 스크롤뷰가 표현될 영역
+            $0.edges.equalToSuperview()
         }
         
         scrollView.addSubview(contentView)
