@@ -23,6 +23,8 @@ class AdditionalInformationViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
+    setupNavigationBar(.white)
+    setupNavigationItem(titleText: "리뷰작성")
   }
   
   
@@ -122,6 +124,7 @@ extension AdditionalInformationViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
@@ -148,5 +151,11 @@ extension AdditionalInformationViewController {
     layoutAssessTableView()
     layoutNextButton()
     layoutSeparatorView()
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = DetailInformationViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }

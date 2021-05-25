@@ -13,6 +13,8 @@ class DetailAddressViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
   
   let titleLabelNumberOfLine = 2
@@ -121,6 +123,7 @@ extension DetailAddressViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.addressContainerView.snp.leading)
         $0.trailing.equalTo(self.addressContainerView.snp.trailing)
@@ -138,5 +141,11 @@ extension DetailAddressViewController {
         $0.bottom.equalTo(self.nextButton.snp.top).offset(-12)
       }
     }
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SelectAddressViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }

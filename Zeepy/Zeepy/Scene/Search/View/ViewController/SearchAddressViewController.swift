@@ -22,6 +22,8 @@ class SearchAddressViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "리뷰작성")
   }
 
 }
@@ -101,6 +103,7 @@ extension SearchAddressViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.isUserInteractionEnabled = true
       }
+      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.titleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
@@ -126,5 +129,11 @@ extension SearchAddressViewController {
     layoutSearchButton()
     layoutNextButton()
     layoutseparatorView()
+  }
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = DetailAddressViewController()
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }

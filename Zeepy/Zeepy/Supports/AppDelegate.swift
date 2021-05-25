@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
 
     let rootNav = UINavigationController()
+    rootNav.navigationBar.isHidden = true
     let rootVC = TabbarViewContorller()
     
     rootNav.viewControllers = [rootVC]
