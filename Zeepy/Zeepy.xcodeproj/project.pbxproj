@@ -46,6 +46,7 @@
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
+		CCD0D996265CBDCC001B15DE /* DetailAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
@@ -193,6 +194,7 @@
 		CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddressViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -602,19 +604,11 @@
 				CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */,
 				CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */,
 				CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */,
-				372F844D26385B39000E0AFC /* ConditionViewController.swift  */,
+				372F844D26385B39000E0AFC /* ConditionViewController.swift */,
 				371628A726456EC10006AE80 /* MapViewController.swift */,
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		DA4745A5261B283600709883 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DA4745A6261B284600709883 /* CommunityViewController.swift */,
-				CC5495162649677F00313146 /* DetailInformationViewController.swift */,
+				CCD0D995265CBDCC001B15DE /* DetailAddressViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1222,6 +1216,7 @@
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
+				CCD0D996265CBDCC001B15DE /* DetailAddressViewController.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */,
 				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
