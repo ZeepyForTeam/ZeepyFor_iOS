@@ -15,6 +15,8 @@ class SearchAddressViewController: BaseViewController {
   let searchTextFieldContainerView = UIView()
   let searchTextField = UITextField()
   let searchButton = UIButton()
+  let nextButton = UIButton()
+  let separatorView = UIView()
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -83,10 +85,46 @@ extension SearchAddressViewController {
       }
     }
   }
+  func layoutNextButton() {
+    self.view.add(self.nextButton) {
+      $0.tag = 1
+      $0.setRounded(radius: 8)
+      $0.setTitle("다음으로", for: .normal)
+      $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
+      if $0.tag == 0 {
+        $0.backgroundColor = .gray244
+        $0.setTitleColor(.grayText, for: .normal)
+        $0.isUserInteractionEnabled = false
+      }
+      else if $0.tag == 1 {
+        $0.backgroundColor = .mainBlue
+        $0.setTitleColor(.white, for: .normal)
+        $0.isUserInteractionEnabled = true
+      }
+      $0.snp.makeConstraints {
+        $0.leading.equalTo(self.titleLabel.snp.leading)
+        $0.centerX.equalTo(self.view.snp.centerX)
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.height.equalTo(self.view.frame.height*52/812)
+      }
+    }
+  }
+  func layoutseparatorView() {
+    self.view.add(self.separatorView) {
+      $0.backgroundColor = .gray244
+      $0.snp.makeConstraints {
+        $0.width.equalTo(self.view.snp.width)
+        $0.height.equalTo(1)
+        $0.bottom.equalTo(self.nextButton.snp.top).offset(-12)
+      }
+    }
+  }
   func layout() {
     layoutTitleLabel()
     layoutSearchTextFieldContainerView()
     layoutSearchTextField()
     layoutSearchButton()
+    layoutNextButton()
+    layoutseparatorView()
   }
 }
