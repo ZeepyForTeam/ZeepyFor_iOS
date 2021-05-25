@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.2)
+  - Differentiator (4.0.1)
   - Firebase/Analytics (7.9.0):
     - Firebase/Core
   - Firebase/Core (7.9.0):
@@ -88,6 +89,10 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.2)
@@ -98,11 +103,13 @@ DEPENDENCIES:
   - Moya (~> 14.0)
   - RangeSeekSlider
   - RxCocoa (= 5.1.1)
+  - RxDataSources (~> 4.0)
   - RxSwift (= 5.1.2)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -118,11 +125,13 @@ SPEC REPOS:
     - PromisesObjC
     - RangeSeekSlider
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: d8bd6bd34b4c7ed57bfdd056c66ff5adcdde53ab
   FirebaseAnalytics: 31b1269830dfe16687db3c60b76082c12bd6d527
   FirebaseCore: 0798738ad1ae0fda67e17c7b9081241c431c6859
@@ -138,9 +147,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 3a6e0f5acf6a53e891bb4c7b8cd4e27fdf78f7fe
+PODFILE CHECKSUM: e44394d481ee7ffc361aaa54f7561f71b8a15c6e
 
 COCOAPODS: 1.10.1

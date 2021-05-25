@@ -26,31 +26,28 @@ class Dropdown : UIView {
     $0.backgroundColor = .white
     $0.setRounded(radius: 8)
     $0.translatesAutoresizingMaskIntoConstraints = false
-    let point : UIView = {
-      let view = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
-
-      let path = UIBezierPath()
-      path.move(to: CGPoint(x: 7.5, y: 0))
-      path.addLine(to: CGPoint(x: 15, y: 15))
-      path.addLine(to: CGPoint(x: 0, y: 15))
-      path.close()
-      
-      let layer = CAShapeLayer()
-      layer.frame = view.bounds
-      layer.path = path.cgPath
-      layer.fillColor = UIColor.white.cgColor
-      layer.lineWidth = 0
-      view.layer.addSublayer(layer)
-      return view
-    }()
-    $0.add(point)
-    point.snp.remakeConstraints{
-      $0.top.equalToSuperview().offset(15)
-      $0.width.height.equalTo(15)
-      $0.leading.equalToSuperview().offset(32)
-    }
+   
     return $0
   }(UIView(frame: .zero))
+  let point : UIView = {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+
+    let path = UIBezierPath()
+    path.move(to: CGPoint(x: 7.5, y: 3))
+    path.addLine(to: CGPoint(x: 15, y: 15))
+    path.addLine(to: CGPoint(x: 0, y: 15))
+    path.close()
+    
+    let layer = CAShapeLayer()
+    layer.frame = view.bounds
+    layer.path = path.cgPath
+    layer.fillColor = UIColor.white.cgColor
+    layer.lineWidth = 0
+    view.layer.addSublayer(layer)
+    view.backgroundColor = .clear
+    return view
+  }()
+
   let dropdown : UITableView = {
     $0.backgroundColor = .white
     $0.separatorStyle = .none
@@ -81,15 +78,21 @@ extension Dropdown {
       blackView.frame = window.frame
       window.addSubview(blackView)
       window.addSubview(container)
+      window.addSubview(point)
       container.addSubview(dropdown)
       container.snp.remakeConstraints{
-        $0.top.equalToSuperview().offset(97)
+        $0.top.equalToSuperview().offset(160)
         $0.leading.equalToSuperview().offset(16)
         $0.width.equalTo(215)
       }
       dropdown.snp.remakeConstraints{
         $0.top.bottom.leading.trailing.equalToSuperview()
         $0.height.equalTo(0)
+      }
+      point.snp.remakeConstraints{
+        $0.top.equalTo(container.snp.top).offset(-15)
+        $0.width.height.equalTo(15)
+        $0.leading.equalTo(container.snp.leading).offset(26)
       }
     }
   }
@@ -184,6 +187,7 @@ class dropdownCell : UITableViewCell {
     titlelabel.snp.remakeConstraints{
       $0.top.bottom.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(18)
     }
   }
 }

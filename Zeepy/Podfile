@@ -9,6 +9,7 @@ target 'Zeepy' do
   # add the Firebase pod for Google Analytics
   pod 'RxSwift', '5.1.2'
   pod 'RxCocoa', '5.1.1'
+  pod 'RxDataSources', '~> 4.0'
   pod 'Moya', '~> 14.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
