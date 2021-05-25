@@ -4,7 +4,7 @@
 //
 //  Created by 노한솔 on 2021/05/11.
 //
- 
+
 import RxDataSources
 import RxSwift
 import SnapKit
@@ -42,13 +42,6 @@ class DetailInformationViewController: BaseViewController {
 
 // MARK: - Extensions
 extension DetailInformationViewController {
-  func layoutContentScrollView() {
-    self.view.add(contentScrollView) {
-      $0.snp.makeConstraints {
-        $0.edges.equalTo(self.view.snp.edges)
-      }
-    }
-  }
   func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -65,29 +58,7 @@ extension DetailInformationViewController {
     titleText.addAttribute(NSAttributedString.Key.font,
                            value: UIFont.nanumRoundRegular(fontSize: 24),
                            range: NSRange(location: 15, length: 6))
-
-    self.contentScrollView.add(self.titleLabel) {
-      $0.attributedText = titleText
-      $0.numberOfLines = self.titleLabelNumberOfLine
-      $0.snp.makeConstraints {
-        $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
-      }
-    }
   }
-  func layoutNumberOfRoomTitleLabel() {
-    self.contentScrollView.add(numberOfRoomTitleLabel) {
-      $0.text = "방의 개수는 몇 개인가요?"
-      $0.textColor = .blackText
-      $0.font = .nanumRoundExtraBold(fontSize: 14)
-      $0.snp.makeConstraints {
-        $0.leading.equalTo(self.titleLabel.snp.leading)
-        $0.top.equalTo(self.titleLabel.snp.bottom).offset(36)
-      }
-    }
-  }
-  func layoutNumberOfRoomCollectionView() {
-    self.contentScrollView.add(numberOfRoomCollectionView) {
 
   // MARK: - Helpers
   func layoutCollectionView() {
@@ -229,7 +200,7 @@ extension DetailInformationViewController: UICollectionViewDelegateFlowLayout {
       return CGSize(width: cellWidth, height: cellWidth*80/109)
     }
     else {
-    return CGSize(width: cellWidth, height: cellWidth*48/109)
+      return CGSize(width: cellWidth, height: cellWidth*48/109)
     }
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

@@ -23,8 +23,9 @@ final class LookAroundViewController: BaseViewController {
     $0.textColor = .blackText
   }
   private let locationDropDown = UIButton().then{
-    $0.setImage(UIImage(named: ""), for: .normal)
+    $0.setImage(UIImage(named: "btnArrowDown"), for: .normal)
   }
+
   private let filterButton = UIButton().then{
     $0.setImageByName("iconFilter")
   }
@@ -35,7 +36,7 @@ final class LookAroundViewController: BaseViewController {
   private let tableView = UITableView()
   private let loadViewTrigger = PublishSubject<Void>()
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
-  
+  private let filterTrigger = PublishSubject<ValidateType?>()
   private let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -68,6 +69,7 @@ extension LookAroundViewController {
 
     let inputs = LookAroundViewModel.Input(loadTrigger: loadViewTrigger,
                                            filterAction: filterButton.rx.tap.asObservable(),
+                                           ownerFilterAction: filterTrigger,
                                            mapSelectAction: mapButton.rx.tap.asObservable(),
                                            buildingSelect: buildingSelection,
                                            filterSelect: filterSelectUsecase)
@@ -96,9 +98,23 @@ extension LookAroundViewController {
       self?.navigationController?.pushViewController(vc, animated : true)
     }.disposed(by: disposeBag)
     mapButton.rx.tap.bind{[weak self] in
-      let vc = SearchViewController(nibName: nil, bundle: nil)
+      let vc = MapViewController(nibName: nil, bundle: nil)
       self?.navigationController?.pushViewController(vc, animated : true)
     }.disposed(by: disposeBag)
+    locationDropDown.rx.tap.bind{[weak self] in
+      let view = SettingView()
+      HalfAppearView.shared.appearHalfView(subView: view)
+
+      view.setUpTableView([("전체",{self?.filterTrigger.onNext(nil)}),
+                           ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.business)}),
+                               ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.kind)}),
+                               ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.free)}),
+                               ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.cute)}),
+                               ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.bad)}),
+                             
+      ])
+    }.disposed(by: disposeBag)
+
     loadViewTrigger.onNext(())
   }
   private func bindAction() {

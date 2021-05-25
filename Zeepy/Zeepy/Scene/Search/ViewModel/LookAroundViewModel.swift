@@ -14,6 +14,7 @@ class LookAroundViewModel {
     
     let loadTrigger: Observable<Void>
     let filterAction: Observable<Void>
+    let ownerFilterAction : Observable<ValidateType?>
     let mapSelectAction: Observable<Void>
     let buildingSelect: Observable<(IndexPath, BuildingModel)>
     let filterSelect: Observable<(IndexPath, FilterModel)>
@@ -32,7 +33,7 @@ extension LookAroundViewModel {
 
     let buildingDummy = BuildingModel(buildingName: "더미",
                                       buildingImage: "image/1",
-                                      ownderInfo: OwnerInfo(ownerStatusImage: "", ownerStatusLabel: "비지니스형"), review: ReviewInfo(reviewrName: "서울쥐김자랑", review: "여기서살고싶어여기서살고싶어"), filters: ["발리", "투룸투룸투룸","2층"])
+                                      ownderInfo: .business, review: ReviewInfo(reviewrName: "서울쥐김자랑", review: "여기서살고싶어여기서살고싶어"), filters: ["발리", "투룸투룸투룸","2층"])
     let buildingUsecase = Observable.just([buildingDummy,buildingDummy,buildingDummy,buildingDummy,buildingDummy])
 
     let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),
