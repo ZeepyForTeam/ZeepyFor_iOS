@@ -12,6 +12,8 @@
 		371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AD264665570006AE80 /* MapDetailModalView.swift */; };
 		371628B02646665F0006AE80 /* tendencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AF2646665F0006AE80 /* tendencyButton.swift */; };
 		372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */; };
+		372CA342265E85C1002D99AD /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA341265E85C1002D99AD /* PostDetailViewController.swift */; };
+		372CA344265E85C8002D99AD /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA343265E85C8002D99AD /* CommunityViewController.swift */; };
 		372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F844D26385B39000E0AFC /* ConditionViewController.swift */; };
 		374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800B9263C297D00098436 /* ReusableOptionCell.swift */; };
 		37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37625BFA263A602100D72302 /* ReusableButtonCell.swift */; };
@@ -170,6 +172,8 @@
 		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
 		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };
 		372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		372CA341265E85C1002D99AD /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		372CA343265E85C8002D99AD /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		372F844D26385B39000E0AFC /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
 		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
@@ -744,6 +748,8 @@
 		DA4C7832265A01F00040010F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				372CA343265E85C8002D99AD /* CommunityViewController.swift */,
+				372CA341265E85C1002D99AD /* PostDetailViewController.swift */,
 			);
 			name = ViewController;
 			path = ../../../../../Univ/Zeepy/Scene/Community/ViewController;
@@ -1217,6 +1223,7 @@
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				371628A826456EC10006AE80 /* MapViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
+				372CA344265E85C8002D99AD /* CommunityViewController.swift in Sources */,
 				DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
 				DAF4D39E265A035B00B281E2 /* String+.swift in Sources */,
@@ -1238,6 +1245,7 @@
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
 				DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
+				372CA342265E85C1002D99AD /* PostDetailViewController.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
