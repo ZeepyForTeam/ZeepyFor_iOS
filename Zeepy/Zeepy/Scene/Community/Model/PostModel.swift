@@ -24,3 +24,13 @@ extension PostModel : Comparable {
     return rhs.status
   }
 }
+struct PostDetailModel {
+  let id : Int
+  let type: PostType
+  let status: Bool
+  let postTitle: String
+  let postConent: String
+  let postedAt: String
+  var like : Bool
+  let images : [String]
+}
