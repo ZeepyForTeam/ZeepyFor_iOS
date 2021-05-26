@@ -95,6 +95,44 @@ class MapViewController: UIViewController {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     
+
+    struct mapDetailViewModel {
+        var address = String()
+        var buildingDetail = String()
+        var owner = String()
+        var soundProofImageName = String()
+        var cleanlinessImageName = String()
+        var sunLightImageName = String()
+        var waterPressureImageName = String()
+        var overallLabel = String()
+    }
+    // MARK: - Array
+    var collectionViewCellList : [collectionViewCellModel] = [collectionViewCellModel(imageName: "emoji1", buttonTitle: "비즈니스형", selected: true),collectionViewCellModel(imageName: "emoji2", buttonTitle: "친절형", selected: true),collectionViewCellModel(imageName: "emoji3", buttonTitle: "방목형", selected: true),collectionViewCellModel(imageName: "emoji4", buttonTitle: "츤데레형", selected: true),collectionViewCellModel(imageName: "emoji5", buttonTitle: "할많하않", selected: true)]
+
+    var mapDetailViewList : [mapDetailViewModel] = [mapDetailViewModel(address: "주소1", buildingDetail: "디테일1",owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
+        mapDetailViewModel(address: "주소2", buildingDetail: "디테일2", owner: "집주인2", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가2"),
+        mapDetailViewModel(address: "주소3", buildingDetail: "디테일3", owner: "집주인3", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가3"),
+        mapDetailViewModel(address: "주소4", buildingDetail: "디테일4", owner: "집주인4", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가4"),
+        mapDetailViewModel(address: "주소5", buildingDetail: "디테일5", owner: "집주인5", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가5")]
+    // MARK: - Components
+    var tendencyButton = UIView().then{
+        $0.frame.size = CGSize(width: 60, height: 70)
+    }
+
+    var circleButton = UIButton()
+
+    var buttonTitle = UILabel().then{
+        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    }
+
+    func makeButton(imageName: String, buttonName: String) {
+        circleButton.setImage(UIImage(named: imageName), for: .normal)
+        buttonTitle.text = buttonName
+    }
+ 
+    var items = [MTMapPOIItem]()
+    var showItems = [MTMapPOIItem]()
+
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.isScrollEnabled = true
     collectionView.isHidden = true
@@ -244,6 +282,7 @@ class MapViewController: UIViewController {
     items.append(poiItem(name: "한솔이네", latitude: 37.4984686, longitude: 127.0484572, imageName: "emoji3Map", tag: 2))
     items.append(poiItem(name: "태훈이네", latitude: 37.4985683, longitude: 127.0484572, imageName: "emoji4Map", tag: 3))
     items.append(poiItem(name: "지피네", latitude: 37.4986685, longitude: 127.0484572, imageName: "emoji5Map", tag: 4))
+
     
     showItems = items
     mapView.addPOIItems(items)
