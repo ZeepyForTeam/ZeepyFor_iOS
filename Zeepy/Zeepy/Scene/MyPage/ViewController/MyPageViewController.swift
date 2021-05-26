@@ -30,6 +30,7 @@ class MyPageViewController : BaseViewController {
     super.viewDidLoad()
     self.view.addSubview(point)
     point.snp.makeConstraints{
+      $0.width.height.equalTo(15)
       $0.centerX.centerY.equalToSuperview()
     }
   }

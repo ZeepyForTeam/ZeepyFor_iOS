@@ -63,7 +63,8 @@ class LookAroundTableViewCell: UITableViewCell {
     
     self.buildingName.text = model.buildingName
     self.userName.text = model.review.reviewrName
-    self.statusLabel.text = model.ownderInfo.ownerStatusLabel
+    self.statusLabel.text = model.ownderInfo.rawValue
+    self.statusImage.image = UIImage(named: model.ownderInfo.image)
     self.vaildationLabel.text = model.review.review
     self.thumbNail.kf.setImage(with: URL(string: model.buildingImage))
     Observable.just(model.filters)

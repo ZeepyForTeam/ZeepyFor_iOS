@@ -4,6 +4,7 @@
 //
 //  Created by 노한솔 on 2021/05/11.
 //
+
 import RxDataSources
 import RxSwift
 import SnapKit
@@ -41,6 +42,24 @@ class DetailInformationViewController: BaseViewController {
 
 // MARK: - Extensions
 extension DetailInformationViewController {
+  func layoutTitleLabel() {
+    let titleParagraphStyle = NSMutableParagraphStyle()
+    titleParagraphStyle.lineSpacing = 7
+    let titleText = NSMutableAttributedString(string: "집에 대한 정보를\n조금 더 알려주세요!",
+                                              attributes: [
+                                                .font: UIFont.nanumRoundExtraBold(fontSize: 24),
+                                                .foregroundColor: UIColor.mainBlue])
+    titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
+                           value: titleParagraphStyle,
+                           range: NSMakeRange(0, titleText.length))
+    titleText.addAttribute(NSAttributedString.Key.font,
+                           value: UIFont.nanumRoundRegular(fontSize: 24),
+                           range: NSRange(location: 9, length: 1))
+    titleText.addAttribute(NSAttributedString.Key.font,
+                           value: UIFont.nanumRoundRegular(fontSize: 24),
+                           range: NSRange(location: 15, length: 6))
+  }
+
   // MARK: - Helpers
   func layoutCollectionView() {
     self.view.add(contentCollectionView) {
@@ -181,7 +200,7 @@ extension DetailInformationViewController: UICollectionViewDelegateFlowLayout {
       return CGSize(width: cellWidth, height: cellWidth*80/109)
     }
     else {
-    return CGSize(width: cellWidth, height: cellWidth*48/109)
+      return CGSize(width: cellWidth, height: cellWidth*48/109)
     }
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
