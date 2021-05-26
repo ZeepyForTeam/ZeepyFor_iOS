@@ -133,6 +133,8 @@
 		DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */; };
 		DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E013265D34F300B7B4F2 /* HalfView.swift */; };
 		DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E019265D357B00B7B4F2 /* SettingView.swift */; };
+		DAD6CBD6265E640700DDC5AD /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD6CBD4265E640700DDC5AD /* CommunityViewController.swift */; };
+		DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD6CBD5265E640700DDC5AD /* PostDetailViewController.swift */; };
 		DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D38D265A02BA00B281E2 /* FilterModel.swift */; };
 		DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D392265A033100B281E2 /* Dropdown.swift */; };
 		DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D397265A033600B281E2 /* CalendarService.swift */; };
@@ -301,8 +303,8 @@
 		DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAddressViewController.swift; sourceTree = "<group>"; };
 		DAB3E013265D34F300B7B4F2 /* HalfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfView.swift; sourceTree = "<group>"; };
 		DAB3E019265D357B00B7B4F2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		DAD6CBAC265E617D00DDC5AD /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
-		DAD6CBAD265E617D00DDC5AD /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		DAD6CBD4265E640700DDC5AD /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		DAD6CBD5265E640700DDC5AD /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		DAF4D38D265A02BA00B281E2 /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		DAF4D392265A033100B281E2 /* Dropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		DAF4D397265A033600B281E2 /* CalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
@@ -876,8 +878,8 @@
 		DAD6CBAB265E617400DDC5AD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DAD6CBAD265E617D00DDC5AD /* CommunityViewController.swift */,
-				DAD6CBAC265E617D00DDC5AD /* PostDetailViewController.swift */,
+				DAD6CBD4265E640700DDC5AD /* CommunityViewController.swift */,
+				DAD6CBD5265E640700DDC5AD /* PostDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1196,6 +1198,7 @@
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
 				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
+				DAD6CBD6265E640700DDC5AD /* CommunityViewController.swift in Sources */,
 				DA4C7837265A01F00040010F /* TapCell.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
@@ -1208,6 +1211,7 @@
 				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
+				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
