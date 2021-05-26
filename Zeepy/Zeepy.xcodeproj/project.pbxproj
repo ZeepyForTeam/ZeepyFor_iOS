@@ -131,7 +131,6 @@
 		DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */; };
 		DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB0FFF825F9014900D8208F /* RxMoya+.swift */; };
 		DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */; };
-		DAB3E00E265D2CB500B7B4F2 /* CommunityViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */; };
 		DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E013265D34F300B7B4F2 /* HalfView.swift */; };
 		DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB3E019265D357B00B7B4F2 /* SettingView.swift */; };
 		DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D38D265A02BA00B281E2 /* FilterModel.swift */; };
@@ -139,7 +138,6 @@
 		DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D397265A033600B281E2 /* CalendarService.swift */; };
 		DAF4D39E265A035B00B281E2 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D39C265A035B00B281E2 /* String+.swift */; };
 		DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D39D265A035B00B281E2 /* Date+.swift */; };
-		DAF4D3A4265A0C0D00B281E2 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3A3265A0C0D00B281E2 /* PostDetailViewController.swift */; };
 		DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3A8265A231500B281E2 /* SubCommentTableViewCell.swift */; };
 		DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3AD265A24E700B281E2 /* CommentView.swift */; };
 		DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */; };
@@ -301,15 +299,15 @@
 		DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFR.otf; sourceTree = "<group>"; };
 		DAB0FFF825F9014900D8208F /* RxMoya+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxMoya+.swift"; sourceTree = "<group>"; };
 		DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAddressViewController.swift; sourceTree = "<group>"; };
-		DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommunityViewController copy.swift"; sourceTree = "<group>"; };
 		DAB3E013265D34F300B7B4F2 /* HalfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfView.swift; sourceTree = "<group>"; };
 		DAB3E019265D357B00B7B4F2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		DAD6CBAC265E617D00DDC5AD /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		DAD6CBAD265E617D00DDC5AD /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		DAF4D38D265A02BA00B281E2 /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		DAF4D392265A033100B281E2 /* Dropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		DAF4D397265A033600B281E2 /* CalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		DAF4D39C265A035B00B281E2 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		DAF4D39D265A035B00B281E2 /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
-		DAF4D3A3265A0C0D00B281E2 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		DAF4D3A8265A231500B281E2 /* SubCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCommentTableViewCell.swift; sourceTree = "<group>"; };
 		DAF4D3AD265A24E700B281E2 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionModel.swift; sourceTree = "<group>"; };
@@ -599,9 +597,9 @@
 		DA474595261B27FD00709883 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				DAD6CBAB265E617400DDC5AD /* ViewController */,
 				DA4C782E265A01F00040010F /* Cell */,
 				DA4C782A265A01F00040010F /* Model */,
-				DA4C7832265A01F00040010F /* ViewController */,
 				DA4C782C265A01F00040010F /* ViewModel */,
 			);
 			path = Community;
@@ -745,16 +743,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		DA4C7832265A01F00040010F /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DAB3E00D265D2CB500B7B4F2 /* CommunityViewController copy.swift */,
-				DAF4D3A3265A0C0D00B281E2 /* PostDetailViewController.swift */,
-			);
-			name = ViewController;
-			path = ../../../../../Univ/Zeepy/Scene/Community/ViewController;
-			sourceTree = "<group>";
-		};
 		DA61C3EB25F32F440063263A = {
 			isa = PBXGroup;
 			children = (
@@ -883,6 +871,15 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		DAD6CBAB265E617400DDC5AD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAD6CBAD265E617D00DDC5AD /* CommunityViewController.swift */,
+				DAD6CBAC265E617D00DDC5AD /* PostDetailViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1201,7 +1198,6 @@
 				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
 				DA4C7837265A01F00040010F /* TapCell.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
-				DAB3E00E265D2CB500B7B4F2 /* CommunityViewController copy.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
@@ -1231,7 +1227,6 @@
 				DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */,
-				DAF4D3A4265A0C0D00B281E2 /* PostDetailViewController.swift in Sources */,
 				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
 				DA4C7823265A01C50040010F /* ReusableSimpleImageCell.swift in Sources */,
 				371628B02646665F0006AE80 /* tendencyButton.swift in Sources */,
