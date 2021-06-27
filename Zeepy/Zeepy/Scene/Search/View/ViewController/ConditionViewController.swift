@@ -27,9 +27,9 @@ class ConditionViewController: UIViewController {
                                      ListModel(title: "투룸", image: "btnOption2", selected: true),
                                      ListModel(title: "오피스텔", image: "btnReady", selected: true)]
     
-    var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1"),
-                                        ListModel(title: "전세", image: "btnOption2"),
-                                        ListModel(title: "매매", image: "btnOption3")]
+    var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1", selected: true),
+                                        ListModel(title: "전세", image: "btnOption2", selected: true),
+                                        ListModel(title: "매매", image: "btnReady", selected: true)]
     
     var optionList : [OptionModel] = [OptionModel(name: "에어컨", selected: true),
                                       OptionModel(name: "세탁기", selected: true),
@@ -125,7 +125,7 @@ class ConditionViewController: UIViewController {
         $0.text = "최소"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
     }
-
+    
     let depositSecondSection = UILabel().then {
         $0.text = "1천만"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
@@ -318,7 +318,7 @@ class ConditionViewController: UIViewController {
         }
         
         let screenWidth = UIScreen.main.bounds.size.width
-
+        
         depositPriceRange.adds([depositFirstSection,depositSecondSection,depositThirdSection,depositFourthSection])
         
         depositFirstSection.snp.makeConstraints {
@@ -347,7 +347,7 @@ class ConditionViewController: UIViewController {
             $0.height.equalTo(20)
         }
         rentPriceShowView.addSubview(rentPriceLabel)
-
+        
         rentPriceLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.equalToSuperview().offset(8)
@@ -360,9 +360,9 @@ class ConditionViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(80)
         }
-
+        
         rentPriceSliderView.addSubview(rentPriceSlider)
-
+        
         rentPriceSlider.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.equalToSuperview()
@@ -375,7 +375,7 @@ class ConditionViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(20)
         }
-
+        
         rentPriceRange.adds([rentFirstSection,rentSecondSection,rentThirdSection,rentFourthSection])
         
         rentFirstSection.snp.makeConstraints {
@@ -424,7 +424,7 @@ class ConditionViewController: UIViewController {
         var maximum = ""
         
         if minValue == 0 {
-           minimum = firstSection
+            minimum = firstSection
         }
         if minValue == 1 {
             minimum = secondSection
@@ -473,28 +473,51 @@ class ConditionViewController: UIViewController {
     
     @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
         sender.isSelected.toggle()
-        transactionList[sender.tag].selected = sender.isSelected
-        if transactionList[0].selected {
-            rentPriceShowView.isHidden = true
-            rentPriceSliderView.isHidden = true
-            rentTitle.isHidden = true
-            optionTitle.snp.remakeConstraints{
-                $0.top.equalTo(depositPriceSliderView.snp.bottom).offset(16)
-                $0.leading.trailing.equalToSuperview().offset(16)
-            }
-        }else {
+        transactionList[sender.tag].selected = !sender.isSelected
+        print("월세 selected 결과 : " + String(transactionList[0].selected))
+        print("전세 selected 결과 : " + String(transactionList[1].selected))
+        if (transactionList[0].selected && !transactionList[1].selected) || (transactionList[0].selected && transactionList[1].selected){ // 월세만 선택하거나 둘 다 모두 선택했을 경우
             rentPriceShowView.isHidden = false
             rentPriceSliderView.isHidden = false
             rentTitle.isHidden = false
+            depositPriceShowView.isHidden = false
+            depositPriceSliderView.isHidden = false
+            depositTitle.isHidden = false
             addConstraints()
             optionTitle.snp.remakeConstraints{
-                $0.top.equalTo(rentPriceSliderView.snp.bottom).offset(16)
+                $0.top.equalTo(rentPriceRange.snp.bottom).offset(16)
                 $0.leading.trailing.equalToSuperview().offset(16)
             }
+        }
+        if !transactionList[0].selected && transactionList[1].selected{ // 전세만 선택한 경우
+            rentPriceShowView.isHidden = true
+            rentPriceSliderView.isHidden = true
+            rentTitle.isHidden = true
+            depositPriceShowView.isHidden = false
+            depositPriceSliderView.isHidden = false
+            depositTitle.isHidden = false
+            addConstraints()
+            optionTitle.snp.remakeConstraints{
+                $0.top.equalTo(depositPriceRange.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().offset(16)
+            }
+        }
+        if !transactionList[0].selected && !transactionList[1].selected {// 둘 다 선택하지 않은 경우
+            priceTitle.isHidden = true
+            rentPriceShowView.isHidden = true
+            rentPriceSliderView.isHidden = true
+            rentTitle.isHidden = true
+            depositPriceShowView.isHidden = true
+            depositPriceSliderView.isHidden = true
+            depositTitle.isHidden = true
+            addConstraints()
+            optionTitle.snp.remakeConstraints{
+                $0.top.equalTo(transactionCollectionView.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().offset(16)
+            }
+        }
         transactionCollectionView.reloadInputViews()
     }
-    }
-    
     @objc func onTapOptionButton(sender: UIButton) {
         sender.isSelected.toggle()
         if sender.isSelected {
@@ -563,7 +586,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: ReusableButtonCell?
         var optioncell: ReusableOptionCell?
-
+        
         
         if(collectionView == self.buildingCollectionView) {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
@@ -572,7 +595,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
             return cell!
-
+            
         }
         else if(collectionView == self.transactionCollectionView) {
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell)
