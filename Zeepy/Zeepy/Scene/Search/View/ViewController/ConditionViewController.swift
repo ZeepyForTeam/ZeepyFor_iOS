@@ -474,7 +474,7 @@ class ConditionViewController: UIViewController {
     @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
         sender.isSelected.toggle()
         transactionList[sender.tag].selected = !sender.isSelected
-        if (transactionList[0].selected && !transactionList[1].selected) || (transactionList[0].selected && transactionList[1].selected){ // 월세만 선택하거나 둘 다 모두 선택했을 경우
+        if (transactionList[0].selected && !transactionList[1].selected) || (transactionList[0].selected && transactionList[1].selected){ // 월세만 선택하거나 둘 다 모두 선택했을 경우 // 보증금 월세 모두 보여주기
             rentPriceShowView.isHidden = false
             rentPriceSliderView.isHidden = false
             rentTitle.isHidden = false
