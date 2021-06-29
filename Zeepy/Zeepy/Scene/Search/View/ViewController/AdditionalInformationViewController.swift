@@ -106,10 +106,13 @@ extension AdditionalInformationViewController {
       $0.estimatedRowHeight = UITableView.automaticDimension
       $0.backgroundColor = .clear
       $0.separatorStyle = .none
+      $0.isScrollEnabled = false
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.assessTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
         $0.top.equalTo(self.assessTitleLabel.snp.bottom).offset(12)
+//        $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-120)
+        $0.height.equalTo(168)
       }
     }
   }
