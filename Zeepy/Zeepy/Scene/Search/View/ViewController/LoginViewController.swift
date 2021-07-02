@@ -10,7 +10,9 @@ import Then
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    let contentView = UIView().then{
+        $0.backgroundColor = .white
+    }
     let loginTitle = UILabel().then{
         $0.text = "Login"
     }
@@ -42,13 +44,18 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(loginTitle)
+        self.view.addSubview(contentView)
         self.view.backgroundColor = .white
         addConstraints()
     }
 
     func addConstraints(){
-        loginTitle.adds([idTitle])
+        contentView.snp.makeConstraints{
+            $0.center.height.width.equalToSuperview()
+        }
+        
+        contentView.adds([loginTitle,idTitle])
+        
         loginTitle.snp.makeConstraints{
             $0.top.equalToSuperview().inset(30)
             $0.leading.equalToSuperview().inset(16)
@@ -58,5 +65,6 @@ class LoginViewController: UIViewController {
             $0.leading.equalTo(loginTitle)
             $0.bottom.equalToSuperview()
         }
+        
     }
 }
