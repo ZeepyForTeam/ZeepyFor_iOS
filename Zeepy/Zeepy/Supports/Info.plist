@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -19,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>573</string>
+	<string>660</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>c9eed0a8848e4d0bae872569d18063a8</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -30,6 +32,7 @@
 		<string>NanumSquareRoundOTFL.otf</string>
 		<string>NanumSquareRoundOTFEB.otf</string>
 		<string>NanumSquareRoundOTFB.otf</string>
+		<string>Gilroy-ExtraBold.otf</string>
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
