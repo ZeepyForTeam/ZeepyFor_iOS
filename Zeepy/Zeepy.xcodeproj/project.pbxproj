@@ -18,6 +18,7 @@
 		3784561A2692154C00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
+		3798C1A52692917100616311 /* loginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* loginEmailViewController.swift */; };
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
@@ -180,6 +181,7 @@
 		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
 		378456192692145C00F59074 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
+		3798C1A42692917100616311 /* loginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginEmailViewController.swift; sourceTree = "<group>"; };
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8DDF2ECAF5C0B590EC0DC314 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		90EDA8664B208E2EB1A7FE65 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
 				DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */,
 				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
+				3798C1A42692917100616311 /* loginEmailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1262,6 +1265,7 @@
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
+				3798C1A52692917100616311 /* loginEmailViewController.swift in Sources */,
 				CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */,
 				372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */,
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
