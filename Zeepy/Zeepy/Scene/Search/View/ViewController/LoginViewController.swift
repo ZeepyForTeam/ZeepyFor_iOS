@@ -10,6 +10,7 @@ import Then
 import UIKit
 
 class LoginViewController: UIViewController {
+    
     let contentView = UIView().then{
         $0.backgroundColor = .white
     }
