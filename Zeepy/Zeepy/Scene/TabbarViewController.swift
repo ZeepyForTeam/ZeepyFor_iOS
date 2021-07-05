@@ -16,7 +16,7 @@ class TabbarViewContorller : UITabBarController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = .clear
+    self.view.backgroundColor = .white
     self.selectedIndex = defaultIndex
     self.tabBar.layer.borderWidth = 0.6
 //    self.tabBar.layer.borderColor = lineColor.cgColor
@@ -32,7 +32,7 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let tab1NavigationController =  UINavigationController()
-    tab1NavigationController.viewControllers = [LoginViewController()]
+    tab1NavigationController.viewControllers = [LoginEmailViewController()]
 
     let tab2NavigationController = UINavigationController()
     tab2NavigationController.viewControllers = [ConditionViewController()]
