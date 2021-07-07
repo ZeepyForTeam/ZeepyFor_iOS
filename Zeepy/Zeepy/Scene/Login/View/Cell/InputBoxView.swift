@@ -10,15 +10,16 @@ import SnapKit
 import Then
 
 class InputBoxView: UIView {
+    let contentView = UIView()
     let infoTitle = UILabel().then{
-        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
+        $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 16.0)
     }
     let infoTextFieldBackGroundView = UIView().then{
         $0.backgroundColor = .gray244
-        $0.setRounded(radius: 10)
+        $0.setRounded(radius: 6)
     }
     let infoTextField = UITextField().then{
-        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 15.0)
+        $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 15.0)
     }
     
     required init?(coder: NSCoder) {
@@ -27,10 +28,13 @@ class InputBoxView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.adds([infoTitle,infoTextFieldBackGroundView])
+        self.addSubview(contentView)
+        contentView.snp.makeConstraints{
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        contentView.adds([infoTitle,infoTextFieldBackGroundView])
         
         infoTitle.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(10)
         }
         infoTextFieldBackGroundView.snp.makeConstraints{

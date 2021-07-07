@@ -389,6 +389,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		37EB8BBB2693D2D40052047B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		37EB8BBC2693D2DF0052047B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		37EB8BBD2693D2E60052047B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37EB8BBE2693D2F80052047B /* Cell */,
+				37EB8BBF2693D3080052047B /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37EB8BBE2693D2F80052047B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				37EB8BB92692FF8A0052047B /* InputBoxView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		37EB8BBF2693D3080052047B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
+				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
+				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		A45F4F7225FF2AD600FCEACF /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,7 +605,6 @@
 				CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */,
 				372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */,
 				CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */,
-				37EB8BB92692FF8A0052047B /* InputBoxView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -643,9 +683,6 @@
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
 				DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */,
-				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
-				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
-				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -660,6 +697,9 @@
 		DA4745C7261B298600709883 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				37EB8BBD2693D2E60052047B /* View */,
+				37EB8BBC2693D2DF0052047B /* ViewModel */,
+				37EB8BBB2693D2D40052047B /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
