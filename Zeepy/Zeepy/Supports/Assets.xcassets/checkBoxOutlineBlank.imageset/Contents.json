@@ -1,9 +1,9 @@
 {
   "images" : [
     {
+      "filename" : "checkBoxOutlineBlank.png",
       "scale" : "1x",
-      "idiom" : "universal",
-      "filename" : "checkBoxOutlineBlank.png"
+      "idiom" : "universal"
     },
     {
       "idiom" : "universal",
@@ -12,8 +12,8 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "checkBoxOutlineBlank@3x.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "checkBoxOutlineBlank@3x.png"
     }
   ],
   "info" : {
