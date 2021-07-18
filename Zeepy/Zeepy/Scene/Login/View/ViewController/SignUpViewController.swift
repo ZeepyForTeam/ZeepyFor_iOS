@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController {
     }
     let getID = InputBoxView().then{
         $0.infoTitle.text = "아이디"
-        $0.infoTextField.placeholder = "아이디을 입력해주세요"
+        $0.infoTextField.placeholder = "아이디를 입력해주세요"
     }
     let getEmail = InputBoxView().then{
         $0.infoTitle.text = "이메일"
@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
         $0.infoTextField.placeholder = "비밀번호를 다시 입력해주세요"
     }
     let pwNotSame = UILabel().then{
-        $0.textColor = .mainBlue //salmon color가 왜 안나오지?...
+        $0.textColor = .heartColor //salmon color가 왜 안나오지?...
         $0.text = "비밀번호가 일치하지 않습니다."
         $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
     }
@@ -49,7 +49,7 @@ class SignUpViewController: UIViewController {
         $0.text = "ZEEPY 서비스에 대한 소식을 이메일로 받아봅니다.(선택)"
     }
     let termsCheckBox = UIButton().then{
-        $0.setImage(UIImage(named: "checkBox"), for: .normal)
+        $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
         $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
     }
     let termsLabel = UILabel().then{
@@ -69,18 +69,30 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func determineButtonImage(sender: UIButton){
-        if !termsCheckBox.isSelected {
+        if termsCheckBox.isTouchInside{
+            termsCheckBox.isSelected.toggle()
+        }
+        if newsCheckBox.isTouchInside{
+            newsCheckBox.isSelected.toggle()
+        }
+        
+        if !termsCheckBox.isSelected && !newsCheckBox.isSelected{
             termsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+            newsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
         }
-        else if termsCheckBox.isSelected {
-            termsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
-        }
-        if !newsCheckBox.isSelected {
+        if !termsCheckBox.isSelected && newsCheckBox.isSelected{
             termsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+            newsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
         }
-        else if newsCheckBox.isSelected {
+        if termsCheckBox.isSelected && !newsCheckBox.isSelected{
             termsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
+            newsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
         }
+        if termsCheckBox.isSelected && newsCheckBox.isSelected{
+            termsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
+            newsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
+        }
+        reloadInputViews()
     }
     
     override func viewDidLoad() {

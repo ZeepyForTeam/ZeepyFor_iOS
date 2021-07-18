@@ -19,7 +19,9 @@ class InputBoxView: UIView {
         $0.setRounded(radius: 6)
     }
     let infoTextField = UITextField().then{
-        $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 15.0)
+        $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 13.0)
+        $0.attributedPlaceholder = NSAttributedString(string: "placeholder text",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayText])
     }
     
     required init?(coder: NSCoder) {
@@ -43,9 +45,9 @@ class InputBoxView: UIView {
         }
         infoTextFieldBackGroundView.add(infoTextField)
         infoTextField.snp.makeConstraints{
-            $0.top.equalTo(infoTitle.snp.bottom)
             $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(10)
+            $0.centerY.equalToSuperview()
             $0.height.equalTo(50)
         }
     }

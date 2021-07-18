@@ -146,7 +146,6 @@ class LoginEmailViewController: UIViewController {
             $0.top.equalTo(signUpButton.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(50)
-            
         }
         seperateBar.snp.makeConstraints{
             $0.top.equalTo(loginButton.snp.bottom).offset(30)
@@ -155,7 +154,7 @@ class LoginEmailViewController: UIViewController {
         }
         snsLoginLabel.snp.makeConstraints{
             $0.top.equalTo(seperateBar.snp.bottom).offset(30)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(30)
         }
         snsStackView.adds([appleLoginButton, kakaoLoginButton, naverLoginButton])
         snsStackView.snp.makeConstraints{
