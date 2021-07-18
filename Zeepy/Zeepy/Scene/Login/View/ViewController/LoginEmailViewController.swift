@@ -12,11 +12,15 @@ import Then
 class LoginEmailViewController: UIViewController {
      
     let contentView = UIView()
+    
+    let backButton = UIButton().then{
+        $0.setImage(UIImage(named: "btnBack"), for: .normal)
+    }
     let viewTitle = UIImageView().then{
         $0.image = UIImage(named: "group926")
     }
     let signInTitle = UILabel().then{
-        $0.text = "Sign In"
+        $0.text = "Sign in"
         $0.font = UIFont(name: "Gilroy-ExtraBold", size: 16.0)
     }
     let idTextFieldBackGroundView = UIView().then{
@@ -64,13 +68,17 @@ class LoginEmailViewController: UIViewController {
         $0.text = "SNS Login"
         $0.font = UIFont(name: "Gilroy-ExtraBold", size: 16.0)
     }
+    
+    let snsStackView = UIStackView()
+    let appleLoginButton = UIButton().then{
+        $0.setImage(UIImage(named: "logoApple"), for: .normal)
+    }
     let kakaoLoginButton = UIButton().then{
-        $0.setBackgroundImage(UIImage(named: "group923"), for: .normal)
+        $0.setImage(UIImage(named: "logoCacao"), for: .normal)
     }
     let naverLoginButton = UIButton().then{
-        $0.setBackgroundImage(UIImage(named: "group924"), for: .normal)
+        $0.setImage(UIImage(named: "logoNaver"), for: .normal)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(contentView)
@@ -82,13 +90,17 @@ class LoginEmailViewController: UIViewController {
             $0.top.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
         
-        contentView.adds([viewTitle,signInTitle,idTextFieldBackGroundView,pwTextFieldBackGroundView,findIDButton,findPWButton,signUpButton,loginButton,seperateBar,snsLoginLabel,kakaoLoginButton,naverLoginButton])
+        contentView.adds([backButton,viewTitle,signInTitle,idTextFieldBackGroundView,pwTextFieldBackGroundView,findIDButton,findPWButton,signUpButton,loginButton,seperateBar,snsLoginLabel,snsStackView])
         
+        backButton.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(30)
+            $0.leading.equalToSuperview().offset(15)
+        }
         viewTitle.snp.makeConstraints{
             $0.top.equalToSuperview().offset(30)
-            $0.leading.equalToSuperview().offset(25)
+            $0.leading.equalTo(backButton).offset(30)
             $0.height.equalTo(70)
-            $0.width.equalTo(200)
+            $0.width.equalTo(220)
         }
         
         signInTitle.snp.makeConstraints{
@@ -98,9 +110,9 @@ class LoginEmailViewController: UIViewController {
         idTextFieldBackGroundView.addSubview(idTextField)
         idTextFieldBackGroundView.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(25)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-25)
             $0.top.equalTo(signInTitle.snp.bottom).offset(8)
-            $0.height.equalTo(40)
+            $0.height.equalTo(50)
         }
         idTextField.snp.makeConstraints{
             $0.center.top.bottom.equalToSuperview()
@@ -109,9 +121,9 @@ class LoginEmailViewController: UIViewController {
         pwTextFieldBackGroundView.addSubview(pwTextField)
         pwTextFieldBackGroundView.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(25)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-25)
             $0.top.equalTo(idTextField.snp.bottom).offset(16)
-            $0.height.equalTo(40)
+            $0.height.equalTo(50)
         }
         pwTextField.snp.makeConstraints{
             $0.center.top.bottom.equalToSuperview()
@@ -145,15 +157,24 @@ class LoginEmailViewController: UIViewController {
             $0.top.equalTo(seperateBar.snp.bottom).offset(30)
             $0.leading.equalToSuperview().offset(16)
         }
+        snsStackView.adds([appleLoginButton, kakaoLoginButton, naverLoginButton])
+        snsStackView.snp.makeConstraints{
+            $0.top.equalTo(snsLoginLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(125)
+            $0.trailing.equalToSuperview().inset(125)
+        }
+        
+        appleLoginButton.snp.makeConstraints{
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+        }
         kakaoLoginButton.snp.makeConstraints{
-            $0.top.equalTo(snsLoginLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(25)
-            $0.height.equalTo(55)
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(appleLoginButton.snp.trailing).offset(10)
         }
         naverLoginButton.snp.makeConstraints{
-            $0.top.equalTo(kakaoLoginButton.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(25)
-            $0.height.equalTo(55)
+            $0.top.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
     }
 }
