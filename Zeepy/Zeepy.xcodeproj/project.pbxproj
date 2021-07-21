@@ -15,6 +15,13 @@
 		372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F844D26385B39000E0AFC /* ConditionViewController.swift */; };
 		374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374800B9263C297D00098436 /* ReusableOptionCell.swift */; };
 		37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37625BFA263A602100D72302 /* ReusableButtonCell.swift */; };
+		3784561A2692154C00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
+		3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
+		3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
+		3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* LoginEmailViewController.swift */; };
+		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
+		37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB72692FF260052047B /* SignUpViewController.swift */; };
+		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
 		937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
@@ -176,6 +183,11 @@
 		372F844D26385B39000E0AFC /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
 		374800B9263C297D00098436 /* ReusableOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableOptionCell.swift; sourceTree = "<group>"; };
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
+		378456192692145C00F59074 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
+		3798C1A42692917100616311 /* LoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmailViewController.swift; sourceTree = "<group>"; };
+		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		37EB8BB72692FF260052047B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
 		8DDF2ECAF5C0B590EC0DC314 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		90EDA8664B208E2EB1A7FE65 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		933E3929B0FFED71DB104BC5 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -377,6 +389,47 @@
 				DBC549BA9438B4352CE6BACF /* Pods_ZeepyTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37EB8BBB2693D2D40052047B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		37EB8BBC2693D2DF0052047B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		37EB8BBD2693D2E60052047B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				37EB8BBE2693D2F80052047B /* Cell */,
+				37EB8BBF2693D3080052047B /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37EB8BBE2693D2F80052047B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				37EB8BB92692FF8A0052047B /* InputBoxView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		37EB8BBF2693D3080052047B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
+				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
+				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		A45F4F7225FF2AD600FCEACF /* Configuration */ = {
@@ -647,6 +700,9 @@
 		DA4745C7261B298600709883 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				37EB8BBD2693D2E60052047B /* View */,
+				37EB8BBC2693D2DF0052047B /* ViewModel */,
+				37EB8BBB2693D2D40052047B /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -867,6 +923,7 @@
 				DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */,
 				DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */,
 				DAB000042608CC0300D8208F /* NanumSquareRoundOTFR.otf */,
+				378456192692145C00F59074 /* Gilroy-ExtraBold.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -1033,6 +1090,7 @@
 				DA474659261B50A800709883 /* map_pin_shadow.png in Resources */,
 				DA61C40425F32F450063263A /* Assets.xcassets in Resources */,
 				DA47464B261B50A800709883 /* map_pin@3x.png in Resources */,
+				3784561A2692154C00F59074 /* Gilroy-ExtraBold.otf in Resources */,
 				DA474649261B50A800709883 /* map_pin_red@3x.png in Resources */,
 				DA474644261B50A800709883 /* map_pin_custom@3x.png in Resources */,
 				DAB000052608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
@@ -1054,6 +1112,7 @@
 			files = (
 				CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
+				3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */,
 				DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
@@ -1065,6 +1124,7 @@
 			files = (
 				CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DAB0000D2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
+				3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */,
 				DAB000102608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
 			);
@@ -1197,6 +1257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
@@ -1225,6 +1286,7 @@
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
+				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
 				371628A826456EC10006AE80 /* MapViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */,
@@ -1253,6 +1315,7 @@
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
+				3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */,
 				CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */,
 				372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */,
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
@@ -1272,6 +1335,7 @@
 				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
+				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
 				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,

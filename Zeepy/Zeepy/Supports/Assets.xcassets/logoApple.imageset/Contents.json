@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "btnBack.png"
+      "filename" : "logoApple.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "btnBack@2x.png",
+      "filename" : "logoApple@2x.png",
       "scale" : "2x",
       "idiom" : "universal"
     },
     {
-      "filename" : "btnBack@3x.png",
       "idiom" : "universal",
+      "filename" : "logoApple@3x.png",
       "scale" : "3x"
     }
   ],

@@ -3,15 +3,15 @@
     {
       "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "btnBack.png"
+      "filename" : "group920.png"
     },
     {
-      "filename" : "btnBack@2x.png",
+      "filename" : "group920@2x.png",
       "scale" : "2x",
       "idiom" : "universal"
     },
     {
-      "filename" : "btnBack@3x.png",
+      "filename" : "group920@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

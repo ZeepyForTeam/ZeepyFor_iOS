@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "checkBoxOutlineBlank.png",
       "scale" : "1x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "group921.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "checkBoxOutlineBlank@2x.png",
+      "filename" : "group921@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "checkBoxOutlineBlank@3x.png"
+      "idiom" : "universal",
+      "filename" : "group921@3x.png"
     }
   ],
   "info" : {
