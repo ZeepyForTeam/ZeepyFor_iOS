@@ -16,7 +16,7 @@ class MapSearchTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     addconstraints()
-    self.backgroundColor = .clear
+//    self.backgroundColor = .clear
   }
   
   override func layoutSubviews() {
@@ -24,7 +24,7 @@ class MapSearchTableViewCell: UITableViewCell {
     self.snp.makeConstraints{
         $0.height.equalTo(20)
     }
-    contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 0))
+//    contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 0))
     
   }
     
@@ -39,7 +39,6 @@ class MapSearchTableViewCell: UITableViewCell {
 
 extension MapSearchTableViewCell {
     func addconstraints(){
-        
         self.contentView.add(clockImageView) {
           $0.snp.makeConstraints {
             $0.centerY.equalTo(self.contentView.snp.centerY)
@@ -51,9 +50,10 @@ extension MapSearchTableViewCell {
         self.contentView.add(searchRecordLabel) {
           $0.snp.makeConstraints {
             $0.leading.equalTo(self.clockImageView.snp.trailing).offset(10)
+            $0.centerY.equalTo(self.contentView.snp.centerY)
+            $0.centerX.equalTo(self.contentView.snp.centerX)
             $0.top.bottom.equalTo(self.contentView)
           }
         }
     }
 }
-

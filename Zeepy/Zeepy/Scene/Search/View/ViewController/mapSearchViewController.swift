@@ -35,7 +35,11 @@ class mapSearchViewController: UIViewController {
       $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 12.0)
     }
     
-    var searchRecordTableView = UITableView()
+    var searchRecordTableView = UITableView().then{
+        $0.estimatedRowHeight = UITableView.automaticDimension
+        $0.rowHeight = UITableView.automaticDimension
+        $0.separatorStyle = .none
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchRecordTableView.delegate = self
@@ -72,10 +76,10 @@ class mapSearchViewController: UIViewController {
           $0.trailing.equalToSuperview().inset(5)
         }
         searchRecordTableView.snp.makeConstraints{
+            
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(searchView.snp.bottom).offset(8)
-//            $0.height.equalTo(40 * searchRecordList.count)
-            $0.height.equalTo(40 * (searchRecordList.count+1))
+            $0.bottom.equalToSuperview()
         }
     }
 }
@@ -87,6 +91,7 @@ extension mapSearchViewController: UITableViewDelegate {
 }
 
 extension mapSearchViewController: UITableViewDataSource {
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.searchRecordList.count
   }
@@ -99,10 +104,9 @@ extension mapSearchViewController: UITableViewDataSource {
     MapSearchTableViewCell.awakeFromNib()
     return MapSearchTableViewCell
   }
-  
 //  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //    let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell
-//    MapSearchTableViewCell?.cellBackgroundView.backgroundColor = .blue
+////    MapSearchTableViewCell?.cellBackgroundView.backgroundColor = .black
 //    tableView.reloadData()
 //    tableView.awakeFromNib()
 //  }
