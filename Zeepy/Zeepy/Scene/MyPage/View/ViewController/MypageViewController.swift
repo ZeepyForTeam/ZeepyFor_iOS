@@ -74,6 +74,7 @@ extension MypageViewController {
     layoutFavoriteLabel()
     layoutMypageTableView()
   }
+  
   private func layoutTitleLabel() {
     view.add(titleLabel) {
       $0.numberOfLines = 2
@@ -83,6 +84,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutButtonStackView() {
     view.add(buttonStackView) {
       $0.snp.makeConstraints {
@@ -93,6 +95,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutAddressButton() {
     addressView.add(addressButton) {
       $0.setBackgroundImage(UIImage(named: self.addressButtonTitle), for: .normal)
@@ -102,6 +105,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutAddressLabel() {
     addressView.add(addressLabel) {
       $0.setupLabel(text: self.addressTitle, color: .blackText, font: .nanumRoundBold(fontSize: 12))
@@ -111,6 +115,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutReviewButton() {
     reviewView.add(reviewButton) {
       $0.setBackgroundImage(UIImage(named: self.reviewButtonTitle), for: .normal)
@@ -120,6 +125,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutReviewLabel() {
     reviewView.add(reviewLabel) {
       $0.setupLabel(text: self.reviewTitle, color: .blackText, font: .nanumRoundBold(fontSize: 12))
@@ -129,6 +135,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutFavoriteButton() {
     favoriteView.add(favoriteButton) {
       $0.setBackgroundImage(UIImage(named: self.favoriteButtonTitle), for: .normal)
@@ -138,6 +145,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutFavoriteLabel() {
     favoriteView.add(favoriteLabel) {
       $0.setupLabel(text: self.favoriteTitle, color: .blackText, font: .nanumRoundBold(fontSize: 12))
@@ -147,6 +155,7 @@ extension MypageViewController {
       }
     }
   }
+  
   private func layoutMypageTableView() {
     view.add(mypageTableView) {
       $0.backgroundColor = .clear
@@ -168,9 +177,11 @@ extension MypageViewController {
     mypageTableView.delegate = self
     mypageTableView.dataSource = self
   }
+  
   private func configData() {
     configTitleLabel()
   }
+  
   private func configTitleLabel() {
     if self.isLogined == false {
       let titleParagraphStyle = NSMutableParagraphStyle()
@@ -212,10 +223,12 @@ extension MypageViewController {
       self.titleLabel.attributedText = titleText
     }
   }
+  
   private func setupNavigation() {
     self.setupNavigationBar(.white)
     self.setupNavigationItem(titleText: "리뷰작성")
   }
+  
   func reloadTableView() {
     self.mypageTableView.reloadData()
   }

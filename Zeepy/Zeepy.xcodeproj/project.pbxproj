@@ -57,6 +57,7 @@
 		CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */; };
 		CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */; };
 		CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */; };
+		CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
@@ -221,6 +222,7 @@
 		CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessTableViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
+		CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInformationViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */,
+				CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1310,6 +1313,7 @@
 				DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */,
 				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
+				CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
