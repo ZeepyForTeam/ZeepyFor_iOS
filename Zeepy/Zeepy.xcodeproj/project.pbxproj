@@ -55,6 +55,8 @@
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
 		CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */; };
 		CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */; };
+		CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */; };
+		CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
@@ -69,7 +71,6 @@
 		DA4744D22619899200709883 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744D12619899200709883 /* UIApplication+.swift */; };
 		DA47457A261B269300709883 /* MessageAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA474579261B269300709883 /* MessageAlertView.swift */; };
 		DA47457F261B26C500709883 /* BaseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47457E261B26C500709883 /* BaseAlert.swift */; };
-		DA474598261B281D00709883 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA474597261B281D00709883 /* MyPageViewController.swift */; };
 		DA4745A1261B283100709883 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4745A0261B283100709883 /* SearchViewController.swift */; };
 		DA47463F261B50A800709883 /* map_pinup_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47461A261B50A800709883 /* map_pinup_custom@3x.png */; };
 		DA474640261B50A800709883 /* map_pin_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = DA47461B261B50A800709883 /* map_pin_custom.png */; };
@@ -218,6 +219,8 @@
 		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendencyTableViewCell.swift; sourceTree = "<group>"; };
 		CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessTableViewCell.swift; sourceTree = "<group>"; };
+		CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -231,7 +234,6 @@
 		DA4744EE26199CD900709883 /* ZeepyRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeepyRelease.entitlements; sourceTree = "<group>"; };
 		DA474579261B269300709883 /* MessageAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertView.swift; sourceTree = "<group>"; };
 		DA47457E261B26C500709883 /* BaseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlert.swift; sourceTree = "<group>"; };
-		DA474597261B281D00709883 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		DA4745A0261B283100709883 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DA47461A261B50A800709883 /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
 		DA47461B261B50A800709883 /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
@@ -528,6 +530,37 @@
 			path = ReusableView;
 			sourceTree = "<group>";
 		};
+		CCFDC6BF26A9F9410038ABD5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCFDC6C026A9F9480038ABD5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CCFDC6C126A9F94D0038ABD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCFDC6C226A9F9610038ABD5 /* Cell */,
+				DA474596261B280500709883 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCFDC6C226A9F9610038ABD5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DA02AF97261206C30016C30A /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,7 +670,9 @@
 		DA474593261B279800709883 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				DA474596261B280500709883 /* ViewController */,
+				CCFDC6C126A9F94D0038ABD5 /* View */,
+				CCFDC6C026A9F9480038ABD5 /* ViewModel */,
+				CCFDC6BF26A9F9410038ABD5 /* Model */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -666,7 +701,7 @@
 		DA474596261B280500709883 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DA474597261B281D00709883 /* MyPageViewController.swift */,
+				CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1267,6 +1302,7 @@
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
+				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
@@ -1328,11 +1364,11 @@
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */,
-				DA474598261B281D00709883 /* MyPageViewController.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
@@ -1770,7 +1806,7 @@
 					"\"UserNotifications\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamZeepy.zeepy;
+				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
@@ -1853,7 +1889,7 @@
 					"\"UserNotifications\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamZeepy.zeepy;
+				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
