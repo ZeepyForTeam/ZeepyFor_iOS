@@ -77,6 +77,7 @@ class LookAroundTableViewCell: UITableViewCell {
     let layout = UICollectionViewFlowLayout()
     layout.itemSize = UICollectionViewFlowLayout.automaticSize
     layout.scrollDirection = .horizontal
+    layout.estimatedItemSize = CGSize(width: 35, height: 16)
     self.optionsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     self.optionsCollectionView.backgroundColor = .gray244
     self.optionsCollectionView.isScrollEnabled = false
