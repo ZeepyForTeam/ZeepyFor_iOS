@@ -53,7 +53,7 @@ class MapViewController: UIViewController {
   
   var searchView = UIView().then{
     $0.setRounded(radius: 15)
-    $0.setBorder(borderColor: .mainBlue, borderWidth: 3)
+    $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
   }
   
   var searchImageView = UIImageView().then{

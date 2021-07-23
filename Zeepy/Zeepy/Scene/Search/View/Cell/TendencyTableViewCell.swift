@@ -55,6 +55,7 @@ extension TendencyTableViewCell {
       }
     }
   }
+    
   func layoutTendencyLabel() {
     self.tendencyContainerView.add(tendencyLabel) {
       $0.snp.makeConstraints {

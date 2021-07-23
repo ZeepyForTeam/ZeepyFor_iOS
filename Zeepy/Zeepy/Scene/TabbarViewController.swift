@@ -32,7 +32,7 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let tab1NavigationController =  UINavigationController()
-    tab1NavigationController.viewControllers = [LoginViewController()]
+    tab1NavigationController.viewControllers = [CommunicationTendencyViewController()]
 
     let tab2NavigationController = UINavigationController()
     tab2NavigationController.viewControllers = [ManageReviewViewController()]

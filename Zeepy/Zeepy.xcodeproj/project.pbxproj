@@ -22,6 +22,8 @@
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB72692FF260052047B /* SignUpViewController.swift */; };
 		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
+		37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */; };
+		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
 		937849EC7DC97A2BB5B01535 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D4A7B842BB41BD0D112D9 /* Pods_Zeepy.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
@@ -194,6 +196,8 @@
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37EB8BB72692FF260052047B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
+		37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapSearchViewController.swift; sourceTree = "<group>"; };
+		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
 		8DDF2ECAF5C0B590EC0DC314 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		90EDA8664B208E2EB1A7FE65 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		933E3929B0FFED71DB104BC5 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -652,6 +656,7 @@
 				CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */,
 				372CA33B265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift */,
 				CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */,
+				37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */,
 				CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */,
 			);
 			path = Cell;
@@ -736,6 +741,7 @@
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
 				DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */,
+				37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1317,6 +1323,7 @@
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
+				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
@@ -1381,6 +1388,7 @@
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
+				37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,

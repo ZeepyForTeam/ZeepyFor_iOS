@@ -2,7 +2,7 @@
 //  UIColor+Additions.swift
 //  zeepy_iOS
 //
-//  Generated on Zeplin. (2021. 7. 7.).
+//  Generated on Zeplin. (2021. 7. 18.).
 //  Copyright (c) 2021 __MyCompanyName__. All rights reserved.
 //
 
