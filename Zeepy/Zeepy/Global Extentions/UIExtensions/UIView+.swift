@@ -76,6 +76,40 @@ extension UIView {
       $0.height.equalTo(1)
     }
   }
+  enum Direction {
+    case top
+    case leading
+    case trailing
+    case bottom
+  }
+  func addline(at : Direction) {
+    let underBar = UIView().then{
+      $0.backgroundColor = .gray244
+    }
+    self.add(underBar)
+    switch at {
+    case .top:
+      underBar.snp.makeConstraints{
+        $0.leading.trailing.top.equalToSuperview()
+        $0.height.equalTo(1)
+      }
+    case .leading:
+      underBar.snp.makeConstraints{
+        $0.top.leading.bottom.equalToSuperview()
+        $0.width.equalTo(1)
+      }
+    case .trailing:
+      underBar.snp.makeConstraints{
+        $0.top.trailing.bottom.equalToSuperview()
+        $0.width.equalTo(1)
+      }
+    case .bottom:
+      underBar.snp.makeConstraints{
+        $0.leading.trailing.bottom.equalToSuperview()
+        $0.height.equalTo(1)
+      }
+    }
+  }
   
   @discardableResult
   func add<T: UIView>(_ subview: T, then closure: ((T) -> Void)? = nil) -> T {

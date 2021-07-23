@@ -23,10 +23,12 @@ class CommunityViewController : BaseViewController {
     $0.font = .nanumRoundExtraBold(fontSize: 20)
   }
   private let writeBtn = UIButton().then{
-    $0.setImage(UIImage(named:"btnwrite"), for: .normal)
+    $0.setImage(UIImage(named:"btn_write"), for: .normal)
   }
   private let viewModel = CommunityViewModel()
   private func setUpNavi() {
+    self.navigationController?.setNavigationBarHidden(true, animated: true)
+
     self.view.add(naviView)
     naviView.snp.makeConstraints{
       $0.leading.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
@@ -251,6 +253,13 @@ extension CommunityViewController : UICollectionViewDelegate{
       Dropdown.shared.addDropDown(items: [("한강로동 2가",nil),
                                           ("한강로동 3가",nil),
                                           ("한강로동 4가",nil)], disposeBag: self.disposeBag)
+    }.disposed(by: disposeBag)
+    
+    writeBtn.rx.tap.bind{[weak self] in
+      let vc = PostViewController()
+      vc.hidesBottomBarWhenPushed = true
+
+      self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
   }
 }

@@ -208,7 +208,14 @@ extension PostDetailViewControlelr {
           $0.height.equalTo(h)
         }
       }.disposed(by: disposeBag)
-    
+    achivementView.participateBtn.rx.tap.bind{[weak self] in
+      var view : ModifyJoinView? = ModifyJoinView()
+      PopUpView.shared.appearPopUpView(subView: view!)
+      view!.resultClosure = { value in
+        print(value)
+        view = nil
+      }
+    }.disposed(by: disposeBag)
   }
 }
 //MARK:- 키보드관리

@@ -8,7 +8,10 @@
 import UIKit
 import CoreData
 import Firebase
-
+import KakaoSDKCommon 
+import RxKakaoSDKCommon
+import RxKakaoSDKAuth
+import KakaoSDKAuth
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -18,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     FirebaseApp.configure()
     Messaging.messaging().delegate = self
+    RxKakaoSDKCommon.initSDK(appKey: "6873893d1c0e49a180bb28faaa47aa3e")
+
     if #available(iOS 10.0, *) {
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self
@@ -111,4 +116,13 @@ extension AppDelegate: MessagingDelegate {
     // TODO: If necessary send token to application server.
     // Note: This callback is fired at each app startup and whenever a new token is generated.
   }
+}
+extension AppDelegate {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+          if (AuthApi.isKakaoTalkLoginUrl(url)) {
+              return AuthController.rx.handleOpenUrl(url: url)
+          }
+
+          return false
+      }
 }

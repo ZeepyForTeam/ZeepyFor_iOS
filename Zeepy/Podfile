@@ -14,7 +14,12 @@ target 'Zeepy' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'RangeSeekSlider'
-
+  pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
+  pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
+  pod 'KakaoSDKAuth'  # 사용자 인증
+  pod 'RxKakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
+  pod 'RxKakaoSDKAuth'  # 카카오 로그인
+  pod 'RxKakaoSDKUser'  # 사용자 관리
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
