@@ -67,6 +67,7 @@ extension UIViewController {
     navigationBar.backgroundColor = color
     navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     navigationBar.shadowImage = UIImage()
+    navigationBar.addUnderBar()
     navigationBar.titleTextAttributes = [.font: UIFont.nanumRoundExtraBold(fontSize: 20)]
   }
   

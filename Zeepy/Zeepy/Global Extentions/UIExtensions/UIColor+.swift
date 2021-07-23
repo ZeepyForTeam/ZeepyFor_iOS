@@ -63,7 +63,20 @@
     @nonobjc class var blueText: UIColor {
       return UIColor(red: 117.0 / 255.0, green: 152.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
     }
-
-
+    @nonobjc class var pointYellow: UIColor {
+       return UIColor(red: 238.0 / 255.0, green: 187.0 / 255.0, blue: 55.0 / 255.0, alpha: 1.0)
+     }
+    @nonobjc class var whiteTextField: UIColor {
+       return UIColor(white: 247.0 / 255.0, alpha: 1.0)
+     }
+    @nonobjc class var pale: UIColor {
+        return UIColor(red: 1.0, green: 244.0 / 255.0, blue: 211.0 / 255.0, alpha: 1.0)
+      }
+    @nonobjc class var brownGrey: UIColor {
+        return UIColor(white: 168.0 / 255.0, alpha: 1.0)
+      }
+    @nonobjc class var orangeyYellow: UIColor {
+        return UIColor(red: 239.0 / 255.0, green: 180.0 / 255.0, blue: 13.0 / 255.0, alpha: 1.0)
+      }
   }
 
