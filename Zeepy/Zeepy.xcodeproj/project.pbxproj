@@ -33,6 +33,8 @@
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
 		CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */; };
+		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
+		CC12B96926AA5B2600D17C95 /* ManageReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
@@ -209,6 +211,8 @@
 		C9AEAD7CB9C40CF584E02710 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewController.swift; sourceTree = "<group>"; };
 		CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyManageAddressTableViewCell.swift; sourceTree = "<group>"; };
+		CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewViewController.swift; sourceTree = "<group>"; };
+		CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewTableViewCell.swift; sourceTree = "<group>"; };
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
@@ -564,6 +568,7 @@
 			children = (
 				CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */,
 				CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */,
+				CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -711,6 +716,7 @@
 				CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */,
 				CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */,
 				CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */,
+				CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1353,6 +1359,7 @@
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
 				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
+				CC12B96926AA5B2600D17C95 /* ManageReviewTableViewCell.swift in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
 				DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */,
@@ -1381,6 +1388,7 @@
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
+				CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
 				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
