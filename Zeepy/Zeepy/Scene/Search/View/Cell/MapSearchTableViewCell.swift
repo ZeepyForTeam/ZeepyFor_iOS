@@ -39,6 +39,9 @@ class MapSearchTableViewCell: UITableViewCell {
 
 extension MapSearchTableViewCell {
     func addconstraints(){
+        self.contentView.snp.makeConstraints{
+            $0.leading.trailing.bottom.top.equalToSuperview()
+        }
         self.contentView.add(clockImageView) {
           $0.snp.makeConstraints {
             $0.centerY.equalTo(self.contentView.snp.centerY)
@@ -49,7 +52,8 @@ extension MapSearchTableViewCell {
         
         self.contentView.add(searchRecordLabel) {
           $0.snp.makeConstraints {
-            $0.leading.equalTo(self.clockImageView.snp.trailing).offset(10)
+            $0.leading.equalTo(self.clockImageView.snp.trailing)
+            $0.trailing.equalTo(self.contentView.snp.trailing)
             $0.centerY.equalTo(self.contentView.snp.centerY)
             $0.centerX.equalTo(self.contentView.snp.centerX)
             $0.top.bottom.equalTo(self.contentView)
