@@ -117,6 +117,7 @@ class LookAroundDetailViewController: BaseViewController {
   private let reviewView = UIView().then {
     $0.backgroundColor = .gray244
     $0.setRounded(radius: 8)
+    $0.isUserInteractionEnabled = true
   }
   init?(nibName: String?, bundle: Bundle?,
         model : BuildingModel)
@@ -129,6 +130,11 @@ class LookAroundDetailViewController: BaseViewController {
   }
 }
 extension LookAroundDetailViewController {
+  @objc
+  private func writeReview(gesture: UITapGestureRecognizer) {
+    let vc = SelectAddressViewController()
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
   private func layout() {
     self.view.adds([navigationView,
                     scrollView])
@@ -253,6 +259,7 @@ extension LookAroundDetailViewController {
       $0.leading.equalToSuperview().offset(16)
       $0.height.equalTo(80)
     }
+    reviewView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(writeReview)))
   }
 }
 extension LookAroundDetailViewController {

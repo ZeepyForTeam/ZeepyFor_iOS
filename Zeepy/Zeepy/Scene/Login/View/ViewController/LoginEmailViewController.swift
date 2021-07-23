@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class LoginEmailViewController: UIViewController {
      
@@ -79,10 +81,15 @@ class LoginEmailViewController: UIViewController {
     let naverLoginButton = UIButton().then{
         $0.setImage(UIImage(named: "logoNaver"), for: .normal)
     }
+  private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(contentView)
         addContraints()
+      signUpButton.rx.tap.bind{[weak self] in
+        let vc = SignUpViewController()
+        self?.navigationController?.pushViewController(vc, animated: true)
+      }.disposed(by: disposeBag)
     }
 
     func addContraints(){

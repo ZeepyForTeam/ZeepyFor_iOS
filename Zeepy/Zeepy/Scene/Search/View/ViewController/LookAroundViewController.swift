@@ -83,6 +83,7 @@ extension LookAroundViewController {
     outputs.buildingDetailParam
       .bind{ [weak self] model in
         if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model) {
+          vc.hidesBottomBarWhenPushed = true
           self?.navigationController?.pushViewController(vc, animated: true)
         }
       }.disposed(by: disposeBag)

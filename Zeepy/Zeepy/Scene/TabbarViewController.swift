@@ -32,15 +32,15 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let tab1NavigationController =  UINavigationController()
-    tab1NavigationController.viewControllers = [CommunicationTendencyViewController()]
+    tab1NavigationController.viewControllers = [LoginEmailViewController()]
 
     let tab2NavigationController = UINavigationController()
-    tab2NavigationController.viewControllers = [MypageViewController()]
+    tab2NavigationController.viewControllers = [LookAroundViewController()]
     
     let tab3NavigationController = UINavigationController()
-    tab3NavigationController.viewControllers = [MapViewController()]
+    tab3NavigationController.viewControllers = [CommunityViewController()]
     let tab4NavigationController = UINavigationController()
-    tab4NavigationController.viewControllers = [SignUpViewController()]
+    tab4NavigationController.viewControllers = [MypageViewController()]
     let vc = [tab1NavigationController, tab2NavigationController, tab3NavigationController, tab4NavigationController]
     self.setViewControllers(vc, animated: true)
 

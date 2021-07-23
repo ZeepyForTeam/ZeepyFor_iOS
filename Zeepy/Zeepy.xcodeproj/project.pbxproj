@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187CEB2AF29DE2BAC0B445BA /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DADE8D522BCE01DFBDE7FC /* Pods_Zeepy.framework */; };
 		25E8368264B3DEF0FC9CA06A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		371628A826456EC10006AE80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628A726456EC10006AE80 /* MapViewController.swift */; };
 		371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AD264665570006AE80 /* MapDetailModalView.swift */; };
@@ -24,8 +25,7 @@
 		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
 		37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
-		45A13D0338986C61733E0680 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10266A51759108ACB07A1138 /* Pods_Zeepy_ZeepyUITests.framework */; };
-		6597E5E3C3834FF49C348D3E /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074C30D63EC9398E25566DF3 /* Pods_ZeepyTests.framework */; };
+		9470C7C23AD3119313948F54 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
 		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
@@ -34,6 +34,7 @@
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILabel+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
+		B42FCE0AF38B8A19BCF03D6B /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8B6AE74AC4C10CE176D9E /* Pods_Zeepy_ZeepyUITests.framework */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
 		CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */; };
 		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
@@ -167,7 +168,7 @@
 /* Begin PBXFileReference section */
 		074C30D63EC9398E25566DF3 /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082210B487DD241E3CA99135 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
-		10266A51759108ACB07A1138 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12DADE8D522BCE01DFBDE7FC /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1715E11CC660B063C7ABD373 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1C787D6AFD3E069CF399B699 /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -184,9 +185,9 @@
 		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
 		37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
-		70A8A27C8E15B58433FAC0BA /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
-		841B57C398AE81C043A64047 /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
-		8A532270B32120E0715472E7 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		92A72979B882D63DA8F80A68 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		97BCE68F741F910DDDC85CEB /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
 		A45F4F4B25FF278B00FCEACF /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		A45F4F7325FF2AF300FCEACF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
@@ -336,10 +337,12 @@
 		DAF4D3AD265A24E700B281E2 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionModel.swift; sourceTree = "<group>"; };
 		DAF4D3EB265A2ECD00B281E2 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
-		DF2815224122247E73F1E090 /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
-		E6C59857AB73583D0A6CDA6D /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DC7D0699A565B13917D269DB /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
 		E75FC84066F88F47F7853865 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EABD547BA81C802B633971E3 /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
+		EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA7DAAA430554832658DF64 /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
+		F7F8B6AE74AC4C10CE176D9E /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDDA0CE4115435CB4308B3DF /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,7 +363,7 @@
 				CC8D7214264A4E09002BB7FF /* BuildFile in Frameworks */,
 				DA47445B2612144800709883 /* BuildFile in Frameworks */,
 				DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */,
-				E0C5F200325F03D86FE8A2DC /* Pods_Zeepy.framework in Frameworks */,
+				187CEB2AF29DE2BAC0B445BA /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25E8368264B3DEF0FC9CA06A /* BuildFile in Frameworks */,
-				6597E5E3C3834FF49C348D3E /* Pods_ZeepyTests.framework in Frameworks */,
+				9470C7C23AD3119313948F54 /* Pods_ZeepyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45A13D0338986C61733E0680 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
+				B42FCE0AF38B8A19BCF03D6B /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,9 +398,9 @@
 				DA474662261B510400709883 /* CoreLocation.framework */,
 				DA474660261B50F600709883 /* SystemConfiguration.framework */,
 				DA47465E261B50EB00709883 /* OpenGLES.framework */,
-				8A532270B32120E0715472E7 /* Pods_Zeepy.framework */,
-				10266A51759108ACB07A1138 /* Pods_Zeepy_ZeepyUITests.framework */,
-				074C30D63EC9398E25566DF3 /* Pods_ZeepyTests.framework */,
+				12DADE8D522BCE01DFBDE7FC /* Pods_Zeepy.framework */,
+				F7F8B6AE74AC4C10CE176D9E /* Pods_Zeepy_ZeepyUITests.framework */,
+				EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -481,12 +484,12 @@
 				082210B487DD241E3CA99135 /* Pods-Zeepy.release.xcconfig */,
 				E75FC84066F88F47F7853865 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */,
 				1715E11CC660B063C7ABD373 /* Pods-ZeepyTests.debug.xcconfig */,
-				841B57C398AE81C043A64047 /* Pods-Zeepy.debug.xcconfig */,
-				EABD547BA81C802B633971E3 /* Pods-Zeepy.develop.xcconfig */,
-				E6C59857AB73583D0A6CDA6D /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
-				70A8A27C8E15B58433FAC0BA /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
-				1C787D6AFD3E069CF399B699 /* Pods-ZeepyTests.release.xcconfig */,
-				DF2815224122247E73F1E090 /* Pods-ZeepyTests.develop.xcconfig */,
+				FDDA0CE4115435CB4308B3DF /* Pods-Zeepy.debug.xcconfig */,
+				EAA7DAAA430554832658DF64 /* Pods-Zeepy.develop.xcconfig */,
+				92A72979B882D63DA8F80A68 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
+				5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
+				DC7D0699A565B13917D269DB /* Pods-ZeepyTests.release.xcconfig */,
+				97BCE68F741F910DDDC85CEB /* Pods-ZeepyTests.develop.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1509,7 +1512,7 @@
 		};
 		A45F4F5425FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EABD547BA81C802B633971E3 /* Pods-Zeepy.develop.xcconfig */;
+			baseConfigurationReference = EAA7DAAA430554832658DF64 /* Pods-Zeepy.develop.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1593,7 +1596,7 @@
 		};
 		A45F4F5525FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF2815224122247E73F1E090 /* Pods-ZeepyTests.develop.xcconfig */;
+			baseConfigurationReference = 97BCE68F741F910DDDC85CEB /* Pods-ZeepyTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1616,7 +1619,7 @@
 		};
 		A45F4F5625FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70A8A27C8E15B58433FAC0BA /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
+			baseConfigurationReference = 5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1759,7 +1762,7 @@
 		};
 		DA61C42225F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 841B57C398AE81C043A64047 /* Pods-Zeepy.debug.xcconfig */;
+			baseConfigurationReference = FDDA0CE4115435CB4308B3DF /* Pods-Zeepy.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1948,7 +1951,7 @@
 		};
 		DA61C42625F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C787D6AFD3E069CF399B699 /* Pods-ZeepyTests.release.xcconfig */;
+			baseConfigurationReference = DC7D0699A565B13917D269DB /* Pods-ZeepyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1992,7 +1995,7 @@
 		};
 		DA61C42925F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6C59857AB73583D0A6CDA6D /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
+			baseConfigurationReference = 92A72979B882D63DA8F80A68 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
