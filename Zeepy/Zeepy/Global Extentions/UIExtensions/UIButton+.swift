@@ -29,7 +29,7 @@ extension UIButton {
    */
   func setImageByName(_ name: String, _ selected: String){
     self.setImage(UIImage(named: name), for: .normal)
-    self.setImage(UIImage(named: name), for: .selected)
+    self.setImage(UIImage(named: selected), for: .selected)
   }
   
   private struct AssociatedKeys {
@@ -67,5 +67,34 @@ extension UIButton {
     self.titleLabel?.font = font
     self.backgroundColor = backgroundColor
     self.setRounded(radius: radius)
+  }
+}
+class checkBox : UIView {
+  let checkBtn = UIButton().then {
+    $0.setImageByName("checkBoxOutlineBlank", "checkBoxSelected")
+  }
+  let checkLabel = UILabel().then {
+    $0.font = .nanumRoundRegular(fontSize: 14)
+    $0.textColor = .grayText
+  }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    layout()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  private func layout() {
+    self.adds([checkBtn, checkLabel])
+    checkBtn.snp.makeConstraints {
+      $0.centerY.equalToSuperview()
+      $0.leading.equalToSuperview()
+      $0.width.height.equalTo(20)
+    }
+    checkLabel.snp.makeConstraints{
+      $0.centerY.equalToSuperview()
+      $0.leading.equalTo(checkBtn.snp.trailing).offset(8)
+      $0.trailing.equalToSuperview()
+    }
   }
 }

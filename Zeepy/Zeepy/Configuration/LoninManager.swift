@@ -35,3 +35,12 @@ class LoginManager: NSObject {
         UserDefaults.standard.synchronize()
     }
 }
+import KakaoSDKCommon
+import RxKakaoSDKCommon
+import KakaoSDKAuth
+import RxKakaoSDKAuth
+import KakaoSDKUser
+import RxKakaoSDKUser
+class kakaoLoginManager: NSObject {
+  
+}
