@@ -145,6 +145,7 @@
 		DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3AD265A24E700B281E2 /* CommentView.swift */; };
 		DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */; };
 		DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3EB265A2ECD00B281E2 /* PostDetailViewModel.swift */; };
+		E0C5F200325F03D86FE8A2DC /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A532270B32120E0715472E7 /* Pods_Zeepy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,9 +166,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		074C30D63EC9398E25566DF3 /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082210B487DD241E3CA99135 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		12DADE8D522BCE01DFBDE7FC /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1715E11CC660B063C7ABD373 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1C787D6AFD3E069CF399B699 /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
 		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };

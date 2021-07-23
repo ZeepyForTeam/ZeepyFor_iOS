@@ -19,6 +19,7 @@ class MypageTableViewCell: UITableViewCell {
   // MARK: - LifeCycles
   override func awakeFromNib() {
     super.awakeFromNib()
+    self.selectionStyle = .none
     layout()
   }
 }

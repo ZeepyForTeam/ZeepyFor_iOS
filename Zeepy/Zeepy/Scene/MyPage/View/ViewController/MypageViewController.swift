@@ -99,6 +99,7 @@ extension MypageViewController {
   private func layoutAddressButton() {
     addressView.add(addressButton) {
       $0.setBackgroundImage(UIImage(named: self.addressButtonTitle), for: .normal)
+      $0.addTarget(self, action: #selector(self.addressButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.leading.trailing.equalToSuperview()
         $0.height.equalTo(56)
@@ -119,6 +120,7 @@ extension MypageViewController {
   private func layoutReviewButton() {
     reviewView.add(reviewButton) {
       $0.setBackgroundImage(UIImage(named: self.reviewButtonTitle), for: .normal)
+      $0.addTarget(self, action: #selector(self.reviewButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.leading.trailing.equalToSuperview()
         $0.height.equalTo(56)
@@ -206,6 +208,8 @@ extension MypageViewController {
                              value: UIColor.pointYellow,
                              range: NSRange(location: 0, length: 3))
       self.titleLabel.attributedText = titleText
+      let tap = UITapGestureRecognizer(target: self, action: #selector(self.titleLabelClicked))
+      self.titleLabel.addGestureRecognizer(tap)
     }
     else {
       let titleParagraphStyle = NSMutableParagraphStyle()
@@ -226,11 +230,29 @@ extension MypageViewController {
   
   private func setupNavigation() {
     self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
+    self.setupNavigationItem(titleText: "마이페이지")
   }
   
   func reloadTableView() {
     self.mypageTableView.reloadData()
+  }
+  
+  @objc
+  func addressButtonClicked() {
+    let addressVC = ManageAddressViewController()
+    self.navigationController?.pushViewController(addressVC, animated: false)
+  }
+  
+  @objc
+  func reviewButtonClicked() {
+    let reviewVC = ManageReviewViewController()
+    self.navigationController?.pushViewController(reviewVC, animated: false)
+  }
+  
+  @objc
+  func titleLabelClicked() {
+    let loginVC = LoginViewController()
+    self.navigationController?.pushViewController(loginVC, animated: false)
   }
 }
 
@@ -256,5 +278,12 @@ extension MypageViewController: UITableViewDataSource {
     mypageCell.awakeFromNib()
     mypageCell.configData(title: self.tableViewTitles[indexPath.row])
     return mypageCell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.row == 0 {
+      let modifyVC = ModifyInformationViewController()
+      self.navigationController?.pushViewController(modifyVC, animated: false)
+    }
   }
 }
