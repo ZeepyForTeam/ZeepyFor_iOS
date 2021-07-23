@@ -89,7 +89,6 @@ extension AddPostViewModel {
                                             self?.state.targetMember = count
                                             self?.state.titleText = title
                                             self?.state.tradeType = type
-                                            print(self?.state)
                                             if mall?.isEmpty == false && price.isNotNil && product?.isEmpty == false && count.isNotNil && title?.isEmpty == false && type?.isEmpty == false {
                                               return true
                                             }
