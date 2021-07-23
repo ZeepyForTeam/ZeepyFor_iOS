@@ -35,7 +35,7 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
     tab1NavigationController.viewControllers = [CommunicationTendencyViewController()]
 
     let tab2NavigationController = UINavigationController()
-    tab2NavigationController.viewControllers = [mapSearchViewController()]
+    tab2NavigationController.viewControllers = [ManageReviewViewController()]
     
     let tab3NavigationController = UINavigationController()
     tab3NavigationController.viewControllers = [MapViewController()]

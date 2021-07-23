@@ -19,12 +19,17 @@ class AdditionalInformationViewController: BaseViewController {
   let assessTableView = UITableView()
   let nextButton = UIButton()
   let separatorView = UIView()
-  
+  var assessTextList = [ "다음에도 여기 살고 싶어요!",
+                         "완전 추천해요!",
+                         "그닥 추천하지 않아요." ]
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
+    register()
     setupNavigationBar(.white)
     setupNavigationItem(titleText: "리뷰작성")
+    assessTableView.delegate = self
+    assessTableView.dataSource = self
   }
   
   
@@ -101,10 +106,13 @@ extension AdditionalInformationViewController {
       $0.estimatedRowHeight = UITableView.automaticDimension
       $0.backgroundColor = .clear
       $0.separatorStyle = .none
+      $0.isScrollEnabled = false
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.assessTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
         $0.top.equalTo(self.assessTitleLabel.snp.bottom).offset(12)
+//        $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-120)
+        $0.height.equalTo(168)
       }
     }
   }
@@ -152,10 +160,36 @@ extension AdditionalInformationViewController {
     layoutNextButton()
     layoutSeparatorView()
   }
+  func register() {
+    assessTableView.register(AssessTableViewCell.self, forCellReuseIdentifier: AssessTableViewCell.identifier)
+  }
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
     let nextViewController = DetailInformationViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
+}
+
+// MARK: - UITableView Delegate
+extension AdditionalInformationViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 48
+  }
+}
+// MARK: - UITableView DataSource
+extension AdditionalInformationViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return assessTextList.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let assessCell = tableView.dequeueReusableCell(withIdentifier: AssessTableViewCell.identifier, for: indexPath) as? AssessTableViewCell else { return UITableViewCell() }
+    assessCell.assessLabel.setupLabel(text: assessTextList[indexPath.row], color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+    assessCell.containerView.backgroundColor = .gray244
+    assessCell.awakeFromNib()
+    return assessCell
+  }
+  
+  
 }

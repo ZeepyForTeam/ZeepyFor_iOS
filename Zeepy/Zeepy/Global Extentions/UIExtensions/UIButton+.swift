@@ -56,4 +56,16 @@ extension UIButton {
     targetClosure = closure
     addTarget(self, action: #selector(UIButton.closureAction), for: event)
   }
+  func setupButton(title: String,
+                   color: UIColor,
+                   font: UIFont,
+                   backgroundColor: UIColor,
+                   state: UIControl.State,
+                   radius: CGFloat) {
+    self.setTitle(title, for: state)
+    self.setTitleColor(color, for: state)
+    self.titleLabel?.font = font
+    self.backgroundColor = backgroundColor
+    self.setRounded(radius: radius)
+  }
 }
