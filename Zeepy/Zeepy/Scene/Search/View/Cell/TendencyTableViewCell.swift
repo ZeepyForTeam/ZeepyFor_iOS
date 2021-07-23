@@ -26,11 +26,14 @@ class TendencyTableViewCell: UITableViewCell {
   let iconImageView = UIImageView()
   let tendencyContainerView = UIView()
   let tendencyLabel = UILabel()
+  
+  var isClicked = false
 }
 
 extension TendencyTableViewCell {
   func layout() {
     self.contentView.backgroundColor = .clear
+    self.selectionStyle = .none
     layoutIconImageView()
     layoutTendencyContainerView()
     layoutTendencyLabel()
@@ -68,5 +71,9 @@ extension TendencyTableViewCell {
       $0.trailing.equalTo(self.tendencyLabel.snp.trailing).offset(12)
       $0.top.bottom.equalToSuperview()
     }
+  }
+  
+  func cellclicked() {
+    isClicked.toggle()
   }
 }

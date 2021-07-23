@@ -22,11 +22,11 @@ class CommunicationTendencyViewController: BaseViewController {
   var tendencyImageList = ["emoji1", "emoji2", "emoji3", "emoji4", "emoji5"]
   var tendencyMapImageList = ["emoji1Map", "emoji2Map", "emoji3Map", "emoji4Map", "emoji5Map"]
   var tendencyTextList = [
-    "칼 같은 우리 사이, 비즈니스형",
-    "따뜻해 녹아내리는 중! 친절형",
-    "자유롭게만 살아다오, 방목형",
-    "겉은 바삭 속은 촉촉! 츤데레형",
-    "할말은 많지만 하지 않을래요 :("
+    ("칼 같은 우리 사이, 비즈니스형", false),
+    ("따뜻해 녹아내리는 중! 친절형", false),
+    ("자유롭게만 살아다오, 방목형", false),
+    ("겉은 바삭 속은 촉촉! 츤데레형", false),
+    ("할말은 많지만 하지 않을래요 :(", false)
   ]
   
   // MARK: - LifeCycles
@@ -88,6 +88,7 @@ extension CommunicationTendencyViewController {
       $0.rowHeight = UITableView.automaticDimension
       $0.backgroundColor = .clear
       $0.separatorStyle = .none
+      $0.allowsMultipleSelection = true
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.tendencyTableContainerView.snp.leading)
         $0.trailing.equalTo(self.tendencyTableContainerView.snp.trailing)
@@ -162,18 +163,23 @@ extension CommunicationTendencyViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let tendencyCell = tableView.dequeueReusableCell(withIdentifier: TendencyTableViewCell.identifier, for: indexPath) as? TendencyTableViewCell else { return UITableViewCell() }
-    tendencyCell.iconImageView.image = UIImage(named: self.tendencyImageList[indexPath.row])
-    tendencyCell.tendencyLabel.setupLabel(text: self.tendencyTextList[indexPath.row], color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+    
+    if self.tendencyTextList[indexPath.row].1 == false {
+      tendencyCell.iconImageView.image = UIImage(named: self.tendencyImageList[indexPath.row])
+      tendencyCell.tendencyLabel.setupLabel(text: self.tendencyTextList[indexPath.row].0, color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+      tendencyCell.tendencyContainerView.setBorder(borderColor: .clear, borderWidth: 0)
+    }
+    else {
+      tendencyCell.iconImageView.image = UIImage(named: self.tendencyMapImageList[indexPath.row])
+      tendencyCell.tendencyLabel.setupLabel(text: self.tendencyTextList[indexPath.row].0, color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
+      tendencyCell.tendencyContainerView.setBorder(borderColor: .mainBlue, borderWidth: 1)
+    }
     tendencyCell.awakeFromNib()
     return tendencyCell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let tendencyCell = tableView.dequeueReusableCell(withIdentifier: TendencyTableViewCell.identifier, for: indexPath) as? TendencyTableViewCell
-    tendencyCell?.iconImageView.image = UIImage(named: self.tendencyMapImageList[indexPath.row])
-    tendencyCell?.tendencyLabel.font = .nanumRoundExtraBold(fontSize: 14)
-    tendencyCell?.tendencyContainerView.setBorder(borderColor: .mainBlue, borderWidth: 1)
+    self.tendencyTextList[indexPath.row].1.toggle()
     tableView.reloadData()
-    tableView.awakeFromNib()
   }
 }
