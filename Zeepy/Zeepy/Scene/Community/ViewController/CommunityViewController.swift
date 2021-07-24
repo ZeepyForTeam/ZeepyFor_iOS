@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 class CommunityViewController : BaseViewController {
-  private let disposeBag = DisposeBag()
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()

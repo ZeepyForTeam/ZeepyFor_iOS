@@ -13,7 +13,6 @@ class LookAroundDetailViewController: BaseViewController {
   private let model : BuildingModel!
   private let viewModle = LookAroundDetailViewModel()
   private let loadTrigger = PublishSubject<Void>()
-  private let disposeBag = DisposeBag()
   private let navigationView = UIView().then{
     $0.backgroundColor = .white
     let underBar = UIView().then{
@@ -34,9 +33,9 @@ class LookAroundDetailViewController: BaseViewController {
     $0.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
   }
   private let likeBtn = UIButton().then {
-    
+    $0.isSelected = false
     $0.setImage(UIImage(named: "btnLikeUnselected"), for: .normal)
-
+    
     $0.setImage(UIImage(named: "btnLike"), for: .selected)
   }
   private let scrollView = UIScrollView()
@@ -66,7 +65,7 @@ class LookAroundDetailViewController: BaseViewController {
     $0.textColor = .mainBlue
     $0.textAlignment = .center
     $0.text = "거래 종류"
-
+    
     $0.font = .nanumRoundExtraBold(fontSize: 14)
   }
   private let tradeTypeLabel = UILabel().then{
@@ -75,11 +74,11 @@ class LookAroundDetailViewController: BaseViewController {
     $0.font = .nanumRoundRegular(fontSize: 14)
   }
   private let optionsLabel = UILabel().then{
-  $0.textColor = .mainBlue
-  $0.textAlignment = .center
+    $0.textColor = .mainBlue
+    $0.textAlignment = .center
     $0.text = "특징"
-
-  $0.font = .nanumRoundExtraBold(fontSize: 14)
+    
+    $0.font = .nanumRoundExtraBold(fontSize: 14)
   }
   private let options = UILabel().then{
     $0.textColor = .blackText
@@ -107,17 +106,40 @@ class LookAroundDetailViewController: BaseViewController {
     $0.backgroundColor = .white
   }
   private let ownerTypes : [OwnerTypeView] = [.init(),.init(),.init(),.init(),.init()]
-
+  
   private let buildingReviewTitle = UILabel().then{
     $0.textColor = .blackText
     $0.textAlignment = .center
     $0.text = "건물 리뷰"
     $0.font = .nanumRoundExtraBold(fontSize: 14)
   }
-  private let reviewView = UIView().then {
+  
+  private let reviewEmptyView = UIView().then {
     $0.backgroundColor = .gray244
     $0.setRounded(radius: 8)
-    $0.isUserInteractionEnabled = true
+    $0.isHidden = true
+  }
+  private let reviewEmptyLabel = UILabel().then {
+    $0.text = "아직 작성된 리뷰가 없어요!"
+    $0.font = .nanumRoundRegular(fontSize: 12)
+    $0.textColor = .blackText
+    $0.textAlignment = .center
+  }
+  private let reviewEmptyBtn = UIButton().then {
+    $0.setTitle("리뷰 쓰러 가기", for: .normal)
+    $0.setTitleColor(.blueText, for: .normal)
+    $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 12)
+  }
+  private let reviewView = SimpleReviewView().then{
+    $0.layout()
+    $0.dummy()
+  }
+  private let reviewMoreBtn = UIButton().then {
+    $0.setRounded(radius: 5)
+    $0.setBorder(borderColor: .blueText, borderWidth: 1)
+    $0.setTitleColor(.blackText, for: .normal)
+    $0.setTitle("건물 평가 모두보기", for: .normal)
+    $0.titleLabel?.font = .nanumRoundBold(fontSize: 14)
   }
   init?(nibName: String?, bundle: Bundle?,
         model : BuildingModel)
@@ -131,7 +153,7 @@ class LookAroundDetailViewController: BaseViewController {
 }
 extension LookAroundDetailViewController {
   @objc
-  private func writeReview(gesture: UITapGestureRecognizer) {
+  private func writeReview() {
     let vc = SelectAddressViewController()
     self.navigationController?.pushViewController(vc, animated: true)
   }
@@ -169,18 +191,20 @@ extension LookAroundDetailViewController {
       $0.height.equalTo(scrollView.snp.height).priority(250)
     }
     containerView.adds([addressView,
-    buildingType,
-    buildingTypeLabel,
-    tradeType,
-    tradeTypeLabel,
-    optionsLabel,
-    options,
-    photoReviewTitle,
-    imagesBackground,
-    ownerTypeLabel,
-    ownerTypeView,
-    buildingReviewTitle,
-    reviewView])
+                        buildingType,
+                        buildingTypeLabel,
+                        tradeType,
+                        tradeTypeLabel,
+                        optionsLabel,
+                        options,
+                        photoReviewTitle,
+                        imagesBackground,
+                        ownerTypeLabel,
+                        ownerTypeView,
+                        buildingReviewTitle,
+                        reviewEmptyView,
+                        reviewView,
+                        reviewMoreBtn])
     addressView.add(addressLabel)
     addressView.snp.makeConstraints{
       $0.leading.equalToSuperview().offset(16)
@@ -257,21 +281,41 @@ extension LookAroundDetailViewController {
       $0.top.equalTo(buildingReviewTitle.snp.bottom).offset(8)
       $0.centerX.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
+    }
+    reviewMoreBtn.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.leading.equalTo(16)
+      $0.top.equalTo(reviewView.snp.bottom).offset(16)
+      $0.bottom.equalToSuperview().offset(-16)
+      $0.height.equalTo(52)
+    }
+    reviewEmptyView.snp.makeConstraints {
+      $0.top.equalTo(buildingReviewTitle.snp.bottom).offset(8)
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
       $0.height.equalTo(80)
     }
-    reviewView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(writeReview)))
+    reviewEmptyView.adds([reviewEmptyLabel, reviewEmptyBtn])
+    reviewEmptyLabel.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.top.equalToSuperview().offset(16)
+    }
+    reviewEmptyBtn.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(reviewEmptyLabel).offset(8)
+    }
   }
 }
 extension LookAroundDetailViewController {
   override func viewDidLoad() {
     setCollectionView()
-
+    
     super.viewDidLoad()
     layout()
     setUpview()
     bind()
   }
-
+  
   private func setCollectionView() {
     let layout = UICollectionViewFlowLayout()
     layout.itemSize = CGSize(width: 72, height: 72)
@@ -322,6 +366,45 @@ extension LookAroundDetailViewController {
     imageCollectionView.rx.itemSelected.bind{ [weak self] _ in
       print("사진리스트뷰로이동")
     }.disposed(by: disposeBag)
+    
+    
+    
+    //더미
+    reviewMoreBtn.rx.tap.bind{[weak self] in
+      
+      let vc = ReviewListViewController()
+      self?.navigationController?.pushViewController(vc, animated: true)
+      
+    }.disposed(by: disposeBag)
+    
+    reviewView.reportBtn.rx.tap.bind{[weak self] in
+      print("신고하기")
+    }.disposed(by:  reviewView.disposeBag)
+    
+    reviewView.reviewDetailBtn.rx.tap.bind{[weak self] in
+      let vc = DetailReviewViewContoller()
+      self?.navigationController?.pushViewController(vc, animated: true)
+    }.disposed(by: reviewView.disposeBag)
+    reviewEmptyBtn.rx.tap.bind{[weak self] in
+      self?.writeReview()
+    }.disposed(by: disposeBag)
+    
+    let dummyCount = Observable.just(3)
+    dummyCount.bind{ [weak self] count in
+      self?.reviewView.isHidden = count == 0
+      self?.reviewMoreBtn.isHidden = self?.reviewView.isHidden == true
+      self?.reviewEmptyView.isHidden = count != 0
+      
+      if count != 0 {
+        self?.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .normal)
+        self?.buildingReviewTitle.text = "건물 리뷰(\(count))"
+      }
+    }.disposed(by: disposeBag)
+    likeBtn.rx.tap.bind{ [weak self] in
+      self?.reviewView.isEnabled.toggle()
+      self?.likeBtn.isSelected.toggle()
+    }.disposed(by: disposeBag)
+    //
     loadTrigger.onNext(())
   }
 }

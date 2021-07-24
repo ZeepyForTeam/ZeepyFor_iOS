@@ -10,7 +10,7 @@ import MapKit
 import Then
 import SnapKit
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
   // MARK: - Struct
   struct collectionViewCellModel {
     var imageName = String()
@@ -61,9 +61,10 @@ class MapViewController: UIViewController {
     $0.image = UIImage(named: "iconSearch")
   }
   
-  var searchTextField = UITextField().then{
-    $0.placeholder = "지역, 동, 지하철역으로 입력해주세요."
-    $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
+  var searchTextField = UIButton().then{
+    $0.setTitle("지역, 동, 지하철역으로 입력해주세요.", for: .normal) 
+    $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
+    $0.setTitleColor(.gray244, for: .normal)
   }
   
   var searchButton = UIButton().then{
@@ -301,6 +302,10 @@ class MapViewController: UIViewController {
     addConstraints()
     declarePOIItems()
     initCollectionview()
+    searchTextField.rx.tap.bind{[weak self] in
+      let vc = mapSearchViewController()
+      self?.navigationController?.pushViewController(vc, animated: false)
+    }.disposed(by: disposeBag)
   }
   
   func addConstraints() {

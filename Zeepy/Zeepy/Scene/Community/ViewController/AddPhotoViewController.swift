@@ -14,7 +14,6 @@ class AddPhotoViewController : BaseViewController {
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "사진 첨부")
   }
-  private let disposeBag = DisposeBag()
   private let addFromLib = UIView().then{
     $0.backgroundColor = .gray244
     let icon = UIImageView().then{
@@ -147,5 +146,6 @@ class AddPhotoViewController : BaseViewController {
     nextButton.rx.tap.bind{[weak self] in
       self?.navigationController?.popToRootViewController(animated: true)
     }.disposed(by: disposeBag)
+    
   }
 }

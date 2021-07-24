@@ -37,7 +37,6 @@ final class LookAroundViewController: BaseViewController {
   private let loadViewTrigger = PublishSubject<Void>()
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
   private let filterTrigger = PublishSubject<ValidateType?>()
-  private let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.isNavigationBarHidden = true

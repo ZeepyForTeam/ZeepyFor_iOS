@@ -37,6 +37,7 @@ class ModifyJoinView : UIView {
     $0.font = .nanumRoundBold(fontSize: 12)
     $0.setRounded(radius: 10)
     $0.borderWidth = 1
+    //$0.placeholder = "참여자가 있을 때는 글 수정이 제한됩니다."
     $0.borderColor = .grayText
   }
   let addJoinBtn = UIButton().then{

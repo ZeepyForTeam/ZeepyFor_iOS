@@ -41,6 +41,7 @@ class ModifyInformationViewController: BaseViewController {
     configData()
     layout()
     setupNavigation()
+    temp()
   }
 }
 
@@ -225,5 +226,22 @@ extension ModifyInformationViewController {
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "내 정보 수정")
+  }
+  //로그아웃기능 임시
+  private func temp() {
+    logoutButton.rx.tap.bind{
+      MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
+          LoginManager.shared.makeLogoutStatus()
+          let root = LoginEmailViewController()
+          let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+
+          rootNav.viewControllers = [root]
+
+           if let window = self.view.window {
+               window.rootViewController = rootNav
+           }
+      })
+    }.disposed(by: disposeBag)
   }
 }

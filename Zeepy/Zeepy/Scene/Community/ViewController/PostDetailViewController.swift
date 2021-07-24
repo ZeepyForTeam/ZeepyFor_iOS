@@ -14,7 +14,6 @@ import RxSwift
 typealias DataSource = RxTableViewSectionedReloadDataSource
 typealias CommentSectionType = AnimatableSectionModel<CommentSectionModel, CommentSectionModel>
 class PostDetailViewControlelr : BaseViewController {
-  private let disposeBag = DisposeBag()
   private let viewModel = PostDetailViewModel()
   private let naviView = UIView().then{
     $0.backgroundColor = .white
