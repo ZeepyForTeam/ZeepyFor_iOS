@@ -13,6 +13,7 @@ class SelectAddressViewController: BaseViewController {
   let titleLabelNumberOfLine = 2
   
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabel = UILabel()
   let addressLabel = UILabel()
   let submitButton = UIButton()
@@ -27,13 +28,22 @@ class SelectAddressViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
+    setupNavigation()
   }
 }
 // MARK: - Extensions
 extension SelectAddressViewController {
   // MARK: - Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func layoutTitleText() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -52,7 +62,7 @@ extension SelectAddressViewController {
       $0.numberOfLines = self.titleLabelNumberOfLine
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
       }
     }
   }
@@ -145,6 +155,7 @@ extension SelectAddressViewController {
     }
   }
   func layout() {
+    layoutNavigationView()
     layoutTitleText()
     layoutAddressLabel()
     layoutSubmitButton()
@@ -167,6 +178,11 @@ extension SelectAddressViewController {
     let nextViewController = SearchAddressViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
   }
  
 }

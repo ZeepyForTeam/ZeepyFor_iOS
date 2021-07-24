@@ -16,6 +16,7 @@ class ManageAddressViewController: UIViewController {
   // MARK: - Lazy Components
   
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   private let addressTitleLabel = UILabel()
   private let addressTableView = UITableView()
   
@@ -38,14 +39,25 @@ extension ManageAddressViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
+    layoutNavigationView()
     layoutAddressTitleLabel()
     layoutAddressTableView()
+  }
+  
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
   }
   
   private func layoutAddressTitleLabel() {
     view.add(addressTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
       }
     }
@@ -84,8 +96,8 @@ extension ManageAddressViewController {
   }
   
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "주소관리")
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "주소 관리")
   }
   func reloadTableView() {
     addressTableView.reloadData()

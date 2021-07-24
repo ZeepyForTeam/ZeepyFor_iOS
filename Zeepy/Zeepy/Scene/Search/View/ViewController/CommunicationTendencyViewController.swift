@@ -14,6 +14,7 @@ class CommunicationTendencyViewController: BaseViewController {
   let titleLabelNumberOfLine = 2
   
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabel = UILabel()
   let tendencyTableContainerView = UIView()
   let tendencyTableView = UITableView()
@@ -37,14 +38,24 @@ class CommunicationTendencyViewController: BaseViewController {
     register()
     self.tendencyTableView.delegate = self
     self.tendencyTableView.dataSource = self
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
+    setupNavigation()
   }
   
 }
 // MARK: - Extensions
 extension CommunicationTendencyViewController {
+  
   // MARK: - Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -66,7 +77,7 @@ extension CommunicationTendencyViewController {
       $0.numberOfLines = self.titleLabelNumberOfLine
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
       }
     }
   }
@@ -89,6 +100,7 @@ extension CommunicationTendencyViewController {
       $0.backgroundColor = .clear
       $0.separatorStyle = .none
       $0.allowsMultipleSelection = true
+      $0.isScrollEnabled = false
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.tendencyTableContainerView.snp.leading)
         $0.trailing.equalTo(self.tendencyTableContainerView.snp.trailing)
@@ -133,6 +145,7 @@ extension CommunicationTendencyViewController {
     }
   }
   func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutTendencyTableContainerView()
     layoutTendencyTableView()
@@ -147,6 +160,11 @@ extension CommunicationTendencyViewController {
     let nextViewController = LenderInformationViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
   }
 }
 

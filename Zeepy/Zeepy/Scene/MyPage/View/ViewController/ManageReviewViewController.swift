@@ -14,6 +14,7 @@ import Then
 class ManageReviewViewController: UIViewController {
 
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   private let addressTitleLabel = UILabel()
   private let reviewTableView = UITableView()
   
@@ -25,10 +26,10 @@ class ManageReviewViewController: UIViewController {
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupNavigation()
     configData()
     layout()
     register()
-    setupNavigation()
   }
   
   override func viewWillLayoutSubviews() {
@@ -44,14 +45,25 @@ extension ManageReviewViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
+    layoutNavigationView()
     layoutAddressTitleLabel()
     layoutAddressTableView()
+  }
+  
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
   }
   
   private func layoutAddressTitleLabel() {
     view.add(addressTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
       }
     }
@@ -90,8 +102,8 @@ extension ManageReviewViewController {
   }
   
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰 관리")
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰 관리")
   }
   
   func reloadTableView() {

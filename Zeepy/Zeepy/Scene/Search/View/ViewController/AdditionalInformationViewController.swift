@@ -4,13 +4,15 @@
 //
 //  Created by 노한솔 on 2021/05/10.
 //
+import UIKit
 
 import SnapKit
 import Then
-import UIKit
 
 class AdditionalInformationViewController: BaseViewController {
   
+  // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabelNumberOfLine = 2
   let titleLabel = UILabel()
   let reviewTitleLabel = UILabel()
@@ -22,20 +24,34 @@ class AdditionalInformationViewController: BaseViewController {
   var assessTextList = [ "다음에도 여기 살고 싶어요!",
                          "완전 추천해요!",
                          "그닥 추천하지 않아요." ]
+  
+  // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
     register()
-    setupNavigationBar(.white)
-    setupNavigationItem(titleText: "리뷰작성")
     assessTableView.delegate = self
     assessTableView.dataSource = self
+    setupNavigation()
   }
   
   
 }
 
+// MARK: - Extensions
 extension AdditionalInformationViewController {
+  
+  // MARK: - Layout Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -58,7 +74,7 @@ extension AdditionalInformationViewController {
       $0.numberOfLines = self.titleLabelNumberOfLine
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
       }
     }
   }
@@ -152,6 +168,7 @@ extension AdditionalInformationViewController {
     }
   }
   func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutReviewTitleLabel()
     layoutReviewTextField()
@@ -168,6 +185,11 @@ extension AdditionalInformationViewController {
     let nextViewController = DetailInformationViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
   }
 }
 
