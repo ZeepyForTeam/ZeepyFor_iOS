@@ -24,7 +24,6 @@ class AddPostViewContoller : BaseViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  private let disposeBag = DisposeBag()
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "글 작성하기")
   }

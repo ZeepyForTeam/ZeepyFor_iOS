@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxCocoa
 
-class LoginEmailViewController: UIViewController {
+class LoginEmailViewController: BaseViewController {
      
     let contentView = UIView()
     
@@ -81,7 +81,6 @@ class LoginEmailViewController: UIViewController {
     let naverLoginButton = UIButton().then{
         $0.setImage(UIImage(named: "logoNaver"), for: .normal)
     }
-  private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(contentView)
@@ -89,6 +88,16 @@ class LoginEmailViewController: UIViewController {
       signUpButton.rx.tap.bind{[weak self] in
         let vc = SignUpViewController()
         self?.navigationController?.pushViewController(vc, animated: true)
+      }.disposed(by: disposeBag)
+      loginButton.rx.tap.bind{ [weak self] in
+        LoginManager.shared.makeLoginStatus(accessToken: "temp", refreshToken: "refresh")
+        let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+        let rootVC = TabbarViewContorller()
+        
+        rootNav.viewControllers = [rootVC]
+        rootNav.modalPresentationStyle = .fullScreen
+        self?.present(rootNav, animated: true, completion: nil)
       }.disposed(by: disposeBag)
     }
 

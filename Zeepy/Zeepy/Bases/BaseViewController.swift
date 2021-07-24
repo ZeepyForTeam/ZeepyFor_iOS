@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate{
-
+  public let disposeBag = DisposeBag()
   private func swipeRecognizer() {
     let popGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer!
     if let targets = popGestureRecognizer?.value(forKey: "targets") as? NSMutableArray {
