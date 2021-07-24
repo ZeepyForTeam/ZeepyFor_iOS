@@ -282,8 +282,8 @@ extension MypageViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0 {
-      let modifyVC = ModifyInformationViewController()
-      self.navigationController?.pushViewController(modifyVC, animated: false)
+      let settingVC = SettingsViewController()
+      self.navigationController?.pushViewController(settingVC, animated: false)
     }
   }
 }
