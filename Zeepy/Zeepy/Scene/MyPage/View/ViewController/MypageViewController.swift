@@ -141,6 +141,7 @@ extension MypageViewController {
   private func layoutFavoriteButton() {
     favoriteView.add(favoriteButton) {
       $0.setBackgroundImage(UIImage(named: self.favoriteButtonTitle), for: .normal)
+      $0.addTarget(self, action: #selector(self.favoriteButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.leading.trailing.equalToSuperview()
         $0.height.equalTo(56)
@@ -247,6 +248,12 @@ extension MypageViewController {
   func reviewButtonClicked() {
     let reviewVC = ManageReviewViewController()
     self.navigationController?.pushViewController(reviewVC, animated: false)
+  }
+  
+  @objc
+  func favoriteButtonClicked() {
+    let favoriteVC = FavoriteListViewConroller()
+    self.navigationController?.pushViewController(favoriteVC, animated: false)
   }
   
   @objc
