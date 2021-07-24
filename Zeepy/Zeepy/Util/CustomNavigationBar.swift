@@ -33,7 +33,7 @@ class CustomNavigationBar : UIView {
     backBtn.snp.makeConstraints{
       $0.centerY.equalToSuperview()
       $0.width.height.equalTo(44)
-      $0.leading.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
     }
   }
   func setUp(title: String,

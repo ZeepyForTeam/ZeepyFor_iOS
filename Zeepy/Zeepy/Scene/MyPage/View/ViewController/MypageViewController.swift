@@ -24,6 +24,7 @@ final class MypageViewController: BaseViewController {
   }()
   
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   private let titleLabel = UILabel()
   private let addressView = UIView(frame: CGRect(x: 0, y: 0, width: 56, height: 82))
   private let reviewView = UIView(frame: CGRect(x: 0, y: 0, width: 56, height: 82))
@@ -64,6 +65,7 @@ extension MypageViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutButtonStackView()
     layoutAddressButton()
@@ -75,12 +77,22 @@ extension MypageViewController {
     layoutMypageTableView()
   }
   
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   private func layoutTitleLabel() {
     view.add(titleLabel) {
       $0.numberOfLines = 2
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
       }
     }
   }
@@ -229,8 +241,8 @@ extension MypageViewController {
   }
   
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "마이페이지")
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "마이페이지")
   }
   
   func reloadTableView() {
@@ -253,6 +265,12 @@ extension MypageViewController {
   func titleLabelClicked() {
     let loginVC = LoginViewController()
     self.navigationController?.pushViewController(loginVC, animated: false)
+  }
+  
+  @objc override func backButtonClicked() {
+    let tabbar = self.navigationController?.parent as? TabbarViewContorller
+    tabbar?.selectedIndex = 0
+    self.navigationController?.popViewController()
   }
 }
 

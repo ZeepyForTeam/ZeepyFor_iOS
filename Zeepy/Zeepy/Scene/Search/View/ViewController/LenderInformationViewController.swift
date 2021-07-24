@@ -10,9 +10,12 @@ import Then
 import UIKit
 
 class LenderInformationViewController: BaseViewController {
+  
   // MARK: - Constants
   let titleLabelNumberOfLine = 2
+  
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabel = UILabel()
   let genderTitleLabel = UILabel()
   let maleButton = UIButton()
@@ -40,12 +43,23 @@ class LenderInformationViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
+    setupNavigation()
   }
 }
 // MARK: - Extensions
 extension LenderInformationViewController {
+  
+  // MARK: - Layout Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -65,7 +79,7 @@ extension LenderInformationViewController {
       $0.numberOfLines = self.titleLabelNumberOfLine
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(16)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
       }
     }
   }
@@ -238,6 +252,7 @@ extension LenderInformationViewController {
     }
   }
   func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutGenderTitleLabel()
     layoutMaleButton()
@@ -258,5 +273,10 @@ extension LenderInformationViewController {
     let nextViewController = AdditionalInformationViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
   }
 }

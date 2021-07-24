@@ -4,19 +4,16 @@
 //
 //  Created by 노한솔 on 2021/05/25.
 //
-import SnapKit
-import Then
 import UIKit
 
+import SnapKit
+import Then
+
+// MARK: - DetailAddressViewController
 class DetailAddressViewController: BaseViewController {
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    layout()
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
-  }
-  
+  // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabelNumberOfLine = 2
   let titleLabel = UILabel()
   let addressContainerView = UIView()
@@ -25,10 +22,22 @@ class DetailAddressViewController: BaseViewController {
   let detailTextField = UITextField()
   let separatorView = UIView()
   let nextButton = UIButton()
+  
+  // MARK: - LifeCycles
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    layout()
+    setupNavigation()
+  }
+
 }
 
+// MARK: - Extensions
 extension DetailAddressViewController {
+  
+  // MARK: - Layout Helpers
   func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutAddressContainerView()
     layoutAddressLabel()
@@ -37,6 +46,17 @@ extension DetailAddressViewController {
     layoutNextButton()
     layoutseparatorView()
   }
+  
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func configureTitleLabel() -> NSMutableAttributedString {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
@@ -142,6 +162,14 @@ extension DetailAddressViewController {
       }
     }
   }
+  
+  // MARK: - General Helpers
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
+  }
+  
+  // MARK: - Action Helpers
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
     let nextViewController = SelectAddressViewController()

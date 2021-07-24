@@ -4,29 +4,17 @@
 //
 //  Created by 노한솔 on 2021/05/11.
 //
+import UIKit
 
 import RxDataSources
 import RxSwift
 import SnapKit
 import Then
-import UIKit
 
+// MARK: - DetailInformationViewController
 class DetailInformationViewController: BaseViewController {
   
-  // MARK: - LifeCycles
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    layoutNextButton()
-    layoutSeparatorView()
-    layoutCollectionView()
-    register()
-    contentCollectionView.dataSource = self
-    contentCollectionView.delegate = self
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
-  }
-  
-  // MARK: - Properties
+  // MARK: - Lazy Components
   lazy var contentCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -36,42 +24,53 @@ class DetailInformationViewController: BaseViewController {
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     return collectionView
   }()
+  
+  // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let nextButton = UIButton()
   let separatorView = UIView()
+  
+  // MARK: - LifeCycles
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    layoutNavigationView()
+    layoutNextButton()
+    layoutSeparatorView()
+    layoutCollectionView()
+    register()
+    contentCollectionView.dataSource = self
+    contentCollectionView.delegate = self
+    setupNavigation()
+  }
 }
 
 // MARK: - Extensions
 extension DetailInformationViewController {
-  func layoutTitleLabel() {
-    let titleParagraphStyle = NSMutableParagraphStyle()
-    titleParagraphStyle.lineSpacing = 7
-    let titleText = NSMutableAttributedString(string: "집에 대한 정보를\n조금 더 알려주세요!",
-                                              attributes: [
-                                                .font: UIFont.nanumRoundExtraBold(fontSize: 24),
-                                                .foregroundColor: UIColor.mainBlue])
-    titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
-                           value: titleParagraphStyle,
-                           range: NSMakeRange(0, titleText.length))
-    titleText.addAttribute(NSAttributedString.Key.font,
-                           value: UIFont.nanumRoundRegular(fontSize: 24),
-                           range: NSRange(location: 9, length: 1))
-    titleText.addAttribute(NSAttributedString.Key.font,
-                           value: UIFont.nanumRoundRegular(fontSize: 24),
-                           range: NSRange(location: 15, length: 6))
+  
+  // MARK: - Layout Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
   }
 
-  // MARK: - Helpers
   func layoutCollectionView() {
     self.view.add(contentCollectionView) {
       $0.backgroundColor = .clear
+      $0.showsVerticalScrollIndicator = false
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        $0.top.equalTo(self.navigationView.snp.bottom)
         $0.bottom.equalTo(self.separatorView.snp.bottom)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
         $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
       }
     }
   }
+  
   func layoutNextButton() {
     self.view.add(self.nextButton) {
       $0.tag = 1
@@ -97,6 +96,7 @@ extension DetailInformationViewController {
       }
     }
   }
+  
   func layoutSeparatorView() {
     self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
@@ -107,6 +107,8 @@ extension DetailInformationViewController {
       }
     }
   }
+  
+  // MARK: - General Helpers
   func register() {
     self.contentCollectionView.register(RoomAndFurnitureCollectionViewCell.self, forCellWithReuseIdentifier: RoomAndFurnitureCollectionViewCell.identifier)
     self.contentCollectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: ReviewCollectionViewCell.identifier)
@@ -115,12 +117,20 @@ extension DetailInformationViewController {
     self.contentCollectionView.register(ThirdSectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ThirdSectionCollectionReusableView.identifier)
     self.contentCollectionView.register(EmptySectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EmptySectionCollectionReusableView.identifier)
   }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
+  }
+  
+  // MARK: - Action Helpers
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
     let nextViewController = SelectAddressViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
+  
 }
 
 // MARK: - UICollectionViewDataSource
