@@ -21,9 +21,10 @@
 		3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* LoginEmailViewController.swift */; };
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
+		37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */; };
 		37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB72692FF260052047B /* SignUpViewController.swift */; };
 		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
-		37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */; };
+		37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
 		9470C7C23AD3119313948F54 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
@@ -182,9 +183,10 @@
 		378456192692145C00F59074 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		3798C1A42692917100616311 /* LoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmailViewController.swift; sourceTree = "<group>"; };
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTableViewCell.swift; sourceTree = "<group>"; };
 		37EB8BB72692FF260052047B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
-		37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapSearchViewController.swift; sourceTree = "<group>"; };
+		37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
 		5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		92A72979B882D63DA8F80A68 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */,
 				37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */,
 				CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */,
+				37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -748,7 +751,7 @@
 				CC5495112649615300313146 /* AdditionalInformationViewController.swift */,
 				CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */,
 				DAB3E008265D291300B7B4F2 /* DetailAddressViewController.swift */,
-				37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */,
+				37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */,
 				DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */,
 				DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */,
 				DAA2F4B726ACEBBB003E9EAE /* ReviewListViewController.swift */,
@@ -1357,6 +1360,7 @@
 				DAA2F4AA26AAF85E003E9EAE /* ModifyJoinView.swift in Sources */,
 				DAA2F4B626ABF39A003E9EAE /* UITableViewCell+.swift in Sources */,
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
+				37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */,
 				DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
 				DA483D3126A9320000A81704 /* AddPhotoViewController.swift in Sources */,
@@ -1400,7 +1404,7 @@
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
-				37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */,
+				37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
