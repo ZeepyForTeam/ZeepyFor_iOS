@@ -231,6 +231,11 @@ class ConditionViewController: UIViewController {
         self.view.addSubview(scrollView)
         addConstraints()
         self.initCollectionView()
+        setupNavigation()
+    }
+    private func setupNavigation() {
+      self.setupNavigationBar(.white)
+      self.setupNavigationItem(titleText: "조건검색")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
