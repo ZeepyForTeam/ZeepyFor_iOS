@@ -32,7 +32,6 @@ class AdditionalInformationViewController: BaseViewController {
     assessTableView.dataSource = self
   }
   
-  
 }
 
 extension AdditionalInformationViewController {

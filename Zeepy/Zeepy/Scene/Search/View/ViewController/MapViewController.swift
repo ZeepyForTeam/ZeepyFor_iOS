@@ -276,6 +276,11 @@ class MapViewController: UIViewController {
     closedFloatingView.isHidden = false
   }
   
+    private func setupNavigation() {
+      self.setupNavigationBar(.white)
+      self.setupNavigationItem(titleText: "지도")
+    }
+    
   func declarePOIItems(){
     items.append(poiItem(name: "달봉이네", latitude: 37.4981688, longitude: 127.0484572, imageName: "emoji1Map", tag: 0))
     items.append(poiItem(name: "주은이네", latitude: 37.4980689, longitude: 127.0484572, imageName: "emoji2Map", tag: 1))
@@ -300,6 +305,7 @@ class MapViewController: UIViewController {
     initMapView()
     addConstraints()
     declarePOIItems()
+    setupNavigation()
     initCollectionview()
   }
   

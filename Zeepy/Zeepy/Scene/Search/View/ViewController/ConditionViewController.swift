@@ -230,6 +230,7 @@ class ConditionViewController: UIViewController {
         self.view.backgroundColor = .white
         self.view.addSubview(scrollView)
         addConstraints()
+        setupNavigation()
         self.initCollectionView()
     }
     override func didReceiveMemoryWarning() {
@@ -464,6 +465,11 @@ class ConditionViewController: UIViewController {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
+    }
+    
+    private func setupNavigation() {
+      self.setupNavigationBar(.white)
+      self.setupNavigationItem(titleText: "조건검색")
     }
     
     @objc func onTapBuildingButton(sender: UIButton) {
