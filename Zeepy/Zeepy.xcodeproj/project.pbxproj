@@ -122,8 +122,8 @@
 		DAA2F4AE26ABB299003E9EAE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DAA2F4AD26ABB299003E9EAE /* RxDataSources */; };
 		DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */; };
 		DAA2F4B226ABDFE7003E9EAE /* SimpleReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */; };
-		DAA2F4B426ABF042003E9EAE /* ReviewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B326ABF042003E9EAE /* ReviewListViewController.swift */; };
 		DAA2F4B626ABF39A003E9EAE /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B526ABF39A003E9EAE /* UITableViewCell+.swift */; };
+		DAA2F4B826ACEBBC003E9EAE /* ReviewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B726ACEBBB003E9EAE /* ReviewListViewController.swift */; };
 		DAB000052608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
 		DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
 		DAB000072608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */; };
@@ -320,8 +320,8 @@
 		DAA2F4A926AAF85E003E9EAE /* ModifyJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyJoinView.swift; sourceTree = "<group>"; };
 		DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewViewContoller.swift; sourceTree = "<group>"; };
 		DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleReviewView.swift; sourceTree = "<group>"; };
-		DAA2F4B326ABF042003E9EAE /* ReviewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewListViewController.swift; path = ../../../../../../../../Downloads/ReviewListViewController.swift; sourceTree = "<group>"; };
 		DAA2F4B526ABF39A003E9EAE /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		DAA2F4B726ACEBBB003E9EAE /* ReviewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewListViewController.swift; sourceTree = "<group>"; };
 		DAB000012608CC0300D8208F /* NanumSquareRoundOTFB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFB.otf; sourceTree = "<group>"; };
 		DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFEB.otf; sourceTree = "<group>"; };
 		DAB000032608CC0300D8208F /* NanumSquareRoundOTFL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundOTFL.otf; sourceTree = "<group>"; };
@@ -748,7 +748,7 @@
 				37F37E1126A855B70031ADC3 /* mapSearchViewController.swift */,
 				DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */,
 				DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */,
-				DAA2F4B326ABF042003E9EAE /* ReviewListViewController.swift */,
+				DAA2F4B726ACEBBB003E9EAE /* ReviewListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1344,7 +1344,6 @@
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
 				CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */,
-				DAA2F4B426ABF042003E9EAE /* ReviewListViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
 				371628A826456EC10006AE80 /* MapViewController.swift in Sources */,
@@ -1362,6 +1361,7 @@
 				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
 				DA4C7823265A01C50040010F /* ReusableSimpleImageCell.swift in Sources */,
 				DAA2F4A826AAF2F8003E9EAE /* JoinPopUpView.swift in Sources */,
+				DAA2F4B826ACEBBC003E9EAE /* ReviewListViewController.swift in Sources */,
 				371628B02646665F0006AE80 /* tendencyButton.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
