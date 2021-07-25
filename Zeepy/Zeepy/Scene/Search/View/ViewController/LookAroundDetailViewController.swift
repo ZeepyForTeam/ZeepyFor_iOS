@@ -370,12 +370,12 @@ extension LookAroundDetailViewController {
     
     
     //더미
-    reviewMoreBtn.rx.tap.bind{[weak self] in
-      
-      let vc = ReviewListViewController()
-      self?.navigationController?.pushViewController(vc, animated: true)
-      
-    }.disposed(by: disposeBag)
+//    reviewMoreBtn.rx.tap.bind{[weak self] in
+//
+//      let vc = ReviewListViewController()
+//      self?.navigationController?.pushViewController(vc, animated: true)
+//
+//    }.disposed(by: disposeBag)
     
     reviewView.reportBtn.rx.tap.bind{[weak self] in
       print("신고하기")
