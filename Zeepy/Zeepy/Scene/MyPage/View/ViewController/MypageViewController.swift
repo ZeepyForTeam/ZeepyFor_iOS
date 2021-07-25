@@ -303,5 +303,9 @@ extension MypageViewController: UITableViewDataSource {
       let modifyVC = ModifyInformationViewController()
       self.navigationController?.pushViewController(modifyVC, animated: false)
     }
+    if indexPath.row == 2 {
+      let creditVC = CreditViewController()
+      self.navigationController?.pushViewController(creditVC, animated: false)
+    }
   }
 }
