@@ -14,6 +14,7 @@ import Then
 class ModifyInformationViewController: BaseViewController {
   
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   private let nicknameTitleLabel = UILabel()
   private let nicknameTextField = UITextField()
   private let socialEmailTitleLabel = UILabel()
@@ -40,6 +41,7 @@ class ModifyInformationViewController: BaseViewController {
     configData()
     layout()
     setupNavigation()
+    temp()
   }
 }
 
@@ -48,6 +50,7 @@ extension ModifyInformationViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
+    layoutNavigationView()
     layoutNicknameTitleLabel()
     layoutNicknameTextField()
     layoutSocialEmailTitleLabel()
@@ -60,10 +63,20 @@ extension ModifyInformationViewController {
     layoutDropoutButton()
   }
   
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   private func layoutNicknameTitleLabel() {
     view.add(nicknameTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
       }
     }
@@ -211,7 +224,24 @@ extension ModifyInformationViewController {
   }
   
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "내 정보 수정")
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "내 정보 수정")
+  }
+  //로그아웃기능 임시
+  private func temp() {
+    logoutButton.rx.tap.bind{
+      MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
+          LoginManager.shared.makeLogoutStatus()
+          let root = LoginEmailViewController()
+          let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+
+          rootNav.viewControllers = [root]
+
+           if let window = self.view.window {
+               window.rootViewController = rootNav
+           }
+      })
+    }.disposed(by: disposeBag)
   }
 }

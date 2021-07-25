@@ -16,7 +16,6 @@ import KakaoSDKAuth
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     FirebaseApp.configure()
@@ -47,8 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = TabbarViewContorller()
     
     rootNav.viewControllers = [rootVC]
-    window?.rootViewController = rootNav
-    window?.makeKeyAndVisible()
+    if LoginManager.shared.isLogin() == true {
+      window?.rootViewController = rootNav
+      window?.makeKeyAndVisible()
+    }
+    else {
+      rootNav.viewControllers = [LoginEmailViewController()]
+      window?.rootViewController = rootNav
+      window?.makeKeyAndVisible()
+    }
     return true
   }
   // MARK: - Core Data stack

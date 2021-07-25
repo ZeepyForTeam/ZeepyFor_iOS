@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
 
     let contentView = UIView()
     let getName = InputBoxView().then{

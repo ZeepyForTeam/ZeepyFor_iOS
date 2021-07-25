@@ -10,7 +10,7 @@ import SnapKit
 import Then
 
 class mapSearchViewController: UIViewController {
-    
+
     var searchRecordList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
 //    var searchRecommendList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
     
@@ -48,7 +48,12 @@ class mapSearchViewController: UIViewController {
         self.view.adds([searchView, searchRecordTableView])
         addConstraints()
         register()
+      hideKeyboardWhenTappedAround()
     }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    searchTextField.becomeFirstResponder()
+  }
     func register() {
       self.searchRecordTableView.register(MapSearchTableViewCell.self, forCellReuseIdentifier: MapSearchTableViewCell.identifier)
     }

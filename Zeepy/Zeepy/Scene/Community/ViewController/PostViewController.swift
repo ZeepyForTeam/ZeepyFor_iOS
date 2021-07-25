@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 class PostViewController : BaseViewController {
-  private let disposeBag = DisposeBag()
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "글 작성하기")
   }

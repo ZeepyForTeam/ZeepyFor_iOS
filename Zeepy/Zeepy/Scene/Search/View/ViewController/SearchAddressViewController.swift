@@ -10,7 +10,9 @@ import Then
 import UIKit
 
 class SearchAddressViewController: BaseViewController {
+  
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   let titleLabel = UILabel()
   let searchTextFieldContainerView = UIView()
   let searchTextField = UITextField()
@@ -22,14 +24,24 @@ class SearchAddressViewController: BaseViewController {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "리뷰작성")
+    setupNavigation()
   }
 
 }
 // MARK: - Extensions
 extension SearchAddressViewController {
+  
   // MARK: - Helpers
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
+  }
+  
   func layoutTitleLabel() {
     self.view.add(titleLabel) {
       $0.text = "주소 검색"
@@ -37,7 +49,7 @@ extension SearchAddressViewController {
       $0.font = .nanumRoundExtraBold(fontSize: 18)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.snp.leading).offset(16)
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(19)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(19)
       }
     }
   }
@@ -123,6 +135,7 @@ extension SearchAddressViewController {
     }
   }
   func layout() {
+    layoutNavigationView()
     layoutTitleLabel()
     layoutSearchTextFieldContainerView()
     layoutSearchTextField()
@@ -135,5 +148,10 @@ extension SearchAddressViewController {
     let nextViewController = DetailAddressViewController()
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
   }
 }
