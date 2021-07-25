@@ -303,7 +303,7 @@ class MapViewController: BaseViewController {
     declarePOIItems()
     initCollectionview()
     searchTextField.rx.tap.bind{[weak self] in
-      let vc = mapSearchViewController()
+      let vc = MapSearchViewController()
       self?.navigationController?.pushViewController(vc, animated: false)
     }.disposed(by: disposeBag)
   }
