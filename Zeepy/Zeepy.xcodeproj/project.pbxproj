@@ -41,6 +41,8 @@
 		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
 		CC12B96926AA5B2600D17C95 /* ManageReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */; };
 		CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */; };
+		CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */; };
+		CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */; };
 		CC3B56C426AFF9B900464DC8 /* BuildingModelByID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B56C326AFF9B900464DC8 /* BuildingModelByID.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
@@ -207,6 +209,8 @@
 		CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewViewController.swift; sourceTree = "<group>"; };
 		CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewTableViewCell.swift; sourceTree = "<group>"; };
 		CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
+		CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAddressModel.swift; sourceTree = "<group>"; };
 		CC3B56C326AFF9B900464DC8 /* BuildingModelByID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingModelByID.swift; sourceTree = "<group>"; };
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 				DA2EDB70262C58FE00620B7E /* BuildingModel.swift */,
 				CC3B56C326AFF9B900464DC8 /* BuildingModelByID.swift */,
 				CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */,
+				CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -672,6 +677,7 @@
 				37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */,
 				CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */,
 				37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */,
+				CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1382,6 +1388,7 @@
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
+				CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
 				CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
@@ -1402,6 +1409,7 @@
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
 				DA483D2C26A9193700A81704 /* CustomTextField.swift in Sources */,
+				CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */,
 				3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */,
 				CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */,
 				372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */,
