@@ -23,6 +23,23 @@ class SelectAddressViewController: BaseViewController {
   let separatorView = UIView()
   let nextButton = UIButton()
   
+  // MARK: - Variables
+  var reviewModel = ReviewModel(address: "",
+                                buildingID: 0,
+                                communcationTendency: "",
+                                furnitures: [],
+                                imageUrls: [],
+                                lessorAge: "",
+                                lessorGender: "",
+                                lessorReview: "",
+                                lightning: "",
+                                pest: "",
+                                review: "",
+                                roomCount: "",
+                                soundInsulation: "",
+                                totalEvaluation: "",
+                                user: 0,
+                                waterPressure: "")
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
