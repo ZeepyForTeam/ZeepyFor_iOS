@@ -303,11 +303,15 @@ class MapViewController: BaseViewController {
     declarePOIItems()
     initCollectionview()
     searchTextField.rx.tap.bind{[weak self] in
-      let vc = mapSearchViewController()
+      let vc = MapSearchViewController()
       self?.navigationController?.pushViewController(vc, animated: false)
     }.disposed(by: disposeBag)
-  }
-  
+    setupNavigation()
+}
+private func setupNavigation() {
+  self.setupNavigationBar(.white)
+  self.setupNavigationItem(titleText: "지도")
+}
   func addConstraints() {
     searchView.snp.makeConstraints{
       $0.trailing.leading.equalToSuperview()
