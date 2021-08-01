@@ -8,27 +8,29 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class SignUpViewController: BaseViewController {
 
     let contentView = UIView()
-    let getName = InputBoxView().then{
+    let nameTextField = InputBoxView().then{
         $0.infoTitle.text = "이름"
         $0.infoTextField.placeholder = "이름을 입력해주세요"
     }
-    let getID = InputBoxView().then{
+    let idTextField = InputBoxView().then{
         $0.infoTitle.text = "아이디"
         $0.infoTextField.placeholder = "아이디를 입력해주세요"
     }
-    let getEmail = InputBoxView().then{
+    let emailTextField = InputBoxView().then{
         $0.infoTitle.text = "이메일"
         $0.infoTextField.placeholder = "이메일을 입력해주세요"
     }
-    let getPW = InputBoxView().then{
+    let passWordTextField = InputBoxView().then{
         $0.infoTitle.text = "비밀번호"
         $0.infoTextField.placeholder = "비밀번호를 입력해주세요"
     }
-    let surePW = InputBoxView().then{
+    let surePassWordTextField = InputBoxView().then{
         $0.infoTitle.text = "비밀번호 확인"
         $0.infoTextField.placeholder = "비밀번호를 다시 입력해주세요"
     }
@@ -104,36 +106,82 @@ class SignUpViewController: BaseViewController {
         addConstraints()
     }
     
+    // MARK: - Server연결부
+//    private let disposeBag = DisposeBag()
+    private let viewModel = LoginViewModel()
+    private let privacyAgreeSubject = BehaviorSubject<Bool>(value: false)
+    private let promotionAgreeSubject = BehaviorSubject<Bool>(value: false)
+    private func bind() {
+        let input = LoginViewModel.Input(nameText : nameTextField.rx.text.orEmpty.asObservable(),
+                                         idText: idTextField.rx.text.orEmpty.asObservable(),
+                                         emailText: emailTextField.rx.text.orEmpty.asObservable(),
+                                         passwordText: passWordTextField.rx.text.orEmpty.asObservable(),
+                                         surePasswordText: surePassWordTextField.rx.text.orEmpty.asObservable(),
+                                         registerBtnClicked: signUpfinishButton.rx.tap.asObservable(),
+                                         privacyAgree: privacyAgreeSubject,
+                                         promotionAgree: promotionAgreeSubject)
+    
+        let output = viewModel.transform(input: input)
+        
+        output.registerEnabled
+          .bind(to: signUpfinishButton.rx.isEnabled)
+          .disposed(by: disposeBag)
+        
+//        output.registerResult
+//          .bind{[weak self] model in
+//            self?.result.text = """
+//              아이디 : \(model.email)
+//              비밀번호 : \(model.passWord)
+//              닉네임: \(model.nickName)
+//              """
+//          }.disposed(by: disposeBag)
+        
+        termsCheckBox.rx.tap.map{ [weak self] in
+          self?.termsCheckBox.isSelected.toggle()
+          return self?.termsCheckBox.isSelected ?? false
+        }
+        .bind(to: privacyAgreeSubject)
+        .disposed(by: disposeBag)
+        
+        newsCheckBox.rx.tap.map{ [weak self] in
+          self?.newsCheckBox.isSelected.toggle()
+          return self?.newsCheckBox.isSelected ?? false
+        }
+        .bind(to: promotionAgreeSubject)
+        .disposed(by: disposeBag)
+      }
+    
+    
 
     func addConstraints(){
-        contentView.adds([getName, getID, getEmail, getPW, surePW, newsCheckBox, newsLabel, termsCheckBox,termsLabel,viewTerms, signUpfinishButton ])
+        contentView.adds([nameTextField, idTextField, emailTextField, passWordTextField, surePassWordTextField, newsCheckBox, newsLabel, termsCheckBox,termsLabel,viewTerms, signUpfinishButton ])
 
-        getName.snp.makeConstraints{
+        nameTextField.snp.makeConstraints{
             $0.top.equalToSuperview().offset(60)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(90)
         }
-        getID.snp.makeConstraints{
+        idTextField.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(getName.snp.bottom)
+            $0.top.equalTo(nameTextField.snp.bottom)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(90)
         }
-        getEmail.snp.makeConstraints{
+        emailTextField.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(getID.snp.bottom)
+            $0.top.equalTo(idTextField.snp.bottom)
             $0.height.equalTo(90)
         }
-        getPW.snp.makeConstraints{
+        passWordTextField.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(getEmail.snp.bottom)
+            $0.top.equalTo(emailTextField.snp.bottom)
             $0.height.equalTo(90)
         }
-        surePW.contentView.addSubview(pwNotSame)
-        surePW.infoTextFieldBackGroundView.addSubview(pwCheckImage)
-        surePW.snp.makeConstraints{
+        surePassWordTextField.contentView.addSubview(pwNotSame)
+        surePassWordTextField.infoTextFieldBackGroundView.addSubview(pwCheckImage)
+        surePassWordTextField.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(getPW.snp.bottom)
+            $0.top.equalTo(passWordTextField.snp.bottom)
         }
         pwNotSame.snp.makeConstraints{
             $0.top.trailing.equalToSuperview().inset(6)
@@ -144,7 +192,7 @@ class SignUpViewController: BaseViewController {
         }
         
         newsCheckBox.snp.makeConstraints{
-            $0.top.equalTo(surePW.snp.bottom).offset(20)
+            $0.top.equalTo(surePassWordTextField.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(24)
         }
         newsLabel.snp.makeConstraints{

@@ -81,6 +81,7 @@ class LoginEmailViewController: BaseViewController {
     let naverLoginButton = UIButton().then{
         $0.setImage(UIImage(named: "logoNaver"), for: .normal)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(contentView)
