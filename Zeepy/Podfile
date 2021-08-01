@@ -11,6 +11,7 @@ target 'Zeepy' do
   pod 'RxSwift', '5.1.2'
   pod 'RxCocoa', '5.1.1'
   pod 'Moya', '~> 14.0'
+  pod 'Moya/RxSwift', '~> 14.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'RangeSeekSlider'
