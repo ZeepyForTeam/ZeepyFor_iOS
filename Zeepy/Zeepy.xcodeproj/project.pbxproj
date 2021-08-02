@@ -71,6 +71,7 @@
 		CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */; };
 		CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */; };
 		CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */; };
+		DA0DEC3926ACED31007563D0 /* PhotoReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
@@ -78,6 +79,27 @@
 		DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* Kingfisher */; };
 		DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB7F262C5B3200620B7E /* Identifiable.swift */; };
 		DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37C79B269BDB260031A17B /* PostViewController.swift */; };
+		DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */; };
+		DA40E1C726B12F6A00102EED /* BuildingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C626B12F6A00102EED /* BuildingResponse.swift */; };
+		DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C826B131C600102EED /* BuildingRequest.swift */; };
+		DA40E1CB26B1341400102EED /* CommunityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1CA26B1341400102EED /* CommunityRequest.swift */; };
+		DA40E1CD26B1354C00102EED /* CommunityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1CC26B1354C00102EED /* CommunityResponse.swift */; };
+		DA40E1CF26B3C5EB00102EED /* ReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1CE26B3C5EB00102EED /* ReviewRequest.swift */; };
+		DA40E1D126B3C83000102EED /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1D026B3C83000102EED /* ReviewResponse.swift */; };
+		DA40E1D326B3D43400102EED /* AreaCodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1D226B3D43400102EED /* AreaCodeRouter.swift */; };
+		DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1D426B3D4D100102EED /* AreaCodeRequest.swift */; };
+		DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1D626B3D5CE00102EED /* Encodable+.swift */; };
+		DA40E1D926B3D62300102EED /* AreaCodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1D826B3D62300102EED /* AreaCodeService.swift */; };
+		DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1DA26B3D88300102EED /* BuildingRouter.swift */; };
+		DA40E1DD26B3DB1100102EED /* BuildingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1DC26B3DB1100102EED /* BuildingService.swift */; };
+		DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1DE26B4CDA900102EED /* DealRequest.swift */; };
+		DA40E1E126B4CDED00102EED /* DealResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E026B4CDED00102EED /* DealResponse.swift */; };
+		DA40E1E326B4CE6A00102EED /* DealRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E226B4CE6A00102EED /* DealRouter.swift */; };
+		DA40E1E526B4D0D700102EED /* DealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E426B4D0D700102EED /* DealService.swift */; };
+		DA40E1E726B6462100102EED /* CommunityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E626B6462100102EED /* CommunityRouter.swift */; };
+		DA40E1E926B6494600102EED /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E826B6494600102EED /* CommunityService.swift */; };
+		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
+		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
 		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
@@ -232,12 +254,34 @@
 		CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInformationViewController.swift; sourceTree = "<group>"; };
+		DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoReviewViewController.swift; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
 		DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA2EDB7F262C5B3200620B7E /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		DA37C79B269BDB260031A17B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		DA40E1C626B12F6A00102EED /* BuildingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingResponse.swift; sourceTree = "<group>"; };
+		DA40E1C826B131C600102EED /* BuildingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingRequest.swift; sourceTree = "<group>"; };
+		DA40E1CA26B1341400102EED /* CommunityRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRequest.swift; sourceTree = "<group>"; };
+		DA40E1CC26B1354C00102EED /* CommunityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityResponse.swift; sourceTree = "<group>"; };
+		DA40E1CE26B3C5EB00102EED /* ReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequest.swift; sourceTree = "<group>"; };
+		DA40E1D026B3C83000102EED /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
+		DA40E1D226B3D43400102EED /* AreaCodeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeRouter.swift; sourceTree = "<group>"; };
+		DA40E1D426B3D4D100102EED /* AreaCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeRequest.swift; sourceTree = "<group>"; };
+		DA40E1D626B3D5CE00102EED /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		DA40E1D826B3D62300102EED /* AreaCodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCodeService.swift; sourceTree = "<group>"; };
+		DA40E1DA26B3D88300102EED /* BuildingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingRouter.swift; sourceTree = "<group>"; };
+		DA40E1DC26B3DB1100102EED /* BuildingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingService.swift; sourceTree = "<group>"; };
+		DA40E1DE26B4CDA900102EED /* DealRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealRequest.swift; sourceTree = "<group>"; };
+		DA40E1E026B4CDED00102EED /* DealResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealResponse.swift; sourceTree = "<group>"; };
+		DA40E1E226B4CE6A00102EED /* DealRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealRouter.swift; sourceTree = "<group>"; };
+		DA40E1E426B4D0D700102EED /* DealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealService.swift; sourceTree = "<group>"; };
+		DA40E1E626B6462100102EED /* CommunityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRouter.swift; sourceTree = "<group>"; };
+		DA40E1E826B6494600102EED /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
+		DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
+		DA40E1EC26B64DB300102EED /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		DA47449E261976B000709883 /* UITextView+RxCocoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+RxCocoa.swift"; sourceTree = "<group>"; };
 		DA4744A6261978B900709883 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -682,6 +726,65 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		DA40E1BF26B12E9900102EED /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DA40E1C326B12EE400102EED /* ResponseModel */,
+				DA40E1C226B12EDD00102EED /* RequestModel */,
+				DA40E1C126B12ECE00102EED /* Service */,
+				DA40E1C026B12EC700102EED /* MoyaTarget */,
+				DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DA40E1C026B12EC700102EED /* MoyaTarget */ = {
+			isa = PBXGroup;
+			children = (
+				DA40E1D226B3D43400102EED /* AreaCodeRouter.swift */,
+				DA40E1DA26B3D88300102EED /* BuildingRouter.swift */,
+				DA40E1E226B4CE6A00102EED /* DealRouter.swift */,
+				DA40E1E626B6462100102EED /* CommunityRouter.swift */,
+				DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */,
+			);
+			path = MoyaTarget;
+			sourceTree = "<group>";
+		};
+		DA40E1C126B12ECE00102EED /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DA40E1D826B3D62300102EED /* AreaCodeService.swift */,
+				DA40E1DC26B3DB1100102EED /* BuildingService.swift */,
+				DA40E1E426B4D0D700102EED /* DealService.swift */,
+				DA40E1E826B6494600102EED /* CommunityService.swift */,
+				DA40E1EC26B64DB300102EED /* ReviewService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DA40E1C226B12EDD00102EED /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA40E1C826B131C600102EED /* BuildingRequest.swift */,
+				DA40E1CA26B1341400102EED /* CommunityRequest.swift */,
+				DA40E1CE26B3C5EB00102EED /* ReviewRequest.swift */,
+				DA40E1D426B3D4D100102EED /* AreaCodeRequest.swift */,
+				DA40E1DE26B4CDA900102EED /* DealRequest.swift */,
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
+		DA40E1C326B12EE400102EED /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA40E1C626B12F6A00102EED /* BuildingResponse.swift */,
+				DA40E1CC26B1354C00102EED /* CommunityResponse.swift */,
+				DA40E1D026B3C83000102EED /* ReviewResponse.swift */,
+				DA40E1E026B4CDED00102EED /* DealResponse.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
 		DA4744C82619893900709883 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,6 +873,7 @@
 				DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */,
 				DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */,
 				DAA2F4B726ACEBBB003E9EAE /* ReviewListViewController.swift */,
+				DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -856,6 +960,7 @@
 		DA61C3F625F32F440063263A /* Zeepy */ = {
 			isa = PBXGroup;
 			children = (
+				DA40E1BF26B12E9900102EED /* Network */,
 				DA61C45025F361730063263A /* Supports */,
 				A45F4F7225FF2AD600FCEACF /* Configuration */,
 				A45F4F9725FF2D5E00FCEACF /* Bases */,
@@ -890,6 +995,7 @@
 				DA61C45225F361A40063263A /* UIExtensions */,
 				DAB0FFF825F9014900D8208F /* RxMoya+.swift */,
 				DAA2F4A326AACFD9003E9EAE /* Optional+.swift */,
+				DA40E1D626B3D5CE00102EED /* Encodable+.swift */,
 			);
 			path = "Global Extentions";
 			sourceTree = "<group>";
@@ -1333,16 +1439,19 @@
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
+				DA40E1C726B12F6A00102EED /* BuildingResponse.swift in Sources */,
 				A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */,
 				DAD6CBD6265E640700DDC5AD /* CommunityViewController.swift in Sources */,
 				DA4C7837265A01F00040010F /* TapCell.swift in Sources */,
 				DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */,
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
+				DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */,
 				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
+				DA40E1D126B3C83000102EED /* ReviewResponse.swift in Sources */,
 				A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */,
 				DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */,
 				DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */,
@@ -1354,6 +1463,7 @@
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
 				DA483D0E269C536700A81704 /* AddPostViewModel.swift in Sources */,
 				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
+				DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
@@ -1361,8 +1471,10 @@
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */,
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
+				DA40E1E926B6494600102EED /* CommunityService.swift in Sources */,
 				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
+				DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
 				CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
@@ -1371,13 +1483,17 @@
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */,
 				DA47457A261B269300709883 /* MessageAlertView.swift in Sources */,
+				DA40E1D926B3D62300102EED /* AreaCodeService.swift in Sources */,
 				DAF4D39E265A035B00B281E2 /* String+.swift in Sources */,
 				DAA2F4AA26AAF85E003E9EAE /* ModifyJoinView.swift in Sources */,
 				DAA2F4B626ABF39A003E9EAE /* UITableViewCell+.swift in Sources */,
+				DA40E1CB26B1341400102EED /* CommunityRequest.swift in Sources */,
 				DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */,
 				37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */,
 				DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */,
 				DA61C48925F4DAD50063263A /* UINavigationController+.swift in Sources */,
+				DA40E1D326B3D43400102EED /* AreaCodeRouter.swift in Sources */,
+				DA40E1E526B4D0D700102EED /* DealService.swift in Sources */,
 				DA483D3126A9320000A81704 /* AddPhotoViewController.swift in Sources */,
 				CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */,
 				374800BA263C297D00098436 /* ReusableOptionCell.swift in Sources */,
@@ -1398,31 +1514,44 @@
 				CCB6C10026AC31B5006E7032 /* FavoriteListViewController.swift in Sources */,
 				DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
+				DA40E1CD26B1354C00102EED /* CommunityResponse.swift in Sources */,
 				CC12B96926AA5B2600D17C95 /* ManageReviewTableViewCell.swift in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
+				DA40E1CF26B3C5EB00102EED /* ReviewRequest.swift in Sources */,
 				DA61C47125F362430063263A /* UIImageView+.swift in Sources */,
+				DA40E1E726B6462100102EED /* CommunityRouter.swift in Sources */,
+				DA0DEC3926ACED31007563D0 /* PhotoReviewViewController.swift in Sources */,
 				DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
+				DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
+				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
+				DA40E1E126B4CDED00102EED /* DealResponse.swift in Sources */,
 				DA483D2C26A9193700A81704 /* CustomTextField.swift in Sources */,
 				CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */,
 				3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */,
 				CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */,
 				372F844E26385B3A000E0AFC /* ConditionViewController.swift in Sources */,
 				DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */,
+				DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */,
 				DAB0FFF925F9014900D8208F /* RxMoya+.swift in Sources */,
 				CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */,
+				DA40E1E326B4CE6A00102EED /* DealRouter.swift in Sources */,
 				DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
+				DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
+				DA40E1DD26B3DB1100102EED /* BuildingService.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
+				37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */,
+				DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */,
 				37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,

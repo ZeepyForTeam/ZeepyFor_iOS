@@ -89,6 +89,9 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
     - nanopb/encode (= 2.30907.0)
@@ -132,6 +135,7 @@ DEPENDENCIES:
   - KakaoSDKCommon
   - KakaoSDKUser
   - Moya (~> 14.0)
+  - Moya/RxSwift (~> 14.0)
   - RangeSeekSlider
   - RxCocoa (= 5.1.1)
   - RxKakaoSDKAuth
@@ -194,6 +198,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 0771232be7444d025ff6fc8c86000fd30e51fc3f
+PODFILE CHECKSUM: 2349fcb94f3c9bb1f6054de92b4a097b314a9646
 
 COCOAPODS: 1.10.1
