@@ -15,48 +15,62 @@ class CommunityService {
   }
 }
 extension CommunityService {
-  func fetchPostList(param: CommunityRequest) -> Observable<Response> {
+  func fetchPostList(param: CommunityRequest) -> Observable<CommunityResponseModel> {
     provider.rx.request(.fetchPostList(param : param))
+      .filterError()
       .asObservable()
+      .map(CommunityResponseModel.self)
+    
   }
-  func addPostList(param: SaveCommunityRequest) -> Observable<Response> {
+  func addPostList(param: SaveCommunityRequest) -> Observable<Bool> {
     provider.rx.request(.addPostList(param : param))
+      .successFlag()
       .asObservable()
   }
   func fetchPostDetail(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchPostDetail(id : id))
+      //.filterError()
       .asObservable()
+      //.map(CommunityResponseModel.self)
   }
-  func modifyPostDetail(id: Int) -> Observable<Response> {
+  func modifyPostDetail(id: Int) -> Observable<Bool> {
     provider.rx.request(.modifyPostDetail(id: id))
+      .successFlag()
       .asObservable()
   }
-  func addComment(id: Int , param: PostCommentRequest) -> Observable<Response> {
+  func addComment(id: Int , param: PostCommentRequest) -> Observable<Bool> {
     provider.rx.request(.addComment(id: id, param : param))
+      .successFlag()
       .asObservable()
   }
   func fetchPostLike(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchPostLike(id : id))
       .asObservable()
   }
-  func addPostLike(param: LikeRequest) -> Observable<Response> {
+  func addPostLike(param: LikeRequest) -> Observable<Bool> {
     provider.rx.request(.addPostLike(param : param))
+      .successFlag()
       .asObservable()
   }
-  func deletePostLike(param: LikeRequest) -> Observable<Response> {
+  func deletePostLike(param: LikeRequest) -> Observable<Bool> {
     provider.rx.request(.deletePostLike(param : param))
+      .successFlag()
       .asObservable()
   }
-  func fetchParticipation(id:Int) -> Observable<Response> {
+  func fetchParticipation(id:Int) -> Observable<CommunityParticipation> {
     provider.rx.request(.fetchParticipation(id : id))
+      .filterError()
       .asObservable()
+      .map(CommunityParticipation.self)
   }
-  func addParticipation(id:Int, param : JoinRequset) -> Observable<Response> {
+  func addParticipation(id:Int, param : JoinRequset) -> Observable<Bool> {
     provider.rx.request(.addParticipation(id : id, param : param))
+      .successFlag()
       .asObservable()
   }
-  func modifyParticipation(id:Int, cancelUserId: Int) -> Observable<Response> {
+  func modifyParticipation(id:Int, cancelUserId: Int) -> Observable<Bool> {
     provider.rx.request(.modifyParticipation(id: id, cancelUserId: cancelUserId))
+      .successFlag()
       .asObservable()
   }
 }

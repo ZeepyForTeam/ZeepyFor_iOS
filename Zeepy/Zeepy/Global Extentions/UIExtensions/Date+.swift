@@ -42,7 +42,7 @@ extension Date {
         return "어제"
         
       } else if components.day ?? 12 < 11 {
-        return "\(components.day)일 전"
+        return "\(components.day ?? 1)일 전"
       }
       else {
         return self.yyyyMMdd
