@@ -95,6 +95,7 @@
 		DA40E1E926B6494600102EED /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E826B6494600102EED /* CommunityService.swift */; };
 		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
 		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
+		DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EE26B7BB9600102EED /* UserManager.swift */; };
 		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
@@ -143,7 +144,6 @@
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
 		DAA2F4A826AAF2F8003E9EAE /* JoinPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A726AAF2F8003E9EAE /* JoinPopUpView.swift */; };
 		DAA2F4AA26AAF85E003E9EAE /* ModifyJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A926AAF85E003E9EAE /* ModifyJoinView.swift */; };
-		DAA2F4AE26ABB299003E9EAE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DAA2F4AD26ABB299003E9EAE /* RxDataSources */; };
 		DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */; };
 		DAA2F4B226ABDFE7003E9EAE /* SimpleReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */; };
 		DAA2F4B626ABF39A003E9EAE /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B526ABF39A003E9EAE /* UITableViewCell+.swift */; };
@@ -272,6 +272,7 @@
 		DA40E1E826B6494600102EED /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
 		DA40E1EC26B64DB300102EED /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		DA40E1EE26B7BB9600102EED /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DA47449E261976B000709883 /* UITextView+RxCocoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+RxCocoa.swift"; sourceTree = "<group>"; };
 		DA4744A6261978B900709883 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -403,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
-				DAA2F4AE26ABB299003E9EAE /* RxDataSources in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
@@ -503,6 +503,7 @@
 				A45F4F7325FF2AF300FCEACF /* Environment.swift */,
 				A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */,
 				A45F4F9225FF2C2800FCEACF /* LoninManager.swift */,
+				DA40E1EE26B7BB9600102EED /* UserManager.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -1158,7 +1159,6 @@
 				DA47445A2612144800709883 /* SnapKit */,
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
 				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
-				DAA2F4AD26ABB299003E9EAE /* RxDataSources */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1211,7 +1211,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					DA61C3F325F32F440063263A = {
 						CreatedOnToolsVersion = 12.4;
@@ -1239,7 +1239,6 @@
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1422,6 +1421,7 @@
 			files = (
 				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
+				DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
 				DA40E1C726B12F6A00102EED /* BuildingResponse.swift in Sources */,
@@ -1451,7 +1451,6 @@
 				DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
-				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DAA2F4B226ABDFE7003E9EAE /* SimpleReviewView.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */,
@@ -1530,11 +1529,8 @@
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
 				DA40E1DD26B3DB1100102EED /* BuildingService.swift in Sources */,
-				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
-				37F37E1226A855B70031ADC3 /* mapSearchViewController.swift in Sources */,
-				DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */,
 				37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */,
-				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */,
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
@@ -1664,9 +1660,9 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://3.34.143.40:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
@@ -1733,7 +1729,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
 				PRODUCT_NAME = "$(TARGET_NAME).dev";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1914,7 +1910,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://3.34.143.40:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1997,7 +1993,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://3.34.143.40:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/ZeepyRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2231,14 +2227,6 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2256,11 +2244,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		DAA2F4AD26ABB299003E9EAE /* RxDataSources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */;
-			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 

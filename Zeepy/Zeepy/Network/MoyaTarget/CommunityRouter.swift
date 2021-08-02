@@ -27,27 +27,27 @@ extension CommunityRouter : TargetType {
   }
   var path: String {
     switch self {
-    case .fetchPostList(param: let param):
+    case .fetchPostList(param: _):
       return "/community"
-    case .addPostList(param: let param):
+    case .addPostList(param: _):
       return "/community"
     case .fetchPostDetail(id: let id):
       return "/community/\(id)"
     case .modifyPostDetail(id: let id):
       return "/community/\(id)"
-    case .addComment(id: let id, param: let param):
+    case .addComment(id: let id, param: _):
       return "/community/comment/\(id)"
     case .fetchPostLike(id: let id):
       return "/community/likes/\(id)"
-    case .addPostLike(param: let param):
+    case .addPostLike(param: _):
       return "/community/like"
-    case .deletePostLike(param: let param):
+    case .deletePostLike(param: _):
       return "/community/like"
     case .fetchParticipation(id: let id):
       return "/community/praticipation/\(id)"
-    case .addParticipation(id: let id, param: let param):
+    case .addParticipation(id: let id, param: _):
       return "/community/praticipation/\(id)"
-    case .modifyParticipation(id: let id, cancelUserId: let cancelUserId):
+    case .modifyParticipation(id: let id, cancelUserId: _):
       return "/community/praticipation/\(id)"
     }
   }
@@ -83,7 +83,7 @@ extension CommunityRouter : TargetType {
   var task: Task {
     switch self {
     case .fetchPostList(param: let param):
-      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding
+      return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding
                                   .default)
     case .addPostList(param: let param):
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding
