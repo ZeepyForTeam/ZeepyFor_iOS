@@ -144,7 +144,7 @@ extension Observable where  Element == Result<Response, APIError> {
           case .error(_):
             print(err.localizedDescription)
             #if DEBUG
-            ActionAlertView.shared.showAlertView(title: err.errorDescription, grantMessage:"확인", okAction: nil)
+//            MessageAlertView.shared.showAlertView(title: err.errorDescription, grantMessage:"확인", okAction: nil)
             #endif
             print(err.message)
             
