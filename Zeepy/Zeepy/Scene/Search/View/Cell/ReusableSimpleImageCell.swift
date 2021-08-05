@@ -16,6 +16,7 @@ class ReusableSimpleImageCell  : UICollectionViewCell{
     $0.image = UIImage(named: "btnOpacityAdd")
     $0.isHidden = true
   }
+  private let deleteBtn = UIButton()
   override func prepareForReuse() {
     super.prepareForReuse()
     plusImage.isHidden = true

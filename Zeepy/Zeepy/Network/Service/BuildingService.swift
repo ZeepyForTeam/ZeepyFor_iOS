@@ -15,10 +15,13 @@ class BuildingService {
   }
 }
 extension BuildingService {
-  func fetchBuildingList(param: BuildingRequest) -> Observable<Response> {
+  func fetchBuildingList(param: BuildingRequest) -> Observable<BuildingResponseModel> {
     provider.rx.request(.fetchBuildingList(param: param))
+      .filterError()
       .asObservable()
+      .map(BuildingResponseModel.self)
   }
+  //클라이언트에서 안씀
   func uploadBuilding(param: UplaodBuildingRequest) -> Observable<Response> {
     provider.rx.request(.uploadBuilding(param: param))
       .asObservable()

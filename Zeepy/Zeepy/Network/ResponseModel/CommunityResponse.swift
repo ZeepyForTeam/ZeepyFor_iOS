@@ -46,7 +46,7 @@ extension CommunityContent {
     default :
       type = .total
     }
-    return .init(type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
+    return .init(id: id, type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
   }
 }
 

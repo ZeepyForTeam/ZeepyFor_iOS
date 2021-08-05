@@ -116,7 +116,8 @@ extension CommunityRouter : TargetType {
   var headers: [String : String]? {
     switch self {
     default:
-      return ["Content-Type":"application/json"]
+      return ["Content-Type":"application/json",
+              "accessToken" : UserDefaultHandler.accessToken!]
     }
   }
 }

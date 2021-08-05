@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = .white
         addConstraints()
     }
+
     func addConstraints(){
         contentView.adds([viewTitle,logoImage,signUpLabel,emailButton,kakaoButton,naverButton,alredyAccount,findIDButton,findPWButton])
         viewTitle.snp.makeConstraints{

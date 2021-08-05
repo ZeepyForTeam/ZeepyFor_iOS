@@ -8,13 +8,13 @@
 import Foundation
 
 struct BuildingRequest: Encodable {
-  let eqRoomCount: String?
+  let eqRoomCount: String? //원룸 투룸 Type 물어보기
   let geDeposit: Int?
   let geMonthly: Int?
   let inFurnitures: [String]?
   let leDeposit: Int?
   let leMonthly: Int?
-  let neType: String?
+  let neType: String? // 거래종류
   let offset: Int?
   let pageNumber: Int?
   let pageSize: Int?

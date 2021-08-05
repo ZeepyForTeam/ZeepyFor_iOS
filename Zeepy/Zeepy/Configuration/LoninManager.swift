@@ -54,6 +54,25 @@ import KakaoSDKAuth
 import RxKakaoSDKAuth
 import KakaoSDKUser
 import RxKakaoSDKUser
+import RxSwift
 class kakaoLoginManager: NSObject {
-  
+  static let shared = kakaoLoginManager()
+
+  func makeLogin() {
+    let disposeBag = DisposeBag()
+    
+    // 카카오톡 설치 여부 확인
+    if (UserApi.isKakaoTalkLoginAvailable()) {
+      UserApi.shared.rx.loginWithKakaoTalk()
+        .subscribe(onNext:{ (oauthToken) in
+          print("loginWithKakaoTalk() success.")
+          print(oauthToken)
+          //do something
+          _ = oauthToken
+        }, onError: {error in
+          print(error)
+        })
+        .disposed(by: disposeBag)
+    }
+  }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 struct PostModel {
+  let id: Int
   let type: PostType
   let status: Bool
   let postTitle: String
