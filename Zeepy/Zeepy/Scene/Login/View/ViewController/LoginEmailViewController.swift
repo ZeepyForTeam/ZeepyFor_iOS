@@ -10,12 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
-import KakaoSDKCommon
-import RxKakaoSDKCommon
-import KakaoSDKAuth
-import RxKakaoSDKAuth
-import KakaoSDKUser
-import RxKakaoSDKUser
+
 class LoginEmailViewController: BaseViewController {
   
   let contentView = UIView()
@@ -82,6 +77,7 @@ class LoginEmailViewController: BaseViewController {
   }
   let kakaoLoginButton = UIButton().then{
     $0.setImage(UIImage(named: "logoCacao"), for: .normal)
+    $0.isEnabled = true
   }
   let naverLoginButton = UIButton().then{
     $0.setImage(UIImage(named: "logoNaver"), for: .normal)
@@ -111,7 +107,8 @@ class LoginEmailViewController: BaseViewController {
   func bind() {
     let input = LoginViewModel.Input(emailText: idTextField.rx.text.orEmpty.asObservable(),
                                      passwordText: pwTextField.rx.text.orEmpty.asObservable(),
-                                     loginButtonDidTap: loginButton.rx.tap.asObservable())
+                                     loginButtonDidTap: loginButton.rx.tap.asObservable(),
+                                     kakaoLogin: kakaoLoginButton.rx.tap.asObservable())
     let output = viewModel.transform(inputs: input)
     output.isLoginSuccess.bind{[weak self] result in
       switch result {
@@ -145,30 +142,38 @@ class LoginEmailViewController: BaseViewController {
         })
       }
     }.disposed(by: disposeBag)
-    
-    kakaoLoginButton.rx.tap.bind{
-      print("카카오로그인클릭")
-    }.disposed(by: disposeBag)
-    
-    kakaoLoginButton.rx.tap.flatMap { _ -> Observable<OAuthToken> in
-      if (UserApi.isKakaoTalkLoginAvailable()) {
+    output.socialLoginSuccess.bind{[weak self] result in
+      switch result {
+      case .success(let result) :
+        UserManager.shared.userId = result.userId
+        LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken)
+        let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+        let rootVC = TabbarViewContorller()
         
-        return UserApi.shared.rx.loginWithKakaoTalk()
-      }
-      else {
-        return .empty()
-      }
-    }.bind{[weak self] token in
-      print(token)
-      UserApi.shared.rx.me()
-        .subscribe(onSuccess:{ (user) in
-          print(user)
-        }, onError: { (error) in
-          print(error)
+        rootNav.viewControllers = [rootVC]
+        rootNav.modalPresentationStyle = .fullScreen
+        self?.present(rootNav, animated: true, completion: nil)
+        
+      case .failure(let errorType) :
+        var errMessage : String = ""
+        
+        switch errorType {
+        case .auth :
+          errMessage = "잘못된 이메일 혹은 비밀번호입니다."
+        case .notfound:
+          errMessage = "존재하지 않는 계정입니다."
+        case .server:
+          errMessage = "서버 점검 중입니다."
+        default :
+          errMessage = "서버 오류가 발생했습니다."
+        }
+        MessageAlertView.shared.showAlertView(title: errMessage, grantMessage: "확인",okAction: {
+          self?.idTextField.text = ""
+          self?.pwTextField.text = ""
         })
-        .disposed(by: self!.disposeBag)
+      }
     }.disposed(by: disposeBag)
-    
   }
   func addContraints(){
     contentView.snp.makeConstraints{
@@ -244,6 +249,7 @@ class LoginEmailViewController: BaseViewController {
     snsStackView.adds([appleLoginButton, kakaoLoginButton, naverLoginButton])
     snsStackView.snp.makeConstraints{
       $0.top.equalTo(snsLoginLabel.snp.bottom).offset(16)
+      $0.height.equalTo(40)
       $0.leading.equalToSuperview().offset(125)
       $0.trailing.equalToSuperview().inset(125)
     }

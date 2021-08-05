@@ -14,3 +14,8 @@ struct RefreshRequest : Encodable {
   let accessToken : String
   let refreshToke : String
 }
+struct RegisterRequset: Encodable, Equatable {
+  let email: String
+  let name: String
+  let password: String
+}

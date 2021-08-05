@@ -15,12 +15,30 @@ class AuthService {
   }
 }
 extension AuthService {
-  func loginFail() {
-    MessageAlertView.shared.showAlertView(title: "로그인에 실패하였습니다.", grantMessage: "확인")
-  }
+
   func login(param: AuthRequest) -> Observable<Result<AuthResponse,APIError>> {
     provider.rx.request(.login(param: param))
       .filterError()
       .mapResult(AuthResponse.self)
+  }
+  func kakaoLogin(token : String) -> Observable<Result<AuthResponse,APIError>> {
+    provider.rx.request(.kakaoLogin(token: token))
+      .filterError()
+      .mapResult(AuthResponse.self)
+  }
+  func checkEmail(email: String) -> Observable<Bool> {
+    provider.rx.request(.emailCheck(email: email))
+      .successFlag()
+      .asObservable()
+  }
+  func checkNickname(name: String) -> Observable<Bool> {
+    provider.rx.request(.nicknameCheck(name: name))
+      .successFlag()
+      .asObservable()
+  }
+  func register(param: RegisterRequset) -> Observable<Bool> {
+    provider.rx.request(.register(param: param))
+      .successFlag()
+      .asObservable()
   }
 }

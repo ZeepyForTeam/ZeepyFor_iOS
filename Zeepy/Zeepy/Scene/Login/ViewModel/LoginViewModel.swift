@@ -9,18 +9,27 @@ import Foundation
 import RxSwift
 import Moya
 
+import KakaoSDKCommon
+import RxKakaoSDKCommon
+import KakaoSDKAuth
+import RxKakaoSDKAuth
+import KakaoSDKUser
+import RxKakaoSDKUser
+
 class LoginViewModel {
   private let service = AuthService(provider: MoyaProvider<AuthRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let emailText : Observable<String>
     let passwordText: Observable<String>
     let loginButtonDidTap: Observable<Void>
+    let kakaoLogin: Observable<Void>
 //    let findEmail: Observable<Void>
 //    let findPassword: Observable<Void>
 //    let register: Observable<Void>
   }
   struct Output {
     let isLoginSuccess: Observable<Result<AuthResponse, APIError>>
+    let socialLoginSuccess:  Observable<Result<AuthResponse, APIError>>
   }
 }
 extension LoginViewModel {
@@ -32,7 +41,17 @@ extension LoginViewModel {
       .flatMapLatest{ (id, pw) in
        self?.service.login(param: .init(email: id, password: pw)) ?? .empty()
       }
-    
-    return .init(isLoginSuccess: result)
+    let socialLogin = inputs.kakaoLogin.flatMapLatest{  _ -> Observable<OAuthToken> in
+      if (UserApi.isKakaoTalkLoginAvailable()) {
+        return UserApi.shared.rx.loginWithKakaoTalk()
+      }
+      else {
+        return .empty()
+      }
+    }.flatMapLatest{ token in
+      self?.service.kakaoLogin(token: token.accessToken) ?? .empty()
+    }
+    return .init(isLoginSuccess: result,
+                 socialLoginSuccess: socialLogin)
   }
 }
