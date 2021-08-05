@@ -22,6 +22,7 @@ class ConditionViewController: UIViewController {
         var name = String()
         var selected = Bool()
     }
+  
     // MARK: - Arrays
     var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1", selected: true),
                                      ListModel(title: "투룸", image: "btnOption2", selected: true),
@@ -40,7 +41,10 @@ class ConditionViewController: UIViewController {
                                       OptionModel(name: "인덕션", selected: true),
                                       OptionModel(name: "가스레인지", selected: true),
                                       OptionModel(name: "전자레인지", selected: true)]
-    
+  func temp () {
+    let furnitures = optionList.filter{$0.selected}
+      .map{$0.name}
+  }
     // MARK: - Components
     let scrollView = UIScrollView()
     let contentView = UIView()

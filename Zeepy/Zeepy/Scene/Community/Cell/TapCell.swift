@@ -31,15 +31,15 @@ extension TapCell {
       $0.top.leading.trailing.bottom.equalTo(self.contentView.safeAreaLayoutGuide)
     }
     print(self.contentView.safeAreaLayoutGuide.snp.height)
-
+    
   }
   private func setUpCollectionView() {
     let layout = UICollectionViewFlowLayout()
-
+    
     postCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     postCollectionView.backgroundColor = .white
     postCollectionView.register(postSimpleCollectionViewCell.self,
-                            forCellWithReuseIdentifier: postSimpleCollectionViewCell.identifier)
+                                forCellWithReuseIdentifier: postSimpleCollectionViewCell.identifier)
     //    collectionView.register(MyPackageCollectionViewCell.self, forCellWithReuseIdentifier: MyPackageCollectionViewCell.identifier)
     postCollectionView.showsHorizontalScrollIndicator = false
     postCollectionView.showsVerticalScrollIndicator = false
@@ -57,7 +57,7 @@ extension TapCell {
     }
     else {
       let layout = UICollectionViewFlowLayout()
-
+      
       layout.minimumLineSpacing = 8
       layout.scrollDirection = .vertical
       layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16)
@@ -73,12 +73,12 @@ extension TapCell {
       cell.bindCell(model: data)
     }.disposed(by: disposeBag)
     postCollectionView.rx.modelSelected(PostModel.self)
-      .bind{[weak self] _ in
-        let vc = PostDetailViewControlelr()
-        vc.hidesBottomBarWhenPushed = true
-        vc.navigationController?.setNavigationBarHidden(true, animated: false)
-        UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
-
+      .bind{[weak self] model in
+        if let vc = PostDetailViewControlelr(nibName: nil, bundle: nil, postId: model.id) {
+          vc.hidesBottomBarWhenPushed = true
+          vc.navigationController?.setNavigationBarHidden(true, animated: false)
+          UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+        }
       }.disposed(by: disposeBag)
   }
 }
