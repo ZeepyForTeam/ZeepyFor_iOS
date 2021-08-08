@@ -11,8 +11,9 @@ import Then
 import RxSwift
 import RxCocoa
 
+
 class LoginEmailViewController: BaseViewController {
-     
+
     let contentView = UIView()
     
     let backButton = UIButton().then{
@@ -86,10 +87,12 @@ class LoginEmailViewController: BaseViewController {
         super.viewDidLoad()
         self.view.addSubview(contentView)
         addContraints()
+         
       signUpButton.rx.tap.bind{[weak self] in
         let vc = SignUpViewController()
         self?.navigationController?.pushViewController(vc, animated: true)
       }.disposed(by: disposeBag)
+        
       loginButton.rx.tap.bind{ [weak self] in
         LoginManager.shared.makeLoginStatus(accessToken: "temp", refreshToken: "refresh")
         let rootNav = UINavigationController()
@@ -100,6 +103,8 @@ class LoginEmailViewController: BaseViewController {
         rootNav.modalPresentationStyle = .fullScreen
         self?.present(rootNav, animated: true, completion: nil)
       }.disposed(by: disposeBag)
+        
+        pwTextField.isSecureTextEntry = true
     }
 
     func addContraints(){

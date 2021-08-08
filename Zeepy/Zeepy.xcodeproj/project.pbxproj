@@ -22,10 +22,10 @@
 		3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* LoginEmailViewController.swift */; };
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */; };
-		37D75BA426B699A700DF851E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75BA326B699A700DF851E /* LoginModel.swift */; };
 		37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75BA526B69D2900DF851E /* LoginViewModel.swift */; };
 		37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB72692FF260052047B /* SignUpViewController.swift */; };
 		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
+		37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB8A726BFD4A70048A6BF /* LoginModel.swift */; };
 		37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
 		9470C7C23AD3119313948F54 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */; };
@@ -208,10 +208,10 @@
 		3798C1A42692917100616311 /* LoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmailViewController.swift; sourceTree = "<group>"; };
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTableViewCell.swift; sourceTree = "<group>"; };
-		37D75BA326B699A700DF851E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		37D75BA526B69D2900DF851E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		37EB8BB72692FF260052047B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
+		37ECB8A726BFD4A70048A6BF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
 		5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 		37EB8BBB2693D2D40052047B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				37D75BA326B699A700DF851E /* LoginModel.swift */,
+				37ECB8A726BFD4A70048A6BF /* LoginModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -497,8 +497,8 @@
 			isa = PBXGroup;
 			children = (
 				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
-				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
 				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
+				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1519,7 +1519,6 @@
 				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
-				37D75BA426B699A700DF851E /* LoginModel.swift in Sources */,
 				DA40E1E126B4CDED00102EED /* DealResponse.swift in Sources */,
 				DA483D2C26A9193700A81704 /* CustomTextField.swift in Sources */,
 				3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */,
@@ -1556,6 +1555,7 @@
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
 				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,
+				37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */,
 				CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */,
 				CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,

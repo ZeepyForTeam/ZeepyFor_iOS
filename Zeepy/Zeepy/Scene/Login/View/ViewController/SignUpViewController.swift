@@ -12,7 +12,9 @@ import RxSwift
 import RxCocoa
 
 class SignUpViewController: BaseViewController {
-
+    
+    private let signupModel = SignupModel()
+    
     let contentView = UIView()
     let nameTextField = InputBoxView().then{
         $0.infoTitle.text = "이름"
@@ -38,9 +40,11 @@ class SignUpViewController: BaseViewController {
         $0.textColor = .heartColor //salmon color가 왜 안나오지?...
         $0.text = "비밀번호가 일치하지 않습니다."
         $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+        $0.isHidden = true
     }
     let pwCheckImage = UIImageView().then{
         $0.image = UIImage(named: "check")
+        $0.isHidden = true
     }
     let newsCheckBox = UIButton().then{
         $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
@@ -68,8 +72,11 @@ class SignUpViewController: BaseViewController {
         $0.backgroundColor = .mainBlue
         $0.setRounded(radius: 6)
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 16.0)
+        $0.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
-    
+    @objc func registerButtonTapped(sender : UIButton){
+        print("회원가입버튼눌림")
+    }
     @objc func determineButtonImage(sender: UIButton){
         if termsCheckBox.isTouchInside{
             termsCheckBox.isSelected.toggle()
@@ -104,28 +111,47 @@ class SignUpViewController: BaseViewController {
             $0.leading.trailing.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         addConstraints()
+        binding()
+    }
+
+    
+     
+    func binding(){
+        nameTextField.infoTextField.rx.text.orEmpty.map{ $0 ?? " "}.bind(to: signupModel.name).disposed(by: disposeBag)
+        idTextField.infoTextField.rx.text.orEmpty.map{ $0 ?? " "}.bind(to: signupModel.id).disposed(by: disposeBag)
+        emailTextField.infoTextField.rx.text.orEmpty.map{ $0 ?? " "}.bind(to: signupModel.email).disposed(by: disposeBag)
+        passWordTextField.infoTextField.rx.text.orEmpty.map{ $0 ?? " "}.bind(to: signupModel.passWord).disposed(by: disposeBag)
+        surePassWordTextField.infoTextField.rx.text.orEmpty.map{ $0 ?? " "}.bind(to: signupModel.ensurePassWord).disposed(by: disposeBag)
+        
+        signupModel.isValid().bind(to: signUpfinishButton.rx.isEnabled).disposed(by: disposeBag)
+        signupModel.isValid().map{$0 ? 1 : 0.1}.bind(to : signUpfinishButton.rx.alpha).disposed(by: disposeBag)
+        
+        signupModel.correctPW().bind(to: pwNotSame.rx.isHidden).disposed(by: disposeBag)
+        signupModel.notcorrectPW().bind(to: pwCheckImage.rx.isHidden).disposed(by: disposeBag)
+//        termsCheckBox.rx.tap.asObservable().bind(to: signUpfinishButton.rx.isEnabled).disposed(by: disposeBag)
+//        bind(to: signUpfinishButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
-    // MARK: - Server연결부
-//    private let disposeBag = DisposeBag()
-    private let viewModel = LoginViewModel()
-    private let privacyAgreeSubject = BehaviorSubject<Bool>(value: false)
-    private let promotionAgreeSubject = BehaviorSubject<Bool>(value: false)
-    private func bind() {
-        let input = LoginViewModel.Input(nameText : nameTextField.rx.text.orEmpty.asObservable(),
-                                         idText: idTextField.rx.text.orEmpty.asObservable(),
-                                         emailText: emailTextField.rx.text.orEmpty.asObservable(),
-                                         passwordText: passWordTextField.rx.text.orEmpty.asObservable(),
-                                         surePasswordText: surePassWordTextField.rx.text.orEmpty.asObservable(),
-                                         registerBtnClicked: signUpfinishButton.rx.tap.asObservable(),
-                                         privacyAgree: privacyAgreeSubject,
-                                         promotionAgree: promotionAgreeSubject)
-    
-        let output = viewModel.transform(input: input)
-        
-        output.registerEnabled
-          .bind(to: signUpfinishButton.rx.isEnabled)
-          .disposed(by: disposeBag)
+//     MARK: - Server연결부
+//
+//    private let viewModel = LoginViewModel()
+//    private let privacyAgreeSubject = BehaviorSubject<Bool>(value: false)
+//    private let promotionAgreeSubject = BehaviorSubject<Bool>(value: false)
+//    private func bind() {
+//        let input = LoginViewModel.Input(nameText : nameTextField.rx.text.orEmpty.asObservable(),
+//                                         idText: idTextField.rx.text.orEmpty.asObservable(),
+//                                         emailText: emailTextField.rx.text.orEmpty.asObservable(),
+//                                         passwordText: passWordTextField.rx.text.orEmpty.asObservable(),
+//                                         surePasswordText: surePassWordTextField.rx.text.orEmpty.asObservable(),
+//                                         registerBtnClicked: signUpfinishButton.rx.tap.asObservable(),
+//                                         privacyAgree: privacyAgreeSubject,
+//                                         promotionAgree: promotionAgreeSubject)
+//
+//        let output = viewModel.transform(input: input)
+//
+//        output.registerEnabled
+//          .bind(to: signUpfinishButton.rx.isEnabled)
+//          .disposed(by: disposeBag)
         
 //        output.registerResult
 //          .bind{[weak self] model in
@@ -136,20 +162,20 @@ class SignUpViewController: BaseViewController {
 //              """
 //          }.disposed(by: disposeBag)
         
-        termsCheckBox.rx.tap.map{ [weak self] in
-          self?.termsCheckBox.isSelected.toggle()
-          return self?.termsCheckBox.isSelected ?? false
-        }
-        .bind(to: privacyAgreeSubject)
-        .disposed(by: disposeBag)
-        
-        newsCheckBox.rx.tap.map{ [weak self] in
-          self?.newsCheckBox.isSelected.toggle()
-          return self?.newsCheckBox.isSelected ?? false
-        }
-        .bind(to: promotionAgreeSubject)
-        .disposed(by: disposeBag)
-      }
+//        termsCheckBox.rx.tap.map{ [weak self] in
+//          self?.termsCheckBox.isSelected.toggle()
+//          return self?.termsCheckBox.isSelected ?? false
+//        }
+//        .bind(to: privacyAgreeSubject)
+//        .disposed(by: disposeBag)
+//        
+//        newsCheckBox.rx.tap.map{ [weak self] in
+//          self?.newsCheckBox.isSelected.toggle()
+//          return self?.newsCheckBox.isSelected ?? false
+//        }
+//        .bind(to: promotionAgreeSubject)
+//        .disposed(by: disposeBag)
+//      }
     
     
 
@@ -221,4 +247,46 @@ class SignUpViewController: BaseViewController {
             $0.height.equalTo(40)
         }
     }
+}
+
+class SignupModel {
+    let name = PublishSubject<String>()
+    let id = PublishSubject<String>()
+    let email = PublishSubject<String>()
+    let passWord = PublishSubject<String>()
+    let ensurePassWord = PublishSubject<String>()
+    let privacy = PublishSubject<Bool>()
+    let promotion = PublishSubject<Bool>()
+    let register = PublishSubject<Bool>()
+    let wrongPW = PublishSubject<Bool>()
+    let rightPW = PublishSubject<Bool>()
+    
+    func isValid() -> Observable<Bool>{
+        return Observable.combineLatest(email.asObservable().startWith(""),
+                                        passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")
+//                                        privacy.
+                                        ).map{ email, password, ensurePassword  in
+                                            return email.contains("@") && password.count > 3 && password == ensurePassword }.startWith(false)
+    }
+    
+    func correctPW() -> Observable<Bool>{
+        return Observable.combineLatest(passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")).map{
+                                            password, ensurepassword in
+                                            return password == ensurepassword
+                                        }.startWith(false)
+        
+    }
+    
+    func notcorrectPW() -> Observable<Bool>{
+        return Observable.combineLatest(passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")).map{
+                                            password, ensurepassword in
+                                            return password != ensurepassword
+                                        }.startWith(true)
+        
+    }
+
+    
 }

@@ -1,18 +1,19 @@
 //
-//  File.swift
+//  LoginModel.swift
 //  Zeepy
 //
-//  Created by JUEUN KIM on 2021/08/01.
+//  Created by JUEUN KIM on 2021/08/08.
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 struct LoginModel {
-    let name : String
-    let id : String
-    let email : String
-    let passWord: String
-    let ensurePassWord : String
-    let privacy: Bool
-    let promotion: Bool
+    let id : PublishSubject<String>
+    let password : PublishSubject<String>
+    let findID : PublishSubject<Bool>
+    let findPW : PublishSubject<Bool>
+    let signUp : PublishSubject<Bool>
+    let login : PublishSubject<Bool>
 }
