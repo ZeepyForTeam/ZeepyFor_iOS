@@ -97,6 +97,7 @@
 		DA40E1E926B6494600102EED /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1E826B6494600102EED /* CommunityService.swift */; };
 		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
 		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
+		DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EE26B7BB9600102EED /* UserManager.swift */; };
 		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
@@ -140,12 +141,18 @@
 		DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49225F4DB2A0063263A /* UITextView+.swift */; };
 		DA61C49825F4DCE90063263A /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49725F4DCE90063263A /* UICollectionView+.swift */; };
 		DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61C49C25F4DCF60063263A /* UIScrollView+.swift */; };
+		DA66091926BA20920019D7F7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66091826BA20920019D7F7 /* HomeViewModel.swift */; };
+		DA66091B26BA296B0019D7F7 /* ConditionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66091A26BA296B0019D7F7 /* ConditionModel.swift */; };
+		DA66091E26BA2DEC0019D7F7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66091D26BA2DEC0019D7F7 /* LoginViewModel.swift */; };
+		DA66095E26BBAF1F0019D7F7 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66095D26BBAF1F0019D7F7 /* AuthResponse.swift */; };
+		DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66095F26BBAF7D0019D7F7 /* AuthRequest.swift */; };
+		DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096126BBAFB90019D7F7 /* AuthRouter.swift */; };
+		DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096326BBB1FE0019D7F7 /* AuthService.swift */; };
 		DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2F4A026A99657003E9EAE /* DaumMap.framework */; };
 		DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A326AACFD9003E9EAE /* Optional+.swift */; };
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
 		DAA2F4A826AAF2F8003E9EAE /* JoinPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A726AAF2F8003E9EAE /* JoinPopUpView.swift */; };
 		DAA2F4AA26AAF85E003E9EAE /* ModifyJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A926AAF85E003E9EAE /* ModifyJoinView.swift */; };
-		DAA2F4AE26ABB299003E9EAE /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DAA2F4AD26ABB299003E9EAE /* RxDataSources */; };
 		DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4AF26ABDE97003E9EAE /* DetailReviewViewContoller.swift */; };
 		DAA2F4B226ABDFE7003E9EAE /* SimpleReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B126ABDFE7003E9EAE /* SimpleReviewView.swift */; };
 		DAA2F4B626ABF39A003E9EAE /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4B526ABF39A003E9EAE /* UITableViewCell+.swift */; };
@@ -276,6 +283,7 @@
 		DA40E1E826B6494600102EED /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
 		DA40E1EC26B64DB300102EED /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		DA40E1EE26B7BB9600102EED /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DA47449E261976B000709883 /* UITextView+RxCocoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+RxCocoa.swift"; sourceTree = "<group>"; };
 		DA4744A6261978B900709883 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		DA4744B126197F5400709883 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +338,13 @@
 		DA61C49225F4DB2A0063263A /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		DA61C49725F4DCE90063263A /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		DA61C49C25F4DCF60063263A /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
+		DA66091826BA20920019D7F7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DA66091A26BA296B0019D7F7 /* ConditionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionModel.swift; sourceTree = "<group>"; };
+		DA66091D26BA2DEC0019D7F7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DA66095D26BBAF1F0019D7F7 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		DA66095F26BBAF7D0019D7F7 /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
+		DA66096126BBAFB90019D7F7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		DA66096326BBB1FE0019D7F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		DAA2F47C26A99657003E9EAE /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
 		DAA2F47D26A99657003E9EAE /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
 		DAA2F47E26A99657003E9EAE /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
@@ -407,7 +422,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
-				DAA2F4AE26ABB299003E9EAE /* RxDataSources in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
@@ -509,6 +523,7 @@
 				A45F4F7325FF2AF300FCEACF /* Environment.swift */,
 				A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */,
 				A45F4F9225FF2C2800FCEACF /* LoninManager.swift */,
+				DA40E1EE26B7BB9600102EED /* UserManager.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -567,6 +582,7 @@
 			children = (
 				DAF4D38D265A02BA00B281E2 /* FilterModel.swift */,
 				DA2EDB70262C58FE00620B7E /* BuildingModel.swift */,
+				DA66091A26BA296B0019D7F7 /* ConditionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -664,6 +680,7 @@
 		DA02AF9A261206DC0016C30A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DA66091826BA20920019D7F7 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -738,6 +755,7 @@
 				DA40E1E226B4CE6A00102EED /* DealRouter.swift */,
 				DA40E1E626B6462100102EED /* CommunityRouter.swift */,
 				DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */,
+				DA66096126BBAFB90019D7F7 /* AuthRouter.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -750,6 +768,7 @@
 				DA40E1E426B4D0D700102EED /* DealService.swift */,
 				DA40E1E826B6494600102EED /* CommunityService.swift */,
 				DA40E1EC26B64DB300102EED /* ReviewService.swift */,
+				DA66096326BBB1FE0019D7F7 /* AuthService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -762,6 +781,7 @@
 				DA40E1CE26B3C5EB00102EED /* ReviewRequest.swift */,
 				DA40E1D426B3D4D100102EED /* AreaCodeRequest.swift */,
 				DA40E1DE26B4CDA900102EED /* DealRequest.swift */,
+				DA66095F26BBAF7D0019D7F7 /* AuthRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -773,6 +793,7 @@
 				DA40E1CC26B1354C00102EED /* CommunityResponse.swift */,
 				DA40E1D026B3C83000102EED /* ReviewResponse.swift */,
 				DA40E1E026B4CDED00102EED /* DealResponse.swift */,
+				DA66095D26BBAF1F0019D7F7 /* AuthResponse.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -879,6 +900,7 @@
 		DA4745C7261B298600709883 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				DA66091C26BA2DDD0019D7F7 /* ViewModel */,
 				37EB8BBD2693D2E60052047B /* View */,
 				37EB8BBC2693D2DF0052047B /* ViewModel */,
 				37EB8BBB2693D2D40052047B /* Model */,
@@ -1041,6 +1063,14 @@
 			path = UIExtensions;
 			sourceTree = "<group>";
 		};
+		DA66091C26BA2DDD0019D7F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA66091D26BA2DEC0019D7F7 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		DAA2F47A26A99657003E9EAE /* DaumMap.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,7 +1194,6 @@
 				DA47445A2612144800709883 /* SnapKit */,
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
 				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
-				DAA2F4AD26ABB299003E9EAE /* RxDataSources */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1217,7 +1246,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					DA61C3F325F32F440063263A = {
 						CreatedOnToolsVersion = 12.4;
@@ -1245,7 +1274,6 @@
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1428,6 +1456,7 @@
 			files = (
 				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
+				DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
 				DA40E1C726B12F6A00102EED /* BuildingResponse.swift in Sources */,
@@ -1456,8 +1485,8 @@
 				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
 				DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
+				DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
-				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DAA2F4B226ABDFE7003E9EAE /* SimpleReviewView.swift in Sources */,
 				DA4744D22619899200709883 /* UIApplication+.swift in Sources */,
 				DAB3E01A265D357B00B7B4F2 /* SettingView.swift in Sources */,
@@ -1493,17 +1522,21 @@
 				DAA2F4B826ACEBBC003E9EAE /* ReviewListViewController.swift in Sources */,
 				371628B02646665F0006AE80 /* tendencyButton.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
+				DA66095E26BBAF1F0019D7F7 /* AuthResponse.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
+				DA66091E26BA2DEC0019D7F7 /* LoginViewModel.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
 				CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
 				DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */,
+				DA66091926BA20920019D7F7 /* HomeViewModel.swift in Sources */,
 				DA483D13269C59E000A81704 /* CustomNavigationBar.swift in Sources */,
 				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA40E1CD26B1354C00102EED /* CommunityResponse.swift in Sources */,
+				DA66091B26BA296B0019D7F7 /* ConditionModel.swift in Sources */,
 				CC12B96926AA5B2600D17C95 /* ManageReviewTableViewCell.swift in Sources */,
 				DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */,
 				DA40E1CF26B3C5EB00102EED /* ReviewRequest.swift in Sources */,
@@ -1515,9 +1548,11 @@
 				DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
+				DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
+				DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
 				DA40E1E126B4CDED00102EED /* DealResponse.swift in Sources */,
 				DA483D2C26A9193700A81704 /* CustomTextField.swift in Sources */,
@@ -1541,7 +1576,7 @@
 				37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */,
 				DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */,
 				37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */,
-				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				DA40E1DF26B4CDA900102EED /* DealRequest.swift in Sources */,
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
@@ -1672,10 +1707,10 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				DYLIB_CURRENT_VERSION = 6;
@@ -1741,7 +1776,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
 				PRODUCT_NAME = "$(TARGET_NAME).dev";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1922,7 +1957,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2005,7 +2040,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://baseurl.com";
+				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/ZeepyRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2239,14 +2274,6 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2264,11 +2291,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		DAA2F4AD26ABB299003E9EAE /* RxDataSources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DAA2F4AC26ABB299003E9EAE /* XCRemoteSwiftPackageReference "RxDataSources" */;
-			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 

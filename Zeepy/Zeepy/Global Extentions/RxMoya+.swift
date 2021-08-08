@@ -10,7 +10,7 @@ import RxSwift
 import Moya
 import CoreData
 extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
-  //static let authProvider = MoyaProvider<AuthServices>(plugins: [NetworkLoggerPlugin()])
+  static let authProvider = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin()])
   
   public func filter401StatusCode() -> Single<Element> {
     return flatMap { response in
@@ -77,12 +77,54 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
   //통신 성공여부만 필요한 경우
   public func successFlag() -> Single<Bool> {
     return flatMap { response in
-      guard response.statusCode == 200 else {
+      guard (200...300).contains(response.statusCode) else {
         return .just(false)
       }
       return .just(true)
     }
   }
+  public func retryWithAuthIfNeeded() -> Single<Response> {
+    // 둘다 없으면 로그아웃하고 Error
+    if UserDefaultHandler.accessToken == nil && UserDefaultHandler.refreshToken == nil {
+      LoginManager.shared.makeLogoutStatus()
+      return Single.error(AuthError.notLogin)
+    }
+    else {
+      return retryWhen{ error in
+        Observable.zip(error,
+                       Observable.range(start:1, count:1),
+                       resultSelector: { $1 })
+          .debug()
+          .flatMap{ _ -> Single<AuthResponse> in
+            guard
+              let refreshToken = UserDefaultHandler.refreshToken,
+              let accessToken = UserDefaultHandler.accessToken
+            else { return Single.error(AuthError.notLogin)}
+            
+            return PrimitiveSequence<Trait, Element>
+              .authProvider.rx.request(.refreshToken(param:RefreshRequest(accessToken: accessToken,
+                                                                          refreshToke: refreshToken)))
+              .filterSuccessfulStatusAndRedirectCodes()
+              .map(AuthResponse.self)
+              .catchError{ error in
+                if case MoyaError.statusCode(let response) = error {
+                  if response.statusCode == 401 {
+                    UserDefaultHelper<Any>.clearAll()
+                  }
+                }
+                return Single.error(error)
+              }
+              .flatMap({token -> Single<AuthResponse> in
+                LoginManager.shared.makeLoginStatus(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                return Single.just(token)
+              })
+          }
+      }
+    }
+  }
+}
+public enum AuthError: Error {
+  case notLogin
 }
 public enum APIError: Error , Equatable {
   case badrequest
@@ -143,9 +185,9 @@ extension Observable where  Element == Result<Response, APIError> {
             MessageAlertView.shared.showAlertView(title: "서버 에러가 발생했습니다.", grantMessage:"확인", okAction: nil)
           case .error(_):
             print(err.localizedDescription)
-//            #if DEBUG
-//            ActionAlertView.shared.showAlertView(title: err.errorDescription, grantMessage:"확인", okAction: nil)
-//            #endif
+            #if DEBUG
+            MessageAlertView.shared.showAlertView(title: err.errorDescription, grantMessage:"확인", okAction: nil)
+            #endif
             print(err.message)
             
           }
@@ -153,6 +195,12 @@ extension Observable where  Element == Result<Response, APIError> {
         }
       }
     
+  }
+  public func mapResult<D> (_ type: D.Type, atKeyPath keyPath: String? = nil) -> Observable<Result<D, APIError>> where D : Decodable{
+    return self
+      .map{result in
+        result.map{try! $0.map(D.self)}
+      }
   }
   public typealias errAction = () -> Void
   /// Result 타입의 Response 형태일 때 Decodable한 형태로 매핑해주는 함수입니다.

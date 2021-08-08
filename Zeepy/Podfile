@@ -8,10 +8,9 @@ target 'Zeepy' do
   # Pods for Zeepy
   # add the Firebase pod for Google Analytics
   inhibit_all_warnings!
-  pod 'RxSwift', '5.1.2'
-  pod 'RxCocoa', '5.1.1'
   pod 'Moya', '~> 14.0'
   pod 'Moya/RxSwift', '~> 14.0'
+  pod 'RxDataSources', '~> 4.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'RangeSeekSlider'

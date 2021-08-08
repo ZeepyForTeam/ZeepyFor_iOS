@@ -63,4 +63,32 @@ extension ValidateType {
       return "emoji5"
     }
   }
+  var inEnglish: String {
+    switch self {
+    case .business:
+      return "business"
+    case .kind:
+      return "Kind"
+    case .free:
+      return "Graze"
+    case .cute:
+      return "Softy"
+    case .bad:
+      return "Bad"
+    }
+  }
+  var color: UIColor {
+    switch self {
+    case .business:
+      return UIColor.rgb(255, 147, 123)
+    case .kind:
+      return UIColor.rgb(255, 224, 135)
+    case .free:
+      return UIColor.rgb(133, 240, 205)
+    case .cute:
+      return UIColor.rgb(137, 169, 255)
+    case .bad:
+      return UIColor.rgb(196, 196, 196)
+    }
+  }
 }

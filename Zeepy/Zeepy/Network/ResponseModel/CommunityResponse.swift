@@ -7,7 +7,7 @@
 
 import Foundation
 // MARK: - CommunityResponseModel
-struct CommunityResponseModel: Codable {
+struct CommunityResponseModel: Decodable {
     let content: [CommunityContent]
     let empty, first, last: Bool
     let number, numberOfElements: Int
@@ -18,7 +18,7 @@ struct CommunityResponseModel: Codable {
 }
 
 // MARK: - Content
-struct CommunityContent: Codable {
+struct CommunityContent: Decodable {
     let address: String
     let comments: [Comment]
     let communityCategory, content: String
@@ -33,9 +33,25 @@ struct CommunityContent: Codable {
     let title: String
     let user: ContentUser
 }
+extension CommunityContent {
+  func toPostModel() -> PostModel {
+    var type : PostType
+    switch communityCategory {
+    case "JOINTPURCHASE" :
+      type = .deal
+    case "FREESHARING" :
+      type = .share
+    case "NEIGHBORHOODFRIEND" :
+      type = .friend
+    default :
+      type = .total
+    }
+    return .init(id: id, type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
+  }
+}
 
 // MARK: - Comment
-struct Comment: Codable {
+struct Comment: Decodable {
     let comment: String
     let community: Community
     let createdDate: String
@@ -44,9 +60,13 @@ struct Comment: Codable {
     let subComments: [String]
     let user: CommunityUser
 }
-
+extension Comment {
+  func toCommentModel() -> CommentSectionModel {
+    return .init(identity: id, profile: "", userName: user.name, comment: comment, hidden: isSecret, postedAt: createdDate)
+  }
+}
 // MARK: - Community
-struct Community: Codable {
+struct Community: Decodable {
     let address: String
     let comments: [String]
     let communityCategory, content, createdDate: String
@@ -64,13 +84,13 @@ struct Community: Codable {
 }
 
 // MARK: - Like
-struct Like: Codable {
+struct Like: Decodable {
     let createdDate: String
     let id: Int
 }
 
 // MARK: - CommunityUser
-struct CommunityUser: Codable {
+struct CommunityUser: Decodable {
     let communities: [String]
     let id: Int
     let likedCommunities: [Like]
@@ -80,7 +100,7 @@ struct CommunityUser: Codable {
 }
 
 // MARK: - ParticipationList
-struct ParticipationList: Codable {
+struct ParticipationList: Decodable {
     let community: Community
     let createdDate: String
     let id: Int
@@ -88,17 +108,17 @@ struct ParticipationList: Codable {
 }
 
 // MARK: - ContentUser
-struct ContentUser: Codable {
+struct ContentUser: Decodable {
     let id: Int
     let name: String
 }
 
-struct CommunityParticipation: Codable {
+struct CommunityParticipation: Decodable {
     let participationResDtoList, writeOutResDtoList: [ResDtoList]
 }
 
 // MARK: - ResDtoList
-struct ResDtoList: Codable {
+struct ResDtoList: Decodable {
     let communityCategory, content: String
     let id: Int
     let title: String

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key></key>
-	<string></string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -27,12 +25,13 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao6873893d1c0e49a180bb28faaa47aa3e</string>
+				<string>kakao</string>
+				<string>02c78bdac1dc2a54c54f8e7ba13183d2</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>949</string>
+	<string>1002</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>c9eed0a8848e4d0bae872569d18063a8</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -41,6 +40,11 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NanumSquareRoundOTFR.otf</string>

@@ -8,4 +8,5 @@
 import Foundation
 struct Environment {
     static let baseUrl = (Bundle.main.infoDictionary?["BASE_URL"] as! String).replacingOccurrences(of: " ", with: "")
+//  static let baseUrl = "http://13.125.41.110:8080/api"
 }
