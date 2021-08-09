@@ -148,6 +148,7 @@
 		DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66095F26BBAF7D0019D7F7 /* AuthRequest.swift */; };
 		DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096126BBAFB90019D7F7 /* AuthRouter.swift */; };
 		DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096326BBB1FE0019D7F7 /* AuthService.swift */; };
+		DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */; };
 		DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2F4A026A99657003E9EAE /* DaumMap.framework */; };
 		DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A326AACFD9003E9EAE /* Optional+.swift */; };
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
@@ -345,6 +346,7 @@
 		DA66095F26BBAF7D0019D7F7 /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		DA66096126BBAFB90019D7F7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		DA66096326BBB1FE0019D7F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DAA2F47C26A99657003E9EAE /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
 		DAA2F47D26A99657003E9EAE /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
 		DAA2F47E26A99657003E9EAE /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 			isa = PBXGroup;
 			children = (
 				DA66091D26BA2DEC0019D7F7 /* LoginViewModel.swift */,
+				DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1457,6 +1460,7 @@
 				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
 				DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */,
+				DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
 				DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */,
 				DA40E1C726B12F6A00102EED /* BuildingResponse.swift in Sources */,

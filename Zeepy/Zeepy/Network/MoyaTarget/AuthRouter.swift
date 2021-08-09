@@ -9,9 +9,9 @@ import Foundation
 import Moya
 enum AuthRouter {
   case login(param: AuthRequest)
-  case register
-  case emailCheck
-  case nicknameCheck
+  case register(param: RegisterRequset)
+  case emailCheck(email: String)
+  case nicknameCheck(name:String)
   case logout
   case refreshToken(param : RefreshRequest)
   case kakaoLogin(token: String)
@@ -26,13 +26,13 @@ extension AuthRouter : TargetType {
     case .login(param: let param):
       return "/auth/login"
     case .register:
-      return "/auth/logout"
+      return "/user/registration"
     case .emailCheck:
-      return "/auth"
+      return "/user/redundancy/email"
     case .nicknameCheck:
-      return "/auth"
+      return "/user/redundancy/nickname"
     case .logout:
-      return "/auth"
+      return "/auth/logout"
     case .refreshToken(param: let param):
       return "/auth/reissue"
     case .kakaoLogin(token: let token):
@@ -41,16 +41,14 @@ extension AuthRouter : TargetType {
   }
   var method: Moya.Method {
     switch self {
-
-
     case .login(param: let param):
       return .post
     case .register:
       return .post
     case .emailCheck:
-      return .get
+      return .post
     case .nicknameCheck:
-      return .get
+      return .post
     case .logout:
       return .delete
     case .refreshToken(param: let param):
@@ -67,12 +65,14 @@ extension AuthRouter : TargetType {
 
     case .login(param: let param):
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
-    case .register:
-      return .requestPlain
-    case .emailCheck:
-      return .requestPlain
-    case .nicknameCheck:
-      return .requestPlain
+    case .register(let param):
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
+    case .emailCheck(let email):
+      let param = ["email" : email]
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
+    case .nicknameCheck(let name):
+      let param = ["nickname" : name]
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     case .logout:
       return .requestPlain
     case .refreshToken(param: let param):
