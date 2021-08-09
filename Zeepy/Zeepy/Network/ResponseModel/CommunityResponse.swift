@@ -22,12 +22,13 @@ struct CommunityContent: Decodable {
     let address: String
     let comments: [Comment]
     let communityCategory, content: String
+    let createdTime: String
     let id: Int
     let imageUrls: [String]
-    let isLiked, isParticipant: Bool
+    let isCompleted, isLiked, isParticipant: Bool
     let participationList: [ParticipationList]
     let productName: String
-    let productPrice: Int
+    let productPrice: Int?
     let sharingMethod: String
     let targetNumberOfPeople: Int
     let title: String

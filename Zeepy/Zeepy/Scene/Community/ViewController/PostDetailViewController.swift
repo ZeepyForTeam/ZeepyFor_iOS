@@ -215,7 +215,7 @@ extension PostDetailViewControlelr {
         self?.postDetail.postContent.text = model.content
         self?.postDetail.typeLabel.text = model.communityCategory
         self?.achivementView.isHidden = model.isParticipant
-        self?.achivementView.currentPrice.text = String(model.productPrice)
+        self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
       }.disposed(by: disposeBag)
     
     outputs.commentUsecase
