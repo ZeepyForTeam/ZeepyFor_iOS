@@ -8,9 +8,10 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
-class SignUpViewController: BaseViewController {
-  
+class SignUpViewController: BaseViewController {  
   let contentView = UIView()
   let getName = InputBoxView().then{
     $0.infoTitle.text = "이름"
@@ -271,4 +272,46 @@ class SignUpViewController: BaseViewController {
       $0.height.equalTo(40)
     }
   }
+}
+
+class SignupModel {
+    let name = PublishSubject<String>()
+    let id = PublishSubject<String>()
+    let email = PublishSubject<String>()
+    let passWord = PublishSubject<String>()
+    let ensurePassWord = PublishSubject<String>()
+    let privacy = PublishSubject<Bool>()
+    let promotion = PublishSubject<Bool>()
+    let register = PublishSubject<Bool>()
+    let wrongPW = PublishSubject<Bool>()
+    let rightPW = PublishSubject<Bool>()
+    
+    func isValid() -> Observable<Bool>{
+        return Observable.combineLatest(email.asObservable().startWith(""),
+                                        passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")
+//                                        privacy.
+                                        ).map{ email, password, ensurePassword  in
+                                            return email.contains("@") && password.count > 3 && password == ensurePassword }.startWith(false)
+    }
+    
+    func correctPW() -> Observable<Bool>{
+        return Observable.combineLatest(passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")).map{
+                                            password, ensurepassword in
+                                            return password == ensurepassword
+                                        }.startWith(false)
+        
+    }
+    
+    func notcorrectPW() -> Observable<Bool>{
+        return Observable.combineLatest(passWord.asObservable().startWith(""),
+                                        ensurePassWord.asObservable().startWith("")).map{
+                                            password, ensurepassword in
+                                            return password != ensurepassword
+                                        }.startWith(true)
+        
+    }
+
+    
 }

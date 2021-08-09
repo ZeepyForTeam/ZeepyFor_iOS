@@ -2,8 +2,6 @@
 //  LoginViewModel.swift
 //  Zeepy
 //
-//  Created by 김태훈 on 2021/08/04.
-//
 
 import Foundation
 import RxSwift

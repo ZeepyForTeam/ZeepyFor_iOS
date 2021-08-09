@@ -253,7 +253,6 @@ class LoginEmailViewController: BaseViewController {
       $0.leading.equalToSuperview().offset(125)
       $0.trailing.equalToSuperview().inset(125)
     }
-    
     appleLoginButton.snp.makeConstraints{
       $0.top.equalToSuperview()
       $0.leading.equalToSuperview()
