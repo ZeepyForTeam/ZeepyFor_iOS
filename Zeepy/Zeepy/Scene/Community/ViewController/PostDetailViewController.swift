@@ -14,6 +14,17 @@ import RxSwift
 typealias DataSource = RxTableViewSectionedReloadDataSource
 typealias CommentSectionType = AnimatableSectionModel<CommentSectionModel, CommentSectionModel>
 class PostDetailViewControlelr : BaseViewController {
+  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?,
+                postId: Int) {
+    self.postId = postId
+    super.init(nibName: nil , bundle: nil)
+
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  private let postId: Int!
   private let viewModel = PostDetailViewModel()
   private let naviView = UIView().then{
     $0.backgroundColor = .white
@@ -193,8 +204,19 @@ extension PostDetailViewControlelr {
     self.achivementView.emptyAchivement.isHidden = false
   }
   private func bind() {
-    let inputs = PostDetailViewModel.Input(loadView: Observable.just(()))
+    let inputs = PostDetailViewModel.Input(loadView: Observable.just(postId))
     let outputs = viewModel.transform(input: inputs)
+    
+    outputs.communityInfo
+      .bind{ [weak self] model in
+        self?.likeBtn.isSelected = model.isLiked
+        self?.postDetail.profileName.text = model.user.name
+        self?.postDetail.postTitle.text = model.title
+        self?.postDetail.postContent.text = model.content
+        self?.postDetail.typeLabel.text = model.communityCategory
+        self?.achivementView.isHidden = model.isParticipant
+        self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
+      }.disposed(by: disposeBag)
     
     outputs.commentUsecase
       .bind(to: commentView.commentTableView.rx.items(dataSource: dataSource))
@@ -206,6 +228,10 @@ extension PostDetailViewControlelr {
         self?.commentView.commentTableView.snp.updateConstraints{
           $0.height.equalTo(h)
         }
+      }.disposed(by: disposeBag)
+    outputs.communityInfo.map{$0.imageUrls}
+      .bind(to: postDetail.postImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier, cellType: ReusableSimpleImageCell.self)) {row, data, cell in
+        cell.bindCell(model: data)
       }.disposed(by: disposeBag)
     achivementView.participateBtn.rx.tap.bind{[weak self] in
       var view : ModifyJoinView? = ModifyJoinView()

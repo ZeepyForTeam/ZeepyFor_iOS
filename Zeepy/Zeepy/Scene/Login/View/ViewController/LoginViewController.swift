@@ -8,6 +8,8 @@
 import UIKit
 import Then
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
     
@@ -49,7 +51,8 @@ class LoginViewController: UIViewController {
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
         $0.setTitleColor(.grayText, for: .normal)
     }
-
+        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(contentView)
@@ -59,6 +62,7 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = .white
         addConstraints()
     }
+
     func addConstraints(){
         contentView.adds([viewTitle,logoImage,signUpLabel,emailButton,kakaoButton,naverButton,alredyAccount,findIDButton,findPWButton])
         viewTitle.snp.makeConstraints{

@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>266924527047-u96cidiruo0l84g0afe68obfmr6gltlh.apps.googleusercontent.com</string>
+	<string>770287217450-pcfuc45j68ju38dgj4ufc5dqgg9qc2f8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.266924527047-u96cidiruo0l84g0afe68obfmr6gltlh</string>
+	<string>com.googleusercontent.apps.770287217450-pcfuc45j68ju38dgj4ufc5dqgg9qc2f8</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCNOkfTHfGHrDI2pYh-lp3_oP5KL_MdZ6c</string>
+	<string>AIzaSyC0cdfy2KQM-9Wnb0m_-KtdkUI8haJ4lnE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>266924527047</string>
+	<string>770287217450</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Zeepy.com.Zeepy</string>
+	<string>Zeepy.com.Zeepy.dev</string>
 	<key>PROJECT_ID</key>
-	<string>zeepy-2f3a0</string>
+	<string>zeepy-7b1f7</string>
 	<key>STORAGE_BUCKET</key>
-	<string>zeepy-2f3a0.appspot.com</string>
+	<string>zeepy-7b1f7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:266924527047:ios:946e9ad815f00ddb109de2</string>
+	<string>1:770287217450:ios:a3b9b66752530a9c2e4c53</string>
 </dict>
 </plist>

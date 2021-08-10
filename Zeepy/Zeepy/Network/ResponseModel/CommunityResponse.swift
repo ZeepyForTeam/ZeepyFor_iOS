@@ -22,12 +22,13 @@ struct CommunityContent: Decodable {
     let address: String
     let comments: [Comment]
     let communityCategory, content: String
+    let createdTime: String
     let id: Int
     let imageUrls: [String]
-    let isLiked, isParticipant: Bool
+    let isCompleted, isLiked, isParticipant: Bool
     let participationList: [ParticipationList]
     let productName: String
-    let productPrice: Int
+    let productPrice: Int?
     let sharingMethod: String
     let targetNumberOfPeople: Int
     let title: String
@@ -46,7 +47,7 @@ extension CommunityContent {
     default :
       type = .total
     }
-    return .init(type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
+    return .init(id: id, type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
   }
 }
 

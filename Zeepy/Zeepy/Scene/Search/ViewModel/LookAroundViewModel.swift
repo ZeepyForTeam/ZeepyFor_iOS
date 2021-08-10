@@ -11,8 +11,8 @@ import RxCocoa
 import Moya
 
 class LookAroundViewModel {
+  private let service = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins: [NetworkLoggerPlugin()]))
   struct Input {
-    
     let loadTrigger: Observable<Void>
     let filterAction: Observable<Void>
     let ownerFilterAction : Observable<ValidateType?>
@@ -32,11 +32,16 @@ extension LookAroundViewModel {
     weak var weakSelf = self
     var filterOriginUsecase : [FilterModel] = []
 
+    
+    
+    
+    
+    
     let buildingDummy = BuildingModel(buildingName: "더미",
                                       buildingImage: "image/1",
                                       ownderInfo: .business, review: ReviewInfo(reviewrName: "서울쥐김자랑", review: "여기서살고싶어여기서살고싶어"), filters: ["발리", "투룸투룸투룸","2층"])
     let buildingUsecase = Observable.just([buildingDummy,buildingDummy,buildingDummy,buildingDummy,buildingDummy])
-
+  
     let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),
                                          FilterModel(title: "기본순", selected: false),
                                          FilterModel(title: "방음굿", selected: false),

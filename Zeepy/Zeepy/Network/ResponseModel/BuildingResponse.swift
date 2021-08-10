@@ -95,11 +95,4 @@ typealias BuildingLikeResponse = [BuildingLikeResponseElement]
 
 
 extension BuildingContent {
-//  var toModel: BuildingModel {
-//    return .init(buildingName: apartmentName,
-//                 buildingImage: "",
-//                 ownderInfo: <#T##ValidateType#>,
-//                 review: .init(reviewrName: <#T##String#>, review: <#T##String#>),
-//                 filters: <#T##[String]#>)
-//  }
 }

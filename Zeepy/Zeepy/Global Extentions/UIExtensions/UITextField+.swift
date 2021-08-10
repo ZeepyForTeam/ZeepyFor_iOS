@@ -23,6 +23,13 @@ extension UITextField {
     self.font = font
     self.placeholder = placeholder ?? ""
   }
+  func shake() {
+    let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+    animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+    animation.duration = 0.3
+    animation.values = [-5.0, 5.0, -5.0, 5.0 ,-2.0, 2.0, 0.0 ]
+    layer.add(animation, forKey: "shake")
+  }
 }
 class fourInsetTextField: UITextField {
   var insets: UIEdgeInsets

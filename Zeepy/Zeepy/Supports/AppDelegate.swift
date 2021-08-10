@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     FirebaseApp.configure()
     Messaging.messaging().delegate = self
-    RxKakaoSDKCommon.initSDK(appKey: "6873893d1c0e49a180bb28faaa47aa3e")
+    RxKakaoSDKCommon.initSDK(appKey: "02c78bdac1dc2a54c54f8e7ba13183d2")
 
     if #available(iOS 10.0, *) {
       // For iOS 10 display notification (sent via APNS)

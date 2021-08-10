@@ -27,11 +27,11 @@ extension CommunityService {
       .successFlag()
       .asObservable()
   }
-  func fetchPostDetail(id: Int) -> Observable<Response> {
+  func fetchPostDetail(id: Int) -> Observable<CommunityContent> {
     provider.rx.request(.fetchPostDetail(id : id))
-      //.filterError()
+      .filterError()
       .asObservable()
-      //.map(CommunityResponseModel.self)
+      .map(CommunityContent.self)
   }
   func modifyPostDetail(id: Int) -> Observable<Bool> {
     provider.rx.request(.modifyPostDetail(id: id))
