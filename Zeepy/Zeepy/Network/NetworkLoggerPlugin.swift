@@ -45,6 +45,7 @@ public final class NetworkLoggerPlugin: PluginType {
         if case .success(let response) = result {
             outputItems(logNetworkResponse(response.response, data: response.data, target: target))
         } else {
+          print(result)
             outputItems(logNetworkResponse(nil, data: nil, target: target))
         }
     }

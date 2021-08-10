@@ -60,7 +60,7 @@ extension AreaCodeRouter : TargetType {
     switch self {
     default:
       return ["Content-Type":"application/json",
-                     "accessToken" : UserDefaultHandler.accessToken!]
+                     "X-AUTH-TOKEN" : UserDefaultHandler.accessToken!]
     }
   }
 }
