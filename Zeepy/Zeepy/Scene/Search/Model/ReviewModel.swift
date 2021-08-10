@@ -9,21 +9,22 @@ import Foundation
 
 // MARK: - ReviewModel
 struct ReviewModel: Codable {
-  let address: String
-  let buildingID: Int
-  let communcationTendency: String
-  let furnitures, imageUrls: [String]
-  let lessorAge, lessorGender, lessorReview, lightning: String
-  let pest, review, roomCount, soundInsulation: String
-  let totalEvaluation: String
-  let user: Int
-  let waterPressure: String
+  var address: String
+  var buildingID: Int
+  var communcationTendency: String
+  var furnitures, imageUrls: [String]
+  var lessorAge, lessorGender, lessorReview, lightning: String
+  var pest, review, roomCount, soundInsulation: String
+  var totalEvaluation: String
+  var user: Int
+  var waterPressure: String
   
   enum CodingKeys: String, CodingKey {
     case address
     case buildingID = "buildingId"
     case communcationTendency, furnitures, imageUrls, lessorAge, lessorGender, lessorReview, lightning, pest, review, roomCount, soundInsulation, totalEvaluation, user, waterPressure
   }
+  
 }
 
 

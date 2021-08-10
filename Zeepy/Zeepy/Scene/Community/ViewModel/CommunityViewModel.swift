@@ -7,7 +7,9 @@
 
 import Foundation
 import RxSwift
+import Moya
 class CommunityViewModel {
+  private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let loadView : Observable<Void>
     let filterSelect: Observable<(IndexPath, (PostType, Bool))>
@@ -21,30 +23,36 @@ class CommunityViewModel {
                     (PostType.deal, false),
                     (PostType.share, false),
                     (PostType.friend, false)]
-  private var postList : [PostModel] = [PostModel(type: PostType.deal, status: true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                        PostModel(type: PostType.deal, status: false, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                        PostModel(type: PostType.share, status: true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                      PostModel(type: PostType.friend, status: true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                  
-                                        PostModel(type: PostType.deal, status: true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                        PostModel(type: PostType.share, status: true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                        PostModel(type: PostType.share, status:true, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23"),
-                                        PostModel(type: PostType.friend, status:false, postTitle: "타이틀", postConent: "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹㅁㄴㅇㄹ", postedAt: "2021-04-23")]
 }
 extension CommunityViewModel {
   func transform(input: Input) -> Output {
     weak var weakSelf = self
+    var postList : [PostModel] = []
+    let postListObservable = input.loadView.flatMapLatest{ _ -> Observable<[PostModel]> in
+      let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: nil, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
+        .map{
+          $0.content
+            .map{
+              $0.toPostModel()
+            }
+        } ?? .empty()
+      print("")
+      return response
+    }
     let postUsecase = input.loadView
-      .flatMapLatest{ _ -> Observable<[PostModel]> in
-        return weakSelf?.modifyPost(tapAction: input.filterSelect, origin: self.postList.sorted(by: {$0 > $1})
-) ?? .empty()
+      .withLatestFrom(postListObservable)
+      .flatMapLatest{ posts -> Observable<[PostModel]> in
+        postList = posts
+        return weakSelf?.modifyPost(tapAction: input.filterSelect, origin: postList.sorted(by: {$0 > $1})
+        ) ?? .empty()
       }
     let filterUsecase = input.loadView
       .flatMapLatest{ _ -> Observable<[(PostType, Bool)]> in
         return weakSelf?.modifyFilter(tapAction: input.filterSelect, origin: self.filterList) ?? .empty()
       }
-    return .init(postUsecase: postUsecase,
-                 filterUsecase: filterUsecase)
+    return .init(
+      postUsecase: postUsecase,
+      filterUsecase: filterUsecase)
   }
   func modifyPost(
     tapAction: Observable<(IndexPath, (PostType, Bool))>,

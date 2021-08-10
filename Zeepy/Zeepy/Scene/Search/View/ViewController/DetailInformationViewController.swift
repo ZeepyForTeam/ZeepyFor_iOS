@@ -30,6 +30,50 @@ class DetailInformationViewController: BaseViewController {
   let nextButton = UIButton()
   let separatorView = UIView()
   
+  // MARK: - Variables
+  var reviewModel = ReviewModel(address: "",
+                                buildingID: 0,
+                                communcationTendency: "",
+                                furnitures: [],
+                                imageUrls: [],
+                                lessorAge: "",
+                                lessorGender: "",
+                                lessorReview: "",
+                                lightning: "",
+                                pest: "",
+                                review: "",
+                                roomCount: "",
+                                soundInsulation: "",
+                                totalEvaluation: "",
+                                user: 0,
+                                waterPressure: "")
+  private final let roomCounts = [("1개", "ONE"),
+                                  ("2개", "TWO"),
+                                  ("3개 이상", "THREEORMORE")]
+  private final let reviewResults = ["좋아요",
+                                     "적당해요",
+                                     "별로에요",
+                                     "없어요",
+                                     "가끔 나와요",
+                                     "많아요"]
+  var furnitureOptions = [("에어컨", false, "AIRCONDITIONAL"),
+                          ("세탁기", false, "WASHINGMACHINE"),
+                          ("침대", false, "BED"),
+                          ("옷장", false, "CLOSET"),
+                          ("책상", false, "DESK"),
+                          ("냉장고", false, "REFRIDGERATOR"),
+                          ("인덕션", false, "INDUCTION"),
+                          ("가스레인지", false, "BURNER"),
+                          ("전자레인지", false, "MICROWAVE")]
+  private final let reviewTitles = ["방음", "해충", "채광", "수압"]
+  private final let reviewSelections = ["GOOD", "PROPER", "BAD"]
+  var selectedRoomCount = 100
+  var selectedSound = 100
+  var selectedBug = 100
+  var selectedLight = 100
+  var selectedWater = 100
+  
+  
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,7 +101,7 @@ extension DetailInformationViewController {
       }
     }
   }
-
+  
   func layoutCollectionView() {
     self.view.add(contentCollectionView) {
       $0.backgroundColor = .clear
@@ -73,7 +117,7 @@ extension DetailInformationViewController {
   
   func layoutNextButton() {
     self.view.add(self.nextButton) {
-      $0.tag = 1
+      $0.tag = 0
       $0.setRounded(radius: 8)
       $0.setTitle("다음으로", for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
@@ -91,7 +135,7 @@ extension DetailInformationViewController {
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.snp.leading).offset(16)
         $0.centerX.equalTo(self.view.snp.centerX)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }
@@ -123,10 +167,35 @@ extension DetailInformationViewController {
     navigationView.setUp(title: "리뷰작성")
   }
   
+  private func activateNextButton() {
+    if selectedRoomCount != 100 &&
+        selectedSound != 100 &&
+        selectedBug != 100 &&
+        selectedLight != 100 &&
+        selectedWater != 100 {
+      nextButton.backgroundColor = .mainBlue
+      nextButton.setTitleColor(.white, for: .normal)
+      nextButton.isUserInteractionEnabled = true
+    }
+  }
+  
   // MARK: - Action Helpers
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
-    let nextViewController = SelectAddressViewController()
+    let nextViewController = AdditionalInformationViewController()
+    reviewModel.roomCount = roomCounts[selectedRoomCount].1
+    reviewModel.soundInsulation = reviewSelections[selectedSound % 3]
+    reviewModel.pest = reviewSelections[selectedBug % 3]
+    reviewModel.lightning = reviewSelections[selectedLight % 3]
+    reviewModel.waterPressure = reviewSelections[selectedWater % 3]
+    var furnitures: [String] = []
+    for furniture in furnitureOptions {
+      if furniture.1 == true {
+        furnitures.append(furniture.2)
+      }
+    }
+    reviewModel.furnitures = furnitures
+    nextViewController.reviewModel = reviewModel
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
@@ -157,23 +226,79 @@ extension DetailInformationViewController: UICollectionViewDataSource {
     switch indexPath.section {
     case 0:
       roomAndFurnitureCell.awakeFromNib()
+      roomAndFurnitureCell.titleLabel.text = roomCounts[indexPath.item].0
+      roomAndFurnitureCell.index = indexPath.item
+      if selectedRoomCount == indexPath.item {
+        roomAndFurnitureCell.containerView.backgroundColor = .mainBlue
+        roomAndFurnitureCell.titleLabel.textColor = .white
+      }
       return roomAndFurnitureCell
     case 1:
       reviewCell.awakeFromNib()
-      if indexPath.item % 3 == 0 {
-        reviewCell.titleLabel.text = "채광"
+      
+      if indexPath.item == 3 || indexPath.item == 4 || indexPath.item == 5 {
+        reviewCell.containerContentLabel.text =
+          reviewResults[indexPath.item]
       }
       else {
-        reviewCell.titleLabel.text = " "
+        reviewCell.containerContentLabel.text =
+          reviewResults[indexPath.item % 3]
       }
+      
+      if indexPath.item % 3 == 0 {
+        reviewCell.titleLabel.text = reviewTitles[indexPath.item / 3]
+        if indexPath.item == selectedSound || indexPath.item == selectedBug || indexPath.item == selectedLight || indexPath.item == selectedWater {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnGoodReviewSelected")
+          reviewCell.containerContentLabel.textColor = .blackText
+        }
+        else {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnGoodReviewUnselected")
+          reviewCell.containerContentLabel.textColor = .grayText
+        }
+      }
+      else if indexPath.item % 3 == 1 {
+        reviewCell.titleLabel.text = " "
+        if indexPath.item == selectedSound || indexPath.item == selectedBug || indexPath.item == selectedLight || indexPath.item == selectedWater {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnSosoReviewSelected")
+          reviewCell.containerContentLabel.textColor = .blackText
+        }
+        else {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnSosoReviewUnselected")
+          reviewCell.containerContentLabel.textColor = .grayText
+        }
+      }
+      else if indexPath.item % 3 == 2 {
+        reviewCell.titleLabel.text = " "
+        if indexPath.item == selectedSound || indexPath.item == selectedBug || indexPath.item == selectedLight || indexPath.item == selectedWater {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnAngryReviewSelected")
+          reviewCell.containerContentLabel.textColor = .blackText
+        }
+        else {
+          reviewCell.containerBackgroundImageView.image = UIImage(named: "btnAngryReviewUnselected")
+          reviewCell.containerContentLabel.textColor = .grayText
+        }
+      }
+      
+      reviewCell.index = indexPath.item
       return reviewCell
     case 2:
       roomAndFurnitureCell.awakeFromNib()
+      roomAndFurnitureCell.titleLabel.text = furnitureOptions[indexPath.item].0
+      if furnitureOptions[indexPath.item].1 == true {
+        roomAndFurnitureCell.titleLabel.textColor = .white
+        roomAndFurnitureCell.containerView.backgroundColor = .mainBlue
+      }
+      else {
+        roomAndFurnitureCell.titleLabel.textColor = .blackText
+        roomAndFurnitureCell.containerView.backgroundColor = .mainYellow
+      }
+      roomAndFurnitureCell.index = indexPath.item
       return roomAndFurnitureCell
     default:
       return UICollectionViewCell()
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     var reusableView = UICollectionReusableView()
     if (kind == UICollectionView.elementKindSectionHeader) {
@@ -199,6 +324,32 @@ extension DetailInformationViewController: UICollectionViewDataSource {
       }
     }
     return reusableView
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if indexPath.section == 0 {
+      selectedRoomCount = indexPath.item
+      activateNextButton()
+    }
+    if indexPath.section == 1 {
+      if indexPath.item / 3 == 0 {
+        selectedSound = indexPath.item
+      }
+      else if indexPath.item / 3 == 1 {
+        selectedBug = indexPath.item
+      }
+      else if indexPath.item / 3 == 2 {
+        selectedLight = indexPath.item
+      }
+      else {
+        selectedWater = indexPath.item
+      }
+      activateNextButton()
+    }
+    if indexPath.section == 2 {
+      furnitureOptions[indexPath.item].1 = !(furnitureOptions[indexPath.item].1)
+    }
+    collectionView.reloadData()
   }
 }
 

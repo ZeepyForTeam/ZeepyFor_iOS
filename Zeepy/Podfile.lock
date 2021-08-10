@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.2)
+  - Differentiator (4.0.1)
   - Firebase/Analytics (7.9.0):
     - Firebase/Core
   - Firebase/Core (7.9.0):
@@ -107,6 +108,10 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxKakaoSDKAuth (2.5.3):
     - KakaoSDKAuth (= 2.5.3)
     - RxKakaoSDKCommon (= 2.5.3)
@@ -137,15 +142,15 @@ DEPENDENCIES:
   - Moya (~> 14.0)
   - Moya/RxSwift (~> 14.0)
   - RangeSeekSlider
-  - RxCocoa (= 5.1.1)
+  - RxDataSources (~> 4.0)
   - RxKakaoSDKAuth
   - RxKakaoSDKCommon
   - RxKakaoSDKUser
-  - RxSwift (= 5.1.2)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -165,6 +170,7 @@ SPEC REPOS:
     - RangeSeekSlider
     - RxAlamofire
     - RxCocoa
+    - RxDataSources
     - RxKakaoSDKAuth
     - RxKakaoSDKCommon
     - RxKakaoSDKUser
@@ -173,6 +179,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: d8bd6bd34b4c7ed57bfdd056c66ff5adcdde53ab
   FirebaseAnalytics: 31b1269830dfe16687db3c60b76082c12bd6d527
   FirebaseCore: 0798738ad1ae0fda67e17c7b9081241c431c6859
@@ -192,12 +199,13 @@ SPEC CHECKSUMS:
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxKakaoSDKAuth: 8f4609d0a1e1613f8861a219e727aa1b688d67f3
   RxKakaoSDKCommon: 6dc3f478b35751dfd1f806f20d3bf7b1650f257c
   RxKakaoSDKUser: 088d321b0b959b66bbb112f8db278aae2a83e6bf
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 2349fcb94f3c9bb1f6054de92b4a097b314a9646
+PODFILE CHECKSUM: 5a5a79735bf6482ea4cddcaa3c5ca6c1176fe051
 
 COCOAPODS: 1.10.1

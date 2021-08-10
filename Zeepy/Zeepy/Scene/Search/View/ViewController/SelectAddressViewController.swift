@@ -4,9 +4,20 @@
 //
 //  Created by 노한솔 on 2021/04/17.
 //
+import Foundation
 import SnapKit
 import Then
 import UIKit
+
+// MARK: - AddressModel
+struct AddressModel: Codable {
+  let addresses: [Addresses]
+}
+
+// MARK: - Addresses
+struct Addresses: Codable {
+  let cityDistinct, primaryAddress, detailAddress: String
+}
 
 class SelectAddressViewController: BaseViewController {
   // MARK: - Constants
@@ -24,6 +35,7 @@ class SelectAddressViewController: BaseViewController {
   let nextButton = UIButton()
   
   // MARK: - Variables
+  var selectedIndex = 100
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -40,11 +52,24 @@ class SelectAddressViewController: BaseViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
+  
+  var addressModel =  AddressModel(addresses: [
+                                    Addresses(cityDistinct: "서울시 노원구",
+                                              primaryAddress: "공릉동",
+                                              detailAddress: "34번지 102호"),
+                                    Addresses(cityDistinct: "서울시 노원구",
+                                              primaryAddress: "공릉동",
+                                              detailAddress: "34번지 102호"),
+                                    Addresses(cityDistinct: "서울시 노원구",
+                                              primaryAddress: "공릉동",
+                                              detailAddress: "34번지 102호")])
+  
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .white
     layout()
+    register()
     setupNavigation()
   }
 }
@@ -106,33 +131,28 @@ extension SelectAddressViewController {
       }
     }
   }
-  func layoutAddressTableContainerView() {
-    self.view.add(self.addressTableContainerView) {
-      $0.snp.makeConstraints {
-        $0.leading.equalTo(self.titleLabel.snp.leading)
-        $0.centerX.equalTo(self.view.snp.centerX)
-        $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
-      }
-    }
-  }
   func layoutAddressTableView() {
-    self.addressTableContainerView.add(self.addressTableView) {
-      $0.estimatedRowHeight = UITableView.automaticDimension
+    self.view.add(self.addressTableView) {
+      $0.estimatedRowHeight = 56
+      $0.rowHeight = UITableView.automaticDimension
+      $0.separatorStyle = .none
+      $0.isScrollEnabled = false
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.addressTableContainerView.snp.leading)
-        $0.trailing.equalTo(self.addressTableContainerView.snp.trailing)
-        $0.top.equalTo(self.addressTableContainerView.snp.top)
+        $0.leading.equalTo(self.addressLabel.snp.leading)
+        $0.centerX.equalToSuperview()
+        $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
+        $0.height.equalTo(self.addressModel.addresses.count * 56)
       }
     }
   }
   func layoutAddressTableFooterLabel() {
-    self.addressTableContainerView.add(self.addressTableFooterLabel) {
+    self.view.add(self.addressTableFooterLabel) {
       $0.text = "* 최대 3개까지 등록 가능합니다."
       $0.textColor = .grayText
       $0.font = .nanumRoundRegular(fontSize: 10)
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.addressTableContainerView.snp.bottom).offset(16)
-        $0.leading.equalTo(self.addressTableContainerView.snp.leading)
+        $0.top.equalTo(self.addressTableView.snp.bottom).offset(16)
+        $0.leading.equalTo(self.addressTableView.snp.leading)
       }
     }
   }
@@ -154,9 +174,9 @@ extension SelectAddressViewController {
       }
       $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.addressTableContainerView.snp.leading)
-        $0.trailing.equalTo(self.addressTableContainerView.snp.trailing)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.leading.equalTo(self.addressTableView.snp.leading)
+        $0.trailing.equalTo(self.addressTableView.snp.trailing)
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }
@@ -176,31 +196,101 @@ extension SelectAddressViewController {
     layoutTitleText()
     layoutAddressLabel()
     layoutSubmitButton()
-    layoutAddressTableContainerView()
     layoutAddressTableView()
     layoutAddressTableFooterLabel()
     layoutNextButton()
     layoutseparatorView()
   }
   
-  @objc func nextButtonClicked() {
+  // MARK: - General Helpers
+  private func register() {
+    addressTableView.register(
+      SelectAddressTableViewCell.self,
+      forCellReuseIdentifier: SelectAddressTableViewCell.identifier)
+    addressTableView.delegate = self
+    addressTableView.dataSource = self
+  }
+  
+  // MARK: - Action Helpers
+  @objc
+  private func nextButtonClicked() {
     let navigation = self.navigationController
-    let nextViewController = CommunicationTendencyViewController()
+    let nextViewController = DetailAddressViewController()
+    nextViewController.addressModel = addressModel.addresses[selectedIndex]
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
   
-  @objc func submitButtonClicked() {
+  @objc
+  private func submitButtonClicked() {
+    if addressModel.addresses.count == 3 {
+      let popupVC = AddressLimitPopupViewController()
+      popupVC.modalPresentationStyle = .overFullScreen
+      self.present(popupVC, animated: true, completion: nil)
+    }
+    else {
+      let navigation = self.navigationController
+      let nextViewController = SearchAddressViewController()
+      nextViewController.hidesBottomBarWhenPushed = false
+      navigation?.pushViewController(nextViewController, animated: true)
+    }
+  }
+  
+  func deleteButtonClicked() {
+    let popupVC = ConfirmDeletePopupViewController()
+    popupVC.modalPresentationStyle = .overFullScreen
+    self.present(popupVC, animated: true, completion: nil)
+  }
+  
+  func registerButtonClicked() {
     let navigation = self.navigationController
-    let nextViewController = SearchAddressViewController()
-    nextViewController.hidesBottomBarWhenPushed = false
-    navigation?.pushViewController(nextViewController, animated: false)
+    let nextVC = SearchAddressViewController()
+    nextVC.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextVC, animated: true)
   }
   
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "리뷰작성")
   }
- 
+  
+}
+
+// MARK: - addressTableView Delegate
+extension SelectAddressViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+}
+
+// MARK: - addressTableView DataSource
+extension SelectAddressViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return addressModel.addresses.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let addressCell = tableView.dequeueReusableCell(withIdentifier: SelectAddressTableViewCell.identifier, for: indexPath) as? SelectAddressTableViewCell else {
+      return UITableViewCell()
+    }
+    addressCell.awakeFromNib()
+    let address = addressModel.addresses[indexPath.row]
+    addressCell.addressLabel.text = "\(address.cityDistinct) \(address.primaryAddress) \(address.detailAddress)"
+    addressCell.rootViewController = self
+    if indexPath.row == selectedIndex {
+      addressCell.containerView.layer.borderColor = UIColor.mainBlue.cgColor
+      addressCell.containerView.layer.borderWidth = 2
+    }
+    else {
+      addressCell.containerView.layer.borderColor = UIColor.grayText.cgColor
+      addressCell.containerView.layer.borderWidth = 1
+    }
+    return addressCell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectedIndex = indexPath.row
+    tableView.reloadData()
+  }
 }
 

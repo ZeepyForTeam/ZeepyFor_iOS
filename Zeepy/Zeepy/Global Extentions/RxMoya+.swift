@@ -77,7 +77,7 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
   //통신 성공여부만 필요한 경우
   public func successFlag() -> Single<Bool> {
     return flatMap { response in
-      guard response.statusCode == 200 else {
+      guard (200...300).contains(response.statusCode) else {
         return .just(false)
       }
       return .just(true)

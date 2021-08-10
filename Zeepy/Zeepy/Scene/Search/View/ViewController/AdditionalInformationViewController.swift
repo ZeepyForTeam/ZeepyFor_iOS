@@ -16,14 +16,40 @@ class AdditionalInformationViewController: BaseViewController {
   let titleLabelNumberOfLine = 2
   let titleLabel = UILabel()
   let reviewTitleLabel = UILabel()
-  let reviewTextField = UITextField()
+  let reviewTextField: UITextField = {
+    let textField = UITextField.textFieldWithInsets(insets:
+                                                      UIEdgeInsets(top: 10,
+                                                                   left: 10,
+                                                                   bottom: 10,
+                                                                   right: 10))
+    return textField
+  }()
   let assessTitleLabel = UILabel()
   let assessTableView = UITableView()
   let nextButton = UIButton()
   let separatorView = UIView()
-  var assessTextList = [ "다음에도 여기 살고 싶어요!",
-                         "완전 추천해요!",
-                         "그닥 추천하지 않아요." ]
+  
+  // MARK: - Varaibles
+  var reviewModel = ReviewModel(address: "",
+                                buildingID: 0,
+                                communcationTendency: "",
+                                furnitures: [],
+                                imageUrls: [],
+                                lessorAge: "",
+                                lessorGender: "",
+                                lessorReview: "",
+                                lightning: "",
+                                pest: "",
+                                review: "",
+                                roomCount: "",
+                                soundInsulation: "",
+                                totalEvaluation: "",
+                                user: 0,
+                                waterPressure: "")
+  var assessTextList = [("다음에도 여기 살고 싶어요!", "GOOD"),
+                        ("완전 추천해요!", "SOSO"),
+                        ("그닥 추천하지 않아요.", "BAD")]
+  var selectedNumber = 100
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -98,6 +124,7 @@ extension AdditionalInformationViewController {
       $0.backgroundColor = .clear
       $0.textAlignment = .left
       $0.contentVerticalAlignment = .top
+      $0.delegate = self
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
@@ -134,7 +161,7 @@ extension AdditionalInformationViewController {
   }
   func layoutNextButton() {
     self.view.add(self.nextButton) {
-      $0.tag = 1
+      $0.tag = 0
       $0.setRounded(radius: 8)
       $0.setTitle("다음으로", for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
@@ -152,7 +179,7 @@ extension AdditionalInformationViewController {
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }
@@ -177,19 +204,39 @@ extension AdditionalInformationViewController {
     layoutNextButton()
     layoutSeparatorView()
   }
+  
+  // MARK: - General Helpers
   func register() {
     assessTableView.register(AssessTableViewCell.self, forCellReuseIdentifier: AssessTableViewCell.identifier)
-  }
-  @objc func nextButtonClicked() {
-    let navigation = self.navigationController
-    let nextViewController = DetailInformationViewController()
-    nextViewController.hidesBottomBarWhenPushed = false
-    navigation?.pushViewController(nextViewController, animated: false)
   }
   
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "리뷰작성")
+  }
+  
+  private func activateNextButton() {
+    if reviewTextField.hasText != false && selectedNumber != 100 {
+      nextButton.backgroundColor = .mainBlue
+      nextButton.setTitleColor(.white, for: .normal)
+      nextButton.isUserInteractionEnabled = true
+    }
+    else {
+      nextButton.backgroundColor = .gray244
+      nextButton.setTitleColor(.grayText, for: .normal)
+      nextButton.isUserInteractionEnabled = false
+    }
+  }
+  
+  // MARK: - Action Helpers
+  @objc func nextButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = ReviewPhotoViewController()
+    reviewModel.totalEvaluation = assessTextList[selectedNumber].1
+    reviewModel.review = reviewTextField.text ?? ""
+    nextViewController.reviewModel = reviewModel
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: false)
   }
 }
 
@@ -207,11 +254,31 @@ extension AdditionalInformationViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let assessCell = tableView.dequeueReusableCell(withIdentifier: AssessTableViewCell.identifier, for: indexPath) as? AssessTableViewCell else { return UITableViewCell() }
-    assessCell.assessLabel.setupLabel(text: assessTextList[indexPath.row], color: .blackText, font: .nanumRoundRegular(fontSize: 14))
-    assessCell.containerView.backgroundColor = .gray244
     assessCell.awakeFromNib()
+    if selectedNumber == indexPath.row {
+      assessCell.assessLabel.setupLabel(text: assessTextList[indexPath.row].0, color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
+      assessCell.containerView.backgroundColor = .white
+      assessCell.containerView.setBorder(borderColor: .mainBlue, borderWidth: 1)
+    }
+    else {
+      assessCell.assessLabel.setupLabel(text: assessTextList[indexPath.row].0, color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+      assessCell.containerView.backgroundColor = .gray244
+      assessCell.containerView.layer.borderColor = UIColor.clear.cgColor
+    }
     return assessCell
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectedNumber = indexPath.row
+    activateNextButton()
+    tableView.reloadData()
+  }
   
+}
+
+// MARK: - UITextField Delegate
+extension AdditionalInformationViewController: UITextFieldDelegate {
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    activateNextButton()
+  }
 }

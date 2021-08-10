@@ -232,10 +232,7 @@ extension CommunityViewController : UICollectionViewDelegate{
                            cellType: PostFilterCollectionViewCell.self)) {row, data, cell in
       cell.bindCell(str: data.0.rawValue, selected: data.1)
     }.disposed(by: disposeBag)
-    let postUsecase = output.postUsecase
-    postUsecase.bind{
-      print($0)
-    }.disposed(by: disposeBag)
+
     Observable.just([0, 1])
       .bind(to: segmentCollectionView.rx.items(cellIdentifier: TapCell.identifier,
                                                cellType: TapCell.self)) { [weak self] row, data, cell in

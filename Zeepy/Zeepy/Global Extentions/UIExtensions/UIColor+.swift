@@ -81,5 +81,11 @@
     @nonobjc class var addressGray: UIColor {
       return UIColor(red: 189.0 / 255.0, green: 189.0 / 255.0, blue: 189.0 / 255.0, alpha: 1.0)
       }
+    @nonobjc class var popupBackground: UIColor {
+      return UIColor(white: 0, alpha: 0.6)
+      }
+    @nonobjc class var whiteGray: UIColor {
+        return UIColor(white: 247.0 / 255.0, alpha: 1.0)
+      }
   }
 

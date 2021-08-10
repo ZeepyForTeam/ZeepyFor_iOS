@@ -141,7 +141,7 @@ extension SearchAddressViewController {
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.titleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }

@@ -38,6 +38,26 @@ class LenderInformationViewController: BaseViewController {
   let nextButton = UIButton()
   let separatorView = UIView()
   
+  // MARK: - Variables
+  var selectedGender: String?
+  var selectedAge: String = "TWENTY"
+  var reviewModel = ReviewModel(address: "",
+                                buildingID: 0,
+                                communcationTendency: "",
+                                furnitures: [],
+                                imageUrls: [],
+                                lessorAge: "",
+                                lessorGender: "",
+                                lessorReview: "",
+                                lightning: "",
+                                pest: "",
+                                review: "",
+                                roomCount: "",
+                                soundInsulation: "",
+                                totalEvaluation: "",
+                                user: 0,
+                                waterPressure: "")
+  
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -96,11 +116,14 @@ extension LenderInformationViewController {
   }
   func layoutMaleButton() {
     self.view.add(self.maleButton) {
-      $0.backgroundColor = .mainBlue
+      $0.backgroundColor = .white
       $0.setTitle("남", for: .normal)
-      $0.setTitleColor(.white, for: .normal)
+      $0.setTitleColor(.blackText, for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
       $0.setRounded(radius: 16)
+      $0.addTarget(self,
+                   action: #selector(self.genderButtonClicked(_:)),
+                   for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.genderTitleLabel.snp.trailing).offset(22)
         $0.centerY.equalTo(self.genderTitleLabel.snp.centerY)
@@ -112,9 +135,12 @@ extension LenderInformationViewController {
     self.view.add(self.femaleButton) {
       $0.backgroundColor = .white
       $0.setTitle("여", for: .normal)
-      $0.setTitleColor(.mainBlue, for: .normal)
+      $0.setTitleColor(.blackText, for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
       $0.setRounded(radius: 16)
+      $0.addTarget(self,
+                   action: #selector(self.genderButtonClicked(_:)),
+                   for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.maleButton.snp.trailing).offset(11)
         $0.centerY.equalTo(self.genderTitleLabel.snp.centerY)
@@ -197,6 +223,7 @@ extension LenderInformationViewController {
       $0.backgroundColor = .clear
       $0.textAlignment = .left
       $0.contentVerticalAlignment = .top
+      $0.delegate = self
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.genderTitleLabel.snp.leading)
         $0.centerX.equalTo(self.view.snp.centerX)
@@ -218,7 +245,7 @@ extension LenderInformationViewController {
   }
   func layoutNextButton() {
     self.view.add(self.nextButton) {
-      $0.tag = 1
+      $0.tag = 0
       $0.setRounded(radius: 8)
       $0.setTitle("다음으로", for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
@@ -236,7 +263,7 @@ extension LenderInformationViewController {
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.detailTextField.snp.leading)
         $0.trailing.equalTo(self.detailTextField.snp.trailing)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38-(self.tabBarController?.tabBar.frame.height ?? 44))
+        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
         $0.height.equalTo(self.view.frame.height*52/812)
       }
     }
@@ -268,15 +295,56 @@ extension LenderInformationViewController {
     layoutNextButton()
     layoutseparatorView()
   }
+  
+  // MARK: - Action Helpers
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
-    let nextViewController = AdditionalInformationViewController()
+    let nextViewController = DetailInformationViewController()
+    reviewModel.lessorGender = selectedGender ?? ""
+    reviewModel.lessorAge = selectedAge ?? ""
+    reviewModel.lessorReview = detailTextField.text ?? ""
+    nextViewController.reviewModel = reviewModel
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
+  @objc
+  private func genderButtonClicked(_ sender: UIButton) {
+    var notSender: UIButton?
+    if sender == self.maleButton {
+      selectedGender = "MALE"
+      notSender = self.femaleButton
+    }
+    else {
+      selectedGender = "FEMALE"
+      notSender = self.maleButton
+    }
+    sender.backgroundColor = .mainBlue
+    sender.setTitleColor(.white, for: .normal)
+    notSender?.backgroundColor = .white
+    notSender?.setTitleColor(.blackText, for: .normal)
+    activateNextButton()
+  }
   
+  // MARK: - General Helpers
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "리뷰작성")
+  }
+  
+  private func activateNextButton() {
+    if selectedGender != nil &&
+        selectedAge != nil &&
+        detailTextField.hasText != false {
+      nextButton.backgroundColor = .mainBlue
+      nextButton.setTitleColor(.white, for: .normal)
+      nextButton.isUserInteractionEnabled = true
+    }
+  }
+}
+
+// MARK: - UITextField Delegate
+extension LenderInformationViewController: UITextFieldDelegate{
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    activateNextButton()
   }
 }

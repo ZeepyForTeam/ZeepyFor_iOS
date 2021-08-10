@@ -371,7 +371,7 @@ extension LookAroundDetailViewController {
     
 
     reviewMoreBtn.rx.tap.bind{[weak self] in
-      let vc = ReviewListViewController()
+      let vc = SelectAddressViewController()
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
 
