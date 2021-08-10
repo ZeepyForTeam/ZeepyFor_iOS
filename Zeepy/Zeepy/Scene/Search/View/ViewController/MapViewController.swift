@@ -116,10 +116,11 @@ class MapViewController: BaseViewController {
         mapDetailViewModel(address: "주소4", buildingDetail: "디테일4", owner: "집주인4", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가4"),
         mapDetailViewModel(address: "주소5", buildingDetail: "디테일5", owner: "집주인5", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가5")]
     // MARK: - Components
+    
     var tendencyButton = UIView().then{
         $0.frame.size = CGSize(width: 60, height: 70)
     }
-
+    
     var circleButton = UIButton()
 
     var buttonTitle = UILabel().then{
@@ -144,7 +145,17 @@ class MapViewController: BaseViewController {
     collectionView.isUserInteractionEnabled = true
     return collectionView
   }()
-  
+    let myLocationView = UIView().then{
+        $0.frame.size = CGSize(width: 100, height: 100)
+        $0.setRounded(radius: 5)
+        $0.backgroundColor = .pale
+    }
+
+    let myLocationButton = UIButton().then{
+        $0.setBackgroundImage(UIImage(named:"iconMyLocation"), for: .normal)
+        $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
+    }
+    
   let mapDetailView = UIView().then{
     $0.layer.cornerRadius = 15
     $0.backgroundColor = .white
@@ -276,6 +287,18 @@ class MapViewController: BaseViewController {
     mapDetailView.isHidden = true
     closedFloatingView.isHidden = false
   }
+
+    func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
+            let currentLocation = location?.mapPointGeo()
+            if let latitude = currentLocation?.latitude, let longitude = currentLocation?.longitude{
+                print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
+                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
+            }
+        }
+    func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
+            print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
+        }
+    
   
   func declarePOIItems(){
     items.append(poiItem(name: "달봉이네", latitude: 37.4981688, longitude: 127.0484572, imageName: "emoji1Map", tag: 0))
@@ -283,7 +306,6 @@ class MapViewController: BaseViewController {
     items.append(poiItem(name: "한솔이네", latitude: 37.4984686, longitude: 127.0484572, imageName: "emoji3Map", tag: 2))
     items.append(poiItem(name: "태훈이네", latitude: 37.4985683, longitude: 127.0484572, imageName: "emoji4Map", tag: 3))
     items.append(poiItem(name: "지피네", latitude: 37.4986685, longitude: 127.0484572, imageName: "emoji5Map", tag: 4))
-
     
     showItems = items
     mapView.addPOIItems(items)
@@ -293,6 +315,7 @@ class MapViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .white
+    self.view.add(myLocationView)
     self.view.add(searchView)
     self.view.add(mapView)
     self.view.add(mapDetailView)
@@ -342,8 +365,17 @@ private func setupNavigation() {
     }
     operateFloatingButton()
     
+    myLocationView.addSubview(myLocationButton)
+    myLocationButton.snp.makeConstraints{
+        $0.bottom.top.leading.trailing.equalToSuperview().inset(5)
+
+    }
+    myLocationView.snp.makeConstraints{
+        $0.top.equalTo(searchView.snp.bottom).offset(16)
+        $0.leading.equalTo(searchView.snp.leading).offset(16)
+    }
+    
   }
-  
   func operateFloatingButton(){
     if !closedFloatingView.isHidden{
       closedFloatingView.translatesAutoresizingMaskIntoConstraints = false
@@ -381,7 +413,11 @@ private func setupNavigation() {
     closedFloatingView.isHidden = true
     operateFloatingButton()
   }
-  
+
+    @objc func  myLocationButtonTapped(){
+        print("현위치 찾아줘~~")
+        mapView.fitAreaToShowAllPOIItems()
+    }
   @objc func lookingAroundButtonTapped(){
     print("lookingAroundButtonTapped")
   }
@@ -512,7 +548,6 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
       cell?.backgroundColor = .white
     }
     mapView.addPOIItems(showItems)
-    
     
     return cell!
   }
