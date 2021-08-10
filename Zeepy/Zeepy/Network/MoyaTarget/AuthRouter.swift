@@ -86,7 +86,7 @@ extension AuthRouter : TargetType {
     switch self {
     case .logout :
       return ["Content-Type":"application/json",
-              "accessToken" : UserDefaultHandler.accessToken!]
+              "X-AUTH-TOKEN" : UserDefaultHandler.accessToken!]
     default:
       return ["Content-Type":"application/json"]
     }

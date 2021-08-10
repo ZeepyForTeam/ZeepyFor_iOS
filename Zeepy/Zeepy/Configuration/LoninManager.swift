@@ -57,7 +57,7 @@ import RxKakaoSDKUser
 import RxSwift
 class kakaoLoginManager: NSObject {
   static let shared = kakaoLoginManager()
-
+  
   func makeLogin() {
     let disposeBag = DisposeBag()
     
@@ -76,3 +76,46 @@ class kakaoLoginManager: NSObject {
     }
   }
 }
+import AuthenticationServices
+//protocol AppleLoginManagerDelegate {
+//  func appleLoginSuccess()
+//  func appleLoginFail()
+//}
+//final class AppleLoginManager: NSObject , AppleLoginManagerDelegate {
+//  func appleLoginSuccess() {
+//    print("성공")
+//  }
+//  
+//  func appleLoginFail() {
+//    print("실패")
+//    
+//  }
+//  
+//  weak var viewController: UIViewController?
+//  weak var delegate: AppleLoginManagerDelegate?
+//  
+//  func setAppleLoginPresentationAnchorView(_ view: UIViewController) {
+//    self.viewController = view
+//  }
+//}
+//
+//extension AppleLoginManager: ASAuthorizationControllerDelegate {
+//  
+//  @available(iOS 13.0, *)
+//  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+//      
+//      let userIdentifier = appleIDCredential.user //userIdentifier
+//      let userName = appleIDCredential.fullName //fullName
+//      let userEmail = appleIDCredential.email //email
+//      
+//      delegate?.appleLoginSuccess()//apple 로그인 성공
+//    }
+//  }
+//  
+//  @available(iOS 13.0, *)
+//  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//    delegate?.appleLoginFail() //apple 로그인 실패
+//  }
+//  
+//}

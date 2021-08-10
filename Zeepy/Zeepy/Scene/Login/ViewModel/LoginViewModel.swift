@@ -14,6 +14,8 @@ import RxKakaoSDKAuth
 import KakaoSDKUser
 import RxKakaoSDKUser
 
+import AuthenticationServices
+
 class LoginViewModel {
   private let service = AuthService(provider: MoyaProvider<AuthRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
@@ -21,9 +23,10 @@ class LoginViewModel {
     let passwordText: Observable<String>
     let loginButtonDidTap: Observable<Void>
     let kakaoLogin: Observable<Void>
-//    let findEmail: Observable<Void>
-//    let findPassword: Observable<Void>
-//    let register: Observable<Void>
+//    let appleLogin: Observable<Void>
+    //    let findEmail: Observable<Void>
+    //    let findPassword: Observable<Void>
+    //    let register: Observable<Void>
   }
   struct Output {
     let isLoginSuccess: Observable<Result<AuthResponse, APIError>>
@@ -37,8 +40,19 @@ extension LoginViewModel {
     let result = inputs.loginButtonDidTap
       .withLatestFrom(idPw)
       .flatMapLatest{ (id, pw) in
-       self?.service.login(param: .init(email: id, password: pw)) ?? .empty()
+        self?.service.login(param: .init(email: id, password: pw)) ?? .empty()
       }
+    
+//    let socialLogin2 = inputs.appleLogin.flatMapLatest{ _ in
+//      let request = ASAuthorizationAppleIDProvider().createRequest() //request 생성
+//      request.requestedScopes = [.fullName, .email]
+//      let controller = ASAuthorizationController(authorizationRequests: [request])
+//      controller.delegate = appleLoginManager
+//      controller.presentationContextProvider = appleLoginManager
+//      controller.performRequests() //요청 보냄
+//
+//    }
+    
     let socialLogin = inputs.kakaoLogin.flatMapLatest{  _ -> Observable<OAuthToken> in
       if (UserApi.isKakaoTalkLoginAvailable()) {
         return UserApi.shared.rx.loginWithKakaoTalk()

@@ -95,4 +95,23 @@ typealias BuildingLikeResponse = [BuildingLikeResponseElement]
 
 
 extension BuildingContent {
+  func toModel() -> BuildingModel {
+    let firstImg = self.reviews.flatMap{$0.imageUrls}.first ?? ""
+    let ownerType = self.reviews.flatMap{$0.communcationTendency}.map{ str -> ValidateType in
+      switch String(str) {
+      case "BUSINESS" :
+        return ValidateType.business
+      case "KIND" :
+        return .kind
+      case "GRAZE" :
+        return .free
+      case "SOFTY" :
+        return .cute
+      default :
+        return ValidateType.bad
+      }
+    }.first ?? .business
+    let review = self.reviews.flatMap{ ReviewInfo.init(reviewrName: String($0.user), review: $0.review)}.first ?? .init(reviewrName: "없음", review: "없음")
+    return .init(buildingName: apartmentName, buildingImage: firstImg, ownderInfo: ownerType, review: review, filters: ["test","test","test"])
+  }
 }
