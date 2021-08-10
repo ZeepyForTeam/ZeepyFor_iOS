@@ -22,5 +22,6 @@ extension UILabel {
         attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainBlue , range: range)
         self.attributedText = attribute
     }
-    
+  
+  
 }

@@ -11,16 +11,20 @@ import UIKit
 
 class RoomAndFurnitureCollectionViewCell: UICollectionViewCell {
   
+  // MARK: - Components
+  let containerView = UIView()
+  let titleLabel = UILabel()
+  
+  // MARK: - Variables
+  let identifier = "RoomAndFurnitureCollectionViewCell"
+  var index: Int?
+  
+  // MARK: - LifeCycles
   override func awakeFromNib() {
     super.awakeFromNib()
     self.contentView.backgroundColor = .clear
     layout()
   }
-  
-  let identifier = "RoomAndFurnitureCollectionViewCell"
-  
-  let containerView = UIView()
-  let titleLabel = UILabel()
   
 }
 

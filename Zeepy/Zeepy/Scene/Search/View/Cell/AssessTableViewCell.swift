@@ -13,6 +13,7 @@ class AssessTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     layout()
+    self.selectionStyle = .none
   }
   
   // MARK: - Components
