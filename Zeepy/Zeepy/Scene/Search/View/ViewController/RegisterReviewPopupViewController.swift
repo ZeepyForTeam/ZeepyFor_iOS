@@ -7,6 +7,9 @@
 
 import UIKit
 
+import Moya
+import RxSwift
+import RxCocoa
 import SnapKit
 import Then
 
@@ -22,6 +25,8 @@ class RegisterReviewPopupViewController: UIViewController {
   private let registerButton = UIButton()
   
   // MARK: - Variables
+  private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
+  private let disposeBag = DisposeBag()
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -144,6 +149,7 @@ extension RegisterReviewPopupViewController {
                      backgroundColor: .gray249,
                      state: .normal,
                      radius: 8)
+      $0.addTarget(self, action: #selector(self.cancelButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.trailing.equalTo(self.cardView.snp.centerX).offset(-5)
         $0.leading.equalTo(self.cardView.snp.leading).offset(12)
@@ -161,6 +167,7 @@ extension RegisterReviewPopupViewController {
                      backgroundColor: .mainBlue,
                      state: .normal,
                      radius: 8)
+      $0.addTarget(self, action: #selector(self.registerButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.cardView.snp.centerX).offset(5)
         $0.trailing.equalTo(self.cardView.snp.trailing).offset(-12)
@@ -184,5 +191,16 @@ extension RegisterReviewPopupViewController {
   // MARK: - General Helpers
   private func registerReview() {
     // TODO: - Server Connection
+    reviewService.addReview(param: reviewModel)
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            print("success")
+            self.navigationController?.popToRootViewController(animated: true)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
 }

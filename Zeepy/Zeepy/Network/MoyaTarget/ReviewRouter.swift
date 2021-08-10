@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 enum ReviewRouter {
-  case addReview(param: SaveReviewRequest)
+  case addReview(param: ReviewModel)
   case fetchReviewByAddress(address: String)
   case deleteReview(id: Int)
 }
