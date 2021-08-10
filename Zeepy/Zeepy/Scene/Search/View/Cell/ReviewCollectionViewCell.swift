@@ -7,23 +7,32 @@
 
 import UIKit
 
+// MARK: - ReviewCollectionViewCell
 class ReviewCollectionViewCell: UICollectionViewCell {
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    layout()
-  }
+  // MARK: - Components
   let identifier = "ReviewCollectionViewCell"
   let titleLabel = UILabel()
   let containerView = UIView()
   let containerBackgroundImageView = UIImageView()
   let containerContentLabel = UILabel()
+  
+  // MARK: - Variables
+  var index: Int?
+  
+  // MARK: - LifeCycles
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    layout()
+  }
+  
 }
 
 extension ReviewCollectionViewCell {
   func layoutTitleLabel() {
     self.contentView.add(titleLabel) {
       $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+      $0.font = UIFont.nanumRoundRegular(fontSize: 12)
       $0.snp.makeConstraints {
         $0.top.equalTo(self.contentView.snp.top)
         $0.leading.equalTo(self.contentView.snp.leading)

@@ -50,7 +50,7 @@ extension TendencyTableViewCell {
   func layoutTendencyContainerView() {
     self.contentView.add(tendencyContainerView) {
       $0.backgroundColor = .white
-      $0.setRounded(radius: self.contentView.frame.height/2)
+      $0.setRounded(radius: 14)
       $0.snp.makeConstraints {
         $0.top.bottom.equalToSuperview()
         $0.leading.equalTo(self.iconImageView.snp.trailing).offset(16)

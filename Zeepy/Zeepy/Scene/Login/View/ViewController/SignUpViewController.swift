@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import Moya
 
 class SignUpViewController: BaseViewController {  
   let contentView = UIView()
@@ -37,13 +38,14 @@ class SignUpViewController: BaseViewController {
     $0.infoTextField.placeholder = "비밀번호를 다시 입력해주세요"
     $0.validationResult.text = "비밀번호가 일치하지 않습니다."
   }
-  let pwNotSame = UILabel().then{
-    $0.textColor = .heartColor //salmon color가 왜 안나오지?...
-    $0.text = "비밀번호가 일치하지 않습니다."
-    $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
-  }
+//  let pwNotSame = UILabel().then{
+//    $0.textColor = .heartColor //salmon color가 왜 안나오지?...
+//    $0.text = "비밀번호가 일치하지 않습니다."
+//    $0.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+//  }
   let pwCheckImage = UIImageView().then{
     $0.image = UIImage(named: "check")
+    $0.isHidden = true
   }
   let newsCheckBox = UIButton().then{
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
@@ -70,6 +72,7 @@ class SignUpViewController: BaseViewController {
     $0.setTitle("가입완료", for: .normal)
     $0.backgroundColor = .mainBlue
     $0.setRounded(radius: 6)
+    $0.alpha = 0.1
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 16.0)
   }
   
@@ -112,6 +115,7 @@ class SignUpViewController: BaseViewController {
   }
   private let viewModel = SignUpViewModel()
   func bind() {
+    
     let inputs = SignUpViewModel.Input(emailText: getEmail.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.getEmail.infoTextField.text ?? ""}.asObservable(),
                                        passwordText: getPW.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.getPW.infoTextField.text ?? ""}.asObservable(),
                                        passwordCheck: surePW.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.surePW.infoTextField.text ?? ""}.asObservable(),
@@ -124,6 +128,7 @@ class SignUpViewController: BaseViewController {
         self?.getEmail.infoTextField.shake()
       }
       self?.getEmail.validationResult.isHidden = result
+        
 
     }.disposed(by: disposeBag)
     output.nickNameValidate.bind{[weak self] result in
@@ -137,19 +142,24 @@ class SignUpViewController: BaseViewController {
     output.passwordSame.bind{[weak self] result in
       if !result {
         self?.surePW.infoTextField.text = ""
+        self?.pwCheckImage.isHidden = result
         self?.surePW.infoTextField.shake()
       }
       self?.surePW.validationResult.isHidden = result
+        self?.pwCheckImage.isHidden = !result
     }.disposed(by: disposeBag)
     output.passwordValidate.bind{[weak self] result in
       if !result {
         self?.getPW.infoTextField.text = ""
+        
         self?.getPW.infoTextField.shake()
       }
       self?.getPW.validationResult.isHidden = result
-
+      
     }.disposed(by: disposeBag)
+    
     output.registerEnabled.bind(to: signUpfinishButton.rx.isEnabled).disposed(by: disposeBag)
+    output.registerEnabled.map{$0 ? 1 : 0.1}.bind(to: signUpfinishButton.rx.alpha).disposed(by: disposeBag)
     output.registerResult.bind{[weak self] result in
       if result {
         print("회원가입 성공")
@@ -203,7 +213,6 @@ class SignUpViewController: BaseViewController {
       }
     }.disposed(by: disposeBag)
   }
-  
   func addConstraints(){
     contentView.adds([getName, getID, getEmail, getPW, surePW, newsCheckBox, newsLabel, termsCheckBox,termsLabel,viewTerms, signUpfinishButton ])
     
@@ -228,15 +237,15 @@ class SignUpViewController: BaseViewController {
       $0.top.equalTo(getEmail.snp.bottom)
       $0.height.equalTo(90)
     }
-    surePW.contentView.addSubview(pwNotSame)
+//    surePW.contentView.addSubview(pwNotSame)
     surePW.infoTextFieldBackGroundView.addSubview(pwCheckImage)
     surePW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(getPW.snp.bottom)
     }
-    pwNotSame.snp.makeConstraints{
-      $0.top.trailing.equalToSuperview().inset(6)
-    }
+//    pwNotSame.snp.makeConstraints{
+//      $0.top.trailing.equalToSuperview().inset(6)
+//    }
     pwCheckImage.snp.makeConstraints{
       $0.centerY.equalToSuperview()
       $0.trailing.equalToSuperview().inset(10)
@@ -272,46 +281,4 @@ class SignUpViewController: BaseViewController {
       $0.height.equalTo(40)
     }
   }
-}
-
-class SignupModel {
-    let name = PublishSubject<String>()
-    let id = PublishSubject<String>()
-    let email = PublishSubject<String>()
-    let passWord = PublishSubject<String>()
-    let ensurePassWord = PublishSubject<String>()
-    let privacy = PublishSubject<Bool>()
-    let promotion = PublishSubject<Bool>()
-    let register = PublishSubject<Bool>()
-    let wrongPW = PublishSubject<Bool>()
-    let rightPW = PublishSubject<Bool>()
-    
-    func isValid() -> Observable<Bool>{
-        return Observable.combineLatest(email.asObservable().startWith(""),
-                                        passWord.asObservable().startWith(""),
-                                        ensurePassWord.asObservable().startWith("")
-//                                        privacy.
-                                        ).map{ email, password, ensurePassword  in
-                                            return email.contains("@") && password.count > 3 && password == ensurePassword }.startWith(false)
-    }
-    
-    func correctPW() -> Observable<Bool>{
-        return Observable.combineLatest(passWord.asObservable().startWith(""),
-                                        ensurePassWord.asObservable().startWith("")).map{
-                                            password, ensurepassword in
-                                            return password == ensurepassword
-                                        }.startWith(false)
-        
-    }
-    
-    func notcorrectPW() -> Observable<Bool>{
-        return Observable.combineLatest(passWord.asObservable().startWith(""),
-                                        ensurePassWord.asObservable().startWith("")).map{
-                                            password, ensurepassword in
-                                            return password != ensurepassword
-                                        }.startWith(true)
-        
-    }
-
-    
 }
