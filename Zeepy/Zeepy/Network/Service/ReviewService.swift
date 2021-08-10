@@ -15,7 +15,7 @@ class ReviewService {
   }
 }
 extension ReviewService {
-  func addReview(param: SaveReviewRequest) -> Observable<Response> {
+  func addReview(param: ReviewModel) -> Observable<Response> {
     provider.rx.request(.addReview(param: param))
       .asObservable()
   }
