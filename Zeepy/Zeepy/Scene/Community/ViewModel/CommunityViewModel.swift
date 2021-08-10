@@ -29,7 +29,7 @@ extension CommunityViewModel {
     weak var weakSelf = self
     var postList : [PostModel] = []
     let postListObservable = input.loadView.flatMapLatest{ _ -> Observable<[PostModel]> in
-      let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: nil, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
+      let response = weakSelf?.service.fetchPostList(param: .init(address: "test", communityType: nil, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
         .map{
           $0.content
             .map{
