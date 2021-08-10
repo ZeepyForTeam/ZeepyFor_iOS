@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import Moya
 
 class SignUpViewController: BaseViewController {  
   let contentView = UIView()

@@ -479,6 +479,8 @@ class ConditionViewController: UIViewController {
     @objc func onTapBuildingButton(sender: UIButton) {
         sender.isSelected.toggle()
         buildingCollectionView.reloadInputViews()
+        buildingList[sender.tag].selected.toggle()
+        print(buildingList.filter{$0.selected}.map{$0.title})
     }
     
     @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
@@ -524,15 +526,19 @@ class ConditionViewController: UIViewController {
                 $0.leading.trailing.equalToSuperview().offset(16)
             }
         }
+        print(transactionList.filter{$0.selected}.map{$0.title})
         transactionCollectionView.reloadInputViews()
     }
     @objc func onTapOptionButton(sender: UIButton) {
+        optionList[sender.tag].selected.toggle()
         sender.isSelected.toggle()
         if sender.isSelected {
             sender.backgroundColor = .mainYellow
+            
         } else {
             sender.backgroundColor = .mainBlue
         }
+        print(optionList.filter{$0.selected}.map{$0.name})
         optionCollectionView.reloadInputViews()
     }
     
@@ -600,7 +606,9 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
             cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
+
             cell?.buttonTitle.text = buildingList[indexPath.row].title
+            cell?.circleButton.tag = indexPath.row
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
             return cell!
             
@@ -619,9 +627,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableOptionCell.identifier, for:indexPath) as? ReusableOptionCell)
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
-            if optioncell!.squareButton.isTouchInside {
-                optionList[indexPath.row].selected.toggle()
-            }
+            optioncell?.squareButton.tag = indexPath.row
             return optioncell!
         }
         return UICollectionViewCell()
