@@ -23,7 +23,12 @@ class ConditionViewController: UIViewController {
         var name = String()
         var selected = Bool()
     }
-  
+    struct PriceRangeModel {
+        var depositMin: Int?
+        var depositMax: Int?
+        var rentMin: Int?
+        var rentMax: Int?
+    }
     // MARK: - Arrays
     var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1", selected: true),
                                      ListModel(title: "투룸", image: "btnOption2", selected: true),
@@ -42,9 +47,17 @@ class ConditionViewController: UIViewController {
                                       OptionModel(name: "인덕션", selected: true),
                                       OptionModel(name: "가스레인지", selected: true),
                                       OptionModel(name: "전자레인지", selected: true)]
-  func temp () {
-    let furnitures = optionList.filter{$0.selected}
-      .map{$0.name}
+    
+    var priceRange : [PriceRangeModel] = [PriceRangeModel(depositMin: 0, depositMax: 3, rentMin: 0, rentMax: 3)]
+  func variableForServer() {
+    var selectedBuilding = buildingList.filter{$0.selected}.map{$0.title}
+    var selectedTransaction = transactionList.filter{$0.selected}.map{$0.title}
+    var selectedOptions = optionList.filter{$0.selected}.map{$0.name}
+    
+    var selectedDepositMin = depositIndexToNumber(index: priceRange[0].depositMin)
+    var selectedDepositMax = depositIndexToNumber(index: priceRange[0].depositMax)
+    var selectedRentMin = rentIndexToNumber(index: priceRange[0].rentMin)
+    var selectedRentMax = rentIndexToNumber(index: priceRange[0].rentMax)
   }
     // MARK: - Components
     let scrollView = UIScrollView()
@@ -244,6 +257,39 @@ class ConditionViewController: UIViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    func depositIndexToNumber(index : Int?) -> Int?{
+        var number : Int?
+        
+        if index == 0 {
+            number = 0
+        }else if index == 1 {
+            number = 10000000
+        }
+        else if index == 2 {
+            number = 50000000
+        }
+        else if index == 3 {
+            number = 0
+        }
+        return number
+    }
+    
+    func rentIndexToNumber(index: Int?) -> Int?{
+        var number : Int?
+        
+        if index == 0 {
+            number = 0
+        }else if index == 1 {
+            number = 500000
+        }
+        else if index == 2 {
+            number = 1000000
+        }
+        else if index == 3 {
+            number = 0
+        }
+        return number
     }
     
     func addConstraints()
@@ -479,6 +525,7 @@ class ConditionViewController: UIViewController {
     @objc func onTapBuildingButton(sender: UIButton) {
         sender.isSelected.toggle()
         buildingCollectionView.reloadInputViews()
+        buildingList[sender.tag].selected.toggle()
     }
     
     @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
@@ -527,22 +574,29 @@ class ConditionViewController: UIViewController {
         transactionCollectionView.reloadInputViews()
     }
     @objc func onTapOptionButton(sender: UIButton) {
+        optionList[sender.tag].selected.toggle()
         sender.isSelected.toggle()
         if sender.isSelected {
             sender.backgroundColor = .mainYellow
+            
         } else {
             sender.backgroundColor = .mainBlue
         }
         optionCollectionView.reloadInputViews()
     }
     
-    @objc func sliderDepositValuechanged(sender: RangeSeekSlider) {
+    @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
         setPriceRange(firstSection: depositFirstSection.text!, secondSection: depositSecondSection.text!, thirdSection: depositThirdSection.text!, fourthSection: depositFourthSection.text!, PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
+        priceRange[0].depositMax = Int(sender.selectedMaxValue)
+        priceRange[0].depositMin = Int(sender.selectedMinValue)
+        
     }
     
-    @objc func sliderRentValuechanged(sender: RangeSeekSlider) {
+    @objc func sliderRentValuechanged(sender: RangeSeekSlider){
         setPriceRange(firstSection: rentFirstSection.text!, secondSection: rentSecondSection.text!, thirdSection: rentThirdSection.text!, fourthSection: rentFourthSection.text!, PriceRangeLabel: rentPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
+        priceRange[0].rentMax = Int(sender.selectedMaxValue)
+        priceRange[0].rentMin = Int(sender.selectedMinValue)
         rentPriceLabel.reloadInputViews()
     }
     
@@ -600,7 +654,9 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
             cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
+
             cell?.buttonTitle.text = buildingList[indexPath.row].title
+            cell?.circleButton.tag = indexPath.row
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
             return cell!
             
@@ -619,9 +675,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableOptionCell.identifier, for:indexPath) as? ReusableOptionCell)
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
-            if optioncell!.squareButton.isTouchInside {
-                optionList[indexPath.row].selected.toggle()
-            }
+            optioncell?.squareButton.tag = indexPath.row
             return optioncell!
         }
         return UICollectionViewCell()
