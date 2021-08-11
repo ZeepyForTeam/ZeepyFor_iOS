@@ -169,9 +169,13 @@ extension ModifyInformationViewController {
       }
     }
   }
-  
+   
   private func layoutDropoutButton() {
     view.add(drououtButton) {
+      $0.addTarget(self,
+                   action: #selector(self.clickedWithdrawButton),
+                   for: .touchUpInside)
+      
       $0.snp.makeConstraints {
         $0.top.equalTo(self.logoutButton.snp.top)
         $0.leading.equalTo(self.logoutButton.snp.trailing).offset(12)
@@ -179,6 +183,13 @@ extension ModifyInformationViewController {
         $0.height.equalTo(14)
       }
     }
+  }
+  
+  // MARK: - Action Helpers
+  @objc
+  private func clickedWithdrawButton() {
+    let withdrawVC = WithdrawalViewController()
+    self.navigationController?.pushViewController(withdrawVC, animated: true)
   }
   
   // MARK: - General Helpers
@@ -227,6 +238,7 @@ extension ModifyInformationViewController {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "내 정보 수정")
   }
+  
   //로그아웃기능 임시
   private func temp() {
     logoutButton.rx.tap.bind{
