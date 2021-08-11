@@ -13,21 +13,14 @@ class AdditionalInformationViewController: BaseViewController {
   
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
-  let titleLabelNumberOfLine = 2
-  let titleLabel = UILabel()
-  let reviewTitleLabel = UILabel()
-  let reviewTextField: UITextField = {
-    let textField = UITextField.textFieldWithInsets(insets:
-                                                      UIEdgeInsets(top: 10,
-                                                                   left: 10,
-                                                                   bottom: 10,
-                                                                   right: 10))
-    return textField
-  }()
-  let assessTitleLabel = UILabel()
-  let assessTableView = UITableView()
-  let nextButton = UIButton()
-  let separatorView = UIView()
+  private let titleLabel = UILabel()
+  private let reviewTitleLabel = UILabel()
+  private let reviewTextField = UITextView()
+  private let assessTitleLabel = UILabel()
+  private let assessTableView = UITableView()
+  private let nextButton = UIButton()
+  private let separatorView = UIView()
+  private let countLabel = UILabel()
   
   // MARK: - Varaibles
   var reviewModel = ReviewModel(address: "",
@@ -49,7 +42,11 @@ class AdditionalInformationViewController: BaseViewController {
   var assessTextList = [("다음에도 여기 살고 싶어요!", "GOOD"),
                         ("완전 추천해요!", "SOSO"),
                         ("그닥 추천하지 않아요.", "BAD")]
+  
   var selectedNumber = 100
+  private final let maxLength = 1500
+  private var textCount = 0
+  private let titleLabelNumberOfLine = 2
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -59,6 +56,7 @@ class AdditionalInformationViewController: BaseViewController {
     assessTableView.delegate = self
     assessTableView.dataSource = self
     setupNavigation()
+    notifyTextView()
   }
   
   
@@ -118,12 +116,14 @@ extension AdditionalInformationViewController {
   func layoutReviewTextField() {
     self.view.add(self.reviewTextField) {
       $0.textColor = .blackText
-      $0.font = .nanumRoundRegular(fontSize: 10)
+      $0.font = .nanumRoundRegular(fontSize: 14)
       $0.setRounded(radius: 8)
       $0.setBorder(borderColor: .grayText, borderWidth: 1)
       $0.backgroundColor = .clear
       $0.textAlignment = .left
-      $0.contentVerticalAlignment = .top
+      $0.textContainerInset = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
+      $0.autocapitalizationType = .none
+      $0.autocorrectionType = .no
       $0.delegate = self
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.reviewTitleLabel.snp.leading)
@@ -184,6 +184,7 @@ extension AdditionalInformationViewController {
       }
     }
   }
+  
   func layoutSeparatorView() {
     self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
@@ -191,6 +192,18 @@ extension AdditionalInformationViewController {
         $0.width.equalTo(self.view.snp.width)
         $0.height.equalTo(1)
         $0.bottom.equalTo(self.nextButton.snp.top).offset(-12)
+      }
+    }
+  }
+  
+  func layoutCountLabel() {
+    view.add(countLabel) {
+      $0.setupLabel(text: "\(self.textCount)/\(self.maxLength)자",
+                    color: .grayText,
+                    font: .nanumRoundRegular(fontSize: 12))
+      $0.snp.makeConstraints {
+        $0.bottom.equalTo(self.reviewTextField.snp.bottom).offset(-12)
+        $0.trailing.equalTo(self.reviewTextField.snp.trailing).offset(-10)
       }
     }
   }
@@ -203,6 +216,7 @@ extension AdditionalInformationViewController {
     layoutAssessTableView()
     layoutNextButton()
     layoutSeparatorView()
+    layoutCountLabel()
   }
   
   // MARK: - General Helpers
@@ -228,6 +242,14 @@ extension AdditionalInformationViewController {
     }
   }
   
+  private func notifyTextView() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.textDidChange(_:)),
+      name: UITextView.textDidChangeNotification,
+      object: self.reviewTextField)
+  }
+  
   // MARK: - Action Helpers
   @objc func nextButtonClicked() {
     let navigation = self.navigationController
@@ -237,6 +259,34 @@ extension AdditionalInformationViewController {
     nextViewController.reviewModel = reviewModel
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
+  }
+  
+  @objc
+  private func textDidChange(_ notification: Notification) {
+    if let textview = notification.object as? UITextView {
+      if let text = textview.text {
+        if text.isEmpty == false {
+          var count = text.count
+          if text.count > maxLength {
+            count = maxLength
+          }
+          self.textCount = count
+          self.countLabel.text = "\(self.textCount)/\(maxLength)자"
+        }
+        if text.count > self.maxLength {
+          textview.resignFirstResponder()
+        }
+        if text.count >= maxLength {
+          let index = text.index(text.startIndex, offsetBy: maxLength)
+          let newString = text[text.startIndex..<index]
+          textview.text = String(newString)
+        }
+      }
+      if textview.hasText == false {
+        self.textCount = 0
+        self.countLabel.text = "\(self.textCount)/\(maxLength)자"
+      }
+    }
   }
 }
 
@@ -276,9 +326,19 @@ extension AdditionalInformationViewController: UITableViewDataSource {
   
 }
 
-// MARK: - UITextField Delegate
-extension AdditionalInformationViewController: UITextFieldDelegate {
-  func textFieldDidEndEditing(_ textField: UITextField) {
+// MARK: - UITextView Delegate
+extension AdditionalInformationViewController: UITextViewDelegate {
+  func textViewDidEndEditing(_ textView: UITextView) {
     activateNextButton()
+  }
+  
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    guard let text = textView.text else { return false }
+    if text.count >= self.maxLength &&
+        range.length == 0 &&
+        range.location < self.maxLength {
+      return false
+    }
+    return true
   }
 }
