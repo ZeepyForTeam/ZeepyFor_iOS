@@ -12,35 +12,30 @@ import UIKit
 class LenderInformationViewController: BaseViewController {
   
   // MARK: - Constants
-  let titleLabelNumberOfLine = 2
+  private final let titleLabelNumberOfLine = 2
+  private final let maxLength = 1500
   
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
-  let titleLabel = UILabel()
-  let genderTitleLabel = UILabel()
-  let maleButton = UIButton()
-  let femaleButton = UIButton()
-  let ageTitleLabel = UILabel()
-  let ageView = UIView()
-  let ageContextLabel = UILabel()
-  let ageButton = UIButton()
-  let ageUnitLabel = UILabel()
-  let detailTitleLabel = UILabel()
-  let detailTextField: UITextField = {
-    let textField = UITextField.textFieldWithInsets(insets:
-                                                      UIEdgeInsets(top: 10,
-                                                                   left: 10,
-                                                                   bottom: 10,
-                                                                   right: 10))
-    return textField
-  }()
-  let detailTextFieldFooterLabel = UILabel()
-  let nextButton = UIButton()
-  let separatorView = UIView()
+  private let titleLabel = UILabel()
+  private let genderTitleLabel = UILabel()
+  private let maleButton = UIButton()
+  private let femaleButton = UIButton()
+  private let ageTitleLabel = UILabel()
+  private let ageView = UIView()
+  private let ageContextLabel = UILabel()
+  private let ageButton = UIButton()
+  private let ageUnitLabel = UILabel()
+  private let detailTitleLabel = UILabel()
+  private let detailTextField = UITextView()
+  private let detailTextFieldFooterLabel = UILabel()
+  private let nextButton = UIButton()
+  private let separatorView = UIView()
+  private let countLabel = UILabel()
   
   // MARK: - Variables
-  var selectedGender: String?
-  var selectedAge: String = "TWENTY"
+  private var selectedGender: String?
+  private var selectedAge: String = "TWENTY"
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -57,6 +52,7 @@ class LenderInformationViewController: BaseViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
+  private var textCount = 0
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -64,6 +60,7 @@ class LenderInformationViewController: BaseViewController {
     self.view.backgroundColor = .white
     layout()
     setupNavigation()
+    notifyTextView()
   }
 }
 // MARK: - Extensions
@@ -80,7 +77,7 @@ extension LenderInformationViewController {
     }
   }
   
-  func layoutTitleLabel() {
+  private func layoutTitleLabel() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
     let titleText = NSMutableAttributedString(string: "임대인에 대해\n조금 더 알려주세요!",
@@ -103,7 +100,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutGenderTitleLabel() {
+  
+  private func layoutGenderTitleLabel() {
     self.view.add(self.genderTitleLabel) {
       $0.text = "성별"
       $0.textColor = .blackText
@@ -114,7 +112,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutMaleButton() {
+  
+  private func layoutMaleButton() {
     self.view.add(self.maleButton) {
       $0.backgroundColor = .white
       $0.setTitle("남", for: .normal)
@@ -131,7 +130,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutFemaleButton() {
+  
+  private func layoutFemaleButton() {
     self.view.add(self.femaleButton) {
       $0.backgroundColor = .white
       $0.setTitle("여", for: .normal)
@@ -148,7 +148,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutAgeTitleLabel() {
+  
+  private func layoutAgeTitleLabel() {
     self.view.add(self.ageTitleLabel) {
       $0.text = "연령대"
       $0.textColor = .blackText
@@ -159,7 +160,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutAgeView() {
+  
+  private func layoutAgeView() {
     self.view.add(self.ageView) {
       $0.backgroundColor = .gray244
       $0.setRounded(radius: 4)
@@ -171,7 +173,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutAgeContextLabel() {
+  
+  private func layoutAgeContextLabel() {
     self.ageView.add(self.ageContextLabel) {
       $0.text = "50"
       $0.textColor = .blackText
@@ -182,7 +185,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutAgeButton() {
+  
+  private func layoutAgeButton() {
     self.ageView.add(self.ageButton) {
       $0.setBackgroundImage(UIImage(named: "iconSearch"), for: .normal)
       $0.snp.makeConstraints {
@@ -192,7 +196,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutAgeUnitLabel() {
+  
+  private func layoutAgeUnitLabel() {
     self.view.add(self.ageUnitLabel) {
       $0.text = "대"
       $0.textColor = .blackText
@@ -203,7 +208,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutDetailTitleLabel() {
+  
+  private func layoutDetailTitleLabel() {
     self.view.add(self.detailTitleLabel) {
       $0.text = "상세정보"
       $0.textColor = .blackText
@@ -214,15 +220,18 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutDetailTextField() {
+  
+  private func layoutDetailTextField() {
     self.view.add(self.detailTextField) {
       $0.textColor = .blackText
-      $0.font = .nanumRoundRegular(fontSize: 10)
+      $0.font = .nanumRoundRegular(fontSize: 14)
       $0.setRounded(radius: 8)
       $0.setBorder(borderColor: .grayText, borderWidth: 1)
       $0.backgroundColor = .clear
       $0.textAlignment = .left
-      $0.contentVerticalAlignment = .top
+      $0.textContainerInset = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
+      $0.autocorrectionType = .no
+      $0.autocapitalizationType = .none
       $0.delegate = self
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.genderTitleLabel.snp.leading)
@@ -232,7 +241,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutDetailTextFieldFooterLabel() {
+  
+  private func layoutDetailTextFieldFooterLabel() {
     self.view.add(detailTextFieldFooterLabel) {
       $0.text = "*임대인을 향한 비방이나 너무 심한 욕설은 자제해주세요. T-T!"
       $0.textColor = .grayText
@@ -243,7 +253,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutNextButton() {
+  
+  private func layoutNextButton() {
     self.view.add(self.nextButton) {
       $0.tag = 0
       $0.setRounded(radius: 8)
@@ -268,7 +279,8 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layoutseparatorView() {
+  
+  private func layoutseparatorView() {
     self.view.add(self.separatorView) {
       $0.backgroundColor = .gray244
       $0.snp.makeConstraints {
@@ -278,7 +290,20 @@ extension LenderInformationViewController {
       }
     }
   }
-  func layout() {
+  
+  private func layoutCountLabel() {
+    view.add(countLabel) {
+      $0.setupLabel(text: "\(self.textCount)/\(self.maxLength)자",
+                    color: .grayText,
+                    font: .nanumRoundRegular(fontSize: 12))
+      $0.snp.makeConstraints {
+        $0.bottom.equalTo(self.detailTextField.snp.bottom).offset(-12)
+        $0.trailing.equalTo(self.detailTextField.snp.trailing).offset(-10)
+      }
+    }
+  }
+  
+  private func layout() {
     layoutNavigationView()
     layoutTitleLabel()
     layoutGenderTitleLabel()
@@ -294,10 +319,12 @@ extension LenderInformationViewController {
     layoutDetailTextFieldFooterLabel()
     layoutNextButton()
     layoutseparatorView()
+    layoutCountLabel()
   }
   
   // MARK: - Action Helpers
-  @objc func nextButtonClicked() {
+  @objc
+  private func nextButtonClicked() {
     let navigation = self.navigationController
     let nextViewController = DetailInformationViewController()
     reviewModel.lessorGender = selectedGender ?? ""
@@ -307,6 +334,7 @@ extension LenderInformationViewController {
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
+  
   @objc
   private func genderButtonClicked(_ sender: UIButton) {
     var notSender: UIButton?
@@ -325,6 +353,34 @@ extension LenderInformationViewController {
     activateNextButton()
   }
   
+  @objc
+  private func textDidChange(_ notification: Notification) {
+    if let textview = notification.object as? UITextView {
+      if let text = textview.text {
+        if text.isEmpty == false {
+          var count = text.count
+          if text.count > maxLength {
+            count = maxLength
+          }
+          self.textCount = count
+          self.countLabel.text = "\(self.textCount)/\(maxLength)자"
+        }
+        if text.count > self.maxLength {
+          textview.resignFirstResponder()
+        }
+        if text.count >= maxLength {
+          let index = text.index(text.startIndex, offsetBy: maxLength)
+          let newString = text[text.startIndex..<index]
+          textview.text = String(newString)
+        }
+      }
+      if textview.hasText == false {
+        self.textCount = 0
+        self.countLabel.text = "\(self.textCount)/\(maxLength)자"
+      }
+    }
+  }
+  
   // MARK: - General Helpers
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
@@ -340,11 +396,29 @@ extension LenderInformationViewController {
       nextButton.isUserInteractionEnabled = true
     }
   }
+  
+  private func notifyTextView() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.textDidChange(_:)),
+      name: UITextView.textDidChangeNotification,
+      object: self.detailTextField)
+  }
 }
 
-// MARK: - UITextField Delegate
-extension LenderInformationViewController: UITextFieldDelegate{
-  func textFieldDidEndEditing(_ textField: UITextField) {
+// MARK: - UITextView Delegate
+extension LenderInformationViewController: UITextViewDelegate {
+  func textViewDidEndEditing(_ textView: UITextView) {
     activateNextButton()
+  }
+  
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    guard let text = textView.text else { return false }
+    if text.count >= self.maxLength &&
+        range.length == 0 &&
+        range.location < self.maxLength {
+      return false
+    }
+    return true
   }
 }
