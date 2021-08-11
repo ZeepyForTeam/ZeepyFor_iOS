@@ -5,19 +5,12 @@
 //  Created by 노한솔 on 2021/04/17.
 //
 import Foundation
+
+import Moya
+import RxSwift
 import SnapKit
 import Then
 import UIKit
-
-// MARK: - AddressModel
-struct AddressModel: Codable {
-  let addresses: [Addresses]
-}
-
-// MARK: - Addresses
-struct Addresses: Codable {
-  let cityDistinct, primaryAddress, detailAddress: String
-}
 
 class SelectAddressViewController: BaseViewController {
   // MARK: - Constants
@@ -35,7 +28,8 @@ class SelectAddressViewController: BaseViewController {
   let nextButton = UIButton()
   
   // MARK: - Variables
-  var selectedIndex = 100
+  private let userService = UserService(provider: MoyaProvider<UserRouter>(plugins:[NetworkLoggerPlugin()]))
+  private var selectedIndex = 100
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -53,7 +47,7 @@ class SelectAddressViewController: BaseViewController {
                                 user: 0,
                                 waterPressure: "")
   
-  var addressModel =  AddressModel(addresses: [
+  var addressModel =  ResponseGetAddress(addresses: [
                                     Addresses(cityDistinct: "서울시 노원구",
                                               primaryAddress: "공릉동",
                                               detailAddress: "34번지 102호"),
@@ -71,6 +65,16 @@ class SelectAddressViewController: BaseViewController {
     layout()
     register()
     setupNavigation()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchAddress()
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
   }
 }
 // MARK: - Extensions
@@ -158,7 +162,7 @@ extension SelectAddressViewController {
   }
   func layoutNextButton() {
     self.view.add(self.nextButton) {
-      $0.tag = 1
+      $0.tag = 0
       $0.setRounded(radius: 8)
       $0.setTitle("다음으로", for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
@@ -191,6 +195,15 @@ extension SelectAddressViewController {
       }
     }
   }
+  
+  private func relayoutAddressTableView() {
+    addressTableView.snp.remakeConstraints {
+      $0.leading.equalTo(self.addressLabel.snp.leading)
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
+      $0.height.equalTo(self.addressModel.addresses.count * 56)
+    }
+  }
   func layout() {
     layoutNavigationView()
     layoutTitleText()
@@ -209,6 +222,27 @@ extension SelectAddressViewController {
       forCellReuseIdentifier: SelectAddressTableViewCell.identifier)
     addressTableView.delegate = self
     addressTableView.dataSource = self
+  }
+  
+  private func fetchAddress() {
+    userService.getAddress()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(ResponseGetAddress.self,
+                                          from: response.data)
+            self.addressModel = data
+            self.relayoutAddressTableView()
+            self.addressTableView.reloadData()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
   
   // MARK: - Action Helpers
@@ -275,7 +309,7 @@ extension SelectAddressViewController: UITableViewDataSource {
     }
     addressCell.awakeFromNib()
     let address = addressModel.addresses[indexPath.row]
-    addressCell.addressLabel.text = "\(address.cityDistinct) \(address.primaryAddress) \(address.detailAddress)"
+    addressCell.addressLabel.text = "\(address.cityDistinct) \(address.primaryAddress) \(address.detailAddress ?? "")"
     addressCell.rootViewController = self
     if indexPath.row == selectedIndex {
       addressCell.containerView.layer.borderColor = UIColor.mainBlue.cgColor
@@ -290,6 +324,9 @@ extension SelectAddressViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     selectedIndex = indexPath.row
+    nextButton.backgroundColor = .mainBlue
+    nextButton.setTitleColor(.white, for: .normal)
+    nextButton.isUserInteractionEnabled = true
     tableView.reloadData()
   }
 }
