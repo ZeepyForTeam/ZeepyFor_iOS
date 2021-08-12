@@ -85,10 +85,11 @@ extension SearchAddressViewController {
   }
   
   private func layoutSearchTextField() {
-    let placeholderText = NSMutableAttributedString(string: "주소를 입력해주세요",
-                                                    attributes: [
-                                                      .font: UIFont.nanumRoundRegular(fontSize: 12),
-                                                      .foregroundColor: UIColor.grayText])
+    let placeholderText = NSMutableAttributedString(
+      string: "주소를 입력해주세요",
+      attributes: [.font: UIFont.nanumRoundRegular(fontSize: 12),
+                   .foregroundColor: UIColor.grayText])
+    
     let searchIconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 37.5, height: 16))
     searchIconContainerView.backgroundColor = .clear
     let searchIconImageView = UIImageView(image: UIImage(named: "iconSearch"))

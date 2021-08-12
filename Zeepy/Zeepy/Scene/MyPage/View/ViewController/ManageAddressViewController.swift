@@ -7,22 +7,30 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
 // MARK: - ManageAddressViewController
-class ManageAddressViewController: UIViewController {
+class ManageAddressViewController: BaseViewController {
   
   // MARK: - Lazy Components
+  private lazy var addressTableView: UITableView = {
+    let tableView = UITableView()
+    return tableView
+  }()
   
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
   private let addressTitleLabel = UILabel()
-  private let addressTableView = UITableView()
   
   // MARK: - Variables
+  private let userService = UserService(provider: MoyaProvider<UserRouter>())
+  
   private var tableViewRowHeight: CGFloat = 94
   private var tableViewRowCount = 1
+  private var addressModel: ResponseGetAddress?
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -31,6 +39,11 @@ class ManageAddressViewController: UIViewController {
     layout()
     register()
     setupNavigation()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchAddress()
   }
 }
 
@@ -68,6 +81,7 @@ extension ManageAddressViewController {
       $0.backgroundColor = .clear
       $0.setRounded(radius: 8)
       $0.separatorStyle = .none
+      $0.isScrollEnabled = false
       $0.estimatedRowHeight = 94
       $0.rowHeight = UITableView.automaticDimension
       $0.snp.makeConstraints {
@@ -78,12 +92,27 @@ extension ManageAddressViewController {
       }
     }
   }
+  
+  private func relayoutAddressTableView() {
+    addressTableView.snp.remakeConstraints {
+      $0.leading.equalTo(self.addressTitleLabel.snp.leading)
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(self.addressTitleLabel.snp.bottom).offset(16)
+      $0.height.equalTo((self.addressModel?.addresses.count ?? 0) * 94)
+    }
+  }
 
   
   // MARK: - General Helpers
   private func register() {
-    addressTableView.register(EmptyManageAddressTableViewCell.self,
-                              forCellReuseIdentifier: EmptyManageAddressTableViewCell.identifier)
+    addressTableView.register(
+      EmptyManageAddressTableViewCell.self,
+      forCellReuseIdentifier: EmptyManageAddressTableViewCell.identifier)
+    
+    addressTableView.register(
+      ManageAddressTableViewCell.self,
+      forCellReuseIdentifier: ManageAddressTableViewCell.identifier)
+    
     addressTableView.delegate = self
     addressTableView.dataSource = self
   }
@@ -99,8 +128,34 @@ extension ManageAddressViewController {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "주소 관리")
   }
+  
+  func modalPopupView() {
+    
+  }
+  
   func reloadTableView() {
     addressTableView.reloadData()
+  }
+  
+  private func fetchAddress() {
+    userService.getAddress()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(ResponseGetAddress.self,
+                                          from: response.data)
+            self.addressModel = data
+            self.relayoutAddressTableView()
+            self.reloadTableView()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
 }
 
@@ -114,7 +169,12 @@ extension ManageAddressViewController: UITableViewDelegate {
 // MARK: - addressTableView DataSource
 extension ManageAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.tableViewRowCount
+    var count: Int = 0
+    if addressModel?.addresses.isEmpty == false {
+      count = (addressModel?.addresses.count) ?? 0
+    }
+    print(count)
+    return count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,8 +183,24 @@ extension ManageAddressViewController: UITableViewDataSource {
             for: indexPath) as? EmptyManageAddressTableViewCell else {
       return UITableViewCell()
     }
-    emptyCell.awakeFromNib()
-    return emptyCell
+    
+    guard let addressCell = tableView.dequeueReusableCell(
+            withIdentifier: ManageAddressTableViewCell.identifier,
+            for: indexPath) as? ManageAddressTableViewCell else {
+      return UITableViewCell()
+    }
+    
+    if addressModel?.addresses.isEmpty == true {
+      emptyCell.awakeFromNib()
+      return emptyCell
+    }
+    else {
+      addressCell.awakeFromNib()
+      let address = addressModel?.addresses[indexPath.row]
+      addressCell.addressLabel.text = "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "") \(address?.detailAddress ?? "")"
+      addressCell.rootViewController = self
+      return addressCell
+    }
   }
   
   

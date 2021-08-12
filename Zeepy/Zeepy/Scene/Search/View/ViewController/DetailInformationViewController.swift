@@ -47,15 +47,18 @@ class DetailInformationViewController: BaseViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
+  
   private final let roomCounts = [("1개", "ONE"),
                                   ("2개", "TWO"),
                                   ("3개 이상", "THREEORMORE")]
+  
   private final let reviewResults = ["좋아요",
                                      "적당해요",
                                      "별로에요",
                                      "없어요",
                                      "가끔 나와요",
                                      "많아요"]
+  
   var furnitureOptions = [("에어컨", false, "AIRCONDITIONAL"),
                           ("세탁기", false, "WASHINGMACHINE"),
                           ("침대", false, "BED"),
@@ -65,6 +68,7 @@ class DetailInformationViewController: BaseViewController {
                           ("인덕션", false, "INDUCTION"),
                           ("가스레인지", false, "BURNER"),
                           ("전자레인지", false, "MICROWAVE")]
+  
   private final let reviewTitles = ["방음", "해충", "채광", "수압"]
   private final let reviewSelections = ["GOOD", "PROPER", "BAD"]
   var selectedRoomCount = 100

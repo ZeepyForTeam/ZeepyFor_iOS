@@ -38,6 +38,8 @@
 		A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILabel+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
 		B42FCE0AF38B8A19BCF03D6B /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8B6AE74AC4C10CE176D9E /* Pods_Zeepy_ZeepyUITests.framework */; };
+		CC0429BA26C4BF8000C5D498 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */; };
+		CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
 		CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */; };
 		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
@@ -248,6 +250,8 @@
 		A45F4FA525FF309900FCEACF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A45F4FAA25FF360E00FCEACF /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewController.swift; sourceTree = "<group>"; };
 		CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewViewController.swift; sourceTree = "<group>"; };
@@ -678,6 +682,7 @@
 				CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */,
 				CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */,
 				CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */,
+				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -905,6 +910,7 @@
 				CCB6C0FF26AC31B5006E7032 /* FavoriteListViewController.swift */,
 				CCB6C10526ACD99E006E7032 /* CreditViewController.swift */,
 				CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */,
+				CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1529,6 +1535,7 @@
 				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */,
+				CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */,
 				CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */,
 				CC7C391A26C36D400015CA0B /* UserService.swift in Sources */,
 				DA61C3F825F32F440063263A /* AppDelegate.swift in Sources */,
@@ -1647,6 +1654,7 @@
 				CC7C391426C24D630015CA0B /* ReviewPhotoViewController.swift in Sources */,
 				DAF4D393265A033100B281E2 /* Dropdown.swift in Sources */,
 				DA61C45C25F362030063263A /* UIButton+.swift in Sources */,
+				CC0429BA26C4BF8000C5D498 /* SettingsViewController.swift in Sources */,
 				DA483D2726A9181800A81704 /* AddPostViewController.swift in Sources */,
 				CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */,
 				DA61C49D25F4DCF60063263A /* UIScrollView+.swift in Sources */,
