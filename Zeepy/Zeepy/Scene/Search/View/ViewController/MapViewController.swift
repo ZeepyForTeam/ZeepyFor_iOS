@@ -50,6 +50,7 @@ class MapViewController: BaseViewController {
   
   var items = [MTMapPOIItem]()
   var showItems = [MTMapPOIItem]()
+  var currentMarkers = [MTMapPOIItem]()
   
   var searchView = UIView().then{
     $0.setRounded(radius: 15)
@@ -311,6 +312,22 @@ class MapViewController: BaseViewController {
     mapView.addPOIItems(items)
     mapView.fitAreaToShowAllPOIItems()
   }
+    private func findCurrentMarker() {
+      let bounds = self.mapView.mapBounds
+        
+        let southWest = bounds?.bottomLeft
+        let northEast = bounds?.topRight
+      for marker in items {
+        if
+            marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
+                marker.mapPoint.mapPointGeo().latitude < (northEast?.mapPointGeo().latitude)! &&
+                marker.mapPoint.mapPointGeo().longitude > (southWest?.mapPointGeo().longitude)! &&
+                marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)! {
+          currentMarkers.append(marker)
+        }
+      }
+    }
+    
   // MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -23,11 +23,13 @@
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */; };
 		37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75BA526B69D2900DF851E /* LoginViewModel.swift */; };
+		37DD245B26C4CE5F002DA9B4 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD245A26C4CE5F002DA9B4 /* MapRouter.swift */; };
 		37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB72692FF260052047B /* SignUpViewController.swift */; };
 		37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8BB92692FF8A0052047B /* InputBoxView.swift */; };
 		37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB8A726BFD4A70048A6BF /* LoginModel.swift */; };
 		37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
+		37FD13B026C368140006C1DE /* ConditionSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD13AF26C368140006C1DE /* ConditionSearchService.swift */; };
 		9470C7C23AD3119313948F54 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA426E04D0132F00A1AE75E2 /* Pods_ZeepyTests.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
@@ -227,11 +229,13 @@
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTableViewCell.swift; sourceTree = "<group>"; };
 		37D75BA526B69D2900DF851E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		37DD245A26C4CE5F002DA9B4 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
 		37EB8BB72692FF260052047B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		37EB8BB92692FF8A0052047B /* InputBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoxView.swift; sourceTree = "<group>"; };
 		37ECB8A726BFD4A70048A6BF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
+		37FD13AF26C368140006C1DE /* ConditionSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSearchService.swift; sourceTree = "<group>"; };
 		5EE2766F1F07C53C02497446 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		92A72979B882D63DA8F80A68 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		97BCE68F741F910DDDC85CEB /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
@@ -783,6 +787,7 @@
 				DA40E1E626B6462100102EED /* CommunityRouter.swift */,
 				DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */,
 				DA66096126BBAFB90019D7F7 /* AuthRouter.swift */,
+				37DD245A26C4CE5F002DA9B4 /* MapRouter.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				DA40E1E826B6494600102EED /* CommunityService.swift */,
 				DA40E1EC26B64DB300102EED /* ReviewService.swift */,
 				DA66096326BBB1FE0019D7F7 /* AuthService.swift */,
+				37FD13AF26C368140006C1DE /* ConditionSearchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1633,10 +1639,12 @@
 				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
+				37FD13B026C368140006C1DE /* ConditionSearchService.swift in Sources */,
 				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,
 				37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */,
 				CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */,
 				CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */,
+				37DD245B26C4CE5F002DA9B4 /* MapRouter.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
 				DA4745A1261B283100709883 /* SearchViewController.swift in Sources */,
 			);

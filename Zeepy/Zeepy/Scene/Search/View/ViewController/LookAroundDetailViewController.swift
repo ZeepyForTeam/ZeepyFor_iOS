@@ -36,7 +36,6 @@ class LookAroundDetailViewController: BaseViewController {
   private let likeBtn = UIButton().then {
     $0.isSelected = false
     $0.setImage(UIImage(named: "btnLikeUnselected"), for: .normal)
-    
     $0.setImage(UIImage(named: "btnLike"), for: .selected)
   }
   private let scrollView = UIScrollView()
@@ -363,13 +362,9 @@ extension LookAroundDetailViewController {
       }
     }.disposed(by: disposeBag)
     
-    
     imageCollectionView.rx.itemSelected.bind{ [weak self] _ in
       print("사진리스트뷰로이동")
     }.disposed(by: disposeBag)
-    
-    
-    
 
     reviewMoreBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()
