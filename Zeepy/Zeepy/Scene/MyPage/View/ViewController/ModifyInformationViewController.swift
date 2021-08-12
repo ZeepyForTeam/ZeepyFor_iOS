@@ -27,12 +27,12 @@ class ModifyInformationViewController: BaseViewController {
   private let drououtButton = UIButton()
   
   // MARK: - Variables
-//  private var socialType: String?
+  //  private var socialType: String?
   private var socialType = "kakao"
   private var socialImageName = ["kakao": "kakaologo",
                                  "apple": "applelogo",
                                  "naver": "naverlogo"]
-//  private var socialEmail: String?
+  //  private var socialEmail: String?
   private var socialEmail = "zeepy.official@gmail.com"
   
   // MARK: -LifeCycle
@@ -169,7 +169,7 @@ extension ModifyInformationViewController {
       }
     }
   }
-   
+  
   private func layoutDropoutButton() {
     view.add(drououtButton) {
       $0.addTarget(self,
@@ -243,16 +243,16 @@ extension ModifyInformationViewController {
   private func temp() {
     logoutButton.rx.tap.bind{
       MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
-          LoginManager.shared.makeLogoutStatus()
-          let root = LoginEmailViewController()
-          let rootNav = UINavigationController()
+        LoginManager.shared.makeLogoutStatus()
+        let root = LoginEmailViewController()
+        let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true
-
-          rootNav.viewControllers = [root]
-
-           if let window = self.view.window {
-               window.rootViewController = rootNav
-           }
+        
+        rootNav.viewControllers = [root]
+        
+        if let window = self.view.window {
+          window.rootViewController = rootNav
+        }
       })
     }.disposed(by: disposeBag)
   }

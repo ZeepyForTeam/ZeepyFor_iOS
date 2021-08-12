@@ -38,8 +38,8 @@ final class MypageViewController: BaseViewController {
   private let mypageTableView = UITableView()
   
   // MARK: - Variables
-  private var isLogined = false
-  private var userName: String?
+  private var isLogined = true
+  private var userName: String? = "도로롱"
   private final let addressButtonTitle = "btnManageadress"
   private final let reviewButtonTitle = "btnManagereview"
   private final let favoriteButtonTitle = "btnLike"
@@ -48,7 +48,10 @@ final class MypageViewController: BaseViewController {
   private final let favoriteTitle = "찜 목록"
   private final let tableViewRowHeight: CGFloat = 47
   private final let tableViewRowCount = 4
-  private final let tableViewTitles = ["환경설정", "문의 및 의견 보내기", "지피의 지기들", "현재 버전 1.1"]
+  private final let tableViewTitles = ["환경설정",
+                                       "문의 및 의견 보내기",
+                                       "지피의 지기들",
+                                       "현재 버전 1.1"]
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -57,6 +60,7 @@ final class MypageViewController: BaseViewController {
     configData()
     layout()
     setupNavigation()
+    setupGesture()
   }
 }
 
@@ -90,6 +94,7 @@ extension MypageViewController {
   private func layoutTitleLabel() {
     view.add(titleLabel) {
       $0.numberOfLines = 2
+      $0.isUserInteractionEnabled = true
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
         $0.top.equalTo(self.navigationView.snp.bottom).offset(16)
@@ -205,38 +210,55 @@ extension MypageViewController {
                                                 attributes: [
                                                   .font: UIFont.nanumRoundRegular(fontSize: 24),
                                                   .foregroundColor: UIColor.blackText])
+      
       titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
                              value: titleParagraphStyle,
                              range: NSMakeRange(0, titleText.length))
+      
       titleText.addAttribute(NSAttributedString.Key.font,
                              value: UIFont.nanumRoundExtraBold(fontSize: 24),
                              range: NSRange(location: 0, length: 3))
+      
       titleText.addAttribute(NSAttributedString.Key.foregroundColor,
                              value: UIColor.pointYellow,
                              range: NSRange(location: 0, length: 3))
+      
       titleText.addAttribute(NSAttributedString.Key.underlineStyle,
                              value: NSUnderlineStyle.single.rawValue,
                              range: NSRange(location: 0, length: 3))
+      
       titleText.addAttribute(NSAttributedString.Key.underlineColor,
                              value: UIColor.pointYellow,
                              range: NSRange(location: 0, length: 3))
+      
       self.titleLabel.attributedText = titleText
-      let tap = UITapGestureRecognizer(target: self, action: #selector(self.titleLabelClicked))
-      self.titleLabel.addGestureRecognizer(tap)
     }
     else {
       let titleParagraphStyle = NSMutableParagraphStyle()
       titleParagraphStyle.lineSpacing = 7
-      let titleText = NSMutableAttributedString(string: "반가워요!\n\(self.userName ?? "") 지기님",
-                                                attributes: [
-                                                  .font: UIFont.nanumRoundRegular(fontSize: 24),
-                                                  .foregroundColor: UIColor.blackText])
+      let titleText = NSMutableAttributedString(
+        string: "반가워요!\n\(self.userName ?? "") 지기님",
+        attributes: [.font: UIFont.nanumRoundRegular(fontSize: 24),
+                     .foregroundColor: UIColor.blackText])
+      
       titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
                              value: titleParagraphStyle,
                              range: NSMakeRange(0, titleText.length))
+      
       titleText.addAttribute(NSAttributedString.Key.font,
                              value: UIFont.nanumRoundExtraBold(fontSize: 24),
-                             range: NSRange(location: 5, length: titleText.length - 5 - 4))
+                             range: NSRange(location: 6,
+                                            length: userName?.count ?? 0))
+      
+      titleText.addAttribute(NSAttributedString.Key.underlineStyle,
+                             value: NSUnderlineStyle.single.rawValue,
+                             range: NSRange(location: 6,
+                                            length: userName?.count ?? 0))
+      
+      titleText.addAttribute(NSAttributedString.Key.underlineColor,
+                             value: UIColor.blackText,
+                             range: NSRange(location: 6,
+                                            length: userName?.count ?? 0))
       self.titleLabel.attributedText = titleText
     }
   }
@@ -250,31 +272,53 @@ extension MypageViewController {
     self.mypageTableView.reloadData()
   }
   
+  private func setupGesture() {
+    let tap = UITapGestureRecognizer(
+      target: self,
+      action: #selector(self.titleLabelClicked))
+    
+    self.titleLabel.addGestureRecognizer(tap)
+  }
+  // MARK: - Action Helpers
+  
   @objc
-  func addressButtonClicked() {
+  private func addressButtonClicked() {
     let addressVC = ManageAddressViewController()
     self.navigationController?.pushViewController(addressVC, animated: false)
   }
   
   @objc
-  func reviewButtonClicked() {
+  private func reviewButtonClicked() {
     let reviewVC = ManageReviewViewController()
     self.navigationController?.pushViewController(reviewVC, animated: false)
   }
   
   @objc
-  func favoriteButtonClicked() {
+  private func favoriteButtonClicked() {
     let favoriteVC = FavoriteListViewConroller()
     self.navigationController?.pushViewController(favoriteVC, animated: false)
   }
   
   @objc
-  func titleLabelClicked() {
-    let loginVC = LoginViewController()
-    self.navigationController?.pushViewController(loginVC, animated: false)
+  private func titleLabelClicked() {
+    print("여기야여기")
+    if isLogined == false {
+      let root = LoginEmailViewController()
+      let rootNav = UINavigationController()
+      rootNav.navigationBar.isHidden = true
+      rootNav.viewControllers = [root]
+      if let window = self.view.window {
+        window.rootViewController = rootNav
+      }
+    }
+    else {
+      let modifyVC = ModifyInformationViewController()
+      self.navigationController?.pushViewController(modifyVC, animated: true)
+    }
   }
   
-  @objc override func backButtonClicked() {
+  @objc
+  override func backButtonClicked() {
     let tabbar = self.navigationController?.parent as? TabbarViewContorller
     tabbar?.selectedIndex = 0
     self.navigationController?.popViewController()
@@ -307,7 +351,7 @@ extension MypageViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0 {
-      let modifyVC = ModifyInformationViewController()
+      let modifyVC = SettingsViewController()
       self.navigationController?.pushViewController(modifyVC, animated: false)
     }
     if indexPath.row == 2 {
