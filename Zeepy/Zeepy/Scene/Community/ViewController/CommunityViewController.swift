@@ -25,6 +25,8 @@ class CommunityViewController : BaseViewController {
     $0.setImage(UIImage(named:"btn_write"), for: .normal)
   }
   private let viewModel = CommunityViewModel()
+  private let selectedType = BehaviorSubject<PostType>(value: .total)
+
   private func setUpNavi() {
     self.navigationController?.setNavigationBarHidden(true, animated: true)
 
@@ -148,6 +150,7 @@ class CommunityViewController : BaseViewController {
       self.segmentCollectionView.contentOffset.x = CGFloat(tabIndex) * CGFloat(UIScreen.main.bounds.width)
     }
   }
+  
 }
 extension CommunityViewController : UICollectionViewDelegate{
   private func setupCollectionView() {
@@ -224,7 +227,8 @@ extension CommunityViewController : UICollectionViewDelegate{
     let selection = Observable.zip (postFilterCollectionView.rx.itemSelected,
                                     postFilterCollectionView.rx.modelSelected((PostType, Bool).self))
     let input = CommunityViewModel.Input(loadView: Observable.just(()),
-                                         filterSelect: selection)
+                                         filterSelect: selection,
+                                         filterSelect2: selectedType)
     let output = viewModel.transform(input: input)
     
     output.filterUsecase.bind(to: postFilterCollectionView.rx
@@ -241,7 +245,8 @@ extension CommunityViewController : UICollectionViewDelegate{
         cell.layout()
         cell.viewModel = self.viewModel
         cell.changeCollectionViewSection(tab: data)
-        cell.bind(output: output)
+        cell.bind(output: output, dispose: self.disposeBag)
+        
       }.disposed(by: disposeBag)
     
     dropDown.rx.tap.bind{[weak self] in
@@ -257,5 +262,9 @@ extension CommunityViewController : UICollectionViewDelegate{
 
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
+    postFilterCollectionView.rx.modelSelected((PostType, Bool).self)
+      .map{$0.0}
+      .bind(to: selectedType)
+      .disposed(by: disposeBag)
   }
 }

@@ -29,7 +29,7 @@ struct SaveCommunityRequest : Encodable {
 
 struct LikeRequest: Encodable {
   let commuinityId: Int
-  let userId: Int
+  let userEmail: String
 }
 struct JoinRequset: Codable {
     let comment: String
@@ -43,6 +43,5 @@ struct PostCommentRequest: Encodable {
 struct CommentRequest : Encodable {
   let comment: String
   let isSecret: Bool
-  let superCommentId: Int
-  let writeUserId: Int
+  let superCommentId: Int?
 }

@@ -90,6 +90,7 @@ extension LookAroundViewController {
     outputs.fetchlist.bind{
       print($0.content)
     }.disposed(by: disposeBag)
+
     outputs.filterUsecase
       .bind(to: tableViewHeader.rx.items(cellIdentifier: tableViewHeaderCollectionViewCell.identifier,
                                                             cellType: tableViewHeaderCollectionViewCell.self)) {row, data, cell in
