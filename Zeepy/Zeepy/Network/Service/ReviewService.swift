@@ -17,14 +17,17 @@ class ReviewService {
 extension ReviewService {
   func addReview(param: ReviewModel) -> Observable<Response> {
     provider.rx.request(.addReview(param: param))
+      .retryWithAuthIfNeeded()
       .asObservable()
   }
   func fetchReviewByAddress(address: String) -> Observable<Response> {
     provider.rx.request(.fetchReviewByAddress(address: address))
+      .retryWithAuthIfNeeded()
       .asObservable()
   }
   func deleteReview(id: Int) -> Observable<Response> {
     provider.rx.request(.deleteReview(id: id))
+      .retryWithAuthIfNeeded()
       .asObservable()
   }
 }

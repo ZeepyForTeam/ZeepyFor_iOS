@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-
+import Moya
 class AddPostViewModel  {
   private let disposeBag = DisposeBag()
+  private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct TypeInput {
     let postType : Observable<PostType>
     let nextBtnTap : Observable<Void>
@@ -37,6 +38,13 @@ class AddPostViewModel  {
   struct ContentOutput {
     let isEnabled: Observable<Bool>
     let checkedContent: Observable<CheckBoxContent>
+  }
+  
+  struct AddPostInput {
+    let post: Observable<Void>
+  }
+  struct AddPostOutput {
+    let postResult: Observable<Bool>
   }
   
   struct State {
@@ -97,5 +105,28 @@ extension AddPostViewModel {
                                             }
                                            }
     return .init(isEnabled: enabled, checkedContent: input.memberInfo)
+  }
+  func addPost(inputs: AddPostInput) -> AddPostOutput {
+    weak var `self` = self
+    let result = inputs.post.flatMapLatest{ _ in
+      self?.service.addPostList(param: self!.param()) ?? .empty()
+    }
+    return .init(postResult: result)
+  }
+  func param() -> SaveCommunityRequest {
+    let state = state
+    return .init(address: "",
+                 communityCategory: "",
+                 content: "",
+                 currentNumberOfPeople: 0,
+                 imageUrls: [],
+                 instructions: "",
+                 productName: "",
+                 productPrice: 0,
+                 purchasePlace: "",
+                 sharingMethod: "",
+                 targetNumberOfPeople: 0,
+                 title: "",
+                 writerId: 0)
   }
 }

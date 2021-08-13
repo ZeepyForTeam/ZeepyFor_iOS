@@ -17,6 +17,7 @@ class CommunityService {
 extension CommunityService {
   func fetchPostList(param: CommunityRequest) -> Observable<CommunityResponseModel> {
     provider.rx.request(.fetchPostList(param : param))
+      .retryWithAuthIfNeeded()
       .filterError()
       .asObservable()
       .map(CommunityResponseModel.self)

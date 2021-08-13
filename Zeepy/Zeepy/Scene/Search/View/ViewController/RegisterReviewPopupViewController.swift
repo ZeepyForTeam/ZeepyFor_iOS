@@ -23,7 +23,8 @@ class RegisterReviewPopupViewController: UIViewController {
   private let secondContextLabel = UILabel()
   private let cancelButton = UIButton()
   private let registerButton = UIButton()
-  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
   // MARK: - Variables
   private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
   private let disposeBag = DisposeBag()
@@ -195,11 +196,17 @@ extension RegisterReviewPopupViewController {
   private func registerReview() {
     // TODO: - Server Connection
     reviewService.addReview(param: reviewModel)
-      .subscribe(onNext: { response in
-        if response.statusCode == 200 {
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
           do {
             print("success")
-            self.navigationController?.popToRootViewController(animated: true)
+            self?.registerResult = true
+            if let closure = self?.resultClosure {
+//              weak var `self` = self
+              closure(self?.registerResult == true)
+            }
+            self?.dismiss(animated: true, completion: nil)
+//            self?.navigationController?.popToRootViewController(animated: true)
           }
         }
       }, onError: { error in

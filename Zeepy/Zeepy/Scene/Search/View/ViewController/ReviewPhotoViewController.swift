@@ -163,6 +163,13 @@ class ReviewPhotoViewController : BaseViewController {
     nextButton.rx.tap.bind{[weak self] in
       let nextVC = RegisterReviewPopupViewController()
       nextVC.reviewModel = self!.reviewModel
+      nextVC.resultClosure = { result in
+        weak var `self` = self
+        if result {
+          print(result)
+          self?.navigationController?.popToRootViewController(animated: true)
+        }
+      }
       nextVC.modalPresentationStyle = .overFullScreen
       self?.present(nextVC, animated: true, completion: nil)
     }.disposed(by: disposeBag)

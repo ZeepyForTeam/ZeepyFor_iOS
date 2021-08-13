@@ -25,7 +25,12 @@ class PostDetailViewControlelr : BaseViewController {
     fatalError("init(coder:) has not been implemented")
   }
   private let postId: Int!
+  
   private let viewModel = PostDetailViewModel()
+  private let likeReq = PublishSubject<LikeRequest>()
+  private let likeCancel = PublishSubject<LikeRequest>()
+  private let loadViewTrigger = PublishSubject<Int>()
+  private let commentTrigger = PublishSubject<PostCommentRequest>()
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()
@@ -204,7 +209,10 @@ extension PostDetailViewControlelr {
     self.achivementView.emptyAchivement.isHidden = false
   }
   private func bind() {
-    let inputs = PostDetailViewModel.Input(loadView: Observable.just(postId))
+    let inputs = PostDetailViewModel.Input(loadView: loadViewTrigger,
+                                           likePost: likeReq,
+                                           likeCancel: likeCancel,
+                                           addComment: commentTrigger)
     let outputs = viewModel.transform(input: inputs)
     
     outputs.communityInfo
@@ -216,6 +224,7 @@ extension PostDetailViewControlelr {
         self?.postDetail.typeLabel.text = model.communityCategory
         self?.achivementView.isHidden = model.isParticipant
         self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
+        
       }.disposed(by: disposeBag)
     
     outputs.commentUsecase
@@ -241,6 +250,39 @@ extension PostDetailViewControlelr {
         view = nil
       }
     }.disposed(by: disposeBag)
+    likeBtn.rx.tap.bind{ [weak self] in
+      if self?.likeBtn.isSelected == true {
+        if let Umail = UserManager.shared.userEmail {
+          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: Umail)
+          self?.likeCancel.onNext(like)
+        }
+      }
+      else {
+        if let Umail = UserManager.shared.userEmail {
+          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: Umail)
+          self?.likeReq.onNext(like)
+        }
+      }
+    }.disposed(by: disposeBag)
+    outputs.likeResult.bind{[weak self] result in
+      if result {
+        self?.loadViewTrigger.onNext((self?.postId)!)
+      }
+    }.disposed(by: disposeBag)
+    outputs.likeCancelResult.bind{[weak self] result in
+      if result {
+        self?.loadViewTrigger.onNext((self?.postId)!)
+      }
+    }.disposed(by: disposeBag)
+    addCommentButton.rx.tap.bind{ [weak self] in
+      guard let comment = self?.commentTextField.text else {return}
+      guard let secret = self?.commentCheckBox.isSelected else {return}
+      let param = PostCommentRequest(id: (self?.postId)!, writeCommentRequestDto: .init(comment: comment, isSecret: secret, superCommentId: nil))
+      self?.commentTrigger.onNext(param)
+    }.disposed(by: disposeBag)
+    
+    
+    loadViewTrigger.onNext(postId)
   }
 }
 //MARK:- 키보드관리
