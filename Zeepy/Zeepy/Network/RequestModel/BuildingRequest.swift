@@ -36,17 +36,16 @@ struct BuildingRequest: Encodable {
   }
 }
 
-
 struct UplaodBuildingRequest: Codable {
     let address, apartmentName: String
-    let areaCode, buildYear, exclusivePrivateArea, latitude: Int
-    let longitude: Int
+    let areaCode, buildYear, exclusivePrivateArea : Int
+    let latitude, longitude: Double
     let shortAddress: String
 }
 struct ModiftyBuildingRequest: Encodable {
     let address, apartmentName: String
-    let areaCode, buildYear, exclusivePrivateArea, latitude: Int
-    let longitude: Int
+    let areaCode, buildYear, exclusivePrivateArea: Int
+    let longitude, latitude: Double
     let shortAddress: String
 }
 struct LocationModel: Encodable {
@@ -54,7 +53,6 @@ struct LocationModel: Encodable {
   let latitudeLess : Double
   let longitudeGreater : Double
   let longitudeLess : Double
-
 }
 
 struct BuildingLikeRequset: Codable {
