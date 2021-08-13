@@ -23,11 +23,11 @@ struct BuildingContent: Codable {
     let areaCode, buildYear: Int
     let buildingDeals: [BuildingDeal]
     let buildingLikes: [BuildingLike]
-    let exclusivePrivateArea, id, latitude, longitude: Int
+    let exclusivePrivateArea, id: Int
+    let latitude, longitude: Double
     let reviews: [Review]
     let shortAddress: String
 }
-
 
 // MARK: - BuildingDeal
 struct BuildingDeal: Codable {

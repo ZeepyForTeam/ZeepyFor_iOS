@@ -55,9 +55,9 @@ extension BuildingService {
       .asObservable()
   }
   func fetchLikeBuildingDetail(id: Int) -> Observable<Response> {
-    provider.rx.request(.fetchLikeBuildingDetail(id: id))
-      .asObservable()
+    provider.rx.request(.fetchLikeBuildingDetail(id: id)).asObservable()
   }
+
   func modifyLikeBuilding(id: Int, param: LikeRequest) -> Observable<Response> {
     provider.rx.request(.modifyLikeBuilding(id: id, param: param))
       .asObservable()
