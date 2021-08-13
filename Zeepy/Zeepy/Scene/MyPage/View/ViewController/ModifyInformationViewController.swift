@@ -27,12 +27,12 @@ class ModifyInformationViewController: BaseViewController {
   private let drououtButton = UIButton()
   
   // MARK: - Variables
-//  private var socialType: String?
+  //  private var socialType: String?
   private var socialType = "kakao"
   private var socialImageName = ["kakao": "kakaologo",
                                  "apple": "applelogo",
                                  "naver": "naverlogo"]
-//  private var socialEmail: String?
+  //  private var socialEmail: String?
   private var socialEmail = "zeepy.official@gmail.com"
   
   // MARK: -LifeCycle
@@ -172,6 +172,10 @@ extension ModifyInformationViewController {
   
   private func layoutDropoutButton() {
     view.add(drououtButton) {
+      $0.addTarget(self,
+                   action: #selector(self.clickedWithdrawButton),
+                   for: .touchUpInside)
+      
       $0.snp.makeConstraints {
         $0.top.equalTo(self.logoutButton.snp.top)
         $0.leading.equalTo(self.logoutButton.snp.trailing).offset(12)
@@ -179,6 +183,13 @@ extension ModifyInformationViewController {
         $0.height.equalTo(14)
       }
     }
+  }
+  
+  // MARK: - Action Helpers
+  @objc
+  private func clickedWithdrawButton() {
+    let withdrawVC = WithdrawalViewController()
+    self.navigationController?.pushViewController(withdrawVC, animated: true)
   }
   
   // MARK: - General Helpers
@@ -227,20 +238,21 @@ extension ModifyInformationViewController {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "내 정보 수정")
   }
+  
   //로그아웃기능 임시
   private func temp() {
     logoutButton.rx.tap.bind{
       MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
-          LoginManager.shared.makeLogoutStatus()
-          let root = LoginEmailViewController()
-          let rootNav = UINavigationController()
+        LoginManager.shared.makeLogoutStatus()
+        let root = LoginEmailViewController()
+        let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true
-
-          rootNav.viewControllers = [root]
-
-           if let window = self.view.window {
-               window.rootViewController = rootNav
-           }
+        
+        rootNav.viewControllers = [root]
+        
+        if let window = self.view.window {
+          window.rootViewController = rootNav
+        }
       })
     }.disposed(by: disposeBag)
   }

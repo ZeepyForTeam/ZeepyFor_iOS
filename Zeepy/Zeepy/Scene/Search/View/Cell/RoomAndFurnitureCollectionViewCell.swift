@@ -32,7 +32,7 @@ extension RoomAndFurnitureCollectionViewCell {
   func layout() {
     self.contentView.add(containerView) {
       $0.setRounded(radius: 8)
-      $0.backgroundColor = .mainYellow
+      $0.backgroundColor = .whiteGray
       $0.snp.makeConstraints {
         $0.edges.equalTo(self.contentView.snp.edges)
       }

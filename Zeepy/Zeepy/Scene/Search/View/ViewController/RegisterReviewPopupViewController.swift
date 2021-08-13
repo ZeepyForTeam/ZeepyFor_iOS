@@ -43,6 +43,8 @@ class RegisterReviewPopupViewController: UIViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -185,18 +187,28 @@ extension RegisterReviewPopupViewController {
   
   @objc
   private func registerButtonClicked() {
+    reviewModel.buildingID = 1
+    reviewModel.user = 1
+    reviewModel.imageUrls = []
     registerReview()
   }
   
   // MARK: - General Helpers
   private func registerReview() {
+    let vc = self.presentingViewController?.children[0] as? TabbarViewContorller
     // TODO: - Server Connection
     reviewService.addReview(param: reviewModel)
-      .subscribe(onNext: { response in
-        if response.statusCode == 200 {
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
           do {
             print("success")
-            self.navigationController?.popToRootViewController(animated: true)
+           
+            self?.dismiss(animated: false, completion: {
+              self?.registerResult = true
+              if let closure = self?.resultClosure {
+                   closure(self?.registerResult == true)
+              }
+            })
           }
         }
       }, onError: { error in
