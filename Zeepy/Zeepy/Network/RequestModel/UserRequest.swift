@@ -13,7 +13,7 @@ struct RequestAddAddress: Codable {
 }
 
 // MARK: - Addresses
-struct Addresses: Codable {
+struct Addresses: Codable, Equatable {
   let cityDistinct, primaryAddress: String
   let detailAddress: String?
 }

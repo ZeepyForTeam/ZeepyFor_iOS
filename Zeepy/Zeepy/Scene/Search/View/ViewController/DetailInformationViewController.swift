@@ -294,7 +294,7 @@ extension DetailInformationViewController: UICollectionViewDataSource {
       }
       else {
         roomAndFurnitureCell.titleLabel.textColor = .blackText
-        roomAndFurnitureCell.containerView.backgroundColor = .mainYellow
+        roomAndFurnitureCell.containerView.backgroundColor = .whiteGray
       }
       roomAndFurnitureCell.index = indexPath.item
       return roomAndFurnitureCell
