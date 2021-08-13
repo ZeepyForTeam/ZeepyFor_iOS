@@ -19,7 +19,6 @@ extension ReviewRouter : TargetType {
   }
   var path: String {
     switch self {
-    
 
     case .addReview(param: let param):
       return "/review"

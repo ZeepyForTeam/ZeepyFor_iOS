@@ -279,6 +279,7 @@ extension MypageViewController {
     
     self.titleLabel.addGestureRecognizer(tap)
   }
+  
   // MARK: - Action Helpers
   
   @objc

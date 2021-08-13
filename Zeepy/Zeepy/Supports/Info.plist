@@ -30,7 +30,8 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1178</string>
+
+	<string>1109</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>02c78bdac1dc2a54c54f8e7ba13183d2</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -39,6 +40,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>Location When In Use Usage Description</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

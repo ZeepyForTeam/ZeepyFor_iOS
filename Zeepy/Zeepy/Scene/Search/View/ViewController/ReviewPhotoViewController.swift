@@ -99,6 +99,7 @@ class ReviewPhotoViewController : BaseViewController {
                                 user: 0,
                                 waterPressure: "")
   
+  
   private func layout() {
     setUpCollectionView()
     self.view.adds([naviView,
@@ -166,8 +167,8 @@ class ReviewPhotoViewController : BaseViewController {
       nextVC.resultClosure = { result in
         weak var `self` = self
         if result {
-          print(result)
-          self?.navigationController?.popToRootViewController(animated: true)
+
+          self?.popToRootViewController()
         }
       }
       nextVC.modalPresentationStyle = .overFullScreen

@@ -15,12 +15,14 @@ class ConditionViewController: UIViewController {
     // MARK: - Structs
     struct ListModel {
         var title = String()
+        var englishName = String()
         var image = String()
         var selected = Bool()
     }
     
     struct OptionModel {
         var name = String()
+        var englishName = String()
         var selected = Bool()
     }
     struct PriceRangeModel {
@@ -30,29 +32,29 @@ class ConditionViewController: UIViewController {
         var rentMax: Int?
     }
     // MARK: - Arrays
-    var buildingList: [ListModel] = [ListModel(title: "원룸", image: "btnOption1", selected: true),
-                                     ListModel(title: "투룸", image: "btnOption2", selected: true),
-                                     ListModel(title: "오피스텔", image: "btnReady", selected: true)]
+    var buildingList: [ListModel] = [ListModel(title: "원룸", englishName: "ONE", image: "btnOption1", selected: true),
+                                     ListModel(title: "투룸", englishName: "TWO", image: "btnOption2", selected: true),
+                                     ListModel(title: "오피스텔", englishName: "THREEORMORE", image: "btnReady", selected: true)]
     
-    var transactionList: [ListModel] = [ListModel(title: "월세", image: "btnOption1", selected: true),
-                                        ListModel(title: "전세", image: "btnOption2", selected: true),
-                                        ListModel(title: "매매", image: "btnReady", selected: true)]
+    var transactionList: [ListModel] = [ListModel(title: "월세", englishName: "MONTHLY", image: "btnOption1", selected: true),
+                                        ListModel(title: "전세", englishName : "JEONSE", image: "btnOption2", selected: true),
+                                        ListModel(title: "매매", englishName : "DEAL", image: "btnReady", selected: true)]
     
-    var optionList : [OptionModel] = [OptionModel(name: "에어컨", selected: true),
-                                      OptionModel(name: "세탁기", selected: true),
-                                      OptionModel(name: "침대", selected: true),
-                                      OptionModel(name: "옷장", selected: true),
-                                      OptionModel(name: "책상", selected: true),
-                                      OptionModel(name: "냉장고", selected: true),
-                                      OptionModel(name: "인덕션", selected: true),
-                                      OptionModel(name: "가스레인지", selected: true),
-                                      OptionModel(name: "전자레인지", selected: true)]
+    var optionList : [OptionModel] = [OptionModel(name: "에어컨",englishName: "AIRCONDITIONAL", selected: true),
+                                      OptionModel(name: "세탁기",englishName: "WASHINGMACHINE", selected: true),
+                                      OptionModel(name: "침대",englishName: "BED", selected: true),
+                                      OptionModel(name: "옷장",englishName: "CLOSET", selected: true),
+                                      OptionModel(name: "책상",englishName: "DESK", selected: true),
+                                      OptionModel(name: "냉장고",englishName: "REFRIDGERATOR", selected: true),
+                                      OptionModel(name: "인덕션",englishName: "INDUCTION", selected: true),
+                                      OptionModel(name: "가스레인지",englishName: "BURNER", selected: true),
+                                      OptionModel(name: "전자레인지",englishName: "MICROWAVE", selected: true)]
     
     var priceRange : [PriceRangeModel] = [PriceRangeModel(depositMin: 0, depositMax: 3, rentMin: 0, rentMax: 3)]
   func variableForServer() {
-    var selectedBuilding = buildingList.filter{$0.selected}.map{$0.title}
-    var selectedTransaction = transactionList.filter{$0.selected}.map{$0.title}
-    var selectedOptions = optionList.filter{$0.selected}.map{$0.name}
+    var selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName}
+    var selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName}
+    var selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
     
     var selectedDepositMin = depositIndexToNumber(index: priceRange[0].depositMin)
     var selectedDepositMax = depositIndexToNumber(index: priceRange[0].depositMax)

@@ -67,7 +67,9 @@ extension BuildingService {
     provider.rx.request(.fetchLikeBuildingDetail(id: id))
       .retryWithAuthIfNeeded()
       .asObservable()
+
   }
+
   func modifyLikeBuilding(id: Int, param: LikeRequest) -> Observable<Response> {
     provider.rx.request(.modifyLikeBuilding(id: id, param: param))
       .asObservable()
