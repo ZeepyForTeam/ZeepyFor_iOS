@@ -99,6 +99,7 @@ class ReviewPhotoViewController : BaseViewController {
                                 user: 0,
                                 waterPressure: "")
   
+  
   private func layout() {
     setUpCollectionView()
     self.view.adds([naviView,
@@ -163,6 +164,12 @@ class ReviewPhotoViewController : BaseViewController {
     nextButton.rx.tap.bind{[weak self] in
       let nextVC = RegisterReviewPopupViewController()
       nextVC.reviewModel = self!.reviewModel
+      nextVC.resultClosure = { result in
+        weak var `self` = self
+        if result {
+          self?.popToRootViewController()
+        }
+      }
       nextVC.modalPresentationStyle = .overFullScreen
       self?.present(nextVC, animated: true, completion: nil)
     }.disposed(by: disposeBag)

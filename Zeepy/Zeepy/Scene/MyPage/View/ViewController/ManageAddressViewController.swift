@@ -146,8 +146,10 @@ extension ManageAddressViewController {
             let data = try decoder.decode(ResponseGetAddress.self,
                                           from: response.data)
             self.addressModel = data
-            self.relayoutAddressTableView()
-            self.reloadTableView()
+            if self.addressModel?.addresses != [] {
+              self.relayoutAddressTableView()
+              self.reloadTableView()
+            }
           }
           catch {
             print(error)
@@ -169,11 +171,10 @@ extension ManageAddressViewController: UITableViewDelegate {
 // MARK: - addressTableView DataSource
 extension ManageAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var count: Int = 0
+    var count: Int = 1
     if addressModel?.addresses.isEmpty == false {
       count = (addressModel?.addresses.count) ?? 0
     }
-    print(count)
     return count
   }
   
@@ -189,8 +190,7 @@ extension ManageAddressViewController: UITableViewDataSource {
             for: indexPath) as? ManageAddressTableViewCell else {
       return UITableViewCell()
     }
-    
-    if addressModel?.addresses.isEmpty == true {
+    if addressModel?.addresses == nil {
       emptyCell.awakeFromNib()
       return emptyCell
     }
