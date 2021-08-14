@@ -95,7 +95,7 @@ extension ManageReviewViewController {
   }
   
   private func configData() {
-    self.addressTitleLabel.setupLabel(text: "현재 등록된 주소",
+    self.addressTitleLabel.setupLabel(text: "내가 작성한 리뷰",
                                       color: .blackText,
                                       font: .nanumRoundExtraBold(fontSize: 16),
                                       align: .left)
@@ -108,6 +108,10 @@ extension ManageReviewViewController {
   
   func reloadTableView() {
     reviewTableView.reloadData()
+  }
+  
+  private func fetchReview() {
+    
   }
 }
 
