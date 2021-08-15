@@ -19,6 +19,21 @@ enum PostType : String {
   case deal  = "공동 구매"
   case share  = "무료 나눔"
   case friend  = "동네 친구"
+  
+}
+extension PostType {
+  var requestEnum : String? {
+    switch self {
+    case .total:
+      return nil
+    case .deal:
+      return "JOINTPURCHASE"
+    case .share:
+      return "FREESHARING"
+    case .friend:
+      return "NEIGHBORHOODFRIEND"
+    }
+  }
 }
 extension PostModel : Comparable {
   static func < (lhs: PostModel, rhs: PostModel) -> Bool {

@@ -23,7 +23,8 @@ class RegisterReviewPopupViewController: UIViewController {
   private let secondContextLabel = UILabel()
   private let cancelButton = UIButton()
   private let registerButton = UIButton()
-  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
   // MARK: - Variables
   private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
   private let disposeBag = DisposeBag()
@@ -202,6 +203,7 @@ extension RegisterReviewPopupViewController {
         if (200...300).contains(response.statusCode) {
           do {
             print("success")
+
            
             self?.dismiss(animated: false, completion: {
               self?.registerResult = true

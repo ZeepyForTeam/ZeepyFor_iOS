@@ -326,3 +326,20 @@ enum CheckBoxContent : String {
   case kakakoIdCheckBox = "카카오톡"
   case phoneNumberCheckBox = "휴대폰번호"
 }
+extension CheckBoxContent {
+  var requestVersion : String? {
+    switch self {
+    
+    case .productNameCheckBox:
+      return ""
+    case .buyCountCheckBox:
+      return ""
+    case .tradeWayCheckBox:
+      return ""
+    case .kakakoIdCheckBox:
+      return ""
+    case .phoneNumberCheckBox:
+      return ""
+    }
+  }
+}

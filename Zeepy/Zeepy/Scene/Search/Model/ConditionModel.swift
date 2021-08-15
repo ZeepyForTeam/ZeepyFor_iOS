@@ -17,4 +17,6 @@ struct ConditionModel {
 }
 enum NeType : String {
   case monthly = "MONTHLY"
+    
+//  case
 }

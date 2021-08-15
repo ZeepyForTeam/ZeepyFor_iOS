@@ -9,6 +9,7 @@ import UIKit
 
 class MapDetailModalView: UIView {
     struct RoomDetail {
+        var id : Int
         var address : String
         var scale : Int
         var buildingDetail : String
@@ -20,7 +21,7 @@ class MapDetailModalView: UIView {
         var overall : String
         var count : Int
     }
-    var roomDetail : [RoomDetail] = [RoomDetail(address: "방화동 어느 집" , scale: 32, buildingDetail: "화장실1, 침실1, 에어컨, 세탁기옵션" , owner: 1 , soundProofImageName: 1, cleanImageName: 2, sunlightImageName: 3, waterPressureImageName: 3, overall: "다음에도 여기 살고 싶다", count: 44)]
+    var roomDetail : [RoomDetail] = [RoomDetail(id: 1, address: "방화동 어느 집" , scale: 32, buildingDetail: "화장실1, 침실1, 에어컨, 세탁기옵션" , owner: 1 , soundProofImageName: 1, cleanImageName: 2, sunlightImageName: 3, waterPressureImageName: 3, overall: "다음에도 여기 살고 싶다", count: 44)]
     var detailCollectionView = UICollectionView()
     
     var firstCell = UICollectionViewCell()
