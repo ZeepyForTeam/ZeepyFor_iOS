@@ -11,6 +11,7 @@ enum ReviewRouter {
   case addReview(param: ReviewModel)
   case fetchReviewByAddress(address: String)
   case deleteReview(id: Int)
+  case getUserReviews
 }
 
 extension ReviewRouter : TargetType {
@@ -19,13 +20,14 @@ extension ReviewRouter : TargetType {
   }
   var path: String {
     switch self {
-
     case .addReview(param: let param):
       return "/review"
     case .fetchReviewByAddress(address: let address):
       return "/review/\(address)"
     case .deleteReview(let id) :
       return "/review/\(id)"
+    case .getUserReviews:
+      return "/review/user"
     }
   }
   var method: Moya.Method {
@@ -37,6 +39,8 @@ extension ReviewRouter : TargetType {
       return .get
     case .deleteReview(id: let id):
       return .delete
+    case .getUserReviews:
+      return .get
     }
   }
   var sampleData: Data {
@@ -51,6 +55,8 @@ extension ReviewRouter : TargetType {
     case .fetchReviewByAddress(address: let address):
       return .requestPlain
     case .deleteReview(id: let id):
+      return .requestPlain
+    case .getUserReviews:
       return .requestPlain
     }
   }
