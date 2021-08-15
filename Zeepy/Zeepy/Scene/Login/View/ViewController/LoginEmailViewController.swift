@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
-
+import AuthenticationServices
 class LoginEmailViewController: BaseViewController {
   
   let contentView = UIView()
@@ -174,6 +174,18 @@ class LoginEmailViewController: BaseViewController {
         })
       }
     }.disposed(by: disposeBag)
+    appleLoginButton.rx.tap.bind{ [weak self] in
+      self?.appleLogin()
+    }.disposed(by: disposeBag)
+  }
+  private func appleLogin() {
+    let provider = ASAuthorizationAppleIDProvider()
+    let request = provider.createRequest()
+    request.requestedScopes = [.email]
+    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+    authorizationController.delegate = self
+    authorizationController.presentationContextProvider = self
+    authorizationController.performRequests()
   }
   func addContraints(){
     contentView.snp.makeConstraints{
@@ -266,5 +278,43 @@ class LoginEmailViewController: BaseViewController {
       $0.top.equalToSuperview()
       $0.trailing.equalToSuperview()
     }
+  }
+}
+extension LoginEmailViewController : ASAuthorizationControllerPresentationContextProviding {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return self.view.window!
+  }
+}
+extension LoginEmailViewController : ASAuthorizationControllerDelegate {
+  // Apple ID 연동 성공 시
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    switch authorization.credential {
+    // Apple ID
+    case let appleIDCredential as ASAuthorizationAppleIDCredential:
+      
+      // 계정 정보 가져오기
+      let userIdentifier = appleIDCredential.user
+      let fullName = appleIDCredential.fullName
+      let email = appleIDCredential.email
+      guard let idToken = appleIDCredential.identityToken else {return}
+      let tokenStr = String(data: idToken, encoding: .utf8)
+      guard let code = appleIDCredential.authorizationCode else { return }
+      let codeStr = String(data: code, encoding: .utf8)
+      let state = appleIDCredential.state
+      print("User ID : \(userIdentifier)")
+      print("token: \(tokenStr)")
+      print("refresh: \(codeStr)")
+      print("state: \(state)")
+      
+      
+    default:
+      break
+    }
+  }
+  
+  // Apple ID 연동 실패 시
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    // Handle error.
+    
   }
 }

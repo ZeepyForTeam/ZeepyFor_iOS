@@ -12,6 +12,7 @@ import KakaoSDKCommon
 import RxKakaoSDKCommon
 import RxKakaoSDKAuth
 import KakaoSDKAuth
+import AuthenticationServices
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -21,7 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     Messaging.messaging().delegate = self
     RxKakaoSDKCommon.initSDK(appKey: "02c78bdac1dc2a54c54f8e7ba13183d2")
-
+    NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
+        print("Revoked Notification")
+      LoginManager.shared.makeLogoutStatus()
+        // 로그인 페이지로 이동
+    }
     if #available(iOS 10.0, *) {
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self

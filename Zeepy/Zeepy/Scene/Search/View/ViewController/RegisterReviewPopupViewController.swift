@@ -44,8 +44,7 @@ class RegisterReviewPopupViewController: UIViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
-  var resultClosure: ((Bool) -> ())?
-  private var registerResult: Bool = false
+
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
