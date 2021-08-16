@@ -7,12 +7,14 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
 // MARK: - ManageReviewViewController
 class ManageReviewViewController: BaseViewController {
-
+  
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
   private let addressTitleLabel = UILabel()
@@ -21,6 +23,10 @@ class ManageReviewViewController: BaseViewController {
   // MARK: - Variables
   private var tableViewRowHeight: CGFloat = 116
   private var tableViewRowCount = 3
+  private var reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(
+                                              plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  private var reviewModel: UserReviewResponseModel?
   
   
   // MARK: - LifeCycles
@@ -30,6 +36,11 @@ class ManageReviewViewController: BaseViewController {
     configData()
     layout()
     register()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchReview()
   }
   
   override func viewWillLayoutSubviews() {
@@ -84,12 +95,12 @@ extension ManageReviewViewController {
       }
     }
   }
-
+  
   
   // MARK: - General Helpers
   private func register() {
     reviewTableView.register(ManageReviewTableViewCell.self,
-                              forCellReuseIdentifier: ManageReviewTableViewCell.identifier)
+                             forCellReuseIdentifier: ManageReviewTableViewCell.identifier)
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
   }
@@ -110,10 +121,81 @@ extension ManageReviewViewController {
     reviewTableView.reloadData()
   }
   
+  private func convertData(data: String) -> String {
+    switch data {
+    case "MALE":
+      return "남자"
+    case "FEMALE":
+      return "여자"
+    case "TWENTY":
+      return "20대"
+    case "THIRTY":
+      return "30대"
+    case "FOURTY":
+      return "40대"
+    case "FIFTY":
+      return "50대"
+    case "SIXTY":
+      return "60대 이상"
+    case "UNKNOWN":
+      return "나이는 모르겠지만"
+    default:
+      return ""
+    }
+  }
+  
+  private func convertOptionData(data: String) -> String {
+    switch data {
+    case "GOOD":
+      return "iconSmile"
+    case "PROPER":
+      return "iconSoso"
+    case "BAD":
+      return "iconAngry"
+    default:
+      return ""
+    }
+  }
+  
+  private func converTendencyData(data: String) -> String {
+    switch data {
+    case "BUSINESS":
+      return "칼 같은 우리 사이, 비즈니스형"
+    case "KIND":
+      return "따뜻해 녹아내리는 중! 친절형"
+    case "GRAZE":
+      return "자유롭게만 살아다오, 방목형"
+    case "SOFTY":
+      return "겉은 바삭 속은 촉촉! 츤데레형"
+    case "BAD":
+      return "할말은 많지만 하지 않을래요 :("
+    default:
+      return ""
+    }
+  }
+  
   private func fetchReview() {
-    
+    reviewService.getUserReviews()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(UserReviewResponseModel.self,
+                                          from: response.data)
+            self.reviewModel = data
+            self.reviewTableView.reloadData()
+          }
+          
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
 }
+
 
 // MARK: - reviewTableView Delegate
 extension ManageReviewViewController: UITableViewDelegate {
@@ -135,6 +217,15 @@ extension ManageReviewViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     reviewCell.awakeFromNib()
+    let review = self.reviewModel?.simpleReviewDtoList[indexPath.row]
+    reviewCell.dataBind(address: "무지개빌",
+                        date: "2020-02-20",
+                        lender: "\(convertData(data: review?.lessorAge ?? "")) \(convertData(data: "MALE"))로 보여요",
+                        tendency: converTendencyData(data: review?.communcationTendency ?? ""),
+                        sound: convertOptionData(data: review?.soundInsulation ?? ""),
+                        bug: convertOptionData(data: review?.pest ?? ""),
+                        light: convertOptionData(data: review?.lightning ?? ""),
+                        water: convertOptionData(data: review?.waterPressure ?? ""))
     return reviewCell
   }
   
