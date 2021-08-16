@@ -9,8 +9,9 @@ import UIKit
 import Then
 import SnapKit
 import Moya
+import CoreLocation
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewController, CLLocationManagerDelegate {
   // MARK: - Struct
   struct collectionViewCellModel {
     var imageName = String()
@@ -388,7 +389,7 @@ class MapViewController: BaseViewController {
         }
       }
     }
-    
+    var locationManager:CLLocationManager!
   // MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -409,6 +410,11 @@ class MapViewController: BaseViewController {
     setupNavigation()
 //    fetchMapPoints()
     fetchMapDetail()
+    locationManager = CLLocationManager()
+    locationManager.requestWhenInUseAuthorization()
+    locationManager.delegate = self
+    locationManager.requestAlwaysAuthorization()
+    locationManager.requestWhenInUseAuthorization()
 }
 private func setupNavigation() {
   self.setupNavigationBar(.white)
@@ -457,7 +463,28 @@ private func setupNavigation() {
         $0.bottom.top.leading.trailing.equalToSuperview().inset(5)
     }
   }
-    
+//  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//            //location5
+//            switch status {
+//            case .authorizedAlways, .authorizedWhenInUse:
+//                print("GPS 권한 설정됨")
+//                locationManager.startUpdatingLocation() // 중요!
+//            case .restricted, .notDetermined:
+//                print("GPS 권한 설정되지 않음")
+//                getLocationUsagePermission()
+//            case .denied:
+//                print("GPS 권한 요청 거부됨")
+//                getLocationUsagePermission()
+//            default:
+//                print("GPS: Default")
+//            }
+//        }
+  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //위치가 업데이트될때마다
+        if let coor = manager.location?.coordinate{
+            print("latitude" + String(coor.latitude) + "/ longitude" + String(coor.longitude))
+        }
+  }
   func operateFloatingButton(){
     if !closedFloatingView.isHidden{
       closedFloatingView.translatesAutoresizingMaskIntoConstraints = false
