@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1109</string>
+	<string>1113</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>02c78bdac1dc2a54c54f8e7ba13183d2</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -46,6 +46,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NanumSquareRoundOTFR.otf</string>
