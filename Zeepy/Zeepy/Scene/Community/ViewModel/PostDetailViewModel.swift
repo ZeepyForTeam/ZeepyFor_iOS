@@ -14,10 +14,16 @@ class PostDetailViewModel  {
   private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let loadView : Observable<Int>
+    let likePost : Observable<LikeRequest>
+    let likeCancel : Observable<LikeRequest>
+    let addComment: Observable<PostCommentRequest>
   }
   struct Output {
     let communityInfo : Observable<CommunityContent>
     let commentUsecase : Observable<[CommentSectionType]>
+    let likeResult: Observable<Bool>
+    let likeCancelResult: Observable<Bool>
+    let commentResult: Observable<Bool>
   }
 }
 extension PostDetailViewModel {
@@ -30,7 +36,7 @@ extension PostDetailViewModel {
     }
     let usecase = input.loadView.flatMapLatest{
       self?.service.fetchPostDetail(id: $0) ?? .empty()
-    }
+    }.share()
     let comments = usecase.map{
       $0.comments.map{$0.toCommentModel()}
     }.map{ comments in
@@ -38,11 +44,21 @@ extension PostDetailViewModel {
         CommentSectionType.init(model: comment, items: [])
       }
     }
-    let postDetail = input.loadView.map{ _ in
-      
-    }
+    let likePost = input.likePost.flatMapLatest{ param in
+      self?.service.addPostLike(param: param) ?? .empty()
+    }.share()
+    let likeCancel = input.likeCancel.flatMapLatest{ param in
+      self?.service.deletePostLike(param: param) ?? .empty()
+    }.share()
+    let comment = Observable.combineLatest(input.loadView, input.addComment)
+      .flatMapLatest{ id, param in
+        self?.service.addComment(id: id, param: param) ?? .empty()
+      }.share()
     return .init(
       communityInfo: usecase,
-      commentUsecase: comments)
+      commentUsecase: comments,
+      likeResult: likePost,
+      likeCancelResult: likeCancel,
+      commentResult: comment)
   }
 }

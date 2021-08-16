@@ -25,7 +25,6 @@ class LookAroundViewModel {
     let buildingDetailParam: Observable<BuildingModel>
     let filterUsecase: Observable<[FilterModel]>
     let fetchlist : Observable<BuildingResponseModel>
-    
   }
 }
 extension LookAroundViewModel {
@@ -37,7 +36,6 @@ extension LookAroundViewModel {
     let test = inputs.loadTrigger.flatMapLatest{ _ in
       weakSelf?.service.fetchBuildingList(param: .init()) ?? .empty()
     }
-    
     
     let buildingDummy = BuildingModel(buildingName: "더미",
                                       buildingImage: "image/1",
@@ -59,7 +57,8 @@ extension LookAroundViewModel {
     return .init(buildingUsecase: buildingUsecase,
                  buildingDetailParam: inputs.buildingSelect.map{$0.1},
                  filterUsecase: filterUsecase,
-                 fetchlist: test)
+                 fetchlist: test
+                 )
   }
 }
 extension LookAroundViewModel {

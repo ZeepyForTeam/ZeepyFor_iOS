@@ -12,11 +12,13 @@ class UserManager: NSObject {
   var userId: Int? = nil
   var userName: String? = nil
   var userAddress: String? = nil
+  var userEmail: String? = nil
   override private init() { }
   
-  func saveUserInfo(id : Int, name: String, address: String?) {
+  func saveUserInfo(id : Int, name: String, address: String?, mail: String? = nil) {
     self.userId = id
     self.userName = name
     self.userAddress = address
+    self.userEmail = mail
   }
 }
