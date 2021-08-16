@@ -22,3 +22,16 @@ struct ReviewResponseDto: Codable {
     let user: Int
     let waterPressure: String
 }
+
+// MARK: - UserReviewResponseModel
+struct UserReviewResponseModel: Codable {
+    let simpleReviewDtoList: [SimpleReviewDtoList]
+}
+
+// MARK: - SimpleReviewDtoList
+struct SimpleReviewDtoList: Codable {
+    let communcationTendency: String
+    let id: Int
+    let lessorAge, lightning, pest, soundInsulation: String
+    let waterPressure: String
+}
