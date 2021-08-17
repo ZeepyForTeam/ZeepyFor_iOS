@@ -22,6 +22,7 @@ extension BuildingService {
       .asObservable()
       .map(BuildingResponseModel.self)
   }
+    
   //클라이언트에서 안씀
   func uploadBuilding(param: UplaodBuildingRequest) -> Observable<Response> {
     provider.rx.request(.uploadBuilding(param: param))
@@ -67,7 +68,6 @@ extension BuildingService {
     provider.rx.request(.fetchLikeBuildingDetail(id: id))
       .retryWithAuthIfNeeded()
       .asObservable()
-
   }
 
   func modifyLikeBuilding(id: Int, param: LikeRequest) -> Observable<Response> {
@@ -78,4 +78,8 @@ extension BuildingService {
     provider.rx.request(.deleteLikeBuilding(id: id))
       .asObservable()
   }
+  func fetchAllBuildings() -> Observable<Response>{
+    provider.rx.request(.fetchAllBuildings).asObservable()
+  }
+
 }

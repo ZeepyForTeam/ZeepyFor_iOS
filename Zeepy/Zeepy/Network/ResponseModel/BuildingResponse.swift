@@ -61,7 +61,23 @@ struct Review: Codable {
     let review, soundInsulation: String
     let user: Int
     let waterPressure: String
+    let totalEvaluation : String
 }
+
+//struct Review_all: Codable {
+//    let id: Int
+//    let user: User
+//    let communcationTendency: String
+//    let lessorGender: LessorGender
+//    let lessorAge: LessorAge
+//    let lessorReview: String
+//    let roomCount: RoomCount
+//    let soundInsulation, pest, lightning, waterPressure: Lightning
+//    let furnitures: [JSONAny]
+//    let review: String
+//    let totalEvaluation: TotalEvaluation
+//    let imageUrls: [JSONAny]
+//}
 
 // MARK: - Pageable
 struct Pageable: Codable {
@@ -89,6 +105,19 @@ struct LikeDate: Codable {
     let date, day, hours, minutes: Int?
     let month, nanos, seconds, time: Int?
     let timezoneOffset, year: Int?
+}
+//MARK: - BuildingAll
+struct buildingAllListModel: Codable {
+    let apartmentName: String
+    let areaCode, buildYear: Int
+    let buildingDeals: [BuildingDeal]
+    let buildingLikes: [BuildingLike]
+    let exclusivePrivateArea: Int
+    let fullNumberAddress, fullRoadNameAddress: String
+    let id: Int
+    let latitude, longitude : Double
+    let reviews: [Review]
+    let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
 
 typealias BuildingLikeResponse = [BuildingLikeResponseElement]
