@@ -46,7 +46,6 @@ class RegisterReviewPopupViewController: UIViewController {
                                 user: 0,
                                 waterPressure: "")
 
-  
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
