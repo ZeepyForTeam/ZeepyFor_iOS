@@ -37,7 +37,6 @@ class CommunicationTendencyViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   var tendencyImageList = ["emoji1", "emoji2", "emoji3", "emoji4", "emoji5"]
   var tendencyMapImageList = ["emoji1Map", "emoji2Map", "emoji3Map", "emoji4Map", "emoji5Map"]

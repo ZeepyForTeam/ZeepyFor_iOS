@@ -29,7 +29,7 @@ class SelectAddressViewController: BaseViewController {
   
   // MARK: - Variables
   private let userService = UserService(provider: MoyaProvider<UserRouter>(plugins:[NetworkLoggerPlugin()]))
-  private var selectedIndex = 100
+  var selectedIndex = 100
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -44,19 +44,11 @@ class SelectAddressViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   
-  var addressModel =  ResponseGetAddress(addresses: [
-                                    Addresses(cityDistinct: "서울시 노원구",
-                                              primaryAddress: "공릉동",
-                                              detailAddress: "34번지 102호"),
-                                    Addresses(cityDistinct: "서울시 노원구",
-                                              primaryAddress: "공릉동",
-                                              detailAddress: "34번지 102호"),
-                                    Addresses(cityDistinct: "서울시 노원구",
-                                              primaryAddress: "공릉동",
-                                              detailAddress: "34번지 102호")])
+  var addressModel: ResponseGetAddress?
+  private var tableViewRowHeight: CGFloat = 94
+  private var tableViewRowCount = 1
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -93,7 +85,7 @@ extension SelectAddressViewController {
   func layoutTitleText() {
     let titleParagraphStyle = NSMutableParagraphStyle()
     titleParagraphStyle.lineSpacing = 7
-    let titleText = NSMutableAttributedString(string: "거주하고 계신 집을 \n검색하세요",
+    let titleText = NSMutableAttributedString(string: "거주하고 계신 집을 \n선택하세요",
                                               attributes: [
                                                 .font: UIFont.nanumRoundExtraBold(fontSize: 24),
                                                 .foregroundColor: UIColor.mainBlue])
@@ -137,7 +129,7 @@ extension SelectAddressViewController {
   }
   func layoutAddressTableView() {
     self.view.add(self.addressTableView) {
-      $0.estimatedRowHeight = 56
+      $0.estimatedRowHeight = 94
       $0.rowHeight = UITableView.automaticDimension
       $0.separatorStyle = .none
       $0.isScrollEnabled = false
@@ -145,7 +137,7 @@ extension SelectAddressViewController {
         $0.leading.equalTo(self.addressLabel.snp.leading)
         $0.centerX.equalToSuperview()
         $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
-        $0.height.equalTo(self.addressModel.addresses.count * 56)
+        $0.height.equalTo(Int(self.tableViewRowHeight) * self.tableViewRowCount)
       }
     }
   }
@@ -201,9 +193,19 @@ extension SelectAddressViewController {
       $0.leading.equalTo(self.addressLabel.snp.leading)
       $0.centerX.equalToSuperview()
       $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
-      $0.height.equalTo(self.addressModel.addresses.count * 56)
+      $0.height.equalTo((self.addressModel?.addresses.count ?? 0) * 56)
     }
   }
+  
+  private func relayoutEmptyAddressTableView() {
+    addressTableView.snp.remakeConstraints {
+      $0.leading.equalTo(self.addressLabel.snp.leading)
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(self.addressLabel.snp.bottom).offset(16)
+      $0.height.equalTo(94)
+    }
+  }
+  
   func layout() {
     layoutNavigationView()
     layoutTitleText()
@@ -217,6 +219,10 @@ extension SelectAddressViewController {
   
   // MARK: - General Helpers
   private func register() {
+    addressTableView.register(
+      EmptyManageAddressTableViewCell.self,
+      forCellReuseIdentifier:
+        EmptyManageAddressTableViewCell.identifier)
     addressTableView.register(
       SelectAddressTableViewCell.self,
       forCellReuseIdentifier: SelectAddressTableViewCell.identifier)
@@ -233,7 +239,13 @@ extension SelectAddressViewController {
             let data = try decoder.decode(ResponseGetAddress.self,
                                           from: response.data)
             self.addressModel = data
-            self.relayoutAddressTableView()
+            if self.addressModel?.addresses != [] {
+              self.relayoutAddressTableView()
+            }
+            else {
+              self.relayoutEmptyAddressTableView()
+            }
+            self.selectedIndex = 100
             self.addressTableView.reloadData()
           }
           catch {
@@ -250,14 +262,20 @@ extension SelectAddressViewController {
   private func nextButtonClicked() {
     let navigation = self.navigationController
     let nextViewController = DetailAddressViewController()
-    nextViewController.addressModel = addressModel.addresses[selectedIndex]
+    nextViewController.selectedAddress =
+      "\(self.addressModel?.addresses[selectedIndex].cityDistinct ?? "") \(self.addressModel?.addresses[selectedIndex].primaryAddress ?? "")"
+    nextViewController.addressModel =
+      addressModel?.addresses[selectedIndex] ??
+      Addresses(cityDistinct: "",
+                primaryAddress: "",
+                detailAddress: "")
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
   
   @objc
   private func submitButtonClicked() {
-    if addressModel.addresses.count == 3 {
+    if addressModel?.addresses.count == 3 {
       let popupVC = AddressLimitPopupViewController()
       popupVC.modalPresentationStyle = .overFullScreen
       self.present(popupVC, animated: true, completion: nil)
@@ -265,6 +283,8 @@ extension SelectAddressViewController {
     else {
       let navigation = self.navigationController
       let nextViewController = SearchAddressViewController()
+      nextViewController.userAddressModel =
+        addressModel ?? ResponseGetAddress(addresses: [])
       nextViewController.hidesBottomBarWhenPushed = false
       navigation?.pushViewController(nextViewController, animated: true)
     }
@@ -272,15 +292,25 @@ extension SelectAddressViewController {
   
   func deleteButtonClicked() {
     let popupVC = ConfirmDeletePopupViewController()
+    popupVC.selectedIndex = selectedIndex
+    popupVC.addressModel = addressModel
     popupVC.modalPresentationStyle = .overFullScreen
+    popupVC.resultClosure = { result in
+      weak var `self` = self
+      if result {
+        self?.fetchAddress()
+      }
+    }
     self.present(popupVC, animated: true, completion: nil)
   }
   
   func registerButtonClicked() {
     let navigation = self.navigationController
-    let nextVC = SearchAddressViewController()
-    nextVC.hidesBottomBarWhenPushed = false
-    navigation?.pushViewController(nextVC, animated: true)
+    let nextViewController = SearchAddressViewController()
+    nextViewController.userAddressModel =
+      addressModel ?? ResponseGetAddress(addresses: [])
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: true)
   }
   
   private func setupNavigation() {
@@ -300,26 +330,46 @@ extension SelectAddressViewController: UITableViewDelegate {
 // MARK: - addressTableView DataSource
 extension SelectAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return addressModel.addresses.count
+    var count: Int = 1
+    if addressModel?.addresses.isEmpty == false {
+      count = (addressModel?.addresses.count) ?? 0
+    }
+    return count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let emptyCell = tableView.dequeueReusableCell(
+            withIdentifier: EmptyManageAddressTableViewCell.identifier,
+            for: indexPath) as? EmptyManageAddressTableViewCell else {
+      return UITableViewCell()
+    }
     guard let addressCell = tableView.dequeueReusableCell(withIdentifier: SelectAddressTableViewCell.identifier, for: indexPath) as? SelectAddressTableViewCell else {
       return UITableViewCell()
     }
-    addressCell.awakeFromNib()
-    let address = addressModel.addresses[indexPath.row]
-    addressCell.addressLabel.text = "\(address.cityDistinct) \(address.primaryAddress) \(address.detailAddress ?? "")"
-    addressCell.rootViewController = self
-    if indexPath.row == selectedIndex {
-      addressCell.containerView.layer.borderColor = UIColor.mainBlue.cgColor
-      addressCell.containerView.layer.borderWidth = 2
+    if addressModel?.addresses == [] ||
+        addressModel?.addresses == nil {
+      emptyCell.awakeFromNib()
+      emptyCell.registerButton.setTitleColor(.mainBlue, for: .normal)
+      emptyCell.rootViewController = self
+      return emptyCell
     }
     else {
-      addressCell.containerView.layer.borderColor = UIColor.grayText.cgColor
-      addressCell.containerView.layer.borderWidth = 1
+      addressCell.awakeFromNib()
+      addressCell.index = indexPath.row
+      let address = addressModel?.addresses[indexPath.row]
+      addressCell.addressLabel.text =
+        "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "") \(address?.detailAddress ?? "")"
+      addressCell.rootViewController = self
+      if indexPath.row == selectedIndex {
+        addressCell.containerView.layer.borderColor = UIColor.mainBlue.cgColor
+        addressCell.containerView.layer.borderWidth = 2
+      }
+      else {
+        addressCell.containerView.layer.borderColor = UIColor.grayText.cgColor
+        addressCell.containerView.layer.borderWidth = 1
+      }
+      return addressCell
     }
-    return addressCell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

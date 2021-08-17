@@ -40,6 +40,11 @@
 		B42FCE0AF38B8A19BCF03D6B /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F8B6AE74AC4C10CE176D9E /* Pods_Zeepy_ZeepyUITests.framework */; };
 		CC0429BA26C4BF8000C5D498 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */; };
 		CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */; };
+		CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */; };
+		CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */; };
+		CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* YPImagePicker */; };
+		CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */; };
+		CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
 		CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */; };
 		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
@@ -252,6 +257,10 @@
 		A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressTableViewCell.swift; sourceTree = "<group>"; };
+		CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgePopupViewController.swift; sourceTree = "<group>"; };
+		CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgeTableViewCell.swift; sourceTree = "<group>"; };
+		CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListTableViewCell.swift; sourceTree = "<group>"; };
+		CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAddressPopupViewController.swift; sourceTree = "<group>"; };
 		CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewController.swift; sourceTree = "<group>"; };
 		CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewViewController.swift; sourceTree = "<group>"; };
@@ -465,6 +474,7 @@
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
 				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
+				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */,
@@ -683,6 +693,7 @@
 				CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */,
 				CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */,
 				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
+				CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -773,6 +784,7 @@
 				CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */,
 				CC7C38EB26B93C3D0015CA0B /* SelectAddressTableViewCell.swift */,
 				CC7C391126C218EA0015CA0B /* SelectAddressEmptyTableViewCell.swift */,
+				CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -911,6 +923,7 @@
 				CCB6C10526ACD99E006E7032 /* CreditViewController.swift */,
 				CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */,
 				CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */,
+				CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -939,6 +952,7 @@
 				CC7C390F26C12A8A0015CA0B /* ConfirmDeletePopupViewController.swift */,
 				CC7C391326C24D630015CA0B /* ReviewPhotoViewController.swift */,
 				CC7C391526C264720015CA0B /* RegisterReviewPopupViewController.swift */,
+				CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1248,6 +1262,7 @@
 				DA47445A2612144800709883 /* SnapKit */,
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
 				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
+				CC0429C226C7E87F00C5D498 /* YPImagePicker */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1328,6 +1343,7 @@
 				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1523,6 +1539,7 @@
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */,
 				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
+				CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				CC7C391626C264720015CA0B /* RegisterReviewPopupViewController.swift in Sources */,
@@ -1543,6 +1560,7 @@
 				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
 				CC7C391826C36D310015CA0B /* UserRouter.swift in Sources */,
 				DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */,
+				CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
@@ -1613,6 +1631,7 @@
 				DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
+				CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */,
 				DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
@@ -1637,6 +1656,7 @@
 				DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */,
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
 				DA40E1DD26B3DB1100102EED /* BuildingService.swift in Sources */,
@@ -2322,6 +2342,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
+			requirement = {
+				branch = spm;
+				kind = branch;
+			};
+		};
 		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -2349,6 +2377,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC0429C226C7E87F00C5D498 /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
+		};
 		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;

@@ -6,6 +6,8 @@
 //
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -26,6 +28,10 @@ class DetailAddressViewController: BaseViewController {
   private let nextButton = UIButton()
   
   // MARK: - Variables
+  private let buildingService = BuildingService(
+    provider: MoyaProvider<BuildingRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
   var addressModel = Addresses(cityDistinct: "",
                                primaryAddress: "",
                                detailAddress: "")
@@ -43,14 +49,22 @@ class DetailAddressViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
+  
+  var buildingModel: BuildingModelByAddress?
+  
+  var selectedAddress: String?
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
     setupNavigation()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchAddress()
   }
 
 }
@@ -165,6 +179,7 @@ extension DetailAddressViewController {
       $0.setBorder(borderColor: .grayText, borderWidth: 1)
       $0.setRounded(radius: 8)
       $0.configureTextField(textColor: .blackText, font: .nanumRoundRegular(fontSize: 14))
+      $0.placeholder = "상세주소를 입력해주세요"
       $0.delegate = self
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.distrinctContainerView.snp.leading)
@@ -216,6 +231,26 @@ extension DetailAddressViewController {
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "리뷰작성")
+  }
+  
+  private func fetchAddress() {
+    buildingService.searchByAddress(param: self.selectedAddress!)
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(BuildingModelByAddress.self,
+                                          from: response.data)
+            self.buildingModel = data
+            self.reviewModel.buildingID = self.buildingModel?.id ?? 0
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
   
   // MARK: - Action Helpers

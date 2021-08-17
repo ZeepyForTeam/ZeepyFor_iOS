@@ -35,7 +35,7 @@ class LenderInformationViewController: BaseViewController {
   
   // MARK: - Variables
   private var selectedGender: String?
-  private var selectedAge: String = "TWENTY"
+  private var selectedAge: String = "UNKNOWN"
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
@@ -50,7 +50,6 @@ class LenderInformationViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   private var textCount = 0
   
@@ -176,7 +175,7 @@ extension LenderInformationViewController {
   
   private func layoutAgeContextLabel() {
     self.ageView.add(self.ageContextLabel) {
-      $0.text = "50"
+      $0.text = "-"
       $0.textColor = .blackText
       $0.font = .nanumRoundExtraBold(fontSize: 14)
       $0.snp.makeConstraints {
@@ -188,7 +187,8 @@ extension LenderInformationViewController {
   
   private func layoutAgeButton() {
     self.ageView.add(self.ageButton) {
-      $0.setBackgroundImage(UIImage(named: "iconSearch"), for: .normal)
+      $0.setBackgroundImage(UIImage(named: "toggleAge"), for: .normal)
+      $0.addTarget(self, action: #selector(self.clickedAgeButton), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.centerY.equalTo(self.ageView.snp.centerY)
         $0.trailing.equalTo(self.ageView.snp.trailing).offset(-3)
@@ -353,6 +353,18 @@ extension LenderInformationViewController {
     activateNextButton()
   }
   
+  @objc
+  private func clickedAgeButton() {
+    let ageVC = LessorAgePopupViewController()
+    ageVC.modalPresentationStyle = .overFullScreen
+    ageVC.resultClosure = { (first, second) in
+      weak var `self` = self
+      self?.ageContextLabel.text = first
+      self?.selectedAge = second
+      print(first, second)
+    }
+    self.present(ageVC, animated: true, completion: nil)
+  }
   @objc
   private func textDidChange(_ notification: Notification) {
     if let textview = notification.object as? UITextView {

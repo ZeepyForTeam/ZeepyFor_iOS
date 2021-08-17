@@ -15,14 +15,21 @@ class ManageReviewTableViewCell: UITableViewCell {
   
   // MARK: - Components
   private let containerView = UIView()
-  private let addressLabel = UILabel()
-  private let dateLabel = UILabel()
+  let addressLabel = UILabel()
+  let dateLabel = UILabel()
   private let lenderTitleLabel = UILabel()
-  private let lenderContextLabel = UILabel()
+  let lenderContextLabel = UILabel()
   private let tendencyTitleLabel = UILabel()
-  private let tendencyContextLabel = UILabel()
+  let tendencyContextLabel = UILabel()
   private let reviewTitleLabel = UILabel()
-  private let reviewContextLabel = UILabel()
+  private let insulationLabel = UILabel()
+  let insulationImageView = UIImageView()
+  private let pestLabel = UILabel()
+  let pestImageView = UIImageView()
+  private let lightLabel = UILabel()
+  let lightImageView = UIImageView()
+  private let waterLabel = UILabel()
+  let waterImageView = UIImageView()
 
   // MARK: - LifeCycles
   override func awakeFromNib() {
@@ -38,6 +45,7 @@ extension ManageReviewTableViewCell {
   // MARK: - Layout Helpers
   private func layout() {
     contentView.backgroundColor = .white
+    configData()
     layoutContainerView()
     layoutAddressLabel()
     layoutDateLabel()
@@ -114,10 +122,64 @@ extension ManageReviewTableViewCell {
         $0.bottom.equalTo(self.containerView.snp.bottom).offset(-18)
       }
     }
-    containerView.add(reviewContextLabel) {
+    
+    containerView.add(insulationLabel) {
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.reviewTitleLabel.snp.trailing).offset(8)
         $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.reviewTitleLabel.snp.trailing).offset(8)
+      }
+    }
+    
+    containerView.add(insulationImageView) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.insulationLabel.snp.trailing).offset(4)
+        $0.width.height.equalTo(16)
+      }
+    }
+    
+    containerView.add(pestLabel) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.insulationImageView.snp.trailing).offset(12)
+      }
+    }
+    
+    containerView.add(pestImageView) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.pestLabel.snp.trailing).offset(4)
+        $0.width.height.equalTo(16)
+      }
+    }
+    
+    containerView.add(lightLabel) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.pestImageView.snp.trailing).offset(12)
+      }
+    }
+    
+    containerView.add(lightImageView) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.lightLabel.snp.trailing).offset(4)
+        $0.width.height.equalTo(16)
+      }
+    }
+    
+    containerView.add(waterLabel) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.lightImageView.snp.trailing).offset(12)
+      }
+    }
+    
+    containerView.add(waterImageView) {
+      $0.snp.makeConstraints {
+        $0.centerY.equalTo(self.reviewTitleLabel.snp.centerY)
+        $0.leading.equalTo(self.waterLabel.snp.trailing).offset(4)
+        $0.width.height.equalTo(16)
       }
     }
   }
@@ -134,21 +196,52 @@ extension ManageReviewTableViewCell {
     addressLabel.setupLabel(text: address,
                             color: .blackText,
                             font: .nanumRoundExtraBold(fontSize: 14))
-    dateLabel.setupLabel(text: date, color: .grayText, font: .nanumRoundRegular(fontSize: 10))
+    
+    dateLabel.setupLabel(text: date,
+                         color: .grayText,
+                         font: .nanumRoundRegular(fontSize: 10))
+    
     lenderContextLabel.setupLabel(text: lender,
                                   color: .blackText,
                                   font: .nanumRoundRegular(fontSize: 12))
+    
     tendencyContextLabel.setupLabel(text: tendency,
                                     color: .blackText,
                                     font: .nanumRoundRegular(fontSize: 12))
-    reviewContextLabel.setupLabel(text: "방음 \(sound), 해충 \(bug), 채광 \(light), 수압 \(water)",
-                                  color: .blackText,
-                                  font: .nanumRoundRegular(fontSize: 12))
+    
+    insulationImageView.image = UIImage(named: sound)
+    pestImageView.image = UIImage(named: bug)
+    lightImageView.image = UIImage(named: light)
+    waterImageView.image = UIImage(named: water)
   }
   
   private func configData() {
-    lenderTitleLabel.setupLabel(text: "임대인", color: .orangeyYellow, font: .nanumRoundExtraBold(fontSize: 12))
-    tendencyTitleLabel.setupLabel(text: "임대인 소통성향", color: .orangeyYellow, font: .nanumRoundExtraBold(fontSize: 12))
-    reviewTitleLabel.setupLabel(text: "집", color: .orangeyYellow, font: .nanumRoundExtraBold(fontSize: 12))
+    lenderTitleLabel.setupLabel(text: "임대인",
+                                color: .orangeyYellow,
+                                font: .nanumRoundExtraBold(fontSize: 12))
+    
+    tendencyTitleLabel.setupLabel(text: "임대인 소통성향",
+                                  color: .orangeyYellow,
+                                  font: .nanumRoundExtraBold(fontSize: 12))
+    
+    reviewTitleLabel.setupLabel(text: "집",
+                                color: .orangeyYellow,
+                                font: .nanumRoundExtraBold(fontSize: 12))
+    
+    insulationLabel.setupLabel(text: "방음",
+                               color: .blackText,
+                               font: .nanumRoundBold(fontSize: 12))
+    
+    pestLabel.setupLabel(text: "청결",
+                         color: .blackText,
+                         font: .nanumRoundBold(fontSize: 12))
+    
+    lightLabel.setupLabel(text: "채광",
+                          color: .blackText,
+                          font: .nanumRoundBold(fontSize: 12))
+    
+    waterLabel.setupLabel(text: "수압",
+                          color: .blackText,
+                          font: .nanumRoundBold(fontSize: 12))
   }
 }
