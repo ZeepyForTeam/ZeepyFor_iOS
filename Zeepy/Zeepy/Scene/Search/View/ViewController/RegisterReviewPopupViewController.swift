@@ -25,6 +25,7 @@ class RegisterReviewPopupViewController: UIViewController {
   private let registerButton = UIButton()
   var resultClosure: ((Bool) -> ())?
   private var registerResult: Bool = false
+  
   // MARK: - Variables
   private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
   private let disposeBag = DisposeBag()
@@ -44,9 +45,7 @@ class RegisterReviewPopupViewController: UIViewController {
                                 totalEvaluation: "",
                                 user: 0,
                                 waterPressure: "")
-//  var resultClosure: ((Bool) -> ())?
-//  private var registerResult: Bool = false
-//  
+
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -20,6 +20,7 @@ class ManageAddressTableViewCell: UITableViewCell {
   
   // MARK: - Variables
   var rootViewController: UIViewController?
+  var index = 100
   
   // MARK: - LifeCycles
   override func awakeFromNib() {
@@ -78,6 +79,7 @@ extension ManageAddressTableViewCell {
   @objc
   private func clickedDeleteButton() {
     let rootVC = self.rootViewController as? ManageAddressViewController
+    rootVC?.selectedIndex = index
     rootVC?.modalPopupView()
   }
 }

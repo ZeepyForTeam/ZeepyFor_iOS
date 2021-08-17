@@ -10,7 +10,7 @@ import Moya
 
 enum UserRouter {
   case getAddress
-  case addAddress(param: RequestAddAddress)
+  case addAddress(param: ResponseGetAddress)
   case modifyNickname(nickname: String)
   case modifyPassword(param: RequestModifyPassword)
   case checkForRedundancyEmail(email: String)
