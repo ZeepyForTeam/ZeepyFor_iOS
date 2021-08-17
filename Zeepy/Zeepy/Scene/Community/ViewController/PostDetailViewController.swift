@@ -217,13 +217,13 @@ extension PostDetailViewControlelr {
     
     outputs.communityInfo
       .bind{ [weak self] model in
-        self?.likeBtn.isSelected = model.isLiked
+        self?.likeBtn.isSelected = model.isLiked == true
         self?.postDetail.profileName.text = model.user.name
         self?.postDetail.postTitle.text = model.title
         self?.postDetail.postContent.text = model.content
         self?.postDetail.typeLabel.text = model.communityCategory
-        self?.achivementView.isHidden = model.isParticipant
-        self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
+        self?.achivementView.isHidden = model.isParticipant == true
+        //self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
         
       }.disposed(by: disposeBag)
     
@@ -252,16 +252,12 @@ extension PostDetailViewControlelr {
     }.disposed(by: disposeBag)
     likeBtn.rx.tap.bind{ [weak self] in
       if self?.likeBtn.isSelected == true {
-        if let Umail = UserManager.shared.userEmail {
-          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: Umail)
+          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: UserManager.shared.userEmail)
           self?.likeCancel.onNext(like)
-        }
       }
       else {
-        if let Umail = UserManager.shared.userEmail {
-          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: Umail)
+          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: UserManager.shared.userEmail)
           self?.likeReq.onNext(like)
-        }
       }
     }.disposed(by: disposeBag)
     outputs.likeResult.bind{[weak self] result in
@@ -347,7 +343,7 @@ internal class PostDetailView : UIView{
   var postImageCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.itemSize = CGSize(width: 100, height: 100)
-    layout.scrollDirection = .vertical
+    layout.scrollDirection = .horizontal
     layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     layout.minimumLineSpacing = 8
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
