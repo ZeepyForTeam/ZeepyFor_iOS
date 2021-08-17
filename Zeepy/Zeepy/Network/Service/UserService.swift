@@ -22,7 +22,7 @@ extension UserService {
     provider.rx.request(.getAddress)
       .asObservable()
   }
-  func addAddress(param: RequestAddAddress) -> Observable<Response> {
+  func addAddress(param: ResponseGetAddress) -> Observable<Response> {
     provider.rx.request(.addAddress(param: param))
       .asObservable()
   }

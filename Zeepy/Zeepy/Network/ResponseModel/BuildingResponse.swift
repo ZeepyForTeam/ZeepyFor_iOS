@@ -29,6 +29,17 @@ struct BuildingContent: Codable {
     let shortAddress: String
 }
 
+struct BuildingModelByAddress: Codable {
+    let apartmentName: String
+    let areaCode, buildYear: Int
+    let buildingDeals: [BuildingDeal]
+    let buildingLikes: [BuildingLike]
+    let exclusivePrivateArea, id: Int
+    let latitude, longitude: Double
+    let reviews: [ReviewModel]
+    let shortAddress: String
+}
+
 // MARK: - BuildingDeal
 struct BuildingDeal: Codable {
     let dealCost: Int
@@ -117,6 +128,23 @@ struct buildingAllListModel: Codable {
     let id: Int
     let latitude, longitude : Double
     let reviews: [Review]
+    let shortAddress, shortNumberAddress, shortRoadNameAddress: String
+}
+
+struct SearchAddressModel: Codable {
+    let content: [Content]
+    let empty, first, last: Bool
+    let number, numberOfElements: Int
+    let pageable: Pageable
+    let size: Int
+    let sort: Sort
+    let totalElements, totalPages: Int
+}
+
+// MARK: - Content
+struct Content: Codable {
+    let apartmentName, fullNumberAddress, fullRoadNameAddress: String
+    let id: Int
     let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
 

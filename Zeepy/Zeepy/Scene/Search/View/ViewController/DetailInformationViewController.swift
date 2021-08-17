@@ -45,7 +45,6 @@ class DetailInformationViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   
   private final let roomCounts = [("1개", "ONE"),

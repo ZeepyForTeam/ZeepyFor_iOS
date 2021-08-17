@@ -87,5 +87,8 @@
     @nonobjc class var whiteGray: UIColor {
         return UIColor(white: 247.0 / 255.0, alpha: 1.0)
       }
+    @nonobjc class var pastelYellow: UIColor {
+        return UIColor(red: 1.0, green: 221.0 / 255.0, blue: 124.0 / 255.0, alpha: 1.0)
+      }
   }
 

@@ -43,6 +43,8 @@
 		CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */; };
 		CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */; };
 		CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* YPImagePicker */; };
+		CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */; };
+		CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
 		CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */; };
 		CC12B96726AA58CF00D17C95 /* ManageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */; };
@@ -257,6 +259,8 @@
 		CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgePopupViewController.swift; sourceTree = "<group>"; };
 		CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgeTableViewCell.swift; sourceTree = "<group>"; };
+		CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListTableViewCell.swift; sourceTree = "<group>"; };
+		CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAddressPopupViewController.swift; sourceTree = "<group>"; };
 		CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewController.swift; sourceTree = "<group>"; };
 		CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC12B96626AA58CF00D17C95 /* ManageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageReviewViewController.swift; sourceTree = "<group>"; };
@@ -689,6 +693,7 @@
 				CC12B96426AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift */,
 				CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */,
 				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
+				CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -918,6 +923,7 @@
 				CCB6C10526ACD99E006E7032 /* CreditViewController.swift */,
 				CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */,
 				CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */,
+				CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1533,6 +1539,7 @@
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */,
 				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
+				CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
 				CC7C391626C264720015CA0B /* RegisterReviewPopupViewController.swift in Sources */,
@@ -1553,6 +1560,7 @@
 				DAD6CBD7265E640700DDC5AD /* PostDetailViewController.swift in Sources */,
 				CC7C391826C36D310015CA0B /* UserRouter.swift in Sources */,
 				DA40E1D526B3D4D100102EED /* AreaCodeRequest.swift in Sources */,
+				CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */,
 				CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */,
 				DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */,
 				DAF4D39F265A035C00B281E2 /* Date+.swift in Sources */,
@@ -2043,7 +2051,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
@@ -2109,7 +2117,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Dist";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

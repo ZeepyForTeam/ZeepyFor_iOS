@@ -31,6 +31,7 @@ class ManageAddressViewController: BaseViewController {
   private var tableViewRowHeight: CGFloat = 94
   private var tableViewRowCount = 1
   private var addressModel: ResponseGetAddress?
+  var selectedIndex = 100
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -130,7 +131,17 @@ extension ManageAddressViewController {
   }
   
   func modalPopupView() {
-    
+    let popupView = DeleteAddressPopupViewController()
+    popupView.modalPresentationStyle = .overFullScreen
+    popupView.selectedIndex = selectedIndex
+    popupView.resultClosure = { result in
+      weak var `self` = self
+      if result {
+        self?.fetchAddress()
+      }
+    }
+    popupView.addressModel = addressModel
+    self.present(popupView, animated: true, completion: nil)
   }
   
   func reloadTableView() {
@@ -148,8 +159,8 @@ extension ManageAddressViewController {
             self.addressModel = data
             if self.addressModel?.addresses != [] {
               self.relayoutAddressTableView()
-              self.reloadTableView()
             }
+            self.reloadTableView()
           }
           catch {
             print(error)
@@ -158,6 +169,16 @@ extension ManageAddressViewController {
       }, onError: { error in
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  // MARK: - Action Helpers
+  func registerButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SearchAddressViewController()
+    nextViewController.userAddressModel =
+      addressModel ?? ResponseGetAddress(addresses: [])
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: true)
   }
 }
 
@@ -190,8 +211,10 @@ extension ManageAddressViewController: UITableViewDataSource {
             for: indexPath) as? ManageAddressTableViewCell else {
       return UITableViewCell()
     }
-    if addressModel?.addresses == nil {
+    if addressModel?.addresses == [] ||
+        addressModel?.addresses == nil {
       emptyCell.awakeFromNib()
+      emptyCell.rootViewController = self
       return emptyCell
     }
     else {
@@ -199,6 +222,7 @@ extension ManageAddressViewController: UITableViewDataSource {
       let address = addressModel?.addresses[indexPath.row]
       addressCell.addressLabel.text = "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "") \(address?.detailAddress ?? "")"
       addressCell.rootViewController = self
+      addressCell.index = indexPath.row
       return addressCell
     }
   }

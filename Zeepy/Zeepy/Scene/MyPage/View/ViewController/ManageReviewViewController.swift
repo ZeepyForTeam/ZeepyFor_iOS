@@ -182,10 +182,10 @@ extension ManageReviewViewController {
             let decoder = JSONDecoder()
             let data = try decoder.decode(UserReviewResponseModel.self,
                                           from: response.data)
+            
             self.reviewModel = data
             self.reviewTableView.reloadData()
           }
-          
           catch {
             print(error)
           }

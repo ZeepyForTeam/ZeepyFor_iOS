@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponseGetAddress: Decodable {
-  let addresses: [Addresses]
+struct ResponseGetAddress: Codable {
+  var addresses: [Addresses]
 }
  

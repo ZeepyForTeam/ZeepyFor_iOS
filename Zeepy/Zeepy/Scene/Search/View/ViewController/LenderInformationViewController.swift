@@ -50,7 +50,6 @@ class LenderInformationViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   private var textCount = 0
   
