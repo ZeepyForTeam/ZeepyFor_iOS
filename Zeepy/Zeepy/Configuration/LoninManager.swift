@@ -77,45 +77,37 @@ class kakaoLoginManager: NSObject {
   }
 }
 import AuthenticationServices
-//protocol AppleLoginManagerDelegate {
-//  func appleLoginSuccess()
-//  func appleLoginFail()
-//}
-//final class AppleLoginManager: NSObject , AppleLoginManagerDelegate {
-//  func appleLoginSuccess() {
-//    print("성공")
-//  }
-//  
-//  func appleLoginFail() {
-//    print("실패")
-//    
-//  }
-//  
-//  weak var viewController: UIViewController?
-//  weak var delegate: AppleLoginManagerDelegate?
-//  
-//  func setAppleLoginPresentationAnchorView(_ view: UIViewController) {
-//    self.viewController = view
-//  }
-//}
-//
-//extension AppleLoginManager: ASAuthorizationControllerDelegate {
-//  
-//  @available(iOS 13.0, *)
-//  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-//    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-//      
-//      let userIdentifier = appleIDCredential.user //userIdentifier
-//      let userName = appleIDCredential.fullName //fullName
-//      let userEmail = appleIDCredential.email //email
-//      
-//      delegate?.appleLoginSuccess()//apple 로그인 성공
-//    }
-//  }
-//  
-//  @available(iOS 13.0, *)
-//  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-//    delegate?.appleLoginFail() //apple 로그인 실패
-//  }
-//  
-//}
+
+final class AppleLoginManager: NSObject {
+  private func randomNonceString(length: Int = 32) -> String {
+    precondition(length > 0)
+    let charset: Array<Character> =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+    var result = ""
+    var remainingLength = length
+
+    while remainingLength > 0 {
+      let randoms: [UInt8] = (0 ..< 16).map { _ in
+        var random: UInt8 = 0
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+        if errorCode != errSecSuccess {
+          fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+        }
+        return random
+      }
+
+      randoms.forEach { random in
+        if remainingLength == 0 {
+          return
+        }
+
+        if random < charset.count {
+          result.append(charset[Int(random)])
+          remainingLength -= 1
+        }
+      }
+    }
+
+    return result
+  }
+}
