@@ -15,11 +15,12 @@ class EmptyManageAddressTableViewCell: UITableViewCell {
   
   // MARK: - Components
   private let contextLabel = UILabel()
-  private let registerButton = UIButton()
+  let registerButton = UIButton()
   
   // MARK: - Variables
   private final let context = "아직 등록된 주소가 없어요. :("
   private final let registerButtonTitle = "직접 등록하기"
+  var rootViewController: UIViewController?
   
   // MARK: - LifeCycles
   override func awakeFromNib() {
@@ -50,6 +51,9 @@ extension EmptyManageAddressTableViewCell {
   
   private func layoutRegisterButton() {
     contentView.add(registerButton) {
+      $0.addTarget(self,
+                   action: #selector(self.clickedRegisterButton),
+                   for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.equalTo(self.contextLabel.snp.bottom).offset(12)
         $0.centerX.equalToSuperview()
@@ -71,5 +75,16 @@ extension EmptyManageAddressTableViewCell {
                                backgroundColor: .clear,
                                state: .normal,
                                radius: 0)
+  }
+  
+  // MARK: - Action Helpers
+  @objc
+  private func clickedRegisterButton() {
+    if let rootVC = rootViewController as? SelectAddressViewController {
+      rootVC.registerButtonClicked()
+    }
+    if let rootVC = rootViewController as? ManageAddressViewController {
+      rootVC.registerButtonClicked()
+    }
   }
 }

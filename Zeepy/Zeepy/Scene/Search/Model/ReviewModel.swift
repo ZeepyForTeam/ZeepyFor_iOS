@@ -16,13 +16,12 @@ struct ReviewModel: Codable {
   var lessorAge, lessorGender, lessorReview, lightning: String
   var pest, review, roomCount, soundInsulation: String
   var totalEvaluation: String
-  var user: Int
   var waterPressure: String
   
   enum CodingKeys: String, CodingKey {
     case address
     case buildingID = "buildingId"
-    case communcationTendency, furnitures, imageUrls, lessorAge, lessorGender, lessorReview, lightning, pest, review, roomCount, soundInsulation, totalEvaluation, user, waterPressure
+    case communcationTendency, furnitures, imageUrls, lessorAge, lessorGender, lessorReview, lightning, pest, review, roomCount, soundInsulation, totalEvaluation, waterPressure
   }
   
 }

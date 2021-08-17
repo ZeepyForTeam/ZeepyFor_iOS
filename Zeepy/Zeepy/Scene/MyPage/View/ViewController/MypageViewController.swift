@@ -302,7 +302,6 @@ extension MypageViewController {
   
   @objc
   private func titleLabelClicked() {
-    print("여기야여기")
     if isLogined == false {
       let root = LoginEmailViewController()
       let rootNav = UINavigationController()

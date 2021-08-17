@@ -14,8 +14,8 @@ struct RequestAddAddress: Codable {
 
 // MARK: - Addresses
 struct Addresses: Codable, Equatable {
-  let cityDistinct, primaryAddress: String
-  let detailAddress: String?
+  var cityDistinct, primaryAddress: String
+  var detailAddress: String?
 }
 
 struct RequestModifyPassword: Encodable {

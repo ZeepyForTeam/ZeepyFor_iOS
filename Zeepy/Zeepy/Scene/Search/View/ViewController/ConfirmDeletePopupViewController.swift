@@ -7,13 +7,29 @@
 
 import UIKit
 
-class ConfirmDeletePopupViewController: UIViewController {
+import Moya
+import RxSwift
+import SnapKit
+import Then
+
+// MARK: - ConfirmDeletePopupViewController
+class ConfirmDeletePopupViewController: BaseViewController {
   
   // MARK: - Components
   private let cardView = UIView()
   private let messageLabel = UILabel()
   private let deleteButton = UIButton()
   private let cancelButton = UIButton()
+  
+  // MARK: - Variables
+  var selectedIndex = 100
+  var addressModel: ResponseGetAddress?
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -83,10 +99,32 @@ extension ConfirmDeletePopupViewController {
     }
   }
   
+  private func addAddress() {
+    userService.addAddress(param: self.addressModel ?? ResponseGetAddress(addresses: []))
+      .subscribe(onNext: { [weak self] response in
+        if response.statusCode == 200 {
+          do {
+            self?.dismiss(animated: true, completion: {
+              self?.registerResult = true
+              if let closure = self?.resultClosure {
+                   closure(self?.registerResult == true)
+              }
+            })
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
   // MARK: - Action Helpers
   @objc
   private func clickedDeleteButton() {
-    // TODO: - Server Connection
+    addressModel?.addresses.remove(at: selectedIndex)
+    addAddress()
   }
   
   @objc

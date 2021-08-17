@@ -21,6 +21,7 @@ class AddressLimitPopupViewController: UIViewController {
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
+    configData()
     layout()
   }
 }
@@ -51,7 +52,6 @@ extension AddressLimitPopupViewController {
   private func layoutMessageLabel() {
     cardView.add(messageLabel) {
       $0.numberOfLines = 2
-      $0.setupLabel(text: "최대 3개의 주소까지만\n 등록이 가능해요!", color: .blackText, font: .nanumRoundExtraBold(fontSize: 16))
       $0.snp.makeConstraints {
         $0.centerX.equalToSuperview()
         $0.top.equalToSuperview().offset(46)
@@ -70,6 +70,24 @@ extension AddressLimitPopupViewController {
         $0.height.equalTo(self.view.frame.width * 48/375)
       }
     }
+  }
+  
+  // MARK: - General Helpers
+  private func configData() {
+    let titleParagraphStyle = NSMutableParagraphStyle()
+    titleParagraphStyle.lineSpacing = 7
+    titleParagraphStyle.alignment = .center
+    let titleText = NSMutableAttributedString(
+      string: "최대 3개의 주소까지만\n등록이 가능해요!",
+      attributes: [.font: UIFont.nanumRoundExtraBold(fontSize: 16),
+                   .foregroundColor: UIColor.blackText])
+    
+    titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
+                           value: titleParagraphStyle,
+                           range: NSMakeRange(0, titleText.length))
+    
+    messageLabel.attributedText = titleText
+    
   }
   
   // MARK: - Action Helpers

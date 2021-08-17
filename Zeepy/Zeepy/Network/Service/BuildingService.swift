@@ -78,4 +78,10 @@ extension BuildingService {
     provider.rx.request(.deleteLikeBuilding(id: id))
       .asObservable()
   }
+  
+  func fetchBuildingByAddress(address:String) ->
+  Observable<Response> {
+    provider.rx.request(.fetchBuildingByAddress(address: address))
+      .asObservable()
+  }
 }
