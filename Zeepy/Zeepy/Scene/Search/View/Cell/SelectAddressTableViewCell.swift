@@ -20,6 +20,7 @@ class SelectAddressTableViewCell: UITableViewCell {
   
   // MARK: - Variables
   var rootViewController: UIViewController?
+  var index = 100
   
   // MARK: - LifeCycles
   override func awakeFromNib() {
@@ -78,6 +79,7 @@ extension SelectAddressTableViewCell {
   @objc
   private func clickedDeleteButton() {
     if let rootVC = self.rootViewController as? SelectAddressViewController {
+      rootVC.selectedIndex = index
       rootVC.deleteButtonClicked()
     }
   }

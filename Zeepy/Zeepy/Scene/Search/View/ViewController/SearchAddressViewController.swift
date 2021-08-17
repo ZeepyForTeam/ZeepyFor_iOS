@@ -5,10 +5,14 @@
 //  Created by 노한솔 on 2021/05/02.
 //
 
-import SnapKit
-import Then
 import UIKit
 
+import Moya
+import RxSwift
+import SnapKit
+import Then
+
+// MARK: - SearchAddressViewController
 class SearchAddressViewController: BaseViewController {
   
   // MARK: - Components
@@ -22,10 +26,18 @@ class SearchAddressViewController: BaseViewController {
   private let addressTableView = UITableView()
   
   // MARK: - Variables
-  private let addressModel: KakaoAddressModel? = nil
+  private var addressModel: SearchAddressModel?
+  var userAddressModel: ResponseGetAddress = ResponseGetAddress(addresses: [])
   private final let tableViewRowHeight: CGFloat = 81
+  private let buildingService = BuildingService(
+    provider: MoyaProvider<BuildingRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
     
-  // MARK: - LifeCycles
+  // MARK: - Life Cycles
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .white
@@ -45,8 +57,6 @@ extension SearchAddressViewController {
     layoutSearchTextFieldContainerView()
     layoutSearchTextField()
     layoutSearchButton()
-    layoutNextButton()
-    layoutseparatorView()
     layoutAddressTableView()
   }
   
@@ -101,6 +111,7 @@ extension SearchAddressViewController {
       $0.setRounded(radius: 16)
       $0.leftView = searchIconContainerView
       $0.leftViewMode = .always
+      $0.font = UIFont.nanumRoundRegular(fontSize: 12)
       $0.snp.makeConstraints {
         $0.edges.equalTo(self.searchTextFieldContainerView.snp.edges)
       }
@@ -113,48 +124,14 @@ extension SearchAddressViewController {
       $0.setTitleColor(.mainBlue, for: .normal)
       $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 12)
       $0.backgroundColor = .clear
+      $0.addTarget(self,
+                   action: #selector(self.searchButtonClicked),
+                   for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.equalTo(self.searchTextFieldContainerView.snp.top)
         $0.bottom.equalTo(self.searchTextFieldContainerView.snp.bottom)
         $0.trailing.equalTo(self.searchTextFieldContainerView.snp.trailing)
         $0.width.equalTo(self.view.frame.width*60/375)
-      }
-    }
-  }
-  
-  private func layoutNextButton() {
-    self.view.add(self.nextButton) {
-      $0.tag = 1
-      $0.setRounded(radius: 8)
-      $0.setTitle("다음으로", for: .normal)
-      $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
-      if $0.tag == 0 {
-        $0.backgroundColor = .gray244
-        $0.setTitleColor(.grayText, for: .normal)
-        $0.isUserInteractionEnabled = false
-      }
-      else if $0.tag == 1 {
-        $0.backgroundColor = .mainBlue
-        $0.setTitleColor(.white, for: .normal)
-        $0.isUserInteractionEnabled = true
-      }
-      $0.addTarget(self, action: #selector(self.nextButtonClicked), for: .touchUpInside)
-      $0.snp.makeConstraints {
-        $0.leading.equalTo(self.titleLabel.snp.leading)
-        $0.centerX.equalTo(self.view.snp.centerX)
-        $0.bottom.equalTo(self.view.snp.bottom).offset(-38)
-        $0.height.equalTo(self.view.frame.height*52/812)
-      }
-    }
-  }
-  
-  private func layoutseparatorView() {
-    self.view.add(self.separatorView) {
-      $0.backgroundColor = .gray244
-      $0.snp.makeConstraints {
-        $0.width.equalTo(self.view.snp.width)
-        $0.height.equalTo(1)
-        $0.bottom.equalTo(self.nextButton.snp.top).offset(-12)
       }
     }
   }
@@ -167,13 +144,107 @@ extension SearchAddressViewController {
       $0.estimatedRowHeight = self.tableViewRowHeight
       $0.rowHeight = UITableView.automaticDimension
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.searchTextField.snp.bottom).offset(6)
+        $0.top.equalTo(self.searchTextField.snp.bottom).offset(10)
         $0.leading.trailing.equalToSuperview()
-        $0.bottom.equalTo(self.separatorView.snp.top)
+        $0.bottom.equalTo(self.view.snp.bottom)
       }
     }
   }
+  
   // MARK: - General Helpers
+  private func register() {
+    addressTableView.register(AddressTableViewCell.self, forCellReuseIdentifier: AddressTableViewCell.identifier)
+    addressTableView.delegate = self
+    addressTableView.dataSource = self
+  }
+  
+  private func setupNavigation() {
+    self.navigationController?.navigationBar.isHidden = true
+    navigationView.setUp(title: "리뷰작성")
+  }
+  
+  private func fetchAddresses() {
+    buildingService.fetchBuildingByAddress(address: self.searchTextField.text ?? "")
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(SearchAddressModel.self,
+                                          from: response.data)
+            self.addressModel = data
+            self.addressTableView.isHidden = false
+            self.addressTableView.reloadData()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  private func addAddress() {
+    userService.addAddress(param: self.userAddressModel ?? ResponseGetAddress(addresses: []))
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            self.navigationController?.popViewController(animated: true)
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  private func splitAddress(address: String) {
+    let addressArray = address.split(separator: " ")
+    if addressArray[0] == "세종특별자치시" {
+      let cityDistrinct = String(addressArray[0])
+      var str = ""
+      for i in 1..<addressArray.count {
+        if i == addressArray.count-1 {
+          str.append(String(addressArray[i]))
+        }
+        else {
+          str.append(String(addressArray[i]))
+          str.append(" ")
+        }
+      }
+      let primaryAddress = str
+      userAddressModel.addresses.append(
+        Addresses(cityDistinct: cityDistrinct,
+                  primaryAddress: primaryAddress,
+                  detailAddress: ""))
+    }
+    else {
+      var str = ""
+      str.append(String(addressArray[0]))
+      str.append(" ")
+      str.append(String(addressArray[1]))
+      let cityDistrinct = str
+      str = ""
+      for i in 2..<addressArray.count {
+        if i == addressArray.count-1 {
+          str.append(String(addressArray[i]))
+        }
+        else {
+          str.append(String(addressArray[i]))
+          str.append(" ")
+        }
+      }
+      let primaryAddress = str
+      let address = Addresses(cityDistinct: cityDistrinct,
+                              primaryAddress: primaryAddress,
+                              detailAddress: "")
+      userAddressModel.addresses.append(address)
+    }
+  }
+  
+  // MARK: - Action Helpers
   @objc
   func nextButtonClicked() {
     let navigation = self.navigationController
@@ -182,33 +253,24 @@ extension SearchAddressViewController {
     navigation?.pushViewController(nextViewController, animated: false)
   }
   
-  private func register() {
-    addressTableView.register(AddressTableViewCell.self, forCellReuseIdentifier: AddressTableViewCell.identifier)
-    addressTableView.delegate = self
-    addressTableView.dataSource = self
+  @objc
+  private func searchButtonClicked() {
+    fetchAddresses()
   }
-  private func setupNavigation() {
-    self.navigationController?.navigationBar.isHidden = true
-    navigationView.setUp(title: "리뷰작성")
-  }
+  
 }
 
 // MARK: - addressTableView Delegate
 extension SearchAddressViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    if let count = self.addressModel?.meta.totalCount {
-      return self.tableViewRowHeight * CGFloat(count)
-    }
-    else {
-      return 0
-    }
+    return UITableView.automaticDimension
   }
 }
 
 // MARK: - addressTableView DataSource
 extension SearchAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let count = self.addressModel?.meta.totalCount {
+    if let count = self.addressModel?.content.count {
       return count
     }
     else {
@@ -221,12 +283,12 @@ extension SearchAddressViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     addressCell.AddressLabel.setupLabel(
-      text: self.addressModel?.documents[indexPath.row].addressName ?? "",
+      text: self.addressModel?.content[indexPath.row].fullNumberAddress ?? "",
       color: .blackText,
       font: .nanumRoundRegular(fontSize: 14))
     addressCell.RoadAddressLabel.setupLabel(
       text:
-        self.addressModel?.documents[indexPath.row].roadAddress.addressName ?? "",
+        self.addressModel?.content[indexPath.row].shortRoadNameAddress ?? "",
       color: .addressGray,
       font: .nanumRoundRegular(fontSize: 12))
     addressCell.awakeFromNib()
@@ -235,22 +297,10 @@ extension SearchAddressViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     // TODO: - Selection Action
+    let address =
+      addressModel?.content[indexPath.row].fullNumberAddress
+    splitAddress(address: address ?? "")
+    addAddress()
   }
 }
 
-// MARK: - searchTextField Delegate
-extension SearchAddressViewController: UITextFieldDelegate {
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    // TODO: - Server Connection with Kakao RestAPI
-    return true
-  }
-  
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-    addressTableView.isHidden = false
-  }
-  
-  func textFieldDidEndEditing(_ textField: UITextField) {
-    addressTableView.isHidden = true
-  }
-  
-}

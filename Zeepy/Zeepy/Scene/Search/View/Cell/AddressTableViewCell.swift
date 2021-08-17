@@ -16,6 +16,7 @@ class AddressTableViewCell: UITableViewCell {
   // MARK: - Components
   let AddressLabel = UILabel()
   let RoadAddressLabel = UILabel()
+  private let separatorView = UIView()
   
   // MARK: - LifeCycles
   override func awakeFromNib() {
@@ -31,6 +32,7 @@ extension AddressTableViewCell {
   private func layout() {
     layoutAddressLabel()
     layoutRoadAddressLabel()
+    layoutSeparatorView()
   }
   
   private func layoutAddressLabel() {
@@ -47,6 +49,17 @@ extension AddressTableViewCell {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.AddressLabel.snp.bottom).offset(6)
         $0.leading.equalTo(self.AddressLabel.snp.leading)
+        $0.bottom.equalTo(self.contentView.snp.bottom).offset(-25)
+      }
+    }
+  }
+  
+  private func layoutSeparatorView() {
+    contentView.add(separatorView) {
+      $0.backgroundColor = .gray244
+      $0.snp.makeConstraints {
+        $0.leading.bottom.trailing.equalToSuperview()
+        $0.height.equalTo(1)
       }
     }
   }

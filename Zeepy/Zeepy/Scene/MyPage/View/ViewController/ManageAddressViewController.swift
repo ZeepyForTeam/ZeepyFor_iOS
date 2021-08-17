@@ -170,6 +170,16 @@ extension ManageAddressViewController {
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)
   }
+  
+  // MARK: - Action Helpers
+  func registerButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SearchAddressViewController()
+    nextViewController.userAddressModel =
+      addressModel ?? ResponseGetAddress(addresses: [])
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: true)
+  }
 }
 
 // MARK: - addressTableView Delegate
@@ -204,6 +214,7 @@ extension ManageAddressViewController: UITableViewDataSource {
     if addressModel?.addresses == [] ||
         addressModel?.addresses == nil {
       emptyCell.awakeFromNib()
+      emptyCell.rootViewController = self
       return emptyCell
     }
     else {

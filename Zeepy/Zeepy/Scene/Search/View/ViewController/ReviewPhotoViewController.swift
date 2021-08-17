@@ -96,7 +96,6 @@ class ReviewPhotoViewController : BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
   
   

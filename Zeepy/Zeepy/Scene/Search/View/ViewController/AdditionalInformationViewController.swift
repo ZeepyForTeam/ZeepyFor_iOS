@@ -37,8 +37,8 @@ class AdditionalInformationViewController: BaseViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
+  
   var assessTextList = [("다음에도 여기 살고 싶어요!", "GOOD"),
                         ("완전 추천해요!", "SOSO"),
                         ("그닥 추천하지 않아요.", "BAD")]

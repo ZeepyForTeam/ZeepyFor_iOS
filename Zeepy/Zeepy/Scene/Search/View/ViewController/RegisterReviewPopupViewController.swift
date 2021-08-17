@@ -43,7 +43,6 @@ class RegisterReviewPopupViewController: UIViewController {
                                 roomCount: "",
                                 soundInsulation: "",
                                 totalEvaluation: "",
-                                user: 0,
                                 waterPressure: "")
 
   // MARK: - LifeCycles
@@ -187,8 +186,6 @@ extension RegisterReviewPopupViewController {
   
   @objc
   private func registerButtonClicked() {
-    reviewModel.buildingID = 1
-    reviewModel.user = 1
     reviewModel.imageUrls = []
     registerReview()
   }
