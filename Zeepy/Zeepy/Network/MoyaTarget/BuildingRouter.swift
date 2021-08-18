@@ -15,6 +15,7 @@ enum BuildingRouter {
   case deleteBuilding(id: Int)
   case searchByAddress(param: String)
   case searchByLocation(param: LocationModel)
+  case fetchBuildingUserLike
   
   case fetchLikeBuildings
   case addLikeBuilding(param: LikeRequest)
@@ -56,6 +57,8 @@ extension BuildingRouter : TargetType {
       return "/likes/buildings/\(id)"
     case .deleteLikeBuilding(id: let id):
       return "/likes/buildings/\(id)"
+    case .fetchBuildingUserLike:
+      return "/likes/buildings/like"
     }
   }
   var method: Moya.Method {
@@ -79,6 +82,8 @@ extension BuildingRouter : TargetType {
     case .searchByAddress(param: _):
       return .get
     case .searchByLocation(param: _):
+      return .get
+    case .fetchBuildingUserLike:
       return .get
     }
   }
@@ -113,6 +118,8 @@ extension BuildingRouter : TargetType {
       return .requestPlain
     case .fetchBuildingByAddress(address: let address):
       return .requestParameters(parameters: ["address": address], encoding: URLEncoding.queryString)
+    case .fetchBuildingUserLike:
+      return .requestPlain
     }
   }
   

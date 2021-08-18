@@ -119,6 +119,91 @@ struct Content: Codable {
     let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
 
+// MARK: - BuildingUserLikeModel
+struct BuildingUserLikeResponseModel: Codable {
+    let content: [BuildingUserLikeResponse]
+    let empty, first, last: Bool
+    let number, numberOfElements: Int
+    let pageable: PageableUserLike
+    let size: Int
+    let sort: SortUserLike
+    let totalElements, totalPages: Int
+}
+
+// MARK: - Content
+struct BuildingUserLikeResponse: Codable {
+    let apartmentName: String
+    let areaCode, buildYear: Int
+    let buildingDeals: [BuildingDealUserLike]
+    let buildingLikes: [BuildingLikeUserLike]
+    let exclusivePrivateArea: Int
+    let fullNumberAddress, fullRoadNameAddress: String
+    let id, latitude, longitude: Int
+    let reviews: [ReviewUserLike]
+    let shortAddress, shortNumberAddress, shortRoadNameAddress: String
+}
+
+// MARK: - BuildingDeal
+struct BuildingDealUserLike: Codable {
+    let dealCost: Int
+    let dealDate: DealDateUserLike
+    let dealType: String
+    let deposit, floor, id, monthlyRent: Int
+}
+
+// MARK: - DealDate
+struct DealDateUserLike: Codable {
+    let date, day, hours, minutes: Int
+    let month, nanos, seconds, time: Int
+    let timezoneOffset, year: Int
+}
+
+// MARK: - BuildingLike
+struct BuildingLikeUserLike: Codable {
+    let email: String
+    let id: Int
+    let likeDate: String
+}
+
+// MARK: - Review
+struct ReviewUserLike: Codable {
+    let communcationTendency: String
+    let furnitures: [String]
+    let id: Int
+    let imageUrls: [String]
+    let lessorAge, lessorGender, lessorReview, lightning: String
+    let pest, review, roomCount, soundInsulation: String
+    let totalEvaluation: String
+    let user: UserUserLike
+    let waterPressure: String
+}
+
+// MARK: - User
+struct UserUserLike: Codable {
+    let addresses: [AddressUserLike]
+    let id: Int
+    let name: String
+}
+
+// MARK: - Address
+struct AddressUserLike: Codable {
+    let cityDistinct, detailAddress, primaryAddress: String
+}
+
+// MARK: - Pageable
+struct PageableUserLike: Codable {
+    let offset, pageNumber, pageSize: Int
+    let paged: Bool
+    let sort: SortUserLike
+    let unpaged: Bool
+}
+
+// MARK: - Sort
+struct SortUserLike: Codable {
+    let empty, sorted, unsorted: Bool
+}
+
+
 typealias BuildingLikeResponse = [BuildingLikeResponseElement]
 
 
