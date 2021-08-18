@@ -207,7 +207,14 @@ extension ManageReviewViewController: UITableViewDelegate {
 // MARK: - reviewTableView DataSource
 extension ManageReviewViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.tableViewRowCount
+    var count = 0
+    if self.reviewModel?.simpleReviewDtoList == nil ||
+        self.reviewModel?.simpleReviewDtoList.isEmpty == true {
+      return count
+    }
+    else {
+      return count + (self.reviewModel?.simpleReviewDtoList.count ?? 0)
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
