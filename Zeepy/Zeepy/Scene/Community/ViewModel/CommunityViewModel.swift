@@ -32,8 +32,7 @@ extension CommunityViewModel {
     let postListObservable = input.filterSelect2.flatMapLatest{ type -> Observable<[PostModel]> in
       let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
         .map{
-          $0.content
-            .map{
+          $0.map{
               $0.toPostModel()
             }
         } ?? .empty()

@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 enum BuildingRouter {
+  case fetchBuildingListWithoutParam
   case fetchBuildingList(param: BuildingRequest)
   case uploadBuilding(param: UplaodBuildingRequest)
   case fetchBuildingDetail(id: Int)
@@ -22,6 +23,7 @@ enum BuildingRouter {
   case fetchLikeBuildingDetail(id: Int)
   case modifyLikeBuilding(id: Int, param: LikeRequest)
   case deleteLikeBuilding(id: Int)
+  case fetchAllBuildings
   case fetchBuildingByAddress(address: String)
 }
 
@@ -31,6 +33,8 @@ extension BuildingRouter : TargetType {
   }
   var path: String {
     switch self {
+    case .fetchBuildingListWithoutParam:
+        return "/buildings"
     case .fetchBuildingList(param: let param):
       return "/buildings"
     case .uploadBuilding(param: let param):
@@ -59,6 +63,9 @@ extension BuildingRouter : TargetType {
       return "/likes/buildings/\(id)"
     case .fetchBuildingUserLike:
       return "/likes/buildings/like"
+    case .fetchAllBuildings:
+        return "/buildings/all"
+
     }
   }
   var method: Moya.Method {
@@ -66,8 +73,9 @@ extension BuildingRouter : TargetType {
     case .fetchBuildingList(param: _),
          .fetchLikeBuildings,
          .fetchLikeBuildingDetail,
-         .fetchBuildingByAddress(address: _):
-      return .get
+         .fetchBuildingByAddress(address: _),
+         .fetchBuildingListWithoutParam:
+        return .get
     case .uploadBuilding(param: _),
          .addLikeBuilding:
       return .post
@@ -85,6 +93,8 @@ extension BuildingRouter : TargetType {
       return .get
     case .fetchBuildingUserLike:
       return .get
+    case .fetchAllBuildings:
+        return .get
     }
   }
   var sampleData: Data {
@@ -92,6 +102,8 @@ extension BuildingRouter : TargetType {
   }
   var task: Task {
     switch self {
+    case .fetchBuildingListWithoutParam:
+        return .requestPlain
     case .fetchBuildingList(param: let param):
       return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
     case .uploadBuilding(param: let param):
@@ -116,6 +128,8 @@ extension BuildingRouter : TargetType {
       return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
     case .deleteLikeBuilding(id: let id):
       return .requestPlain
+    case .fetchAllBuildings:
+        return .requestPlain
     case .fetchBuildingByAddress(address: let address):
       return .requestParameters(parameters: ["address": address], encoding: URLEncoding.queryString)
     case .fetchBuildingUserLike:
