@@ -78,6 +78,7 @@ extension FavoriteListViewConroller {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.addressTitleLabel.snp.bottom).offset(16)
         $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(1080)
       }
     }
   }

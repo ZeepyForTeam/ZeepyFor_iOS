@@ -62,7 +62,7 @@ extension BuildingRouter : TargetType {
     case .deleteLikeBuilding(id: let id):
       return "/likes/buildings/\(id)"
     case .fetchBuildingUserLike:
-      return "/likes/buildings/like"
+      return "buildings/like"
     case .fetchAllBuildings:
         return "/buildings/all"
 
