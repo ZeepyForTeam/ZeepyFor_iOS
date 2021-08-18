@@ -98,13 +98,20 @@ extension CommunityRouter : TargetType {
     case .fetchPostLike(id: let id):
       return .requestPlain
     case .addPostLike(param: let param):
-      let bodyparam = try! ["userEmail" : String(param.userEmail)].asParameter()
-      let urlParam = try! ["communityId" : String(param.commuinityId)].asParameter()
+      let urlParam = try! ["communityId" : param.commuinityId].asParameter()
+      guard let body = param.userEmail else {
+        return .requestParameters(parameters: urlParam, encoding: URLEncoding.default)
+      }
+      let bodyparam =  try! ["userEmail" : body].asParameter()
       return .requestCompositeParameters(bodyParameters: bodyparam, bodyEncoding: JSONEncoding.default, urlParameters: urlParam)
 
     case .deletePostLike(param: let param):
-      let bodyparam = try! ["userEmail" : String(param.userEmail)].asParameter()
+
       let urlParam = try! ["communityId" : String(param.commuinityId)].asParameter()
+      guard let body = param.userEmail else {
+        return .requestParameters(parameters: urlParam, encoding: JSONEncoding.default)
+      }
+      let bodyparam =  try! ["userEmail" : body].asParameter()
       return .requestCompositeParameters(bodyParameters: bodyparam, bodyEncoding: JSONEncoding.default, urlParameters: urlParam)
     case .fetchParticipation(id: let id):
       return .requestPlain

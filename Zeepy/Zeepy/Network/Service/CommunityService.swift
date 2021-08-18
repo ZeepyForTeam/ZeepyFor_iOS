@@ -15,12 +15,12 @@ class CommunityService {
   }
 }
 extension CommunityService {
-  func fetchPostList(param: CommunityRequest) -> Observable<CommunityResponseModel> {
+  func fetchPostList(param: CommunityRequest) -> Observable<[CommunityContent]> {
     provider.rx.request(.fetchPostList(param : param))
       .retryWithAuthIfNeeded()
       .filterError()
       .asObservable()
-      .map(CommunityResponseModel.self)
+      .map([CommunityContent].self,atKeyPath: "content")
     
   }
   func addPostList(param: SaveCommunityRequest) -> Observable<Bool> {
