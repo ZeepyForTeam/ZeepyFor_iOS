@@ -69,9 +69,9 @@ extension BuildingRouter : TargetType {
     case .fetchBuildingList(param: _),
          .fetchLikeBuildings,
          .fetchLikeBuildingDetail,
+         .fetchBuildingByAddress(address: _),
          .fetchBuildingListWithoutParam:
-         .fetchBuildingByAddress(address: _):
-      return .get
+        return .get
     case .uploadBuilding(param: _),
          .addLikeBuilding:
       return .post

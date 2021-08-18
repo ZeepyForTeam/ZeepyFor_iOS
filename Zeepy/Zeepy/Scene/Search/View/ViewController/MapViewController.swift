@@ -322,6 +322,42 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
 //    mapView.addPOIItems(items)
 //    mapView.fitAreaToShowAllPOIItems()
 //  }
+    func stringToImageNameForCondition(name: String)-> String{
+        if name == "GOOD"{
+            return "iconSmile"
+        }else if name == "PROPER"{
+            return "iconSoso"
+        }else if name == "BAD"{
+            return "iconAngry"
+        }
+        return " "
+    }
+    func stringToImageNameForTotal(name: String)-> String{
+        if name == "GOOD"{
+            return "iconSmile"
+        }else if name == "SOSO"{
+            return "iconSoso"
+        }else if name == "BAD"{
+            return "iconAngry"
+        }
+        return " "
+    }
+    
+    func stringtoLessorImageName(name: String)-> String{
+        if name == "SOFTY"{
+            return "emoji4"
+        }else if name == "KIND"{
+            return "emoji2"
+        }else if name == "GRAZE"{
+            return "emoji3"
+        }else if name == "BUSINESS"{
+            return "emoji1"
+        }else if name == "BAD"{
+            return "emoji5"
+        }
+        return " "
+    }
+    
     private func fetchMapPoints() {
         buildingService.fetchAllBuildings()
             .subscribe(onNext: { response in
@@ -351,7 +387,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 let decoder = JSONDecoder()
                 let data = try decoder.decode(Review.self,
                                               from: response.data)
-                self.mapDetailViewList.append(mapDetailViewModel(id : data.id, address: data.address, buildingDetail: data.furnitures, owner: self.stingToImageName(name: data.communcationTendency), soundProofImageName: self.stingToImageName(name:  data.soundInsulation), cleanlinessImageName: self.stingToImageName(name: data.pest), sunLightImageName: self.stingToImageName(name: data.lightning), waterPressureImageName: self.stingToImageName(name: data.waterPressure), overallLabel: data.totalEvaluation))
+                self.mapDetailViewList.append(mapDetailViewModel(id : data.id, address: data.address, buildingDetail: data.furnitures, owner: self.stringToImageNameForCondition(name: data.communcationTendency), soundProofImageName: self.stringToImageNameForCondition(name:  data.soundInsulation), cleanlinessImageName: self.stringToImageNameForCondition(name: data.pest), sunLightImageName: self.stringToImageNameForCondition(name: data.lightning), waterPressureImageName: self.stringToImageNameForCondition(name: data.waterPressure), overallLabel: self.stringToImageNameForTotal(name: data.totalEvaluation)))
               }
               catch {
                 print(error)
@@ -362,33 +398,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
           }, onCompleted: {}).disposed(by: disposeBag)
       }
     
-    func stingToImageName(name: String)-> String{
-        if name == "GOOD"{
-            return "iconSmile"
-        }else if name == "PROPER"{
-            return "네?"
-        }else if name == "SOSO"{
-            return "iconSoso"
-        }else if name == "BAD"{
-            return "iconAngry"
-        }
-        return " "
-    }
-    
-    func stringtoLessorImageName(name: String)-> String{
-        if name == "SOFTY"{
-            return "emoji4"
-        }else if name == "KIND"{
-            return "emoji2"
-        }else if name == "GRAZE"{
-            return "emoji3"
-        }else if name == "BUSINESS"{
-            return "emoji1"
-        }else if name == "BAD"{
-            return "emoji5"
-        }
-        return " "
-    }
 //    //---
 //    private func setupCafeInformation(cafeId: String) {
 //        mapService.getBuildingPoints(id: mapDetailViewModel)
@@ -440,8 +449,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
       self?.navigationController?.pushViewController(vc, animated: false)
     }.disposed(by: disposeBag)
     setupNavigation()
-//    fetchMapPoints()
-//    fetchMapDetail()
+    fetchMapPoints()
+    fetchMapDetail()
     locationManager = CLLocationManager()
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
