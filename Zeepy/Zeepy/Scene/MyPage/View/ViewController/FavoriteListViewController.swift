@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -20,6 +22,10 @@ class FavoriteListViewConroller: BaseViewController {
   // MARK: - Variables
   private var tableViewRowHeight: CGFloat = 116
   private var tableViewRowCount = 3
+  private var userLikeModel: BuildingUserLikeResponseModel?
+  private var buildingService = BuildingService(
+    provider: MoyaProvider<BuildingRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
   
   
   // MARK: - LifeCycles
@@ -94,6 +100,27 @@ extension FavoriteListViewConroller {
   
   func reloadTableView() {
     reviewTableView.reloadData()
+  }
+  
+  private func fetchBuildingsUserLike() {
+    buildingService.fetchBuildingUserLike()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(BuildingUserLikeResponseModel.self,
+                                          from: response.data)
+            
+            self.userLikeModel = data
+            self.reloadTableView()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
 }
 
