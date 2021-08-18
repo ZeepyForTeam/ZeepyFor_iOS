@@ -19,19 +19,18 @@ struct CommunityResponseModel: Decodable {
 
 // MARK: - Content
 struct CommunityContent: Decodable {
-    let address: String
+    let address: String?
     let comments: [Comment]
-    let communityCategory, content: String
-    let createdTime: String
-    let id: Int
+    let communityCategory, content: String?
+    let createdTime: String?
+    let id: Int?
     let imageUrls: [String]
-    let isCompleted, isLiked, isParticipant: Bool
-    let participationList: [ParticipationList]
-    let productName: String
-    let productPrice: Int?
-    let sharingMethod: String
-    let targetNumberOfPeople: Int
-    let title: String
+    let isCompleted, isLiked, isParticipant: Bool?
+    let participants: [ParticipationList]
+    let productName: String?
+    let sharingMethod: String?
+    let targetNumberOfPeople: Int?
+    let title: String?
     let user: ContentUser
 }
 extension CommunityContent {
@@ -47,7 +46,7 @@ extension CommunityContent {
     default :
       type = .total
     }
-    return .init(id: id, type: type, status: true, postTitle: content, postConent: content, postedAt: "2021-04-23")
+    return .init(id: id ?? 0, type: type, status: isCompleted == true, postTitle: title ?? "", postConent: content ?? "", postedAt: createdTime ?? "")
   }
 }
 
@@ -102,16 +101,16 @@ struct CommunityUser: Decodable {
 
 // MARK: - ParticipationList
 struct ParticipationList: Decodable {
-    let community: Community
-    let createdDate: String
+
     let id: Int
-    let user: CommunityUser
+    let user: ContentUser
 }
 
 // MARK: - ContentUser
 struct ContentUser: Decodable {
-    let id: Int
-    let name: String
+    let id: Int?
+    let name: String?
+  let profileImage: String?
 }
 
 struct CommunityParticipation: Decodable {

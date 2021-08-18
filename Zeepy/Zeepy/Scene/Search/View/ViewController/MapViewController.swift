@@ -42,6 +42,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                                     mapDetailViewModel(id : 3,address: "주소3", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
                                                     mapDetailViewModel(id : 4,address: "주소4", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
                                                     mapDetailViewModel(id : 5,address: "주소5", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1")]
+    
+
   // MARK: - Components
   var tendencyButton = UIView().then{
     $0.frame.size = CGSize(width: 60, height: 70)
@@ -73,7 +75,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
   }
   
   var searchTextField = UIButton().then{
-    $0.setTitle("지역, 동, 지하철역으로 입력해주세요.", for: .normal) 
+    $0.setTitle("지역, 동, 지하철역으로 입력해주세요.", for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
     $0.setTitleColor(.gray244, for: .normal)
   }
@@ -169,6 +171,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         $0.backgroundColor = .pale
     }
 
+    
     let myLocationButton = UIButton().then{
         $0.setBackgroundImage(UIImage(named:"iconMyLocation"), for: .normal)
         $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
@@ -268,7 +271,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     $0.setRounded(radius: 10)
     $0.addTarget(self, action: #selector(lookingAroundButtonTapped), for: .touchUpInside)
   }
-
+    var locationManager:CLLocationManager!
     private let buildingService = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins:[NetworkLoggerPlugin()]))
     
   func poiItem(id: Int, latitude: Double, longitude: Double, imageName: String) -> MTMapPOIItem {
@@ -319,26 +322,63 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
 //    mapView.addPOIItems(items)
 //    mapView.fitAreaToShowAllPOIItems()
 //  }
-//    private func fetchMapPoints() {
-//        buildingService.fetchBuildingList(param: .init())
-//            .subscribe(onNext: { response in
-//            if response.statusCode == 200 {
-//              do {
-//                let decoder = JSONDecoder()
-//                let data = try decoder.decode(BuildingContent.self, from: response.data)
-//                self.items.append(self.poiItem(id: data.id, latitude: data.latitude, longitude: data.longitude, imageName: "emoji1Map"))
-//              }
-//              catch {
-//                print(error)
-//              }
-//            }
-//          }, onError: { error in
-//            print(error)
-//          }, onCompleted: {}).disposed(by: disposeBag)
-////        mapView.addPOIItems(items)
-////        mapView.fitAreaToShowAllPOIItems()
-//        findCurrentMarker()
-//      }
+    func stringToImageNameForCondition(name: String)-> String{
+        if name == "GOOD"{
+            return "iconSmile"
+        }else if name == "PROPER"{
+            return "iconSoso"
+        }else if name == "BAD"{
+            return "iconAngry"
+        }
+        return " "
+    }
+    func stringToImageNameForTotal(name: String)-> String{
+        if name == "GOOD"{
+            return "iconSmile"
+        }else if name == "SOSO"{
+            return "iconSoso"
+        }else if name == "BAD"{
+            return "iconAngry"
+        }
+        return " "
+    }
+    
+    func stringtoLessorImageName(name: String)-> String{
+        if name == "SOFTY"{
+            return "emoji4"
+        }else if name == "KIND"{
+            return "emoji2"
+        }else if name == "GRAZE"{
+            return "emoji3"
+        }else if name == "BUSINESS"{
+            return "emoji1"
+        }else if name == "BAD"{
+            return "emoji5"
+        }
+        return " "
+    }
+    
+    private func fetchMapPoints() {
+        buildingService.fetchAllBuildings()
+            .subscribe(onNext: { response in
+            if response.statusCode == 200 {
+              do {
+                let decoder = JSONDecoder()
+                let data = try decoder.decode(buildingAllListModel.self, from: response.data)
+                self.items.append(self.poiItem(id: data.id, latitude: data.latitude, longitude: data.longitude, imageName: "emoji1Map"))
+              }
+              catch {
+                print(error)
+              }
+            }
+          }, onError: { error in
+            print(error)
+          }, onCompleted: {}).disposed(by: disposeBag)
+        mapView.addPOIItems(items)
+        mapView.fitAreaToShowAllPOIItems()
+        findCurrentMarker()
+      }
+    
     private func fetchMapDetail() { //이거는 선택됐을 때 실행하자.
         buildingService.fetchBuildingDetail(id: mapDetailViewList[0].id)
           .subscribe(onNext: { response in
@@ -347,7 +387,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 let decoder = JSONDecoder()
                 let data = try decoder.decode(Review.self,
                                               from: response.data)
-                self.mapDetailViewList.append(mapDetailViewModel(id : data.id, address: data.address, buildingDetail: data.furnitures, owner: data.lessorReview, soundProofImageName: data.soundInsulation, cleanlinessImageName: data.pest, sunLightImageName: data.lightning, waterPressureImageName: data.waterPressure, overallLabel: data.review))
+                self.mapDetailViewList.append(mapDetailViewModel(id : data.id, address: data.address, buildingDetail: data.furnitures, owner: self.stringToImageNameForCondition(name: data.communcationTendency), soundProofImageName: self.stringToImageNameForCondition(name:  data.soundInsulation), cleanlinessImageName: self.stringToImageNameForCondition(name: data.pest), sunLightImageName: self.stringToImageNameForCondition(name: data.lightning), waterPressureImageName: self.stringToImageNameForCondition(name: data.waterPressure), overallLabel: self.stringToImageNameForTotal(name: data.totalEvaluation)))
               }
               catch {
                 print(error)
@@ -357,6 +397,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             print(error)
           }, onCompleted: {}).disposed(by: disposeBag)
       }
+    
 //    //---
 //    private func setupCafeInformation(cafeId: String) {
 //        mapService.getBuildingPoints(id: mapDetailViewModel)
@@ -389,7 +430,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
       }
     }
-    var locationManager:CLLocationManager!
+    
   // MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -408,13 +449,15 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
       self?.navigationController?.pushViewController(vc, animated: false)
     }.disposed(by: disposeBag)
     setupNavigation()
-//    fetchMapPoints()
+    fetchMapPoints()
     fetchMapDetail()
     locationManager = CLLocationManager()
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
     locationManager.requestWhenInUseAuthorization()
+//    self.locationManagerDidChangeAuthorization?(CLLocationManager)
+//    self.locationManager.requestWhenInUseAuthorization()
 }
 private func setupNavigation() {
   self.setupNavigationBar(.white)
@@ -463,28 +506,7 @@ private func setupNavigation() {
         $0.bottom.top.leading.trailing.equalToSuperview().inset(5)
     }
   }
-//  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//            //location5
-//            switch status {
-//            case .authorizedAlways, .authorizedWhenInUse:
-//                print("GPS 권한 설정됨")
-//                locationManager.startUpdatingLocation() // 중요!
-//            case .restricted, .notDetermined:
-//                print("GPS 권한 설정되지 않음")
-//                getLocationUsagePermission()
-//            case .denied:
-//                print("GPS 권한 요청 거부됨")
-//                getLocationUsagePermission()
-//            default:
-//                print("GPS: Default")
-//            }
-//        }
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //위치가 업데이트될때마다
-        if let coor = manager.location?.coordinate{
-            print("latitude" + String(coor.latitude) + "/ longitude" + String(coor.longitude))
-        }
-  }
+    
   func operateFloatingButton(){
     if !closedFloatingView.isHidden{
       closedFloatingView.translatesAutoresizingMaskIntoConstraints = false

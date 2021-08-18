@@ -43,15 +43,7 @@ extension LoginViewModel {
         self?.service.login(param: .init(email: id, password: pw)) ?? .empty()
       }
     
-//    let socialLogin2 = inputs.appleLogin.flatMapLatest{ _ in
-//      let request = ASAuthorizationAppleIDProvider().createRequest() //request 생성
-//      request.requestedScopes = [.fullName, .email]
-//      let controller = ASAuthorizationController(authorizationRequests: [request])
-//      controller.delegate = appleLoginManager
-//      controller.presentationContextProvider = appleLoginManager
-//      controller.performRequests() //요청 보냄
-//
-//    }
+
     
     let socialLogin = inputs.kakaoLogin.flatMapLatest{  _ -> Observable<OAuthToken> in
       if (UserApi.isKakaoTalkLoginAvailable()) {
