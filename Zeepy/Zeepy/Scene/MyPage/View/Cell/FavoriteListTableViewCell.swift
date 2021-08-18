@@ -32,7 +32,8 @@ class FavoriteListTableViewCell: UITableViewCell {
   let assessContentLabel = UILabel()
   
   // MARK: - Variables
-  
+  var roomCount: Set<String>?
+  var buildingType: String?
   
   // MARK: - Life Cycles
   override func awakeFromNib() {
@@ -156,6 +157,8 @@ extension FavoriteListTableViewCell {
     tagCollectionView.register(
       RoomTagCollectionViewCell.self,
       forCellWithReuseIdentifier: RoomTagCollectionViewCell.identifier)
+    tagCollectionView.delegate = self
+    tagCollectionView.dataSource = self
   }
   
   private func configData() {
@@ -168,10 +171,124 @@ extension FavoriteListTableViewCell {
   }
   
   func dataBind(apartmentName: String, tendencyImageName: String, tendency: String, totalEvaluation: String, buildingImageName: String, roomCount: Set<String>, buildingType: String) {
+    titleLabel.setupLabel(text: apartmentName,
+                          color: .blackText,
+                          font: .nanumRoundExtraBold(fontSize: 14))
     
+    tendencyIconView.image = UIImage(named: tendencyImageName)
+    tendencyContentLabel.setupLabel(text: tendency,
+                                    color: .blackText,
+                                    font: .nanumRoundExtraBold(fontSize: 10))
+    
+    assessContentLabel.setupLabel(text: totalEvaluation,
+                                  color: .blackText,
+                                  font: .nanumRoundRegular(fontSize: 10))
+    
+    self.roomCount = roomCount
+    self.buildingType = buildingType
   }
   
   func reloadCollectionView() {
     tagCollectionView.reloadData()
   }
+  
+  private func setupCollectionViewItemCount() -> Int {
+    if buildingType == "UNKNOWN" &&
+        (roomCount?.isEmpty == true || roomCount == nil) {
+      return 1
+    }
+    if buildingType == "UNKNOWN" {
+      return roomCount?.count ?? 0
+    }
+    else {
+      return (roomCount?.count ?? 0) + 1
+    }
+  }
+  
+  private func setupTags() -> [String] {
+    var tags: [String] = []
+    for element in roomCount ?? Set([""]) {
+      tags.append(element)
+    }
+    tags.append(buildingType ?? "")
+    return tags
+  }
+  
+  private func setupTagString(tags: [String]) -> [String] {
+    var tagStrings: [String] = []
+    for tag in tags {
+      switch tag {
+      case "ONE":
+        tagStrings.append("원룸")
+      case "TWO":
+        tagStrings.append("투룸")
+      case "TRHEEORMORE":
+        tagStrings.append("쓰리룸+")
+      case "OFFICETEL":
+        tagStrings.append("오피스텔")
+      case "ROWHOUSE":
+        tagStrings.append("연립다세대")
+      case "UNKNOWN":
+        print("UNKNOWN")
+      default:
+        print("default")
+      }
+    }
+    return tagStrings
+  }
+}
+
+// MARK: - UICollectionView DelegateFlowLayout
+extension FavoriteListTableViewCell: UICollectionViewDelegateFlowLayout {
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let tagNames = setupTags()
+    var width: CGFloat = 0
+    if tagNames == ["UNKNOWN"] {
+      return CGSize(width: 106, height: 16)
+    }
+    switch tagNames[indexPath.item] {
+    case "ONE", "TWO":
+      width = 35
+    case "TRHEEORMORE":
+      width = 52
+    case "OFFICETEL":
+      width = 53
+    case "ROWHOUSE":
+      width = 62
+    case "UNKNOWN":
+      print("UNKNOWN")
+    default:
+      print("default")
+    }
+    return CGSize(width: width, height: 16)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 4
+  }
+}
+
+extension FavoriteListTableViewCell: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    setupCollectionViewItemCount()
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: RoomTagCollectionViewCell.identifier, for: indexPath) as? RoomTagCollectionViewCell else { return UICollectionViewCell() }
+    
+    let tagNames: [String] = setupTags()
+    if buildingType == "UNKNOWN" &&
+        (roomCount?.isEmpty == true || roomCount == nil) {
+      tagCell.tagLabel.setupLabel(text: "정보 업데이트 준비 중",
+                                  color: .blackText,
+                                  font: .nanumRoundBold(fontSize: 10))
+    }
+    tagCell.tagLabel.setupLabel(text: tagNames[indexPath.item],
+                                color: .blackText,
+                                font: .nanumRoundBold(fontSize: 10))
+    return tagCell
+  }
+  
+  
 }
