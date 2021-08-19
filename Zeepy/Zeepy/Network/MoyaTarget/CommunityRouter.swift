@@ -19,7 +19,7 @@ enum CommunityRouter {
   case deletePostLike(param: LikeRequest)
   case fetchParticipation(id:Int)
   case addParticipation(id:Int, param : JoinRequset)
-  case modifyParticipation(id:Int, cancelUserId: Int)
+  case modifyParticipation(id:Int)
 }
 extension CommunityRouter : TargetType {
   public var baseURL: URL {
@@ -44,11 +44,11 @@ extension CommunityRouter : TargetType {
     case .deletePostLike(param: _):
       return "/community/like"
     case .fetchParticipation(id: let id):
-      return "/community/praticipation/\(id)"
+      return "/community/participation/\(id)"
     case .addParticipation(id: let id, param: _):
-      return "/community/praticipation/\(id)"
-    case .modifyParticipation(id: let id, cancelUserId: _):
-      return "/community/praticipation/\(id)"
+      return "/community/participation/\(id)"
+    case .modifyParticipation(id: let id):
+      return "/community/participation/\(id)"
     }
   }
   var method: Moya.Method {
@@ -73,7 +73,7 @@ extension CommunityRouter : TargetType {
       return .get
     case .addParticipation(id: let id, param: let param):
       return .post
-    case .modifyParticipation(id: let id, cancelUserId: let cancelUserId):
+    case .modifyParticipation(id: let id):
       return .put
     }
   }
@@ -93,32 +93,23 @@ extension CommunityRouter : TargetType {
     case .modifyPostDetail(id: let id):
       return .requestPlain
     case .addComment(id: let id, param: let param):
-      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding
+      return .requestParameters(parameters: try! param.writeCommentRequestDto.asParameter(), encoding: JSONEncoding
                                   .default)
     case .fetchPostLike(id: let id):
       return .requestPlain
     case .addPostLike(param: let param):
-      let urlParam = try! ["communityId" : param.commuinityId].asParameter()
-      guard let body = param.userEmail else {
-        return .requestParameters(parameters: urlParam, encoding: URLEncoding.default)
-      }
-      let bodyparam =  try! ["userEmail" : body].asParameter()
-      return .requestCompositeParameters(bodyParameters: bodyparam, bodyEncoding: JSONEncoding.default, urlParameters: urlParam)
+      return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.queryString)
 
     case .deletePostLike(param: let param):
 
-      let urlParam = try! ["communityId" : String(param.commuinityId)].asParameter()
-      guard let body = param.userEmail else {
-        return .requestParameters(parameters: urlParam, encoding: JSONEncoding.default)
-      }
-      let bodyparam =  try! ["userEmail" : body].asParameter()
-      return .requestCompositeParameters(bodyParameters: bodyparam, bodyEncoding: JSONEncoding.default, urlParameters: urlParam)
+      return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
+
     case .fetchParticipation(id: let id):
       return .requestPlain
     case .addParticipation(id: let id, param: let param):
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding
                                   .default)
-    case .modifyParticipation(id: let id, cancelUserId: let cancelUserId):
+    case .modifyParticipation(id: let id):
       
       return .requestPlain
     }

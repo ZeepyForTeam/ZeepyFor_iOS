@@ -15,6 +15,10 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
   let userName = UILabel().then {
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
   }
+  let userTag = UILabel().then{
+    $0.isHidden = true
+    $0.setupLabel(text: "글쓴이", color: .communityGreen, font: .nanumRoundExtraBold(fontSize: 14))
+  }
   let commentLabel = UILabel().then {
     $0.setupLabel(text: "비밀 댓글입니다.", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
     $0.numberOfLines = 0
@@ -42,6 +46,7 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
     }
     containerView.adds([profileBtn,
                         userName,
+                        userTag,
                         commentLabel,
                         commentedAt,
                         addSubcommentBtn])
@@ -53,6 +58,10 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
     userName.snp.makeConstraints{
       $0.top.equalToSuperview().offset(12)
       $0.leading.equalTo(profileBtn.snp.trailing).offset(4)
+    }
+    userTag.snp.makeConstraints{
+      $0.centerY.equalTo(userName)
+      $0.leading.equalTo(userName.snp.trailing).offset(8)
     }
     commentLabel.snp.makeConstraints{
       $0.top.equalTo(profileBtn.snp.bottom).offset(10)

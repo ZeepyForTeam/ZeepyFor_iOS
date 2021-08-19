@@ -20,11 +20,13 @@ class LoginManager: NSObject {
   
   func makeLoginStatus(
     accessToken: String,
-    refreshToken: String
+    refreshToken: String,
+    loginType: LoginType
   ) {
     UserDefaultHelper<String>.set(accessToken, forKey: .accessToken)
     UserDefaultHelper<String>.set(refreshToken, forKey: .refreshToken)
-    
+    UserDefaultHelper<String>.set(loginType.rawValue, forKey: .loginType)
+
     UserDefaults.standard.set(true, forKey: login)
     UserDefaults.standard.synchronize()
   }

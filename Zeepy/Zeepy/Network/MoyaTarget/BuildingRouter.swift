@@ -69,7 +69,7 @@ extension BuildingRouter : TargetType {
     case .fetchBuildingList(param: _),
          .fetchLikeBuildings,
          .fetchLikeBuildingDetail,
-         .fetchBuildingListWithoutParam:
+         .fetchBuildingListWithoutParam,
          .fetchBuildingByAddress(address: _):
       return .get
     case .uploadBuilding(param: _),

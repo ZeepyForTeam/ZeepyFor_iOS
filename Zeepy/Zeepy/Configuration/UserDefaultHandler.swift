@@ -7,42 +7,52 @@
 
 import Foundation
 class UserDefaultHandler {
-    static var accessToken: String? {
-        return UserDefaultHelper<String>.value(forKey: .accessToken)
-    }
-
-    static var refreshToken: String? {
-        return UserDefaultHelper<String>.value(forKey: .refreshToken)
-    }
-
-    static var userId: Int? {
-        return UserDefaultHelper<Int>.value(forKey: .userId)
-    }
+  static var accessToken: String? {
+    return UserDefaultHelper<String>.value(forKey: .accessToken)
+  }
+  
+  static var refreshToken: String? {
+    return UserDefaultHelper<String>.value(forKey: .refreshToken)
+  }
+  static var loginType: String? {
+    return UserDefaultHelper<String>.value(forKey: .loginType)
+  }
+  
+  static var userId: Int? {
+    return UserDefaultHelper<Int>.value(forKey: .userId)
+  }
 }
 
 class UserDefaultHelper<T> {
-    class func value(forKey key: DataKeys) -> T? {
-        if let data = UserDefaults.standard.value(forKey : key.rawValue) as? T {
-            return data
-        }
-        else {
-            return nil
-        }
+  class func value(forKey key: DataKeys) -> T? {
+    if let data = UserDefaults.standard.value(forKey : key.rawValue) as? T {
+      return data
     }
-
-    class func set(_ value: T, forKey key: DataKeys) {
-        UserDefaults.standard.set(value, forKey : key.rawValue)
+    else {
+      return nil
     }
-
-    class func clearAll() {
-        UserDefaults.standard.dictionaryRepresentation().keys.forEach { key in
-            UserDefaults.standard.removeObject(forKey: key.description)
-        }
+  }
+  
+  class func set(_ value: T, forKey key: DataKeys) {
+    UserDefaults.standard.set(value, forKey : key.rawValue)
+  }
+  
+  class func clearAll() {
+    UserDefaults.standard.dictionaryRepresentation().keys.forEach { key in
+      UserDefaults.standard.removeObject(forKey: key.description)
     }
+  }
 }
 
 enum DataKeys: String {
-    case accessToken = "accessToken"
-    case refreshToken = "refreshToken"
-    case userId = "userId"
+  case accessToken = "accessToken"
+  case refreshToken = "refreshToken"
+  case userId = "userId"
+  case loginType = "loginType"
+}
+enum LoginType: String {
+  case kakao = "kakao"
+  case naver = "naver"
+  case apple = "apple"
+  case email = "email"
 }

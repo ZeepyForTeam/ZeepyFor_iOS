@@ -17,6 +17,8 @@ class PostDetailViewModel  {
     let likePost : Observable<LikeRequest>
     let likeCancel : Observable<LikeRequest>
     let addComment: Observable<PostCommentRequest>
+    let joinAction: Observable<JoinRequset>
+    let cancleJoin : Observable<Int>
   }
   struct Output {
     let communityInfo : Observable<CommunityContent>
@@ -24,41 +26,54 @@ class PostDetailViewModel  {
     let likeResult: Observable<Bool>
     let likeCancelResult: Observable<Bool>
     let commentResult: Observable<Bool>
+    let joinResult: Observable<Bool>
+    let cancleResult : Observable<Bool>
   }
 }
 extension PostDetailViewModel {
   func transform(input : Input) -> Output {
     weak var `self` = self
-    let dummyUsecase = input.loadView.map{ _ in
-      return [CommentSectionType.init(model: .init(identity: 7, profile: "", userName: "서울쥐김자랑", comment: "ㅁㄴ이럼ㄴㅇ리ㅏㅁㅇㄴㄹ", hidden: true, postedAt: ""), items: CommentSectionModel.dummy),
-              CommentSectionType.init(model: .init(identity: 8, profile: "", userName: "수미칩먹는중", comment: "ㅁㄴ,ㅇ럼ㄴ알", hidden: false, postedAt: ""), items: CommentSectionModel.dummy),
-              CommentSectionType.init(model: .init(identity: 9, profile: "", userName: "시골쥐 포메라", comment: "ㅁㄴ이ㅓㄹㅁㄴ", hidden: true, postedAt: ""), items: CommentSectionModel.dummy)]
-    }
-    let usecase = input.loadView.flatMapLatest{
-      self?.service.fetchPostDetail(id: $0) ?? .empty()
+    var postId: Int = 0
+
+    let usecase = input.loadView.flatMapLatest{ id -> Observable<CommunityContent> in
+      postId = id
+      return self?.service.fetchPostDetail(id: id) ?? .empty()
     }.share()
-    let comments = usecase.map{
-      $0.comments.map{$0.toCommentModel()}
-    }.map{ comments in
-      comments.map{ comment in
-        CommentSectionType.init(model: comment, items: [])
-      }
+    let comments = usecase.map{$0.comments ?? []}.map{
+      $0.map{($0.toCommentModel(), $0.subComments ?? [])}
+        .map{comment, subComment in
+          CommentSectionType.init(model: comment, items: subComment.map{$0.toCommentModel()})
+        }
     }
+//    .map{ comments in
+//      comments.map{ comment in
+//        CommentSectionType.init(model: comment, items: [])
+//      }
+//    }
     let likePost = input.likePost.flatMapLatest{ param in
       self?.service.addPostLike(param: param) ?? .empty()
     }.share()
     let likeCancel = input.likeCancel.flatMapLatest{ param in
       self?.service.deletePostLike(param: param) ?? .empty()
     }.share()
-    let comment = Observable.combineLatest(input.loadView, input.addComment)
-      .flatMapLatest{ id, param in
-        self?.service.addComment(id: id, param: param) ?? .empty()
+    let comment = input.addComment
+      .flatMapLatest{  param in
+        self?.service.addComment(id: postId ?? 0, param: param) ?? .empty()
       }.share()
+    let join = input.joinAction
+      .flatMapLatest{ param in
+        self?.service.addParticipation(id: postId ?? 0, param: param) ?? .empty()
+      }
+    let cancel = input.cancleJoin
+      .flatMapLatest{ id in
+        self?.service.modifyParticipation(id: id) ?? .empty()
+      }
     return .init(
       communityInfo: usecase,
       commentUsecase: comments,
       likeResult: likePost,
       likeCancelResult: likeCancel,
-      commentResult: comment)
+      commentResult: comment, joinResult: join,
+      cancleResult: cancel)
   }
 }

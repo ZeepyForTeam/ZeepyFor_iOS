@@ -40,15 +40,14 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1146</string>
+	<string>1204</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>02c78bdac1dc2a54c54f8e7ba13183d2</string>
-
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompassauth</string>
-    <string>naversearchapp</string>
-    <string>naversearchthirdlogin</string>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
