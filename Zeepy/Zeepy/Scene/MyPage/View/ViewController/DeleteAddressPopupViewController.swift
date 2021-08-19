@@ -77,9 +77,10 @@ extension DeleteAddressPopupViewController {
                    action: #selector(self.closeButtonClicked),
                    for: .touchUpInside)
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.containerView.snp.top).offset(12)
-        $0.trailing.equalTo(self.containerView.snp.trailing).offset(-12)
-        $0.width.height.equalTo(24)
+        $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
+        $0.leading.equalTo(self.containerView.snp.centerX).offset(5)
+        $0.trailing.equalTo(self.containerView.snp.leading).offset(-12)
+        $0.height.equalTo(self.view.frame.width * 48/375)
       }
     }
   }
@@ -90,8 +91,8 @@ extension DeleteAddressPopupViewController {
                    action: #selector(self.deleteButtonClicked),
                    for: .touchUpInside)
       $0.snp.makeConstraints {
-        $0.centerX.equalToSuperview()
         $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
+        $0.trailing.equalTo(self.containerView.snp.centerX).offset(-5)
         $0.leading.equalTo(self.containerView.snp.leading).offset(12)
         $0.height.equalTo(self.view.frame.width * 48/375)
       }
@@ -103,11 +104,16 @@ extension DeleteAddressPopupViewController {
     titleLabel.setupLabel(text: "정말 삭제하시겠습니까?",
                           color: .blackText,
                           font: .nanumRoundExtraBold(fontSize: 16))
-    closeButton.setBackgroundImage(UIImage(named: "btnCloseYel"), for: .normal)
-    deleteButton.setupButton(title: "확인",
-                             color: .blackText,
+    closeButton.setupButton(title: "취소",
+                             color: .white,
                              font: .nanumRoundExtraBold(fontSize: 16),
                              backgroundColor: .pastelYellow,
+                             state: .normal,
+                             radius: 8)
+    deleteButton.setupButton(title: "삭제",
+                             color: .blackText,
+                             font: .nanumRoundExtraBold(fontSize: 16),
+                             backgroundColor: .gray249,
                              state: .normal,
                              radius: 8)
   }

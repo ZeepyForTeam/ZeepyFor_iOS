@@ -88,5 +88,9 @@ extension BuildingService {
     provider.rx.request(.fetchBuildingByAddress(address: address))
       .asObservable()
   }
-
+  
+  func fetchBuildingUserLike() -> Observable<Response> {
+    provider.rx.request(.fetchBuildingUserLike)
+      .asObservable()
+  }
 }
