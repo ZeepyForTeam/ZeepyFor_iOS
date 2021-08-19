@@ -14,6 +14,7 @@ class LookAroundDetailViewController: BaseViewController {
   private let model : BuildingModel!
   private let viewModle = LookAroundDetailViewModel()
   private let loadTrigger = PublishSubject<Int>()
+  private let likeTrigger = PublishSubject<Bool>()
   private let navigationView = UIView().then{
     $0.backgroundColor = .white
     let underBar = UIView().then{
@@ -333,7 +334,8 @@ extension LookAroundDetailViewController {
     self.addressLabel.text = model.buildingName
   }
   func bind() {
-    let input = LookAroundDetailViewModel.Input(loadTrigger: loadTrigger)
+    let input = LookAroundDetailViewModel.Input(loadTrigger: loadTrigger,
+                                                likeTrigger: likeTrigger)
     let output = viewModle.transForm(inputs: input)
     output.images.asObservable()
       .bind(to: imageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
@@ -345,6 +347,13 @@ extension LookAroundDetailViewController {
           cell.bindCell(model: data,over: row == 3)
         }
       }.disposed(by: disposeBag)
+    output.likeResult.bind{[weak self] result in
+      if result {
+        self?.likeBtn.isSelected.toggle()
+        
+        self?.loadTrigger.onNext((self?.model.buildingId)!)
+      }
+    }.disposed(by: disposeBag)
     output.buildingDetailUsecase.bind{ [weak self] model in
       guard let self = self
       else { return }
@@ -391,15 +400,11 @@ extension LookAroundDetailViewController {
     }.disposed(by: reviewView.disposeBag)
     reviewEmptyBtn.rx.tap.bind{[weak self] in
       self?.writeReview()
-    }.disposed(by: disposeBag)
-    
-    let dummyCount = Observable.just(3)
-    dummyCount.bind{ [weak self] count in
       
     }.disposed(by: disposeBag)
+    
     likeBtn.rx.tap.bind{ [weak self] in
-      self?.reviewView.isEnabled.toggle()
-      self?.likeBtn.isSelected.toggle()
+      self?.likeTrigger.onNext(self?.likeBtn.isSelected == true)
     }.disposed(by: disposeBag)
     //
     loadTrigger.onNext((model.buildingId))

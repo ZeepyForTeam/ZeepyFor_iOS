@@ -57,7 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootNav = UINavigationController()
     rootNav.navigationBar.isHidden = true
     let rootVC = TabbarViewContorller()
-    
+    print(UserDefaultHandler.loginType)
+    print(UserDefaultHandler.userId)
     rootNav.viewControllers = [rootVC]
     if LoginManager.shared.isLogin() == true {
       window?.rootViewController = rootNav

@@ -187,7 +187,7 @@ extension PostDetailViewControlelr : UITableViewDelegate {
       view.userTag.isHidden = false
       view.userTag.text = "참여자"
     }
-    else if dataSource[section].model.identity == UserManager.shared.userId{
+    else if dataSource[section].model.userId == UserDefaultHandler.userId{
       view.userTag.isHidden = false
       view.userTag.text = "글쓴이"
     }
@@ -238,7 +238,7 @@ extension PostDetailViewControlelr {
     outputs.communityInfo
       .bind{ [weak self] model in
         guard let self = self else {return}
-        if model.user?.id == UserManager.shared.userId {
+        if model.user?.id == UserDefaultHandler.userId {
           self.achivementView.participateBtn.isEnabled = false
           
         }

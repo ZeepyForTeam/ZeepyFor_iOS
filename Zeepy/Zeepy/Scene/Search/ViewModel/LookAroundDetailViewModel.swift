@@ -13,10 +13,12 @@ class LookAroundDetailViewModel {
   private let service = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins: [NetworkLoggerPlugin()]))
   struct Input {
     let loadTrigger: Observable<Int>
+    let likeTrigger: Observable<Bool>
   }
   struct Output {
     let images : Observable<[String]>
     let buildingDetailUsecase: Observable<BuildingDetailInfo>
+    let likeResult: Observable<Bool>
   }
 }
 extension LookAroundDetailViewModel {
@@ -29,8 +31,16 @@ extension LookAroundDetailViewModel {
       return weakSelf?.service.fetchBuildingDetailMapped(id: id) ?? .empty()
     }.map{$0.toDetailModel()}
     let imageUsecase = building.map{$0.buildingImages}.share()
-    
+    let likeResult = inputs.likeTrigger.flatMapLatest{ current -> Observable<Bool> in
+      if current {
+        return weakSelf?.service.deleteLikeBuilding(id: buildingId) ?? .empty()
+      }
+      else {
+        return weakSelf?.service.addLikeBuilding(param: .init(buildingId: buildingId)) ?? .empty()
+      }
+    }
     return .init(images: imageUsecase,
-                 buildingDetailUsecase: building)
+                 buildingDetailUsecase: building,
+                 likeResult: likeResult)
   }
 }

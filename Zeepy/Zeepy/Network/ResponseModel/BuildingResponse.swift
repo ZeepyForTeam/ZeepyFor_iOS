@@ -65,8 +65,8 @@ struct DealDateClass: Codable {
 // MARK: - BuildingLike
 struct BuildingLike: Codable {
   let id: Int
-  let likeDate: DealDateClass
-  let user: Int
+  let likeDate: String
+  let email: String
 }
 
 struct BuildingLikes: Codable {

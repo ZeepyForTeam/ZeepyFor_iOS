@@ -66,10 +66,12 @@ extension BuildingService {
       .retryWithAuthIfNeeded()
       .asObservable()
   }
-  func addLikeBuilding(param: LikeRequest) -> Observable<Response> {
+  func addLikeBuilding(param: BuildingLikeRequset) -> Observable<Bool> {
     provider.rx.request(.addLikeBuilding(param: param))
       .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+
   }
   func fetchLikeBuildingDetail(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchLikeBuildingDetail(id: id))
@@ -77,13 +79,19 @@ extension BuildingService {
       .asObservable()
   }
 
-  func modifyLikeBuilding(id: Int, param: LikeRequest) -> Observable<Response> {
-    provider.rx.request(.modifyLikeBuilding(id: id, param: param))
+  func modifyLikeBuilding(id: Int) -> Observable<Bool> {
+    provider.rx.request(.modifyLikeBuilding(id: id))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+    
   }
-  func deleteLikeBuilding(id: Int) -> Observable<Response> {
+  func deleteLikeBuilding(id: Int) -> Observable<Bool> {
     provider.rx.request(.deleteLikeBuilding(id: id))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+    
   }
 
   func fetchAllBuildings() -> Observable<Response>{
