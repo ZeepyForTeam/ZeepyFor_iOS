@@ -33,13 +33,19 @@ extension MessageAlertView {
         okAction: PopupDialogButtonAction? = nil
     ) {
         initializeMainView()
-        
-        denyButton.isHidden = true
+        denyButton.isHidden = denyMessage == ""
         grantButton.layer.maskedCorners = [
             .layerMaxXMaxYCorner,
             .layerMinXMaxYCorner
         ]
         grantButton.layer.cornerRadius = 10
+      denyButton.layer.maskedCorners = [
+          .layerMinXMaxYCorner,
+          .layerMinXMinYCorner,
+        .layerMaxXMinYCorner,
+        .layerMaxXMaxYCorner
+      ]
+      denyButton.layer.cornerRadius = 10
         buttonAction = okAction
         
         let style = NSMutableParagraphStyle()
@@ -53,6 +59,9 @@ extension MessageAlertView {
         )
         
         denyButton.setTitle(denyMessage, for: .normal)
+      denyButton.addTarget(self,
+                           action: #selector(dismissFromSuperview),
+                           for: .allTouchEvents)
         grantButton.setTitle(grantMessage, for: .normal)
         grantButton.addTarget(self,
                               action: #selector(dismissAlertView),
@@ -96,4 +105,5 @@ extension MessageAlertView {
                            })
         }
     }
+
 }

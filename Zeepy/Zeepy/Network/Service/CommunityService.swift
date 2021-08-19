@@ -69,8 +69,8 @@ extension CommunityService {
       .successFlag()
       .asObservable()
   }
-  func modifyParticipation(id:Int, cancelUserId: Int) -> Observable<Bool> {
-    provider.rx.request(.modifyParticipation(id: id, cancelUserId: cancelUserId))
+  func modifyParticipation(id:Int) -> Observable<Bool> {
+    provider.rx.request(.modifyParticipation(id: id))
       .successFlag()
       .asObservable()
   }

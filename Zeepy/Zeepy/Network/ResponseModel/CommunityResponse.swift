@@ -20,18 +20,18 @@ struct CommunityResponseModel: Decodable {
 // MARK: - Content
 struct CommunityContent: Decodable {
     let address: String?
-    let comments: [Comment]
+    let comments: [Comment]?
     let communityCategory, content: String?
     let createdTime: String?
     let id: Int?
-    let imageUrls: [String]
+    let imageUrls: [String]?
     let isCompleted, isLiked, isParticipant: Bool?
-    let participants: [ParticipationList]
+    let participants: [ParticipationList]?
     let productName: String?
     let sharingMethod: String?
     let targetNumberOfPeople: Int?
     let title: String?
-    let user: ContentUser
+    let user: ContentUser?
 }
 extension CommunityContent {
   func toPostModel() -> PostModel {
@@ -46,23 +46,39 @@ extension CommunityContent {
     default :
       type = .total
     }
-    return .init(id: id ?? 0, type: type, status: isCompleted == true, postTitle: title ?? "", postConent: content ?? "", postedAt: createdTime ?? "")
+    return .init(id: id ?? 0, type: type, status: isCompleted == false, postTitle: title ?? "", postConent: content ?? "", postedAt: createdTime ?? "")
+  }
+  var category: String{
+    var type : PostType
+    switch communityCategory {
+    case "JOINTPURCHASE" :
+      type = .deal
+    case "FREESHARING" :
+      type = .share
+    case "NEIGHBORHOODFRIEND" :
+      type = .friend
+    default :
+      type = .total
+    }
+    return type.rawValue
   }
 }
 
 // MARK: - Comment
 struct Comment: Decodable {
     let comment: String
-    let community: Community
-    let createdDate: String
+    let createdTime: String
     let id: Int
-    let isParticipation, isSecret: Bool
-    let subComments: [String]
-    let user: CommunityUser
+  let communityId: Int
+  let superCommentId: Int?
+    let isParticipation, isSecret: Bool?
+    let subComments: [Comment]?
+    let writer: ContentUser
+  
 }
 extension Comment {
   func toCommentModel() -> CommentSectionModel {
-    return .init(identity: id, profile: "", userName: user.name, comment: comment, hidden: isSecret, postedAt: createdDate)
+    return .init(identity: id, profile: writer.profileImage ?? "", userName: writer.name ?? "비공개", userId: writer.id ?? -1, comment: comment, hidden: isSecret == true, postedAt: createdTime ,isMember: isParticipation == true)
   }
 }
 // MARK: - Community

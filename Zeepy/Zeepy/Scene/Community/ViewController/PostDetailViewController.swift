@@ -11,14 +11,15 @@ import RxDataSources
 import RxSwift
 
 
+
 typealias DataSource = RxTableViewSectionedReloadDataSource
 typealias CommentSectionType = AnimatableSectionModel<CommentSectionModel, CommentSectionModel>
 class PostDetailViewControlelr : BaseViewController {
   init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?,
-                postId: Int) {
+        postId: Int) {
     self.postId = postId
     super.init(nibName: nil , bundle: nil)
-
+    
   }
   
   required init?(coder: NSCoder) {
@@ -31,6 +32,9 @@ class PostDetailViewControlelr : BaseViewController {
   private let likeCancel = PublishSubject<LikeRequest>()
   private let loadViewTrigger = PublishSubject<Int>()
   private let commentTrigger = PublishSubject<PostCommentRequest>()
+  private let joinCommentTrigger = PublishSubject<JoinRequset>()
+  private let cancelJoin = PublishSubject<Int>()
+  private let superCommentId = BehaviorSubject<Int?>(value: nil)
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()
@@ -171,20 +175,34 @@ extension PostDetailViewControlelr : UITableViewDelegate {
     commentView.commentTableView.sectionHeaderHeight = UITableView.automaticDimension
   }
   func tableView(
-      _ tableView: UITableView,
-      viewForHeaderInSection section: Int
+    _ tableView: UITableView,
+    viewForHeaderInSection section: Int
   ) -> UIView? {
     guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommentView.identifier) as? CommentView else {
       return nil
     }
-    view.profileBtn.setImage(UIImage(named: dataSource[section].model.profile),for: .normal)
+    view.profileBtn.kf.setImage(with: URL(string:  dataSource[section].model.profile),for: .normal)
     view.userName.text = dataSource[section].model.userName
-    view.commentLabel.text = dataSource[section].model.comment
+    if dataSource[section].model.isMember {
+      view.userTag.isHidden = false
+      view.userTag.text = "참여자"
+    }
+    else if dataSource[section].model.identity == UserManager.shared.userId{
+      view.userTag.isHidden = false
+      view.userTag.text = "글쓴이"
+    }
+    else {
+      view.userTag.isHidden = true
+    }
+    view.commentLabel.text = dataSource[section].model.hidden ? "비밀 댓글입니다." : dataSource[section].model.comment
+
     view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .yyyyMMddDot)?.detailTime
     view.addSubcommentBtn.rx.tap
       .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
       .bind{ [weak self] in
-        print(self?.dataSource[section].model.identity)
+        self?.commentTextField.text = ""
+        self?.commentTextField.becomeFirstResponder()
+        self?.superCommentId.onNext(self?.dataSource[section].model.identity)
       }.disposed(by: disposeBag)
     return view
   }
@@ -212,17 +230,47 @@ extension PostDetailViewControlelr {
     let inputs = PostDetailViewModel.Input(loadView: loadViewTrigger,
                                            likePost: likeReq,
                                            likeCancel: likeCancel,
-                                           addComment: commentTrigger)
+                                           addComment: commentTrigger,
+                                           joinAction: joinCommentTrigger,
+                                           cancleJoin : cancelJoin)
     let outputs = viewModel.transform(input: inputs)
     
     outputs.communityInfo
       .bind{ [weak self] model in
-        self?.likeBtn.isSelected = model.isLiked == true
-        self?.postDetail.profileName.text = model.user.name
-        self?.postDetail.postTitle.text = model.title
-        self?.postDetail.postContent.text = model.content
-        self?.postDetail.typeLabel.text = model.communityCategory
-        self?.achivementView.isHidden = model.isParticipant == true
+        guard let self = self else {return}
+        if model.user?.id == UserManager.shared.userId {
+          self.achivementView.participateBtn.isEnabled = false
+          
+        }
+        self.likeBtn.isSelected = model.isLiked == true
+        self.postDetail.profileName.text = model.user?.name ?? "작성자"
+        self.postDetail.postTitle.text = model.title
+        self.postDetail.postContent.text = model.content
+        self.postDetail.typeLabel.text = model.category
+        self.achivementView.isHidden = model.isParticipant != true
+        self.postDetail.profileImage.kf.setImage(with: URL(string: model.user?.profileImage ?? ""), for: .normal)
+        self.achivementView.emptyAchivement.isHidden = model.targetNumberOfPeople.isNotNil
+        self.achivementView.participateBtn.isSelected = model.isParticipant == true
+        if let targetNumber = model.targetNumberOfPeople {
+          self.commentView.snp.remakeConstraints{
+            $0.top.equalTo(self.achivementView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-116)
+          }
+          self.achivementView.targetPrice.text = "\(model.participants?.count ?? 0)/\(targetNumber)"
+          let offset = Float(model.participants?.count ?? 0) / Float(targetNumber)
+          self.achivementView.currentAmountView.snp.remakeConstraints{
+            $0.leading.top.bottom.equalTo(self.achivementView.targetAmountView)
+            $0.width.equalTo(self.achivementView.targetAmountView.snp.width).multipliedBy(offset)
+          }
+        }
+        else {
+          self.commentView.snp.remakeConstraints{
+            $0.top.equalTo(self.postDetail.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-116)
+          }
+        }
         //self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
         
       }.disposed(by: disposeBag)
@@ -235,29 +283,47 @@ extension PostDetailViewControlelr {
       .distinctUntilChanged()
       .bind{[weak self] h in
         self?.commentView.commentTableView.snp.updateConstraints{
-          $0.height.equalTo(h)
+          $0.height.equalTo(h).priority(.medium)
         }
       }.disposed(by: disposeBag)
-    outputs.communityInfo.map{$0.imageUrls}
+    outputs.communityInfo.map{$0.imageUrls ?? []}
       .bind(to: postDetail.postImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier, cellType: ReusableSimpleImageCell.self)) {row, data, cell in
         cell.bindCell(model: data)
       }.disposed(by: disposeBag)
     achivementView.participateBtn.rx.tap.bind{[weak self] in
-      var view : ModifyJoinView? = ModifyJoinView()
-      PopUpView.shared.appearPopUpView(subView: view!)
-      view!.resultClosure = { value in
-        print(value)
-        view = nil
+      guard let self = self else {return}
+      if self.achivementView.participateBtn.isSelected {
+        var first = true
+        MessageAlertView.shared.showAlertView(title: "이미 참여한 ZIP이에요!\n참여를 취소하실건가요? T-T?", grantMessage: "구매 취소", denyMessage: "아니요! :)", okAction: {
+          weak var `self` = self
+          guard let self = self else {return}
+
+          if first {
+            self.cancelJoin.onNext(self.postId)
+          }
+          first = false
+          print("취소")
+        })
       }
+      else {
+        var view : JoinPopUpView? = JoinPopUpView()
+        PopUpView.shared.appearPopUpView(subView: view!)
+        view!.resultClosure = { [weak self] value in
+          print(value)
+          self?.joinCommentTrigger.onNext(.init(comment: value, isSecret: false))
+          view = nil
+        }
+      }
+
     }.disposed(by: disposeBag)
     likeBtn.rx.tap.bind{ [weak self] in
       if self?.likeBtn.isSelected == true {
-          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: UserManager.shared.userEmail)
-          self?.likeCancel.onNext(like)
+        let like = LikeRequest(communityId: (self?.postId)!)
+        self?.likeCancel.onNext(like)
       }
       else {
-          let like = LikeRequest(commuinityId: (self?.postId)!, userEmail: UserManager.shared.userEmail)
-          self?.likeReq.onNext(like)
+        let like = LikeRequest(communityId: (self?.postId)!)
+        self?.likeReq.onNext(like)
       }
     }.disposed(by: disposeBag)
     outputs.likeResult.bind{[weak self] result in
@@ -270,11 +336,34 @@ extension PostDetailViewControlelr {
         self?.loadViewTrigger.onNext((self?.postId)!)
       }
     }.disposed(by: disposeBag)
-    addCommentButton.rx.tap.bind{ [weak self] in
+    outputs.commentResult.bind{[weak self] result in
+
+      if result {
+        self?.loadViewTrigger.onNext((self?.postId)!)
+      }
+    }.disposed(by: disposeBag)
+    outputs.joinResult.bind{[weak self] result in
+      if result {
+        self?.loadViewTrigger.onNext((self?.postId)!)
+      }
+    }.disposed(by: disposeBag)
+    outputs.cancleResult.bind{[weak self] result in
+      if result {
+        self?.loadViewTrigger.onNext((self?.postId)!)
+      }
+    }.disposed(by: disposeBag)
+    commentCheckBox.rx.tap.bind{[weak self] in
+      self?.commentCheckBox.isSelected.toggle()
+    }.disposed(by: disposeBag)
+    addCommentButton.rx.tap.withLatestFrom(superCommentId).bind{ [weak self] id in
       guard let comment = self?.commentTextField.text else {return}
       guard let secret = self?.commentCheckBox.isSelected else {return}
-      let param = PostCommentRequest(id: (self?.postId)!, writeCommentRequestDto: .init(comment: comment, isSecret: secret, superCommentId: nil))
+      let param = PostCommentRequest(id: (self?.postId)!, writeCommentRequestDto: .init(comment: comment, isSecret: secret, superCommentId: id))
+      print(param)
       self?.commentTrigger.onNext(param)
+      self?.commentTextField.resignFirstResponder()
+      self?.commentTextField.text = ""
+      self?.commentCheckBox.isSelected = false
     }.disposed(by: disposeBag)
     
     
@@ -312,6 +401,7 @@ extension PostDetailViewControlelr {
     self.commentField.snp.updateConstraints{
       $0.bottom.equalToSuperview()
     }
+    self.superCommentId.onNext(nil)
   }
 }
 
@@ -417,10 +507,14 @@ internal class AchivementRateView : UIView{
     $0.isHidden = true
   }
   let participateBtn = UIButton().then{
+    $0.isSelected = false
     $0.borderWidth = 1
     $0.borderColor = .communityGreen
     $0.setRounded(radius: 8)
-    $0.setTitle("공구 참여하기", for: .normal)
+    $0.setTitle("참여하고 돈 아끼기", for: .normal)
+    $0.setTitle("참여하고 돈 아끼기", for: .selected)
+    $0.setTitle("글 작성자입니다!", for: .disabled)
+
     $0.setTitleColor(.communityGreen, for: .normal)
     $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
     
@@ -435,7 +529,7 @@ internal class AchivementRateView : UIView{
     $0.backgroundColor = .gray249
     $0.setRounded(radius: 14)
   }
-  private let targetAmountView = UIView().then {
+  let targetAmountView = UIView().then {
     $0.backgroundColor = .gray244
     $0.setRounded(radius: 8)
   }
@@ -533,11 +627,12 @@ internal class CommentAreaView : UIView{
     commentTitle.snp.makeConstraints{
       $0.top.equalToSuperview().offset(32)
       $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(20)
     }
     commentTableView.snp.makeConstraints{
       $0.top.equalTo(commentTitle.snp.bottom).offset(10)
       $0.leading.trailing.bottom.equalToSuperview()
-      $0.height.equalTo(400)
+      $0.height.equalTo(400).priority(.medium)
     }
   }
   
