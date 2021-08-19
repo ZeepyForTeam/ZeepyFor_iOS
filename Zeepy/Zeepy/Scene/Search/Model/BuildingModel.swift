@@ -7,6 +7,7 @@
 
 import Foundation
 struct BuildingModel {
+  let buildingId: Int
   let buildingName: String
   let buildingImage: String
   let ownderInfo: ValidateType
@@ -18,6 +19,7 @@ struct ReviewInfo {
   let review: String
 }
 struct BuildingDetailInfo {
+  let buildingId: Int
   let buildingName: String
   let buildingImages: [String]
   let buildingAddress: String
@@ -25,7 +27,7 @@ struct BuildingDetailInfo {
   let contractType: String
   let options: [String]
   let ownerInfo: [OwnerTypeCount]
-  let review: [ReviewInfo]
+  let review: [ReviewDetailInfo]
   let filters : [String]
 }
 struct ReviewDetailInfo {
@@ -39,7 +41,7 @@ struct ReviewDetailInfo {
 }
 struct OwnerTypeCount {
   let type: ValidateType
-  let count : Int
+  var count : Int
 }
 enum ValidateType: String {
   case business = "비지니스형"
@@ -47,6 +49,14 @@ enum ValidateType: String {
   case free = "방목형"
   case cute = "츤데레형"
   case bad = "할많하않"
+}
+enum TagType: String {
+  case one = "원룸"
+  case two = "투룸"
+  case three = "쓰리룸+"
+  case officetel = "오피스텔"
+  case rawhouse = "연립다세대"
+  case unknown = "기타"
 }
 extension ValidateType {
   var image : String {

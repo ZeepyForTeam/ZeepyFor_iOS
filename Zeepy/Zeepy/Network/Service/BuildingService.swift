@@ -15,12 +15,12 @@ class BuildingService {
   }
 }
 extension BuildingService {
-  func fetchBuildingList(param: BuildingRequest) -> Observable<BuildingResponseModel> {
+  func fetchBuildingList(param: BuildingRequest) -> Observable<[BuildingContent]> {
     provider.rx.request(.fetchBuildingList(param: param))
       .retryWithAuthIfNeeded()
       .filterError()
       .asObservable()
-      .map(BuildingResponseModel.self)
+      .map([BuildingContent].self, atKeyPath: "content")
   }
     
   //클라이언트에서 안씀
@@ -29,10 +29,17 @@ extension BuildingService {
       .retryWithAuthIfNeeded()
       .asObservable()
   }
+  func fetchBuildingDetailMapped(id: Int) -> Observable<BuildingContent> {
+    provider.rx.request(.fetchBuildingDetail(id: id))
+      .retryWithAuthIfNeeded()
+      .filterError()
+      .map(BuildingContent.self)
+  }
   func fetchBuildingDetail(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchBuildingDetail(id: id))
       .retryWithAuthIfNeeded()
       .asObservable()
+
   }
   func modifyBuilding(id: Int, param: ModiftyBuildingRequest) -> Observable<Response> {
     provider.rx.request(.modifyBuilding(id: id, param: param))

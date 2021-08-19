@@ -146,6 +146,14 @@ class LookAroundTableViewCell: UITableViewCell {
   }
 }
 class SimpleLabelCollectionViewCell: UICollectionViewCell {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    layout()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   private let option = UILabel().then{
     $0.font = .nanumRoundBold(fontSize: 10)
     $0.textColor = .black
@@ -156,7 +164,6 @@ class SimpleLabelCollectionViewCell: UICollectionViewCell {
     $0.backgroundColor = .gray228
   }
   func bind(_ option : String) {
-    layout()
     self.option.text = option
   }
   private func layout() {

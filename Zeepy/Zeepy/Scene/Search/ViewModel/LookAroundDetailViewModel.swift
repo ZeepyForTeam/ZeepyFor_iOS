@@ -10,29 +10,27 @@ import RxSwift
 import RxCocoa
 import Moya
 class LookAroundDetailViewModel {
+  private let service = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins: [NetworkLoggerPlugin()]))
   struct Input {
-    let loadTrigger: Observable<Void>
+    let loadTrigger: Observable<Int>
   }
   struct Output {
-    let images : Driver<[String]>
+    let images : Observable<[String]>
     let buildingDetailUsecase: Observable<BuildingDetailInfo>
-    
   }
 }
 extension LookAroundDetailViewModel {
   func transForm(inputs: Input) -> Output {
     weak var weakSelf = self
     var filterOriginUsecase : [FilterModel] = []
+    var buildingId: Int!
+    let building = inputs.loadTrigger.flatMapLatest{ id -> Observable<BuildingContent> in
+      buildingId = id
+      return weakSelf?.service.fetchBuildingDetailMapped(id: id) ?? .empty()
+    }.map{$0.toDetailModel()}
+    let imageUsecase = building.map{$0.buildingImages}.share()
     
-    let buildingDummy = BuildingDetailInfo(buildingName: "aaaa", buildingImages: ["jfyhdgdtuky","ㅁㄴㅇㄹ","ㅁㄴㅇㄹ","ㅁㄴㅇㄹ","ㅁㄴㅇㄹ"], buildingAddress: "주소", buildingType: "타입", contractType: "월세", options: ["뭐시기","ㅋㅋㅁㅁㅁ","ㅇㅇㅇ"],
-                                           ownerInfo: [.init(type: .business, count: 0),
-                                                       .init(type: .kind, count: 2),
-                                                       .init(type: .free, count: 0),
-                                                       .init(type: .cute, count: 3),
-                                                       .init(type: .bad, count: 2)], review: [], filters: ["ff","ff"])
-    let buildingUsecase = inputs.loadTrigger.map{buildingDummy}.share()
-    let imageUsecase = inputs.loadTrigger.map{buildingDummy.buildingImages}.share()
-    
-    return .init(images: imageUsecase.asDriver(onErrorDriveWith: .empty()),buildingDetailUsecase: buildingUsecase)
+    return .init(images: imageUsecase,
+                 buildingDetailUsecase: building)
   }
 }
