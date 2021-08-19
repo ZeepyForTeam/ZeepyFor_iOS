@@ -87,6 +87,7 @@
 		CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB6C10526ACD99E006E7032 /* CreditViewController.swift */; };
 		CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */; };
 		CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */; };
+		CCDB6E3126CCB8EE00797932 /* RoomTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB6E3026CCB8EE00797932 /* RoomTagCollectionViewCell.swift */; };
 		CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */; };
 		CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */; };
 		CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */; };
@@ -296,6 +297,7 @@
 		CCB6C10526ACD99E006E7032 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendencyTableViewCell.swift; sourceTree = "<group>"; };
 		CCD0D99B265E4C0E001B15DE /* AssessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessTableViewCell.swift; sourceTree = "<group>"; };
+		CCDB6E3026CCB8EE00797932 /* RoomTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInformationViewController.swift; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 				CC12B96826AA5B2600D17C95 /* ManageReviewTableViewCell.swift */,
 				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
 				CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */,
+				CCDB6E3026CCB8EE00797932 /* RoomTagCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1630,6 +1633,7 @@
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */,
 				CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */,
+				CCDB6E3126CCB8EE00797932 /* RoomTagCollectionViewCell.swift in Sources */,
 				A45F4F9325FF2C2800FCEACF /* LoninManager.swift in Sources */,
 				CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */,
 				DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */,
@@ -1801,8 +1805,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				DYLIB_CURRENT_VERSION = 6;
@@ -1868,7 +1872,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
 				PRODUCT_NAME = "$(TARGET_NAME).dev";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2051,8 +2055,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/Zeepy.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				DYLIB_CURRENT_VERSION = 6;
@@ -2117,7 +2121,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2134,8 +2138,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BASE_URL = "http://13.125.41.110:8080/api";
 				CODE_SIGN_ENTITLEMENTS = Zeepy/Supports/ZeepyRelease.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				DYLIB_CURRENT_VERSION = 6;
@@ -2200,7 +2204,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
