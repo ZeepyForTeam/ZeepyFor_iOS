@@ -19,17 +19,18 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var selected = Bool()
   }
   
-  struct mapDetailViewModel {
-    var id = Int()
-    var address = String()
-    var buildingDetail = [String]()
-    var owner = String()
-    var soundProofImageName = String()
-    var cleanlinessImageName = String()
-    var sunLightImageName = String()
-    var waterPressureImageName = String()
-    var overallLabel = String()
-  }
+    struct mapDetailViewModel {
+      var id = Int()
+      var address = String()
+      var buildingDetail = [String]()
+      var owner = String()
+      var soundProofImageName = String()
+      var cleanlinessImageName = String()
+      var sunLightImageName = String()
+      var waterPressureImageName = String()
+      var overallLabel = String()
+      var count = Int()
+    }
   // MARK: - Array
   var collectionViewCellList : [collectionViewCellModel] = [collectionViewCellModel(imageName: "emoji1", buttonTitle: "비즈니스형", selected: true),
                                                             collectionViewCellModel(imageName: "emoji2", buttonTitle: "친절형", selected: true),
@@ -42,6 +43,16 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                                     mapDetailViewModel(id : 3,address: "주소3", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
                                                     mapDetailViewModel(id : 4,address: "주소4", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
                                                     mapDetailViewModel(id : 5,address: "주소5", buildingDetail: ["디테일1"], owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1")]
+    var mapDetailModel = mapDetailViewModel(id: 0,
+                                            address: "",
+                                            buildingDetail: [""],
+                                            owner: "",
+                                            soundProofImageName: "",
+                                            cleanlinessImageName: "",
+                                            sunLightImageName: "",
+                                            waterPressureImageName: "",
+                                            overallLabel: "",
+                                            count : 0)
     
 
   // MARK: - Components
@@ -108,33 +119,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
   var openFloatingCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    
-    struct mapDetailViewModel {
-        var address = String()
-        var buildingDetail = String()
-        var owner = String()
-        var soundProofImageName = String()
-        var cleanlinessImageName = String()
-        var sunLightImageName = String()
-        var waterPressureImageName = String()
-        var overallLabel = String()
-    }
-    // MARK: - Array
-    var collectionViewCellList : [collectionViewCellModel] = [collectionViewCellModel(imageName: "emoji1", buttonTitle: "비즈니스형", selected: true),
-                                                              collectionViewCellModel(imageName: "emoji2", buttonTitle: "친절형", selected: true),
-                                                              collectionViewCellModel(imageName: "emoji3", buttonTitle: "방목형", selected: true),
-                                                              collectionViewCellModel(imageName: "emoji4", buttonTitle: "츤데레형", selected: true),
-                                                              collectionViewCellModel(imageName: "emoji5", buttonTitle: "할많하않", selected: true)]
 
-    var mapDetailViewList : [mapDetailViewModel] = [mapDetailViewModel(address: "주소1", buildingDetail: "디테일1",owner: "집주인1", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가1"),
-        
-                                                    mapDetailViewModel(address: "주소2", buildingDetail: "디테일2", owner: "집주인2", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가2"),
-        
-                                                    mapDetailViewModel(address: "주소3", buildingDetail: "디테일3", owner: "집주인3", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가3"),
-        
-                                                    mapDetailViewModel(address: "주소4", buildingDetail: "디테일4", owner: "집주인4", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가4"),
-        
-                                                    mapDetailViewModel(address: "주소5", buildingDetail: "디테일5", owner: "집주인5", soundProofImageName: "iconSmile", cleanlinessImageName: "iconSmile", sunLightImageName: "iconSmile", waterPressureImageName: "iconSmile", overallLabel: "종합평가5")]
+
     // MARK: - Components
     
     var tendencyButton = UIView().then{
@@ -151,9 +137,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         circleButton.setImage(UIImage(named: imageName), for: .normal)
         buttonTitle.text = buttonName
     }
- 
-    var items = [MTMapPOIItem]()
-    var showItems = [MTMapPOIItem]()
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.isScrollEnabled = true
@@ -171,7 +154,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         $0.backgroundColor = .pale
     }
 
-    
     let myLocationButton = UIButton().then{
         $0.setBackgroundImage(UIImage(named:"iconMyLocation"), for: .normal)
         $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
@@ -271,11 +253,15 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     $0.setRounded(radius: 10)
     $0.addTarget(self, action: #selector(lookingAroundButtonTapped), for: .touchUpInside)
   }
+    func makeLookingAroundButton(count : Int){
+        lookingAroundButton.setTitle("건물리뷰 " + String(count) + "건 보러가기", for: .normal)
+    }
     var locationManager:CLLocationManager!
     private let buildingService = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins:[NetworkLoggerPlugin()]))
     
   func poiItem(id: Int, latitude: Double, longitude: Double, imageName: String) -> MTMapPOIItem {
     let item = MTMapPOIItem()
+    item.tag = id
     item.markerType = .customImage
     item.customImage = UIImage(named: imageName)
     item.markerSelectedType = .customImage
@@ -284,44 +270,43 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     item.showAnimationType = .noAnimation
     return item
   }
-  
-  func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
-    for i in 0 ..< items.count{
-      if items[i].itemName == poiItem.itemName{
-        tendencyImage.image = poiItem.customImage
-        addressLabel.text = mapDetailViewList[i].address
-        buildingDetail.text = mapDetailViewList[i].buildingDetail.joined()
-        owner.text = mapDetailViewList[i].owner
-        soundProof.image = UIImage(named: mapDetailViewList[i].soundProofImageName)
-        cleanliness.image = UIImage(named: mapDetailViewList[i].cleanlinessImageName)
-        sunLight.image = UIImage(named: mapDetailViewList[i].sunLightImageName)
-        waterPressure.image = UIImage(named: mapDetailViewList[i].waterPressureImageName)
-        overall.text = mapDetailViewList[i].overallLabel
-      }
+    
+    func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
+      fetchMapDetail(id: poiItem.tag)
+      print("-------poiItem.tag----------")
+      print(poiItem.tag)
+      tendencyImage.image = poiItem.customImage
+      addressLabel.text = mapDetailModel.address
+      print("-------poiItem.address----------")
+      print(mapDetailModel.address)
+      buildingDetail.text = mapDetailModel.buildingDetail.joined()
+      owner.text = mapDetailModel.owner
+      soundProof.image = UIImage(named: mapDetailModel.soundProofImageName)
+      cleanliness.image = UIImage(named: mapDetailModel.cleanlinessImageName)
+      sunLight.image = UIImage(named: mapDetailModel.sunLightImageName)
+      waterPressure.image = UIImage(named: mapDetailModel.waterPressureImageName)
+      overall.text = mapDetailModel.overallLabel
+      layoutModalView()
+      openFloatingCollectionView.isHidden = true
+      closedFloatingView.isHidden = true
+      makeLookingAroundButton(count: mapDetailModel.count)
+      return false
     }
-    layoutModalView()
-    openFloatingCollectionView.isHidden = true
-    closedFloatingView.isHidden = true
-    return false
-  }
   
   func mapView(_ mapView: MTMapView!, singleTapOn mapPoint: MTMapPoint!) {
     mapDetailView.isHidden = true
     closedFloatingView.isHidden = false
   }
-    
-  
-//  func declarePOIItems(){
-//    items.append(poiItem(id: 1,latitude: 37.4981688, longitude: 127.0484572, imageName: "emoji1Map"))
-//    items.append(poiItem(id: 2,latitude: 37.4980689, longitude: 127.0484572, imageName: "emoji2Map"))
-//    items.append(poiItem(id: 3,latitude: 37.4984686, longitude: 127.0484572, imageName: "emoji3Map"))
-//    items.append(poiItem(id: 4,latitude: 37.4985683, longitude: 127.0484572, imageName: "emoji4Map"))
-//    items.append(poiItem(id: 5,latitude: 37.4986685, longitude: 127.0484572, imageName: "emoji5Map"))
-//
-//    showItems = items
-//    mapView.addPOIItems(items)
-//    mapView.fitAreaToShowAllPOIItems()
-//  }
+    func stringToTotalEvaluation(name: String) -> String{
+        if name == "GOOD"{
+            return "다음에도 여기 살고 싶어요!"
+        }else if name == "SOSO"{
+            return "완전 추천해요!"
+        }else if name == "BAD"{
+            return "그닥 추천하지 않아요"
+        }
+        return " "
+    }
     func stringToImageNameForCondition(name: String)-> String{
         if name == "GOOD"{
             return "iconSmile"
@@ -364,30 +349,41 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             if response.statusCode == 200 {
               do {
                 let decoder = JSONDecoder()
-                let data = try decoder.decode(buildingAllListModel.self, from: response.data)
-                self.items.append(self.poiItem(id: data.id, latitude: data.latitude, longitude: data.longitude, imageName: "emoji1Map"))
+                let data = try decoder.decode([buildingAllListModel].self, from: response.data)
+                print(data)
+                for element in data {
+                    if element.id == 1 {
+                        self.items.append(self.poiItem(id: element.id, latitude: element.latitude, longitude: element.longitude, imageName: "emoji2Map"))}
+                    else {
+                        self.items.append(self.poiItem(id: element.id, latitude: element.latitude, longitude: element.longitude, imageName: "emoji1Map"))
+                    }
+                    
+                }
+//                self.mapView.addPOIItems(self.items)
+//                self.currentMarkers = self.items
+//                self.mapView.fitAreaToShowAllPOIItems()
+                self.findCurrentMarker()
               }
               catch {
+                print("print error")
                 print(error)
               }
+                
             }
           }, onError: { error in
             print(error)
           }, onCompleted: {}).disposed(by: disposeBag)
-        mapView.addPOIItems(items)
-        mapView.fitAreaToShowAllPOIItems()
-        findCurrentMarker()
       }
     
-    private func fetchMapDetail() { //이거는 선택됐을 때 실행하자.
-        buildingService.fetchBuildingDetail(id: mapDetailViewList[0].id)
+    private func fetchMapDetail(id : Int) { //이거는 선택됐을 때 실행하자.
+        buildingService.fetchBuildingDetail(id: id)
           .subscribe(onNext: { response in
             if response.statusCode == 200 {
               do {
                 let decoder = JSONDecoder()
-                let data = try decoder.decode(Review.self,
+                let data = try decoder.decode(buildingAllListModel.self,
                                               from: response.data)
-                self.mapDetailViewList.append(mapDetailViewModel(id : data.id, address: data.address, buildingDetail: data.furnitures, owner: self.stringToImageNameForCondition(name: data.communcationTendency), soundProofImageName: self.stringToImageNameForCondition(name:  data.soundInsulation), cleanlinessImageName: self.stringToImageNameForCondition(name: data.pest), sunLightImageName: self.stringToImageNameForCondition(name: data.lightning), waterPressureImageName: self.stringToImageNameForCondition(name: data.waterPressure), overallLabel: self.stringToImageNameForTotal(name: data.totalEvaluation)))
+                self.mapDetailModel = mapDetailViewModel(id: data.id, address: data.shortAddress, buildingDetail: data.reviews[0].furnitures, owner: data.reviews[0].lessorReview, soundProofImageName: self.stringToImageNameForCondition(name: data.reviews[0].soundInsulation), cleanlinessImageName: self.stringToImageNameForCondition(name: data.reviews[0].pest), sunLightImageName: self.stringToImageNameForCondition(name: data.reviews[0].lightning), waterPressureImageName: self.stringToImageNameForCondition(name: data.reviews[0].waterPressure), overallLabel: self.stringToTotalEvaluation(name: data.reviews[0].totalEvaluation),count : data.reviews.count)
               }
               catch {
                 print(error)
@@ -398,29 +394,14 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
           }, onCompleted: {}).disposed(by: disposeBag)
       }
     
-//    //---
-//    private func setupCafeInformation(cafeId: String) {
-//        mapService.getBuildingPoints(id: mapDetailViewModel)
-//          .subscribe(onNext: { response in
-//            if response.statusCode == 200 {
-//              do {
-//                print("success")
-//                self.navigationController?.popToRootViewController(animated: true)
-//              }
-//            }
-//          }, onError: { error in
-//            print(error)
-//          }, onCompleted: {}).disposed(by: disposeBag)
-//      }
-//    //---
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
       let bounds = self.mapView.mapBounds
+      let southWest = bounds?.bottomLeft
+      let northEast = bounds?.topRight
+
         
-        let southWest = bounds?.bottomLeft
-        let northEast = bounds?.topRight
       for marker in items {
-        if
-            marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
+        if marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().latitude < (northEast?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().longitude > (southWest?.mapPointGeo().longitude)! &&
                 marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)! {
@@ -450,7 +431,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     }.disposed(by: disposeBag)
     setupNavigation()
     fetchMapPoints()
-    fetchMapDetail()
+//    fetchMapDetail()
     locationManager = CLLocationManager()
     locationManager.requestWhenInUseAuthorization()
     locationManager.delegate = self
@@ -544,17 +525,22 @@ private func setupNavigation() {
     operateFloatingButton()
   }
 
-    @objc func  myLocationButtonTapped(){
+    @objc func myLocationButtonTapped(){
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
                 let currentLocation = location?.mapPointGeo()
             print("현위치")
-            print(currentLocation?.latitude)
-                if let latitude = currentLocation?.latitude,
-                   let longitude = currentLocation?.longitude{
-                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-                    mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
-                }
+//            print(currentLocation?.latitude)
+//                if let latitude = currentLocation?.latitude,
+//                   let longitude = currentLocation?.longitude{
+//                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
+//                    mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
+//                }
+            
             }
+        print("change center")
+        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.580684077, longitude: 127.031725314)), zoomLevel: 4, animated: true)
+        findCurrentMarker()
+        
         func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
                 print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
             }
