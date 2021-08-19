@@ -142,6 +142,7 @@ extension FavoriteListTableViewCell {
   
   private func layoutTagCollectionView() {
     containerView.add(tagCollectionView) {
+      $0.backgroundColor = .clear
       $0.snp.makeConstraints {
         $0.top.equalTo(self.assessTitleLabel.snp.bottom).offset(8)
         $0.leading.equalTo(self.titleLabel.snp.leading)
@@ -201,6 +202,7 @@ extension FavoriteListTableViewCell {
       return roomCount?.count ?? 0
     }
     else {
+      print(roomCount?.count)
       return (roomCount?.count ?? 0) + 1
     }
   }
@@ -222,7 +224,7 @@ extension FavoriteListTableViewCell {
         tagStrings.append("원룸")
       case "TWO":
         tagStrings.append("투룸")
-      case "TRHEEORMORE":
+      case "THREEORMORE":
         tagStrings.append("쓰리룸+")
       case "OFFICETEL":
         tagStrings.append("오피스텔")
@@ -250,7 +252,7 @@ extension FavoriteListTableViewCell: UICollectionViewDelegateFlowLayout {
     switch tagNames[indexPath.item] {
     case "ONE", "TWO":
       width = 35
-    case "TRHEEORMORE":
+    case "THREEORMORE":
       width = 52
     case "OFFICETEL":
       width = 53
@@ -271,20 +273,22 @@ extension FavoriteListTableViewCell: UICollectionViewDelegateFlowLayout {
 
 extension FavoriteListTableViewCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    setupCollectionViewItemCount()
+    return setupCollectionViewItemCount()
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: RoomTagCollectionViewCell.identifier, for: indexPath) as? RoomTagCollectionViewCell else { return UICollectionViewCell() }
     
     let tagNames: [String] = setupTags()
+    let tagStrings = setupTagString(tags: tagNames)
     if buildingType == "UNKNOWN" &&
         (roomCount?.isEmpty == true || roomCount == nil) {
       tagCell.tagLabel.setupLabel(text: "정보 업데이트 준비 중",
                                   color: .blackText,
                                   font: .nanumRoundBold(fontSize: 10))
     }
-    tagCell.tagLabel.setupLabel(text: tagNames[indexPath.item],
+    print(tagStrings)
+    tagCell.tagLabel.setupLabel(text: tagStrings[indexPath.item],
                                 color: .blackText,
                                 font: .nanumRoundBold(fontSize: 10))
     return tagCell

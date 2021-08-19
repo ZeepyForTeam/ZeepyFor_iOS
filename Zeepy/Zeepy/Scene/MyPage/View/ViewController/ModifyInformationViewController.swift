@@ -16,7 +16,8 @@ class ModifyInformationViewController: BaseViewController {
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
   private let nicknameTitleLabel = UILabel()
-  private let nicknameTextField = UITextField()
+  private let nicknameLabel = UILabel()
+  private let separatorView = UIView()
   private let socialEmailTitleLabel = UILabel()
   private let socialImageView = UIImageView()
   private let socialEmailLabel = UILabel()
@@ -28,6 +29,7 @@ class ModifyInformationViewController: BaseViewController {
   
   // MARK: - Variables
   //  private var socialType: String?
+  var userName: String?
   private var socialType = "kakao"
   private var socialImageName = ["kakao": "kakaologo",
                                  "apple": "applelogo",
@@ -52,7 +54,8 @@ extension ModifyInformationViewController {
   private func layout() {
     layoutNavigationView()
     layoutNicknameTitleLabel()
-    layoutNicknameTextField()
+    layoutNicknameLabel()
+    layoutSeparatorView()
     layoutSocialEmailTitleLabel()
     layoutSocialImageView()
     layoutSocialEmailLabel()
@@ -82,16 +85,22 @@ extension ModifyInformationViewController {
     }
   }
   
-  private func layoutNicknameTextField() {
-    view.add(nicknameTextField) {
-      $0.addLeftPadding()
-      $0.backgroundColor = .whiteTextField
-      $0.setRounded(radius: 8)
+  private func layoutNicknameLabel() {
+    view.add(nicknameLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.nicknameTitleLabel.snp.bottom).offset(8)
+        $0.top.equalTo(self.nicknameTitleLabel.snp.bottom).offset(12)
         $0.leading.equalTo(self.nicknameTitleLabel.snp.leading)
-        $0.height.equalTo(40)
-        $0.width.equalTo(self.view.frame.width * 343/375)
+      }
+    }
+  }
+  
+  private func layoutSeparatorView() {
+    view.add(separatorView) {
+      $0.backgroundColor = .gray244
+      $0.snp.makeConstraints {
+        $0.leading.trailing.equalToSuperview()
+        $0.top.equalTo(self.nicknameLabel.snp.bottom).offset(16)
+        $0.height.equalTo(1)
       }
     }
   }
@@ -99,7 +108,7 @@ extension ModifyInformationViewController {
   private func layoutSocialEmailTitleLabel() {
     view.add(socialEmailTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.nicknameTextField.snp.bottom).offset(32)
+        $0.top.equalTo(self.separatorView.snp.bottom).offset(20)
         $0.leading.equalTo(self.nicknameTitleLabel.snp.leading)
       }
     }
@@ -198,6 +207,10 @@ extension ModifyInformationViewController {
                                   color: .blackText,
                                   font: .nanumRoundBold(fontSize: 14))
     
+    nicknameLabel.setupLabel(text: userName ?? "",
+                             color: .blackText,
+                             font: .nanumRoundRegular(fontSize: 14))
+    
     socialEmailTitleLabel.setupLabel(text: "이메일 ID",
                                      color: .blackText,
                                      font: .nanumRoundBold(fontSize: 14))
@@ -226,12 +239,32 @@ extension ModifyInformationViewController {
                              state: .normal,
                              radius: 0)
     
+    let logoutText = NSMutableAttributedString(string: "로그아웃",
+                                              attributes: [
+                                                .font: UIFont.nanumRoundRegular(fontSize: 12),
+                                                .foregroundColor: UIColor.brownGrey])
+    
+    logoutText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: logoutText.length))
+    
+    logoutButton.titleLabel?.attributedText = logoutText
+    
+    
+    
     drououtButton.setupButton(title: "회원탈퇴",
                               color: .brownGrey,
                               font: .nanumRoundRegular(fontSize: 12),
                               backgroundColor: .clear,
                               state: .normal,
                               radius: 0)
+    
+    let dropoutText = NSMutableAttributedString(string: "회원 탈퇴",
+                                              attributes: [
+                                                .font: UIFont.nanumRoundRegular(fontSize: 12),
+                                                .foregroundColor: UIColor.brownGrey])
+    
+    dropoutText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: dropoutText.length))
+    
+    drououtButton.titleLabel?.attributedText = dropoutText
   }
   
   private func setupNavigation() {

@@ -268,7 +268,7 @@ extension SelectAddressViewController {
       addressModel?.addresses[selectedIndex] ??
       Addresses(cityDistinct: "",
                 primaryAddress: "",
-                detailAddress: "")
+                isAddressCheck: true)
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }
@@ -358,7 +358,7 @@ extension SelectAddressViewController: UITableViewDataSource {
       addressCell.index = indexPath.row
       let address = addressModel?.addresses[indexPath.row]
       addressCell.addressLabel.text =
-        "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "") \(address?.detailAddress ?? "")"
+        "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "")"
       addressCell.rootViewController = self
       if indexPath.row == selectedIndex {
         addressCell.containerView.layer.borderColor = UIColor.mainBlue.cgColor

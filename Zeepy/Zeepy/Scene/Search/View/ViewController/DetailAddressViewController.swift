@@ -34,7 +34,7 @@ class DetailAddressViewController: BaseViewController {
   
   var addressModel = Addresses(cityDistinct: "",
                                primaryAddress: "",
-                               detailAddress: "")
+                               isAddressCheck: true)
   var reviewModel = ReviewModel(address: "",
                                 buildingID: 0,
                                 communcationTendency: "",
