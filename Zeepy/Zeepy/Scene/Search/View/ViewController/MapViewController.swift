@@ -70,8 +70,13 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     circleButton.setImage(UIImage(named: imageName), for: .normal)
     buttonTitle.text = buttonName
   }
-  
+  //[ BUSINESS, KIND, GRAZE, SOFTY, BAD ]
   var items = [MTMapPOIItem]()
+  var businessItems = [MTMapPOIItem]()
+  var kindItems = [MTMapPOIItem]()
+  var grazeItems = [MTMapPOIItem]()
+  var softyItems = [MTMapPOIItem]()
+  var badItems = [MTMapPOIItem]()
   var showItems = [MTMapPOIItem]()
   var currentMarkers = [MTMapPOIItem]()
   
@@ -273,13 +278,17 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
       fetchMapDetail(id: poiItem.tag)
-      print("-------poiItem.tag----------")
-      print(poiItem.tag)
       tendencyImage.image = poiItem.customImage
       addressLabel.text = mapDetailModel.address
-      print("-------poiItem.address----------")
-      print(mapDetailModel.address)
-      buildingDetail.text = mapDetailModel.buildingDetail.joined()
+      var detailList = ""
+        for i in 0...mapDetailModel.buildingDetail.count - 1 {
+            if i != mapDetailModel.buildingDetail.count - 1{
+                detailList += englishToKorean(name: mapDetailModel.buildingDetail[i]) + ","
+            }else {
+                detailList += englishToKorean(name: mapDetailModel.buildingDetail[i])
+            }
+        }
+      buildingDetail.text = detailList
       owner.text = mapDetailModel.owner
       soundProof.image = UIImage(named: mapDetailModel.soundProofImageName)
       cleanliness.image = UIImage(named: mapDetailModel.cleanlinessImageName)
@@ -297,6 +306,28 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     mapDetailView.isHidden = true
     closedFloatingView.isHidden = false
   }
+    func englishToKorean(name : String) -> String{
+        if name == "AIRCONDITIONAL"{
+            return "에어컨"
+        }else if name == "WASHINGMACHINE"{
+            return "세탁기"
+        }else if name == "BED"{
+            return "침대"
+        }else if name == "CLOSET"{
+            return "옷장"
+        }else if name == "DESK"{
+            return "책상"
+        }else if name == "REFRIDGERATOR"{
+            return "냉장고"
+        }else if name == "INDUCTION"{
+            return "인덕션"
+        }else if name == "BURNER"{
+            return "가스레인지"
+        }else if name == "MICROWAVE"{
+            return "전자레인지"
+        }
+        return ""
+    }
     func stringToTotalEvaluation(name: String) -> String{
         if name == "GOOD"{
             return "다음에도 여기 살고 싶어요!"
@@ -330,15 +361,15 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     func stringtoLessorImageName(name: String)-> String{
         if name == "SOFTY"{
-            return "emoji4"
+            return "emoji4Map"
         }else if name == "KIND"{
-            return "emoji2"
+            return "emoji2Map"
         }else if name == "GRAZE"{
-            return "emoji3"
+            return "emoji3Map"
         }else if name == "BUSINESS"{
-            return "emoji1"
+            return "emoji1Map"
         }else if name == "BAD"{
-            return "emoji5"
+            return "emoji5Map"
         }
         return " "
     }
@@ -353,15 +384,30 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 print(data)
                 for element in data {
                     if element.id == 1 {
-                        self.items.append(self.poiItem(id: element.id, latitude: element.latitude, longitude: element.longitude, imageName: "emoji2Map"))}
+                        self.items.append(self.poiItem(id: element.id, latitude: element.latitude, longitude: element.longitude, imageName: self.stringtoLessorImageName(name: element.reviews[0].communcationTendency)))}
                     else {
                         self.items.append(self.poiItem(id: element.id, latitude: element.latitude, longitude: element.longitude, imageName: "emoji1Map"))
                     }
-                    
                 }
-//                self.mapView.addPOIItems(self.items)
-//                self.currentMarkers = self.items
-//                self.mapView.fitAreaToShowAllPOIItems()
+                //review들이 채워져야함...!
+//                for ele in data {
+//                    if ele.reviews[0].communcationTendency == "BUSINESS"{
+//                        self.businessItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
+//                    }
+//                    if ele.reviews[0].communcationTendency == "KIND"{
+//                        self.kindItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
+//                    }
+//                    if ele.reviews[0].communcationTendency == "GRAZE"{
+//                        self.grazeItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
+//                    }
+//                    if ele.reviews[0].communcationTendency == "SOFTY"{
+//                        self.softyItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
+//                    }
+//                    if ele.reviews[0].communcationTendency == "BAD"{
+//                        self.badItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
+//                    }
+//                }
+//                self.items += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
                 self.findCurrentMarker()
               }
               catch {
@@ -398,8 +444,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
       let bounds = self.mapView.mapBounds
       let southWest = bounds?.bottomLeft
       let northEast = bounds?.topRight
-
-        
       for marker in items {
         if marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().latitude < (northEast?.mapPointGeo().latitude)! &&
@@ -662,12 +706,13 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
     
     var selectedTag = 6
     func filterItemsToShowItems(theTag: Int){
-      for i in 0..<items.count{
-        if items[i].tag == theTag{
-          showItems.append(items[i])
+        var communicationType = [businessItems, kindItems, grazeItems, softyItems, badItems]
+        communicationType.remove(at: theTag)
+        for list in communicationType{
+            showItems += list
         }
-      }
     }
+    
     if collectionViewCellList[indexPath.row].selected == true {
       cell?.backgroundColor = .mainYellow
       selectedTag = indexPath.row
