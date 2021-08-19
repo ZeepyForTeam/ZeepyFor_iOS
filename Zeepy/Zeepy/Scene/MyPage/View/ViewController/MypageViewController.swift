@@ -42,7 +42,7 @@ final class MypageViewController: BaseViewController {
   private var userName: String? = "도로롱"
   private final let addressButtonTitle = "btnManageadress"
   private final let reviewButtonTitle = "btnManagereview"
-  private final let favoriteButtonTitle = "btnLike"
+  private final let favoriteButtonTitle = "btnManageLike"
   private final let addressTitle = "주소 관리"
   private final let reviewTitle = "리뷰 관리"
   private final let favoriteTitle = "찜 목록"
@@ -313,6 +313,7 @@ extension MypageViewController {
     }
     else {
       let modifyVC = ModifyInformationViewController()
+      modifyVC.userName = userName
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
   }

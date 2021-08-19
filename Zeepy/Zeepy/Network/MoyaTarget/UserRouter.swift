@@ -48,11 +48,12 @@ extension UserRouter : TargetType {
     switch self {
     case .getAddress:
       return .get
-    case .addAddress,
-         .checkForRedundancyEmail,
+    case .checkForRedundancyEmail,
          .checkFromRedundancyNickname,
          .registration:
       return .post
+    case .addAddress:
+      return .put
     case .modifyNickname,
          .modifyPassword:
       return .put

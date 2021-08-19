@@ -220,7 +220,7 @@ extension ManageAddressViewController: UITableViewDataSource {
     else {
       addressCell.awakeFromNib()
       let address = addressModel?.addresses[indexPath.row]
-      addressCell.addressLabel.text = "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "") \(address?.detailAddress ?? "")"
+      addressCell.addressLabel.text = "\(address?.cityDistinct ?? "") \(address?.primaryAddress ?? "")"
       addressCell.rootViewController = self
       addressCell.index = indexPath.row
       return addressCell
