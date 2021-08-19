@@ -48,6 +48,13 @@ struct BuildingDeal: Codable {
   let deposit, floor, id, monthlyRent: Int
 }
 
+struct BuildingDeals: Codable {
+    let dealCost: Int
+    let dealDate: String
+    let dealType: String
+    let deposit, floor, id, monthlyRent: Int
+}
+
 // MARK: - DealDateClass
 struct DealDateClass: Codable {
   let date, day, hours, minutes: Int
@@ -62,6 +69,12 @@ struct BuildingLike: Codable {
   let user: Int
 }
 
+struct BuildingLikes: Codable {
+    let id: Int
+    let likeDate: String
+    let email: String
+}
+
 // MARK: - Review
 struct Review: Codable {
     let address, communcationTendency: String
@@ -73,6 +86,31 @@ struct Review: Codable {
     let user: Int
     let waterPressure: String
     let totalEvaluation : String
+}
+
+// MARK: - Review
+struct MapReview: Codable {
+    let communcationTendency: String
+    let furnitures: [String]
+    let id: Int
+    let imageUrls: [String]
+    let lessorAge, lessorGender, lessorReview, lightning: String
+    let pest, review, roomCount, soundInsulation: String
+    let totalEvaluation: String
+    let user: MapUser
+    let waterPressure: String
+}
+
+// MARK: - User
+struct MapUser: Codable {
+    let addresses: [MapAddress]
+    let id: Int
+    let name: String
+}
+
+// MARK: - Address
+struct MapAddress: Codable {
+    let cityDistinct, detailAddress, primaryAddress: String
 }
 
 //struct Review_all: Codable {
@@ -118,16 +156,17 @@ struct LikeDate: Codable {
   let timezoneOffset, year: Int?
 }
 //MARK: - BuildingAll
+
 struct buildingAllListModel: Codable {
     let apartmentName: String
     let areaCode, buildYear: Int
-    let buildingDeals: [BuildingDeal]
-    let buildingLikes: [BuildingLike]
-    let exclusivePrivateArea: Int
+    let buildingDeals: [BuildingDeals]
+    let buildingLikes: [BuildingLikes]
+    let exclusivePrivateArea: Float
     let fullNumberAddress, fullRoadNameAddress: String
     let id: Int
     let latitude, longitude : Double
-    let reviews: [Review]
+    let reviews: [MapReview]
     let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
 
