@@ -218,7 +218,7 @@ extension SearchAddressViewController {
       userAddressModel.addresses.append(
         Addresses(cityDistinct: cityDistrinct,
                   primaryAddress: primaryAddress,
-                  detailAddress: ""))
+                  isAddressCheck: true))
     }
     else {
       var str = ""
@@ -239,7 +239,7 @@ extension SearchAddressViewController {
       let primaryAddress = str
       let address = Addresses(cityDistinct: cityDistrinct,
                               primaryAddress: primaryAddress,
-                              detailAddress: "")
+                              isAddressCheck: true)
       userAddressModel.addresses.append(address)
     }
   }

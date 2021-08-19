@@ -34,16 +34,17 @@ struct BuildingModelByAddress: Codable {
   let areaCode, buildYear: Int
   let buildingDeals: [BuildingDeal]
   let buildingLikes: [BuildingLike]
-  let exclusivePrivateArea, id: Int
+  let exclusivePrivateArea: Float
+  let id: Int
   let latitude, longitude: Double
-  let reviews: [ReviewModel]
+  let reviews: [ReviewResponseDto]
   let shortAddress: String
 }
 
 // MARK: - BuildingDeal
 struct BuildingDeal: Codable {
   let dealCost: Int
-  let dealDate: DealDateClass
+  let dealDate: String
   let dealType: String
   let deposit, floor, id, monthlyRent: Int
 }
@@ -58,8 +59,8 @@ struct DealDateClass: Codable {
 // MARK: - BuildingLike
 struct BuildingLike: Codable {
   let id: Int
-  let likeDate: DealDateClass
-  let user: Int
+  let likeDate: String
+  let email: String
 }
 
 // MARK: - Review
@@ -166,9 +167,10 @@ struct BuildingUserLikeResponse: Codable {
   let buildingType: String
   let buildingDeals: [BuildingDealUserLike]
   let buildingLikes: [BuildingLikeUserLike]
-  let exclusivePrivateArea: Int
+  let exclusivePrivateArea: Float
   let fullNumberAddress, fullRoadNameAddress: String
-  let id, latitude, longitude: Int
+  let id : Int
+  let latitude, longitude: Double
   let reviews: [ReviewUserLike]
   let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
@@ -176,16 +178,9 @@ struct BuildingUserLikeResponse: Codable {
 // MARK: - BuildingDeal
 struct BuildingDealUserLike: Codable {
   let dealCost: Int
-  let dealDate: DealDateUserLike
+  let dealDate: String
   let dealType: String
   let deposit, floor, id, monthlyRent: Int
-}
-
-// MARK: - DealDate
-struct DealDateUserLike: Codable {
-  let date, day, hours, minutes: Int
-  let month, nanos, seconds, time: Int
-  let timezoneOffset, year: Int
 }
 
 // MARK: - BuildingLike
@@ -200,7 +195,7 @@ struct ReviewUserLike: Codable {
   let communcationTendency: String
   let furnitures: [String]
   let id: Int
-  let imageUrls: [String]
+  let imageUrls: [String]?
   let lessorAge, lessorGender, lessorReview, lightning: String
   let pest, review, roomCount, soundInsulation: String
   let totalEvaluation: String
@@ -210,15 +205,11 @@ struct ReviewUserLike: Codable {
 
 // MARK: - User
 struct UserUserLike: Codable {
-  let addresses: [AddressUserLike]
+  let addresses: [Addresses]
   let id: Int
   let name: String
 }
 
-// MARK: - Address
-struct AddressUserLike: Codable {
-  let cityDistinct, detailAddress, primaryAddress: String
-}
 
 // MARK: - Pageable
 struct PageableUserLike: Codable {

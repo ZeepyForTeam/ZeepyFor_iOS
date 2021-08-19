@@ -14,7 +14,7 @@ import Then
 class EmptyManageAddressTableViewCell: UITableViewCell {
   
   // MARK: - Components
-  private let contextLabel = UILabel()
+  let contextLabel = UILabel()
   let registerButton = UIButton()
   
   // MARK: - Variables
