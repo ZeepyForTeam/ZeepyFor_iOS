@@ -26,10 +26,10 @@ class CommunityViewController : BaseViewController {
   }
   private let viewModel = CommunityViewModel()
   private let selectedType = BehaviorSubject<PostType>(value: .total)
-
+  private let currentTab = BehaviorSubject<Int>(value: 0)
   private func setUpNavi() {
     self.navigationController?.setNavigationBarHidden(true, animated: true)
-
+    
     self.view.add(naviView)
     naviView.snp.makeConstraints{
       $0.leading.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
@@ -129,6 +129,8 @@ class CommunityViewController : BaseViewController {
   }
   private func setTabView(tabIndex i : Int) {
     // default, selected
+    currentTab.onNext(i)
+
     myTablabel.font = i == 1 ? .nanumRoundExtraBold(fontSize: 14) : .nanumRoundRegular(fontSize: 14)
     postTablabel.font = i == 0 ? .nanumRoundExtraBold(fontSize: 14) : .nanumRoundRegular(fontSize: 14)
     
@@ -176,7 +178,7 @@ extension CommunityViewController : UICollectionViewDelegate{
     layout.minimumLineSpacing = 0
     layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 629)
     layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-
+    
     segmentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     segmentCollectionView.backgroundColor = .white
     segmentCollectionView.isPagingEnabled = true
@@ -226,17 +228,18 @@ extension CommunityViewController : UICollectionViewDelegate{
   func bind() {
     let selection = Observable.zip (postFilterCollectionView.rx.itemSelected,
                                     postFilterCollectionView.rx.modelSelected((PostType, Bool).self))
-    let input = CommunityViewModel.Input(loadView: Observable.just(()),
+    let input = CommunityViewModel.Input(currentTab:currentTab,
+                                         loadView: Observable.just(()),
                                          filterSelect: selection,
                                          filterSelect2: selectedType)
     let output = viewModel.transform(input: input)
     
     output.filterUsecase.bind(to: postFilterCollectionView.rx
-                    .items(cellIdentifier: PostFilterCollectionViewCell.identifier,
-                           cellType: PostFilterCollectionViewCell.self)) {row, data, cell in
+                                .items(cellIdentifier: PostFilterCollectionViewCell.identifier,
+                                       cellType: PostFilterCollectionViewCell.self)) {row, data, cell in
       cell.bindCell(str: data.0.rawValue, selected: data.1)
     }.disposed(by: disposeBag)
-
+    
     Observable.just([0, 1])
       .bind(to: segmentCollectionView.rx.items(cellIdentifier: TapCell.identifier,
                                                cellType: TapCell.self)) { [weak self] row, data, cell in
@@ -259,7 +262,7 @@ extension CommunityViewController : UICollectionViewDelegate{
     writeBtn.rx.tap.bind{[weak self] in
       let vc = PostViewController()
       vc.hidesBottomBarWhenPushed = true
-
+      
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
     postFilterCollectionView.rx.modelSelected((PostType, Bool).self)

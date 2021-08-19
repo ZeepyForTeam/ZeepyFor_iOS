@@ -67,12 +67,13 @@ extension TapCell {
     }
   }
   func bind(output : CommunityViewModel.Output, dispose : DisposeBag) {
-
     output.postUsecase.bind(to: postCollectionView.rx
                               .items(cellIdentifier: postSimpleCollectionViewCell.identifier,
                                      cellType: postSimpleCollectionViewCell.self)) {row, data, cell in
       cell.bindCell(model: data)
     }.disposed(by: dispose)
+    
+    
     postCollectionView.rx.modelSelected(PostModel.self)
       .bind{[weak self] model in
         if let vc = PostDetailViewControlelr(nibName: nil, bundle: nil, postId: model.id) {

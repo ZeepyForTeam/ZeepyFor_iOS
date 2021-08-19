@@ -10,6 +10,7 @@ import Moya
 
 enum CommunityRouter {
   case fetchPostList(param: CommunityRequest)
+  case fetchMyZip(param: PostType?)
   case addPostList(param: SaveCommunityRequest)
   case fetchPostDetail(id: Int)
   case modifyPostDetail(id: Int)
@@ -49,6 +50,8 @@ extension CommunityRouter : TargetType {
       return "/community/participation/\(id)"
     case .modifyParticipation(id: let id):
       return "/community/participation/\(id)"
+    case .fetchMyZip(param: let param):
+      return "/community/myzip"
     }
   }
   var method: Moya.Method {
@@ -75,6 +78,8 @@ extension CommunityRouter : TargetType {
       return .post
     case .modifyParticipation(id: let id):
       return .put
+    case .fetchMyZip(param: let param):
+      return .get
     }
   }
   var sampleData: Data {
@@ -112,6 +117,13 @@ extension CommunityRouter : TargetType {
     case .modifyParticipation(id: let id):
       
       return .requestPlain
+    case .fetchMyZip(param: let param):
+      if let str = param {
+        return .requestParameters(parameters: try! ["communityCategory" : str.requestEnum].asParameter(), encoding: URLEncoding.queryString)
+      }
+      return .requestPlain
+
+
     }
   }
   var headers: [String : String]? {

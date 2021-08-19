@@ -23,6 +23,14 @@ extension CommunityService {
       .map([CommunityContent].self,atKeyPath: "content")
     
   }
+  func fetchMyZip(param: PostType?) -> Observable<[MyZip]> {
+    provider.rx.request(.fetchMyZip(param: param))
+      .retryWithAuthIfNeeded()
+      .filterError()
+      .asObservable()
+      .map([MyZip].self,atKeyPath: "myZip")
+    
+  }
   func addPostList(param: SaveCommunityRequest) -> Observable<Bool> {
     provider.rx.request(.addPostList(param : param))
       .successFlag()
