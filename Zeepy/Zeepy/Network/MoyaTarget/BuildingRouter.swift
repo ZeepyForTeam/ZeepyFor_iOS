@@ -19,9 +19,9 @@ enum BuildingRouter {
   case fetchBuildingUserLike
   
   case fetchLikeBuildings
-  case addLikeBuilding(param: LikeRequest)
+  case addLikeBuilding(param: BuildingLikeRequset)
   case fetchLikeBuildingDetail(id: Int)
-  case modifyLikeBuilding(id: Int, param: LikeRequest)
+  case modifyLikeBuilding(id: Int)
   case deleteLikeBuilding(id: Int)
   case fetchAllBuildings
   case fetchBuildingByAddress(address: String)
@@ -57,7 +57,7 @@ extension BuildingRouter : TargetType {
       return "/likes/buildings"
     case .fetchLikeBuildingDetail(id: let id):
       return "/likes/buildings/\(id)"
-    case .modifyLikeBuilding(id: let id, param: let param):
+    case .modifyLikeBuilding(id: let id):
       return "/likes/buildings/\(id)"
     case .deleteLikeBuilding(id: let id):
       return "/likes/buildings/\(id)"
@@ -121,11 +121,11 @@ extension BuildingRouter : TargetType {
     case .fetchLikeBuildings:
       return .requestPlain
     case .addLikeBuilding(param: let param):
-      return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     case .fetchLikeBuildingDetail(id: let id):
       return .requestPlain
-    case .modifyLikeBuilding(id: let id, param: let param):
-      return .requestParameters(parameters: try! param.asParameter(), encoding: URLEncoding.default)
+    case .modifyLikeBuilding(id: let id):
+      return .requestPlain
     case .deleteLikeBuilding(id: let id):
       return .requestPlain
     case .fetchAllBuildings:

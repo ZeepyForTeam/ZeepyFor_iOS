@@ -207,7 +207,7 @@ class SignUpViewController: BaseViewController {
       switch result {
       case .success(let result) :
         UserManager.shared.userId = result.userId
-        LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .email)
+        LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .email, userId: result.userId)
         let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true
         let rootVC = TabbarViewContorller()

@@ -15,12 +15,12 @@ class BuildingService {
   }
 }
 extension BuildingService {
-  func fetchBuildingList(param: BuildingRequest) -> Observable<BuildingResponseModel> {
+  func fetchBuildingList(param: BuildingRequest) -> Observable<[BuildingContent]> {
     provider.rx.request(.fetchBuildingList(param: param))
       .retryWithAuthIfNeeded()
       .filterError()
       .asObservable()
-      .map(BuildingResponseModel.self)
+      .map([BuildingContent].self, atKeyPath: "content")
   }
     
   //클라이언트에서 안씀
@@ -29,10 +29,17 @@ extension BuildingService {
       .retryWithAuthIfNeeded()
       .asObservable()
   }
+  func fetchBuildingDetailMapped(id: Int) -> Observable<BuildingContent> {
+    provider.rx.request(.fetchBuildingDetail(id: id))
+      .retryWithAuthIfNeeded()
+      .filterError()
+      .map(BuildingContent.self)
+  }
   func fetchBuildingDetail(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchBuildingDetail(id: id))
       .retryWithAuthIfNeeded()
       .asObservable()
+
   }
   func modifyBuilding(id: Int, param: ModiftyBuildingRequest) -> Observable<Response> {
     provider.rx.request(.modifyBuilding(id: id, param: param))
@@ -59,10 +66,12 @@ extension BuildingService {
       .retryWithAuthIfNeeded()
       .asObservable()
   }
-  func addLikeBuilding(param: LikeRequest) -> Observable<Response> {
+  func addLikeBuilding(param: BuildingLikeRequset) -> Observable<Bool> {
     provider.rx.request(.addLikeBuilding(param: param))
       .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+
   }
   func fetchLikeBuildingDetail(id: Int) -> Observable<Response> {
     provider.rx.request(.fetchLikeBuildingDetail(id: id))
@@ -70,13 +79,19 @@ extension BuildingService {
       .asObservable()
   }
 
-  func modifyLikeBuilding(id: Int, param: LikeRequest) -> Observable<Response> {
-    provider.rx.request(.modifyLikeBuilding(id: id, param: param))
+  func modifyLikeBuilding(id: Int) -> Observable<Bool> {
+    provider.rx.request(.modifyLikeBuilding(id: id))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+    
   }
-  func deleteLikeBuilding(id: Int) -> Observable<Response> {
+  func deleteLikeBuilding(id: Int) -> Observable<Bool> {
     provider.rx.request(.deleteLikeBuilding(id: id))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
+    
   }
 
   func fetchAllBuildings() -> Observable<Response>{

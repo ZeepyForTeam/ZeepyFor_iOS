@@ -13,7 +13,8 @@ import Moya
 class LookAroundDetailViewController: BaseViewController {
   private let model : BuildingModel!
   private let viewModle = LookAroundDetailViewModel()
-  private let loadTrigger = PublishSubject<Void>()
+  private let loadTrigger = PublishSubject<Int>()
+  private let likeTrigger = PublishSubject<Bool>()
   private let navigationView = UIView().then{
     $0.backgroundColor = .white
     let underBar = UIView().then{
@@ -333,11 +334,9 @@ extension LookAroundDetailViewController {
     self.addressLabel.text = model.buildingName
   }
   func bind() {
-    let input = LookAroundDetailViewModel.Input(loadTrigger: loadTrigger)
+    let input = LookAroundDetailViewModel.Input(loadTrigger: loadTrigger,
+                                                likeTrigger: likeTrigger)
     let output = viewModle.transForm(inputs: input)
-    output.images.drive{
-      print($0)
-    }.disposed(by: disposeBag)
     output.images.asObservable()
       .bind(to: imageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
                                              cellType: ReusableSimpleImageCell.self)) {row, data, cell in
@@ -348,17 +347,36 @@ extension LookAroundDetailViewController {
           cell.bindCell(model: data,over: row == 3)
         }
       }.disposed(by: disposeBag)
+    output.likeResult.bind{[weak self] result in
+      if result {
+        self?.likeBtn.isSelected.toggle()
+        
+        self?.loadTrigger.onNext((self?.model.buildingId)!)
+      }
+    }.disposed(by: disposeBag)
     output.buildingDetailUsecase.bind{ [weak self] model in
       guard let self = self
       else { return }
       self.addressLabel.text = model.buildingAddress
-      self.buildingType.text = model.buildingType
+      self.buildingTypeLabel.text = model.buildingType
       self.tradeTypeLabel.text = model.contractType
       self.options.text = model.options.map{$0}.reduce(into : ""){$0 + "," + $1}
       for i in 0..<self.ownerTypes.count {
         self.ownerTypes[i].typeLabel.text = model.ownerInfo[i].type.rawValue
         self.ownerTypes[i].typeCount.text = "\(model.ownerInfo[i].count) 개"
         self.ownerTypes[i].typeCount.textColor = model.ownerInfo[i].count > 0 ? .mainBlue : .gray196
+      }
+      let count = model.review.count
+      self.reviewView.isHidden = count == 0
+      self.reviewMoreBtn.isHidden = self.reviewView.isHidden == true
+      self.reviewEmptyView.isHidden = count != 0
+      
+      if count != 0 {
+        self.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .normal)
+        self.buildingReviewTitle.text = "건물 리뷰(\(count))"
+      }
+      if model.buildingImages.isEmpty {
+        self.imageCollectionView.isHidden = true
       }
     }.disposed(by: disposeBag)
     
@@ -382,25 +400,14 @@ extension LookAroundDetailViewController {
     }.disposed(by: reviewView.disposeBag)
     reviewEmptyBtn.rx.tap.bind{[weak self] in
       self?.writeReview()
+      
     }.disposed(by: disposeBag)
     
-    let dummyCount = Observable.just(3)
-    dummyCount.bind{ [weak self] count in
-      self?.reviewView.isHidden = count == 0
-      self?.reviewMoreBtn.isHidden = self?.reviewView.isHidden == true
-      self?.reviewEmptyView.isHidden = count != 0
-      
-      if count != 0 {
-        self?.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .normal)
-        self?.buildingReviewTitle.text = "건물 리뷰(\(count))"
-      }
-    }.disposed(by: disposeBag)
     likeBtn.rx.tap.bind{ [weak self] in
-      self?.reviewView.isEnabled.toggle()
-      self?.likeBtn.isSelected.toggle()
+      self?.likeTrigger.onNext(self?.likeBtn.isSelected == true)
     }.disposed(by: disposeBag)
     //
-    loadTrigger.onNext(())
+    loadTrigger.onNext((model.buildingId))
   }
 }
 

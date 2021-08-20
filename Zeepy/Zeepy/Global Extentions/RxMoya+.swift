@@ -128,7 +128,7 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
                     typeString = "email"
                   }
                 }
-                LoginManager.shared.makeLoginStatus(accessToken: token.accessToken, refreshToken: token.refreshToken, loginType: (.init(rawValue: typeString)!))
+                LoginManager.shared.makeLoginStatus(accessToken: token.accessToken, refreshToken: token.refreshToken, loginType: (.init(rawValue: typeString)!), userId: token.userId)
                 return Single.just(token)
               })
           }

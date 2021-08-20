@@ -144,3 +144,49 @@ extension Int {
     return "\(minuteString):\(secondsString)"
   }
 }
+extension String {
+  var tagTypes : TagType {
+    switch self {
+    case "ONE":
+      return .one
+    case "TWO":
+      return .two
+    case "TRHEEORMORE":
+      return .three
+    case "OFFICETEL":
+      return .officetel
+    case "ROWHOUSE":
+      return .rawhouse
+    case "UNKNOWN":
+      return .unknown
+    default :
+      return .unknown
+    }
+  }
+  var dealTypes: String {
+    switch self {
+    case "JEONSE" :
+      return "전세"
+    case "MONTHLY" :
+      return "월세"
+    case "DEAL" :
+      return "자가"
+    default :
+      return "기타"
+    }
+  }
+  var validateType: ValidateType {
+    switch self {
+    case "BUSINESS" :
+      return ValidateType.business
+    case "KIND" :
+      return .kind
+    case "GRAZE" :
+      return .free
+    case "SOFTY" :
+      return .cute
+    default :
+      return ValidateType.bad
+    }
+  }
+}
