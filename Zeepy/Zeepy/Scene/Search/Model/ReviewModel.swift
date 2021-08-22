@@ -36,9 +36,4 @@ struct ReviewReview: Codable {
     let imageUrls: [String]
 }
 
-struct User: Codable {
-    let id: Int
-    let name: String
-    let addresses: [AddressAddress]
-}
 
