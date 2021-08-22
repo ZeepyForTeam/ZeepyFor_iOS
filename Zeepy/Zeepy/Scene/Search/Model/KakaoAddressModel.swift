@@ -49,6 +49,12 @@ struct Address: Codable {
     }
 }
 
+struct AddressAddress: Codable {
+    let cityDistinct: String
+    let primaryAddress: String
+    let isAddressCheck: Bool
+}
+
 // MARK: - RoadAddress
 struct RoadAddress: Codable {
     let addressName, region1DepthName, region2DepthName, region3DepthName: String

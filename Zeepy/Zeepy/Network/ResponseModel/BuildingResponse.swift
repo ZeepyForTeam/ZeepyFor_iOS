@@ -158,16 +158,17 @@ struct LikeDate: Codable {
 //MARK: - BuildingAll
 
 struct buildingAllListModel: Codable {
+    let id, buildYear: Int
     let apartmentName: String
-    let areaCode, buildYear: Int
+    let shortAddress: String
+    let fullRoadNameAddress, shortRoadNameAddress, fullNumberAddress, shortNumberAddress: String
+    let exclusivePrivateArea: Float
+    let areaCode: Int
+    let latitude, longitude: Double
+    let buildingType: String
     let buildingDeals: [BuildingDeals]
     let buildingLikes: [BuildingLikes]
-    let exclusivePrivateArea: Float
-    let fullNumberAddress, fullRoadNameAddress: String
-    let id: Int
-    let latitude, longitude : Double
-    let reviews: [MapReview]
-    let shortAddress, shortNumberAddress, shortRoadNameAddress: String
+    let reviews: [ReviewReview]
 }
 
 struct SearchAddressModel: Codable {
