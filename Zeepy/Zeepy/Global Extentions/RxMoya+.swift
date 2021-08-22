@@ -115,7 +115,20 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
                 return Single.error(error)
               }
               .flatMap({token -> Single<AuthResponse> in
-                LoginManager.shared.makeLoginStatus(accessToken: token.accessToken, refreshToken: token.refreshToken)
+                var typeString = "email"
+                if let type = UserDefaultHandler.loginType {
+                  switch type {
+                  case "apple" :
+                    typeString = "apple"
+                  case "kakao":
+                    typeString = "kakao"
+                  case "naver":
+                    typeString = "naver"
+                  default :
+                    typeString = "email"
+                  }
+                }
+                LoginManager.shared.makeLoginStatus(accessToken: token.accessToken, refreshToken: token.refreshToken, loginType: (.init(rawValue: typeString)!), userId: token.userId)
                 return Single.just(token)
               })
           }

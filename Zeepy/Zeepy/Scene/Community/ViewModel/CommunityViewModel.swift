@@ -11,12 +11,14 @@ import Moya
 class CommunityViewModel {
   private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
+    let currentTab: Observable<Int>
     let loadView : Observable<Void>
     let filterSelect: Observable<(IndexPath, (PostType, Bool))>
     let filterSelect2: Observable<PostType> 
   }
   struct Output {
     let postUsecase : Observable<[PostModel]>
+    let myZip: Observable<[PostModel]>
     let filterUsecase : Observable<[(PostType, Bool)]>
   }
   
@@ -29,22 +31,36 @@ extension CommunityViewModel {
   func transform(input: Input) -> Output {
     weak var weakSelf = self
     var postList : [PostModel] = []
-    let postListObservable = input.filterSelect2.flatMapLatest{ type -> Observable<[PostModel]> in
+    
+    let postListObservable = Observable.combineLatest(input.currentTab, input.filterSelect2).flatMapLatest{ tab, type -> Observable<[PostModel]> in
+      if tab == 0 {
       let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
         .map{
           $0.map{
               $0.toPostModel()
             }
         } ?? .empty()
-      print("")
       return response
+      }
+      else {
+        let response = weakSelf?.service.fetchMyZip(param: nil).map{
+          $0.map{
+              $0.toPostModel()
+            }
+        } ?? .empty()
+        return response
+      }
     }.share()
+    let myZip = input.loadView.flatMapLatest{ _ in
+      weakSelf?.service.fetchMyZip(param: nil) ?? .empty()
+    }.map{$0.map{$0.toPostModel()}}
     let filterUsecase = input.loadView
       .flatMapLatest{ _ -> Observable<[(PostType, Bool)]> in
         return weakSelf?.modifyFilter(tapAction: input.filterSelect, origin: self.filterList) ?? .empty()
       }
     return .init(
       postUsecase: postListObservable,
+      myZip: myZip,
       filterUsecase: filterUsecase)
   }
   //안써도되는게 확인되며눈삭제

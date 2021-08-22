@@ -16,6 +16,7 @@ import Then
 class FavoriteListViewConroller: BaseViewController {
 
   // MARK: - Components
+  private let navigationView = CustomNavigationBar()
   private let addressTitleLabel = UILabel()
   private let reviewTableView = UITableView()
   
@@ -37,12 +38,12 @@ class FavoriteListViewConroller: BaseViewController {
     setupNavigation()
   }
   
-  override func viewWillLayoutSubviews() {
-    super.updateViewConstraints()
-    reviewTableView.snp.updateConstraints {
-      $0.height.equalTo(self.reviewTableView.contentSize.height)
-    }
-  }
+//  override func viewWillLayoutSubviews() {
+//    super.updateViewConstraints()
+//    reviewTableView.snp.updateConstraints {
+//      $0.height.equalTo(self.reviewTableView.contentSize.height)
+//    }
+//  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -55,14 +56,27 @@ extension FavoriteListViewConroller {
   
   // MARK: - Layout Helpers
   private func layout() {
+    layoutNavigationView()
     layoutAddressTitleLabel()
     layoutAddressTableView()
+  }
+  
+  private func layoutNavigationView() {
+    view.add(navigationView) {
+      $0.backBtn.addTarget(self,
+                           action: #selector(self.backButtonClicked),
+                           for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
+    }
   }
   
   private func layoutAddressTitleLabel() {
     view.add(addressTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+        $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
       }
     }
@@ -78,7 +92,7 @@ extension FavoriteListViewConroller {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.addressTitleLabel.snp.bottom).offset(16)
         $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
-        $0.height.equalTo(1080)
+        $0.height.equalTo(700)
       }
     }
   }
@@ -88,20 +102,21 @@ extension FavoriteListViewConroller {
   private func register() {
     reviewTableView.register(FavoriteListTableViewCell.self,
                               forCellReuseIdentifier: FavoriteListTableViewCell.identifier)
+    reviewTableView.register(EmptyManageAddressTableViewCell.self,
+                             forCellReuseIdentifier: EmptyManageAddressTableViewCell.identifier)
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
   }
   
   private func configData() {
-    self.addressTitleLabel.setupLabel(text: "현재 등록된 주소",
+    self.addressTitleLabel.setupLabel(text: "내가 찜한 자취방",
                                       color: .blackText,
                                       font: .nanumRoundExtraBold(fontSize: 16),
                                       align: .left)
   }
   
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "찜 목록")
+    self.navigationView.naviTitle.text = "찜 목록"
   }
   
   func reloadTableView() {
@@ -130,7 +145,7 @@ extension FavoriteListViewConroller {
   }
   
   private func setupTendency(review: [ReviewUserLike]) -> (String, String) {
-    var tendency = [0,0,0]
+    var tendency = [0,0,0,0,0]
     for element in review {
       switch element.communcationTendency {
       case "BUSINESS":
@@ -250,25 +265,45 @@ extension FavoriteListViewConroller: UITableViewDelegate {
 // MARK: - reviewTableView DataSource
 extension FavoriteListViewConroller: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.tableViewRowCount
+    var count: Int = 1
+    if userLikeModel?.content.isEmpty == false {
+      count = (userLikeModel?.content.count) ?? 0
+    }
+    return count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let emptyCell = tableView.dequeueReusableCell(
+            withIdentifier: EmptyManageAddressTableViewCell.identifier,
+            for: indexPath) as? EmptyManageAddressTableViewCell else {
+      return UITableViewCell()
+    }
+    
     guard let reviewCell = tableView.dequeueReusableCell(
             withIdentifier: FavoriteListTableViewCell.identifier,
             for: indexPath) as? FavoriteListTableViewCell else {
       return UITableViewCell()
     }
-    let model = userLikeModel?.content[indexPath.row]
-    reviewCell.dataBind(apartmentName: model?.apartmentName ?? "",
-                        tendencyImageName: setupTendency(review: model?.reviews ?? []).0,
-                        tendency: setupTendency(review: model?.reviews ?? []).1,
-                        totalEvaluation: setupEvaluation(review: model?.reviews ?? []),
-                        buildingImageName: model?.reviews[0].imageUrls[0] ?? "",
-                        roomCount: assembleRoomCount(review: model?.reviews ?? []),
-                        buildingType: model?.buildingType ?? "")
-    reviewCell.awakeFromNib()
-    return reviewCell
+    
+    if userLikeModel?.content.isEmpty == true ||
+        userLikeModel?.content == nil {
+      emptyCell.awakeFromNib()
+      emptyCell.contextLabel.text = "아직 찜한 자취방이 없어요. :("
+      emptyCell.rootViewController = self
+      return emptyCell
+    }
+    else {
+      let model = userLikeModel?.content[indexPath.row]
+      reviewCell.dataBind(apartmentName: model?.apartmentName ?? "",
+                          tendencyImageName: setupTendency(review: model?.reviews ?? []).0,
+                          tendency: setupTendency(review: model?.reviews ?? []).1,
+                          totalEvaluation: setupEvaluation(review: model?.reviews ?? []),
+                          buildingImageName: "",
+                          roomCount: assembleRoomCount(review: model?.reviews ?? []),
+                          buildingType: model?.buildingType ?? "")
+      reviewCell.awakeFromNib()
+      return reviewCell
+    }
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

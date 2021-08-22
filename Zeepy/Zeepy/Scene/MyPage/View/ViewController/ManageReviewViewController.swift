@@ -101,6 +101,8 @@ extension ManageReviewViewController {
   private func register() {
     reviewTableView.register(ManageReviewTableViewCell.self,
                              forCellReuseIdentifier: ManageReviewTableViewCell.identifier)
+    reviewTableView.register(EmptyManageAddressTableViewCell.self,
+                             forCellReuseIdentifier: EmptyManageAddressTableViewCell.identifier)
     reviewTableView.delegate = self
     reviewTableView.dataSource = self
   }
@@ -207,26 +209,40 @@ extension ManageReviewViewController: UITableViewDelegate {
 // MARK: - reviewTableView DataSource
 extension ManageReviewViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var count = 0
-    if self.reviewModel?.simpleReviewDtoList == nil ||
-        self.reviewModel?.simpleReviewDtoList.isEmpty == true {
-      return count
+    var count: Int = 1
+    if reviewModel?.simpleReviewDtoList.isEmpty == false {
+      count = (reviewModel?.simpleReviewDtoList.count) ?? 0
     }
-    else {
-      return count + (self.reviewModel?.simpleReviewDtoList.count ?? 0)
-    }
+    return count
+  }
+
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  guard let emptyCell = tableView.dequeueReusableCell(
+          withIdentifier: EmptyManageAddressTableViewCell.identifier,
+          for: indexPath) as? EmptyManageAddressTableViewCell else {
+    return UITableViewCell()
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let reviewCell = tableView.dequeueReusableCell(
-            withIdentifier: ManageReviewTableViewCell.identifier,
-            for: indexPath) as? ManageReviewTableViewCell else {
-      return UITableViewCell()
-    }
+  guard let reviewCell = tableView.dequeueReusableCell(
+          withIdentifier: ManageReviewTableViewCell.identifier,
+          for: indexPath) as? ManageReviewTableViewCell else {
+    return UITableViewCell()
+  }
+  
+  if reviewModel?.simpleReviewDtoList.isEmpty == true ||
+      reviewModel?.simpleReviewDtoList == nil {
+    emptyCell.awakeFromNib()
+    emptyCell.contextLabel.text = "아직 작성한 리뷰가 없어요. :(" 
+    emptyCell.rootViewController = self
+    return emptyCell
+  }
+  
+  else {
     reviewCell.awakeFromNib()
     let review = self.reviewModel?.simpleReviewDtoList[indexPath.row]
-    reviewCell.dataBind(address: "무지개빌",
-                        date: "2020-02-20",
+    let dateText: [Substring] = review?.reviewDate.split(separator: "T") ?? [""]
+    reviewCell.dataBind(address: review?.apartmentName ?? "",
+                        date: String(dateText[0]),
                         lender: "\(convertData(data: review?.lessorAge ?? "")) \(convertData(data: "MALE"))로 보여요",
                         tendency: converTendencyData(data: review?.communcationTendency ?? ""),
                         sound: convertOptionData(data: review?.soundInsulation ?? ""),
@@ -235,9 +251,10 @@ extension ManageReviewViewController: UITableViewDataSource {
                         water: convertOptionData(data: review?.waterPressure ?? ""))
     return reviewCell
   }
-  
-  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    self.viewWillLayoutSubviews()
-  }
-  
+}
+
+func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+  self.viewWillLayoutSubviews()
+}
+
 }

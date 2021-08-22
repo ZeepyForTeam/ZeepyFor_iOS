@@ -56,5 +56,5 @@ struct LocationModel: Encodable {
 }
 
 struct BuildingLikeRequset: Codable {
-    let buildingId, likeDate, user: Int?
+    let buildingId: Int
 }

@@ -19,40 +19,42 @@ struct BuildingResponseModel: Codable {
 
 // MARK: - BuildingContent
 struct BuildingContent: Codable {
-  let address, apartmentName: String
-  let areaCode, buildYear: Int
-  let buildingDeals: [BuildingDeal]
-  let buildingLikes: [BuildingLike]
-  let exclusivePrivateArea, id: Int
-  let latitude, longitude: Double
-  let reviews: [Review]
-  let shortAddress: String
+  let address, apartmentName: String?
+  let id, areaCode, buildYear: Int?
+  let buildingDeals: [BuildingDeal]?
+  let buildingLikes: [BuildingLike]?
+  let exclusivePrivateArea,latitude, longitude: Double?
+  let reviews: [Review]?
+  let shortAddress, fullRoadNameAddress,
+      shortRoadNameAddress,fullRoadAddress,fullNumberAddress,shortNumberAddress,buildingType: String?
+  
 }
 
 struct BuildingModelByAddress: Codable {
-  let apartmentName: String
-  let areaCode, buildYear: Int
+  let apartmentName: String?
+  let areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]
   let buildingLikes: [BuildingLike]
-  let exclusivePrivateArea, id: Int
-  let latitude, longitude: Double
+  let exclusivePrivateArea, id: Int?
+  let latitude, longitude: Double?
   let reviews: [ReviewModel]
+
   let shortAddress: String
 }
 
 // MARK: - BuildingDeal
 struct BuildingDeal: Codable {
-  let dealCost: Int
-  let dealDate: DealDateClass
-  let dealType: String
-  let deposit, floor, id, monthlyRent: Int
+  let dealDate: String?
+  let dealType: String?
+  let deposit, floor, id, dealCost, monthlyRent: Int?
+
 }
 
 struct BuildingDeals: Codable {
-    let dealCost: Int
-    let dealDate: String
-    let dealType: String
-    let deposit, floor, id, monthlyRent: Int
+  let dealCost: Int
+  let dealDate: String
+  let dealType: String
+  let deposit, floor, id, monthlyRent: Int
 }
 
 // MARK: - DealDateClass
@@ -65,52 +67,52 @@ struct DealDateClass: Codable {
 // MARK: - BuildingLike
 struct BuildingLike: Codable {
   let id: Int
-  let likeDate: DealDateClass
-  let user: Int
+  let likeDate: String
+  let email: String
 }
 
 struct BuildingLikes: Codable {
-    let id: Int
-    let likeDate: String
-    let email: String
+  let id: Int
+  let likeDate: String
+  let email: String
 }
 
 // MARK: - Review
 struct Review: Codable {
-    let address, communcationTendency: String
-    let furnitures: [String]
-    let id: Int
-    let imageUrls: [String]
-    let lessorAge, lessorReview, lightning, pest: String
-    let review, soundInsulation: String
-    let user: Int
-    let waterPressure: String
-    let totalEvaluation : String
+  let address, communcationTendency: String
+  let furnitures: [String]
+  let id: Int
+  let imageUrls: [String]
+  let lessorAge, lessorReview, lightning, pest: String
+  let review, soundInsulation: String
+  let user: Int
+  let waterPressure: String
+  let totalEvaluation : String
 }
 
 // MARK: - Review
 struct MapReview: Codable {
-    let communcationTendency: String
-    let furnitures: [String]
-    let id: Int
-    let imageUrls: [String]
-    let lessorAge, lessorGender, lessorReview, lightning: String
-    let pest, review, roomCount, soundInsulation: String
-    let totalEvaluation: String
-    let user: MapUser
-    let waterPressure: String
+  let communcationTendency: String
+  let furnitures: [String]
+  let id: Int
+  let imageUrls: [String]
+  let lessorAge, lessorGender, lessorReview, lightning: String
+  let pest, review, roomCount, soundInsulation: String
+  let totalEvaluation: String
+  let user: MapUser
+  let waterPressure: String
 }
 
 // MARK: - User
 struct MapUser: Codable {
-    let addresses: [MapAddress]
-    let id: Int
-    let name: String
+  let addresses: [MapAddress]
+  let id: Int
+  let name: String
 }
 
 // MARK: - Address
 struct MapAddress: Codable {
-    let cityDistinct, detailAddress, primaryAddress: String
+  let cityDistinct, detailAddress, primaryAddress: String
 }
 
 //struct Review_all: Codable {
@@ -206,9 +208,10 @@ struct BuildingUserLikeResponse: Codable {
   let buildingType: String
   let buildingDeals: [BuildingDealUserLike]
   let buildingLikes: [BuildingLikeUserLike]
-  let exclusivePrivateArea: Int
+  let exclusivePrivateArea: Float
   let fullNumberAddress, fullRoadNameAddress: String
-  let id, latitude, longitude: Int
+  let id : Int
+  let latitude, longitude: Double
   let reviews: [ReviewUserLike]
   let shortAddress, shortNumberAddress, shortRoadNameAddress: String
 }
@@ -216,16 +219,9 @@ struct BuildingUserLikeResponse: Codable {
 // MARK: - BuildingDeal
 struct BuildingDealUserLike: Codable {
   let dealCost: Int
-  let dealDate: DealDateUserLike
+  let dealDate: String
   let dealType: String
   let deposit, floor, id, monthlyRent: Int
-}
-
-// MARK: - DealDate
-struct DealDateUserLike: Codable {
-  let date, day, hours, minutes: Int
-  let month, nanos, seconds, time: Int
-  let timezoneOffset, year: Int
 }
 
 // MARK: - BuildingLike
@@ -240,7 +236,7 @@ struct ReviewUserLike: Codable {
   let communcationTendency: String
   let furnitures: [String]
   let id: Int
-  let imageUrls: [String]
+  let imageUrls: [String]?
   let lessorAge, lessorGender, lessorReview, lightning: String
   let pest, review, roomCount, soundInsulation: String
   let totalEvaluation: String
@@ -250,15 +246,11 @@ struct ReviewUserLike: Codable {
 
 // MARK: - User
 struct UserUserLike: Codable {
-  let addresses: [AddressUserLike]
+  let addresses: [Addresses]
   let id: Int
   let name: String
 }
 
-// MARK: - Address
-struct AddressUserLike: Codable {
-  let cityDistinct, detailAddress, primaryAddress: String
-}
 
 // MARK: - Pageable
 struct PageableUserLike: Codable {
@@ -278,23 +270,58 @@ typealias BuildingLikeResponse = [BuildingLikeResponseElement]
 
 
 extension BuildingContent {
-  func toModel() -> BuildingModel {
-    let firstImg = self.reviews.flatMap{$0.imageUrls}.first ?? ""
-    let ownerType = self.reviews.flatMap{$0.communcationTendency}.map{ str -> ValidateType in
-      switch String(str) {
-      case "BUSINESS" :
-        return ValidateType.business
-      case "KIND" :
-        return .kind
-      case "GRAZE" :
-        return .free
-      case "SOFTY" :
-        return .cute
-      default :
-        return ValidateType.bad
+  func toDetailModel() -> BuildingDetailInfo {
+    
+    let dealTypes = (self.buildingDeals?.map{$0.dealType?.dealTypes
+    }.first ?? "") ?? ""
+    let images = reviews?.flatMap{$0.imageUrls} ?? []
+    var ownerTypes : [OwnerTypeCount] = [.init(type: .kind, count: 0),
+                                          .init(type: .free, count: 0),
+                                          .init(type: .cute, count: 0),
+                                          .init(type: .business, count: 0),
+                                          .init(type: .bad, count: 0)]
+    var reviewInfos : [ReviewDetailInfo] = []
+    for review in reviews ?? [] {
+      if let idx = ownerTypes.firstIndex(where: {$0.type == review.communcationTendency.validateType}) {
+        ownerTypes[idx].count += 1
       }
+      let reviewInfo = ReviewDetailInfo(reviewrName: "리뷰어",
+                       detailAddress: review.address,
+                       ownerReview: review.review,
+                       ownerEstimateAge: review.lessorAge,
+                       houseReview: "방음 \(review.soundInsulation) 해충 \(review.pest) 채광 \(review.lightning) 수압 \(review.waterPressure)",
+                       totalReview: review.totalEvaluation,
+                       createdAt: "")
+      reviewInfos.append(reviewInfo)
+    }
+    return .init(buildingId: id ?? -1,
+                 buildingName: apartmentName ?? "",
+                 buildingImages: images,
+                 buildingAddress: fullNumberAddress ?? "",
+                 buildingType: self.buildingType?.tagTypes.rawValue ?? "",
+                 contractType: dealTypes,
+                 options: [],
+                 ownerInfo: ownerTypes,
+                 review: reviewInfos,
+                 filters: [])
+  }
+  func toModel() -> BuildingModel {
+    let firstImg = self.reviews?.flatMap{$0.imageUrls}.first ?? ""
+    let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
     }.first ?? .business
-    let review = self.reviews.flatMap{ ReviewInfo.init(reviewrName: String($0.user), review: $0.review)}.first ?? .init(reviewrName: "없음", review: "없음")
-    return .init(buildingName: apartmentName, buildingImage: firstImg, ownderInfo: ownerType, review: review, filters: ["test","test","test"])
+    var tagTypes : TagType {
+      buildingType?.tagTypes ?? .unknown
+    }
+    var tags : [String] = []
+    tags.append(tagTypes.rawValue)
+    if let floors = self.buildingDeals?.map{$0.floor!}.sorted().map{"\($0)층"} {    tags.append(contentsOf: floors)
+    }
+    if let dealTypes = self.buildingDeals?.map{ deal -> String in
+      deal.dealType?.dealTypes ?? ""
+    } {
+      tags.append(contentsOf:dealTypes)
+    }
+    let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: String($0.user), review: $0.review)}.first ?? .init(reviewrName: "없음", review: "리뷰없음")
+    return .init(buildingId: id!,buildingName: apartmentName ?? "", buildingImage: firstImg, ownderInfo: ownerType, review: review, filters: tags)
   }
 }

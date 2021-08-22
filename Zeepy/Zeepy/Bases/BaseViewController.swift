@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import Kingfisher
 class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate{
   public let disposeBag = DisposeBag()
   private func swipeRecognizer() {

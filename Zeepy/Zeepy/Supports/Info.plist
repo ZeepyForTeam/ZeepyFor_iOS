@@ -58,10 +58,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>새로운 포스트를 올리기 위해 카메라 앱에 접근이 필요합니다</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>새로운 포스트를 올리기 위해 사진 앱에 접근이 필요합니다</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NanumSquareRoundOTFR.otf</string>

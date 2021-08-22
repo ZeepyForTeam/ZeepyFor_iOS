@@ -9,8 +9,39 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import YPImagePicker
 
 class AddPhotoViewController : BaseViewController {
+  var picker : YPImagePicker {
+    var config = YPImagePickerConfiguration()
+    config.isScrollToChangeModesEnabled = true
+    config.onlySquareImagesFromCamera = true
+    config.usesFrontCamera = false
+    config.showsPhotoFilters = false
+    config.showsVideoTrimmer = true
+    config.shouldSaveNewPicturesToAlbum = true
+    config.startOnScreen = YPPickerScreen.library
+    config.screens = [.library, .photo]
+    config.showsCrop = .none
+    config.targetImageSize = YPImageSize.original
+    config.hidesStatusBar = true
+    config.hidesBottomBar = false
+    config.hidesCancelButton = false
+    config.preferredStatusBarStyle = UIStatusBarStyle.default
+    config.maxCameraZoomFactor = 1.0
+    config.library.onlySquare = false
+    config.library.isSquareByDefault = true
+    config.library.minWidthForItem = nil
+    config.library.mediaType = YPlibraryMediaType.photo
+    config.library.defaultMultipleSelection = false
+    config.library.maxNumberOfItems = 10
+    config.library.minNumberOfItems = 1
+    config.library.numberOfItemsInRow = 4
+    config.library.spacingBetweenItems = 1.0
+    config.library.skipSelectionsGallery = true
+    config.library.preselectedItems = nil
+    return YPImagePicker(configuration: config)
+  }
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "사진 첨부")
   }
@@ -140,12 +171,48 @@ class AddPhotoViewController : BaseViewController {
     selectedImageCollectionView.backgroundColor = .gray244
     selectedImageCollectionView.setRounded(radius: 8)
   }
+  private let selectedImages : [UIImage] = []
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
     nextButton.rx.tap.bind{[weak self] in
       self?.navigationController?.popToRootViewController(animated: true)
     }.disposed(by: disposeBag)
+    bind()
+  }
+  private func bind() {
+    addFromLib.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImage(gesture:))))
+    addFromCamera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getCamera(gesture:))))
     
+  }
+  @objc
+  private func getImage(gesture : UITapGestureRecognizer) {
+    
+    picker.didFinishPicking { [unowned picker] items, cancelled in
+        for item in items {
+            switch item {
+            case .photo(let photo):
+                print(photo)
+            case .video(let video):
+                print(video)
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    self.present(picker, animated: true, completion: nil)
+  }
+  @objc
+  private func getCamera(gesture : UITapGestureRecognizer) {
+    picker.didFinishPicking { [unowned picker] items, _ in
+        if let photo = items.singlePhoto {
+            print(photo.fromCamera) // Image source (camera or library)
+            print(photo.image) // Final image selected by the user
+            print(photo.originalImage) // original image selected by the user, unfiltered
+            print(photo.modifiedImage) // Transformed image, can be nil
+            print(photo.exifMeta) // Print exif meta data of original image.
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    self.present(picker, animated: true, completion: nil)
   }
 }
