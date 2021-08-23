@@ -285,19 +285,19 @@ extension MypageViewController {
   @objc
   private func addressButtonClicked() {
     let addressVC = ManageAddressViewController()
-    self.navigationController?.pushViewController(addressVC, animated: false)
+    self.navigationController?.pushViewController(addressVC, animated: true)
   }
   
   @objc
   private func reviewButtonClicked() {
     let reviewVC = ManageReviewViewController()
-    self.navigationController?.pushViewController(reviewVC, animated: false)
+    self.navigationController?.pushViewController(reviewVC, animated: true)
   }
   
   @objc
   private func favoriteButtonClicked() {
     let favoriteVC = FavoriteListViewConroller()
-    self.navigationController?.pushViewController(favoriteVC, animated: false)
+    self.navigationController?.pushViewController(favoriteVC, animated: true)
   }
   
   @objc
@@ -353,11 +353,15 @@ extension MypageViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0 {
       let modifyVC = SettingsViewController()
-      self.navigationController?.pushViewController(modifyVC, animated: false)
+      self.navigationController?.pushViewController(modifyVC, animated: true)
+    }
+    if indexPath.row == 1 {
+      let reportVC = ReportViewController()
+      self.navigationController?.pushViewController(reportVC, animated: true)
     }
     if indexPath.row == 2 {
       let creditVC = CreditViewController()
-      self.navigationController?.pushViewController(creditVC, animated: false)
+      self.navigationController?.pushViewController(creditVC, animated: true)
     }
   }
 }
