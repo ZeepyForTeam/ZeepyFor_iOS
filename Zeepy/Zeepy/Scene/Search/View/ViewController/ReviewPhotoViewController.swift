@@ -166,7 +166,6 @@ class ReviewPhotoViewController : BaseViewController {
       nextVC.resultClosure = { result in
         weak var `self` = self
         if result {
-
           self?.popToRootViewController()
         }
       }
