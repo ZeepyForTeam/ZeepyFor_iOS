@@ -22,8 +22,10 @@ extension UserService {
     provider.rx.request(.getAddress)
       .asObservable()
   }
-  func addAddress(param: ResponseGetAddress) -> Observable<Response> {
+  func addAddress(param: ResponseGetAddress) -> Observable<Bool> {
     provider.rx.request(.addAddress(param: param))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
   }
   func modifyNickname(nickname: String) -> Observable<Response> {

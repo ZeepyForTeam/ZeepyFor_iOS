@@ -66,7 +66,12 @@ class LookAroundTableViewCell: UITableViewCell {
     self.statusLabel.text = model.ownderInfo.rawValue
     self.statusImage.image = UIImage(named: model.ownderInfo.image)
     self.vaildationLabel.text = model.review.review
-    self.thumbNail.kf.setImage(with: URL(string: model.buildingImage))
+    if let img = model.buildingImage {
+      self.thumbNail.kf.setImage(with: URL(string: img))
+    }
+    else {
+      self.thumbNail.backgroundColor = .gray228
+    }
     Observable.just(model.filters)
       .bind(to: optionsCollectionView.rx.items(cellIdentifier: SimpleLabelCollectionViewCell.identifier,
                                                cellType: SimpleLabelCollectionViewCell.self)){ [weak self] row, data, cell in

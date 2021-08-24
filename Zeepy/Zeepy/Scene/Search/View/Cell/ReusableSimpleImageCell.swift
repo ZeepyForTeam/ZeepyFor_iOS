@@ -35,12 +35,22 @@ class ReusableSimpleImageCell  : UICollectionViewCell{
     imageView.kf.setImage(with: URL(string: model))
     imageView.setRounded(radius: 6)
   }
-  func bindCell(model: String) {
+  func bindCell(model: String , width : CGFloat = 100 * (UIScreen.main.bounds.width/375)) {
+    layout(width: width)
     imageView.kf.setImage(with: URL(string: model))
     imageView.setRounded(radius: 6)
   }
   func moreImage() {
     plusImage.isHidden = false
+  }
+  private func layout(width : CGFloat) {
+    self.contentView.adds([imageView, plusImage])
+    imageView.snp.remakeConstraints{
+      $0.width.height.equalTo(width)
+    }
+    plusImage.snp.remakeConstraints{
+      $0.width.height.equalTo(width)
+    }
   }
   private func layout() {
     self.contentView.adds([imageView, plusImage])

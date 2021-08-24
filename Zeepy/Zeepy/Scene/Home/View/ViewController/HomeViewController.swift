@@ -70,7 +70,8 @@ class HomeViewController : BaseViewController {
     $0.setRounded(radius: 8)
     $0.backgroundColor = .gray244
   }
-  
+  private let resetAddress = PublishSubject<[Addresses]>()
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -81,7 +82,7 @@ class HomeViewController : BaseViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
   }
   private func layout() {
     setUpCollectionView()
@@ -189,15 +190,20 @@ class HomeViewController : BaseViewController {
                                        ValidateType.cute,
                                        ValidateType.bad])
   private func bind() {
-    let inputs = HomeViewModel.Input.init(writeReview: writeReviewButton.rx.tap.asObservable())
+    
+    
+    let inputs = HomeViewModel.Input.init(resetAddress: resetAddress,
+      writeReview: writeReviewButton.rx.tap.asObservable())
     let output = viewModel.transform(inputs: inputs)
     output.writeVC.bind{[weak self] vc in
       vc.hidesBottomBarWhenPushed = true
       
       self?.navigationController?.pushViewController(vc, animated: true)
-    }
-    .disposed(by: disposeBag)
-    types.bind(to: selectTypeCollectionView.rx.items(cellIdentifier: SelectTypeCollectionViewCell.identifier, cellType: SelectTypeCollectionViewCell.self)) {row, data, cell in
+    }.disposed(by: disposeBag)
+    output.resetResult.bind{
+      print($0)
+    }.disposed(by: disposeBag)
+     types.bind(to: selectTypeCollectionView.rx.items(cellIdentifier: SelectTypeCollectionViewCell.identifier, cellType: SelectTypeCollectionViewCell.self)) {row, data, cell in
       cell.bind(type: data)
     }.disposed(by: disposeBag)
     selectTypeCollectionView.rx.modelSelected(ValidateType.self)
@@ -219,7 +225,15 @@ class HomeViewController : BaseViewController {
       }
     }
     .disposed(by: disposeBag)
-    
+    locationDropDown.rx.tap.bind{[weak self] in
+      Dropdown.shared.addDropDown(items: UserManager.shared.address,
+                                  disposeBag: self!.disposeBag,
+                                  dissmissAction: { [weak self] in
+                                    self?.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 선택"
+                                    self?.resetAddress.onNext(UserManager.shared.address)
+                                  },
+                                  currentItemKey: UserManager.shared.currentAddress)
+    }.disposed(by: disposeBag)
     buyButton.rx.tap.map{return PostType.deal}.bind(to: communityType).disposed(by: disposeBag)
     shareButton.rx.tap.map{return PostType.share}.bind(to: communityType).disposed(by: disposeBag)
     friendButton.rx.tap.map{return PostType.friend}.bind(to: communityType).disposed(by: disposeBag)

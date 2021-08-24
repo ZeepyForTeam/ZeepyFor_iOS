@@ -13,6 +13,7 @@ class Dropdown : UIView {
   static let shared = Dropdown()
   var addedSubView: UIView!
   private var viewCenter: CGPoint?
+  private var dispose = DisposeBag()
   lazy var blackView: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .black
@@ -81,7 +82,7 @@ extension Dropdown {
       window.addSubview(point)
       container.addSubview(dropdown)
       container.snp.remakeConstraints{
-        $0.top.equalToSuperview().offset(160)
+        $0.top.equalToSuperview().offset(130)
         $0.leading.equalToSuperview().offset(16)
         $0.width.equalTo(215)
       }
@@ -118,15 +119,91 @@ extension Dropdown {
                      }, completion: { _ in
                       self.blackView.removeFromSuperview()
                       self.container.removeFromSuperview()
+                      self.point.removeFromSuperview()
+                      self.dispose = DisposeBag()
+
                      })
     }
     if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+    }
+  }
+  @objc
+  func dissmiss(with action : dropDownAction?) {
+    if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+      let transform = CGAffineTransform(scaleX: 1, y: 1)
+      container.transform = transform
+      blackView.alpha = 0
+      UIView.animate(withDuration: 0.3,
+                     delay: 0,
+                     usingSpringWithDamping: 1,
+                     initialSpringVelocity: 1,
+                     options: .curveEaseOut,
+                     animations: { [unowned self] in
+                      self.container.transform = transform
+                      self.container.alpha = 0
+                      self.blackView.alpha = 0
+                     }, completion: { _ in
+                      self.blackView.removeFromSuperview()
+                      self.container.removeFromSuperview()
+                      self.point.removeFromSuperview()
+                      if let action = action{
+                        action ()
+                        self.dispose = DisposeBag()
 
-    
+                      }
+                     })
+    }
+    if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
     }
   }
 }
 extension Dropdown {
+  func addDropDown(items : [Addresses],
+                  disposeBag : DisposeBag,
+                  dissmissAction: dropDownAction? = nil ,
+                  currentItemKey: Addresses? = nil) {
+    initializeMainView()
+    titles = items.map{$0.primaryAddress}
+    Observable.just(items).bind(to: dropdown.rx.items(cellIdentifier: dropdownCell.identifier,
+                                                       cellType: dropdownCell.self) ) {row, data,cell in
+      cell.layout()
+      cell.titlelabel.text = data.primaryAddress
+      if let currentitem = currentItemKey {
+        if data == currentitem {
+          cell.titlelabel.textColor = .communityGreen
+        }
+      }
+    }.disposed(by: disposeBag)
+    dropdown.rx.modelSelected(Addresses.self)
+      .bind{[weak self] address in
+        UserManager.shared.changeCurrent(by: address)
+        self?.dissmiss(with: dissmissAction)
+      }.disposed(by: dispose)
+    dropdown.rx
+        .observeWeakly(CGSize.self, "contentSize")
+        .compactMap { $0?.height }
+        .distinctUntilChanged()
+        .bind { [weak self] height in
+          self?.dropdown.snp.updateConstraints{
+            $0.height.equalTo(height)
+          }
+        }
+        .disposed(by: disposeBag)
+    if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+      let transform = CGAffineTransform(scaleX: 1, y: 1)
+      container.transform = transform
+      blackView.alpha = 0
+      UIView.animate(withDuration: 0.7,
+                     delay: 0,
+                     usingSpringWithDamping: 1,
+                     initialSpringVelocity: 1,
+                     options: .curveEaseOut,
+                     animations: {
+                      self.blackView.alpha = 0.5
+                      self.container.transform = .identity
+                     }, completion: nil)
+    }
+  }
   func addDropDown(items : [(String , dropDownAction?)],
                    disposeBag : DisposeBag,
                    currentItemKey: String? = nil) {
@@ -147,9 +224,9 @@ extension Dropdown {
     dropdown.rx.modelSelected((String, dropDownAction?).self)
       .bind{[weak self] in
         if let action = $0.1 {
-          action()
+          self?.dissmiss(with: action)
         }
-    }.disposed(by: disposeBag)
+    }.disposed(by: dispose)
     dropdown.rx
         .observeWeakly(CGSize.self, "contentSize")
         .compactMap { $0?.height }
@@ -183,6 +260,7 @@ class dropdownCell : UITableViewCell {
     $0.textColor = .blackText
   }
   func layout() {
+    selectionStyle = .none
     self.contentView.addSubview(titlelabel)
     titlelabel.snp.remakeConstraints{
       $0.top.bottom.equalToSuperview()

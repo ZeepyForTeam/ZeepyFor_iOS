@@ -51,6 +51,8 @@ final class LookAroundViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.isNavigationBarHidden = true
+    self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+
   }
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
@@ -115,7 +117,7 @@ extension LookAroundViewController {
                              
       ])
     }.disposed(by: disposeBag)
-
+  
     loadViewTrigger.onNext(())
   }
   private func bindAction() {
