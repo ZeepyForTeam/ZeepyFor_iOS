@@ -25,6 +25,14 @@ class ReportDetailViewController: BaseViewController {
   private final let contentPlaceholder =
     "신고하려는 게시물, 사용자에 대해\n조금 더 상세히 알려주세요"
   
+  var reportModel = RequestReportModel(
+    requestReportModelDescription: "",
+    reportID: 0,
+    reportType: "",
+    reportUser: 0,
+    targetTableType: "",
+    targetUser: 0)
+  
   // MARK: - Life Cycles
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -174,6 +182,18 @@ extension ReportDetailViewController {
   @objc
   private func sendButtonClicked() {
     let popupView = ReportPopupViewController()
+    let count = self.navigationController?.children.count
+    let rootVC = self.navigationController?.children[(count ?? 3) - 3]
+    reportModel.requestReportModelDescription = contentTextView.text
+    popupView.reportModel = reportModel
+    popupView.resultClosure = { result in
+      weak var `self` = self
+      if result {
+        self?.navigationController?.popToViewController(
+          rootVC!,
+          animated: true)
+      }
+    }
     popupView.modalPresentationStyle = .overFullScreen
     self.present(popupView, animated: true, completion: nil)
   }

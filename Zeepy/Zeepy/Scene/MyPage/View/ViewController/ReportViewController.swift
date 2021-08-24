@@ -30,14 +30,30 @@ class ReportViewController: BaseViewController {
   private let separatorView = UIView()
   
   // MARK: - Variables
-  private let tableViewTitles =
-    ["자취방 후기 글이 아니에요.",
-     "비방과 욕설을 사용했어요.",
-     "허위사실을 기재했어요.",
-     "사기 글이에요.",
-     "기타 사유 선택"]
+  private let tableViewTitles = [
+    "자취방 후기 글이 아니에요.",
+    "비방과 욕설을 사용했어요.",
+    "허위사실을 기재했어요.",
+    "사기 글이에요.",
+    "기타 사유 선택"]
+  
   private final let subtitle =
     "신고 후에는 운영진의 확인 후 글삭제, 회원 탈퇴 등의 절차가 이루어지게 됩니다."
+  
+  private final let reportTypes = [
+    "MISMATCHING",
+    "ABUSE",
+    "FALSE_FACTS",
+    "SCAM",
+    "ETC"]
+  
+  var reportModel = RequestReportModel(
+    requestReportModelDescription: "",
+    reportID: 0,
+    reportType: "",
+    reportUser: 0,
+    targetTableType: "",
+    targetUser: 0)
   
   // MARK: - Life Cycles
   override func viewDidLoad() {
@@ -150,6 +166,13 @@ extension ReportViewController {
     
     subtitleLabel.attributedText = titleText
   }
+  
+  /// Test Code
+  private func test() {
+    reportModel.targetUser = 1
+    reportModel.reportID = 4
+    reportModel.targetTableType = "REVIEW"
+  }
 }
 
 // MARK: - reasonTableView Delegate
@@ -179,12 +202,26 @@ extension ReportViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    reportModel.reportType = reportTypes[indexPath.row]
+    reportModel.reportUser = UserDefaultHandler.userId ?? 100
+    test()
     if indexPath.row == 4 {
       let detailVC = ReportDetailViewController()
+      print(reportModel)
+      detailVC.reportModel = reportModel
       self.navigationController?.pushViewController(detailVC, animated: true)
     }
     else {
+      reportModel.requestReportModelDescription =
+        reportTypes[indexPath.row]
       let popupVC = ReportPopupViewController()
+      popupVC.reportModel = reportModel
+      popupVC.resultClosure = { result in
+        weak var `self` = self
+        if result {
+          self?.popViewController()
+        }
+      }
       popupVC.modalPresentationStyle = .overFullScreen
       self.present(popupVC, animated: true, completion: nil)
     }
