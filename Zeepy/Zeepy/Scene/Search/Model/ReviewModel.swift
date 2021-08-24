@@ -23,7 +23,17 @@ struct ReviewModel: Codable {
     case buildingID = "buildingId"
     case communcationTendency, furnitures, imageUrls, lessorAge, lessorGender, lessorReview, lightning, pest, review, roomCount, soundInsulation, totalEvaluation, waterPressure
   }
-  
+}
+
+struct ReviewReview: Codable {
+    let id: Int
+    let user: User
+    let address, communcationTendency, lessorGender, lessorAge: String
+    let lessorReview, roomCount, soundInsulation, pest: String
+    let lightning, waterPressure: String
+    let furnitures: [String]
+    let review, totalEvaluation: String
+    let imageUrls: [String]
 }
 
 

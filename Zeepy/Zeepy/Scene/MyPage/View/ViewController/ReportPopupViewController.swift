@@ -1,20 +1,19 @@
 //
-//  RegisterReviewPopupViewController.swift
+//  ReportPopupViewController.swift
 //  Zeepy
 //
-//  Created by 노한솔 on 2021/08/10.
+//  Created by 노한솔 on 2021/08/23.
 //
 
 import UIKit
 
 import Moya
 import RxSwift
-import RxCocoa
 import SnapKit
 import Then
 
-// MARK: - RegisterReviewPopupViewController
-class RegisterReviewPopupViewController: UIViewController {
+// MARK: - ReportPopupViewController
+class ReportPopupViewController: BaseViewController {
   
   // MARK: - Components
   private let cardView = UIView()
@@ -22,47 +21,35 @@ class RegisterReviewPopupViewController: UIViewController {
   private let firstContextLabel = UILabel()
   private let secondContextLabel = UILabel()
   private let cancelButton = UIButton()
-  private let registerButton = UIButton()
+  private let reportButton = UIButton()
   
   // MARK: - Variables
-  private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
-  private let disposeBag = DisposeBag()
-  var reviewModel = ReviewModel(address: "",
-                                buildingID: 0,
-                                communcationTendency: "",
-                                furnitures: [],
-                                imageUrls: [],
-                                lessorAge: "",
-                                lessorGender: "",
-                                lessorReview: "",
-                                lightning: "",
-                                pest: "",
-                                review: "",
-                                roomCount: "",
-                                soundInsulation: "",
-                                totalEvaluation: "",
-                                waterPressure: "")
+  var reportModel = RequestReportModel(
+    requestReportModelDescription: "",
+    reportID: 0,
+    reportType: "",
+    reportUser: 0,
+    targetTableType: "",
+    targetUser: 0)
+  
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
   
   var resultClosure: ((Bool) -> ())?
   private var registerResult: Bool = false
-
-  // MARK: - LifeCycles
+  
+ 
+  
+  // MARK: - Life Cycles
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
   }
-  
-  override func viewDidLayoutSubviews() {
-    self.cardView.snp.remakeConstraints {
-      $0.center.equalToSuperview()
-      $0.width.equalTo(self.view.frame.width * 288/375)
-      $0.bottom.equalTo(self.registerButton.snp.bottom).offset(16)
-    }
-  } 
 }
 
 // MARK: - Extensions
-extension RegisterReviewPopupViewController {
+extension ReportPopupViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
@@ -72,7 +59,7 @@ extension RegisterReviewPopupViewController {
     layoutFirstContextLabel()
     layoutSecondContextLabel()
     layoutCancelButton()
-    layoutRegisterButton()
+    layoutReportButton()
   }
   
   private func layoutCardView() {
@@ -105,7 +92,7 @@ extension RegisterReviewPopupViewController {
       titleParagraphStyle.lineSpacing = 5
       titleParagraphStyle.alignment = .center
       let titleText = NSMutableAttributedString(
-        string: "*리뷰 등록 후에는 수정하거나 삭제하실 수\n없으니 글 작성에 유의해주세요",
+        string: "*신고 후에는 신고 내용을 수정하거나\n취소하실 수 없습니다.",
         attributes: [
           .font: UIFont.nanumRoundBold(fontSize: 12),
           .foregroundColor: UIColor.grayText])
@@ -128,7 +115,7 @@ extension RegisterReviewPopupViewController {
       titleParagraphStyle.lineSpacing = 5
       titleParagraphStyle.alignment = .center
       let titleText = NSMutableAttributedString(
-        string: "*허위/중복/성의없는 정보 또는 비방글을\n작성할 경우, 서비스 이용이 제한될 수 있습니다.",
+        string: "*악의적인 의도나 허위로 신고할 경우에는\n서비스 이용이 제한될 수 있습니다.",
         attributes: [.font: UIFont.nanumRoundBold(fontSize: 12),
                      .foregroundColor: UIColor.grayText])
       titleText.addAttribute(NSAttributedString.Key.paragraphStyle,
@@ -146,37 +133,58 @@ extension RegisterReviewPopupViewController {
   private func layoutCancelButton() {
     cardView.add(cancelButton) {
       $0.setupButton(title: "취소",
-                     color: .mainBlue,
+                     color: .pastelYellow,
                      font: .nanumRoundExtraBold(fontSize: 14),
                      backgroundColor: .gray249,
                      state: .normal,
                      radius: 8)
       $0.addTarget(self, action: #selector(self.cancelButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
-        $0.trailing.equalTo(self.cardView.snp.centerX).offset(-5)
         $0.leading.equalTo(self.cardView.snp.leading).offset(12)
+        $0.top.equalTo(self.secondContextLabel.snp.bottom).offset(31)
+        $0.height.equalTo(self.view.frame.width * 48/375)
+        $0.width.equalTo(self.view.frame.width * 81/375)
+      }
+    }
+  }
+  
+  private func layoutReportButton() {
+    cardView.add(reportButton) {
+      $0.setupButton(title: "확인했으며, 신고할게요",
+                     color: .white,
+                     font: .nanumRoundExtraBold(fontSize: 14),
+                     backgroundColor: .pointYellow,
+                     state: .normal,
+                     radius: 8)
+      $0.addTarget(self, action: #selector(self.reportButtonClicked), for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.leading.equalTo(self.cancelButton.snp.trailing).offset(10)
+        $0.trailing.equalTo(self.cardView.snp.trailing).offset(-12)
         $0.top.equalTo(self.secondContextLabel.snp.bottom).offset(31)
         $0.height.equalTo(self.view.frame.width * 48/375)
       }
     }
   }
   
-  private func layoutRegisterButton() {
-    cardView.add(registerButton) {
-      $0.setupButton(title: "확인",
-                     color: .white,
-                     font: .nanumRoundExtraBold(fontSize: 14),
-                     backgroundColor: .mainBlue,
-                     state: .normal,
-                     radius: 8)
-      $0.addTarget(self, action: #selector(self.registerButtonClicked), for: .touchUpInside)
-      $0.snp.makeConstraints {
-        $0.leading.equalTo(self.cardView.snp.centerX).offset(5)
-        $0.trailing.equalTo(self.cardView.snp.trailing).offset(-12)
-        $0.top.equalTo(self.secondContextLabel.snp.bottom).offset(31)
-        $0.height.equalTo(self.view.frame.width * 48/375)
-      }
-    }
+  // MARK: - General Helpers
+  private func report() {
+    userService.report(param: reportModel)
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
+          do {
+            print("success")
+            
+            self?.dismiss(animated: false, completion: {
+              self?.registerResult = true
+              if let closure = self?.resultClosure {
+                closure(self?.registerResult == true)
+              }
+            })
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
   }
   
   // MARK: - Action Helpers
@@ -186,32 +194,7 @@ extension RegisterReviewPopupViewController {
   }
   
   @objc
-  private func registerButtonClicked() {
-    reviewModel.imageUrls = []
-    registerReview()
-  }
-  
-  // MARK: - General Helpers
-  private func registerReview() {
-    let vc = self.presentingViewController?.children[0] as? TabbarViewContorller
-    // TODO: - Server Connection
-    reviewService.addReview(param: reviewModel)
-      .subscribe(onNext: {[weak self] response in
-        if (200...300).contains(response.statusCode) {
-          do {
-            print("success")
-
-           
-            self?.dismiss(animated: false, completion: {
-              self?.registerResult = true
-              if let closure = self?.resultClosure {
-                   closure(self?.registerResult == true)
-              }
-            })
-          }
-        }
-      }, onError: { error in
-        print(error)
-      }, onCompleted: {}).disposed(by: disposeBag)
+  private func reportButtonClicked() {
+    report()
   }
 }

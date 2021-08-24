@@ -54,6 +54,8 @@
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
+		CC53711C26D37DDC00DE5871 /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */; };
+		CC53711E26D37E0C00DE5871 /* ReportPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */; };
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
@@ -72,6 +74,7 @@
 		CC7C391C26C36DCC0015CA0B /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391B26C36DCC0015CA0B /* UserRequest.swift */; };
 		CC7C391E26C36DD70015CA0B /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391D26C36DD70015CA0B /* UserResponse.swift */; };
 		CC7C392026C39A970015CA0B /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */; };
+		CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */; };
 		CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */; };
 		CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */; };
 		CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */; };
@@ -79,6 +82,8 @@
 		CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */; };
 		CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */; };
 		CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */; };
+		CCA65AB026D3609D000660BD /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA65AAF26D3609C000660BD /* ReportViewController.swift */; };
+		CCA65AB226D36F25000660BD /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */; };
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
@@ -337,6 +342,8 @@
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
+		CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
+		CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupViewController.swift; sourceTree = "<group>"; };
 		CC5495112649615300313146 /* AdditionalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +358,7 @@
 		CC7C391B26C36DCC0015CA0B /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		CC7C391D26C36DD70015CA0B /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordPopupViewController.swift; sourceTree = "<group>"; };
 		CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAndFurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -358,6 +366,8 @@
 		CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CCA65AAF26D3609C000660BD /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		CCB6C0FF26AC31B5006E7032 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		CCB6C10526ACD99E006E7032 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendencyTableViewCell.swift; sourceTree = "<group>"; };
@@ -574,12 +584,14 @@
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
 				DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */,
+
 				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
 				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				82478068C1971FFC2EDD4492 /* Pods_Zeepy.framework in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +809,7 @@
 				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
 				CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */,
 				CCDB6E3026CCB8EE00797932 /* RoomTagCollectionViewCell.swift */,
+				CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1130,6 +1143,10 @@
 				CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */,
 				CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */,
 				CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */,
+				CCA65AAF26D3609C000660BD /* ReportViewController.swift */,
+				CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */,
+				CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */,
+				CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1780,6 +1797,7 @@
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
+				CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */,
 				CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
@@ -1813,6 +1831,7 @@
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				CC7C38EC26B93C3D0015CA0B /* SelectAddressTableViewCell.swift in Sources */,
 				DA66091E26BA2DEC0019D7F7 /* LoginViewModel.swift in Sources */,
+				CC53711E26D37E0C00DE5871 /* ReportPopupViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
@@ -1844,6 +1863,7 @@
 				DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
+				CC53711C26D37DDC00DE5871 /* ReportDetailViewController.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
@@ -1866,6 +1886,7 @@
 				DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				CCA65AB226D36F25000660BD /* ReportTableViewCell.swift in Sources */,
 				CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */,
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
@@ -1891,6 +1912,7 @@
 				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
+				CCA65AB026D3609D000660BD /* ReportViewController.swift in Sources */,
 				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,
 				37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */,
 				CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */,

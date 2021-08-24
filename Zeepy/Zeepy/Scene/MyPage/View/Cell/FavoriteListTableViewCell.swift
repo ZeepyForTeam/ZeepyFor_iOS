@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -171,7 +172,7 @@ extension FavoriteListTableViewCell {
                                 font: .nanumRoundExtraBold(fontSize: 10))
   }
   
-  func dataBind(apartmentName: String, tendencyImageName: String, tendency: String, totalEvaluation: String, buildingImageName: String, roomCount: Set<String>, buildingType: String) {
+  func dataBind(apartmentName: String, tendencyImageName: String, tendency: String, totalEvaluation: String, buildingImageURL: String, roomCount: Set<String>, buildingType: String) {
     titleLabel.setupLabel(text: apartmentName,
                           color: .blackText,
                           font: .nanumRoundExtraBold(fontSize: 14))
@@ -184,7 +185,10 @@ extension FavoriteListTableViewCell {
     assessContentLabel.setupLabel(text: totalEvaluation,
                                   color: .blackText,
                                   font: .nanumRoundRegular(fontSize: 10))
-    
+    buildingImageView.imageFromUrl(buildingImageURL, defaultImageName: "AppIcon")
+    if buildingImageView.image.isNil {
+      buildingImageView.image = UIImage(named: "AppIcon")
+    }
     self.roomCount = roomCount
     self.buildingType = buildingType
   }
