@@ -17,7 +17,11 @@ struct Addresses: Codable, Equatable {
   var cityDistinct, primaryAddress: String
   var isAddressCheck: Bool
 }
-
+extension Addresses{
+  static func == (lds : Addresses , rds: Addresses) -> Bool {
+    return lds.primaryAddress == rds.primaryAddress
+  }
+}
 struct RequestModifyPassword: Encodable {
   let bcryptEncoding: String
   let password: String

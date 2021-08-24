@@ -38,6 +38,13 @@ extension UIViewController {
   func popToRootViewController() {
     self.navigationController?.popToRootViewController(animated: true)
   }
+  func presentImgViewer(_ imagePathArray: [String], index: Int = 0) {
+      let vc = ImageViewController()
+      vc.imageArray = imagePathArray
+    vc.modalPresentationStyle = .currentContext
+      vc.index = index
+      self.present(vc, animated: true, completion: nil)
+  }
   func setupStatusBar(_ color: UIColor) {
     if #available(iOS 13.0, *) {
       let margin = view.layoutMarginsGuide

@@ -30,9 +30,12 @@ extension MessageAlertView {
         title: String,
         grantMessage: String,
         denyMessage: String = "",
+      mainColor: UIColor = .mainBlue,
         okAction: PopupDialogButtonAction? = nil
     ) {
         initializeMainView()
+      denyButton.backgroundColor = mainColor
+      grantButton.setTitleColor(mainColor, for: .normal)
         denyButton.isHidden = denyMessage == ""
         grantButton.layer.maskedCorners = [
             .layerMaxXMaxYCorner,

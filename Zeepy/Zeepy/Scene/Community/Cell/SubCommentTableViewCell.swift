@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
+import RxSwift
 class SubCommentTableViewCell: UITableViewCell {
+  let disposeBag = DisposeBag()
   private let arrow = UIImageView().then {
     $0.image = UIImage(named: "arrowRight")
   }
@@ -17,6 +18,9 @@ class SubCommentTableViewCell: UITableViewCell {
   private let commentLabel = UILabel().then {
     $0.setupLabel(text: "비밀 댓글입니다.", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
     $0.numberOfLines = 0
+  }
+  let reportBtn = UIButton().then {
+    $0.setupButton(title: "신고", color: .grayText, font: .nanumRoundBold(fontSize: 12), backgroundColor: .clear, state: .normal, radius: 0)
   }
   private let commentedAt = UILabel().then {
     $0.setupLabel(text: "2021.04.23", color: .grayText, font: .nanumRoundRegular(fontSize: 10))
@@ -36,7 +40,8 @@ class SubCommentTableViewCell: UITableViewCell {
     commentView.adds([arrow,
                            userName,
                            commentLabel,
-                           commentedAt])
+                           commentedAt,
+                           reportBtn])
     arrow.snp.makeConstraints{
       $0.top.leading.equalToSuperview().offset(12)
       $0.width.height.equalTo(18)
@@ -54,6 +59,10 @@ class SubCommentTableViewCell: UITableViewCell {
       $0.top.equalTo(commentLabel.snp.bottom).offset(8)
       $0.leading.equalToSuperview().offset(12)
       $0.bottom.equalToSuperview().offset(-10)
+    }
+    reportBtn.snp.makeConstraints{
+      $0.top.equalToSuperview().offset(12)
+      $0.trailing.equalToSuperview().offset(-12)
     }
   }
   override func awakeFromNib() {
@@ -73,7 +82,7 @@ class SubCommentTableViewCell: UITableViewCell {
   func bindCell(model : CommentSectionModel) {
     self.userName.text = model.userName
     self.commentLabel.text = model.hidden ? "비밀 댓글입니다." : model.comment
-    self.commentedAt.text = model.postedAt.asDate(format: .yyyyMMddDot)?.detailTime
+    self.commentedAt.text = model.postedAt.asDate(format: .iso8601)?.detailTime
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
