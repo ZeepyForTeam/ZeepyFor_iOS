@@ -14,79 +14,79 @@ import Moya
 
 class SignUpViewController: BaseViewController {  
   let contentView = UIView()
-  let getName = InputBoxView().then{
+  let getName = InputBoxView().then {
     $0.infoTitle.text = "이름"
     $0.infoTextField.placeholder = "이름을 입력해주세요"
     $0.validationResult.text = "이미 존재하는 이름입니다"
   }
-  let getID = InputBoxView().then{
+  let getID = InputBoxView().then {
     $0.infoTitle.text = "아이디"
     $0.infoTextField.placeholder = "아이디를 입력해주세요"
   }
-  let checkIDButton = UIButton().then{
+  let checkIDButton = UIButton().then {
     $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
     $0.borderColor = .gray196
     $0.borderWidth = 2
-    }
-  let idCheckImage = UIImageView().then{
+  }
+  let idCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
-  let getEmail = InputBoxView().then{
+  let getEmail = InputBoxView().then {
     $0.infoTitle.text = "이메일"
     $0.infoTextField.placeholder = "이메일을 입력해주세요"
     $0.validationResult.text = "이미 존재하는 메일입니다"
   }
-  let checkEmailButton = UIButton().then{
+  let checkEmailButton = UIButton().then {
     $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
     $0.borderColor = .gray196
     $0.borderWidth = 2
-      }
-  let emailCheckImage = UIImageView().then{
+  }
+  let emailCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
-    let passWordRuleLabel = UILabel().then{
-        $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
-        $0.textColor = UIColor(white: 202.0 / 255.0, alpha: 1.0)
-        $0.text = "*최소 8글자 이상의 비밀번호를 입력해주세요."
-    }
-  let getPW = InputBoxView().then{
+  let passWordRuleLabel = UILabel().then {
+    $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    $0.textColor = UIColor(white: 202.0 / 255.0, alpha: 1.0)
+    $0.text = "*최소 8글자 이상의 비밀번호를 입력해주세요."
+  }
+  let getPW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호"
     $0.infoTextField.placeholder = "비밀번호를 입력해주세요"
     $0.validationResult.text = "비밀번호는 2~8자 한글, 숫자, 특수문자를 포함해야합니다."
   }
-  let surePW = InputBoxView().then{
+  let surePW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호 확인"
     $0.infoTextField.placeholder = "비밀번호를 다시 입력해주세요"
     $0.validationResult.text = "비밀번호가 일치하지 않습니다."
   }
-  let pwCheckImage = UIImageView().then{
+  let pwCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
-  let newsCheckBox = UIButton().then{
+  let newsCheckBox = UIButton().then {
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
     $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
   }
-  let newsLabel = UILabel().then{
+  let newsLabel = UILabel().then {
     $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
     $0.text = "ZEEPY 서비스에 대한 소식을 이메일로 받아봅니다.(선택)"
   }
-  let termsCheckBox = UIButton().then{
+  let termsCheckBox = UIButton().then {
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
     $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
   }
-  let termsLabel = UILabel().then{
+  let termsLabel = UILabel().then {
     $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
     $0.text = "ZEEPY에서 제공하는 서비스 약관에 동의합니다.(필수)"
   }
-  let viewTerms = UIButton().then{
+  let viewTerms = UIButton().then {
     $0.setTitle("약관보기", for: .normal)
     $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
   }
-  let signUpfinishButton = UIButton().then{
+  let signUpfinishButton = UIButton().then {
     $0.setTitle("가입완료", for: .normal)
     $0.backgroundColor = .mainBlue
     $0.setRounded(radius: 6)
@@ -94,7 +94,7 @@ class SignUpViewController: BaseViewController {
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 16.0)
   }
   
-  @objc func determineButtonImage(sender: UIButton){
+  @objc func determineButtonImage(sender: UIButton) {
     if termsCheckBox.isTouchInside{
       termsCheckBox.isSelected.toggle()
     }
@@ -102,7 +102,7 @@ class SignUpViewController: BaseViewController {
       newsCheckBox.isSelected.toggle()
     }
     
-    if !termsCheckBox.isSelected && !newsCheckBox.isSelected{
+    if !termsCheckBox.isSelected && !newsCheckBox.isSelected {
       termsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
       newsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
     }
@@ -130,11 +130,11 @@ class SignUpViewController: BaseViewController {
     addConstraints()
     bind()
     setupNavigation()
-}
-    private func setupNavigation() {
-      self.setupNavigationBar(.white)
-      self.setupNavigationItem(titleText: "회원가입")
-    }
+  }
+  private func setupNavigation() {
+    self.setupNavigationBar(.white)
+    self.setupNavigationItem(titleText: "회원가입")
+  }
   private let viewModel = SignUpViewModel()
   func bind() {
     
@@ -150,8 +150,8 @@ class SignUpViewController: BaseViewController {
         self?.getEmail.infoTextField.shake()
       }
       self?.getEmail.validationResult.isHidden = result
-        
-
+      
+      
     }.disposed(by: disposeBag)
     output.nickNameValidate.bind{[weak self] result in
       if !result {
@@ -159,7 +159,7 @@ class SignUpViewController: BaseViewController {
         self?.getName.infoTextField.shake()
       }
       self?.getName.validationResult.isHidden = result
-
+      
     }.disposed(by: disposeBag)
     output.passwordSame.bind{[weak self] result in
       if !result {
@@ -168,7 +168,7 @@ class SignUpViewController: BaseViewController {
         self?.surePW.infoTextField.shake()
       }
       self?.surePW.validationResult.isHidden = result
-        self?.pwCheckImage.isHidden = !result
+      self?.pwCheckImage.isHidden = !result
     }.disposed(by: disposeBag)
     output.passwordValidate.bind{[weak self] result in
       if !result {
@@ -198,7 +198,7 @@ class SignUpViewController: BaseViewController {
           self?.surePW.validationResult.isHidden = true
           self?.getEmail.infoTextField.text = ""
           self?.getEmail.validationResult.isHidden = true
-
+          
         })
       }
     }.disposed(by: disposeBag)
@@ -249,12 +249,12 @@ class SignUpViewController: BaseViewController {
       $0.height.equalTo(90)
     }
     checkIDButton.snp.makeConstraints{
-        $0.leading.equalTo(getID.snp.trailing)
-        $0.top.bottom.equalTo(getID)
-        $0.trailing.equalToSuperview().offset(-16)
-        $0.centerY.equalTo(getID.infoTextField)
-        $0.height.equalTo(45)
-        $0.width.equalTo(90)
+      $0.leading.equalTo(getID.snp.trailing)
+      $0.top.bottom.equalTo(getID)
+      $0.trailing.equalToSuperview().offset(-16)
+      $0.centerY.equalTo(getID.infoTextField)
+      $0.height.equalTo(45)
+      $0.width.equalTo(90)
     }
     getEmail.snp.makeConstraints{
       $0.leading.equalToSuperview()
@@ -262,12 +262,12 @@ class SignUpViewController: BaseViewController {
       $0.height.equalTo(90)
     }
     checkEmailButton.snp.makeConstraints{
-        $0.leading.equalTo(getEmail.snp.trailing)
-        $0.top.bottom.equalTo(getEmail)
-        $0.trailing.equalToSuperview().offset(-16)
-        $0.centerY.equalTo(getEmail.infoTextField)
-        $0.height.equalTo(45)
-        $0.width.equalTo(90)
+      $0.leading.equalTo(getEmail.snp.trailing)
+      $0.top.bottom.equalTo(getEmail)
+      $0.trailing.equalToSuperview().offset(-16)
+      $0.centerY.equalTo(getEmail.infoTextField)
+      $0.height.equalTo(45)
+      $0.width.equalTo(90)
     }
     getPW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
@@ -276,14 +276,14 @@ class SignUpViewController: BaseViewController {
     }
     getPW.addSubview(passWordRuleLabel)
     passWordRuleLabel.snp.makeConstraints{
-        $0.leading.equalToSuperview().offset(16)
-        $0.top.equalTo(getPW.infoTextField.snp.bottom).offset(8)
+      $0.leading.equalToSuperview().offset(16)
+      $0.top.equalTo(getPW.infoTextField.snp.bottom).offset(8)
     }
     surePW.infoTextFieldBackGroundView.addSubview(pwCheckImage)
     
     surePW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
-        $0.top.equalTo(getPW.snp.bottom).offset(30)
+      $0.top.equalTo(getPW.snp.bottom).offset(30)
     }
     pwCheckImage.snp.makeConstraints{
       $0.centerY.equalToSuperview()
