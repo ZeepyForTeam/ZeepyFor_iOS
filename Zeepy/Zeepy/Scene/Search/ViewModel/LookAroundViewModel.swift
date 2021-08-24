@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class LookAroundViewModel {
+final class LookAroundViewModel: Services {
   private let service = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins: [NetworkLoggerPlugin()]))
   struct Input {
     let loadTrigger: Observable<Void>

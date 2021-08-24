@@ -13,7 +13,12 @@ import Moya
 class UserManager: NSObject {
   static let shared = UserManager()
   var address = [Addresses]()
-  var currentAddress: Addresses?
+  var currentAddress: Addresses? {
+    didSet {
+      print(currentAddress)
+      NotificationCenter.default.post(name: NSNotification.Name("address"), object: nil)
+    }
+  }
   let disposeBag = DisposeBag()
   override private init() { }
   func fetchUserAddress() {

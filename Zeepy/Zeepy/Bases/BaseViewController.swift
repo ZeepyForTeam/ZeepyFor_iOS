@@ -11,7 +11,9 @@ import RxSwift
 import Kingfisher
 class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate{
   public let disposeBag = DisposeBag()
-  private func swipeRecognizer() {
+  public let loadingHudTrigger = PublishSubject<Bool>()
+  @objc
+  public func swipeRecognizer() {
     let popGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer!
     if let targets = popGestureRecognizer?.value(forKey: "targets") as? NSMutableArray {
       let gestureRecognizer = UIPanGestureRecognizer()
@@ -91,6 +93,8 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidAppear(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidDisappear(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+    loadingHudTrigger.bind(to: LoadingHUD.rx.isAnimating)
+      .disposed(by: disposeBag)
   }
   
   deinit {

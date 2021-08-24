@@ -314,13 +314,13 @@ extension BuildingContent {
     }
     var tags : [String] = []
     tags.append(tagTypes.rawValue)
-    if let floors = self.buildingDeals?.map{$0.floor!}.sorted().map{"\($0)층"} {    tags.append(contentsOf: floors)
-    }
-    if let dealTypes = self.buildingDeals?.map{ deal -> String in
-      deal.dealType?.dealTypes ?? ""
-    } {
-      tags.append(contentsOf:dealTypes)
-    }
+//    if let floors = self.buildingDeals?.map{$0.floor!}.sorted().map{"\($0)층"} {    tags.append(contentsOf: floors)
+//    }
+//    if let dealTypes = self.buildingDeals?.map{ deal -> String in
+//      deal.dealType?.dealTypes ?? ""
+//    } {
+//      tags.append(contentsOf:dealTypes)
+//    }
     let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: String($0.user), review: $0.review)}.first ?? .init(reviewrName: "없음", review: "리뷰없음")
     return .init(buildingId: id!,buildingName: apartmentName ?? "", buildingImage: firstImg, ownderInfo: ownerType, review: review, filters: tags)
   }
