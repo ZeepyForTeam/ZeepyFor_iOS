@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -22,7 +24,22 @@ class ReportPopupViewController: BaseViewController {
   private let reportButton = UIButton()
   
   // MARK: - Variables
+  var reportModel = RequestReportModel(
+    requestReportModelDescription: "",
+    reportID: 0,
+    reportType: "",
+    reportUser: 0,
+    targetTableType: "",
+    targetUser: 0)
   
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
+  
+ 
   
   // MARK: - Life Cycles
   override func viewDidLoad() {
@@ -150,7 +167,25 @@ extension ReportPopupViewController {
   }
   
   // MARK: - General Helpers
-  
+  private func report() {
+    userService.report(param: reportModel)
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
+          do {
+            print("success")
+            
+            self?.dismiss(animated: false, completion: {
+              self?.registerResult = true
+              if let closure = self?.resultClosure {
+                closure(self?.registerResult == true)
+              }
+            })
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
   
   // MARK: - Action Helpers
   @objc
@@ -160,6 +195,6 @@ extension ReportPopupViewController {
   
   @objc
   private func reportButtonClicked() {
-    
+    report()
   }
 }

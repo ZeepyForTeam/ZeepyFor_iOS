@@ -23,8 +23,6 @@ class RegisterReviewPopupViewController: UIViewController {
   private let secondContextLabel = UILabel()
   private let cancelButton = UIButton()
   private let registerButton = UIButton()
-  var resultClosure: ((Bool) -> ())?
-  private var registerResult: Bool = false
   
   // MARK: - Variables
   private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
@@ -44,6 +42,9 @@ class RegisterReviewPopupViewController: UIViewController {
                                 soundInsulation: "",
                                 totalEvaluation: "",
                                 waterPressure: "")
+  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
 
   // MARK: - LifeCycles
   override func viewDidLoad() {

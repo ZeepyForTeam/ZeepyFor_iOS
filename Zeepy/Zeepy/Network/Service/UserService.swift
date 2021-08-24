@@ -50,5 +50,9 @@ extension UserService {
     provider.rx.request(.memberShipWithdrawal)
       .asObservable()
   }
+  func report(param: RequestReportModel) -> Observable<Response> {
+    provider.rx.request(.report(param: param))
+      .asObservable()
+  }
 }
 

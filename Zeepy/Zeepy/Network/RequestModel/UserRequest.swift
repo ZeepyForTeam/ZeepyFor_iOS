@@ -28,3 +28,19 @@ struct RequestRegistration: Encodable {
   let name: String
   let password: String
 }
+
+// MARK: - RequestReportModel
+struct RequestReportModel: Codable {
+    var requestReportModelDescription: String
+    var reportID: Int
+    var reportType: String
+    var reportUser: Int
+    var targetTableType: String
+    var targetUser: Int
+
+    enum CodingKeys: String, CodingKey {
+        case requestReportModelDescription = "description"
+        case reportID = "reportId"
+        case reportType, reportUser, targetTableType, targetUser
+    }
+}

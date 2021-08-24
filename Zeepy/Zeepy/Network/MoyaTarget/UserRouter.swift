@@ -17,6 +17,7 @@ enum UserRouter {
   case checkFromRedundancyNickname(nickname : String)
   case registration(param: RequestRegistration)
   case memberShipWithdrawal
+  case report(param: RequestReportModel)
 }
 
 extension UserRouter : TargetType {
@@ -41,6 +42,8 @@ extension UserRouter : TargetType {
       return "/user/registration"
     case .memberShipWithdrawal:
       return "/user/withdrawal"
+    case .report(param: let param):
+      return "/reports"
     }
   }
   
@@ -50,7 +53,8 @@ extension UserRouter : TargetType {
       return .get
     case .checkForRedundancyEmail,
          .checkFromRedundancyNickname,
-         .registration:
+         .registration,
+         .report:
       return .post
     case .addAddress:
       return .put
@@ -87,6 +91,8 @@ extension UserRouter : TargetType {
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     case .memberShipWithdrawal:
       return .requestPlain
+    case .report(param: let param):
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     }
   }
   var headers: [String : String]? {
