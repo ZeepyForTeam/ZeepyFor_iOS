@@ -7,11 +7,13 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
 // MARK - SettingsViewController
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
   
   // MARK: - Components
   private let navigationView = CustomNavigationBar()
@@ -27,6 +29,11 @@ class SettingsViewController: UIViewController {
   
   
   // MARK: - Variables
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  private var emailCheck = false
   private final let notificationTitle = "알림설정"
   private final let notificationDescription = "알림을 설정하려면 설정을 변경해주세요."
   private final let modifyButtonText = "변경하기"
@@ -40,6 +47,11 @@ class SettingsViewController: UIViewController {
     super.viewDidLoad()
     configData()
     layout()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchEmail()
   }
 }
 
@@ -174,6 +186,9 @@ extension SettingsViewController {
   
   // MARK: - General Helpers
   private func configData() {
+    if emailCheck == true {
+      agreeSwitch.isSelected.toggle()
+    }
     notificationTitleLabel.setupLabel(
       text: notificationTitle,
       color: .blackText,
@@ -210,9 +225,44 @@ extension SettingsViewController {
     navigationView.setUp(title: "환경설정")
   }
   
+  private func fetchEmail() {
+    userService.fetchEmail()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(ResponseFetchEmail.self,
+                                          from: response.data)
+            self.emailCheck = data.sendMailCheck
+            self.configData()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  private func setupMarketing() {
+    userService.putMarketing()
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
+          do {
+            print("success")
+            
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
   // MARK: - Action Helpers
   @objc
   private func clickedSwitch() {
+    setupMarketing()
     agreeSwitch.isHighlighted = false
     agreeSwitch.isSelected.toggle()
   }

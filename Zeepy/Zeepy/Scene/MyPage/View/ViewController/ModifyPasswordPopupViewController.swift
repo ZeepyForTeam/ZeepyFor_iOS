@@ -1,8 +1,8 @@
 //
-//  DeleteAddressPopupViewController.swift
+//  ModifyPasswordPopupViewController.swift
 //  Zeepy
 //
-//  Created by 노한솔 on 2021/08/16.
+//  Created by 노한솔 on 2021/08/24.
 //
 
 import UIKit
@@ -12,24 +12,21 @@ import RxSwift
 import SnapKit
 import Then
 
-// MARK: - DeleteAddressPopupViewController
-class DeleteAddressPopupViewController: BaseViewController {
+// MARK: - ModifyPasswordPopupViewController
+class ModifyPasswordPopupViewController: BaseViewController {
   
   // MARK: - Components
   private let containerView = UIView()
   private let titleLabel = UILabel()
   private let closeButton = UIButton()
-  private let deleteButton = UIButton()
+  private let modifyButton = UIButton()
   
-  // MAARK: - Variables
-  var addressModel: ResponseGetAddress?
-  var selectedIndex = 100
+  // MARK: - Variables
   private let userService = UserService(
     provider: MoyaProvider<UserRouter>(
       plugins: [NetworkLoggerPlugin(verbose: true)]))
   
-  var resultClosure: ((Bool) -> ())?
-  private var registerResult: Bool = false
+  var passwordModel = RequestModifyPassword(password: " ")
   
   // MARK: - Life Cycles
   override func viewDidLoad() {
@@ -40,7 +37,7 @@ class DeleteAddressPopupViewController: BaseViewController {
 }
 
 // MARK: - Extensions
-extension DeleteAddressPopupViewController {
+extension ModifyPasswordPopupViewController {
   
   // MARK: - Layout Helpers
   private func layout() {
@@ -48,7 +45,7 @@ extension DeleteAddressPopupViewController {
     layoutContainerView()
     layoutTitleLabel()
     layoutCloseButton()
-    layoutDeleteButton()
+    layoutModifyButton()
   }
   
   private func layoutContainerView() {
@@ -78,20 +75,6 @@ extension DeleteAddressPopupViewController {
                    for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
-        $0.leading.equalTo(self.containerView.snp.centerX).offset(5)
-        $0.trailing.equalTo(self.containerView.snp.leading).offset(-12)
-        $0.height.equalTo(self.view.frame.width * 48/375)
-      }
-    }
-  }
-  
-  private func layoutDeleteButton() {
-    containerView.add(deleteButton) {
-      $0.addTarget(self,
-                   action: #selector(self.deleteButtonClicked),
-                   for: .touchUpInside)
-      $0.snp.makeConstraints {
-        $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
         $0.trailing.equalTo(self.containerView.snp.centerX).offset(-5)
         $0.leading.equalTo(self.containerView.snp.leading).offset(12)
         $0.height.equalTo(self.view.frame.width * 48/375)
@@ -99,43 +82,48 @@ extension DeleteAddressPopupViewController {
     }
   }
   
+  private func layoutModifyButton() {
+    containerView.add(modifyButton) {
+      $0.addTarget(self,
+                   action: #selector(self.modifyButtonClicked),
+                   for: .touchUpInside)
+      $0.snp.makeConstraints {
+        $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
+        $0.leading.equalTo(self.containerView.snp.centerX).offset(5)
+        $0.trailing.equalTo(self.containerView.snp.trailing).offset(-12)
+        $0.height.equalTo(self.view.frame.width * 48/375)
+      }
+    }
+  }
+  
   // MARK: - General Helpers
   private func configData() {
-    titleLabel.setupLabel(text: "정말 삭제하시겠습니까?",
+    titleLabel.setupLabel(text: "새로운 비밀번호로 변경합니다",
                           color: .blackText,
                           font: .nanumRoundExtraBold(fontSize: 16))
+    
     closeButton.setupButton(title: "취소",
+                             color: .pointYellow,
+                             font: .nanumRoundExtraBold(fontSize: 16),
+                             backgroundColor: .gray244,
+                             state: .normal,
+                             radius: 8)
+    
+    modifyButton.setupButton(title: "비밀번호 변경",
                              color: .white,
                              font: .nanumRoundExtraBold(fontSize: 16),
                              backgroundColor: .pointYellow,
                              state: .normal,
                              radius: 8)
-    deleteButton.setupButton(title: "삭제",
-                             color: .blackText,
-                             font: .nanumRoundExtraBold(fontSize: 16),
-                             backgroundColor: .gray249,
-                             state: .normal,
-                             radius: 8)
   }
   
-  private func deleteAddress() {
-    addressModel?.addresses.remove(at: self.selectedIndex)
-    userService.addAddress(param: self.addressModel ??
-                            ResponseGetAddress(addresses: []))
-      .subscribe(onNext: { [weak self] response in
-        if response.statusCode == 200 {
+  private func modifyPassword() {
+    userService.modifyPassword(param: passwordModel)
+      .subscribe(onNext: {[weak self] response in
+        if (200...300).contains(response.statusCode) {
           do {
-            print("delete completed")
-            self?.dismiss(animated: true, completion: {
-                          self?.registerResult = true
-                          if let closure = self?.resultClosure {
-                               closure(self?.registerResult == true)
-                          }
-              
-            })
-          }
-          catch {
-            print(error)
+            print("success")
+            self?.dismiss(animated: true, completion: nil)
           }
         }
       }, onError: { error in
@@ -150,7 +138,7 @@ extension DeleteAddressPopupViewController {
   }
   
   @objc
-  private func deleteButtonClicked() {
-    deleteAddress()
+  private func modifyButtonClicked() {
+    modifyPassword()
   }
 }
