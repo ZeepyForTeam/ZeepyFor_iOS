@@ -130,7 +130,7 @@ extension Date {
 }
 
 extension String {
-  func asDate(format: DateFormat = .iso8601, timeZone: TimeZone? = CalendarService.shared.timeZoneKST) -> Date? {
+  func asDate(format: DateFormat = .iso8601, timeZone: TimeZone? = CalendarService.shared.timeZoneUTC) -> Date? {
     let formatter = DateFormatter()
     formatter.locale = .init(identifier: "en_US_POSIX")
     formatter.timeZone = timeZone

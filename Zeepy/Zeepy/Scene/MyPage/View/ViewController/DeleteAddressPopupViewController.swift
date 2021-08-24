@@ -122,8 +122,8 @@ extension DeleteAddressPopupViewController {
     addressModel?.addresses.remove(at: self.selectedIndex)
     userService.addAddress(param: self.addressModel ??
                             ResponseGetAddress(addresses: []))
-      .subscribe(onNext: { [weak self] response in
-        if response.statusCode == 200 {
+      .subscribe(onNext: { [weak self] result in
+        if result {
           do {
             print("delete completed")
             self?.dismiss(animated: true, completion: {

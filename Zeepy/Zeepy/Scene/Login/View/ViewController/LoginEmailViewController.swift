@@ -115,7 +115,6 @@ class LoginEmailViewController: BaseViewController {
     output.isLoginSuccess.bind{[weak self] result in
       switch result {
       case .success(let result) :
-        UserManager.shared.userId = result.userId
         LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .email, userId: result.userId)
         let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true
@@ -147,7 +146,6 @@ class LoginEmailViewController: BaseViewController {
     output.socialLoginSuccess.bind{[weak self] result in
       switch result {
       case .success(let result) :
-        UserManager.shared.userId = result.userId
         LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .kakao, userId: result.userId)
         let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true

@@ -306,7 +306,7 @@ extension BuildingContent {
                  filters: [])
   }
   func toModel() -> BuildingModel {
-    let firstImg = self.reviews?.flatMap{$0.imageUrls}.first ?? ""
+    let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
     let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
     }.first ?? .business
     var tagTypes : TagType {

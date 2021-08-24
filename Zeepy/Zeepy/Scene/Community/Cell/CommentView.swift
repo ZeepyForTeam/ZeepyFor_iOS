@@ -29,6 +29,9 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
   let addSubcommentBtn = UIButton().then {
     $0.setImageByName("iconChat")
   }
+  let reportOrModifyBtn = UIButton().then {
+    $0.setupButton(title: "신고", color: .grayText, font: .nanumRoundBold(fontSize: 12), backgroundColor: .clear, state: .normal, radius: 0)
+  }
   private let containerView = UIView().then {
     $0.backgroundColor = .white
     $0.setRounded(radius: 5)
@@ -49,7 +52,8 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
                         userTag,
                         commentLabel,
                         commentedAt,
-                        addSubcommentBtn])
+                        addSubcommentBtn,
+                        reportOrModifyBtn])
     profileBtn.snp.makeConstraints{
       $0.top.equalToSuperview().offset(9)
       $0.leading.equalToSuperview().offset(12)
@@ -77,6 +81,10 @@ class CommentView : UITableViewHeaderFooterView , Identifiable {
       $0.trailing.equalToSuperview().offset(-12)
       $0.top.equalToSuperview().offset(12)
       $0.width.height.equalTo(16)
+    }
+    reportOrModifyBtn.snp.makeConstraints{
+      $0.centerY.equalTo(addSubcommentBtn)
+      $0.trailing.equalTo(addSubcommentBtn.snp.leading).offset(4)
     }
   }
   override init(reuseIdentifier: String?) {

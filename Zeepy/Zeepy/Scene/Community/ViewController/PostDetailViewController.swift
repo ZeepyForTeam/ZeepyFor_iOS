@@ -35,6 +35,7 @@ class PostDetailViewControlelr : BaseViewController {
   private let joinCommentTrigger = PublishSubject<JoinRequset>()
   private let cancelJoin = PublishSubject<Int>()
   private let superCommentId = BehaviorSubject<Int?>(value: nil)
+  private var postImages : [String]?
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()
@@ -196,7 +197,27 @@ extension PostDetailViewControlelr : UITableViewDelegate {
     }
     view.commentLabel.text = dataSource[section].model.hidden ? "비밀 댓글입니다." : dataSource[section].model.comment
 
-    view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .yyyyMMddDot)?.detailTime
+    view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .iso8601)?.detailTime
+    if dataSource[section].model.userId == UserDefaultHandler.userId {
+      view.reportOrModifyBtn.setTitle("수정", for: .normal)
+      view.reportOrModifyBtn.rx.tap
+        .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
+        .bind{ [weak self] in
+          print("수정하기")
+          var subView = ModifyCommentView( currentComment: self?.dataSource[section].model.comment)
+          PopUpView.shared.appearPopUpView(subView: subView)
+          subView.resultClosure = { test in
+            print(test)
+          }
+        }.disposed(by: disposeBag)
+    }
+    else {
+      view.reportOrModifyBtn.rx.tap
+        .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
+        .bind{ [weak self] in
+          print("신고하기")
+        }.disposed(by: disposeBag)
+    }
     view.addSubcommentBtn.rx.tap
       .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
       .bind{ [weak self] in
@@ -210,6 +231,11 @@ extension PostDetailViewControlelr : UITableViewDelegate {
     return {[weak self] ds, tableView, indexPath, item -> UITableViewCell in
       let cell = tableView.dequeueReusableCell(withIdentifier: SubCommentTableViewCell.identifier, for: indexPath) as! SubCommentTableViewCell
       cell.bindCell(model: item)
+      cell.reportBtn.rx.tap
+        .takeUntil(cell.rx.methodInvoked(#selector(UITableViewCell.prepareForReuse)))
+        .bind{
+          print("신고하기")
+        }.disposed(by: cell.disposeBag)
       return cell
     }
   }
@@ -225,6 +251,8 @@ extension PostDetailViewControlelr {
     setupTableView()
     bind()
     self.achivementView.emptyAchivement.isHidden = false
+    print(currentViewMainColor)
+
   }
   private func bind() {
     let inputs = PostDetailViewModel.Input(loadView: loadViewTrigger,
@@ -240,17 +268,20 @@ extension PostDetailViewControlelr {
         guard let self = self else {return}
         if model.user?.id == UserDefaultHandler.userId {
           self.achivementView.participateBtn.isEnabled = false
-          
         }
+        self.postImages = model.imageUrls
+
         self.likeBtn.isSelected = model.isLiked == true
         self.postDetail.profileName.text = model.user?.name ?? "작성자"
         self.postDetail.postTitle.text = model.title
         self.postDetail.postContent.text = model.content
         self.postDetail.typeLabel.text = model.category
-        self.achivementView.isHidden = model.isParticipant != true
+        self.postDetail.postedAt.text = model.createdTime?.asDate(format: .iso8601)?.detailTime ?? ""
+        self.achivementView.isHidden = model.communityCategory != "JOINTPURCHASE"
         self.postDetail.profileImage.kf.setImage(with: URL(string: model.user?.profileImage ?? ""), for: .normal)
         self.achivementView.emptyAchivement.isHidden = model.targetNumberOfPeople.isNotNil
         self.achivementView.participateBtn.isSelected = model.isParticipant == true
+        
         if let targetNumber = model.targetNumberOfPeople {
           self.commentView.snp.remakeConstraints{
             $0.top.equalTo(self.achivementView.snp.bottom)
@@ -289,6 +320,10 @@ extension PostDetailViewControlelr {
     outputs.communityInfo.map{$0.imageUrls ?? []}
       .bind(to: postDetail.postImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier, cellType: ReusableSimpleImageCell.self)) {row, data, cell in
         cell.bindCell(model: data)
+      }.disposed(by: disposeBag)
+    postDetail.postImageCollectionView.rx.itemSelected
+      .bind{ [weak self] idx in
+        self?.presentImgViewer(self?.postImages ?? [], index: idx.row)
       }.disposed(by: disposeBag)
     achivementView.participateBtn.rx.tap.bind{[weak self] in
       guard let self = self else {return}
@@ -366,7 +401,10 @@ extension PostDetailViewControlelr {
       self?.commentCheckBox.isSelected = false
     }.disposed(by: disposeBag)
     
-    
+    postDetail.postReportBtn.rx.tap.bind{[weak self] in
+      var subView = ReportNoticeView()
+      PopUpView.shared.appearPopUpView(subView: subView)
+    }.disposed(by: disposeBag)
     loadViewTrigger.onNext(postId)
   }
 }
@@ -430,12 +468,16 @@ internal class PostDetailView : UIView{
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
     $0.numberOfLines = 0
   }
+  let postReportBtn = UIButton().then {
+    $0.setImage(UIImage(named: "btnSos"), for: .normal)
+  }
   var postImageCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 100, height: 100)
+    let width = 100 * (UIScreen.main.bounds.width/375)
+    layout.itemSize = CGSize(width: width, height: width)
     layout.scrollDirection = .horizontal
     layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-    layout.minimumLineSpacing = 8
+    layout.minimumInteritemSpacing = 8
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
     cv.showsHorizontalScrollIndicator = false
     cv.showsVerticalScrollIndicator = false
@@ -451,7 +493,8 @@ internal class PostDetailView : UIView{
                postedAt,
                postTitle,
                postContent,
-               postImageCollectionView])
+               postImageCollectionView,
+               postReportBtn])
     typeView.add(typeLabel)
     profileImage.snp.makeConstraints{
       $0.top.leading.equalTo(16)
@@ -485,10 +528,18 @@ internal class PostDetailView : UIView{
       $0.trailing.equalToSuperview().offset(-16)
     }
     postImageCollectionView.snp.makeConstraints{
+      let width = 100 * (UIScreen.main.bounds.width/375)
+
       $0.top.equalTo(postContent.snp.bottom).offset(24)
       $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(100)
+      $0.height.equalTo(width)
+    }
+    postReportBtn.snp.makeConstraints{
+      $0.top.equalTo(postImageCollectionView.snp.bottom).offset(16)
+      $0.leading.equalToSuperview().offset(16)
       $0.bottom.equalToSuperview().offset(-24)
+      $0.width.equalTo(50)
+      $0.height.equalTo(24)
     }
   }
   
@@ -512,7 +563,7 @@ internal class AchivementRateView : UIView{
     $0.borderColor = .communityGreen
     $0.setRounded(radius: 8)
     $0.setTitle("참여하고 돈 아끼기", for: .normal)
-    $0.setTitle("참여하고 돈 아끼기", for: .selected)
+    $0.setTitle("참여 취소하기", for: .selected)
     $0.setTitle("글 작성자입니다!", for: .disabled)
 
     $0.setTitleColor(.communityGreen, for: .normal)
