@@ -19,8 +19,7 @@ struct Addresses: Codable, Equatable {
 }
 
 struct RequestModifyPassword: Encodable {
-  let bcryptEncoding: String
-  let password: String
+  var password: String
 }
 
 struct RequestRegistration: Encodable {

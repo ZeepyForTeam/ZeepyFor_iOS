@@ -73,6 +73,7 @@
 		CC7C391C26C36DCC0015CA0B /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391B26C36DCC0015CA0B /* UserRequest.swift */; };
 		CC7C391E26C36DD70015CA0B /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391D26C36DD70015CA0B /* UserResponse.swift */; };
 		CC7C392026C39A970015CA0B /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */; };
+		CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */; };
 		CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */; };
 		CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */; };
 		CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */; };
@@ -295,6 +296,7 @@
 		CC7C391B26C36DCC0015CA0B /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		CC7C391D26C36DD70015CA0B /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordPopupViewController.swift; sourceTree = "<group>"; };
 		CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAndFurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				CCA65AAF26D3609C000660BD /* ReportViewController.swift */,
 				CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */,
 				CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */,
+				CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1586,6 +1589,7 @@
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
+				CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */,
 				CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
