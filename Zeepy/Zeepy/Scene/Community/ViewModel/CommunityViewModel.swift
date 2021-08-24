@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 import Moya
-class CommunityViewModel : Services{
+class CommunityViewModel : Services, ViewModelType{
   private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let currentTab: Observable<Int>

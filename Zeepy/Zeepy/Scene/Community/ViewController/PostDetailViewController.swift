@@ -196,7 +196,7 @@ extension PostDetailViewControlelr : UITableViewDelegate {
       view.userTag.isHidden = true
     }
     view.commentLabel.text = dataSource[section].model.hidden ? "비밀 댓글입니다." : dataSource[section].model.comment
-
+    
     view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .iso8601)?.detailTime
     if dataSource[section].model.userId == UserDefaultHandler.userId {
       view.reportOrModifyBtn.setTitle("수정", for: .normal)
@@ -252,7 +252,7 @@ extension PostDetailViewControlelr {
     bind()
     self.achivementView.emptyAchivement.isHidden = false
     print(currentViewMainColor)
-
+    
   }
   private func bind() {
     let inputs = PostDetailViewModel.Input(loadView: loadViewTrigger,
@@ -270,7 +270,7 @@ extension PostDetailViewControlelr {
           self.achivementView.participateBtn.isEnabled = false
         }
         self.postImages = model.imageUrls
-
+        
         self.likeBtn.isSelected = model.isLiked == true
         self.postDetail.profileName.text = model.user?.name ?? "작성자"
         self.postDetail.postTitle.text = model.title
@@ -332,7 +332,7 @@ extension PostDetailViewControlelr {
         MessageAlertView.shared.showAlertView(title: "이미 참여한 ZIP이에요!\n참여를 취소하실건가요? T-T?", grantMessage: "구매 취소", denyMessage: "아니요! :)", okAction: {
           weak var `self` = self
           guard let self = self else {return}
-
+          
           if first {
             self.cancelJoin.onNext(self.postId)
           }
@@ -349,7 +349,7 @@ extension PostDetailViewControlelr {
           view = nil
         }
       }
-
+      
     }.disposed(by: disposeBag)
     likeBtn.rx.tap.bind{ [weak self] in
       if self?.likeBtn.isSelected == true {
@@ -372,7 +372,7 @@ extension PostDetailViewControlelr {
       }
     }.disposed(by: disposeBag)
     outputs.commentResult.bind{[weak self] result in
-
+      
       if result {
         self?.loadViewTrigger.onNext((self?.postId)!)
       }
@@ -401,9 +401,17 @@ extension PostDetailViewControlelr {
       self?.commentCheckBox.isSelected = false
     }.disposed(by: disposeBag)
     
-    postDetail.postReportBtn.rx.tap.bind{[weak self] in
-      var subView = ReportNoticeView()
-      PopUpView.shared.appearPopUpView(subView: subView)
+    postDetail.postReportBtn.rx.tap.withLatestFrom(outputs.communityInfo.map{$0.user?.id}).bind{[weak self] writerId in
+      guard
+        let targetId = writerId,
+        let reportId = self?.postId,
+        let reportUser = UserDefaultHandler.userId
+      else {return}
+      let vc = ReportViewController()
+      vc.reportModel.targetUser = targetId
+      vc.reportModel.reportID = reportId
+      vc.reportModel.reportUser = reportUser
+      self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
     loadViewTrigger.onNext(postId)
   }
@@ -529,7 +537,7 @@ internal class PostDetailView : UIView{
     }
     postImageCollectionView.snp.makeConstraints{
       let width = 100 * (UIScreen.main.bounds.width/375)
-
+      
       $0.top.equalTo(postContent.snp.bottom).offset(24)
       $0.leading.trailing.equalToSuperview()
       $0.height.equalTo(width)
@@ -565,7 +573,7 @@ internal class AchivementRateView : UIView{
     $0.setTitle("참여하고 돈 아끼기", for: .normal)
     $0.setTitle("참여 취소하기", for: .selected)
     $0.setTitle("글 작성자입니다!", for: .disabled)
-
+    
     $0.setTitleColor(.communityGreen, for: .normal)
     $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
     

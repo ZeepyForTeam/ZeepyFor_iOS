@@ -35,6 +35,9 @@ class CustomNavigationBar : UIView {
       $0.width.height.equalTo(44)
       $0.leading.equalToSuperview().offset(16)
     }
+    backBtn.addAction( for: .touchUpInside, closure: { _ in
+      UIApplication.shared.topViewController()?.popViewController()
+    })
   }
   func setUp(title: String,
              font: UIFont = .nanumRoundExtraBold(fontSize: 20),

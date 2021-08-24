@@ -129,6 +129,14 @@ class CommunityViewController : BaseViewController {
     setTabView(tabIndex: 1)
     moveColletionViewNextPage(tabIndex: 1)
   }
+  @objc
+  private func didReceiveNotification(_ notification: Notification) {
+    if self.naviTitle.text != UserManager.shared.currentAddress?.primaryAddress {
+      self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+      loadViewTrigger.onNext(())
+      selectedType.onNext(.total)
+    }
+  }
   private func setTabView(tabIndex i : Int) {
     // default, selected
     currentTab.onNext(i)
@@ -229,7 +237,11 @@ extension CommunityViewController : UICollectionViewDelegate{
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
-
+    NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
+  }
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    NotificationCenter.default.removeObserver(self,name: Notification.Name("address"), object: nil)
   }
   func bind() {
     let selection = Observable.zip (postFilterCollectionView.rx.itemSelected,

@@ -83,6 +83,16 @@ class HomeViewController : BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+    NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
+
+  }
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    NotificationCenter.default.removeObserver(self,name: Notification.Name("address"), object: nil)
+  }
+  @objc
+  private func didReceiveNotification(_ notification: Notification) {
+    self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
   }
   private func layout() {
     setUpCollectionView()

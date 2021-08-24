@@ -12,6 +12,16 @@ import RxCocoa
 import YPImagePicker
 
 class AddPhotoViewController : BaseViewController {
+  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?,
+        viewModel : AddPostViewModel?) {
+    self.viewModel = viewModel
+
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   var picker : YPImagePicker {
     var config = YPImagePickerConfiguration()
     config.isScrollToChangeModesEnabled = true
@@ -45,6 +55,7 @@ class AddPhotoViewController : BaseViewController {
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "사진 첨부")
   }
+  private let viewModel : AddPostViewModel?
   private let addFromLib = UIView().then{
     $0.backgroundColor = .gray244
     let icon = UIImageView().then{
@@ -172,6 +183,7 @@ class AddPhotoViewController : BaseViewController {
     selectedImageCollectionView.setRounded(radius: 8)
   }
   private let selectedImages : [UIImage] = []
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
@@ -181,9 +193,18 @@ class AddPhotoViewController : BaseViewController {
     bind()
   }
   private func bind() {
+    let input = AddPostViewModel.Input(post: nextButton.rx.tap.asObservable())
+    let output = viewModel?.transform(input: input)
+    output?.postResult.bind{[weak self] result in
+      if result {
+        self?.popToRootViewController()
+      }
+      else {
+        MessageAlertView.shared.showAlertView(title: "실패했습니다", grantMessage: "확인")
+      }
+    }.disposed(by: disposeBag)
     addFromLib.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImage(gesture:))))
     addFromCamera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getCamera(gesture:))))
-    
   }
   @objc
   private func getImage(gesture : UITapGestureRecognizer) {

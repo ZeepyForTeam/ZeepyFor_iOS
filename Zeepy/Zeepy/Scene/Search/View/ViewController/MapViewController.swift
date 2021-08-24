@@ -84,7 +84,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         $0.setRounded(radius: 15)
         $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
     }
-    
+    private let naviView = CustomNavigationBar().then {
+      $0.setUp(title: "지도")
+    }
     var searchImageView = UIImageView().then{
         $0.frame.size = CGSize(width: 5, height: 5)
         $0.image = UIImage(named: "iconSearch")
@@ -357,6 +359,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         overall.text = mapDetailModel.overallLabel
         openFloatingCollectionView.isHidden = true
         closedFloatingView.isHidden = true
+      lookingAroundButton.tag = mapDetailModel.id
         makeLookingAroundButton(count: mapDetailModel.count)
     }
     func stringtoLessorImageName(name: String)-> String{
@@ -523,9 +526,14 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         self.setupNavigationItem(titleText: "지도")
     }
     func addConstraints() {
+      self.view.add(naviView)
+      naviView.snp.makeConstraints{
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-            $0.top.equalTo(95)//?
+          $0.top.equalTo(naviView.snp.bottom)//?
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)
@@ -624,7 +632,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         //        mapView.fitAreaToShowAllPOIItems()
     }
-    @objc func lookingAroundButtonTapped(){
+  @objc func lookingAroundButtonTapped(sender: UIButton){
+    if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: sender.tag) {
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
         print("lookingAroundButtonTapped")
     }
     
@@ -708,6 +719,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             $0.bottom.equalToSuperview().offset(-10)
         }
     }
+  override func swipeRecognizer() {
+    print("여기선 안씀")
+  }
 }
 
 // MARK: - Extensions
@@ -715,6 +729,7 @@ extension MapViewController : MTMapViewDelegate{
     private func initMapView(){
         self.mapView.delegate = self
     }
+
 }
 
 extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSource {

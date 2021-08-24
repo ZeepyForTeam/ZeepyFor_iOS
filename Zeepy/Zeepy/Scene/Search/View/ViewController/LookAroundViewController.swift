@@ -46,16 +46,27 @@ final class LookAroundViewController: BaseViewController {
     layout()
     bind()
     bindAction()
-    
+  }
+  @objc
+  private func didReceiveNotification(_ notification: Notification) {
+    if self.currentLocation.text != UserManager.shared.currentAddress?.primaryAddress {
+      self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+      loadViewTrigger.onNext(())
+    }
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.isNavigationBarHidden = true
+    NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
+    if self.currentLocation.text != UserManager.shared.currentAddress?.primaryAddress {
+      loadViewTrigger.onNext(())
+    }
     self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
 
   }
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
+    NotificationCenter.default.removeObserver(self,name: Notification.Name("address"), object: nil)
     //self.navigationController?.isNavigationBarHidden = false
 
 
@@ -84,7 +95,7 @@ extension LookAroundViewController {
       }.disposed(by: disposeBag)
     outputs.buildingDetailParam
       .bind{ [weak self] model in
-        if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model) {
+        if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model.buildingId) {
           vc.hidesBottomBarWhenPushed = true
           self?.navigationController?.pushViewController(vc, animated: true)
         }
@@ -98,10 +109,12 @@ extension LookAroundViewController {
     
     filterButton.rx.tap.bind{[weak self] in
       let vc = ConditionViewController(nibName: nil, bundle: nil)
+      vc.hidesBottomBarWhenPushed = true
       self?.navigationController?.pushViewController(vc, animated : true)
     }.disposed(by: disposeBag)
     mapButton.rx.tap.bind{[weak self] in
       let vc = MapViewController(nibName: nil, bundle: nil)
+      vc.hidesBottomBarWhenPushed = true
       self?.navigationController?.pushViewController(vc, animated : true)
     }.disposed(by: disposeBag)
     locationDropDown.rx.tap.bind{[weak self] in
