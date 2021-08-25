@@ -24,10 +24,15 @@ class SimpleReviewView : UITableViewCell {
       }
     }
   }
+  let content = BlurredView().then {
+    
+    $0.setRounded(radius: 5)
+  }
   private let blockView = UIView().then {
-    $0.backgroundColor = .clear
+    $0.backgroundColor = .black
     $0.setRounded(radius: 5)
     $0.alpha = 0.7
+    $0.isHidden = false
   }
   private let roomNumber = UILabel().then {
     $0.textColor = .blackText
@@ -101,20 +106,26 @@ class SimpleReviewView : UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   func layout() {
-    self.backgroundColor = .gray244
+    self.isUserInteractionEnabled = true
+    content.backgroundColor = .gray244
     self.setRounded(radius: 5)
-    self.adds([roomNumber,
-               createdAt,
-               reportBtn,
-               reviewerName,
-               ownerReviewNotice,
-               ownerStyleBackground,
-               ownerReview,
-               houseReviewNotice,
-               houseReview,
-               totalReviewNotice,
-               totalReview,
-               reviewDetailBtn])
+    self.add(content)
+    content.snp.makeConstraints{
+      $0.leading.trailing.top.equalToSuperview()
+      $0.bottom.equalToSuperview().offset(-10)
+    }
+    content.adds([roomNumber,
+                  createdAt,
+                  reportBtn,
+                  reviewerName,
+                  ownerReviewNotice,
+                  ownerStyleBackground,
+                  ownerReview,
+                  houseReviewNotice,
+                  houseReview,
+                  totalReviewNotice,
+                  totalReview,
+                  reviewDetailBtn])
     
     roomNumber.snp.makeConstraints{
       $0.top.equalToSuperview().offset(12)
@@ -163,7 +174,7 @@ class SimpleReviewView : UITableViewCell {
       $0.leading.equalTo(roomNumber)
       $0.top.equalTo(houseReviewNotice.snp.bottom).offset(8)
       $0.height.equalTo(40)
-
+      
     }
     totalReviewNotice.snp.makeConstraints{
       $0.top.equalTo(houseReview.snp.bottom).offset(16)
@@ -175,18 +186,32 @@ class SimpleReviewView : UITableViewCell {
       $0.top.equalTo(totalReviewNotice.snp.bottom).offset(8)
       $0.bottom.equalTo(reviewDetailBtn)
       $0.height.equalTo(40)
-
+      
     }
     reviewDetailBtn.snp.makeConstraints{
       $0.bottom.equalToSuperview().offset(-16)
       $0.trailing.equalToSuperview().offset(-18)
     }
+    
   }
 }
 
 extension SimpleReviewView {
   func bind() {
-    
+    reportBtn.rx.tap.bind{[weak self] in
+      let vc = ReportViewController()
+      guard
+        let userid = UserDefaultHandler.userId
+      else {return}
+        
+      vc.reportModel.reportUser = userid
+      UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+    }.disposed(by:disposeBag)
+    content.reviewDirectBtn.rx.tap.bind{[weak self] in
+      let vc = SelectAddressViewController()
+      UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+
+    }.disposed(by: disposeBag)
   }
   func dummy() {
     roomNumber.text = "3**호에 거주한"
@@ -202,5 +227,73 @@ extension SimpleReviewView {
     ownerReview.text  = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
     houseReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
     totalReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
+  }
+}
+class BlurredView : UIView {
+  private let notice = UILabel().then {
+    $0.numberOfLines = 2
+    $0.setupLabel(text: "거주 리뷰를 작성하면\n상세 리뷰를 확인할 수 있어요", color: .blueText, font: .nanumRoundExtraBold(fontSize: 16), align: .center)
+  }
+  let reviewDirectBtn = UIButton().then {
+    $0.setupButton(title: "리뷰 쓰러 가기", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12), backgroundColor: .clear, state: .normal, radius: 0)
+  }
+  
+  func blur(_ blurRadius: Double = 2.5) {
+    let blurredImage = getBlurryImage(blurRadius)
+    let blurredImageView = UIImageView(image: blurredImage)
+    blurredImageView.translatesAutoresizingMaskIntoConstraints = false
+    blurredImageView.tag = 100
+    blurredImageView.contentMode = .center
+    blurredImageView.backgroundColor = .white
+    blurredImageView.addSubview(notice)
+    blurredImageView.addSubview(reviewDirectBtn)
+    
+    addSubview(blurredImageView)
+    notice.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.centerY.equalToSuperview().offset(-15)
+    }
+
+    reviewDirectBtn.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(notice.snp.bottom).offset(34)
+    }
+    NSLayoutConstraint.activate([
+      blurredImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+      blurredImageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+    ])
+  }
+  
+  func unblur() {
+    subviews.forEach { subview in
+      if subview.tag == 100 {
+        subview.removeFromSuperview()
+      }
+    }
+  }
+  
+  private func getBlurryImage(_ blurRadius: Double = 2.5) -> UIImage? {
+    UIGraphicsBeginImageContext(bounds.size)
+    layer.render(in: UIGraphicsGetCurrentContext()!)
+    guard let image = UIGraphicsGetImageFromCurrentImageContext(),
+          let blurFilter = CIFilter(name: "CIGaussianBlur") else {
+      UIGraphicsEndImageContext()
+      return nil
+    }
+    UIGraphicsEndImageContext()
+    
+    blurFilter.setDefaults()
+    
+    blurFilter.setValue(CIImage(image: image), forKey: kCIInputImageKey)
+    blurFilter.setValue(blurRadius, forKey: kCIInputRadiusKey)
+    
+    var convertedImage: UIImage?
+    let context = CIContext(options: nil)
+    if let blurOutputImage = blurFilter.outputImage,
+       let cgImage = context.createCGImage(blurOutputImage, from: blurOutputImage.extent) {
+      convertedImage = UIImage(cgImage: cgImage)
+    }
+    
+    return convertedImage
   }
 }

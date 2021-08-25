@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Moya
-class PostDetailViewModel  {
+class PostDetailViewModel : Services, ViewModelType  {
   private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let loadView : Observable<Int>
@@ -45,11 +45,7 @@ extension PostDetailViewModel {
           CommentSectionType.init(model: comment, items: subComment.map{$0.toCommentModel()})
         }
     }
-//    .map{ comments in
-//      comments.map{ comment in
-//        CommentSectionType.init(model: comment, items: [])
-//      }
-//    }
+
     let likePost = input.likePost.flatMapLatest{ param in
       self?.service.addPostLike(param: param) ?? .empty()
     }.share()

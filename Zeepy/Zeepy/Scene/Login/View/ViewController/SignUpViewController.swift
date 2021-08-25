@@ -17,11 +17,10 @@ class SignUpViewController: BaseViewController {
   let getName = InputBoxView().then {
     $0.infoTitle.text = "이름"
     $0.infoTextField.placeholder = "이름을 입력해주세요"
-    $0.validationResult.text = "이미 존재하는 이름입니다"
   }
   let getID = InputBoxView().then {
-    $0.infoTitle.text = "아이디"
-    $0.infoTextField.placeholder = "아이디를 입력해주세요"
+    $0.infoTitle.text = "닉네임"
+    $0.infoTextField.placeholder = "사용하실 닉네임을 입력해주세요"
   }
   let checkIDButton = UIButton().then {
     $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
@@ -34,8 +33,8 @@ class SignUpViewController: BaseViewController {
   }
   let getEmail = InputBoxView().then {
     $0.infoTitle.text = "이메일"
-    $0.infoTextField.placeholder = "이메일을 입력해주세요"
-    $0.validationResult.text = "이미 존재하는 메일입니다"
+    $0.infoTextField.placeholder = "이메일ID를 입력해주세요"
+    $0.validationResult.text = "이미 가입된 이메일입니다"
   }
   let checkEmailButton = UIButton().then {
     $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
@@ -46,15 +45,10 @@ class SignUpViewController: BaseViewController {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
-  let passWordRuleLabel = UILabel().then {
-    $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
-    $0.textColor = UIColor(white: 202.0 / 255.0, alpha: 1.0)
-    $0.text = "*최소 8글자 이상의 비밀번호를 입력해주세요."
-  }
   let getPW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호"
     $0.infoTextField.placeholder = "비밀번호를 입력해주세요"
-    $0.validationResult.text = "비밀번호는 2~8자 한글, 숫자, 특수문자를 포함해야합니다."
+    $0.validationResult.text = "최소 8글자 이상의 비밀번호를 입력해주세요."
   }
   let surePW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호 확인"
@@ -244,7 +238,7 @@ class SignUpViewController: BaseViewController {
     }
     getID.snp.makeConstraints{
       $0.leading.equalToSuperview()
-      $0.top.equalTo(getName.snp.bottom).offset(30)
+      $0.top.equalTo(getName.snp.bottom).offset(20)
       $0.height.equalTo(90)
     }
     checkIDButton.snp.makeConstraints{
@@ -257,7 +251,7 @@ class SignUpViewController: BaseViewController {
     }
     getEmail.snp.makeConstraints{
       $0.leading.equalToSuperview()
-      $0.top.equalTo(getID.snp.bottom).offset(30)
+      $0.top.equalTo(getID.snp.bottom).offset(20)
       $0.height.equalTo(90)
     }
     checkEmailButton.snp.makeConstraints{
@@ -270,19 +264,14 @@ class SignUpViewController: BaseViewController {
     }
     getPW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
-      $0.top.equalTo(getEmail.snp.bottom).offset(30)
+      $0.top.equalTo(getEmail.snp.bottom).offset(20)
       $0.height.equalTo(90)
-    }
-    getPW.addSubview(passWordRuleLabel)
-    passWordRuleLabel.snp.makeConstraints{
-      $0.leading.equalToSuperview().offset(16)
-      $0.top.equalTo(getPW.infoTextField.snp.bottom).offset(8)
     }
     surePW.infoTextFieldBackGroundView.addSubview(pwCheckImage)
     
     surePW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
-      $0.top.equalTo(getPW.snp.bottom).offset(30)
+      $0.top.equalTo(getPW.snp.bottom).offset(20)
     }
     pwCheckImage.snp.makeConstraints{
       $0.centerY.equalToSuperview()

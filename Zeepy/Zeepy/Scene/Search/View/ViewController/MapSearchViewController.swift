@@ -50,13 +50,16 @@ class MapSearchViewController: UIViewController {
     //    var deleteTableViewCellLabel = UILabel().then{
     //        $0.text = "최근 검색 기록 삭제"
     //    }
-    
+  private let naviView = CustomNavigationBar().then {
+    $0.setUp(title: "지도")
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchRecordTableView.delegate = self
         self.searchRecordTableView.dataSource = self
         self.view.backgroundColor = .white
-        self.view.adds([searchView, searchRecordTableView])
+        self.view.adds([searchView, searchRecordTableView, naviView])
         addConstraints()
         cellsRegister()
         lastRegister()
@@ -77,9 +80,13 @@ class MapSearchViewController: UIViewController {
         return searchContent
     }
     func addConstraints(){
+        naviView.snp.makeConstraints{
+          $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+          $0.height.equalTo(68)
+        }
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-            $0.top.equalTo(95)//?
+            $0.top.equalTo(naviView.snp.bottom)//?
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)

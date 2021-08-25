@@ -64,7 +64,9 @@ class ConditionViewController: UIViewController {
     // MARK: - Components
     let scrollView = UIScrollView()
     let contentView = UIView()
-    
+    private let naviView = CustomNavigationBar().then {
+      $0.setUp(title: "조건검색")
+    }
     let buildingTitle = UILabel().then {
         $0.text = "건물유형"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
@@ -296,8 +298,14 @@ class ConditionViewController: UIViewController {
     
     func addConstraints()
     {
+      self.view.add(naviView)
+      naviView.snp.makeConstraints{
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+          $0.leading.trailing.bottom.equalToSuperview()
+          $0.top.equalTo(naviView.snp.bottom)
         }
         
         scrollView.addSubview(contentView)

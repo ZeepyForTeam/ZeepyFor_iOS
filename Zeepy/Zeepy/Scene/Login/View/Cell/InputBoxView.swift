@@ -41,11 +41,11 @@ class InputBoxView: UIView {
     contentView.adds([infoTitle,infoTextFieldBackGroundView, validationResult])
     
     infoTitle.snp.makeConstraints{
-      $0.leading.equalToSuperview().offset(10)
+      $0.leading.equalToSuperview().offset(24)
     }
     infoTextFieldBackGroundView.snp.makeConstraints{
       $0.top.equalTo(infoTitle.snp.bottom).offset(8)
-      $0.leading.trailing.equalToSuperview().inset(16)
+      $0.leading.trailing.equalToSuperview().inset(24)
     }
     infoTextFieldBackGroundView.adds([infoTextField])
     infoTextField.snp.makeConstraints{

@@ -39,6 +39,11 @@ class AddPostViewContoller : BaseViewController {
   private let titleTextField = CustomTextField().then {
     $0.placeholder = "글의 제목을 입력해주세요"
   }
+  private let contentNotice = UILabel().then {
+    $0.setupLabel(text: "공구 소개", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
+  }
+  private let contentTextView = CustomTextView()
+  private var placeholder: String = ""
   private let infoNotice = UILabel().then{
     $0.text = "구매정보 입력"
     $0.textColor = .blackText
@@ -105,21 +110,47 @@ class AddPostViewContoller : BaseViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    layout()
+    layout(type: postType)
     self.hideKeyboardWhenTappedAround()
     bind()
     nextButton.rx.tap.bind{[weak self] in
-      let vc = AddPhotoViewController()
+      guard let self = self else {return}
+      guard let vc = AddPhotoViewController(nibName: nil, bundle: nil, viewModel: self.viewModel) else {return}
       vc.hidesBottomBarWhenPushed = true
       
-      self?.navigationController?.pushViewController(vc, animated: true)
+      self.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
   }
   private let memberCheckInfo = BehaviorSubject<CheckBoxContent>(value: .productNameCheckBox)
-  
+  private let textCounter = UILabel().then {
+    $0.setupLabel(text: "", color: .grayText, font: .nanumRoundRegular(fontSize: 11))
+  }
+  func addTextCounter(maxVal: Int = 100) {
+    contentView.add(textCounter)
+    textCounter.snp.makeConstraints{
+      $0.trailing.equalTo(contentTextView).offset(-8)
+      $0.bottom.equalTo(contentTextView).offset(-4)
+    }
+    contentTextView.rx.text.orEmpty.asObservable().map{($0, $0.count)}
+      .share()
+      .bind{[weak self] text, count in
+        if text == self?.placeholder {
+          self?.textCounter.textColor = .grayText
+          self?.textCounter.text = "\(0)/\(maxVal)"
+        }
+        if count >= maxVal {
+          self?.textCounter.textColor = .red
+          self?.contentTextView.resignFirstResponder()
+        }
+        else {
+          self?.textCounter.textColor = .grayText
+          self?.textCounter.text = "\(count)/\(maxVal)"
+        }
+      }.disposed(by: disposeBag)
+  }
 }
 extension AddPostViewContoller {
-  private func layout() {
+  private func layout(type : PostType) {
     self.view.adds([naviView,
                     scrollView,
                     nextButtonBackground])
@@ -136,13 +167,70 @@ extension AddPostViewContoller {
     contentView.snp.makeConstraints{
       $0.top.leading.trailing.bottom.equalToSuperview()
       $0.width.equalToSuperview()
-      $0.height.equalToSuperview().priority(750)
+      $0.height.equalToSuperview().priority(250)
     }
+    switch type {
+    case .deal:
+      auctionLayout()
+    default :
+      basicLayout()
+    }
+  }
+  private func basicLayout() {
     contentView.adds([titleNotice,
                       titleTextField,
                       infoNotice,
                       productTitle,
                       productPrice,
+                      contentNotice,
+                      contentTextView])
+    
+    titleNotice.snp.makeConstraints{
+      $0.top.equalToSuperview().offset(24)
+      $0.leading.equalToSuperview().offset(16)
+    }
+    titleTextField.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(44)
+      $0.top.equalTo(titleNotice.snp.bottom).offset(10)
+    }
+    contentNotice.snp.makeConstraints{
+      $0.top.equalTo(titleTextField.snp.bottom).offset(36)
+      $0.leading.equalToSuperview().offset(16)
+    }
+    contentTextView.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(90)
+      $0.top.equalTo(contentNotice.snp.bottom).offset(10)
+    }
+    
+    nextButtonBackground.add(nextButton)
+    nextButtonBackground.snp.makeConstraints{
+      $0.leading.trailing.bottom.equalToSuperview()
+      $0.height.equalTo(102)
+    }
+    nextButton.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
+      $0.top.equalToSuperview().offset(12)
+      $0.height.equalTo(52)
+    }
+    contentNotice.text = "글 내용"
+    placeholder = "글 내용을 작성해주세요 (1500자 이내)"
+    contentTextView.setPlaceholder(placeholder: placeholder, disposeBag: disposeBag)
+    addTextCounter(maxVal: 1500)
+
+  }
+  private func auctionLayout() {
+    contentView.adds([titleNotice,
+                      titleTextField,
+                      infoNotice,
+                      productTitle,
+                      productPrice,
+                      contentNotice,
+                      contentTextView,
                       productMall,
                       productMethod,
                       memberNotice,
@@ -165,9 +253,18 @@ extension AddPostViewContoller {
       $0.height.equalTo(44)
       $0.top.equalTo(titleNotice.snp.bottom).offset(10)
     }
-    
-    infoNotice.snp.makeConstraints{
+    contentNotice.snp.makeConstraints{
       $0.top.equalTo(titleTextField.snp.bottom).offset(36)
+      $0.leading.equalToSuperview().offset(16)
+    }
+    contentTextView.snp.makeConstraints{
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(90)
+      $0.top.equalTo(contentNotice.snp.bottom).offset(10)
+    }
+    infoNotice.snp.makeConstraints{
+      $0.top.equalTo(contentTextView.snp.bottom).offset(36)
       $0.leading.equalToSuperview().offset(16)
     }
     productTitle.snp.makeConstraints{
@@ -252,9 +349,14 @@ extension AddPostViewContoller {
       $0.top.equalToSuperview().offset(12)
       $0.height.equalTo(52)
     }
+    placeholder = "공동구매를 간단히 소개해주세요. (100자 이내)"
+    contentTextView.setPlaceholder(placeholder: placeholder, disposeBag: disposeBag)
+    addTextCounter()
+
   }
   private func bind() {
     let input = AddPostViewModel.ContentInput(titleText: titleTextField.rx.text.asObservable(),
+                                              contentText: contentTextView.rx.text.asObservable(),
                                               productTitle: productTitle.rx.text.asObservable(),
                                               productPrice: productPrice.rx.text.map{
                                                 if $0.isNotNil {

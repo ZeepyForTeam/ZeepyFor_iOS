@@ -46,27 +46,27 @@ public class LoadingHUD {
 }
 
 
-//extension LoadingHUD: ReactiveCompatible { }
-//public extension Reactive where Base: LoadingHUD {
-//    static var loadingHUD: LoadingHUD {
-//        return LoadingHUD()
-//    }
-//    
-//    static var isAnimating: Binder<Bool> {
-//        return .init(
-//            UIApplication.shared,
-//            scheduler: MainScheduler.asyncInstance,
-//            binding: { hud, isVisible in
-//                if isVisible {
-//                    LoadingHUD.show()
-//                }
-//                else {
-//                    LoadingHUD.hide()
-//                }
-//            }
-//        )
-//    }
-//}
+extension LoadingHUD: ReactiveCompatible { }
+public extension Reactive where Base: LoadingHUD {
+    static var loadingHUD: LoadingHUD {
+        return LoadingHUD()
+    }
+    
+    static var isAnimating: Binder<Bool> {
+        return .init(
+            UIApplication.shared,
+            scheduler: MainScheduler.asyncInstance,
+            binding: { hud, isVisible in
+                if isVisible {
+                    LoadingHUD.show()
+                }
+                else {
+                    LoadingHUD.hide()
+                }
+            }
+        )
+    }
+}
 
 public class SpinningCircleView: UIView {
     override init(frame: CGRect) {

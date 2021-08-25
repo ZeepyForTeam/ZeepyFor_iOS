@@ -11,7 +11,7 @@ import RxCocoa
 import Moya
 
 class LookAroundDetailViewController: BaseViewController {
-  private let model : BuildingModel!
+  private let buildingId : Int!
   private let viewModle = LookAroundDetailViewModel()
   private let loadTrigger = PublishSubject<Int>()
   private let likeTrigger = PublishSubject<Bool>()
@@ -132,6 +132,7 @@ class LookAroundDetailViewController: BaseViewController {
     $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 12)
   }
   private let reviewView = SimpleReviewView().then{
+    $0.isUserInteractionEnabled = true
     $0.layout()
     $0.dummy()
   }
@@ -143,9 +144,9 @@ class LookAroundDetailViewController: BaseViewController {
     $0.titleLabel?.font = .nanumRoundBold(fontSize: 14)
   }
   init?(nibName: String?, bundle: Bundle?,
-        model : BuildingModel)
+        model : Int)
   {
-    self.model = model
+    self.buildingId = model
     super.init(nibName: nil, bundle: nil)
   }
   required init?(coder: NSCoder) {
@@ -313,7 +314,6 @@ extension LookAroundDetailViewController {
     
     super.viewDidLoad()
     layout()
-    setUpview()
     bind()
   }
   
@@ -329,10 +329,7 @@ extension LookAroundDetailViewController {
                                  forCellWithReuseIdentifier: ReusableSimpleImageCell.identifier)
     imageCollectionView.isScrollEnabled = false
   }
-  private func setUpview() {
-    self.naviTitle.text = model.buildingName
-    self.addressLabel.text = model.buildingName
-  }
+
   func bind() {
     let input = LookAroundDetailViewModel.Input(loadTrigger: loadTrigger,
                                                 likeTrigger: likeTrigger)
@@ -351,12 +348,13 @@ extension LookAroundDetailViewController {
       if result {
         self?.likeBtn.isSelected.toggle()
         
-        self?.loadTrigger.onNext((self?.model.buildingId)!)
+        self?.loadTrigger.onNext((self?.buildingId)!)
       }
     }.disposed(by: disposeBag)
     output.buildingDetailUsecase.bind{ [weak self] model in
       guard let self = self
       else { return }
+      self.naviTitle.text = model.buildingName
       self.addressLabel.text = model.buildingAddress
       self.buildingTypeLabel.text = model.buildingType
       self.tradeTypeLabel.text = model.contractType
@@ -366,8 +364,10 @@ extension LookAroundDetailViewController {
         self.ownerTypes[i].typeCount.text = "\(model.ownerInfo[i].count) 개"
         self.ownerTypes[i].typeCount.textColor = model.ownerInfo[i].count > 0 ? .mainBlue : .gray196
       }
-      let count = model.review.count
+      let count = model.review.count + 1
       self.reviewView.isHidden = count == 0
+      self.reviewView.content.unblur()
+      
       self.reviewMoreBtn.isHidden = self.reviewView.isHidden == true
       self.reviewEmptyView.isHidden = count != 0
       
@@ -389,9 +389,17 @@ extension LookAroundDetailViewController {
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
 
-    
+    reviewView.content.reviewDirectBtn.rx.tap.bind{
+      print("클릭됨?")
+    }.disposed(by: disposeBag)
     reviewView.reportBtn.rx.tap.bind{[weak self] in
-      print("신고하기")
+      let vc = ReportViewController()
+      guard
+        let userid = UserDefaultHandler.userId
+      else {return}
+        
+      vc.reportModel.reportUser = userid
+      self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by:  reviewView.disposeBag)
     
     reviewView.reviewDetailBtn.rx.tap.bind{[weak self] in
@@ -407,7 +415,7 @@ extension LookAroundDetailViewController {
       self?.likeTrigger.onNext(self?.likeBtn.isSelected == true)
     }.disposed(by: disposeBag)
     //
-    loadTrigger.onNext((model.buildingId))
+    loadTrigger.onNext((buildingId))
   }
 }
 
