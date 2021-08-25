@@ -27,6 +27,7 @@ extension HomeViewModel {
     let reviewVC = inputs.writeReview.map{ _ in
       SelectAddressViewController()
     }
+
     let result = inputs.resetAddress.flatMapLatest{ address in
       self?.userService.addAddress(param: .init(addresses: address)) ?? .empty()
     }

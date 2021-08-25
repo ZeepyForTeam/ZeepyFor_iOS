@@ -71,7 +71,6 @@ class HomeViewController : BaseViewController {
     $0.backgroundColor = .gray244
   }
   private let resetAddress = PublishSubject<[Addresses]>()
-
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -176,6 +175,7 @@ class HomeViewController : BaseViewController {
       $0.leading.equalTo(shareButton.snp.trailing).offset(8)
       $0.trailing.equalToSuperview().offset(-16)
     }
+  
     
   }
   private func setUpCollectionView() {
@@ -216,6 +216,7 @@ class HomeViewController : BaseViewController {
      types.bind(to: selectTypeCollectionView.rx.items(cellIdentifier: SelectTypeCollectionViewCell.identifier, cellType: SelectTypeCollectionViewCell.self)) {row, data, cell in
       cell.bind(type: data)
     }.disposed(by: disposeBag)
+
     selectTypeCollectionView.rx.modelSelected(ValidateType.self)
       .bind{[weak self] type in
         self?.tabBarController?.selectedIndex = 1

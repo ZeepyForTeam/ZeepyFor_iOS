@@ -21,6 +21,8 @@ enum CommunityRouter {
   case fetchParticipation(id:Int)
   case addParticipation(id:Int, param : JoinRequset)
   case modifyParticipation(id:Int)
+  case s3Storage
+
 }
 extension CommunityRouter : TargetType {
   public var baseURL: URL {
@@ -52,6 +54,8 @@ extension CommunityRouter : TargetType {
       return "/community/participation/\(id)"
     case .fetchMyZip(param: let param):
       return "/community/myzip"
+    case .s3Storage:
+      return "/s3"
     }
   }
   var method: Moya.Method {
@@ -80,6 +84,8 @@ extension CommunityRouter : TargetType {
       return .put
     case .fetchMyZip(param: let param):
       return .get
+      case .s3Storage:
+        return .get
     }
   }
   var sampleData: Data {
@@ -123,7 +129,8 @@ extension CommunityRouter : TargetType {
       }
       return .requestPlain
 
-
+    case .s3Storage:
+      return .requestPlain
     }
   }
   var headers: [String : String]? {
