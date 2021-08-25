@@ -207,7 +207,6 @@
 		DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA12BCD726D4A97B00F2A540 /* DaumMap.framework */; };
 		DA51E4FD26D4AF570049051C /* ModifyCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */; };
 		DA51E4FF26D4BAE80049051C /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FE26D4BAE80049051C /* ImageViewer.swift */; };
-		DA51E50126D4C65E0049051C /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E50026D4C65E0049051C /* ReportViewController.swift */; };
 		DA51E50326D4C9AE0049051C /* ReportNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */; };
 		DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */; };
 		DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */; };
@@ -506,7 +505,6 @@
 		DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postSimpleCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCommentView.swift; sourceTree = "<group>"; };
 		DA51E4FE26D4BAE80049051C /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
-		DA51E50026D4C65E0049051C /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNoticeView.swift; sourceTree = "<group>"; };
 		DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundDetailViewController.swift; sourceTree = "<group>"; };
 		DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewModel.swift; sourceTree = "<group>"; };
@@ -584,14 +582,12 @@
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
 				DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */,
-
 				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
 				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
 				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				82478068C1971FFC2EDD4492 /* Pods_Zeepy.framework in Frameworks */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1401,7 +1397,6 @@
 				DA37C79B269BDB260031A17B /* PostViewController.swift */,
 				DA483D2626A9181800A81704 /* AddPostViewController.swift */,
 				DA483D3026A9320000A81704 /* AddPhotoViewController.swift */,
-				DA51E50026D4C65E0049051C /* ReportViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1802,7 +1797,6 @@
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
 				371628A826456EC10006AE80 /* MapViewController.swift in Sources */,
-				DA51E50126D4C65E0049051C /* ReportViewController.swift in Sources */,
 				DA4744B226197F5400709883 /* HomeViewController.swift in Sources */,
 				DAF4D3A9265A231500B281E2 /* SubCommentTableViewCell.swift in Sources */,
 				CC7C391026C12A8A0015CA0B /* ConfirmDeletePopupViewController.swift in Sources */,
