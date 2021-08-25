@@ -19,5 +19,5 @@ class Services {
   public let buildingService = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins:[NetworkLoggerPlugin()]))
   public let communityService = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   public let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
-  
+  public let s3Service = S3Service(provider: MoyaProvider<S3Router>(plugins:[NetworkLoggerPlugin()]))
 }

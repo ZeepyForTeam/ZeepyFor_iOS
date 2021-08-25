@@ -15,6 +15,8 @@ class LookAroundDetailViewController: BaseViewController {
   private let viewModle = LookAroundDetailViewModel()
   private let loadTrigger = PublishSubject<Int>()
   private let likeTrigger = PublishSubject<Bool>()
+  var reviewTemp: [ReviewResponses] = []
+
   private let navigationView = UIView().then{
     $0.backgroundColor = .white
     let underBar = UIView().then{
@@ -107,7 +109,15 @@ class LookAroundDetailViewController: BaseViewController {
     $0.backgroundColor = .white
   }
   private let ownerTypes : [OwnerTypeView] = [.init(),.init(),.init(),.init(),.init()]
+  private let buildingTypeNotice = UILabel().then {
+    $0.setupLabel(text: "건물 요약", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
+  }
+  private let buildingTypeBackgroundView = UIView().then {
+    $0.backgroundColor = .gray244
+    $0.setRounded(radius: 8)
   
+  }
+  private let buildingTypes: [BuildingTypeView] = [.init(title: "방음"),.init(title: "청결"),.init(title: "채광"),.init(title: "수압")]
   private let buildingReviewTitle = UILabel().then{
     $0.textColor = .blackText
     $0.textAlignment = .center
@@ -134,7 +144,6 @@ class LookAroundDetailViewController: BaseViewController {
   private let reviewView = SimpleReviewView().then{
     $0.isUserInteractionEnabled = true
     $0.layout()
-    $0.dummy()
   }
   private let reviewMoreBtn = UIButton().then {
     $0.setRounded(radius: 5)
@@ -203,6 +212,8 @@ extension LookAroundDetailViewController {
                         imagesBackground,
                         ownerTypeLabel,
                         ownerTypeView,
+                        buildingTypeNotice,
+                        buildingTypeBackgroundView,
                         buildingReviewTitle,
                         reviewEmptyView,
                         reviewView,
@@ -275,8 +286,27 @@ extension LookAroundDetailViewController {
         $0.top.bottom.equalToSuperview()
       }
     }
-    buildingReviewTitle.snp.makeConstraints{
+    buildingTypeNotice.snp.makeConstraints{
       $0.top.equalTo(ownerTypeView.snp.bottom).offset(24)
+      $0.leading.equalToSuperview().offset(16)
+    }
+    buildingTypeBackgroundView.snp.makeConstraints{
+      $0.top.equalTo(buildingTypeNotice.snp.bottom).offset(8)
+      $0.centerX.equalToSuperview()
+      $0.leading.equalToSuperview().offset(16)
+      $0.height.equalTo(42)
+    }
+    buildingTypeBackgroundView.adds(buildingTypes)
+    for i in 0..<buildingTypes.count {
+      buildingTypes[i].setup()
+      buildingTypes[i].snp.makeConstraints{
+        $0.centerX.equalToSuperview().offset((CGFloat(i) - 1.5) * 90)
+        $0.top.bottom.equalToSuperview()
+      }
+    }
+    
+    buildingReviewTitle.snp.makeConstraints{
+      $0.top.equalTo(buildingTypeBackgroundView.snp.bottom).offset(24)
       $0.leading.equalToSuperview().offset(16)
     }
     reviewView.snp.makeConstraints {
@@ -364,29 +394,43 @@ extension LookAroundDetailViewController {
         self.ownerTypes[i].typeCount.text = "\(model.ownerInfo[i].count) 개"
         self.ownerTypes[i].typeCount.textColor = model.ownerInfo[i].count > 0 ? .mainBlue : .gray196
       }
-      let count = model.review.count + 1
+      let count = model.review.count
       self.reviewView.isHidden = count == 0
       self.reviewView.content.unblur()
-      
       self.reviewMoreBtn.isHidden = self.reviewView.isHidden == true
       self.reviewEmptyView.isHidden = count != 0
       
       if count != 0 {
-        self.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .normal)
+        self.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .selected)
         self.buildingReviewTitle.text = "건물 리뷰(\(count))"
       }
+      self.reviewMoreBtn.isSelected = count != 0
       if model.buildingImages.isEmpty {
         self.imageCollectionView.isHidden = true
       }
     }.disposed(by: disposeBag)
-    
+    output.furnitures.bind{[weak self] str in
+      self?.options.text = str
+    }.disposed(by: disposeBag)
+    output.reviewUsecase.bind{[weak self] reviews in
+      self?.reviewTemp = reviews
+      if let first = reviews.first {
+        self?.reviewView.bind(model: first)
+      }
+    }.disposed(by: disposeBag)
     imageCollectionView.rx.itemSelected.bind{ [weak self] _ in
       print("사진리스트뷰로이동")
     }.disposed(by: disposeBag)
-
     reviewMoreBtn.rx.tap.bind{[weak self] in
-      let vc = SelectAddressViewController()
-      self?.navigationController?.pushViewController(vc, animated: true)
+      if self?.reviewMoreBtn.isSelected == true {
+        guard let vc = ReviewListViewController(nibName: nil, bundle: nil, reviews: self?.reviewTemp ?? []) else {return}
+        
+        self?.navigationController?.pushViewController(vc, animated: true)
+      }
+      else {
+        let vc = SelectAddressViewController()
+        self?.navigationController?.pushViewController(vc, animated: true)
+      }
     }.disposed(by: disposeBag)
 
     reviewView.content.reviewDirectBtn.rx.tap.bind{
@@ -402,8 +446,10 @@ extension LookAroundDetailViewController {
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by:  reviewView.disposeBag)
     
-    reviewView.reviewDetailBtn.rx.tap.bind{[weak self] in
-      let vc = DetailReviewViewContoller()
+    reviewView.reviewDetailBtn.rx.tap.withLatestFrom(output.reviewUsecase).bind{[weak self] models in
+      guard
+        let first = models.first else {return}
+      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, review: first) else {return}
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: reviewView.disposeBag)
     reviewEmptyBtn.rx.tap.bind{[weak self] in
@@ -418,7 +464,40 @@ extension LookAroundDetailViewController {
     loadTrigger.onNext((buildingId))
   }
 }
-
+class BuildingTypeView : UIView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  convenience init(title: String) {
+    self.init(frame: .zero)
+    self.typeStr = title
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  var typeStr: String!
+  let typeImage = UIImageView().then {
+    $0.setRounded(radius: 10)
+  }
+  let typeLabel = UILabel().then {
+    $0.textColor = .mainBlue
+    $0.font = .nanumRoundExtraBold(fontSize: 12)
+  }
+  func setup() {
+    self.adds([typeLabel, typeImage])
+    typeLabel.snp.makeConstraints{
+      $0.centerY.equalToSuperview()
+      $0.leading.equalToSuperview()
+      
+    }
+    typeImage.snp.makeConstraints{
+      $0.centerY.equalToSuperview()
+      $0.leading.equalTo(typeLabel.snp.trailing).offset(8)
+    }
+    typeLabel.text = typeStr
+  }
+}
 class OwnerTypeView : UIView {
   let typeImage = UIImageView().then{
     $0.setRounded(radius: 20)

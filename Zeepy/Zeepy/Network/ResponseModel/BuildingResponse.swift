@@ -7,7 +7,7 @@
 
 import Foundation
 // MARK: - BuildingResponseModel
-struct BuildingResponseModel: Codable {
+struct BuildingResponseModel: Decodable {
   let content: [BuildingContent]
   let empty, first, last: Bool
   let number, numberOfElements: Int
@@ -18,19 +18,19 @@ struct BuildingResponseModel: Codable {
 }
 
 // MARK: - BuildingContent
-struct BuildingContent: Codable {
+struct BuildingContent: Decodable {
   let address, apartmentName: String?
   let id, areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]?
   let buildingLikes: [BuildingLike]?
   let exclusivePrivateArea,latitude, longitude: Double?
-  let reviews: [Review]?
+  let reviews: [ReviewResponses]?
   let shortAddress, fullRoadNameAddress,
       shortRoadNameAddress,fullRoadAddress,fullNumberAddress,shortNumberAddress,buildingType: String?
   
 }
 
-struct BuildingModelByAddress: Codable {
+struct BuildingModelByAddress: Decodable {
   let apartmentName: String?
   let areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]
@@ -76,18 +76,42 @@ struct BuildingLikes: Codable {
   let likeDate: String
   let email: String
 }
-
+struct ReviewResponses: Decodable {
+  let id: Int
+  let user : UserResponses
+  let address: String?
+  let communcationTendency: String?
+  let lessorGender: String?
+  let lessorAge: String?
+  let lessorReview: String?
+  let roomCount: String?
+  let soundInsulation: String?
+  let pest: String?
+  let lightning: String?
+  let waterPressure: String?
+  let furnitures: [String]?
+  let review: String?
+  let totalEvaluation: String?
+  let imageUrls: [String]?
+}
+struct UserResponses : Decodable {
+  let id: Int
+  let name: String
+  let addresses: [Addresses]?
+ 
+  
+}
 // MARK: - Review
 struct Review: Codable {
-  let address, communcationTendency: String
-  let furnitures: [String]
-  let id: Int
-  let imageUrls: [String]
-  let lessorAge, lessorReview, lightning, pest: String
-  let review, soundInsulation: String
-  let user: Int
-  let waterPressure: String
-  let totalEvaluation : String
+  let address, communcationTendency: String?
+  let furnitures: [String]?
+  let id: Int?
+  let imageUrls: [String]?
+  let lessorAge, lessorReview, lightning, pest: String?
+  let review, soundInsulation: String?
+  let user: Int?
+  let waterPressure: String?
+  let totalEvaluation : String?
 }
 
 // MARK: - Review
@@ -274,7 +298,7 @@ extension BuildingContent {
     
     let dealTypes = (self.buildingDeals?.map{$0.dealType?.dealTypes
     }.first ?? "") ?? ""
-    let images = reviews?.flatMap{$0.imageUrls} ?? []
+    let images = reviews?.flatMap{$0.imageUrls?.first} ?? []
     var ownerTypes : [OwnerTypeCount] = [.init(type: .kind, count: 0),
                                           .init(type: .free, count: 0),
                                           .init(type: .cute, count: 0),
@@ -282,15 +306,15 @@ extension BuildingContent {
                                           .init(type: .bad, count: 0)]
     var reviewInfos : [ReviewDetailInfo] = []
     for review in reviews ?? [] {
-      if let idx = ownerTypes.firstIndex(where: {$0.type == review.communcationTendency.validateType}) {
+      if let idx = ownerTypes.firstIndex(where: {$0.type == review.communcationTendency?.validateType}) {
         ownerTypes[idx].count += 1
       }
       let reviewInfo = ReviewDetailInfo(reviewrName: "리뷰어",
-                       detailAddress: review.address,
-                       ownerReview: review.review,
-                       ownerEstimateAge: review.lessorAge,
+                                        detailAddress: review.address ?? "",
+                                        ownerReview: review.review ?? "",
+                                        ownerEstimateAge: review.lessorAge ?? "",
                        houseReview: "방음 \(review.soundInsulation) 해충 \(review.pest) 채광 \(review.lightning) 수압 \(review.waterPressure)",
-                       totalReview: review.totalEvaluation,
+                       totalReview: review.totalEvaluation ?? "",
                        createdAt: "")
       reviewInfos.append(reviewInfo)
     }
@@ -321,7 +345,7 @@ extension BuildingContent {
 //    } {
 //      tags.append(contentsOf:dealTypes)
 //    }
-    let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: String($0.user), review: $0.review)}.first ?? .init(reviewrName: "없음", review: "리뷰없음")
-    return .init(buildingId: id!,buildingName: apartmentName ?? "", buildingImage: firstImg, ownderInfo: ownerType, review: review, filters: tags)
+    let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: $0.user.name ?? "", review: $0.review ?? "")}.first ?? .init(reviewrName: "없음", review: "리뷰없음")
+    return .init(buildingId: id!,buildingName: apartmentName ?? "", buildingImage: firstImg?.first, ownderInfo: ownerType, review: review, filters: tags)
   }
 }

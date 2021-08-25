@@ -189,7 +189,7 @@ extension Observable where  Element == Result<Response, APIError> {
         case .failure(let err):
           switch err {
           case .auth :
-            LoginManager.shared.sendLogInPage()
+            print(err.message)
           case .badrequest:
             print(err.message)
           case .notfound:

@@ -203,6 +203,9 @@
 		DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */; };
 		DA4C7837265A01F00040010F /* TapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7830265A01F00040010F /* TapCell.swift */; };
 		DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */; };
+		DA51080826D619E800076527 /* S3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51080726D619E800076527 /* S3Service.swift */; };
+		DA51080A26D619F600076527 /* S3Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51080926D619F600076527 /* S3Router.swift */; };
+		DA51080C26D684F200076527 /* zeepy_onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = DA51080B26D684F200076527 /* zeepy_onboarding.json */; };
 		DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA12BCD726D4A97B00F2A540 /* DaumMap.framework */; };
 		DA51E4FD26D4AF570049051C /* ModifyCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */; };
 		DA51E4FF26D4BAE80049051C /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FE26D4BAE80049051C /* ImageViewer.swift */; };
@@ -505,6 +508,9 @@
 		DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA4C7830265A01F00040010F /* TapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapCell.swift; sourceTree = "<group>"; };
 		DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postSimpleCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA51080726D619E800076527 /* S3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Service.swift; sourceTree = "<group>"; };
+		DA51080926D619F600076527 /* S3Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = S3Router.swift; path = Zeepy/Network/Service/S3Router.swift; sourceTree = SOURCE_ROOT; };
+		DA51080B26D684F200076527 /* zeepy_onboarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zeepy_onboarding.json; sourceTree = "<group>"; };
 		DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCommentView.swift; sourceTree = "<group>"; };
 		DA51E4FE26D4BAE80049051C /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNoticeView.swift; sourceTree = "<group>"; };
@@ -1030,6 +1036,7 @@
 				DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */,
 				DA66096126BBAFB90019D7F7 /* AuthRouter.swift */,
 				CC7C391726C36D310015CA0B /* UserRouter.swift */,
+				DA51080926D619F600076527 /* S3Router.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -1044,6 +1051,7 @@
 				DA40E1EC26B64DB300102EED /* ReviewService.swift */,
 				DA66096326BBB1FE0019D7F7 /* AuthService.swift */,
 				CC7C391926C36D400015CA0B /* UserService.swift */,
+				DA51080726D619E800076527 /* S3Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1326,6 +1334,7 @@
 		DA61C45125F361940063263A /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				DA51080B26D684F200076527 /* zeepy_onboarding.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1533,6 +1542,7 @@
 				DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */,
 				DA61C40725F32F450063263A /* LaunchScreen.storyboard in Resources */,
+				DA51080C26D684F200076527 /* zeepy_onboarding.json in Resources */,
 				CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DA61C40425F32F450063263A /* Assets.xcassets in Resources */,
 				3784561A2692154C00F59074 /* Gilroy-ExtraBold.otf in Resources */,
@@ -1795,6 +1805,7 @@
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				DA40E1E926B6494600102EED /* CommunityService.swift in Sources */,
 				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
+				DA51080826D619E800076527 /* S3Service.swift in Sources */,
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
@@ -1834,6 +1845,7 @@
 				CC53711E26D37E0C00DE5871 /* ReportPopupViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */,
+				DA51080A26D619F600076527 /* S3Router.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
 				CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,

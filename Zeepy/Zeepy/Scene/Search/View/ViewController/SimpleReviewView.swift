@@ -197,37 +197,23 @@ class SimpleReviewView : UITableViewCell {
 }
 
 extension SimpleReviewView {
-  func bind() {
-    reportBtn.rx.tap.bind{[weak self] in
-      let vc = ReportViewController()
-      guard
-        let userid = UserDefaultHandler.userId
-      else {return}
-        
-      vc.reportModel.reportUser = userid
-      UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
-    }.disposed(by:disposeBag)
-    content.reviewDirectBtn.rx.tap.bind{[weak self] in
-      let vc = SelectAddressViewController()
-      UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+  func bind(model : ReviewResponses) {
 
-    }.disposed(by: disposeBag)
-  }
-  func dummy() {
-    roomNumber.text = "3**호에 거주한"
-    createdAt.text = "2021.04.01 13:32"
-    let attributedString = NSMutableAttributedString(string: "서울쥐김자랑 님의 후기", attributes: [
+    roomNumber.text = "\(model.address ?? "")에 거주한"
+    
+    let attributedString = NSMutableAttributedString(string: "\(model.user.name)님의 후기", attributes: [
       .font: UIFont.nanumRoundExtraBold(fontSize: 18),
       .foregroundColor: UIColor.blackText
     ])
-    attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: 5))
+    attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: model.user.name.count))
     
     reviewerName.attributedText = attributedString
-    ownerStyle.text = "30대 남자로 보여요."
-    ownerReview.text  = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
-    houseReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
-    totalReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~"
+    ownerStyle.text = "\(model.lessorAge?.AgeTranslate ?? "") \(model.lessorGender?.GenderTranslate ?? "")로 보여요"
+    ownerReview.text = "\(model.lessorReview ?? "")"
+    houseReview.text = "방음 \(model.soundInsulation?.HouseValidate ?? "") 해충 \(model.pest?.HouseValidate ?? "") 채광 \(model.lightning?.HouseValidate ?? "") 수압 \(model.waterPressure?.HouseValidate ?? "")\n \(model.review ?? "")"
+    totalReview.text = "\(model.review ?? "")"
   }
+  
 }
 class BlurredView : UIView {
   private let notice = UILabel().then {
