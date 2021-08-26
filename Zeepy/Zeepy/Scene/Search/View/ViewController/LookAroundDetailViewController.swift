@@ -449,7 +449,7 @@ extension LookAroundDetailViewController {
     reviewView.reviewDetailBtn.rx.tap.withLatestFrom(output.reviewUsecase).bind{[weak self] models in
       guard
         let first = models.first else {return}
-      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, review: first) else {return}
+      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, reviewId: first.id) else {return}
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: reviewView.disposeBag)
     reviewEmptyBtn.rx.tap.bind{[weak self] in

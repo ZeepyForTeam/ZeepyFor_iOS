@@ -33,6 +33,12 @@ extension ReviewService {
       .retryWithAuthIfNeeded()
       .asObservable()
   }
+  func fetchReviewDetail(id: Int) -> Observable<ReviewResponses> {
+    provider.rx.request(.fetchReviewDetail(review: id))
+      .retryWithAuthIfNeeded()
+      .filterError()
+      .map(ReviewResponses.self)
+  }
   func getUserReviews() -> Observable<Response> {
     provider.rx.request(.getUserReviews)
       .asObservable()
