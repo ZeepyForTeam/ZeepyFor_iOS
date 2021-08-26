@@ -66,7 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window?.makeKeyAndVisible()
     }
     else {
-      rootNav.viewControllers = [LoginEmailViewController()]
+//      rootNav.viewControllers = [LoginEmailViewController()]
+      rootNav.viewControllers = [OnboardingViewController()]
       window?.rootViewController = rootNav
       window?.makeKeyAndVisible()
     }

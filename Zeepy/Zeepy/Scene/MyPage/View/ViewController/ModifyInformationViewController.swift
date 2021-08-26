@@ -39,9 +39,9 @@ class ModifyInformationViewController: BaseViewController {
   ///  private var socialType: String?
   var userName: String?
   private var socialType = UserDefaultHandler.loginType
-  private var socialImageName = ["kakao": "kakaologo",
-                                 "apple": "applelogo",
-                                 "naver": "naverlogo",
+  private var socialImageName = ["kakao": "logoCacao",
+                                 "apple": "logoApple",
+                                 "naver": "logoNaver",
                                  "email": "AppIcon"]
   var socialEmail: String?
   private var passwordModel = RequestModifyPassword(password: "")
@@ -279,7 +279,7 @@ extension ModifyInformationViewController {
                              radius: 0)
     
     let logoutText = NSMutableAttributedString(string: "로그아웃",
-                                              attributes: [
+                                               attributes: [
                                                 .font: UIFont.nanumRoundRegular(fontSize: 12),
                                                 .foregroundColor: UIColor.brownGrey])
     
@@ -297,9 +297,9 @@ extension ModifyInformationViewController {
                               radius: 0)
     
     let dropoutText = NSMutableAttributedString(string: "회원 탈퇴",
-                                              attributes: [
-                                                .font: UIFont.nanumRoundRegular(fontSize: 12),
-                                                .foregroundColor: UIColor.brownGrey])
+                                                attributes: [
+                                                  .font: UIFont.nanumRoundRegular(fontSize: 12),
+                                                  .foregroundColor: UIColor.brownGrey])
     
     dropoutText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: dropoutText.length))
     
@@ -314,18 +314,17 @@ extension ModifyInformationViewController {
   //로그아웃기능 임시
   private func temp() {
     logoutButton.rx.tap.bind{
-      MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
-        LoginManager.shared.makeLogoutStatus()
-        let root = LoginEmailViewController()
-        let rootNav = UINavigationController()
-        rootNav.navigationBar.isHidden = true
-        
-        rootNav.viewControllers = [root]
-        
-        if let window = self.view.window {
-          window.rootViewController = rootNav
-        }
-      })
+      
+      LoginManager.shared.makeLogoutStatus()
+      let root = LoginEmailViewController()
+      let rootNav = UINavigationController()
+      rootNav.navigationBar.isHidden = true
+      
+      rootNav.viewControllers = [root]
+      
+      if let window = self.view.window {
+        window.rootViewController = rootNav
+      }
     }.disposed(by: disposeBag)
   }
   

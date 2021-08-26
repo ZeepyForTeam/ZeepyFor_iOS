@@ -196,6 +196,20 @@ extension ManageReviewViewController {
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)
   }
+  
+  func registerButtonClicked() {
+    let navigation = self.navigationController
+    let nextViewController = SelectAddressViewController()
+    nextViewController.hidesBottomBarWhenPushed = true
+    navigation?.pushViewController(nextViewController, animated: true)
+  }
+  
+  func selectCell(reviewID: Int) {
+    let navigation = self.navigationController
+    guard let nextViewController = DetailReviewViewContoller(nibName: nil, bundle: nil, review: reviewID) else { return }
+    nextViewController.hidesBottomBarWhenPushed = false
+    navigation?.pushViewController(nextViewController, animated: true)
+  }
 }
 
 
@@ -215,46 +229,52 @@ extension ManageReviewViewController: UITableViewDataSource {
     }
     return count
   }
-
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-  guard let emptyCell = tableView.dequeueReusableCell(
-          withIdentifier: EmptyManageAddressTableViewCell.identifier,
-          for: indexPath) as? EmptyManageAddressTableViewCell else {
-    return UITableViewCell()
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let emptyCell = tableView.dequeueReusableCell(
+            withIdentifier: EmptyManageAddressTableViewCell.identifier,
+            for: indexPath) as? EmptyManageAddressTableViewCell else {
+      return UITableViewCell()
+    }
+    
+    guard let reviewCell = tableView.dequeueReusableCell(
+            withIdentifier: ManageReviewTableViewCell.identifier,
+            for: indexPath) as? ManageReviewTableViewCell else {
+      return UITableViewCell()
+    }
+    
+    if reviewModel?.simpleReviewDtoList.isEmpty == true ||
+        reviewModel?.simpleReviewDtoList == nil {
+      emptyCell.awakeFromNib()
+      emptyCell.contextLabel.text = "아직 작성한 리뷰가 없어요. :("
+      emptyCell.rootViewController = self
+      return emptyCell
+    }
+    
+    else {
+      reviewCell.awakeFromNib()
+      let review = self.reviewModel?.simpleReviewDtoList[indexPath.row]
+      let dateText: [Substring] = review?.reviewDate.split(separator: "T") ?? [""]
+      reviewCell.dataBind(address: review?.apartmentName ?? "",
+                          date: String(dateText[0]),
+                          lender: "\(convertData(data: review?.lessorAge ?? "")) \(convertData(data: "MALE"))로 보여요",
+                          tendency: converTendencyData(data: review?.communcationTendency ?? ""),
+                          sound: convertOptionData(data: review?.soundInsulation ?? ""),
+                          bug: convertOptionData(data: review?.pest ?? ""),
+                          light: convertOptionData(data: review?.lightning ?? ""),
+                          water: convertOptionData(data: review?.waterPressure ?? ""))
+      return reviewCell
+    }
   }
   
-  guard let reviewCell = tableView.dequeueReusableCell(
-          withIdentifier: ManageReviewTableViewCell.identifier,
-          for: indexPath) as? ManageReviewTableViewCell else {
-    return UITableViewCell()
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    self.viewWillLayoutSubviews()
   }
   
-  if reviewModel?.simpleReviewDtoList.isEmpty == true ||
-      reviewModel?.simpleReviewDtoList == nil {
-    emptyCell.awakeFromNib()
-    emptyCell.contextLabel.text = "아직 작성한 리뷰가 없어요. :(" 
-    emptyCell.rootViewController = self
-    return emptyCell
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let buildingId = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
+    selectCell(reviewID: id)
   }
   
-  else {
-    reviewCell.awakeFromNib()
-    let review = self.reviewModel?.simpleReviewDtoList[indexPath.row]
-    let dateText: [Substring] = review?.reviewDate.split(separator: "T") ?? [""]
-    reviewCell.dataBind(address: review?.apartmentName ?? "",
-                        date: String(dateText[0]),
-                        lender: "\(convertData(data: review?.lessorAge ?? "")) \(convertData(data: "MALE"))로 보여요",
-                        tendency: converTendencyData(data: review?.communcationTendency ?? ""),
-                        sound: convertOptionData(data: review?.soundInsulation ?? ""),
-                        bug: convertOptionData(data: review?.pest ?? ""),
-                        light: convertOptionData(data: review?.lightning ?? ""),
-                        water: convertOptionData(data: review?.waterPressure ?? ""))
-    return reviewCell
-  }
-}
-
-func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-  self.viewWillLayoutSubviews()
-}
-
+  
 }

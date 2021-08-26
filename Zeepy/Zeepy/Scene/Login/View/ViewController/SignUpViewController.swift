@@ -17,10 +17,14 @@ class SignUpViewController: BaseViewController {
   private let navigationView = CustomNavigationBar()
   let getName = InputBoxView().then {
     $0.infoTitle.text = "이름"
+    $0.infoTextField.autocapitalizationType = .none
+    $0.infoTextField.autocorrectionType = .no
     $0.infoTextField.placeholder = "이름을 입력해주세요"
   }
   let getNickname = InputBoxView().then {
     $0.infoTitle.text = "닉네임"
+    $0.infoTextField.autocapitalizationType = .none
+    $0.infoTextField.autocorrectionType = .no
     $0.infoTextField.placeholder = "사용하실 닉네임을 입력해주세요"
   }
   let checkNicknameButton = UIButton().then {
@@ -38,6 +42,9 @@ class SignUpViewController: BaseViewController {
   }
   let getEmail = InputBoxView().then {
     $0.infoTitle.text = "이메일"
+    $0.infoTextField.keyboardType = .emailAddress
+    $0.infoTextField.autocapitalizationType = .none
+    $0.infoTextField.autocorrectionType = .no
     $0.infoTextField.placeholder = "이메일ID를 입력해주세요"
     $0.validationResult.text = "이미 가입된 이메일입니다"
   }
@@ -58,11 +65,17 @@ class SignUpViewController: BaseViewController {
   let getPW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호"
     $0.infoTextField.placeholder = "비밀번호를 입력해주세요"
+    $0.infoTextField.autocapitalizationType = .none
+    $0.infoTextField.autocorrectionType = .no
+    $0.infoTextField.isSecureTextEntry = true
     $0.validationResult.text = "최소 8글자 이상의 비밀번호를 입력해주세요."
   }
   let surePW = InputBoxView().then {
     $0.infoTitle.text = "비밀번호 확인"
     $0.infoTextField.placeholder = "비밀번호를 다시 입력해주세요"
+    $0.infoTextField.autocapitalizationType = .none
+    $0.infoTextField.autocorrectionType = .no
+    $0.infoTextField.isSecureTextEntry = true
     $0.validationResult.text = "비밀번호가 일치하지 않습니다."
   }
   let pwCheckImage = UIImageView().then {
@@ -82,6 +95,7 @@ class SignUpViewController: BaseViewController {
     $0.setTitle("약관보기", for: .normal)
     $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+    $0.addTarget(self, action: #selector(clickedServiceTermsButton), for: .touchUpInside)
   }
   let personalTermsCheckBox = UIButton().then {
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
@@ -96,6 +110,7 @@ class SignUpViewController: BaseViewController {
     $0.setTitle("약관보기", for: .normal)
     $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+    $0.addTarget(self, action: #selector(clickedPersonalTermsButton), for: .touchUpInside)
   }
   let newsCheckBox = UIButton().then {
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
@@ -116,6 +131,16 @@ class SignUpViewController: BaseViewController {
   
   @objc func determineButtonImage(sender: UIButton) {
     sender.isSelected.toggle()
+  }
+  
+  @objc func clickedServiceTermsButton() {
+    let view = ServiceTermsViewController()
+    self.navigationController?.pushViewController(view, animated: true)
+  }
+  
+  @objc func clickedPersonalTermsButton() {
+    let view = PersonalTermsViewController()
+    self.navigationController?.pushViewController(view, animated: true)
   }
   
   override func viewDidLoad() {

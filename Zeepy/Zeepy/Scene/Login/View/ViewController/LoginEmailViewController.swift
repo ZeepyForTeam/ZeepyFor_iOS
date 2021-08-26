@@ -33,6 +33,9 @@ class LoginEmailViewController: BaseViewController {
   }
   let idTextField = UITextField().then{
     $0.placeholder = "아이디를 입력해주세요."
+    $0.autocapitalizationType = .none
+    $0.autocorrectionType = .no
+    $0.keyboardType = .emailAddress
     $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 15.0)
   }
   let pwTextFieldBackGroundView = UIView().then{
@@ -41,6 +44,9 @@ class LoginEmailViewController: BaseViewController {
   }
   let pwTextField = UITextField().then{
     $0.placeholder = "비밀번호를 입력해주세요."
+    $0.isSecureTextEntry = true
+    $0.autocapitalizationType = .none
+    $0.autocorrectionType = .no
     $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 15.0)
   }
   let findIDButton = UIButton().then{
