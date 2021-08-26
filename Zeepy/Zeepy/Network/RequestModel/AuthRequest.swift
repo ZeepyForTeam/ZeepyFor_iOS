@@ -18,4 +18,6 @@ struct RegisterRequset: Encodable, Equatable {
   let email: String
   let name: String
   let password: String
+  let nickname: String
+  let sendMailCheck: Bool
 }

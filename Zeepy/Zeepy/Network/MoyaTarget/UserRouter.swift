@@ -46,7 +46,7 @@ extension UserRouter : TargetType {
     case .memberShipWithdrawal:
       return "/user/withdrawal"
     case .fetchNickname:
-      return "/user/nickname"
+      return "/user/nickname/email"
     case .fetchEmail:
       return "/user/mail"
     case .putMarketing:
