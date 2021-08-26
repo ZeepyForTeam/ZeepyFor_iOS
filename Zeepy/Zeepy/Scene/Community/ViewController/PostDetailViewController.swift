@@ -215,7 +215,18 @@ extension PostDetailViewControlelr : UITableViewDelegate {
       view.reportOrModifyBtn.rx.tap
         .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
         .bind{ [weak self] in
-          print("신고하기")
+          let vc = ReportViewController()
+          guard
+            let userid = UserDefaultHandler.userId,
+            let commentId = self?.dataSource[section].model.identity,
+            let targetId = self?.dataSource[section].model.userId
+          else {return}
+          vc.reportModel.reportUser = userid
+          vc.reportModel.reportID = commentId
+          vc.reportModel.targetUser = targetId
+          vc.reportModel.targetTableType = "COMMENT"
+          self?.navigationController?.pushViewController(vc, animated: true)
+          
         }.disposed(by: disposeBag)
     }
     view.addSubcommentBtn.rx.tap
@@ -233,8 +244,17 @@ extension PostDetailViewControlelr : UITableViewDelegate {
       cell.bindCell(model: item)
       cell.reportBtn.rx.tap
         .takeUntil(cell.rx.methodInvoked(#selector(UITableViewCell.prepareForReuse)))
-        .bind{
-          print("신고하기")
+        .bind{ [weak self] in
+          let vc = ReportViewController()
+          guard
+            let userid = UserDefaultHandler.userId
+          else {return}
+          vc.reportModel.reportUser = userid
+          vc.reportModel.reportID = item.identity
+          vc.reportModel.targetUser = item.userId
+          vc.reportModel.targetTableType = "COMMENT"
+          self?.navigationController?.pushViewController(vc, animated: true)
+          
         }.disposed(by: cell.disposeBag)
       return cell
     }
@@ -411,6 +431,7 @@ extension PostDetailViewControlelr {
       vc.reportModel.targetUser = targetId
       vc.reportModel.reportID = reportId
       vc.reportModel.reportUser = reportUser
+      vc.reportModel.targetTableType = "COMMUNITY"
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
     loadViewTrigger.onNext(postId)
@@ -479,6 +500,7 @@ internal class PostDetailView : UIView{
   let postReportBtn = UIButton().then {
     $0.setImage(UIImage(named: "btnSos"), for: .normal)
   }
+  let purchaseInfo = PurchaseInfoView()
   var postImageCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let width = 100 * (UIScreen.main.bounds.width/375)
@@ -501,6 +523,7 @@ internal class PostDetailView : UIView{
                postedAt,
                postTitle,
                postContent,
+               purchaseInfo,
                postImageCollectionView,
                postReportBtn])
     typeView.add(typeLabel)
@@ -698,4 +721,81 @@ internal class CommentAreaView : UIView{
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+}
+internal class PurchaseInfoView : UIView{
+  private let productName = UILabel().then {
+    $0.setupLabel(text: "제품명", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let productNameText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let productPlace = UILabel().then {
+    $0.setupLabel(text: "구매처", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let productPlaceText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let tradeMethod = UILabel().then {
+    $0.setupLabel(text: "거래 방식", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let tradeMethodText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let InfoNotice = UILabel().then {
+    $0.setupLabel(text: "안내", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let InfoNoticeText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.adds([productName,
+               productNameText,
+               productPlace,
+               productPlaceText,
+               tradeMethod,
+               tradeMethodText,
+               InfoNotice,
+               InfoNoticeText])
+    productName.snp.makeConstraints{
+      $0.leading.equalToSuperview().offset(16)
+      $0.top.equalToSuperview().offset(8)
+    }
+    productNameText.snp.makeConstraints{
+      $0.centerY.equalTo(productName)
+      $0.leading.equalTo(productName.snp.trailing).offset(8)
+    }
+    productPlace.snp.makeConstraints{
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(productName.snp.bottom).offset(8)
+    }
+    productPlaceText.snp.makeConstraints{
+      $0.centerY.equalTo(productPlace)
+      $0.leading.equalTo(productPlace.snp.trailing).offset(8)
+    }
+    tradeMethod.snp.makeConstraints { 
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(productPlace.snp.bottom).offset(8)
+    }
+    tradeMethodText.snp.makeConstraints{
+      $0.centerY.equalTo(tradeMethod)
+      $0.leading.equalTo(tradeMethod.snp.trailing).offset(8)
+    }
+    InfoNotice.snp.makeConstraints{
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(tradeMethod.snp.bottom).offset(8)
+    }
+    InfoNoticeText.snp.makeConstraints{
+      $0.centerY.equalTo(InfoNotice)
+      $0.leading.equalTo(InfoNotice.snp.trailing).offset(8)
+    }
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 }

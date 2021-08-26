@@ -17,9 +17,10 @@ class ReviewService {
 }
 
 extension ReviewService {
-  func addReview(param: ReviewModel) -> Observable<Response> {
+  func addReview(param: ReviewModel) -> Observable<Bool> {
     provider.rx.request(.addReview(param: param))
       .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
   }
   func fetchReviewByAddress(address: String) -> Observable<Response> {

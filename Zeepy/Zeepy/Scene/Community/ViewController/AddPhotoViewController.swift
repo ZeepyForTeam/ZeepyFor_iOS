@@ -13,9 +13,10 @@ import YPImagePicker
 
 class AddPhotoViewController : BaseViewController {
   init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?,
-        viewModel : AddPostViewModel?) {
+        viewModel : AddPostViewModel?, reviewModel : ReviewModel? = nil) {
     self.viewModel = viewModel
-
+    self.reviewModel = reviewModel
+    
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
@@ -25,10 +26,16 @@ class AddPhotoViewController : BaseViewController {
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "사진 첨부")
   }
+  private let s3Service = S3Service(provider: MoyaProvider<S3Router>(plugins:[NetworkLoggerPlugin()]))
+  private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
   private let viewModel : AddPostViewModel?
+  private var reviewModel: ReviewModel?
   private var imageArray: [YPMediaPhoto] = []
   private let imagePublisher = PublishSubject<[YPMediaPhoto]>()
   private let deleteImage = PublishSubject<YPMediaPhoto>()
+  private let noticeLabel = UILabel().then {
+    $0.numberOfLines = 2
+  }
   private let addFromLib = UIView().then{
     $0.backgroundColor = .gray244
     let icon = UIImageView().then{
@@ -81,7 +88,7 @@ class AddPhotoViewController : BaseViewController {
     $0.text = "첨부된 이미지"
     $0.textColor = .blackText
     $0.font = .nanumRoundExtraBold(fontSize: 14)
-//    $0.isHidden = true
+    //    $0.isHidden = true
   }
   private var selectedImageCollectionView : UICollectionView!
   private let nextButtonBackground = UIView().then{
@@ -111,6 +118,7 @@ class AddPhotoViewController : BaseViewController {
       $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
       $0.height.equalTo(68)
     }
+    
     addFromLib.snp.makeConstraints{
       $0.top.equalTo(naviView.snp.bottom).offset(16)
       $0.leading.equalToSuperview().offset(16)
@@ -162,39 +170,49 @@ class AddPhotoViewController : BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     layout()
-
+    
     bind()
   }
-  private func bind() {
-    let input = AddPostViewModel.Input(loadTrigger: Observable.just(()),
-                                       currentImages: imagePublisher,
-                                       deleteImage: deleteImage,
-                                       post: nextButton.rx.tap.asObservable())
-    let output = viewModel?.transform(input: input)
-    output?.postResult.bind{[weak self] result in
-      if result {
-        self?.popToRootViewController()
-      }
-      else {
-        MessageAlertView.shared.showAlertView(title: "실패했습니다", grantMessage: "확인")
-      }
-    }.disposed(by: disposeBag)
-    
-    imagePublisher.bind{print($0)}.disposed(by: disposeBag)
-    output?.currentImage.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
-                                                                 cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
-      guard let self = self else {return}
-      cell.bindCell(model: data.image,width: 72)
-      cell.deleteBtn.rx.tap
-        .takeUntil(cell.rx.methodInvoked(#selector(UICollectionViewCell.prepareForReuse)))
-        .bind{[weak self] in
-          self?.deleteImage.onNext(data)
-        }.disposed(by: cell.disposebag)
-    }.disposed(by: disposeBag)
 
-    output?.currentImage.bind{[weak self] in
-      self?.imageArray = $0
-    }.disposed(by: disposeBag)
+  private func bind() {
+    if let reviewModel = reviewModel {
+      //리뷰작성 레이블 추가
+      //maincolor 변경
+      reviewLayout()
+      reviewActions()
+      
+    }
+    else {
+      let input = AddPostViewModel.Input(loadTrigger: Observable.just(()),
+                                         currentImages: imagePublisher,
+                                         deleteImage: deleteImage,
+                                         post: nextButton.rx.tap.asObservable())
+      let output = viewModel?.transform(input: input)
+      output?.postResult.bind{[weak self] result in
+        if result {
+          self?.popToRootViewController()
+        }
+        else {
+          MessageAlertView.shared.showAlertView(title: "실패했습니다", grantMessage: "확인")
+        }
+      }.disposed(by: disposeBag)
+      
+      imagePublisher.bind{print($0)}.disposed(by: disposeBag)
+      output?.currentImage.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
+                                                                         cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
+        guard let self = self else {return}
+        cell.bindCell(model: data.image,width: 72)
+        cell.deleteBtn.rx.tap
+          .takeUntil(cell.rx.methodInvoked(#selector(UICollectionViewCell.prepareForReuse)))
+          .bind{[weak self] in
+            self?.deleteImage.onNext(data)
+          }.disposed(by: cell.disposebag)
+      }.disposed(by: disposeBag)
+      
+      output?.currentImage.bind{[weak self] in
+        self?.imageArray = $0
+      }.disposed(by: disposeBag)
+    }
     addFromLib.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImage(gesture:))))
     addFromCamera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getCamera(gesture:))))
   }
@@ -227,16 +245,19 @@ class AddPhotoViewController : BaseViewController {
     picker.didFinishPicking { [unowned picker] items, cancelled in
       weak var `self` = self
       guard let self = self else {return}
-        for item in items {
-            switch item {
-            case .photo(let photo):
-              if !self.imageArray.contains(where: {$0.asset == photo.asset}) {
-                self.imageArray.append(photo)
-              }
-            case .video(let video):
-                print(video)
-            }
+      for item in items {
+        switch item {
+        case .photo(let photo):
+          if !self.imageArray.contains(where: {$0.asset == photo.asset}) {
+            self.imageArray.append(photo)
+          }
+          else {
+            print(self.imageArray)
+          }
+        case .video(let video):
+          print(video)
         }
+      }
       self.imagePublisher.onNext(self.imageArray)
       picker.dismiss(animated: true, completion: nil)
     }
@@ -262,21 +283,103 @@ class AddPhotoViewController : BaseViewController {
     config.maxCameraZoomFactor = 1.0
     let picker = YPImagePicker(configuration: config)
     picker.didFinishPicking { [unowned picker] items, _ in
-        if let photo = items.singlePhoto {
-          if !self.imageArray.contains(where: {$0.asset == photo.asset}) {
-            self.imageArray.append(photo)
-          }
-            print(photo.fromCamera) // Image source (camera or library)
-            print(photo.image) // Final image selected by the user
-            print(photo.originalImage) // original image selected by the user, unfiltered
-            print(photo.modifiedImage) // Transformed image, can be nil
-            print(photo.exifMeta) // Print exif meta data of original image.
+      if let photo = items.singlePhoto {
+        if !self.imageArray.contains(where: {$0.asset == photo.asset}) {
+          self.imageArray.append(photo)
         }
+      }
       self.imagePublisher.onNext(self.imageArray)
-
+      
       picker.dismiss(animated: true, completion: nil)
     }
     picker.modalPresentationStyle = .currentContext
     self.present(picker, animated: true, completion: nil)
+  }
+}
+import Moya
+extension AddPhotoViewController {
+
+  private func reviewLayout() {
+    self.view.add(noticeLabel)
+    noticeLabel.snp.makeConstraints{
+      $0.top.equalTo(naviView.snp.bottom).offset(16)
+      $0.leading.equalToSuperview().offset(16)
+    }
+    addFromLib.snp.updateConstraints{
+      $0.top.equalTo(naviView.snp.bottom).offset(121)
+    }
+    nextButton.backgroundColor = .mainBlue
+    let attributedString = NSMutableAttributedString(string: "집의 외부와 내부 사진을\n첨부해 주세요.", attributes: [
+      .font: UIFont.nanumRoundRegular(fontSize: 24),
+      .foregroundColor: UIColor.mainBlue
+    ])
+    attributedString.addAttribute(.font, value: UIFont.nanumRoundExtraBold(fontSize: 24), range: NSRange(location: 3, length: 9))
+    noticeLabel.attributedText = attributedString
+  }
+  private func reviewActions() {
+    let current = configureImages(deleteAction: deleteImage,
+                                             resetAction: imagePublisher,
+                                             origin: []) ?? .empty()
+    current.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
+                                                           cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
+      guard let self = self else {return}
+      cell.bindCell(model: data.image,width: 72)
+      cell.deleteBtn.rx.tap
+        .takeUntil(cell.rx.methodInvoked(#selector(UICollectionViewCell.prepareForReuse)))
+        .bind{[weak self] in
+          self?.deleteImage.onNext(data)
+        }.disposed(by: cell.disposebag)
+    }.disposed(by: disposeBag)
+    current.bind{[weak self] in
+      self?.imageArray = $0
+    }.disposed(by: disposeBag)
+    let makeRequsetModel = nextButton.rx.tap.flatMapLatest{[weak self] _ -> Observable<ReviewModel> in
+      if self?.imageArray.isEmpty == true {
+        self?.reviewModel?.imageUrls = []
+        return .just((self?.reviewModel)!)
+      }
+      else {
+        return self?.s3Service.sendImages(image: self?.imageArray.map{$0.image} ?? [])
+          .map{ [weak self] urls -> ReviewModel in
+            self?.reviewModel?.imageUrls = urls
+            return (self?.reviewModel)!
+          }
+          ?? .empty()
+      }
+    }
+    
+   let result = makeRequsetModel.flatMapLatest{ [weak self] model in
+    self?.reviewService.addReview(param: model) ?? .empty()
+   }
+   .bind{[weak self] result in
+    if result {
+      self?.popToRootViewController()
+    }
+    else {
+      print("실패")
+    }
+   }
+   .disposed(by: disposeBag)
+    
+    
+  }
+  private func configureImages(
+    deleteAction: Observable<YPMediaPhoto>,
+    resetAction: Observable<[YPMediaPhoto]>,
+    origin:[YPMediaPhoto]) -> Observable<[YPMediaPhoto]> {
+    enum Action {
+      case delete(model : YPMediaPhoto)
+      case reset(modle: [YPMediaPhoto])
+    }
+    return Observable.merge(deleteAction.map(Action.delete),
+                            resetAction.map(Action.reset))
+      .scan(into: origin) {state, action in
+        switch action {
+        case let .delete(model) :
+          state.removeAll(where: {$0.asset == model.asset})
+        case .reset(modle: let modle):
+          state = modle
+        }
+      }.startWith(origin)
   }
 }

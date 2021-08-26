@@ -196,8 +196,8 @@ extension RegisterReviewPopupViewController {
     let vc = self.presentingViewController?.children[0] as? TabbarViewContorller
     // TODO: - Server Connection
     reviewService.addReview(param: reviewModel)
-      .subscribe(onNext: {[weak self] response in
-        if (200...300).contains(response.statusCode) {
+      .subscribe(onNext: {[weak self] result in
+        if result {
           do {
             print("success")
 
