@@ -55,7 +55,7 @@ final class MypageViewController: BaseViewController {
   private final let favoriteTitle = "찜 목록"
   private final let tableViewRowHeight: CGFloat = 47
   private final let tableViewRowCount = 4
-  private final let tableViewTitles = ["환경설정",
+  private final var tableViewTitles = ["환경설정",
                                        "문의 및 의견 보내기",
                                        "지피의 지기들",
                                        "현재 버전 1.1"]
@@ -272,7 +272,11 @@ extension MypageViewController {
                              range: NSRange(location: 6,
                                             length: userName?.count ?? 0))
       self.titleLabel.attributedText = titleText
+      
+      
     }
+    let versions = VersionChecker.shared.versionChecker().0
+    self.tableViewTitles[self.tableViewTitles.count-1] = "현재 버전 \(versions.version)"
   }
   
   private func setupNavigation() {

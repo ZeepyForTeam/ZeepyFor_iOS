@@ -248,6 +248,11 @@ extension DetailAddressViewController {
             print(error)
           }
         }
+        else {
+          MessageAlertView.shared.showAlertView(title: "빌딩 정보를 불러올 수 없습니다.", grantMessage: "확인", okAction: { [weak self] in
+            self?.popViewController()
+          })
+        }
       }, onError: { error in
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)

@@ -78,7 +78,7 @@ extension ReviewListViewController {
           }.disposed(by: cell.disposeBag)
     }.disposed(by: disposeBag)
     tableView.rx.modelSelected(ReviewResponses.self).bind{[weak self] model in
-      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, review: model) else {return}
+      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, reviewId: model.id) else {return}
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
   }
