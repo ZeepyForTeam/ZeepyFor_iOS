@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = TabbarViewContorller()
     print(UserDefaultHandler.loginType)
     print(UserDefaultHandler.userId)
-    UserManager.shared.fetchUserAddress()
+//    UserManager.shared.fetchUserAddress()
     rootNav.viewControllers = [rootVC]
     if LoginManager.shared.isLogin() == true {
       window?.rootViewController = rootNav

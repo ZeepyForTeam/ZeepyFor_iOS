@@ -14,6 +14,7 @@ import Moya
 
 class SignUpViewController: BaseViewController {  
   let contentView = UIView()
+  private let navigationView = CustomNavigationBar()
   let getName = InputBoxView().then {
     $0.infoTitle.text = "이름"
     $0.infoTextField.placeholder = "이름을 입력해주세요"
@@ -23,9 +24,13 @@ class SignUpViewController: BaseViewController {
     $0.infoTextField.placeholder = "사용하실 닉네임을 입력해주세요"
   }
   let checkIDButton = UIButton().then {
-    $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
-    $0.borderColor = .gray196
-    $0.borderWidth = 2
+    $0.setupButton(
+      title: "중복확인",
+      color: .blackText,
+      font: .nanumRoundBold(fontSize: 12),
+      backgroundColor: .gray244,
+      state: .normal,
+      radius: 8)
   }
   let idCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
@@ -37,9 +42,14 @@ class SignUpViewController: BaseViewController {
     $0.validationResult.text = "이미 가입된 이메일입니다"
   }
   let checkEmailButton = UIButton().then {
-    $0.setupButton(title: "중복확인", color: .blackText, font: UIFont(name: "NanumSquareRoundOTFR", size: 14.0)!, backgroundColor: .white, state: .normal, radius: 10)
-    $0.borderColor = .gray196
-    $0.borderWidth = 2
+    $0.setupButton(
+      title: "중복확인",
+      color: .blackText,
+      font: .nanumRoundBold(fontSize: 12),
+      backgroundColor: .gray244,
+      state: .normal,
+      radius: 8)
+
   }
   let emailCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
@@ -229,48 +239,56 @@ class SignUpViewController: BaseViewController {
     }.disposed(by: disposeBag)
   }
   func addConstraints(){
-    contentView.adds([getName, getID, checkIDButton, getEmail,checkEmailButton, getPW, surePW, newsCheckBox, newsLabel, termsCheckBox,termsLabel,viewTerms, signUpfinishButton ])
+    contentView.adds([getName,
+                      getID,
+                      checkIDButton,
+                      getEmail,
+                      checkEmailButton,
+                      getPW,
+                      surePW,
+                      newsCheckBox,
+                      newsLabel,
+                      termsCheckBox,
+                      termsLabel,
+                      viewTerms,
+                      signUpfinishButton ])
     
     getName.snp.makeConstraints{
       $0.top.equalToSuperview().offset(60)
-      $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(90)
+      $0.leading.trailing.equalToSuperview().inset(24)
+      $0.height.equalTo(64)
     }
     getID.snp.makeConstraints{
-      $0.leading.equalToSuperview()
+      $0.leading.equalToSuperview().inset(24)
       $0.top.equalTo(getName.snp.bottom).offset(20)
-      $0.height.equalTo(90)
+      $0.width.equalTo(self.view.frame.width * 259/375)
+      $0.height.equalTo(64)
     }
     checkIDButton.snp.makeConstraints{
-      $0.leading.equalTo(getID.snp.trailing)
-      $0.top.bottom.equalTo(getID)
-      $0.trailing.equalToSuperview().offset(-16)
-      $0.centerY.equalTo(getID.infoTextField)
-      $0.height.equalTo(45)
-      $0.width.equalTo(90)
+      $0.leading.equalTo(getID.snp.trailing).offset(8)
+      $0.top.bottom.equalTo(getID.infoTextFieldBackGroundView)
+      $0.trailing.equalTo(self.getName.snp.trailing)
     }
     getEmail.snp.makeConstraints{
-      $0.leading.equalToSuperview()
+      $0.leading.equalToSuperview().inset(24)
       $0.top.equalTo(getID.snp.bottom).offset(20)
-      $0.height.equalTo(90)
+      $0.width.equalTo(self.view.frame.width * 259/375)
+      $0.height.equalTo(64)
     }
     checkEmailButton.snp.makeConstraints{
-      $0.leading.equalTo(getEmail.snp.trailing)
-      $0.top.bottom.equalTo(getEmail)
-      $0.trailing.equalToSuperview().offset(-16)
-      $0.centerY.equalTo(getEmail.infoTextField)
-      $0.height.equalTo(45)
-      $0.width.equalTo(90)
+      $0.leading.equalTo(getEmail.snp.trailing).offset(8)
+      $0.top.bottom.equalTo(getEmail.infoTextFieldBackGroundView)
+      $0.trailing.equalTo(self.getName.snp.trailing)
     }
     getPW.snp.makeConstraints{
-      $0.leading.trailing.equalToSuperview()
+      $0.leading.trailing.equalToSuperview().inset(24)
       $0.top.equalTo(getEmail.snp.bottom).offset(20)
-      $0.height.equalTo(90)
+      $0.height.equalTo(64)
     }
     surePW.infoTextFieldBackGroundView.addSubview(pwCheckImage)
     
     surePW.snp.makeConstraints{
-      $0.leading.trailing.equalToSuperview()
+      $0.leading.trailing.equalToSuperview().inset(24)
       $0.top.equalTo(getPW.snp.bottom).offset(20)
     }
     pwCheckImage.snp.makeConstraints{
@@ -302,9 +320,9 @@ class SignUpViewController: BaseViewController {
     }
     signUpfinishButton.snp.makeConstraints{
       $0.top.equalTo(termsCheckBox.snp.bottom).offset(16)
-      $0.leading.trailing.equalToSuperview().inset(16)
+      $0.leading.trailing.equalToSuperview().inset(24)
       $0.bottom.equalToSuperview().offset(-50)
-      $0.height.equalTo(40)
+      $0.height.equalTo(48)
     }
   }
 }
