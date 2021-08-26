@@ -1,0 +1,6 @@
+framework module Pods_Zeepy_ZeepyUITests {
+  umbrella header "Pods-Zeepy-ZeepyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -43,7 +43,7 @@ class ModifyInformationViewController: BaseViewController {
                                  "apple": "applelogo",
                                  "naver": "naverlogo",
                                  "email": "AppIcon"]
-  private var socialEmail: String = "zeepy@zeepy.com"
+  var socialEmail: String?
   private var passwordModel = RequestModifyPassword(password: "")
   
   // MARK: -LifeCycle
