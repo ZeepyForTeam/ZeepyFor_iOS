@@ -26,6 +26,9 @@
 		37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB8A726BFD4A70048A6BF /* LoginModel.swift */; };
 		37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
+		5F8C1990CBC481C6B17C5999 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */; };
+		74341F39E9C540D627F89743 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */; };
+		9A2364151ED77CA71F889161 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
 		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
@@ -34,13 +37,11 @@
 		A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FA525FF309900FCEACF /* UIFont+.swift */; };
 		A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4FAA25FF360E00FCEACF /* UILabel+.swift */; };
 		A45F4FB325FF37E800FCEACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */; };
-		A753AF5A5020CFEB340FB0D5 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FA37490F50BBAD2DED5595B /* Pods_Zeepy_ZeepyUITests.framework */; };
-		C3ADAB66F2E85A670909FB9B /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EDA683E2A0FE979193F72E /* Pods_ZeepyTests.framework */; };
 		CC0429BA26C4BF8000C5D498 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */; };
 		CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */; };
 		CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */; };
 		CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */; };
-		CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */; };
+		CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* YPImagePicker */; };
 		CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */; };
 		CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
@@ -50,13 +51,22 @@
 		CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */; };
 		CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */; };
 		CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */; };
+		CC3E413726D76C4900304959 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413626D76C4900304959 /* OnboardingViewController.swift */; };
+		CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */; };
+		CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */; };
+		CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */; };
+		CC3E414026D76D5E00304959 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* Lottie */; };
+		CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414126D7971800304959 /* ServiceTermsViewController.swift */; };
+		CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414326D7972400304959 /* PersonalTermsViewController.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
+		CC53711C26D37DDC00DE5871 /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */; };
+		CC53711E26D37E0C00DE5871 /* ReportPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */; };
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
-		CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */; };
+		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
 		CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
@@ -71,6 +81,7 @@
 		CC7C391C26C36DCC0015CA0B /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391B26C36DCC0015CA0B /* UserRequest.swift */; };
 		CC7C391E26C36DD70015CA0B /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391D26C36DD70015CA0B /* UserResponse.swift */; };
 		CC7C392026C39A970015CA0B /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */; };
+		CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */; };
 		CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */; };
 		CC8D7233264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */; };
 		CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */; };
@@ -78,6 +89,8 @@
 		CC8D7242264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */; };
 		CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */; };
 		CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */; };
+		CCA65AB026D3609D000660BD /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA65AAF26D3609C000660BD /* ReportViewController.swift */; };
+		CCA65AB226D36F25000660BD /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */; };
 		CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474666261B511C00709883 /* libc++.tbd */; };
 		CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474667261B512700709883 /* libxml2.tbd */; };
 		CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA474668261B513200709883 /* libsqlite3.tbd */; };
@@ -90,11 +103,66 @@
 		CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */; };
 		CCFDC6C626AA07FD0038ABD5 /* ModifyInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */; };
 		DA0DEC3926ACED31007563D0 /* PhotoReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */; };
+		DA12BCD826D4A97B00F2A540 /* map_pinup_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC8F26D4A97B00F2A540 /* map_pinup_custom@3x.png */; };
+		DA12BCD926D4A97B00F2A540 /* map_pin_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9026D4A97B00F2A540 /* map_pin_custom.png */; };
+		DA12BCDA26D4A97B00F2A540 /* shadow_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9126D4A97B00F2A540 /* shadow_balloon.png */; };
+		DA12BCDB26D4A97B00F2A540 /* map_present_background_update 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9226D4A97B00F2A540 /* map_present_background_update 2.png */; };
+		DA12BCDC26D4A97B00F2A540 /* daum_th_line 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9326D4A97B00F2A540 /* daum_th_line 2.png */; };
+		DA12BCDD26D4A97B00F2A540 /* map_pinup.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9426D4A97B00F2A540 /* map_pinup.png */; };
+		DA12BCDE26D4A97B00F2A540 /* map_pin_shadow@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9526D4A97B00F2A540 /* map_pin_shadow@3x 2.png */; };
+		DA12BCDF26D4A97B00F2A540 /* shadow_balloon 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9626D4A97B00F2A540 /* shadow_balloon 2.png */; };
+		DA12BCE026D4A97B00F2A540 /* map_present_direction 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9726D4A97B00F2A540 /* map_present_direction 2.png */; };
+		DA12BCE126D4A97B00F2A540 /* detail_button.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9826D4A97B00F2A540 /* detail_button.png */; };
+		DA12BCE226D4A97B00F2A540 /* noimage256 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9926D4A97B00F2A540 /* noimage256 2.png */; };
+		DA12BCE326D4A97B00F2A540 /* map_pin_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9A26D4A97B00F2A540 /* map_pin_custom@3x.png */; };
+		DA12BCE426D4A97B00F2A540 /* info_box_tail 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9B26D4A97B00F2A540 /* info_box_tail 2.png */; };
+		DA12BCE526D4A97B00F2A540 /* map_pinup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9C26D4A97B00F2A540 /* map_pinup@3x.png */; };
+		DA12BCE626D4A97B00F2A540 /* point_sprite 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9D26D4A97B00F2A540 /* point_sprite 2.png */; };
+		DA12BCE726D4A97B00F2A540 /* map_pin_shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9E26D4A97B00F2A540 /* map_pin_shadow@3x.png */; };
+		DA12BCE826D4A97B00F2A540 /* map_pinup@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BC9F26D4A97B00F2A540 /* map_pinup@3x 2.png */; };
+		DA12BCE926D4A97B00F2A540 /* map_present_tracking 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA026D4A97B00F2A540 /* map_present_tracking 2.png */; };
+		DA12BCEA26D4A97B00F2A540 /* copyright.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA126D4A97B00F2A540 /* copyright.png */; };
+		DA12BCEB26D4A97B00F2A540 /* map_present 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA226D4A97B00F2A540 /* map_present 2.png */; };
+		DA12BCEC26D4A97B00F2A540 /* detail_button 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA326D4A97B00F2A540 /* detail_button 2.png */; };
+		DA12BCED26D4A97B00F2A540 /* th_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA426D4A97B00F2A540 /* th_line.png */; };
+		DA12BCEE26D4A97B00F2A540 /* map_pin_shadow 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA526D4A97B00F2A540 /* map_pin_shadow 2.png */; };
+		DA12BCEF26D4A97B00F2A540 /* map_pin_red 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA626D4A97B00F2A540 /* map_pin_red 2.png */; };
+		DA12BCF026D4A97B00F2A540 /* noimage 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA726D4A97B00F2A540 /* noimage 2.png */; };
+		DA12BCF126D4A97B00F2A540 /* map_pin_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA826D4A97B00F2A540 /* map_pin_red@3x.png */; };
+		DA12BCF226D4A97B00F2A540 /* map_pin_custom 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCA926D4A97B00F2A540 /* map_pin_custom 2.png */; };
+		DA12BCF326D4A97B00F2A540 /* daum_copyright.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCB326D4A97B00F2A540 /* daum_copyright.png */; };
+		DA12BCF426D4A97B00F2A540 /* map_pin@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCB426D4A97B00F2A540 /* map_pin@3x 2.png */; };
+		DA12BCF526D4A97B00F2A540 /* map_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCB526D4A97B00F2A540 /* map_pin@3x.png */; };
+		DA12BCF626D4A97B00F2A540 /* map_present_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCB626D4A97B00F2A540 /* map_present_tracking.png */; };
+		DA12BCF726D4A97B00F2A540 /* map_pin_red.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCB726D4A97B00F2A540 /* map_pin_red.png */; };
+		DA12BCF826D4A97B00F2A540 /* info_box.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC126D4A97B00F2A540 /* info_box.png */; };
+		DA12BCF926D4A97B00F2A540 /* map_pin_red@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC226D4A97B00F2A540 /* map_pin_red@3x 2.png */; };
+		DA12BCFA26D4A97B00F2A540 /* daum_copyright 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC326D4A97B00F2A540 /* daum_copyright 2.png */; };
+		DA12BCFB26D4A97B00F2A540 /* point_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC426D4A97B00F2A540 /* point_sprite.png */; };
+		DA12BCFC26D4A97B00F2A540 /* info_box 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC526D4A97B00F2A540 /* info_box 2.png */; };
+		DA12BCFD26D4A97B00F2A540 /* map_pin_custom@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC626D4A97B00F2A540 /* map_pin_custom@3x 2.png */; };
+		DA12BCFE26D4A97B00F2A540 /* map_pinup_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC726D4A97B00F2A540 /* map_pinup_custom.png */; };
+		DA12BCFF26D4A97B00F2A540 /* info_box_tail.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC826D4A97B00F2A540 /* info_box_tail.png */; };
+		DA12BD0026D4A97B00F2A540 /* noimage256.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCC926D4A97B00F2A540 /* noimage256.png */; };
+		DA12BD0126D4A97B00F2A540 /* copyright 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCA26D4A97B00F2A540 /* copyright 2.png */; };
+		DA12BD0226D4A97B00F2A540 /* map_present_direction.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCB26D4A97B00F2A540 /* map_present_direction.png */; };
+		DA12BD0326D4A97B00F2A540 /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCC26D4A97B00F2A540 /* map_pin.png */; };
+		DA12BD0426D4A97B00F2A540 /* map_pinup 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCD26D4A97B00F2A540 /* map_pinup 2.png */; };
+		DA12BD0526D4A97B00F2A540 /* map_present.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCE26D4A97B00F2A540 /* map_present.png */; };
+		DA12BD0626D4A97B00F2A540 /* map_pinup_custom 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCCF26D4A97B00F2A540 /* map_pinup_custom 2.png */; };
+		DA12BD0726D4A97B00F2A540 /* map_pin 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD026D4A97B00F2A540 /* map_pin 2.png */; };
+		DA12BD0826D4A97B00F2A540 /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD126D4A97B00F2A540 /* noimage.png */; };
+		DA12BD0926D4A97B00F2A540 /* map_present_background_update.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD226D4A97B00F2A540 /* map_present_background_update.png */; };
+		DA12BD0A26D4A97B00F2A540 /* daum_th_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD326D4A97B00F2A540 /* daum_th_line.png */; };
+		DA12BD0B26D4A97B00F2A540 /* map_pinup_custom@3x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD426D4A97B00F2A540 /* map_pinup_custom@3x 2.png */; };
+		DA12BD0C26D4A97B00F2A540 /* th_line 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD526D4A97B00F2A540 /* th_line 2.png */; };
+		DA12BD0D26D4A97B00F2A540 /* map_pin_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA12BCD626D4A97B00F2A540 /* map_pin_shadow.png */; };
+		DA12BD0E26D4A97B00F2A540 /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA12BCD726D4A97B00F2A540 /* DaumMap.framework */; };
 		DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */; };
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
 		DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */; };
-		DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */; };
+		DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* Kingfisher */; };
 		DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB7F262C5B3200620B7E /* Identifiable.swift */; };
 		DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37C79B269BDB260031A17B /* PostViewController.swift */; };
 		DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */; };
@@ -119,7 +187,7 @@
 		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
 		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
 		DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EE26B7BB9600102EED /* UserManager.swift */; };
-		DA47445B2612144800709883 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SwiftPackageProductDependency */; };
+		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
 		DA4744B226197F5400709883 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744B126197F5400709883 /* HomeViewController.swift */; };
@@ -143,6 +211,15 @@
 		DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */; };
 		DA4C7837265A01F00040010F /* TapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7830265A01F00040010F /* TapCell.swift */; };
 		DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */; };
+		DA51080826D619E800076527 /* S3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51080726D619E800076527 /* S3Service.swift */; };
+		DA51080A26D619F600076527 /* S3Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51080926D619F600076527 /* S3Router.swift */; };
+		DA51080C26D684F200076527 /* zeepy_onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = DA51080B26D684F200076527 /* zeepy_onboarding.json */; };
+		DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA12BCD726D4A97B00F2A540 /* DaumMap.framework */; };
+		DA51E4FD26D4AF570049051C /* ModifyCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */; };
+		DA51E4FF26D4BAE80049051C /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E4FE26D4BAE80049051C /* ImageViewer.swift */; };
+		DA51E50326D4C9AE0049051C /* ReportNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */; };
+		DA51E50926D4D7370049051C /* VersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E50826D4D7370049051C /* VersionChecker.swift */; };
+		DA51E50B26D4FF7C0049051C /* CustonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51E50A26D4FF7C0049051C /* CustonTextView.swift */; };
 		DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */; };
 		DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */; };
 		DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA61A0E6265A01940059B879 /* LookAroundDetailViewModel.swift */; };
@@ -170,7 +247,8 @@
 		DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096126BBAFB90019D7F7 /* AuthRouter.swift */; };
 		DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096326BBB1FE0019D7F7 /* AuthService.swift */; };
 		DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */; };
-		DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA2F4A026A99657003E9EAE /* DaumMap.framework */; };
+		DA67E66B26CF7288001A1CEF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67E66A26CF7288001A1CEF /* ViewModel.swift */; };
+		DA94C55326D795420020C6E6 /* ReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */; };
 		DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A326AACFD9003E9EAE /* Optional+.swift */; };
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
 		DAA2F4A826AAF2F8003E9EAE /* JoinPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A726AAF2F8003E9EAE /* JoinPopUpView.swift */; };
@@ -203,7 +281,6 @@
 		DAF4D3AE265A24E700B281E2 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3AD265A24E700B281E2 /* CommentView.swift */; };
 		DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */; };
 		DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3EB265A2ECD00B281E2 /* PostDetailViewModel.swift */; };
-		F3F7E107B5F7BFE4FFB4E1D9 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728A39167AD756A8FC40B39A /* Pods_Zeepy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,10 +301,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0ED4A483BCFFB625381716E8 /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
-		12EDA683E2A0FE979193F72E /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25EDF288D8855ABDD4BFAA29 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
-		2FA37490F50BBAD2DED5595B /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
 		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };
@@ -245,11 +320,13 @@
 		37ECB8A726BFD4A70048A6BF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
-		5D5AD031DB78C5CD59A516CA /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6331EF7A4FE2DB259A5B9381 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
-		728A39167AD756A8FC40B39A /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		858CED2B063F210C214C2DD8 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		864E59544FC9F50F6526FDBF /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
+		5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
+		88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F4F4B25FF278B00FCEACF /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		A45F4F7325FF2AF300FCEACF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
@@ -258,7 +335,7 @@
 		A45F4FA525FF309900FCEACF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A45F4FAA25FF360E00FCEACF /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AFB2101F2454A0893FE83BDA /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
+		ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
 		CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgePopupViewController.swift; sourceTree = "<group>"; };
@@ -272,9 +349,17 @@
 		CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAddressModel.swift; sourceTree = "<group>"; };
+		CC3E413626D76C4900304959 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E414126D7971800304959 /* ServiceTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTermsViewController.swift; sourceTree = "<group>"; };
+		CC3E414326D7972400304959 /* PersonalTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTermsViewController.swift; sourceTree = "<group>"; };
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
+		CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
+		CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupViewController.swift; sourceTree = "<group>"; };
 		CC5495112649615300313146 /* AdditionalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationViewController.swift; sourceTree = "<group>"; };
 		CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitReview.storyboard; sourceTree = "<group>"; };
 		CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +374,7 @@
 		CC7C391B26C36DCC0015CA0B /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		CC7C391D26C36DD70015CA0B /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
+		CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPasswordPopupViewController.swift; sourceTree = "<group>"; };
 		CC8D722D264A4FEC002BB7FF /* DetailInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationViewController.swift; sourceTree = "<group>"; };
 		CC8D7232264A5435002BB7FF /* RoomAndFurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAndFurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC8D7237264A544A002BB7FF /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -296,6 +382,8 @@
 		CC8D7241264AD3B8002BB7FF /* SecondSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D7246264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCollectionReusableView.swift; sourceTree = "<group>"; };
 		CC8D724B264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		CCA65AAF26D3609C000660BD /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		CCB6C0FF26AC31B5006E7032 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		CCB6C10526ACD99E006E7032 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		CCD0D999265CEDD0001B15DE /* TendencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TendencyTableViewCell.swift; sourceTree = "<group>"; };
@@ -305,6 +393,77 @@
 		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInformationViewController.swift; sourceTree = "<group>"; };
 		DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoReviewViewController.swift; sourceTree = "<group>"; };
+		DA12BC8F26D4A97B00F2A540 /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
+		DA12BC9026D4A97B00F2A540 /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
+		DA12BC9126D4A97B00F2A540 /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
+		DA12BC9226D4A97B00F2A540 /* map_present_background_update 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_present_background_update 2.png"; sourceTree = "<group>"; };
+		DA12BC9326D4A97B00F2A540 /* daum_th_line 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daum_th_line 2.png"; sourceTree = "<group>"; };
+		DA12BC9426D4A97B00F2A540 /* map_pinup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup.png; sourceTree = "<group>"; };
+		DA12BC9526D4A97B00F2A540 /* map_pin_shadow@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_shadow@3x 2.png"; sourceTree = "<group>"; };
+		DA12BC9626D4A97B00F2A540 /* shadow_balloon 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow_balloon 2.png"; sourceTree = "<group>"; };
+		DA12BC9726D4A97B00F2A540 /* map_present_direction 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_present_direction 2.png"; sourceTree = "<group>"; };
+		DA12BC9826D4A97B00F2A540 /* detail_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_button.png; sourceTree = "<group>"; };
+		DA12BC9926D4A97B00F2A540 /* noimage256 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noimage256 2.png"; sourceTree = "<group>"; };
+		DA12BC9A26D4A97B00F2A540 /* map_pin_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_custom@3x.png"; sourceTree = "<group>"; };
+		DA12BC9B26D4A97B00F2A540 /* info_box_tail 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info_box_tail 2.png"; sourceTree = "<group>"; };
+		DA12BC9C26D4A97B00F2A540 /* map_pinup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup@3x.png"; sourceTree = "<group>"; };
+		DA12BC9D26D4A97B00F2A540 /* point_sprite 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_sprite 2.png"; sourceTree = "<group>"; };
+		DA12BC9E26D4A97B00F2A540 /* map_pin_shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_shadow@3x.png"; sourceTree = "<group>"; };
+		DA12BC9F26D4A97B00F2A540 /* map_pinup@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup@3x 2.png"; sourceTree = "<group>"; };
+		DA12BCA026D4A97B00F2A540 /* map_present_tracking 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_present_tracking 2.png"; sourceTree = "<group>"; };
+		DA12BCA126D4A97B00F2A540 /* copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyright.png; sourceTree = "<group>"; };
+		DA12BCA226D4A97B00F2A540 /* map_present 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_present 2.png"; sourceTree = "<group>"; };
+		DA12BCA326D4A97B00F2A540 /* detail_button 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_button 2.png"; sourceTree = "<group>"; };
+		DA12BCA426D4A97B00F2A540 /* th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_line.png; sourceTree = "<group>"; };
+		DA12BCA526D4A97B00F2A540 /* map_pin_shadow 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_shadow 2.png"; sourceTree = "<group>"; };
+		DA12BCA626D4A97B00F2A540 /* map_pin_red 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_red 2.png"; sourceTree = "<group>"; };
+		DA12BCA726D4A97B00F2A540 /* noimage 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noimage 2.png"; sourceTree = "<group>"; };
+		DA12BCA826D4A97B00F2A540 /* map_pin_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_red@3x.png"; sourceTree = "<group>"; };
+		DA12BCA926D4A97B00F2A540 /* map_pin_custom 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_custom 2.png"; sourceTree = "<group>"; };
+		DA12BCAB26D4A97B00F2A540 /* MTMapPOIItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPOIItem.h; sourceTree = "<group>"; };
+		DA12BCAC26D4A97B00F2A540 /* MTMapCameraUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCameraUpdate.h; sourceTree = "<group>"; };
+		DA12BCAD26D4A97B00F2A540 /* MTMapReverseGeoCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapReverseGeoCoder.h; sourceTree = "<group>"; };
+		DA12BCAE26D4A97B00F2A540 /* MTMapPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPolyline.h; sourceTree = "<group>"; };
+		DA12BCAF26D4A97B00F2A540 /* MTMapLocationMarkerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapLocationMarkerItem.h; sourceTree = "<group>"; };
+		DA12BCB026D4A97B00F2A540 /* MTMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapView.h; sourceTree = "<group>"; };
+		DA12BCB126D4A97B00F2A540 /* MTMapGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapGeometry.h; sourceTree = "<group>"; };
+		DA12BCB226D4A97B00F2A540 /* MTMapCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCircle.h; sourceTree = "<group>"; };
+		DA12BCB326D4A97B00F2A540 /* daum_copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_copyright.png; sourceTree = "<group>"; };
+		DA12BCB426D4A97B00F2A540 /* map_pin@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin@3x 2.png"; sourceTree = "<group>"; };
+		DA12BCB526D4A97B00F2A540 /* map_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin@3x.png"; sourceTree = "<group>"; };
+		DA12BCB626D4A97B00F2A540 /* map_present_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_tracking.png; sourceTree = "<group>"; };
+		DA12BCB726D4A97B00F2A540 /* map_pin_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_red.png; sourceTree = "<group>"; };
+		DA12BCB926D4A97B00F2A540 /* MTMapPOIItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPOIItem.h; sourceTree = "<group>"; };
+		DA12BCBA26D4A97B00F2A540 /* MTMapCameraUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCameraUpdate.h; sourceTree = "<group>"; };
+		DA12BCBB26D4A97B00F2A540 /* MTMapReverseGeoCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapReverseGeoCoder.h; sourceTree = "<group>"; };
+		DA12BCBC26D4A97B00F2A540 /* MTMapPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPolyline.h; sourceTree = "<group>"; };
+		DA12BCBD26D4A97B00F2A540 /* MTMapLocationMarkerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapLocationMarkerItem.h; sourceTree = "<group>"; };
+		DA12BCBE26D4A97B00F2A540 /* MTMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapView.h; sourceTree = "<group>"; };
+		DA12BCBF26D4A97B00F2A540 /* MTMapGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapGeometry.h; sourceTree = "<group>"; };
+		DA12BCC026D4A97B00F2A540 /* MTMapCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCircle.h; sourceTree = "<group>"; };
+		DA12BCC126D4A97B00F2A540 /* info_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box.png; sourceTree = "<group>"; };
+		DA12BCC226D4A97B00F2A540 /* map_pin_red@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_red@3x 2.png"; sourceTree = "<group>"; };
+		DA12BCC326D4A97B00F2A540 /* daum_copyright 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daum_copyright 2.png"; sourceTree = "<group>"; };
+		DA12BCC426D4A97B00F2A540 /* point_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_sprite.png; sourceTree = "<group>"; };
+		DA12BCC526D4A97B00F2A540 /* info_box 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info_box 2.png"; sourceTree = "<group>"; };
+		DA12BCC626D4A97B00F2A540 /* map_pin_custom@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_custom@3x 2.png"; sourceTree = "<group>"; };
+		DA12BCC726D4A97B00F2A540 /* map_pinup_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup_custom.png; sourceTree = "<group>"; };
+		DA12BCC826D4A97B00F2A540 /* info_box_tail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box_tail.png; sourceTree = "<group>"; };
+		DA12BCC926D4A97B00F2A540 /* noimage256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage256.png; sourceTree = "<group>"; };
+		DA12BCCA26D4A97B00F2A540 /* copyright 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copyright 2.png"; sourceTree = "<group>"; };
+		DA12BCCB26D4A97B00F2A540 /* map_present_direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_direction.png; sourceTree = "<group>"; };
+		DA12BCCC26D4A97B00F2A540 /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
+		DA12BCCD26D4A97B00F2A540 /* map_pinup 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup 2.png"; sourceTree = "<group>"; };
+		DA12BCCE26D4A97B00F2A540 /* map_present.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present.png; sourceTree = "<group>"; };
+		DA12BCCF26D4A97B00F2A540 /* map_pinup_custom 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom 2.png"; sourceTree = "<group>"; };
+		DA12BCD026D4A97B00F2A540 /* map_pin 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin 2.png"; sourceTree = "<group>"; };
+		DA12BCD126D4A97B00F2A540 /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
+		DA12BCD226D4A97B00F2A540 /* map_present_background_update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_background_update.png; sourceTree = "<group>"; };
+		DA12BCD326D4A97B00F2A540 /* daum_th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_th_line.png; sourceTree = "<group>"; };
+		DA12BCD426D4A97B00F2A540 /* map_pinup_custom@3x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x 2.png"; sourceTree = "<group>"; };
+		DA12BCD526D4A97B00F2A540 /* th_line 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "th_line 2.png"; sourceTree = "<group>"; };
+		DA12BCD626D4A97B00F2A540 /* map_pin_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_shadow.png; sourceTree = "<group>"; };
+		DA12BCD726D4A97B00F2A540 /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
 		DA2EDB6B262C58F500620B7E /* LookAroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewController.swift; sourceTree = "<group>"; };
 		DA2EDB70262C58FE00620B7E /* BuildingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingModel.swift; sourceTree = "<group>"; };
 		DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -361,6 +520,14 @@
 		DA4C782F265A01F00040010F /* PostFilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA4C7830265A01F00040010F /* TapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapCell.swift; sourceTree = "<group>"; };
 		DA4C7831265A01F00040010F /* postSimpleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postSimpleCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA51080726D619E800076527 /* S3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Service.swift; sourceTree = "<group>"; };
+		DA51080926D619F600076527 /* S3Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = S3Router.swift; path = Zeepy/Network/Service/S3Router.swift; sourceTree = SOURCE_ROOT; };
+		DA51080B26D684F200076527 /* zeepy_onboarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zeepy_onboarding.json; sourceTree = "<group>"; };
+		DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCommentView.swift; sourceTree = "<group>"; };
+		DA51E4FE26D4BAE80049051C /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNoticeView.swift; sourceTree = "<group>"; };
+		DA51E50826D4D7370049051C /* VersionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionChecker.swift; sourceTree = "<group>"; };
+		DA51E50A26D4FF7C0049051C /* CustonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustonTextView.swift; sourceTree = "<group>"; };
 		DA61A0DC265A01730059B879 /* LookAroundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundDetailViewController.swift; sourceTree = "<group>"; };
 		DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundViewModel.swift; sourceTree = "<group>"; };
 		DA61A0E6265A01940059B879 /* LookAroundDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAroundDetailViewModel.swift; sourceTree = "<group>"; };
@@ -395,42 +562,8 @@
 		DA66096126BBAFB90019D7F7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		DA66096326BBB1FE0019D7F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		DAA2F47C26A99657003E9EAE /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
-		DAA2F47D26A99657003E9EAE /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
-		DAA2F47E26A99657003E9EAE /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
-		DAA2F47F26A99657003E9EAE /* map_pinup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup.png; sourceTree = "<group>"; };
-		DAA2F48026A99657003E9EAE /* detail_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_button.png; sourceTree = "<group>"; };
-		DAA2F48126A99657003E9EAE /* map_pin_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_custom@3x.png"; sourceTree = "<group>"; };
-		DAA2F48226A99657003E9EAE /* map_pinup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup@3x.png"; sourceTree = "<group>"; };
-		DAA2F48326A99657003E9EAE /* map_pin_shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_shadow@3x.png"; sourceTree = "<group>"; };
-		DAA2F48426A99657003E9EAE /* copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyright.png; sourceTree = "<group>"; };
-		DAA2F48526A99657003E9EAE /* th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_line.png; sourceTree = "<group>"; };
-		DAA2F48626A99657003E9EAE /* map_pin_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_red@3x.png"; sourceTree = "<group>"; };
-		DAA2F48726A99657003E9EAE /* daum_copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_copyright.png; sourceTree = "<group>"; };
-		DAA2F48826A99657003E9EAE /* map_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin@3x.png"; sourceTree = "<group>"; };
-		DAA2F48926A99657003E9EAE /* map_present_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_tracking.png; sourceTree = "<group>"; };
-		DAA2F48A26A99657003E9EAE /* map_pin_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_red.png; sourceTree = "<group>"; };
-		DAA2F48C26A99657003E9EAE /* MTMapPOIItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapPOIItem.h; sourceTree = "<group>"; };
-		DAA2F48D26A99657003E9EAE /* MTMapCameraUpdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapCameraUpdate.h; sourceTree = "<group>"; };
-		DAA2F48E26A99657003E9EAE /* MTMapReverseGeoCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapReverseGeoCoder.h; sourceTree = "<group>"; };
-		DAA2F48F26A99657003E9EAE /* MTMapPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapPolyline.h; sourceTree = "<group>"; };
-		DAA2F49026A99657003E9EAE /* MTMapLocationMarkerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapLocationMarkerItem.h; sourceTree = "<group>"; };
-		DAA2F49126A99657003E9EAE /* MTMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapView.h; sourceTree = "<group>"; };
-		DAA2F49226A99657003E9EAE /* MTMapGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapGeometry.h; sourceTree = "<group>"; };
-		DAA2F49326A99657003E9EAE /* MTMapCircle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMapCircle.h; sourceTree = "<group>"; };
-		DAA2F49426A99657003E9EAE /* info_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box.png; sourceTree = "<group>"; };
-		DAA2F49526A99657003E9EAE /* point_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_sprite.png; sourceTree = "<group>"; };
-		DAA2F49626A99657003E9EAE /* map_pinup_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup_custom.png; sourceTree = "<group>"; };
-		DAA2F49726A99657003E9EAE /* info_box_tail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box_tail.png; sourceTree = "<group>"; };
-		DAA2F49826A99657003E9EAE /* noimage256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage256.png; sourceTree = "<group>"; };
-		DAA2F49926A99657003E9EAE /* map_present_direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_direction.png; sourceTree = "<group>"; };
-		DAA2F49A26A99657003E9EAE /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
-		DAA2F49B26A99657003E9EAE /* map_present.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present.png; sourceTree = "<group>"; };
-		DAA2F49C26A99657003E9EAE /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
-		DAA2F49D26A99657003E9EAE /* map_present_background_update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_background_update.png; sourceTree = "<group>"; };
-		DAA2F49E26A99657003E9EAE /* daum_th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_th_line.png; sourceTree = "<group>"; };
-		DAA2F49F26A99657003E9EAE /* map_pin_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_shadow.png; sourceTree = "<group>"; };
-		DAA2F4A026A99657003E9EAE /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
+		DA67E66A26CF7288001A1CEF /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		DAA2F4A326AACFD9003E9EAE /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		DAA2F4A726AAF2F8003E9EAE /* JoinPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPopUpView.swift; sourceTree = "<group>"; };
@@ -458,8 +591,8 @@
 		DAF4D3AD265A24E700B281E2 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionModel.swift; sourceTree = "<group>"; };
 		DAF4D3EB265A2ECD00B281E2 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
-		EEBDDC633289E30C4D78846B /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
-		F3C146BE7854F919BDCF6B3A /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
+		F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,19 +600,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */,
+				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
+				CC3E414026D76D5E00304959 /* Lottie in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
-				CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */,
+				DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */,
+				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
-				CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */,
+				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
-				DA47445B2612144800709883 /* BuildFile in Frameworks */,
-				DAA2F4A126A996A8003E9EAE /* DaumMap.framework in Frameworks */,
-				F3F7E107B5F7BFE4FFB4E1D9 /* Pods_Zeepy.framework in Frameworks */,
+				DA47445B2612144800709883 /* SnapKit in Frameworks */,
+				9A2364151ED77CA71F889161 /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +621,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3ADAB66F2E85A670909FB9B /* Pods_ZeepyTests.framework in Frameworks */,
+				DA12BD0E26D4A97B00F2A540 /* DaumMap.framework in Frameworks */,
+				5F8C1990CBC481C6B17C5999 /* Pods_ZeepyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A753AF5A5020CFEB340FB0D5 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
+				74341F39E9C540D627F89743 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +640,7 @@
 		2D8F617ECD8EE937832C4EA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DAA2F47A26A99657003E9EAE /* DaumMap.embeddedframework */,
+				DA12BC8D26D4A97B00F2A540 /* DaumMap.embeddedframework */,
 				DA474668261B513200709883 /* libsqlite3.tbd */,
 				DA474667261B512700709883 /* libxml2.tbd */,
 				DA474666261B511C00709883 /* libc++.tbd */,
@@ -513,9 +648,9 @@
 				DA474662261B510400709883 /* CoreLocation.framework */,
 				DA474660261B50F600709883 /* SystemConfiguration.framework */,
 				DA47465E261B50EB00709883 /* OpenGLES.framework */,
-				728A39167AD756A8FC40B39A /* Pods_Zeepy.framework */,
-				2FA37490F50BBAD2DED5595B /* Pods_Zeepy_ZeepyUITests.framework */,
-				12EDA683E2A0FE979193F72E /* Pods_ZeepyTests.framework */,
+				88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */,
+				F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */,
+				9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -558,7 +693,9 @@
 			children = (
 				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
 				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
+				CC3E414126D7971800304959 /* ServiceTermsViewController.swift */,
 				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
+				CC3E414326D7972400304959 /* PersonalTermsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -570,6 +707,7 @@
 				A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */,
 				A45F4F9225FF2C2800FCEACF /* LoninManager.swift */,
 				DA40E1EE26B7BB9600102EED /* UserManager.swift */,
+				DA51E50826D4D7370049051C /* VersionChecker.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -578,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				A45F4F9825FF2D7200FCEACF /* BaseViewController.swift */,
+				DA67E66A26CF7288001A1CEF /* ViewModel.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -599,17 +738,35 @@
 		ADBD48E34196C65DA344C8F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EEBDDC633289E30C4D78846B /* Pods-Zeepy.debug.xcconfig */,
-				6331EF7A4FE2DB259A5B9381 /* Pods-Zeepy.release.xcconfig */,
-				F3C146BE7854F919BDCF6B3A /* Pods-Zeepy.develop.xcconfig */,
-				858CED2B063F210C214C2DD8 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */,
-				864E59544FC9F50F6526FDBF /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
-				25EDF288D8855ABDD4BFAA29 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
-				5D5AD031DB78C5CD59A516CA /* Pods-ZeepyTests.debug.xcconfig */,
-				AFB2101F2454A0893FE83BDA /* Pods-ZeepyTests.release.xcconfig */,
-				0ED4A483BCFFB625381716E8 /* Pods-ZeepyTests.develop.xcconfig */,
+				79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */,
+				332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */,
+				40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */,
+				F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */,
+				760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
+				17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
+				6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */,
+				5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */,
+				ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CC3E413426D76C2D00304959 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CC3E413626D76C4900304959 /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CC3E413526D76C3700304959 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */,
+				CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */,
+				CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CC79C2A2262B1D7C00CA9A0A /* View */ = {
@@ -640,6 +797,7 @@
 			children = (
 				DA61A0E1265A01870059B879 /* LookAroundViewModel.swift */,
 				DA61A0E6265A01940059B879 /* LookAroundDetailViewModel.swift */,
+				DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -695,6 +853,7 @@
 				CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */,
 				CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */,
 				CCDB6E3026CCB8EE00797932 /* RoomTagCollectionViewCell.swift */,
+				CCA65AB126D36F25000660BD /* ReportTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -765,6 +924,108 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		DA12BC8D26D4A97B00F2A540 /* DaumMap.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				DA12BC8E26D4A97B00F2A540 /* Resources */,
+				DA12BCD726D4A97B00F2A540 /* DaumMap.framework */,
+			);
+			path = DaumMap.embeddedframework;
+			sourceTree = "<group>";
+		};
+		DA12BC8E26D4A97B00F2A540 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA12BC8F26D4A97B00F2A540 /* map_pinup_custom@3x.png */,
+				DA12BC9026D4A97B00F2A540 /* map_pin_custom.png */,
+				DA12BC9126D4A97B00F2A540 /* shadow_balloon.png */,
+				DA12BC9226D4A97B00F2A540 /* map_present_background_update 2.png */,
+				DA12BC9326D4A97B00F2A540 /* daum_th_line 2.png */,
+				DA12BC9426D4A97B00F2A540 /* map_pinup.png */,
+				DA12BC9526D4A97B00F2A540 /* map_pin_shadow@3x 2.png */,
+				DA12BC9626D4A97B00F2A540 /* shadow_balloon 2.png */,
+				DA12BC9726D4A97B00F2A540 /* map_present_direction 2.png */,
+				DA12BC9826D4A97B00F2A540 /* detail_button.png */,
+				DA12BC9926D4A97B00F2A540 /* noimage256 2.png */,
+				DA12BC9A26D4A97B00F2A540 /* map_pin_custom@3x.png */,
+				DA12BC9B26D4A97B00F2A540 /* info_box_tail 2.png */,
+				DA12BC9C26D4A97B00F2A540 /* map_pinup@3x.png */,
+				DA12BC9D26D4A97B00F2A540 /* point_sprite 2.png */,
+				DA12BC9E26D4A97B00F2A540 /* map_pin_shadow@3x.png */,
+				DA12BC9F26D4A97B00F2A540 /* map_pinup@3x 2.png */,
+				DA12BCA026D4A97B00F2A540 /* map_present_tracking 2.png */,
+				DA12BCA126D4A97B00F2A540 /* copyright.png */,
+				DA12BCA226D4A97B00F2A540 /* map_present 2.png */,
+				DA12BCA326D4A97B00F2A540 /* detail_button 2.png */,
+				DA12BCA426D4A97B00F2A540 /* th_line.png */,
+				DA12BCA526D4A97B00F2A540 /* map_pin_shadow 2.png */,
+				DA12BCA626D4A97B00F2A540 /* map_pin_red 2.png */,
+				DA12BCA726D4A97B00F2A540 /* noimage 2.png */,
+				DA12BCA826D4A97B00F2A540 /* map_pin_red@3x.png */,
+				DA12BCA926D4A97B00F2A540 /* map_pin_custom 2.png */,
+				DA12BCAA26D4A97B00F2A540 /* Headers 2 */,
+				DA12BCB326D4A97B00F2A540 /* daum_copyright.png */,
+				DA12BCB426D4A97B00F2A540 /* map_pin@3x 2.png */,
+				DA12BCB526D4A97B00F2A540 /* map_pin@3x.png */,
+				DA12BCB626D4A97B00F2A540 /* map_present_tracking.png */,
+				DA12BCB726D4A97B00F2A540 /* map_pin_red.png */,
+				DA12BCB826D4A97B00F2A540 /* Headers */,
+				DA12BCC126D4A97B00F2A540 /* info_box.png */,
+				DA12BCC226D4A97B00F2A540 /* map_pin_red@3x 2.png */,
+				DA12BCC326D4A97B00F2A540 /* daum_copyright 2.png */,
+				DA12BCC426D4A97B00F2A540 /* point_sprite.png */,
+				DA12BCC526D4A97B00F2A540 /* info_box 2.png */,
+				DA12BCC626D4A97B00F2A540 /* map_pin_custom@3x 2.png */,
+				DA12BCC726D4A97B00F2A540 /* map_pinup_custom.png */,
+				DA12BCC826D4A97B00F2A540 /* info_box_tail.png */,
+				DA12BCC926D4A97B00F2A540 /* noimage256.png */,
+				DA12BCCA26D4A97B00F2A540 /* copyright 2.png */,
+				DA12BCCB26D4A97B00F2A540 /* map_present_direction.png */,
+				DA12BCCC26D4A97B00F2A540 /* map_pin.png */,
+				DA12BCCD26D4A97B00F2A540 /* map_pinup 2.png */,
+				DA12BCCE26D4A97B00F2A540 /* map_present.png */,
+				DA12BCCF26D4A97B00F2A540 /* map_pinup_custom 2.png */,
+				DA12BCD026D4A97B00F2A540 /* map_pin 2.png */,
+				DA12BCD126D4A97B00F2A540 /* noimage.png */,
+				DA12BCD226D4A97B00F2A540 /* map_present_background_update.png */,
+				DA12BCD326D4A97B00F2A540 /* daum_th_line.png */,
+				DA12BCD426D4A97B00F2A540 /* map_pinup_custom@3x 2.png */,
+				DA12BCD526D4A97B00F2A540 /* th_line 2.png */,
+				DA12BCD626D4A97B00F2A540 /* map_pin_shadow.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DA12BCAA26D4A97B00F2A540 /* Headers 2 */ = {
+			isa = PBXGroup;
+			children = (
+				DA12BCAB26D4A97B00F2A540 /* MTMapPOIItem.h */,
+				DA12BCAC26D4A97B00F2A540 /* MTMapCameraUpdate.h */,
+				DA12BCAD26D4A97B00F2A540 /* MTMapReverseGeoCoder.h */,
+				DA12BCAE26D4A97B00F2A540 /* MTMapPolyline.h */,
+				DA12BCAF26D4A97B00F2A540 /* MTMapLocationMarkerItem.h */,
+				DA12BCB026D4A97B00F2A540 /* MTMapView.h */,
+				DA12BCB126D4A97B00F2A540 /* MTMapGeometry.h */,
+				DA12BCB226D4A97B00F2A540 /* MTMapCircle.h */,
+			);
+			path = "Headers 2";
+			sourceTree = "<group>";
+		};
+		DA12BCB826D4A97B00F2A540 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				DA12BCB926D4A97B00F2A540 /* MTMapPOIItem.h */,
+				DA12BCBA26D4A97B00F2A540 /* MTMapCameraUpdate.h */,
+				DA12BCBB26D4A97B00F2A540 /* MTMapReverseGeoCoder.h */,
+				DA12BCBC26D4A97B00F2A540 /* MTMapPolyline.h */,
+				DA12BCBD26D4A97B00F2A540 /* MTMapLocationMarkerItem.h */,
+				DA12BCBE26D4A97B00F2A540 /* MTMapView.h */,
+				DA12BCBF26D4A97B00F2A540 /* MTMapGeometry.h */,
+				DA12BCC026D4A97B00F2A540 /* MTMapCircle.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		DA2EDB6A262C58DD00620B7E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +1073,7 @@
 				DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */,
 				DA66096126BBAFB90019D7F7 /* AuthRouter.swift */,
 				CC7C391726C36D310015CA0B /* UserRouter.swift */,
+				DA51080926D619F600076527 /* S3Router.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -826,6 +1088,7 @@
 				DA40E1EC26B64DB300102EED /* ReviewService.swift */,
 				DA66096326BBB1FE0019D7F7 /* AuthService.swift */,
 				CC7C391926C36D400015CA0B /* UserService.swift */,
+				DA51080726D619E800076527 /* S3Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -871,6 +1134,8 @@
 				DAB3E019265D357B00B7B4F2 /* SettingView.swift */,
 				DA483D12269C59E000A81704 /* CustomNavigationBar.swift */,
 				DA483D2B26A9193700A81704 /* CustomTextField.swift */,
+				DA51E4FE26D4BAE80049051C /* ImageViewer.swift */,
+				DA51E50A26D4FF7C0049051C /* CustonTextView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -925,6 +1190,10 @@
 				CC7C391F26C39A970015CA0B /* WithdrawalViewController.swift */,
 				CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */,
 				CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */,
+				CCA65AAF26D3609C000660BD /* ReportViewController.swift */,
+				CC53711B26D37DDC00DE5871 /* ReportDetailViewController.swift */,
+				CC53711D26D37E0C00DE5871 /* ReportPopupViewController.swift */,
+				CC8A24C126D49570005FA8B5 /* ModifyPasswordPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -961,6 +1230,8 @@
 		DA4745C3261B297D00709883 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				CC3E413526D76C3700304959 /* Cell */,
+				CC3E413426D76C2D00304959 /* ViewController */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1102,6 +1373,7 @@
 		DA61C45125F361940063263A /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				DA51080B26D684F200076527 /* zeepy_onboarding.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1140,70 +1412,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		DAA2F47A26A99657003E9EAE /* DaumMap.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				DAA2F47B26A99657003E9EAE /* Resources */,
-				DAA2F4A026A99657003E9EAE /* DaumMap.framework */,
-			);
-			path = DaumMap.embeddedframework;
-			sourceTree = "<group>";
-		};
-		DAA2F47B26A99657003E9EAE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DAA2F47C26A99657003E9EAE /* map_pinup_custom@3x.png */,
-				DAA2F47D26A99657003E9EAE /* map_pin_custom.png */,
-				DAA2F47E26A99657003E9EAE /* shadow_balloon.png */,
-				DAA2F47F26A99657003E9EAE /* map_pinup.png */,
-				DAA2F48026A99657003E9EAE /* detail_button.png */,
-				DAA2F48126A99657003E9EAE /* map_pin_custom@3x.png */,
-				DAA2F48226A99657003E9EAE /* map_pinup@3x.png */,
-				DAA2F48326A99657003E9EAE /* map_pin_shadow@3x.png */,
-				DAA2F48426A99657003E9EAE /* copyright.png */,
-				DAA2F48526A99657003E9EAE /* th_line.png */,
-				DAA2F48626A99657003E9EAE /* map_pin_red@3x.png */,
-				DAA2F48726A99657003E9EAE /* daum_copyright.png */,
-				DAA2F48826A99657003E9EAE /* map_pin@3x.png */,
-				DAA2F48926A99657003E9EAE /* map_present_tracking.png */,
-				DAA2F48A26A99657003E9EAE /* map_pin_red.png */,
-				DAA2F48B26A99657003E9EAE /* Headers */,
-				DAA2F49426A99657003E9EAE /* info_box.png */,
-				DAA2F49526A99657003E9EAE /* point_sprite.png */,
-				DAA2F49626A99657003E9EAE /* map_pinup_custom.png */,
-				DAA2F49726A99657003E9EAE /* info_box_tail.png */,
-				DAA2F49826A99657003E9EAE /* noimage256.png */,
-				DAA2F49926A99657003E9EAE /* map_present_direction.png */,
-				DAA2F49A26A99657003E9EAE /* map_pin.png */,
-				DAA2F49B26A99657003E9EAE /* map_present.png */,
-				DAA2F49C26A99657003E9EAE /* noimage.png */,
-				DAA2F49D26A99657003E9EAE /* map_present_background_update.png */,
-				DAA2F49E26A99657003E9EAE /* daum_th_line.png */,
-				DAA2F49F26A99657003E9EAE /* map_pin_shadow.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		DAA2F48B26A99657003E9EAE /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				DAA2F48C26A99657003E9EAE /* MTMapPOIItem.h */,
-				DAA2F48D26A99657003E9EAE /* MTMapCameraUpdate.h */,
-				DAA2F48E26A99657003E9EAE /* MTMapReverseGeoCoder.h */,
-				DAA2F48F26A99657003E9EAE /* MTMapPolyline.h */,
-				DAA2F49026A99657003E9EAE /* MTMapLocationMarkerItem.h */,
-				DAA2F49126A99657003E9EAE /* MTMapView.h */,
-				DAA2F49226A99657003E9EAE /* MTMapGeometry.h */,
-				DAA2F49326A99657003E9EAE /* MTMapCircle.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
 		DAA2F4A226A9A049003E9EAE /* PopUpView */ = {
 			isa = PBXGroup;
 			children = (
 				DAA2F4A726AAF2F8003E9EAE /* JoinPopUpView.swift */,
 				DAA2F4A926AAF85E003E9EAE /* ModifyJoinView.swift */,
+				DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */,
+				DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */,
 			);
 			path = PopUpView;
 			sourceTree = "<group>";
@@ -1247,12 +1462,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42125F32F450063263A /* Build configuration list for PBXNativeTarget "Zeepy" */;
 			buildPhases = (
-				1DCCDB4782965EE8E53E4739 /* [CP] Check Pods Manifest.lock */,
+				63EF771DCB24AC63052134BD /* [CP] Check Pods Manifest.lock */,
 				DA61C3F025F32F440063263A /* Sources */,
 				DA61C3F125F32F440063263A /* Frameworks */,
 				DA61C3F225F32F440063263A /* Resources */,
 				CC73B8ED261FC621005A9D81 /* ShellScript */,
-				A50D3998FBF88825ABE1E8B9 /* [CP] Embed Pods Frameworks */,
+				D8EFFEB7F0EBC30BD6DDD9FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1260,10 +1475,11 @@
 			);
 			name = Zeepy;
 			packageProductDependencies = (
-				DA47445A2612144800709883 /* SwiftPackageProductDependency */,
-				CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */,
-				DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */,
-				CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */,
+				DA47445A2612144800709883 /* SnapKit */,
+				CC79C2B9262B1EAF00CA9A0A /* Then */,
+				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
+				CC0429C226C7E87F00C5D498 /* YPImagePicker */,
+				CC3E413F26D76D5E00304959 /* Lottie */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1273,7 +1489,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42425F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyTests" */;
 			buildPhases = (
-				811F76B930713B2E913C72D6 /* [CP] Check Pods Manifest.lock */,
+				B2C4169B462CADBDFB69E31C /* [CP] Check Pods Manifest.lock */,
 				DA61C40925F32F450063263A /* Sources */,
 				DA61C40A25F32F450063263A /* Frameworks */,
 				DA61C40B25F32F450063263A /* Resources */,
@@ -1292,11 +1508,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42725F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyUITests" */;
 			buildPhases = (
-				D6B8E942C53CC45252E4E28F /* [CP] Check Pods Manifest.lock */,
+				486746493F042699CEE6FF1A /* [CP] Check Pods Manifest.lock */,
 				DA61C41425F32F450063263A /* Sources */,
 				DA61C41525F32F450063263A /* Frameworks */,
 				DA61C41625F32F450063263A /* Resources */,
-				A80FDDE3C0BA287F5400488B /* [CP] Embed Pods Frameworks */,
+				9B1572299F4325CC0E25AB60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1341,10 +1557,11 @@
 			);
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
-				DA4744592612144800709883 /* RemoteSwiftPackageReference */,
-				CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */,
-				DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */,
-				CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */,
+				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
+				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1366,6 +1583,7 @@
 				DAB0000E2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
 				CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */,
 				DA61C40725F32F450063263A /* LaunchScreen.storyboard in Resources */,
+				DA51080C26D684F200076527 /* zeepy_onboarding.json in Resources */,
 				CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
 				DA61C40425F32F450063263A /* Assets.xcassets in Resources */,
 				3784561A2692154C00F59074 /* Gilroy-ExtraBold.otf in Resources */,
@@ -1378,11 +1596,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA12BCFF26D4A97B00F2A540 /* info_box_tail.png in Resources */,
+				DA12BCDE26D4A97B00F2A540 /* map_pin_shadow@3x 2.png in Resources */,
+				DA12BD0526D4A97B00F2A540 /* map_present.png in Resources */,
+				DA12BCEA26D4A97B00F2A540 /* copyright.png in Resources */,
+				DA12BCEE26D4A97B00F2A540 /* map_pin_shadow 2.png in Resources */,
+				DA12BCED26D4A97B00F2A540 /* th_line.png in Resources */,
+				DA12BCE826D4A97B00F2A540 /* map_pinup@3x 2.png in Resources */,
+				DA12BCE926D4A97B00F2A540 /* map_present_tracking 2.png in Resources */,
+				DA12BCDD26D4A97B00F2A540 /* map_pinup.png in Resources */,
+				DA12BD0C26D4A97B00F2A540 /* th_line 2.png in Resources */,
+				DA12BD0326D4A97B00F2A540 /* map_pin.png in Resources */,
+				DA12BCE226D4A97B00F2A540 /* noimage256 2.png in Resources */,
+				DA12BCE026D4A97B00F2A540 /* map_present_direction 2.png in Resources */,
+				DA12BCFC26D4A97B00F2A540 /* info_box 2.png in Resources */,
+				DA12BCE126D4A97B00F2A540 /* detail_button.png in Resources */,
+				DA12BD0D26D4A97B00F2A540 /* map_pin_shadow.png in Resources */,
+				DA12BD0826D4A97B00F2A540 /* noimage.png in Resources */,
 				CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */,
+				DA12BCF126D4A97B00F2A540 /* map_pin_red@3x.png in Resources */,
+				DA12BCF726D4A97B00F2A540 /* map_pin_red.png in Resources */,
+				DA12BCF526D4A97B00F2A540 /* map_pin@3x.png in Resources */,
+				DA12BCDF26D4A97B00F2A540 /* shadow_balloon 2.png in Resources */,
+				DA12BCE626D4A97B00F2A540 /* point_sprite 2.png in Resources */,
+				DA12BD0026D4A97B00F2A540 /* noimage256.png in Resources */,
+				DA12BCFA26D4A97B00F2A540 /* daum_copyright 2.png in Resources */,
+				DA12BCFD26D4A97B00F2A540 /* map_pin_custom@3x 2.png in Resources */,
+				DA12BCF326D4A97B00F2A540 /* daum_copyright.png in Resources */,
+				DA12BCEB26D4A97B00F2A540 /* map_present 2.png in Resources */,
+				DA12BCF426D4A97B00F2A540 /* map_pin@3x 2.png in Resources */,
+				DA12BD0726D4A97B00F2A540 /* map_pin 2.png in Resources */,
+				DA12BD0426D4A97B00F2A540 /* map_pinup 2.png in Resources */,
+				DA12BD0126D4A97B00F2A540 /* copyright 2.png in Resources */,
+				DA12BCF026D4A97B00F2A540 /* noimage 2.png in Resources */,
+				DA12BCDA26D4A97B00F2A540 /* shadow_balloon.png in Resources */,
 				DAB0000C2608CC0300D8208F /* NanumSquareRoundOTFL.otf in Resources */,
 				3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */,
+				DA12BCE726D4A97B00F2A540 /* map_pin_shadow@3x.png in Resources */,
+				DA12BD0B26D4A97B00F2A540 /* map_pinup_custom@3x 2.png in Resources */,
+				DA12BCF626D4A97B00F2A540 /* map_present_tracking.png in Resources */,
+				DA12BCDC26D4A97B00F2A540 /* daum_th_line 2.png in Resources */,
+				DA12BCDB26D4A97B00F2A540 /* map_present_background_update 2.png in Resources */,
+				DA12BCF826D4A97B00F2A540 /* info_box.png in Resources */,
+				DA12BCF926D4A97B00F2A540 /* map_pin_red@3x 2.png in Resources */,
+				DA12BCE526D4A97B00F2A540 /* map_pinup@3x.png in Resources */,
+				DA12BCF226D4A97B00F2A540 /* map_pin_custom 2.png in Resources */,
+				DA12BCFE26D4A97B00F2A540 /* map_pinup_custom.png in Resources */,
 				DAB0000F2608CC0300D8208F /* NanumSquareRoundOTFR.otf in Resources */,
+				DA12BD0A26D4A97B00F2A540 /* daum_th_line.png in Resources */,
+				DA12BCEC26D4A97B00F2A540 /* detail_button 2.png in Resources */,
+				DA12BCD826D4A97B00F2A540 /* map_pinup_custom@3x.png in Resources */,
+				DA12BCE326D4A97B00F2A540 /* map_pin_custom@3x.png in Resources */,
+				DA12BD0226D4A97B00F2A540 /* map_present_direction.png in Resources */,
+				DA12BD0626D4A97B00F2A540 /* map_pinup_custom 2.png in Resources */,
+				DA12BCE426D4A97B00F2A540 /* info_box_tail 2.png in Resources */,
+				DA12BCFB26D4A97B00F2A540 /* point_sprite.png in Resources */,
+				DA12BD0926D4A97B00F2A540 /* map_present_background_update.png in Resources */,
 				DAB000062608CC0300D8208F /* NanumSquareRoundOTFB.otf in Resources */,
+				DA12BCD926D4A97B00F2A540 /* map_pin_custom.png in Resources */,
+				DA12BCEF26D4A97B00F2A540 /* map_pin_red 2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1401,7 +1673,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1DCCDB4782965EE8E53E4739 /* [CP] Check Pods Manifest.lock */ = {
+		486746493F042699CEE6FF1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Zeepy-ZeepyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63EF771DCB24AC63052134BD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1423,7 +1717,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		811F76B930713B2E913C72D6 /* [CP] Check Pods Manifest.lock */ = {
+		9B1572299F4325CC0E25AB60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2C4169B462CADBDFB69E31C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1445,40 +1756,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A50D3998FBF88825ABE1E8B9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A80FDDE3C0BA287F5400488B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CC73B8ED261FC621005A9D81 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1496,26 +1773,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
-		D6B8E942C53CC45252E4E28F /* [CP] Check Pods Manifest.lock */ = {
+		D8EFFEB7F0EBC30BD6DDD9FA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Zeepy-ZeepyUITests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1539,10 +1811,14 @@
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */,
+				CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */,
+				DA51E4FD26D4AF570049051C /* ModifyCommentView.swift in Sources */,
 				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
+				CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */,
 				CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
+				DA51E4FF26D4BAE80049051C /* ImageViewer.swift in Sources */,
 				CC7C391626C264720015CA0B /* RegisterReviewPopupViewController.swift in Sources */,
 				DA4C7838265A01F00040010F /* postSimpleCollectionViewCell.swift in Sources */,
 				DA40E1D126B3C83000102EED /* ReviewResponse.swift in Sources */,
@@ -1550,6 +1826,7 @@
 				DAB3E014265D34F300B7B4F2 /* HalfView.swift in Sources */,
 				DA4C7836265A01F00040010F /* PostFilterCollectionViewCell.swift in Sources */,
 				DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */,
+				DA67E66B26CF7288001A1CEF /* ViewModel.swift in Sources */,
 				372CA33C265A69D0002D99AD /* FloatingButtonCollectionViewCell.swift in Sources */,
 				DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */,
 				DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */,
@@ -1571,9 +1848,11 @@
 				A45F4F9925FF2D7200FCEACF /* BaseViewController.swift in Sources */,
 				DA40E1E926B6494600102EED /* CommunityService.swift in Sources */,
 				CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */,
+				DA51080826D619E800076527 /* S3Service.swift in Sources */,
 				DA4C7835265A01F00040010F /* CommunityViewModel.swift in Sources */,
 				DA40E1DB26B3D88300102EED /* BuildingRouter.swift in Sources */,
 				DA61A0E7265A01940059B879 /* LookAroundDetailViewModel.swift in Sources */,
+				CC8A24C226D49571005FA8B5 /* ModifyPasswordPopupViewController.swift in Sources */,
 				CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */,
 				DA61C49325F4DB2A0063263A /* UITextView+.swift in Sources */,
 				37EB8BBA2692FF8A0052047B /* InputBoxView.swift in Sources */,
@@ -1601,13 +1880,16 @@
 				DAA2F4A826AAF2F8003E9EAE /* JoinPopUpView.swift in Sources */,
 				DAA2F4B826ACEBBC003E9EAE /* ReviewListViewController.swift in Sources */,
 				371628B02646665F0006AE80 /* tendencyButton.swift in Sources */,
+				DA94C55326D795420020C6E6 /* ReviewDetailViewModel.swift in Sources */,
 				DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */,
 				DA66095E26BBAF1F0019D7F7 /* AuthResponse.swift in Sources */,
 				CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */,
 				CC7C38EC26B93C3D0015CA0B /* SelectAddressTableViewCell.swift in Sources */,
 				DA66091E26BA2DEC0019D7F7 /* LoginViewModel.swift in Sources */,
+				CC53711E26D37E0C00DE5871 /* ReportPopupViewController.swift in Sources */,
 				DA61C45725F361F80063263A /* UIColor+.swift in Sources */,
 				CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */,
+				DA51080A26D619F600076527 /* S3Router.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
 				CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
@@ -1617,6 +1899,7 @@
 				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				CCB6C10026AC31B5006E7032 /* FavoriteListViewController.swift in Sources */,
 				DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */,
+				CC3E413726D76C4900304959 /* OnboardingViewController.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA40E1CD26B1354C00102EED /* CommunityResponse.swift in Sources */,
 				DA66091B26BA296B0019D7F7 /* ConditionModel.swift in Sources */,
@@ -1637,9 +1920,11 @@
 				DA66096026BBAF7D0019D7F7 /* AuthRequest.swift in Sources */,
 				A45F4FA625FF309900FCEACF /* UIFont+.swift in Sources */,
 				DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */,
+				CC53711C26D37DDC00DE5871 /* ReportDetailViewController.swift in Sources */,
 				DA61C48425F4DA8D0063263A /* UIViewController+.swift in Sources */,
 				DA66096226BBAFB90019D7F7 /* AuthRouter.swift in Sources */,
 				DA61A0DD265A01730059B879 /* LookAroundDetailViewController.swift in Sources */,
+				DA51E50926D4D7370049051C /* VersionChecker.swift in Sources */,
 				DA40E1E126B4CDED00102EED /* DealResponse.swift in Sources */,
 				DA483D2C26A9193700A81704 /* CustomTextField.swift in Sources */,
 				CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */,
@@ -1652,12 +1937,16 @@
 				CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */,
 				37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */,
 				DA40E1E326B4CE6A00102EED /* DealRouter.swift in Sources */,
+				CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */,
 				DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */,
 				CC7C390E26C12A770015CA0B /* AddressLimitPopupViewController.swift in Sources */,
+				DA51E50326D4C9AE0049051C /* ReportNoticeView.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
 				DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */,
+				CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
+				CCA65AB226D36F25000660BD /* ReportTableViewCell.swift in Sources */,
 				CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */,
 				DAF4D398265A033600B281E2 /* CalendarService.swift in Sources */,
 				CCD0D99C265E4C0E001B15DE /* AssessTableViewCell.swift in Sources */,
@@ -1671,6 +1960,7 @@
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				CC7C391226C218EA0015CA0B /* SelectAddressEmptyTableViewCell.swift in Sources */,
+				CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				CC7C391426C24D630015CA0B /* ReviewPhotoViewController.swift in Sources */,
@@ -1683,9 +1973,11 @@
 				37EB8BB82692FF260052047B /* SignUpViewController.swift in Sources */,
 				DAF4D38E265A02BA00B281E2 /* FilterModel.swift in Sources */,
 				DA47457F261B26C500709883 /* BaseAlert.swift in Sources */,
+				CCA65AB026D3609D000660BD /* ReportViewController.swift in Sources */,
 				371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */,
 				37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */,
 				CC12B96526AA52D800D17C95 /* EmptyManageAddressTableViewCell.swift in Sources */,
+				DA51E50B26D4FF7C0049051C /* CustonTextView.swift in Sources */,
 				CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */,
 				DA61C46625F362280063263A /* UIImage+.swift in Sources */,
 				DA4745A1261B283100709883 /* SearchViewController.swift in Sources */,
@@ -1796,7 +2088,7 @@
 		};
 		A45F4F5425FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3C146BE7854F919BDCF6B3A /* Pods-Zeepy.develop.xcconfig */;
+			baseConfigurationReference = 40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1880,12 +2172,16 @@
 		};
 		A45F4F5525FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0ED4A483BCFFB625381716E8 /* Pods-ZeepyTests.develop.xcconfig */;
+			baseConfigurationReference = ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaumMap.embeddedframework",
+				);
 				INFOPLIST_FILE = ZeepyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1903,7 +2199,7 @@
 		};
 		A45F4F5625FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25EDF288D8855ABDD4BFAA29 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
+			baseConfigurationReference = 17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2046,7 +2342,7 @@
 		};
 		DA61C42225F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEBDDC633289E30C4D78846B /* Pods-Zeepy.debug.xcconfig */;
+			baseConfigurationReference = 79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2129,7 +2425,7 @@
 		};
 		DA61C42325F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6331EF7A4FE2DB259A5B9381 /* Pods-Zeepy.release.xcconfig */;
+			baseConfigurationReference = 332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2212,12 +2508,16 @@
 		};
 		DA61C42525F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D5AD031DB78C5CD59A516CA /* Pods-ZeepyTests.debug.xcconfig */;
+			baseConfigurationReference = 6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaumMap.embeddedframework",
+				);
 				INFOPLIST_FILE = ZeepyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2235,12 +2535,16 @@
 		};
 		DA61C42625F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFB2101F2454A0893FE83BDA /* Pods-ZeepyTests.release.xcconfig */;
+			baseConfigurationReference = 5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaumMap.embeddedframework",
+				);
 				INFOPLIST_FILE = ZeepyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2258,7 +2562,7 @@
 		};
 		DA61C42825F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 858CED2B063F210C214C2DD8 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */;
+			baseConfigurationReference = F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2279,7 +2583,7 @@
 		};
 		DA61C42925F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 864E59544FC9F50F6526FDBF /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
+			baseConfigurationReference = 760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2344,7 +2648,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */ = {
+		CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
 			requirement = {
@@ -2352,7 +2656,15 @@
 				kind = branch;
 			};
 		};
-		CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */ = {
+		CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.3;
+			};
+		};
+		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -2360,7 +2672,7 @@
 				minimumVersion = 2.7.0;
 			};
 		};
-		DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */ = {
+		DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -2368,7 +2680,7 @@
 				minimumVersion = 6.2.1;
 			};
 		};
-		DA4744592612144800709883 /* RemoteSwiftPackageReference */ = {
+		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -2379,24 +2691,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */ = {
+		CC0429C226C7E87F00C5D498 /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */;
+			package = CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
 			productName = YPImagePicker;
 		};
-		CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */ = {
+		CC3E413F26D76D5E00304959 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */;
+			package = CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */ = {
+		DA2EDB7A262C5A7D00620B7E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */;
+			package = DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		DA47445A2612144800709883 /* SwiftPackageProductDependency */ = {
+		DA47445A2612144800709883 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA4744592612144800709883 /* RemoteSwiftPackageReference */;
+			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

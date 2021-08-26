@@ -26,6 +26,8 @@ class CommunityViewController : BaseViewController {
   }
   private let viewModel = CommunityViewModel()
   private let selectedType = BehaviorSubject<PostType>(value: .total)
+  private let resetAddress = PublishSubject<[Addresses]>()
+  private let loadViewTrigger = PublishSubject<Void>()
   private let currentTab = BehaviorSubject<Int>(value: 0)
   private func setUpNavi() {
     self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -127,6 +129,14 @@ class CommunityViewController : BaseViewController {
     setTabView(tabIndex: 1)
     moveColletionViewNextPage(tabIndex: 1)
   }
+  @objc
+  private func didReceiveNotification(_ notification: Notification) {
+    if self.naviTitle.text != UserManager.shared.currentAddress?.primaryAddress {
+      self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+      loadViewTrigger.onNext(())
+      selectedType.onNext(.total)
+    }
+  }
   private func setTabView(tabIndex i : Int) {
     // default, selected
     currentTab.onNext(i)
@@ -223,15 +233,24 @@ extension CommunityViewController : UICollectionViewDelegate{
     setUpSegment()
     setupCollectionView()
     bind()
-    
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
+    NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
+  }
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    NotificationCenter.default.removeObserver(self,name: Notification.Name("address"), object: nil)
   }
   func bind() {
     let selection = Observable.zip (postFilterCollectionView.rx.itemSelected,
                                     postFilterCollectionView.rx.modelSelected((PostType, Bool).self))
     let input = CommunityViewModel.Input(currentTab:currentTab,
-                                         loadView: Observable.just(()),
+                                         loadView: loadViewTrigger,
                                          filterSelect: selection,
-                                         filterSelect2: selectedType)
+                                         filterSelect2: selectedType,
+                                         resetAddress: resetAddress)
     let output = viewModel.transform(input: input)
     
     output.filterUsecase.bind(to: postFilterCollectionView.rx
@@ -239,7 +258,13 @@ extension CommunityViewController : UICollectionViewDelegate{
                                        cellType: PostFilterCollectionViewCell.self)) {row, data, cell in
       cell.bindCell(str: data.0.rawValue, selected: data.1)
     }.disposed(by: disposeBag)
-    
+    output.resetAddress.bind{[weak self] result in
+      if result {
+        self?.loadViewTrigger.onNext(())
+        self?.selectedType.onNext(.total)
+
+      }
+    }.disposed(by: disposeBag)
     Observable.just([0, 1])
       .bind(to: segmentCollectionView.rx.items(cellIdentifier: TapCell.identifier,
                                                cellType: TapCell.self)) { [weak self] row, data, cell in
@@ -253,12 +278,15 @@ extension CommunityViewController : UICollectionViewDelegate{
       }.disposed(by: disposeBag)
     
     dropDown.rx.tap.bind{[weak self] in
-      guard let self = self else {return}
-      Dropdown.shared.addDropDown(items: [("한강로동 2가",nil),
-                                          ("한강로동 3가",nil),
-                                          ("한강로동 4가",nil)], disposeBag: self.disposeBag)
+      Dropdown.shared.addDropDown(items: UserManager.shared.address,
+                                  disposeBag: self!.disposeBag,
+                                  dissmissAction: { [weak self] in
+                                    self?.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 선택"
+                                    self?.resetAddress.onNext(UserManager.shared.address)
+                                  },
+                                  currentItemKey: UserManager.shared.currentAddress)
     }.disposed(by: disposeBag)
-    
+   
     writeBtn.rx.tap.bind{[weak self] in
       let vc = PostViewController()
       vc.hidesBottomBarWhenPushed = true
@@ -269,5 +297,6 @@ extension CommunityViewController : UICollectionViewDelegate{
       .map{$0.0}
       .bind(to: selectedType)
       .disposed(by: disposeBag)
+    loadViewTrigger.onNext(())
   }
 }

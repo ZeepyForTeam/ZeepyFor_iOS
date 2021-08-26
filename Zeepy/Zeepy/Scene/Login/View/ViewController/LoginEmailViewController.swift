@@ -33,6 +33,9 @@ class LoginEmailViewController: BaseViewController {
   }
   let idTextField = UITextField().then{
     $0.placeholder = "아이디를 입력해주세요."
+    $0.autocapitalizationType = .none
+    $0.autocorrectionType = .no
+    $0.keyboardType = .emailAddress
     $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 15.0)
   }
   let pwTextFieldBackGroundView = UIView().then{
@@ -41,6 +44,9 @@ class LoginEmailViewController: BaseViewController {
   }
   let pwTextField = UITextField().then{
     $0.placeholder = "비밀번호를 입력해주세요."
+    $0.isSecureTextEntry = true
+    $0.autocapitalizationType = .none
+    $0.autocorrectionType = .no
     $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 15.0)
   }
   let findIDButton = UIButton().then{
@@ -115,7 +121,6 @@ class LoginEmailViewController: BaseViewController {
     output.isLoginSuccess.bind{[weak self] result in
       switch result {
       case .success(let result) :
-        UserManager.shared.userId = result.userId
         LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .email, userId: result.userId)
         let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true
@@ -147,7 +152,6 @@ class LoginEmailViewController: BaseViewController {
     output.socialLoginSuccess.bind{[weak self] result in
       switch result {
       case .success(let result) :
-        UserManager.shared.userId = result.userId
         LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .kakao, userId: result.userId)
         let rootNav = UINavigationController()
         rootNav.navigationBar.isHidden = true

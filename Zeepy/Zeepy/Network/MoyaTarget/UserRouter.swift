@@ -17,6 +17,10 @@ enum UserRouter {
   case checkFromRedundancyNickname(nickname : String)
   case registration(param: RequestRegistration)
   case memberShipWithdrawal
+  case fetchNickname
+  case fetchEmail
+  case putMarketing
+  case report(param: RequestReportModel)
 }
 
 extension UserRouter : TargetType {
@@ -41,18 +45,30 @@ extension UserRouter : TargetType {
       return "/user/registration"
     case .memberShipWithdrawal:
       return "/user/withdrawal"
+    case .fetchNickname:
+      return "/user/nickname/email"
+    case .fetchEmail:
+      return "/user/mail"
+    case .putMarketing:
+      return "/user/mail"
+    case .report(param: let param):
+      return "/reports"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .getAddress:
+    case .getAddress,
+         .fetchNickname,
+         .fetchEmail:
       return .get
     case .checkForRedundancyEmail,
          .checkFromRedundancyNickname,
-         .registration:
+         .registration,
+         .report:
       return .post
-    case .addAddress:
+    case .addAddress,
+         .putMarketing:
       return .put
     case .modifyNickname,
          .modifyPassword:
@@ -87,6 +103,14 @@ extension UserRouter : TargetType {
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     case .memberShipWithdrawal:
       return .requestPlain
+    case .fetchNickname:
+      return .requestPlain
+    case .fetchEmail:
+      return .requestPlain
+    case .putMarketing:
+      return .requestPlain
+    case .report(param: let param):
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     }
   }
   var headers: [String : String]? {

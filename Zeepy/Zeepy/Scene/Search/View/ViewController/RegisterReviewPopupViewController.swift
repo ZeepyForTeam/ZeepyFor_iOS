@@ -23,8 +23,6 @@ class RegisterReviewPopupViewController: UIViewController {
   private let secondContextLabel = UILabel()
   private let cancelButton = UIButton()
   private let registerButton = UIButton()
-  var resultClosure: ((Bool) -> ())?
-  private var registerResult: Bool = false
   
   // MARK: - Variables
   private let reviewService = ReviewService(provider: MoyaProvider<ReviewRouter>(plugins:[NetworkLoggerPlugin()]))
@@ -44,6 +42,9 @@ class RegisterReviewPopupViewController: UIViewController {
                                 soundInsulation: "",
                                 totalEvaluation: "",
                                 waterPressure: "")
+  
+  var resultClosure: ((Bool) -> ())?
+  private var registerResult: Bool = false
 
   // MARK: - LifeCycles
   override func viewDidLoad() {
@@ -195,8 +196,8 @@ extension RegisterReviewPopupViewController {
     let vc = self.presentingViewController?.children[0] as? TabbarViewContorller
     // TODO: - Server Connection
     reviewService.addReview(param: reviewModel)
-      .subscribe(onNext: {[weak self] response in
-        if (200...300).contains(response.statusCode) {
+      .subscribe(onNext: {[weak self] result in
+        if result {
           do {
             print("success")
 

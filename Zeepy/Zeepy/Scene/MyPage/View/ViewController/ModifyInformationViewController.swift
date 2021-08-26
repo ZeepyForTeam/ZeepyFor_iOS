@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -21,21 +23,28 @@ class ModifyInformationViewController: BaseViewController {
   private let socialEmailTitleLabel = UILabel()
   private let socialImageView = UIImageView()
   private let socialEmailLabel = UILabel()
+  private let secondSeparatorView = UIView()
   private let passwordTitleLabel = UILabel()
   private let passwordTextField = UITextField()
   private let modifyButton = UIButton()
+  private let thirdSeparatorView = UIView()
   private let logoutButton = UIButton()
   private let drououtButton = UIButton()
   
   // MARK: - Variables
-  //  private var socialType: String?
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  ///  private var socialType: String?
   var userName: String?
-  private var socialType = "kakao"
-  private var socialImageName = ["kakao": "kakaologo",
-                                 "apple": "applelogo",
-                                 "naver": "naverlogo"]
-  //  private var socialEmail: String?
-  private var socialEmail = "zeepy.official@gmail.com"
+  private var socialType = UserDefaultHandler.loginType
+  private var socialImageName = ["kakao": "logoCacao",
+                                 "apple": "logoApple",
+                                 "naver": "logoNaver",
+                                 "email": "AppIcon"]
+  var socialEmail: String?
+  private var passwordModel = RequestModifyPassword(password: "")
   
   // MARK: -LifeCycle
   override func viewDidLoad() {
@@ -59,9 +68,11 @@ extension ModifyInformationViewController {
     layoutSocialEmailTitleLabel()
     layoutSocialImageView()
     layoutSocialEmailLabel()
+    layoutSecondSeparatorView()
     layoutPasswordTitleLabel()
     layoutPasswordTextField()
     layoutModifyButton()
+    layoutThirdSeparatorView()
     layoutLogoutButton()
     layoutDropoutButton()
   }
@@ -134,10 +145,21 @@ extension ModifyInformationViewController {
     }
   }
   
+  private func layoutSecondSeparatorView() {
+    view.add(secondSeparatorView) {
+      $0.backgroundColor = .gray244
+      $0.snp.makeConstraints {
+        $0.leading.trailing.equalToSuperview()
+        $0.height.equalTo(1)
+        $0.top.equalTo(self.socialImageView.snp.bottom).offset(16)
+      }
+    }
+  }
+  
   private func layoutPasswordTitleLabel() {
     view.add(passwordTitleLabel) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.socialImageView.snp.bottom).offset(26)
+        $0.top.equalTo(self.secondSeparatorView.snp.bottom).offset(20)
         $0.leading.equalTo(self.nicknameTitleLabel.snp.leading)
       }
     }
@@ -148,6 +170,7 @@ extension ModifyInformationViewController {
       $0.backgroundColor = .whiteTextField
       $0.setRounded(radius: 8)
       $0.addLeftPadding()
+      $0.isSecureTextEntry = true
       $0.snp.makeConstraints {
         $0.top.equalTo(self.passwordTitleLabel.snp.bottom).offset(8)
         $0.leading.equalTo(self.nicknameTitleLabel.snp.leading)
@@ -159,6 +182,9 @@ extension ModifyInformationViewController {
   
   private func layoutModifyButton() {
     view.add(modifyButton) {
+      $0.addTarget(self,
+                   action: #selector(self.passwordModifyButtonClicked),
+                   for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.passwordTextField.snp.trailing).offset(8)
         $0.top.equalTo(self.passwordTextField.snp.top)
@@ -168,10 +194,20 @@ extension ModifyInformationViewController {
     }
   }
   
+  private func layoutThirdSeparatorView() {
+    view.add(thirdSeparatorView) {
+      $0.backgroundColor = .gray244
+      $0.snp.makeConstraints {
+        $0.leading.trailing.equalToSuperview()
+        $0.height.equalTo(1)
+        $0.top.equalTo(self.passwordTextField.snp.bottom).offset(23)
+      }
+    }
+  }
   private func layoutLogoutButton() {
     view.add(logoutButton) {
       $0.snp.makeConstraints {
-        $0.top.equalTo(self.passwordTextField.snp.bottom).offset(16)
+        $0.top.equalTo(self.thirdSeparatorView.snp.bottom).offset(20)
         $0.leading.equalTo(self.nicknameTitleLabel.snp.leading)
         $0.width.equalTo(44)
         $0.height.equalTo(14)
@@ -215,11 +251,14 @@ extension ModifyInformationViewController {
                                      color: .blackText,
                                      font: .nanumRoundBold(fontSize: 14))
     
-    socialImageView.image = UIImage(named: socialImageName[self.socialType]!)
-    socialEmailLabel.setupLabel(text: socialEmail,
+    socialImageView.image = UIImage(named: socialImageName[self.socialType ?? "email"] ?? "AppIcon")
+    socialEmailLabel.setupLabel(text: socialEmail ?? "",
                                 color: .blackText,
                                 font: .nanumRoundRegular(fontSize: 16),
                                 align: .left)
+    
+    passwordTextField.font = .nanumRoundRegular(fontSize: 12)
+    passwordTextField.textColor = .blackText
     
     passwordTitleLabel.setupLabel(text: "비밀번호",
                                   color: .blackText,
@@ -240,7 +279,7 @@ extension ModifyInformationViewController {
                              radius: 0)
     
     let logoutText = NSMutableAttributedString(string: "로그아웃",
-                                              attributes: [
+                                               attributes: [
                                                 .font: UIFont.nanumRoundRegular(fontSize: 12),
                                                 .foregroundColor: UIColor.brownGrey])
     
@@ -258,9 +297,9 @@ extension ModifyInformationViewController {
                               radius: 0)
     
     let dropoutText = NSMutableAttributedString(string: "회원 탈퇴",
-                                              attributes: [
-                                                .font: UIFont.nanumRoundRegular(fontSize: 12),
-                                                .foregroundColor: UIColor.brownGrey])
+                                                attributes: [
+                                                  .font: UIFont.nanumRoundRegular(fontSize: 12),
+                                                  .foregroundColor: UIColor.brownGrey])
     
     dropoutText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: dropoutText.length))
     
@@ -275,18 +314,28 @@ extension ModifyInformationViewController {
   //로그아웃기능 임시
   private func temp() {
     logoutButton.rx.tap.bind{
-      MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
-        LoginManager.shared.makeLogoutStatus()
-        let root = LoginEmailViewController()
-        let rootNav = UINavigationController()
-        rootNav.navigationBar.isHidden = true
-        
-        rootNav.viewControllers = [root]
-        
-        if let window = self.view.window {
-          window.rootViewController = rootNav
-        }
-      })
+      
+      LoginManager.shared.makeLogoutStatus()
+      let root = LoginEmailViewController()
+      let rootNav = UINavigationController()
+      rootNav.navigationBar.isHidden = true
+      
+      rootNav.viewControllers = [root]
+      
+      if let window = self.view.window {
+        window.rootViewController = rootNav
+      }
     }.disposed(by: disposeBag)
+  }
+  
+  // MARK: - Aciton Helpers
+  @objc
+  private func passwordModifyButtonClicked() {
+    let popupVC = ModifyPasswordPopupViewController()
+    if passwordTextField.hasText == true {
+      popupVC.passwordModel.password = passwordTextField.text ?? ""
+      popupVC.modalPresentationStyle = .overFullScreen
+      self.present(popupVC, animated: true, completion: nil)
+    }
   }
 }

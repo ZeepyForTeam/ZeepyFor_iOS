@@ -15,9 +15,17 @@ class ReviewListViewController : BaseViewController {
     super.viewDidLoad()
     setupTableView()
     layout()
-    dummy()
+    bind()
+  }
+  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, reviews: [ReviewResponses]) {
+    self.models = reviews
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  private var models: [ReviewResponses]!
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "건물리뷰")
   }
@@ -46,14 +54,31 @@ extension ReviewListViewController {
       $0.top.equalTo(naviView.snp.bottom).offset(16)
     }
   }
-  private func dummy() {
-    let temp = Observable.just([0,1,2,3,4,5])
-    temp.bind(to: tableView.rx.items(cellIdentifier: SimpleReviewView.identifier,
-                                     cellType: SimpleReviewView.self)) {row, data, cell in
-      cell.dummy()
+  private func bind() {
+    Observable.just(models)
+      .bind(to: tableView.rx.items(cellIdentifier: SimpleReviewView.identifier,
+                                     cellType: SimpleReviewView.self)) {[weak self] row, data, cell in
+      cell.bind(model: data)
+        cell.reportBtn.rx.tap
+          .takeUntil(cell.rx.methodInvoked(#selector(UITableViewCell.prepareForReuse)))
+          .bind{[weak self] in
+          let vc = ReportViewController()
+          guard
+            let userid = UserDefaultHandler.userId
+          else {return}
+
+          vc.reportModel.reportUser = userid
+          self?.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by:cell.disposeBag)
+        cell.content.reviewDirectBtn.rx.tap
+          .takeUntil(cell.rx.methodInvoked(#selector(UITableViewCell.prepareForReuse)))
+          .bind{[weak self] in
+          let vc = SelectAddressViewController()
+            self?.navigationController?.pushViewController(vc, animated: true)
+          }.disposed(by: cell.disposeBag)
     }.disposed(by: disposeBag)
-    tableView.rx.modelSelected(Int.self).bind{[weak self] _ in
-      let vc = DetailReviewViewContoller()
+    tableView.rx.modelSelected(ReviewResponses.self).bind{[weak self] model in
+      guard let vc = DetailReviewViewContoller(nibName: nil, bundle: nil, reviewId: model.id) else {return}
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by: disposeBag)
   }

@@ -107,7 +107,7 @@ extension DeleteAddressPopupViewController {
     closeButton.setupButton(title: "취소",
                              color: .white,
                              font: .nanumRoundExtraBold(fontSize: 16),
-                             backgroundColor: .pastelYellow,
+                             backgroundColor: .pointYellow,
                              state: .normal,
                              radius: 8)
     deleteButton.setupButton(title: "삭제",
@@ -122,8 +122,8 @@ extension DeleteAddressPopupViewController {
     addressModel?.addresses.remove(at: self.selectedIndex)
     userService.addAddress(param: self.addressModel ??
                             ResponseGetAddress(addresses: []))
-      .subscribe(onNext: { [weak self] response in
-        if response.statusCode == 200 {
+      .subscribe(onNext: { [weak self] result in
+        if result {
           do {
             print("delete completed")
             self?.dismiss(animated: true, completion: {

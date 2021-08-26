@@ -8,18 +8,20 @@
 import Foundation
 import RxSwift
 import Moya
-class CommunityViewModel {
+class CommunityViewModel : Services, ViewModelType{
   private let service = CommunityService(provider: MoyaProvider<CommunityRouter>(plugins:[NetworkLoggerPlugin()]))
   struct Input {
     let currentTab: Observable<Int>
     let loadView : Observable<Void>
     let filterSelect: Observable<(IndexPath, (PostType, Bool))>
-    let filterSelect2: Observable<PostType> 
+    let filterSelect2: Observable<PostType>
+    let resetAddress : Observable<[Addresses]>
   }
   struct Output {
     let postUsecase : Observable<[PostModel]>
     let myZip: Observable<[PostModel]>
     let filterUsecase : Observable<[(PostType, Bool)]>
+    let resetAddress: Observable<Bool>
   }
   
   var filterList = [(PostType.total, true),
@@ -31,7 +33,9 @@ extension CommunityViewModel {
   func transform(input: Input) -> Output {
     weak var weakSelf = self
     var postList : [PostModel] = []
-    
+    let resetAddressResult = input.resetAddress.flatMapLatest{ address in
+      weakSelf?.userService.addAddress(param: .init(addresses: address)) ?? .empty()
+    }
     let postListObservable = Observable.combineLatest(input.currentTab, input.filterSelect2).flatMapLatest{ tab, type -> Observable<[PostModel]> in
       if tab == 0 {
       let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
@@ -61,7 +65,8 @@ extension CommunityViewModel {
     return .init(
       postUsecase: postListObservable,
       myZip: myZip,
-      filterUsecase: filterUsecase)
+      filterUsecase: filterUsecase,
+      resetAddress: resetAddressResult)
   }
   //안써도되는게 확인되며눈삭제
 //  func modifyPost(

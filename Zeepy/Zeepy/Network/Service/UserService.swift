@@ -22,8 +22,10 @@ extension UserService {
     provider.rx.request(.getAddress)
       .asObservable()
   }
-  func addAddress(param: ResponseGetAddress) -> Observable<Response> {
+  func addAddress(param: ResponseGetAddress) -> Observable<Bool> {
     provider.rx.request(.addAddress(param: param))
+      .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
   }
   func modifyNickname(nickname: String) -> Observable<Response> {
@@ -48,6 +50,22 @@ extension UserService {
   }
   func memberShipWithdrawal() -> Observable<Response> {
     provider.rx.request(.memberShipWithdrawal)
+      .asObservable()
+  }
+  func fetchNickname() -> Observable<Response> {
+    provider.rx.request(.fetchNickname)
+      .asObservable()
+  }
+  func fetchEmail() -> Observable<Response> {
+    provider.rx.request(.fetchEmail)
+      .asObservable()
+  }
+  func putMarketing() -> Observable<Response> {
+    provider.rx.request(.putMarketing)
+      .asObservable()
+  }
+  func report(param: RequestReportModel) -> Observable<Response> {
+    provider.rx.request(.report(param: param))
       .asObservable()
   }
 }

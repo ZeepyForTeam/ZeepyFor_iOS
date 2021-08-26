@@ -16,15 +16,12 @@ struct CommunityRequest: Encodable {
 }
 
 struct SaveCommunityRequest : Encodable {
-  let address, communityCategory, content: String
-  let currentNumberOfPeople: Int
-  let imageUrls: [String]
-  let instructions, productName: String
-  let productPrice: Int
-  let purchasePlace, sharingMethod: String
-  let targetNumberOfPeople: Int
-  let title: String
-  let writerId: Int
+  let address, communityCategory, content, title: String
+  let imageUrls: [String]?
+  let instructions, productName: String?
+  let productPrice: Int?
+  let purchasePlace, sharingMethod: String?
+  let targetNumberOfPeople: Int?
 }
 
 struct LikeRequest: Encodable {

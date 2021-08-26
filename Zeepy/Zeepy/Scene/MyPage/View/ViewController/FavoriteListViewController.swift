@@ -78,6 +78,7 @@ extension FavoriteListViewConroller {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
+        $0.height.equalTo(20)
       }
     }
   }
@@ -92,7 +93,7 @@ extension FavoriteListViewConroller {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.addressTitleLabel.snp.bottom).offset(16)
         $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
-        $0.height.equalTo(700)
+        $0.height.equalTo((self.userLikeModel?.content.count ?? 1) * 108)
       }
     }
   }
@@ -144,44 +145,50 @@ extension FavoriteListViewConroller {
       }, onCompleted: {}).disposed(by: disposeBag)
   }
   
-  private func setupTendency(review: [ReviewUserLike]) -> (String, String) {
-    var tendency = [0,0,0,0,0]
-    for element in review {
-      switch element.communcationTendency {
+  private func setupTendency(review: [ReviewUserLike]?) -> (String, String) {
+    if review == nil || review?.isEmpty == true {
+      return ("emoji5", "미지의 인물형")
+    }
+    else {
+      var tendency = [0,0,0,0,0]
+      for element in review! {
+        switch element.communcationTendency {
+        case "BUSINESS":
+          tendency[0] += 1
+        case "KIND":
+          tendency[1] += 1
+        case "GRAZE":
+          tendency[2] += 1
+        case "SOFTY":
+          tendency[3] += 1
+        case "BAD":
+          tendency[4] += 1
+        default:
+          print("unknown tendency")
+        }
+      }
+      switch judgeTendencyTop(judgee: tendency) {
       case "BUSINESS":
-        tendency[0] += 1
+        return ("emoji1", "비즈니스형")
       case "KIND":
-        tendency[1] += 1
+        return ("emoji2", "친절형")
       case "GRAZE":
-        tendency[2] += 1
+        return ("emoji3", "방목형")
       case "SOFTY":
-        tendency[3] += 1
+        return ("emoji4", "츤데레형")
       case "BAD":
-        tendency[4] += 1
+        return ("emoji5", "할말하않")
       default:
-        print("unknown tendency")
+        return ("", "")
       }
     }
-    switch judgeTendencyTop(judgee: tendency) {
-    case "GOOD":
-      return ("emoji1", "비즈니스형")
-    case "KIND":
-      return ("emoji2", "친절형")
-    case "GRAZE":
-      return ("emoji3", "방목형")
-    case "SOFTY":
-      return ("emoji4", "츤데레형")
-    case "BAD":
-      return ("emoji5", "할말하않")
-    default:
-      return ("", "")
-    }
+    
   }
   
   private func judgeTendencyTop(judgee: [Int]) -> String {
     var top = 0
     for i in 1..<judgee.count {
-      if judgee[i] > judgee[i-1] {
+      if judgee[i] > judgee[top] {
         top = i
       }
     }
@@ -201,36 +208,41 @@ extension FavoriteListViewConroller {
     }
   }
 
-  private func setupEvaluation(review: [ReviewUserLike]) -> String {
-    var evaluation = [0,0,0]
-    for element in review {
-      switch element.totalEvaluation {
-      case "GOOD":
-        evaluation[0] += 1
-      case "SOSO":
-        evaluation[1] += 1
-      case "BAD":
-        evaluation[2] += 1
-      default:
-        print("unknown evaluation")
-      }
+  private func setupEvaluation(review: [ReviewUserLike]?) -> String {
+    if review == nil || review?.isEmpty == true {
+      return "아직 작성된 리뷰가 없어요"
     }
-    switch judgeEvaluationTop(judgee: evaluation) {
-    case "GOOD":
-      return "다음에도 여기 살고 싶어요!"
-    case "SOSO":
-      return "완전 추천해요!"
-    case "BAD":
-      return "그닥 추천하지 않아요."
-    default:
-      return ""
+    else {
+      var evaluation = [0,0,0]
+      for element in review! {
+        switch element.totalEvaluation {
+        case "GOOD":
+          evaluation[0] += 1
+        case "SOSO":
+          evaluation[1] += 1
+        case "BAD":
+          evaluation[2] += 1
+        default:
+          print("unknown evaluation")
+        }
+      }
+      switch judgeEvaluationTop(judgee: evaluation) {
+      case "GOOD":
+        return "다음에도 여기 살고 싶어요!"
+      case "SOSO":
+        return "완전 추천해요!"
+      case "BAD":
+        return "그닥 추천하지 않아요."
+      default:
+        return ""
+      }
     }
   }
   
   private func judgeEvaluationTop(judgee: [Int]) -> String {
     var top = 0
     for i in 1..<judgee.count {
-      if judgee[i] > judgee[i-1] {
+      if judgee[i] > judgee[top] {
         top = i
       }
     }
@@ -246,12 +258,36 @@ extension FavoriteListViewConroller {
     }
   }
   
+  private func setupReviewImage(review: [ReviewUserLike]?) -> String {
+    if review == nil || review?.isEmpty == true {
+      return "AppIcon"
+    }
+    else {
+      if review![0].imageUrls == nil || review![0].imageUrls?.isEmpty == true {
+        return "AppIcon"
+      }
+      else {
+        return review![0].imageUrls![0]
+      }
+    }
+  }
   private func assembleRoomCount(review: [ReviewUserLike]) -> Set<String> {
     var roomCountSet: Set<String> = Set<String>()
     for element in review {
       roomCountSet.insert(element.roomCount)
     }
     return roomCountSet
+  }
+  
+  func registerButtonClicked() {
+    self.tabBarController?.selectedIndex = 2
+  }
+  
+  func didSelectCell(buildingID: Int) {
+    let navigation = self.navigationController
+    guard let nextViewController = LookAroundDetailViewController(nibName: nil, bundle: nil, model: buildingID) else { return }
+    nextViewController.hidesBottomBarWhenPushed = true
+    navigation?.pushViewController(nextViewController, animated: true)
   }
 }
 
@@ -298,7 +334,7 @@ extension FavoriteListViewConroller: UITableViewDataSource {
                           tendencyImageName: setupTendency(review: model?.reviews ?? []).0,
                           tendency: setupTendency(review: model?.reviews ?? []).1,
                           totalEvaluation: setupEvaluation(review: model?.reviews ?? []),
-                          buildingImageName: "",
+                          buildingImageURL: setupReviewImage(review: model?.reviews ?? []),
                           roomCount: assembleRoomCount(review: model?.reviews ?? []),
                           buildingType: model?.buildingType ?? "")
       reviewCell.awakeFromNib()
@@ -310,4 +346,10 @@ extension FavoriteListViewConroller: UITableViewDataSource {
     self.viewWillLayoutSubviews()
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let buildingID = self.userLikeModel?.content[indexPath.row].id
+    if let id = buildingID {
+      self.didSelectCell(buildingID: id)
+    }
+  }
 }

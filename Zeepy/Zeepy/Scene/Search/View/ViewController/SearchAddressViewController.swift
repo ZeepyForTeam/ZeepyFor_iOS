@@ -186,8 +186,8 @@ extension SearchAddressViewController {
   
   private func addAddress() {
     userService.addAddress(param: self.userAddressModel ?? ResponseGetAddress(addresses: []))
-      .subscribe(onNext: { response in
-        if response.statusCode == 200 {
+      .subscribe(onNext: { result in
+        if result {
           do {
             self.navigationController?.popViewController(animated: true)
           }

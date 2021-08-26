@@ -189,4 +189,86 @@ extension String {
       return ValidateType.bad
     }
   }
+  var furnitures: String {
+    switch self {
+    case "AIRCONDITIONAL":
+      return "에어컨"
+    case "WASHINGMACHINE":
+      return "세탁기"
+    case "BED":
+      return "침대"
+    case "CLOSET":
+      return "옷장"
+    case "DESK":
+      return "책상"
+    case "REFRIDGERATOR":
+      return "냉장고"
+    case "INDUCTION":
+      return "인덕션"
+    case "BURNER":
+      return "가스레인지"
+    case "MICROWAVE":
+      return "전자레인지"
+    default :
+      return self
+    }
+  }
+  var HouseValidate: String {
+    switch self {
+    case "GOOD":
+      return "좋아요"
+    case "PROPER" :
+      return "적당해요"
+    case "SOSO" :
+      return "적당해요"
+    case "BAD":
+      return "별로에요"
+    default :
+      return self
+    }
+  }
+  var HouseValidateImg: UIImage {
+    switch self {
+    case "GOOD":
+      return UIImage(named: "iconSmile")!
+    case "PROPER" :
+      return UIImage(named: "iconSoso")!
+    case "SOSO" :
+      return UIImage(named: "iconSoso")!
+    case "BAD":
+      return UIImage(named: "iconAngry")!
+    default :
+      return UIImage()
+    }
+  }
+  var AgeTranslate: String {
+    switch self {
+    case "TEN":
+      return "10대"
+    case "TWENTY":
+      return "20대"
+    case "THIRTY":
+      return "30대"
+    case "FOURTY":
+      return "40대"
+    case "FIFTY":
+      return "50대"
+    case "SIXTY":
+      return "60대 이상"
+    case "UNKNOWN":
+    return "알 수 없는 나이의"
+    default :
+      return self
+    }
+  }
+  var GenderTranslate: String {
+    switch self {
+    case "MALE":
+      return "남자"
+    case "FEMAIL":
+      return "여자"
+    default :
+      return self
+    }
+  }
 }

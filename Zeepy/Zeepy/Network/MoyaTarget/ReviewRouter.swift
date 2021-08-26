@@ -10,8 +10,10 @@ import Moya
 enum ReviewRouter {
   case addReview(param: ReviewModel)
   case fetchReviewByAddress(address: String)
+  case fetchReviewDetail(review: Int)
   case deleteReview(id: Int)
   case getUserReviews
+  case s3Storage
 }
 
 extension ReviewRouter : TargetType {
@@ -24,10 +26,14 @@ extension ReviewRouter : TargetType {
       return "/review"
     case .fetchReviewByAddress(address: let address):
       return "/review/\(address)"
-    case .deleteReview(let id) :
+    case .deleteReview(let id):
       return "/review/\(id)"
+    case .fetchReviewDetail(let review) :
+      return "/review/\(review)"
     case .getUserReviews:
       return "/review/user"
+    case .s3Storage:
+      return "/s3"
     }
   }
   var method: Moya.Method {
@@ -35,11 +41,13 @@ extension ReviewRouter : TargetType {
 
     case .addReview(param: let param):
       return .post
-    case .fetchReviewByAddress(address: let address):
+    case .fetchReviewByAddress,
+         .fetchReviewDetail:
       return .get
     case .deleteReview(id: let id):
       return .delete
-    case .getUserReviews:
+    case .getUserReviews,
+         .s3Storage:
       return .get
     }
   }
@@ -48,7 +56,6 @@ extension ReviewRouter : TargetType {
   }
   var task: Task {
     switch self {
-   
     case .addReview(param: let param):
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding
                                   .default)
@@ -56,7 +63,11 @@ extension ReviewRouter : TargetType {
       return .requestPlain
     case .deleteReview(id: let id):
       return .requestPlain
-    case .getUserReviews:
+    case .getUserReviews,
+         .fetchReviewDetail:
+      return .requestPlain
+
+    case .s3Storage:
       return .requestPlain
     }
   }

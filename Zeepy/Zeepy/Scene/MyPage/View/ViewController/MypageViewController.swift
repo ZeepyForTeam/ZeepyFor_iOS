@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Moya
+import RxSwift
 import SnapKit
 import Then
 
@@ -38,8 +40,13 @@ final class MypageViewController: BaseViewController {
   private let mypageTableView = UITableView()
   
   // MARK: - Variables
-  private var isLogined = true
-  private var userName: String? = "도로롱"
+  private let userService = UserService(
+    provider: MoyaProvider<UserRouter>(
+      plugins: [NetworkLoggerPlugin(verbose: true)]))
+  
+  private var isLogined = LoginManager.shared.isLogin()
+  private var userName: String?
+  private var userEmail: String?
   private final let addressButtonTitle = "btnManageadress"
   private final let reviewButtonTitle = "btnManagereview"
   private final let favoriteButtonTitle = "btnManageLike"
@@ -48,7 +55,7 @@ final class MypageViewController: BaseViewController {
   private final let favoriteTitle = "찜 목록"
   private final let tableViewRowHeight: CGFloat = 47
   private final let tableViewRowCount = 4
-  private final let tableViewTitles = ["환경설정",
+  private final var tableViewTitles = ["환경설정",
                                        "문의 및 의견 보내기",
                                        "지피의 지기들",
                                        "현재 버전 1.1"]
@@ -61,6 +68,11 @@ final class MypageViewController: BaseViewController {
     layout()
     setupNavigation()
     setupGesture()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchNickname()
   }
 }
 
@@ -260,7 +272,11 @@ extension MypageViewController {
                              range: NSRange(location: 6,
                                             length: userName?.count ?? 0))
       self.titleLabel.attributedText = titleText
+      
+      
     }
+    let versions = VersionChecker.shared.versionChecker().0
+    self.tableViewTitles[self.tableViewTitles.count-1] = "현재 버전 \(versions.version)"
   }
   
   private func setupNavigation() {
@@ -280,24 +296,51 @@ extension MypageViewController {
     self.titleLabel.addGestureRecognizer(tap)
   }
   
+  private func fetchNickname() {
+    userService.fetchNickname()
+      .subscribe(onNext: { response in
+        if response.statusCode == 200 {
+          do {
+            let decoder = JSONDecoder()
+            let data = try decoder.decode(ResponseFetchNickname.self,
+                                          from: response.data)
+            self.userName = data.nickname
+            self.userEmail = data.email
+            self.configData()
+          }
+          catch {
+            print(error)
+          }
+        }
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  private func mailToUs() {
+    let email = "zeepy_official@gmail.com"
+    if let url = URL(string: "mailto:\(email)") {
+      UIApplication.shared.open(url)
+    }
+  }
   // MARK: - Action Helpers
   
   @objc
   private func addressButtonClicked() {
     let addressVC = ManageAddressViewController()
-    self.navigationController?.pushViewController(addressVC, animated: false)
+    self.navigationController?.pushViewController(addressVC, animated: true)
   }
   
   @objc
   private func reviewButtonClicked() {
     let reviewVC = ManageReviewViewController()
-    self.navigationController?.pushViewController(reviewVC, animated: false)
+    self.navigationController?.pushViewController(reviewVC, animated: true)
   }
   
   @objc
   private func favoriteButtonClicked() {
     let favoriteVC = FavoriteListViewConroller()
-    self.navigationController?.pushViewController(favoriteVC, animated: false)
+    self.navigationController?.pushViewController(favoriteVC, animated: true)
   }
   
   @objc
@@ -314,6 +357,7 @@ extension MypageViewController {
     else {
       let modifyVC = ModifyInformationViewController()
       modifyVC.userName = userName
+      modifyVC.socialEmail = userEmail
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
   }
@@ -353,11 +397,14 @@ extension MypageViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0 {
       let modifyVC = SettingsViewController()
-      self.navigationController?.pushViewController(modifyVC, animated: false)
+      self.navigationController?.pushViewController(modifyVC, animated: true)
+    }
+    if indexPath.row == 1 {
+      self.mailToUs()
     }
     if indexPath.row == 2 {
       let creditVC = CreditViewController()
-      self.navigationController?.pushViewController(creditVC, animated: false)
+      self.navigationController?.pushViewController(creditVC, animated: true)
     }
   }
 }

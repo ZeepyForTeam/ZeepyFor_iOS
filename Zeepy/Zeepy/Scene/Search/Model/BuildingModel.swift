@@ -9,7 +9,7 @@ import Foundation
 struct BuildingModel {
   let buildingId: Int
   let buildingName: String
-  let buildingImage: String
+  let buildingImage: String?
   let ownderInfo: ValidateType
   let review : ReviewInfo
   let filters : [String]

@@ -17,9 +17,10 @@ class ReviewService {
 }
 
 extension ReviewService {
-  func addReview(param: ReviewModel) -> Observable<Response> {
+  func addReview(param: ReviewModel) -> Observable<Bool> {
     provider.rx.request(.addReview(param: param))
       .retryWithAuthIfNeeded()
+      .successFlag()
       .asObservable()
   }
   func fetchReviewByAddress(address: String) -> Observable<Response> {
@@ -31,6 +32,12 @@ extension ReviewService {
     provider.rx.request(.deleteReview(id: id))
       .retryWithAuthIfNeeded()
       .asObservable()
+  }
+  func fetchReviewDetail(id: Int) -> Observable<ReviewResponses> {
+    provider.rx.request(.fetchReviewDetail(review: id))
+      .retryWithAuthIfNeeded()
+      .filterError()
+      .map(ReviewResponses.self)
   }
   func getUserReviews() -> Observable<Response> {
     provider.rx.request(.getUserReviews)

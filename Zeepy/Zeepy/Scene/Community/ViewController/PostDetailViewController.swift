@@ -35,6 +35,7 @@ class PostDetailViewControlelr : BaseViewController {
   private let joinCommentTrigger = PublishSubject<JoinRequset>()
   private let cancelJoin = PublishSubject<Int>()
   private let superCommentId = BehaviorSubject<Int?>(value: nil)
+  private var postImages : [String]?
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()
@@ -195,8 +196,39 @@ extension PostDetailViewControlelr : UITableViewDelegate {
       view.userTag.isHidden = true
     }
     view.commentLabel.text = dataSource[section].model.hidden ? "비밀 댓글입니다." : dataSource[section].model.comment
-
-    view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .yyyyMMddDot)?.detailTime
+    
+    view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .iso8601)?.detailTime
+    if dataSource[section].model.userId == UserDefaultHandler.userId {
+      view.reportOrModifyBtn.setTitle("수정", for: .normal)
+      view.reportOrModifyBtn.rx.tap
+        .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
+        .bind{ [weak self] in
+          print("수정하기")
+          var subView = ModifyCommentView( currentComment: self?.dataSource[section].model.comment)
+          PopUpView.shared.appearPopUpView(subView: subView)
+          subView.resultClosure = { test in
+            print(test)
+          }
+        }.disposed(by: disposeBag)
+    }
+    else {
+      view.reportOrModifyBtn.rx.tap
+        .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
+        .bind{ [weak self] in
+          let vc = ReportViewController()
+          guard
+            let userid = UserDefaultHandler.userId,
+            let commentId = self?.dataSource[section].model.identity,
+            let targetId = self?.dataSource[section].model.userId
+          else {return}
+          vc.reportModel.reportUser = userid
+          vc.reportModel.reportID = commentId
+          vc.reportModel.targetUser = targetId
+          vc.reportModel.targetTableType = "COMMENT"
+          self?.navigationController?.pushViewController(vc, animated: true)
+          
+        }.disposed(by: disposeBag)
+    }
     view.addSubcommentBtn.rx.tap
       .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
       .bind{ [weak self] in
@@ -210,6 +242,20 @@ extension PostDetailViewControlelr : UITableViewDelegate {
     return {[weak self] ds, tableView, indexPath, item -> UITableViewCell in
       let cell = tableView.dequeueReusableCell(withIdentifier: SubCommentTableViewCell.identifier, for: indexPath) as! SubCommentTableViewCell
       cell.bindCell(model: item)
+      cell.reportBtn.rx.tap
+        .takeUntil(cell.rx.methodInvoked(#selector(UITableViewCell.prepareForReuse)))
+        .bind{ [weak self] in
+          let vc = ReportViewController()
+          guard
+            let userid = UserDefaultHandler.userId
+          else {return}
+          vc.reportModel.reportUser = userid
+          vc.reportModel.reportID = item.identity
+          vc.reportModel.targetUser = item.userId
+          vc.reportModel.targetTableType = "COMMENT"
+          self?.navigationController?.pushViewController(vc, animated: true)
+          
+        }.disposed(by: cell.disposeBag)
       return cell
     }
   }
@@ -225,6 +271,8 @@ extension PostDetailViewControlelr {
     setupTableView()
     bind()
     self.achivementView.emptyAchivement.isHidden = false
+    print(currentViewMainColor)
+    
   }
   private func bind() {
     let inputs = PostDetailViewModel.Input(loadView: loadViewTrigger,
@@ -240,17 +288,20 @@ extension PostDetailViewControlelr {
         guard let self = self else {return}
         if model.user?.id == UserDefaultHandler.userId {
           self.achivementView.participateBtn.isEnabled = false
-          
         }
+        self.postImages = model.imageUrls
+        
         self.likeBtn.isSelected = model.isLiked == true
         self.postDetail.profileName.text = model.user?.name ?? "작성자"
         self.postDetail.postTitle.text = model.title
         self.postDetail.postContent.text = model.content
         self.postDetail.typeLabel.text = model.category
-        self.achivementView.isHidden = model.isParticipant != true
+        self.postDetail.postedAt.text = model.createdTime?.asDate(format: .iso8601)?.detailTime ?? ""
+        self.achivementView.isHidden = model.communityCategory != "JOINTPURCHASE"
         self.postDetail.profileImage.kf.setImage(with: URL(string: model.user?.profileImage ?? ""), for: .normal)
         self.achivementView.emptyAchivement.isHidden = model.targetNumberOfPeople.isNotNil
         self.achivementView.participateBtn.isSelected = model.isParticipant == true
+        
         if let targetNumber = model.targetNumberOfPeople {
           self.commentView.snp.remakeConstraints{
             $0.top.equalTo(self.achivementView.snp.bottom)
@@ -290,6 +341,10 @@ extension PostDetailViewControlelr {
       .bind(to: postDetail.postImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier, cellType: ReusableSimpleImageCell.self)) {row, data, cell in
         cell.bindCell(model: data)
       }.disposed(by: disposeBag)
+    postDetail.postImageCollectionView.rx.itemSelected
+      .bind{ [weak self] idx in
+        self?.presentImgViewer(self?.postImages ?? [], index: idx.row)
+      }.disposed(by: disposeBag)
     achivementView.participateBtn.rx.tap.bind{[weak self] in
       guard let self = self else {return}
       if self.achivementView.participateBtn.isSelected {
@@ -297,7 +352,7 @@ extension PostDetailViewControlelr {
         MessageAlertView.shared.showAlertView(title: "이미 참여한 ZIP이에요!\n참여를 취소하실건가요? T-T?", grantMessage: "구매 취소", denyMessage: "아니요! :)", okAction: {
           weak var `self` = self
           guard let self = self else {return}
-
+          
           if first {
             self.cancelJoin.onNext(self.postId)
           }
@@ -314,7 +369,7 @@ extension PostDetailViewControlelr {
           view = nil
         }
       }
-
+      
     }.disposed(by: disposeBag)
     likeBtn.rx.tap.bind{ [weak self] in
       if self?.likeBtn.isSelected == true {
@@ -337,7 +392,7 @@ extension PostDetailViewControlelr {
       }
     }.disposed(by: disposeBag)
     outputs.commentResult.bind{[weak self] result in
-
+      
       if result {
         self?.loadViewTrigger.onNext((self?.postId)!)
       }
@@ -366,7 +421,19 @@ extension PostDetailViewControlelr {
       self?.commentCheckBox.isSelected = false
     }.disposed(by: disposeBag)
     
-    
+    postDetail.postReportBtn.rx.tap.withLatestFrom(outputs.communityInfo.map{$0.user?.id}).bind{[weak self] writerId in
+      guard
+        let targetId = writerId,
+        let reportId = self?.postId,
+        let reportUser = UserDefaultHandler.userId
+      else {return}
+      let vc = ReportViewController()
+      vc.reportModel.targetUser = targetId
+      vc.reportModel.reportID = reportId
+      vc.reportModel.reportUser = reportUser
+      vc.reportModel.targetTableType = "COMMUNITY"
+      self?.navigationController?.pushViewController(vc, animated: true)
+    }.disposed(by: disposeBag)
     loadViewTrigger.onNext(postId)
   }
 }
@@ -430,12 +497,17 @@ internal class PostDetailView : UIView{
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
     $0.numberOfLines = 0
   }
+  let postReportBtn = UIButton().then {
+    $0.setImage(UIImage(named: "btnSos"), for: .normal)
+  }
+  let purchaseInfo = PurchaseInfoView()
   var postImageCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 100, height: 100)
+    let width = 100 * (UIScreen.main.bounds.width/375)
+    layout.itemSize = CGSize(width: width, height: width)
     layout.scrollDirection = .horizontal
     layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-    layout.minimumLineSpacing = 8
+    layout.minimumInteritemSpacing = 8
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
     cv.showsHorizontalScrollIndicator = false
     cv.showsVerticalScrollIndicator = false
@@ -451,7 +523,9 @@ internal class PostDetailView : UIView{
                postedAt,
                postTitle,
                postContent,
-               postImageCollectionView])
+               purchaseInfo,
+               postImageCollectionView,
+               postReportBtn])
     typeView.add(typeLabel)
     profileImage.snp.makeConstraints{
       $0.top.leading.equalTo(16)
@@ -485,10 +559,18 @@ internal class PostDetailView : UIView{
       $0.trailing.equalToSuperview().offset(-16)
     }
     postImageCollectionView.snp.makeConstraints{
+      let width = 100 * (UIScreen.main.bounds.width/375)
+      
       $0.top.equalTo(postContent.snp.bottom).offset(24)
       $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(100)
+      $0.height.equalTo(width)
+    }
+    postReportBtn.snp.makeConstraints{
+      $0.top.equalTo(postImageCollectionView.snp.bottom).offset(16)
+      $0.leading.equalToSuperview().offset(16)
       $0.bottom.equalToSuperview().offset(-24)
+      $0.width.equalTo(50)
+      $0.height.equalTo(24)
     }
   }
   
@@ -512,9 +594,9 @@ internal class AchivementRateView : UIView{
     $0.borderColor = .communityGreen
     $0.setRounded(radius: 8)
     $0.setTitle("참여하고 돈 아끼기", for: .normal)
-    $0.setTitle("참여하고 돈 아끼기", for: .selected)
+    $0.setTitle("참여 취소하기", for: .selected)
     $0.setTitle("글 작성자입니다!", for: .disabled)
-
+    
     $0.setTitleColor(.communityGreen, for: .normal)
     $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
     
@@ -639,4 +721,81 @@ internal class CommentAreaView : UIView{
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+}
+internal class PurchaseInfoView : UIView{
+  private let productName = UILabel().then {
+    $0.setupLabel(text: "제품명", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let productNameText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let productPlace = UILabel().then {
+    $0.setupLabel(text: "구매처", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let productPlaceText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let tradeMethod = UILabel().then {
+    $0.setupLabel(text: "거래 방식", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let tradeMethodText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  
+  private let InfoNotice = UILabel().then {
+    $0.setupLabel(text: "안내", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let InfoNoticeText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.adds([productName,
+               productNameText,
+               productPlace,
+               productPlaceText,
+               tradeMethod,
+               tradeMethodText,
+               InfoNotice,
+               InfoNoticeText])
+    productName.snp.makeConstraints{
+      $0.leading.equalToSuperview().offset(16)
+      $0.top.equalToSuperview().offset(8)
+    }
+    productNameText.snp.makeConstraints{
+      $0.centerY.equalTo(productName)
+      $0.leading.equalTo(productName.snp.trailing).offset(8)
+    }
+    productPlace.snp.makeConstraints{
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(productName.snp.bottom).offset(8)
+    }
+    productPlaceText.snp.makeConstraints{
+      $0.centerY.equalTo(productPlace)
+      $0.leading.equalTo(productPlace.snp.trailing).offset(8)
+    }
+    tradeMethod.snp.makeConstraints { 
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(productPlace.snp.bottom).offset(8)
+    }
+    tradeMethodText.snp.makeConstraints{
+      $0.centerY.equalTo(tradeMethod)
+      $0.leading.equalTo(tradeMethod.snp.trailing).offset(8)
+    }
+    InfoNotice.snp.makeConstraints{
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(tradeMethod.snp.bottom).offset(8)
+    }
+    InfoNoticeText.snp.makeConstraints{
+      $0.centerY.equalTo(InfoNotice)
+      $0.leading.equalTo(InfoNotice.snp.trailing).offset(8)
+    }
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 }
