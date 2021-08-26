@@ -49,7 +49,7 @@ extension S3Router : TargetType {
     case .s3Storage:
       return .requestPlain
     case .sendImg(_, let img):
-      let data = img.jpegData(compressionQuality: 1.0)!
+      let data = img.jpegData(compressionQuality: 0.4)!
       return .requestData(data)
     }
   }
