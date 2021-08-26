@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Moya
+import YPImagePicker
 class AddPostViewModel:Services, ViewModelType {
   
   private let disposeBag = DisposeBag()
@@ -44,9 +45,13 @@ class AddPostViewModel:Services, ViewModelType {
   }
   
   struct Input {
+    let loadTrigger: Observable<Void>
+    let currentImages: Observable<[YPMediaPhoto]>
+    let deleteImage : Observable<YPMediaPhoto>
     let post: Observable<Void>
   }
   struct Output {
+    let currentImage : Observable<[YPMediaPhoto]>
     let postResult: Observable<Bool>
   }
   
@@ -62,7 +67,7 @@ class AddPostViewModel:Services, ViewModelType {
     
     var targetMember: Int?
     
-    var imgs : [String]?
+    var imgs : [YPMediaPhoto]?
 
     var memberInfo: CheckBoxContent?
   }
@@ -138,26 +143,74 @@ extension AddPostViewModel {
   }
   func transform(input: Input) -> Output {
     weak var `self` = self
+
+    let items = input.loadTrigger
+      .flatMapLatest{ _ -> Observable<[YPMediaPhoto]> in
+        return self?.configureImages(deleteAction: input.deleteImage,
+                                     resetAction: input.currentImages,
+                                     origin: self?.state.imgs ?? []) ?? .empty()
+      }.share()
     let result = input.post.flatMapLatest{ _ in
-      self?.service.addPostList(param: self!.param()) ?? .empty()
+      self?.param() ?? .empty()
+    }.flatMapLatest{ param in
+      self?.service.addPostList(param: param) ?? .empty()
     }
-    return .init(postResult: result)
+    return .init(currentImage: items,
+                 postResult: result)
   }
-  func param() -> SaveCommunityRequest {
+  func configureImages(
+    deleteAction: Observable<YPMediaPhoto>,
+    resetAction: Observable<[YPMediaPhoto]>,
+    origin:[YPMediaPhoto]) -> Observable<[YPMediaPhoto]> {
+    enum Action {
+      case delete(model : YPMediaPhoto)
+      case reset(modle: [YPMediaPhoto])
+    }
+    return Observable.merge(deleteAction.map(Action.delete),
+                            resetAction.map(Action.reset))
+      .scan(into: origin) {state, action in
+        switch action {
+        case let .delete(model) :
+          state.removeAll(where: {$0.asset == model.asset})
+        case .reset(modle: let modle):
+          state = modle
+        }
+        self.state.imgs = state
+      }.startWith(origin)
+  }
+  func param() -> Observable<SaveCommunityRequest> {
+    weak var `self` = self
+    guard let self = self else {return .empty()}
     let state = state
     let address : String? = UserManager.shared.currentAddress?.cityDistinct
-    return .init(address: address ?? "",
-                 communityCategory: state.selectedType?.requestEnum ?? "",
-                 content: state.contentText ?? "",
-                 title: state.titleText ?? "",
-                 imageUrls: state.imgs,
-                 instructions: state.tradeType,
-                 productName: state.productTitle ,
-                 productPrice: state.productPrice ,
-                 purchasePlace: state.productMall ,
-                 sharingMethod: state.memberInfo?.rawValue ,
-                 targetNumberOfPeople: state.targetMember
-                )
-    
+    guard let images = state.imgs else {
+      return .just(SaveCommunityRequest(address: address ?? "",
+                                        communityCategory: state.selectedType?.requestEnum ?? "",
+                                        content: state.contentText ?? "",
+                                        title: state.titleText ?? "",
+                                        imageUrls: nil,
+                                        instructions: state.tradeType,
+                                        productName: state.productTitle ,
+                                        productPrice: state.productPrice ,
+                                        purchasePlace: state.productMall ,
+                                        sharingMethod: state.memberInfo?.rawValue ,
+                                        targetNumberOfPeople: state.targetMember
+                                       ))
+    }
+    let imageURL = self.s3Service.sendImages(image: images.map{$0.image})
+    return imageURL.map{ img -> SaveCommunityRequest in
+      SaveCommunityRequest(address: address ?? "",
+                   communityCategory: state.selectedType?.requestEnum ?? "",
+                   content: state.contentText ?? "",
+                   title: state.titleText ?? "",
+                   imageUrls: img,
+                   instructions: state.tradeType,
+                   productName: state.productTitle ,
+                   productPrice: state.productPrice ,
+                   purchasePlace: state.productMall ,
+                   sharingMethod: state.memberInfo?.rawValue ,
+                   targetNumberOfPeople: state.targetMember
+                  )
+    }
   }
 }

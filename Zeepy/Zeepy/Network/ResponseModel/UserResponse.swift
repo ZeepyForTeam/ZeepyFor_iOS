@@ -13,6 +13,7 @@ struct ResponseGetAddress: Codable {
 
 struct ResponseFetchNickname: Codable {
   var nickname: String
+  var email: String
 }
 
 struct ResponseFetchEmail: Codable {

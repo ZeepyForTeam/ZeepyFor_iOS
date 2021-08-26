@@ -10,7 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 class DetailReviewViewContoller : BaseViewController {
-  //  private let ReviewID: Int!
+  private let reviewModel : ReviewResponses!
+  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, review : ReviewResponses) {
+    self.reviewModel = review
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   private let naviView = CustomNavigationBar().then {
     $0.backBtn.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
   }
@@ -152,7 +160,6 @@ class DetailReviewViewContoller : BaseViewController {
       $0.leading.equalTo(reviewerName)
       $0.top.equalTo(simpleInfoNotice.snp.bottom).offset(8)
       
-      $0.height.equalTo(82)
     }
     ownerReviewNotice.snp.makeConstraints{
       $0.top.equalTo(simpleInfoBackground.snp.bottom).offset(32)
@@ -206,7 +213,27 @@ class DetailReviewViewContoller : BaseViewController {
     simpleInfoOwnerNotice.snp.makeConstraints{
       $0.top.leading.equalToSuperview().offset(12)
     }
-    
+    simpleInfoOwnerLabel.snp.makeConstraints{
+      $0.centerY.equalTo(simpleInfoOwnerNotice)
+      $0.leading.equalTo(simpleInfoOwnerNotice.snp.trailing).offset(8)
+    }
+    simpleInfoCommunicationNotice.snp.makeConstraints{
+      $0.leading.equalTo(simpleInfoOwnerNotice)
+      $0.top.equalTo(simpleInfoOwnerNotice.snp.bottom).offset(8)
+    }
+    simpleInfoCommunicationImg.snp.makeConstraints{
+      $0.centerY.equalTo(simpleInfoCommunicationNotice)
+      $0.leading.equalTo(simpleInfoCommunicationNotice.snp.trailing).offset(8)
+    }
+    simpleInfoCommunicationLabel.snp.makeConstraints{
+        $0.centerY.equalTo(simpleInfoCommunicationNotice)
+        $0.leading.equalTo(simpleInfoCommunicationImg.snp.trailing).offset(8)
+      }
+    simpleInfoHouseNotice.snp.makeConstraints{
+      $0.leading.equalTo(simpleInfoOwnerNotice)
+      $0.top.equalTo(simpleInfoCommunicationNotice.snp.bottom).offset(8)
+      $0.bottom.equalToSuperview().offset(-12)
+    }
     
   }
   private func bind(){
@@ -234,21 +261,23 @@ class DetailReviewViewContoller : BaseViewController {
           $0.height.equalTo(height + 32)
         }
       }.disposed(by: disposeBag)
-    let dummy = Observable.just(["","","","","","","","","","","","",""])
-    dummy.bind(to: collectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
+    let width = 109 * (UIScreen.main.bounds.width / 375)
+
+    Observable.just(reviewModel.imageUrls ?? [])
+      .bind(to: collectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
                                            cellType: ReusableSimpleImageCell.self)) {row, data, cell in
-      cell.bindCell(model: data)
+      cell.bindCell(model: data, width: width)
     }.disposed(by: disposeBag)
     
-    let attributedString = NSMutableAttributedString(string: "서울쥐김자랑 님의 후기", attributes: [
+    let attributedString = NSMutableAttributedString(string: "\(reviewModel.user.name)님의 후기", attributes: [
       .font: UIFont.nanumRoundExtraBold(fontSize: 16),
       .foregroundColor: UIColor.blackText
     ])
-    attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: 6))
+    attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: reviewModel.user.name.count))
     
     reviewerName.attributedText = attributedString
-    ownerReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요임대인 진짜 쵝오쵝오쵝오ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요임대인 진짜 쵝오쵝오쵝오ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ"
-    houseReview.text = "임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요임대인 진짜 쵝오쵝오쵝오ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요~임대인진짜최고에요임대인 진짜 쵝오쵝오쵝오ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ"
+    ownerReview.text = "\(reviewModel.lessorReview ?? "")"
+    houseReview.text = "\(reviewModel.review ?? "")"
     
     writeReviewBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()

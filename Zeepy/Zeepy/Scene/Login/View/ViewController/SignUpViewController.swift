@@ -19,11 +19,11 @@ class SignUpViewController: BaseViewController {
     $0.infoTitle.text = "이름"
     $0.infoTextField.placeholder = "이름을 입력해주세요"
   }
-  let getID = InputBoxView().then {
+  let getNickname = InputBoxView().then {
     $0.infoTitle.text = "닉네임"
     $0.infoTextField.placeholder = "사용하실 닉네임을 입력해주세요"
   }
-  let checkIDButton = UIButton().then {
+  let checkNicknameButton = UIButton().then {
     $0.setupButton(
       title: "중복확인",
       color: .blackText,
@@ -32,7 +32,7 @@ class SignUpViewController: BaseViewController {
       state: .normal,
       radius: 8)
   }
-  let idCheckImage = UIImageView().then {
+  let nicknameCheckImage = UIImageView().then {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
@@ -69,26 +69,42 @@ class SignUpViewController: BaseViewController {
     $0.image = UIImage(named: "check")
     $0.isHidden = true
   }
+  let serviceTermsCheckBox = UIButton().then {
+    $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+    $0.setImage(UIImage(named: "checkBox"), for: .selected)
+    $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
+  }
+  let serviceTermsLabel = UILabel().then {
+    $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
+    $0.text = "ZEEPY에서 제공하는 서비스 약관에 동의합니다."
+  }
+  let viewServiceTerms = UIButton().then {
+    $0.setTitle("약관보기", for: .normal)
+    $0.setTitleColor(.mainBlue, for: .normal)
+    $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+  }
+  let personalTermsCheckBox = UIButton().then {
+    $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+    $0.setImage(UIImage(named: "checkBox"), for: .selected)
+    $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
+  }
+  let personalTermsLabel = UILabel().then {
+    $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
+    $0.text = "ZEEPY에서 제공하는 개인정보 처리방침에 동의합니다."
+  }
+  let viewPersonalTerms = UIButton().then {
+    $0.setTitle("약관보기", for: .normal)
+    $0.setTitleColor(.mainBlue, for: .normal)
+    $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
+  }
   let newsCheckBox = UIButton().then {
     $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+    $0.setImage(UIImage(named: "checkBox"), for: .selected)
     $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
   }
   let newsLabel = UILabel().then {
     $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
     $0.text = "ZEEPY 서비스에 대한 소식을 이메일로 받아봅니다.(선택)"
-  }
-  let termsCheckBox = UIButton().then {
-    $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
-    $0.addTarget(self, action: #selector(determineButtonImage), for: .touchUpInside)
-  }
-  let termsLabel = UILabel().then {
-    $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 11.0)
-    $0.text = "ZEEPY에서 제공하는 서비스 약관에 동의합니다.(필수)"
-  }
-  let viewTerms = UIButton().then {
-    $0.setTitle("약관보기", for: .normal)
-    $0.setTitleColor(.mainBlue, for: .normal)
-    $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFB", size: 11.0)
   }
   let signUpfinishButton = UIButton().then {
     $0.setTitle("가입완료", for: .normal)
@@ -99,30 +115,7 @@ class SignUpViewController: BaseViewController {
   }
   
   @objc func determineButtonImage(sender: UIButton) {
-    if termsCheckBox.isTouchInside{
-      termsCheckBox.isSelected.toggle()
-    }
-    if newsCheckBox.isTouchInside{
-      newsCheckBox.isSelected.toggle()
-    }
-    
-    if !termsCheckBox.isSelected && !newsCheckBox.isSelected {
-      termsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
-      newsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
-    }
-    if !termsCheckBox.isSelected && newsCheckBox.isSelected{
-      termsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
-      newsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
-    }
-    if termsCheckBox.isSelected && !newsCheckBox.isSelected{
-      termsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
-      newsCheckBox.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
-    }
-    if termsCheckBox.isSelected && newsCheckBox.isSelected{
-      termsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
-      newsCheckBox.setImage(UIImage(named: "checkBox"), for: .normal)
-    }
-    reloadInputViews()
+    sender.isSelected.toggle()
   }
   
   override func viewDidLoad() {
@@ -136,22 +129,45 @@ class SignUpViewController: BaseViewController {
     setupNavigation()
   }
   private func setupNavigation() {
-    self.setupNavigationBar(.white)
-    self.setupNavigationItem(titleText: "회원가입")
+    navigationView.backBtn.addTarget(self,
+                                     action: #selector(self.backButtonClicked),
+                                     for: .touchUpInside)
+    navigationView.naviTitle.text = "회원가입"
   }
   private let viewModel = SignUpViewModel()
+  
   func bind() {
     
-    let inputs = SignUpViewModel.Input(emailText: getEmail.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.getEmail.infoTextField.text ?? ""}.asObservable(),
-                                       passwordText: getPW.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.getPW.infoTextField.text ?? ""}.asObservable(),
-                                       passwordCheck: surePW.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.surePW.infoTextField.text ?? ""}.asObservable(),
-                                       nicknameText: getName.infoTextField.rx.controlEvent(.editingDidEnd).map{[weak self] in self?.getName.infoTextField.text ?? ""}.asObservable(),
-                                       registerButtonDidTap: signUpfinishButton.rx.tap.asObservable())
+    let inputs = SignUpViewModel.Input(
+      emailText: self.checkEmailButton.rx.controlEvent(.touchUpInside)
+        .map { [weak self] in self?.getEmail.infoTextField.text ?? "" }
+        .asObservable(),
+      passwordText: getPW.infoTextField.rx.controlEvent(.editingDidEnd)
+        .map { [weak self] in self?.getPW.infoTextField.text ?? "" }
+        .asObservable(),
+      passwordCheck: surePW.infoTextField.rx.controlEvent(.editingDidEnd)
+        .map { [weak self] in self?.surePW.infoTextField.text ?? "" }
+        .asObservable(),
+      nicknameText: self.checkNicknameButton.rx.controlEvent(.touchUpInside)
+        .map{ [weak self] in self?.getNickname.infoTextField.text ?? "" }
+        .asObservable(),
+      nameText: getName.infoTextField.rx.controlEvent(.editingDidEnd)
+        .map { [weak self] in self?.getName.infoTextField.text ?? "" }
+        .asObservable(),
+      sendMailCheck: newsCheckBox.rx.controlEvent(.touchUpInside)
+        .map { [weak self] in self?.newsCheckBox.isSelected ?? false }
+        .asObservable(),
+      registerButtonDidTap: signUpfinishButton.rx.tap.asObservable())
+    
     let output = viewModel.transform(inputs: inputs)
+    
     output.emailValidate.bind{[weak self] result in
       if !result {
         self?.getEmail.infoTextField.text = ""
         self?.getEmail.infoTextField.shake()
+      }
+      else {
+        self?.emailCheckImage.isHidden = false
       }
       self?.getEmail.validationResult.isHidden = result
       
@@ -159,10 +175,13 @@ class SignUpViewController: BaseViewController {
     }.disposed(by: disposeBag)
     output.nickNameValidate.bind{[weak self] result in
       if !result {
-        self?.getName.infoTextField.text = ""
-        self?.getName.infoTextField.shake()
+        self?.getNickname.infoTextField.text = ""
+        self?.getNickname.infoTextField.shake()
       }
-      self?.getName.validationResult.isHidden = result
+      else {
+        self?.nicknameCheckImage.isHidden = false
+      }
+      self?.getNickname.validationResult.isHidden = result
       
     }.disposed(by: disposeBag)
     output.passwordSame.bind{[weak self] result in
@@ -192,8 +211,8 @@ class SignUpViewController: BaseViewController {
       }
       else {
         MessageAlertView.shared.showAlertView(title: "회원가입에 실패했습니다.", grantMessage: "확인", okAction: {
-          self?.getID.infoTextField.text = ""
-          self?.getID.validationResult.isHidden = true
+          self?.getNickname.infoTextField.text = ""
+          self?.getNickname.validationResult.isHidden = true
           self?.getPW.infoTextField.text = ""
           self?.getPW.validationResult.isHidden = true
           self?.getName.infoTextField.text = ""
@@ -239,39 +258,54 @@ class SignUpViewController: BaseViewController {
     }.disposed(by: disposeBag)
   }
   func addConstraints(){
-    contentView.adds([getName,
-                      getID,
-                      checkIDButton,
+    contentView.adds([navigationView,
+                      getName,
+                      getNickname,
+                      checkNicknameButton,
                       getEmail,
                       checkEmailButton,
                       getPW,
                       surePW,
+                      serviceTermsCheckBox,
+                      serviceTermsLabel,
+                      viewServiceTerms,
+                      personalTermsCheckBox,
+                      personalTermsLabel,
+                      viewPersonalTerms,
                       newsCheckBox,
                       newsLabel,
-                      termsCheckBox,
-                      termsLabel,
-                      viewTerms,
                       signUpfinishButton ])
     
+    navigationView.snp.makeConstraints {
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+    }
     getName.snp.makeConstraints{
-      $0.top.equalToSuperview().offset(60)
+      $0.top.equalTo(self.navigationView.snp.bottom).offset(22)
       $0.leading.trailing.equalToSuperview().inset(24)
       $0.height.equalTo(64)
     }
-    getID.snp.makeConstraints{
+    getNickname.infoTextFieldBackGroundView.addSubview(nicknameCheckImage)
+    getNickname.snp.makeConstraints{
       $0.leading.equalToSuperview().inset(24)
       $0.top.equalTo(getName.snp.bottom).offset(20)
       $0.width.equalTo(self.view.frame.width * 259/375)
       $0.height.equalTo(64)
     }
-    checkIDButton.snp.makeConstraints{
-      $0.leading.equalTo(getID.snp.trailing).offset(8)
-      $0.top.bottom.equalTo(getID.infoTextFieldBackGroundView)
+    checkNicknameButton.snp.makeConstraints{
+      $0.leading.equalTo(getNickname.snp.trailing).offset(8)
+      $0.top.bottom.equalTo(getNickname.infoTextFieldBackGroundView)
       $0.trailing.equalTo(self.getName.snp.trailing)
     }
+    nicknameCheckImage.snp.makeConstraints {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(10)
+    }
+    getEmail.infoTextFieldBackGroundView.addSubview(emailCheckImage)
+    
     getEmail.snp.makeConstraints{
       $0.leading.equalToSuperview().inset(24)
-      $0.top.equalTo(getID.snp.bottom).offset(20)
+      $0.top.equalTo(getNickname.snp.bottom).offset(20)
       $0.width.equalTo(self.view.frame.width * 259/375)
       $0.height.equalTo(64)
     }
@@ -279,6 +313,10 @@ class SignUpViewController: BaseViewController {
       $0.leading.equalTo(getEmail.snp.trailing).offset(8)
       $0.top.bottom.equalTo(getEmail.infoTextFieldBackGroundView)
       $0.trailing.equalTo(self.getName.snp.trailing)
+    }
+    emailCheckImage.snp.makeConstraints {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().inset(10)
     }
     getPW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview().inset(24)
@@ -290,36 +328,46 @@ class SignUpViewController: BaseViewController {
     surePW.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview().inset(24)
       $0.top.equalTo(getPW.snp.bottom).offset(20)
+      $0.height.equalTo(64)
     }
     pwCheckImage.snp.makeConstraints{
       $0.centerY.equalToSuperview()
       $0.trailing.equalToSuperview().inset(10)
     }
+    
+    serviceTermsCheckBox.snp.makeConstraints{
+      $0.top.equalTo(surePW.snp.bottom).offset(32)
+      $0.leading.equalToSuperview().offset(24)
+    }
+    serviceTermsLabel.snp.makeConstraints{
+      $0.leading.equalTo(serviceTermsCheckBox.snp.trailing).offset(6)
+      $0.centerY.equalTo(serviceTermsCheckBox)
+    }
+    viewServiceTerms.snp.makeConstraints{
+      $0.leading.equalTo(serviceTermsLabel.snp.trailing).offset(6)
+      $0.centerY.equalTo(serviceTermsCheckBox)
+    }
+    personalTermsCheckBox.snp.makeConstraints{
+      $0.top.equalTo(serviceTermsCheckBox.snp.bottom).offset(8)
+      $0.leading.equalToSuperview().offset(24)
+    }
+    personalTermsLabel.snp.makeConstraints{
+      $0.leading.equalTo(personalTermsCheckBox.snp.trailing).offset(6)
+      $0.centerY.equalTo(personalTermsCheckBox)
+    }
+    viewPersonalTerms.snp.makeConstraints{
+      $0.leading.equalTo(personalTermsLabel.snp.trailing).offset(6)
+      $0.centerY.equalTo(personalTermsCheckBox)
+    }
     newsCheckBox.snp.makeConstraints{
-      $0.top.equalTo(surePW.snp.bottom).offset(20)
+      $0.top.equalTo(personalTermsCheckBox.snp.bottom).offset(8)
       $0.leading.equalToSuperview().offset(24)
     }
     newsLabel.snp.makeConstraints{
       $0.leading.equalTo(newsCheckBox.snp.trailing).offset(6)
       $0.centerY.equalTo(newsCheckBox)
-      $0.top.equalTo(newsCheckBox)
-    }
-    termsCheckBox.snp.makeConstraints{
-      $0.top.equalTo(newsLabel.snp.bottom).offset(8)
-      $0.leading.equalToSuperview().offset(24)
-    }
-    termsLabel.snp.makeConstraints{
-      $0.leading.equalTo(termsCheckBox.snp.trailing).offset(6)
-      $0.centerY.equalTo(termsCheckBox)
-      $0.top.equalTo(termsCheckBox)
-    }
-    viewTerms.snp.makeConstraints{
-      $0.leading.equalTo(termsLabel.snp.trailing).offset(6)
-      $0.centerY.equalTo(termsCheckBox)
-      $0.top.equalTo(termsCheckBox)
     }
     signUpfinishButton.snp.makeConstraints{
-      $0.top.equalTo(termsCheckBox.snp.bottom).offset(16)
       $0.leading.trailing.equalToSuperview().inset(24)
       $0.bottom.equalToSuperview().offset(-50)
       $0.height.equalTo(48)

@@ -15,7 +15,7 @@ class PhotoReviewViewController : BaseViewController {
     super.viewDidLoad()
     setUpCollectionView()
     layout()
-    dummy()
+    //dummy()
   }
   private let naviView = CustomNavigationBar().then {
     $0.setUp(title: "포토리뷰")
@@ -54,9 +54,9 @@ extension PhotoReviewViewController {
                                      cellType: ReusableSimpleImageCell.self)) {row, data, cell in
       cell.bindCell(model: data)
     }.disposed(by: disposeBag)
-    collectionView.rx.modelSelected(Int.self).bind{[weak self] _ in
-      let vc = DetailReviewViewContoller()
-      self?.navigationController?.pushViewController(vc, animated: true)
-    }.disposed(by: disposeBag)
+//    collectionView.rx.modelSelected(Int.self).bind{[weak self] _ in
+//      let vc = DetailReviewViewContoller()
+//      self?.navigationController?.pushViewController(vc, animated: true)
+//    }.disposed(by: disposeBag)
   }
 }

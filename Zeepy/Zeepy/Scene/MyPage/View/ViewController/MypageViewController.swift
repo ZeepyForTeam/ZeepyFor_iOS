@@ -46,6 +46,7 @@ final class MypageViewController: BaseViewController {
   
   private var isLogined = LoginManager.shared.isLogin()
   private var userName: String?
+  private var userEmail: String?
   private final let addressButtonTitle = "btnManageadress"
   private final let reviewButtonTitle = "btnManagereview"
   private final let favoriteButtonTitle = "btnManageLike"
@@ -300,6 +301,7 @@ extension MypageViewController {
             let data = try decoder.decode(ResponseFetchNickname.self,
                                           from: response.data)
             self.userName = data.nickname
+            self.userEmail = data.email
             self.configData()
           }
           catch {
@@ -345,6 +347,7 @@ extension MypageViewController {
     else {
       let modifyVC = ModifyInformationViewController()
       modifyVC.userName = userName
+      modifyVC.socialEmail = userEmail
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
   }

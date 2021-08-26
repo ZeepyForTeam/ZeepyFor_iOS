@@ -17,6 +17,8 @@ class SignUpViewModel {
     let passwordText: Observable<String>
     let passwordCheck: Observable<String>
     let nicknameText: Observable<String>
+    let nameText: Observable<String>
+    let sendMailCheck: Observable<Bool>
     let registerButtonDidTap: Observable<Void>
   }
   struct Output {
@@ -43,37 +45,50 @@ extension SignUpViewModel {
           return Observable.just(false)
         }
       }.share()
+    
     let nickNameRuleValidate = inputs.nicknameText.map{$0.validate(with: .nickname)}.share()
+    
     let nickNameValidate = Observable.zip(nickNameRuleValidate, inputs.nicknameText)
       .flatMapLatest{ (rule , text) -> Observable<Bool> in
         if rule {
-          return self?.service.checkEmail(email: text) ?? .empty()
+          return self?.service.checkNickname(name: text) ?? .empty()
         }
         else {
           return Observable.just(false)
         }
       }.share()
+    
     let passWordRuleValidate = inputs.passwordText.map{$0.validate(with: .password)}.share()
+    
     let passWordValidate = Observable.zip(inputs.passwordCheck, inputs.passwordText)
       .flatMapLatest{ (check, pw) -> Observable<Bool> in
           return Observable.just(check == pw)
-       
       }.share()
+    
     let registerEnabled = Observable.combineLatest(emailValidate,
                                                    passWordValidate,
                                                    nickNameValidate)
       .map{$0.0 && $0.1 && $0.2}.share()
+    
     let makeRegister = inputs.registerButtonDidTap
       .withLatestFrom(Observable
                         .combineLatest(inputs.emailText,
                                        inputs.nicknameText,
-                                       inputs.passwordText))
+                                       inputs.passwordText,
+                                       inputs.nameText,
+                                       inputs.sendMailCheck))
       
-      .map{ (email, nickname, pw) in
-      RegisterRequset(email: email, name: nickname, password: pw)
+      .map{ (email, nickname, pw, name, check) in
+      RegisterRequset(email: email,
+                      name: name,
+                      password: pw,
+                      nickname: nickname,
+                      sendMailCheck: check)
+        
       }.distinctUntilChanged().flatMapLatest{ param -> Observable<Bool> in
         self?.service.register(param: param) ?? .empty()
       }.share()
+    
     let login = makeRegister
       .filter{$0}
       .withLatestFrom(Observable
@@ -82,6 +97,7 @@ extension SignUpViewModel {
       .flatMapLatest{ id, pw in
         self?.service.login(param: .init(email: id, password: pw)) ?? .empty()
       }.share()
+    
     return .init(emailValidate: emailValidate,
                  passwordValidate: passWordRuleValidate,
                  passwordSame: passWordValidate,

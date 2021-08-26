@@ -18,18 +18,22 @@ class LookAroundDetailViewModel {
   struct Output {
     let images : Observable<[String]>
     let buildingDetailUsecase: Observable<BuildingDetailInfo>
+    let reviewUsecase: Observable<[ReviewResponses]>
     let likeResult: Observable<Bool>
+    let furnitures: Observable<String>
   }
 }
 extension LookAroundDetailViewModel {
   func transForm(inputs: Input) -> Output {
     weak var weakSelf = self
+    
     var filterOriginUsecase : [FilterModel] = []
     var buildingId: Int!
-    let building = inputs.loadTrigger.flatMapLatest{ id -> Observable<BuildingContent> in
+    let response = inputs.loadTrigger.flatMapLatest{ id -> Observable<BuildingContent> in
       buildingId = id
       return weakSelf?.service.fetchBuildingDetailMapped(id: id) ?? .empty()
-    }.map{$0.toDetailModel()}
+    }.share()
+    let building = response.map{$0.toDetailModel()}.share()
     let imageUsecase = building.map{$0.buildingImages}.share()
     let likeResult = inputs.likeTrigger.flatMapLatest{ current -> Observable<Bool> in
       if current {
@@ -38,9 +42,27 @@ extension LookAroundDetailViewModel {
       else {
         return weakSelf?.service.addLikeBuilding(param: .init(buildingId: buildingId)) ?? .empty()
       }
-    }
+    }.share()
+    let reviewResponse = response.map{$0.reviews ?? []}.share()
+    let furnitures = reviewResponse.map{review -> String in
+      var temp : [String] = []
+      for r in review {
+        for f in r.furnitures ?? [] {
+          if !temp.contains(f) {
+            temp.append(f)
+          }
+        }
+      }
+      var str = ""
+      for i in temp {
+        str += "\(i.furnitures),"
+      }
+      return str
+    }.share()
     return .init(images: imageUsecase,
                  buildingDetailUsecase: building,
-                 likeResult: likeResult)
+                 reviewUsecase : reviewResponse,
+                 likeResult: likeResult,
+                 furnitures: furnitures)
   }
 }

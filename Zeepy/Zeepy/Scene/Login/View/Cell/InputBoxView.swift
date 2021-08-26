@@ -25,7 +25,7 @@ class InputBoxView: UIView {
       attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayText])
   }
   let validationResult = UILabel().then {
-    $0.setupLabel(text: "", color: .heartColor, font: .nanumRoundBold(fontSize: 11))
+    $0.setupLabel(text: "", color: .heartColor, font: .nanumRoundBold(fontSize: 10))
     $0.isHidden = true
   }
   required init?(coder: NSCoder) {
@@ -58,7 +58,7 @@ class InputBoxView: UIView {
     }
     validationResult.snp.makeConstraints{
       $0.trailing.equalTo(infoTextFieldBackGroundView)
-      $0.bottom.equalTo(infoTextField.snp.top).offset(6)
+      $0.bottom.equalTo(infoTitle.snp.bottom).offset(2)
     }
   }
 }
