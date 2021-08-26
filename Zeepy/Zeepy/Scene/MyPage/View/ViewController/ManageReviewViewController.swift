@@ -205,10 +205,10 @@ extension ManageReviewViewController {
   }
   
   func selectCell(reviewID: Int) {
-    let navigation = self.navigationController
-    guard let nextViewController = DetailReviewViewContoller(nibName: nil, bundle: nil, review: reviewID) else { return }
-    nextViewController.hidesBottomBarWhenPushed = false
-    navigation?.pushViewController(nextViewController, animated: true)
+//    let navigation = self.navigationController
+//    guard let nextViewController = DetailReviewViewContoller(nibName: nil, bundle: nil, review: reviewID) else { return }
+//    nextViewController.hidesBottomBarWhenPushed = false
+//    navigation?.pushViewController(nextViewController, animated: true)
   }
 }
 
@@ -272,8 +272,8 @@ extension ManageReviewViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let buildingId = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
-    selectCell(reviewID: id)
+//    let buildingId = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
+//    selectCell(reviewID: id)
   }
   
   
