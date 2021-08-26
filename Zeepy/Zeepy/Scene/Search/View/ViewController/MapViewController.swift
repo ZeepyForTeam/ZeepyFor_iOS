@@ -444,6 +444,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     func returnList(index : Int) -> Array<String>{
         selectedList = collectionViewCellList.filter{$0.selected}.map{$0.englishName}
+        filterItemsToShowItems(theTag: index)
         return selectedList
     }
     
@@ -464,8 +465,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         if selectedList.contains("SOFTY") {
             showItems += softyItems
         }
-        mapView.removeAllPOIItems()
+        
         items = showItems
+        mapView.removeAllPOIItems()
         mapView.addPOIItems(items)
         print("this is showItems")
         print(showItems)
