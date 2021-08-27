@@ -105,6 +105,8 @@ class DetailReviewViewContoller : BaseViewController {
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12), align: .left)
     $0.numberOfLines = 0
   }
+  private var images = [String]()
+
   private let photoReviewNotice = UILabel().then {
     $0.setupLabel(text: "첨부된 사진", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
   }
@@ -338,7 +340,7 @@ class DetailReviewViewContoller : BaseViewController {
         .foregroundColor: UIColor.blackText
       ])
       attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: reviewModel.user.name.count))
-      
+      self?.images = reviewModel.imageUrls ?? []
       self?.reviewerName.attributedText = attributedString
       self?.ownerReview.text = "\(reviewModel.lessorReview ?? "")"
       self?.simpleInfoOwnerLabel.text = "\(reviewModel.lessorAge?.AgeTranslate ?? "") \(reviewModel.lessorGender?.GenderTranslate ?? "")로 보여요"
@@ -350,6 +352,9 @@ class DetailReviewViewContoller : BaseViewController {
       self?.pestReview.text = reviewModel.pest?.HouseValidate ?? "적당해요"
       self?.lightReview.text = reviewModel.lightning?.HouseValidate ?? "적당해요"
       self?.waterReview.text = reviewModel.waterPressure?.HouseValidate ?? "적당해요"
+    }.disposed(by: disposeBag)
+    collectionView.rx.itemSelected.bind{[weak self] indexpath in
+      self?.presentImgViewer(self?.images ?? [], index: indexpath.row)
     }.disposed(by: disposeBag)
     writeReviewBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()
