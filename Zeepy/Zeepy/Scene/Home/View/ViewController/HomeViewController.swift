@@ -189,6 +189,7 @@ class HomeViewController : BaseViewController {
     selectTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.backgroundColor = .white
+    selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.register(SelectTypeCollectionViewCell.self,
                                       forCellWithReuseIdentifier: SelectTypeCollectionViewCell.identifier)
   }
@@ -232,7 +233,7 @@ class HomeViewController : BaseViewController {
     communityType.bind{[weak self] type in
       self?.tabBarController?.selectedIndex = 2
       if let community = self?.tabBarController?.selectedViewController?.children.first as? CommunityViewController {
-        
+        community.fromHome(type: type)
         print(type)
         
       }

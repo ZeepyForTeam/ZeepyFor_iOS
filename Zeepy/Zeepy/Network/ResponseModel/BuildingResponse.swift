@@ -346,7 +346,7 @@ extension BuildingContent {
 //    } {
 //      tags.append(contentsOf:dealTypes)
 //    }
-    let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: $0.user.name ?? "", review: $0.review ?? "")}.first ?? .init(reviewrName: "없음", review: "리뷰없음")
+    let review = self.reviews?.flatMap{ ReviewInfo.init(reviewrName: $0.user.name ?? "", review: $0.review ?? "")}.first ?? .init(reviewrName: "", review: "아직 작성된 리뷰가 없어요")
     return .init(buildingId: id!,buildingName: apartmentName ?? "", buildingImage: firstImg?.first, ownderInfo: ownerType, review: review, filters: tags)
   }
 }

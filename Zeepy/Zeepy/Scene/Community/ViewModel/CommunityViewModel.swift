@@ -13,7 +13,6 @@ class CommunityViewModel : Services, ViewModelType{
   struct Input {
     let currentTab: Observable<Int>
     let loadView : Observable<Void>
-    let filterSelect: Observable<(IndexPath, (PostType, Bool))>
     let filterSelect2: Observable<PostType>
     let resetAddress : Observable<[Addresses]>
     let pageNumber: Observable<Int?>
@@ -62,7 +61,7 @@ extension CommunityViewModel {
     }.map{$0.map{$0.toPostModel()}}
     let filterUsecase = input.loadView
       .flatMapLatest{ _ -> Observable<[(PostType, Bool)]> in
-        return weakSelf?.modifyFilter(tapAction: input.filterSelect, origin: self.filterList) ?? .empty()
+        return weakSelf?.modifyFilter(tapAction: input.filterSelect2, origin: self.filterList) ?? .empty()
       }
     return .init(
       postUsecase: postListObservable,
@@ -94,10 +93,10 @@ extension CommunityViewModel {
 //      .startWith(origin)
 //  }
   func modifyFilter(
-    tapAction: Observable<(IndexPath, (PostType, Bool))>,
+    tapAction: Observable<PostType>,
     origin: [(PostType, Bool)]) -> Observable< [(PostType, Bool)] > {
     enum Action {
-      case tapAction(indexPath : IndexPath, model: (PostType, Bool))
+      case tapAction(model: PostType)
     }
     
     return tapAction
@@ -108,7 +107,8 @@ extension CommunityViewModel {
           for i in 0..<state.count {
             state[i].1 = false
           }
-          state[model.0.row].1.toggle()
+          guard let firstIndex = state.firstIndex(where: {$0.0 == model}) else {return}
+          state[firstIndex].1.toggle()
         }
       }
       .startWith(origin)
