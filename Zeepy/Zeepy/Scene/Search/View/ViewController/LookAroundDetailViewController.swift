@@ -334,7 +334,7 @@ extension LookAroundDetailViewController {
     }
     reviewEmptyBtn.snp.makeConstraints{
       $0.centerX.equalToSuperview()
-      $0.top.equalTo(reviewEmptyLabel).offset(8)
+      $0.top.equalTo(reviewEmptyLabel.snp.bottom).offset(8)
     }
   }
 }
@@ -400,6 +400,25 @@ extension LookAroundDetailViewController {
       self.reviewMoreBtn.isHidden = self.reviewView.isHidden == true
       self.reviewEmptyView.isHidden = count != 0
       
+      if count == 0 {
+        self.buildingTypeNotice.snp.remakeConstraints{
+          $0.top.equalTo(self.ownerTypeView.snp.bottom).offset(24)
+          $0.leading.equalToSuperview().offset(16)
+          $0.height.equalTo(0)
+        }
+        self.buildingTypeBackgroundView.snp.updateConstraints {
+          $0.top.equalTo(self.buildingTypeNotice.snp.bottom).offset(0)
+          $0.centerX.equalToSuperview()
+          $0.leading.equalToSuperview().offset(16)
+          $0.height.equalTo(0)
+        }
+//        for i in 0..<self.buildingTypes.count {
+//          self.buildingTypes[i].snp.remakeConstraints {
+//            $0.centerX.equalToSuperview().offset((CGFloat(i) - 1.5) * 90)
+//            $0.top.bottom.equalToSuperview()
+//          }
+//        }
+      }
       if count != 0 {
         self.reviewMoreBtn.setTitle("건물 평가 모두 보기(\(count)개)", for: .selected)
         self.buildingReviewTitle.text = "건물 리뷰(\(count))"
