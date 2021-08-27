@@ -27,7 +27,7 @@ final class LookAroundViewController: BaseViewController {
   private let locationDropDown = UIButton().then{
     $0.setImage(UIImage(named: "btnArrowDown"), for: .normal)
   }
-
+  
   private let filterButton = UIButton().then{
     $0.setImageByName("iconFilter")
   }
@@ -42,7 +42,7 @@ final class LookAroundViewController: BaseViewController {
   private var currentPage = 0
   let filterTrigger = PublishSubject<ValidateType?>()
   private let refreshController = UIRefreshControl()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.isNavigationBarHidden = true
@@ -54,7 +54,7 @@ final class LookAroundViewController: BaseViewController {
     bindAction()
   }
   private func refreshCell() {
-      refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     tableView.refreshControl = refreshController
   }
   @objc
@@ -77,14 +77,14 @@ final class LookAroundViewController: BaseViewController {
       loadViewTrigger.onNext(0)
     }
     self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
-
+    
   }
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     NotificationCenter.default.removeObserver(self,name: Notification.Name("address"), object: nil)
     //self.navigationController?.isNavigationBarHidden = false
-
-
+    
+    
   }
 }
 extension LookAroundViewController {
@@ -94,7 +94,7 @@ extension LookAroundViewController {
     
     let filterSelectUsecase = Observable.zip(tableViewHeader.rx.itemSelected,
                                              tableViewHeader.rx.modelSelected(FilterModel.self).asObservable())
-
+    
     let inputs = LookAroundViewModel.Input(loadTrigger: loadViewTrigger,
                                            filterAction: filterButton.rx.tap.asObservable(),
                                            ownerFilterAction: filterTrigger,
@@ -105,14 +105,22 @@ extension LookAroundViewController {
     let outputs = viewModel.transForm(inputs: inputs)
     
     outputs.buildingUsecase
+      .filter{!$0.isEmpty}
       .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
-                                                        cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
+                                   cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
         cell.bind(model: data)
         print(row)
         if row > 18 * ((self?.currentPage ?? 0) + 1) {
           
           self?.loadViewTrigger.onNext((self?.currentPage ?? 0) + 1)
         }
+      }.disposed(by: disposeBag)
+    outputs.buildingUsecase
+      .filter{$0.isEmpty}
+      .map{_ in return ["empty"]}
+      .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
+                                   cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
+        cell.bind()
       }.disposed(by: disposeBag)
     loadViewTrigger.bind{[weak self] page in
       self?.currentPage = page
@@ -128,22 +136,22 @@ extension LookAroundViewController {
     
     outputs.filterUsecase
       .bind(to: tableViewHeader.rx.items(cellIdentifier: tableViewHeaderCollectionViewCell.identifier,
-                                                            cellType: tableViewHeaderCollectionViewCell.self)) {row, data, cell in
+                                         cellType: tableViewHeaderCollectionViewCell.self)) {row, data, cell in
         cell.bindCell(data, first: row == 0 && data.title == "전체")
-    }.disposed(by: disposeBag)
+      }.disposed(by: disposeBag)
     
     filterButton.rx.tap.bind{[weak self] in
       if self?.filterButton.isSelected == true {
         self?.conditionFilter.onNext(nil)
       }
       else {
-      let vc = ConditionViewController(nibName: nil, bundle: nil)
-      vc.hidesBottomBarWhenPushed = true
-      vc.resultClosure = {[weak self] requestModel in
-        self?.conditionFilter.onNext(requestModel)
-        self?.filterButton.isSelected = true
-      }
-      self?.navigationController?.pushViewController(vc, animated : true)
+        let vc = ConditionViewController(nibName: nil, bundle: nil)
+        vc.hidesBottomBarWhenPushed = true
+        vc.resultClosure = {[weak self] requestModel in
+          self?.conditionFilter.onNext(requestModel)
+          self?.filterButton.isSelected = true
+        }
+        self?.navigationController?.pushViewController(vc, animated : true)
       }
     }.disposed(by: disposeBag)
     mapButton.rx.tap.bind{[weak self] in
@@ -154,17 +162,17 @@ extension LookAroundViewController {
     locationDropDown.rx.tap.bind{[weak self] in
       let view = SettingView()
       HalfAppearView.shared.appearHalfView(subView: view)
-
+      
       view.setUpTableView([("전체",{self?.filterTrigger.onNext(nil)}),
                            ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.business)}),
-                               ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.kind)}),
-                               ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.free)}),
-                               ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.cute)}),
-                               ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.bad)}),
-                             
+                           ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.kind)}),
+                           ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.free)}),
+                           ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.cute)}),
+                           ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.bad)}),
+                           
       ])
     }.disposed(by: disposeBag)
-  
+    
   }
   private func bindAction() {
     

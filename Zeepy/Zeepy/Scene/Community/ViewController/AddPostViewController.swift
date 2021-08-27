@@ -138,7 +138,7 @@ class AddPostViewContoller : BaseViewController {
       .bind{[weak self] text, count in
         if text == self?.placeholder {
           self?.textCounter.textColor = .grayText
-          self?.textCounter.text = "\(0)/\(maxVal)"
+          self?.textCounter.text = "\(0)/\(maxVal)자"
         }
         if count >= maxVal {
           self?.textCounter.textColor = .red
@@ -146,7 +146,7 @@ class AddPostViewContoller : BaseViewController {
         }
         else {
           self?.textCounter.textColor = .grayText
-          self?.textCounter.text = "\(count)/\(maxVal)"
+          self?.textCounter.text = "\(count)/\(maxVal)자"
         }
       }.disposed(by: disposeBag)
   }
@@ -204,7 +204,7 @@ extension AddPostViewContoller {
     contentTextView.snp.makeConstraints{
       $0.centerX.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
-      $0.height.equalTo(90).priority(.medium)
+      $0.height.equalTo(278).priority(.medium)
       $0.top.equalTo(contentNotice.snp.bottom).offset(10)
     }
     
@@ -220,7 +220,7 @@ extension AddPostViewContoller {
       $0.height.equalTo(52)
     }
     contentNotice.text = "글 내용"
-    placeholder = "글 내용을 작성해주세요 (1500자 이내)"
+    placeholder = "*ZEEPY 이용정책에 위반되는 게시글의 경우\n무통보 게시글 삭제 및 이용이 제재될 수 있습니다.  "
     contentTextView.setPlaceholder(placeholder: placeholder, disposeBag: disposeBag)
     addTextCounter(maxVal: 1500)
 

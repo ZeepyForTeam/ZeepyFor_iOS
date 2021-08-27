@@ -32,7 +32,14 @@ class UserDefaultHelper<T> {
       return nil
     }
   }
-  
+  class func value(forkey key: DataKeys) -> [T]? {
+    if let data = UserDefaults.standard.array(forKey: key.rawValue) as? [T]? {
+      return data
+    }
+    else {
+      return nil
+    }
+  }
   class func set(_ value: T, forKey key: DataKeys) {
     UserDefaults.standard.set(value, forKey : key.rawValue)
   }
