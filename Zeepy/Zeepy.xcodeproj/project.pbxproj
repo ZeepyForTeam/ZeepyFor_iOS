@@ -42,7 +42,7 @@
 		CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */; };
 		CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */; };
 		CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */; };
-		CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */; };
+		CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* YPImagePicker */; };
 		CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */; };
 		CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
@@ -56,7 +56,7 @@
 		CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */; };
 		CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */; };
 		CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */; };
-		CC3E414026D76D5E00304959 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */; };
+		CC3E414026D76D5E00304959 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* Lottie */; };
 		CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414126D7971800304959 /* ServiceTermsViewController.swift */; };
 		CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414326D7972400304959 /* PersonalTermsViewController.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
@@ -67,7 +67,7 @@
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
-		CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */; };
+		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
 		CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
@@ -163,7 +163,7 @@
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
 		DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */; };
-		DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */; };
+		DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* Kingfisher */; };
 		DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB7F262C5B3200620B7E /* Identifiable.swift */; };
 		DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37C79B269BDB260031A17B /* PostViewController.swift */; };
 		DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */; };
@@ -188,7 +188,7 @@
 		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
 		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
 		DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EE26B7BB9600102EED /* UserManager.swift */; };
-		DA47445B2612144800709883 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SwiftPackageProductDependency */; };
+		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
 		DA4744B226197F5400709883 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744B126197F5400709883 /* HomeViewController.swift */; };
@@ -249,6 +249,7 @@
 		DA66096426BBB1FE0019D7F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096326BBB1FE0019D7F7 /* AuthService.swift */; };
 		DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */; };
 		DA67E66B26CF7288001A1CEF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67E66A26CF7288001A1CEF /* ViewModel.swift */; };
+		DA84292F26D8965800AC1E40 /* AddPostPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA84292E26D8965800AC1E40 /* AddPostPopup.swift */; };
 		DA94C55326D795420020C6E6 /* ReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */; };
 		DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A326AACFD9003E9EAE /* Optional+.swift */; };
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
@@ -564,6 +565,7 @@
 		DA66096326BBB1FE0019D7F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DA67E66A26CF7288001A1CEF /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		DA84292E26D8965800AC1E40 /* AddPostPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPopup.swift; sourceTree = "<group>"; };
 		DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		DAA2F4A326AACFD9003E9EAE /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -602,19 +604,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */,
-				CC3E414026D76D5E00304959 /* BuildFile in Frameworks */,
+				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
+				CC3E414026D76D5E00304959 /* Lottie in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
 				DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */,
-				CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */,
+				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
-				CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */,
+				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
-				DA47445B2612144800709883 /* BuildFile in Frameworks */,
+				DA47445B2612144800709883 /* SnapKit in Frameworks */,
 				36DD60B4D75F8D35989AEEFC /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1422,6 +1424,7 @@
 				DAA2F4A926AAF85E003E9EAE /* ModifyJoinView.swift */,
 				DA51E4FC26D4AF570049051C /* ModifyCommentView.swift */,
 				DA51E50226D4C9AE0049051C /* ReportNoticeView.swift */,
+				DA84292E26D8965800AC1E40 /* AddPostPopup.swift */,
 			);
 			path = PopUpView;
 			sourceTree = "<group>";
@@ -1478,11 +1481,11 @@
 			);
 			name = Zeepy;
 			packageProductDependencies = (
-				DA47445A2612144800709883 /* SwiftPackageProductDependency */,
-				CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */,
-				DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */,
-				CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */,
-				CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */,
+				DA47445A2612144800709883 /* SnapKit */,
+				CC79C2B9262B1EAF00CA9A0A /* Then */,
+				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
+				CC0429C226C7E87F00C5D498 /* YPImagePicker */,
+				CC3E413F26D76D5E00304959 /* Lottie */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1560,11 +1563,11 @@
 			);
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
-				DA4744592612144800709883 /* RemoteSwiftPackageReference */,
-				CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */,
-				DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */,
-				CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */,
-				CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */,
+				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
+				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1914,6 +1917,7 @@
 				CC7C392026C39A970015CA0B /* WithdrawalViewController.swift in Sources */,
 				DA40E1E726B6462100102EED /* CommunityRouter.swift in Sources */,
 				DA0DEC3926ACED31007563D0 /* PhotoReviewViewController.swift in Sources */,
+				DA84292F26D8965800AC1E40 /* AddPostPopup.swift in Sources */,
 				DAB3E009265D291300B7B4F2 /* DetailAddressViewController.swift in Sources */,
 				37625BFB263A602100D72302 /* ReusableButtonCell.swift in Sources */,
 				DA40E1C926B131C600102EED /* BuildingRequest.swift in Sources */,
@@ -2652,7 +2656,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */ = {
+		CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
 			requirement = {
@@ -2660,7 +2664,7 @@
 				kind = branch;
 			};
 		};
-		CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */ = {
+		CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -2668,7 +2672,7 @@
 				minimumVersion = 3.2.3;
 			};
 		};
-		CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */ = {
+		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -2676,7 +2680,7 @@
 				minimumVersion = 2.7.0;
 			};
 		};
-		DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */ = {
+		DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -2684,7 +2688,7 @@
 				minimumVersion = 6.2.1;
 			};
 		};
-		DA4744592612144800709883 /* RemoteSwiftPackageReference */ = {
+		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -2695,29 +2699,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */ = {
+		CC0429C226C7E87F00C5D498 /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */;
+			package = CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
 			productName = YPImagePicker;
 		};
-		CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */ = {
+		CC3E413F26D76D5E00304959 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */;
+			package = CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */ = {
+		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */;
+			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */ = {
+		DA2EDB7A262C5A7D00620B7E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */;
+			package = DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		DA47445A2612144800709883 /* SwiftPackageProductDependency */ = {
+		DA47445A2612144800709883 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA4744592612144800709883 /* RemoteSwiftPackageReference */;
+			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

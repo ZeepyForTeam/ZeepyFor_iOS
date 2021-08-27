@@ -27,6 +27,8 @@ class CommunityViewController : BaseViewController {
   private let viewModel = CommunityViewModel()
   private let selectedType = BehaviorSubject<PostType>(value: .total)
   private let resetAddress = PublishSubject<[Addresses]>()
+  private let pagenation = BehaviorSubject<Int?>(value: 0)
+  var currentPage = 0
   private let loadViewTrigger = PublishSubject<Void>()
   private let currentTab = BehaviorSubject<Int>(value: 0)
   private func setUpNavi() {
@@ -250,7 +252,8 @@ extension CommunityViewController : UICollectionViewDelegate{
                                          loadView: loadViewTrigger,
                                          filterSelect: selection,
                                          filterSelect2: selectedType,
-                                         resetAddress: resetAddress)
+                                         resetAddress: resetAddress,
+                                         pageNumber: pagenation)
     let output = viewModel.transform(input: input)
     
     output.filterUsecase.bind(to: postFilterCollectionView.rx
@@ -277,7 +280,7 @@ extension CommunityViewController : UICollectionViewDelegate{
         
       }.disposed(by: disposeBag)
     
-    dropDown.rx.tap.bind{[weak self] in
+    dropDown.rx.tap.filter{!UserManager.shared.address.isEmpty}.bind{[weak self] in
       Dropdown.shared.addDropDown(items: UserManager.shared.address,
                                   disposeBag: self!.disposeBag,
                                   dissmissAction: { [weak self] in
