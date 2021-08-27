@@ -730,3 +730,5 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
 
 
 //radioButton으로 구현하기.
+
+//다른 거 선택했을 때 다른 애들 deselected되도록
