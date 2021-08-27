@@ -26,7 +26,7 @@ class CommunityViewController : BaseViewController {
     $0.setImage(UIImage(named:"btn_write"), for: .normal)
   }
   private let viewModel = CommunityViewModel()
-  private let selectedType = BehaviorSubject<PostType>(value: .total)
+  let selectedType = BehaviorSubject<PostType>(value: .total)
   private let resetAddress = PublishSubject<[Addresses]>()
   private let pagenation = BehaviorSubject<Int?>(value: 0)
   var currentPage = 0

@@ -15,7 +15,7 @@ import SwiftyJSON
 import RxSwift
 
 class MapSearchViewController: BaseViewController {
-  
+
   private let s3service = S3Service(
     provider: MoyaProvider<S3Router>(
       plugins: [NetworkLoggerPlugin(verbose: true)]))

@@ -399,7 +399,14 @@ extension LookAroundDetailViewController {
       self.reviewView.content.unblur()
       self.reviewMoreBtn.isHidden = self.reviewView.isHidden == true
       self.reviewEmptyView.isHidden = count != 0
-      
+      if model.buildingImages.isEmpty {
+        self.ownerTypeLabel.snp.remakeConstraints{
+          $0.top.equalTo(self.optionsLabel.snp.bottom).offset(24)
+          $0.leading.equalToSuperview().offset(16)
+        }
+        self.photoReviewTitle.isHidden = true
+        self.imagesBackground.isHidden = true
+      }
       if count == 0 {
         self.buildingTypeNotice.snp.remakeConstraints{
           $0.top.equalTo(self.ownerTypeView.snp.bottom).offset(24)
