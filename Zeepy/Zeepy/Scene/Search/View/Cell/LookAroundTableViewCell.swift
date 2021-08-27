@@ -173,6 +173,7 @@ class SimpleLabelCollectionViewCell: UICollectionViewCell {
   }
   private func layout() {
     self.contentView.backgroundColor = .gray228
+    self.contentView.setRounded(radius: 8)
     self.contentView.add(background)
     background.add(option)
     background.snp.makeConstraints{
