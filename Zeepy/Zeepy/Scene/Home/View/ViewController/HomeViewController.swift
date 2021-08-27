@@ -187,6 +187,7 @@ class HomeViewController : BaseViewController {
     layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     selectTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     selectTypeCollectionView.backgroundColor = .white
+    selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.register(SelectTypeCollectionViewCell.self,
                                       forCellWithReuseIdentifier: SelectTypeCollectionViewCell.identifier)
   }
