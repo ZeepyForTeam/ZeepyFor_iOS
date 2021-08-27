@@ -770,7 +770,6 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mapView.removePOIItems(items)
         collectionViewCellList[indexPath.row].selected.toggle()
-        showItems = []
         collectionView.reloadData()
     }
 }
