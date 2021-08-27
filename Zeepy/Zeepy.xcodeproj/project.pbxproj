@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36DD60B4D75F8D35989AEEFC /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCE83F57DAE833BD38B25B0 /* Pods_Zeepy.framework */; };
 		371628A826456EC10006AE80 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628A726456EC10006AE80 /* MapViewController.swift */; };
 		371628AE264665570006AE80 /* MapDetailModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AD264665570006AE80 /* MapDetailModalView.swift */; };
 		371628B02646665F0006AE80 /* tendencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371628AF2646665F0006AE80 /* tendencyButton.swift */; };
@@ -27,9 +28,8 @@
 		37ECB8A826BFD4A70048A6BF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB8A726BFD4A70048A6BF /* LoginModel.swift */; };
 		37F37E1226A855B70031ADC3 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */; };
 		37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */; };
-		5F8C1990CBC481C6B17C5999 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */; };
-		74341F39E9C540D627F89743 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */; };
-		9A2364151ED77CA71F889161 /* Pods_Zeepy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */; };
+		4734F80AF604E3D711C90384 /* Pods_ZeepyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF30AFEB71F99A8CA501669E /* Pods_ZeepyTests.framework */; };
+		69E0DD8BBD2CE6D9C11DC9F7 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476ACFA91333CA178D52A390 /* Pods_Zeepy_ZeepyUITests.framework */; };
 		A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F4B25FF278B00FCEACF /* UITextField+.swift */; };
 		A45F4F7425FF2AF300FCEACF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F7325FF2AF300FCEACF /* Environment.swift */; };
 		A45F4F8E25FF2BE000FCEACF /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */; };
@@ -42,7 +42,7 @@
 		CC0429BC26C51B1F00C5D498 /* ManageAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */; };
 		CC0429BE26C7D6B500C5D498 /* LessorAgePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */; };
 		CC0429C026C7DA7700C5D498 /* LessorAgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429BF26C7DA7600C5D498 /* LessorAgeTableViewCell.swift */; };
-		CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* YPImagePicker */; };
+		CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */; };
 		CC0429C526CA451D00C5D498 /* FavoriteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C426CA451D00C5D498 /* FavoriteListTableViewCell.swift */; };
 		CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0429C626CA495A00C5D498 /* DeleteAddressPopupViewController.swift */; };
 		CC12B96326AA4F6500D17C95 /* ManageAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC12B96226AA4F6500D17C95 /* ManageAddressViewController.swift */; };
@@ -56,7 +56,7 @@
 		CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */; };
 		CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */; };
 		CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */; };
-		CC3E414026D76D5E00304959 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* Lottie */; };
+		CC3E414026D76D5E00304959 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */; };
 		CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414126D7971800304959 /* ServiceTermsViewController.swift */; };
 		CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414326D7972400304959 /* PersonalTermsViewController.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
@@ -67,7 +67,7 @@
 		CC5495122649615300313146 /* AdditionalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5495112649615300313146 /* AdditionalInformationViewController.swift */; };
 		CC79C2A7262B1DBF00CA9A0A /* SubmitReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC79C2A6262B1DBF00CA9A0A /* SubmitReview.storyboard */; };
 		CC79C2B4262B1DF100CA9A0A /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC79C2B3262B1DF100CA9A0A /* SelectAddressViewController.swift */; };
-		CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* Then */; };
+		CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */; };
 		CC79C2D4262B2DE000CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D8262B2DE100CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
 		CC79C2D9262B2DE200CA9A0A /* NanumSquareRoundOTFEB.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAB000022608CC0300D8208F /* NanumSquareRoundOTFEB.otf */; };
@@ -163,7 +163,7 @@
 		DA2EDB71262C58FE00620B7E /* BuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB70262C58FE00620B7E /* BuildingModel.swift */; };
 		DA2EDB74262C590700620B7E /* LookAroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB72262C590700620B7E /* LookAroundTableViewCell.swift */; };
 		DA2EDB75262C590700620B7E /* tableViewHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB73262C590700620B7E /* tableViewHeaderCollectionViewCell.swift */; };
-		DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* Kingfisher */; };
+		DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */; };
 		DA2EDB80262C5B3200620B7E /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2EDB7F262C5B3200620B7E /* Identifiable.swift */; };
 		DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37C79B269BDB260031A17B /* PostViewController.swift */; };
 		DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1C426B12F0A00102EED /* NetworkLoggerPlugin.swift */; };
@@ -188,7 +188,7 @@
 		DA40E1EB26B64CDC00102EED /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EA26B64CDC00102EED /* ReviewRouter.swift */; };
 		DA40E1ED26B64DB300102EED /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EC26B64DB300102EED /* ReviewService.swift */; };
 		DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40E1EE26B7BB9600102EED /* UserManager.swift */; };
-		DA47445B2612144800709883 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SnapKit */; };
+		DA47445B2612144800709883 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = DA47445A2612144800709883 /* SwiftPackageProductDependency */; };
 		DA47449F261976B000709883 /* UITextView+RxCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA47449E261976B000709883 /* UITextView+RxCocoa.swift */; };
 		DA4744A7261978B900709883 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744A6261978B900709883 /* TabbarViewController.swift */; };
 		DA4744B226197F5400709883 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4744B126197F5400709883 /* HomeViewController.swift */; };
@@ -302,8 +302,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
-		332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
+		04EE4B272352A2A1CA78232E /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
+		2DCE83F57DAE833BD38B25B0 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		371628A726456EC10006AE80 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		371628AD264665570006AE80 /* MapDetailModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailModalView.swift; sourceTree = "<group>"; };
 		371628AF2646665F0006AE80 /* tendencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tendencyButton.swift; sourceTree = "<group>"; };
@@ -322,13 +322,8 @@
 		37ECB8A726BFD4A70048A6BF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		37F37E1126A855B70031ADC3 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		37F37E1326A858880031ADC3 /* MapSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchTableViewCell.swift; sourceTree = "<group>"; };
-		40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.develop.xcconfig"; sourceTree = "<group>"; };
-		5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
-		6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
-		79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
-		88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		476ACFA91333CA178D52A390 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D12EB5111AD7FB33CE9AD5 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A45F4F4B25FF278B00FCEACF /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		A45F4F7325FF2AF300FCEACF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		A45F4F8D25FF2BE000FCEACF /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
@@ -337,7 +332,8 @@
 		A45F4FA525FF309900FCEACF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A45F4FAA25FF360E00FCEACF /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		A45F4FB225FF37E800FCEACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
+		B480FC887B926130CF08855F /* Pods-ZeepyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.release.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB17897D853CB07C031F8EDD /* Pods-Zeepy-ZeepyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.release.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CC0429B926C4BF8000C5D498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CC0429BB26C51B1E00C5D498 /* ManageAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC0429BD26C7D6B400C5D498 /* LessorAgePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessorAgePopupViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +390,9 @@
 		CCFDC6BD26A85AC80038ABD5 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		CCFDC6C326A9F97B0038ABD5 /* MypageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageTableViewCell.swift; sourceTree = "<group>"; };
 		CCFDC6C526AA07FD0038ABD5 /* ModifyInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyInformationViewController.swift; sourceTree = "<group>"; };
+		CECD0D7F70EE5823C975DA37 /* Pods-ZeepyTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.develop.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.develop.xcconfig"; sourceTree = "<group>"; };
+		CF30AFEB71F99A8CA501669E /* Pods_ZeepyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeepyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D43D63EDF5E05CBF4FE5CE64 /* Pods-ZeepyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeepyTests.debug.xcconfig"; path = "Target Support Files/Pods-ZeepyTests/Pods-ZeepyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA0DEC3826ACED31007563D0 /* PhotoReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoReviewViewController.swift; sourceTree = "<group>"; };
 		DA12BC8F26D4A97B00F2A540 /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
 		DA12BC9026D4A97B00F2A540 /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
@@ -593,8 +592,9 @@
 		DAF4D3AD265A24E700B281E2 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		DAF4D3B2265A274800B281E2 /* CommentSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionModel.swift; sourceTree = "<group>"; };
 		DAF4D3EB265A2ECD00B281E2 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
-		F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zeepy_ZeepyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E7B37D095A179AB8ED3DFEC6 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy-ZeepyUITests.develop.xcconfig"; path = "Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		F5FC64731C713582A8CC762A /* Pods-Zeepy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.release.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.release.xcconfig"; sourceTree = "<group>"; };
+		F71037420B4DEA23872FE42C /* Pods-Zeepy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zeepy.debug.xcconfig"; path = "Target Support Files/Pods-Zeepy/Pods-Zeepy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -602,20 +602,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
-				CC3E414026D76D5E00304959 /* Lottie in Frameworks */,
+				DA2EDB7B262C5A7D00620B7E /* BuildFile in Frameworks */,
+				CC3E414026D76D5E00304959 /* BuildFile in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
 				DA474665261B510F00709883 /* QuartzCore.framework in Frameworks */,
 				DA474663261B510400709883 /* CoreLocation.framework in Frameworks */,
 				DA51E4F926D4AD420049051C /* DaumMap.framework in Frameworks */,
-				CC79C2BA262B1EAF00CA9A0A /* Then in Frameworks */,
+				CC79C2BA262B1EAF00CA9A0A /* BuildFile in Frameworks */,
 				DA474661261B50F600709883 /* SystemConfiguration.framework in Frameworks */,
-				CC0429C326C7E87F00C5D498 /* YPImagePicker in Frameworks */,
+				CC0429C326C7E87F00C5D498 /* BuildFile in Frameworks */,
 				DA47465F261B50EB00709883 /* OpenGLES.framework in Frameworks */,
-				DA47445B2612144800709883 /* SnapKit in Frameworks */,
-				9A2364151ED77CA71F889161 /* Pods_Zeepy.framework in Frameworks */,
+				DA47445B2612144800709883 /* BuildFile in Frameworks */,
+				36DD60B4D75F8D35989AEEFC /* Pods_Zeepy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA12BD0E26D4A97B00F2A540 /* DaumMap.framework in Frameworks */,
-				5F8C1990CBC481C6B17C5999 /* Pods_ZeepyTests.framework in Frameworks */,
+				4734F80AF604E3D711C90384 /* Pods_ZeepyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +632,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74341F39E9C540D627F89743 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
+				69E0DD8BBD2CE6D9C11DC9F7 /* Pods_Zeepy_ZeepyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,9 +650,9 @@
 				DA474662261B510400709883 /* CoreLocation.framework */,
 				DA474660261B50F600709883 /* SystemConfiguration.framework */,
 				DA47465E261B50EB00709883 /* OpenGLES.framework */,
-				88CBB406C25E254EDB970D55 /* Pods_Zeepy.framework */,
-				F08289651B6257DF14220EA4 /* Pods_Zeepy_ZeepyUITests.framework */,
-				9E5664E798FA18DCA1ABFF57 /* Pods_ZeepyTests.framework */,
+				2DCE83F57DAE833BD38B25B0 /* Pods_Zeepy.framework */,
+				476ACFA91333CA178D52A390 /* Pods_Zeepy_ZeepyUITests.framework */,
+				CF30AFEB71F99A8CA501669E /* Pods_ZeepyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -740,15 +740,15 @@
 		ADBD48E34196C65DA344C8F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */,
-				332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */,
-				40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */,
-				F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */,
-				760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
-				17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
-				6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */,
-				5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */,
-				ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */,
+				F71037420B4DEA23872FE42C /* Pods-Zeepy.debug.xcconfig */,
+				F5FC64731C713582A8CC762A /* Pods-Zeepy.release.xcconfig */,
+				04EE4B272352A2A1CA78232E /* Pods-Zeepy.develop.xcconfig */,
+				74D12EB5111AD7FB33CE9AD5 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */,
+				BB17897D853CB07C031F8EDD /* Pods-Zeepy-ZeepyUITests.release.xcconfig */,
+				E7B37D095A179AB8ED3DFEC6 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */,
+				D43D63EDF5E05CBF4FE5CE64 /* Pods-ZeepyTests.debug.xcconfig */,
+				B480FC887B926130CF08855F /* Pods-ZeepyTests.release.xcconfig */,
+				CECD0D7F70EE5823C975DA37 /* Pods-ZeepyTests.develop.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1465,12 +1465,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42125F32F450063263A /* Build configuration list for PBXNativeTarget "Zeepy" */;
 			buildPhases = (
-				63EF771DCB24AC63052134BD /* [CP] Check Pods Manifest.lock */,
+				87275C3011AA883FAB73651C /* [CP] Check Pods Manifest.lock */,
 				DA61C3F025F32F440063263A /* Sources */,
 				DA61C3F125F32F440063263A /* Frameworks */,
 				DA61C3F225F32F440063263A /* Resources */,
 				CC73B8ED261FC621005A9D81 /* ShellScript */,
-				D8EFFEB7F0EBC30BD6DDD9FA /* [CP] Embed Pods Frameworks */,
+				6A92EB006099CEEFFA4CDAA9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1478,11 +1478,11 @@
 			);
 			name = Zeepy;
 			packageProductDependencies = (
-				DA47445A2612144800709883 /* SnapKit */,
-				CC79C2B9262B1EAF00CA9A0A /* Then */,
-				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
-				CC0429C226C7E87F00C5D498 /* YPImagePicker */,
-				CC3E413F26D76D5E00304959 /* Lottie */,
+				DA47445A2612144800709883 /* SwiftPackageProductDependency */,
+				CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */,
+				DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */,
+				CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */,
+				CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1492,7 +1492,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42425F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyTests" */;
 			buildPhases = (
-				B2C4169B462CADBDFB69E31C /* [CP] Check Pods Manifest.lock */,
+				425F1429ACA8B0BEB9E83E8B /* [CP] Check Pods Manifest.lock */,
 				DA61C40925F32F450063263A /* Sources */,
 				DA61C40A25F32F450063263A /* Frameworks */,
 				DA61C40B25F32F450063263A /* Resources */,
@@ -1511,11 +1511,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA61C42725F32F450063263A /* Build configuration list for PBXNativeTarget "ZeepyUITests" */;
 			buildPhases = (
-				486746493F042699CEE6FF1A /* [CP] Check Pods Manifest.lock */,
+				685142D004D4CE1A4CFB384A /* [CP] Check Pods Manifest.lock */,
 				DA61C41425F32F450063263A /* Sources */,
 				DA61C41525F32F450063263A /* Frameworks */,
 				DA61C41625F32F450063263A /* Resources */,
-				9B1572299F4325CC0E25AB60 /* [CP] Embed Pods Frameworks */,
+				22CBC5C8AC5966D9404A8370 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1560,11 +1560,11 @@
 			);
 			mainGroup = DA61C3EB25F32F440063263A;
 			packageReferences = (
-				DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
-				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
-				CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				DA4744592612144800709883 /* RemoteSwiftPackageReference */,
+				CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */,
+				DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */,
+				CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */,
+				CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1676,7 +1676,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		486746493F042699CEE6FF1A /* [CP] Check Pods Manifest.lock */ = {
+		22CBC5C8AC5966D9404A8370 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		425F1429ACA8B0BEB9E83E8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZeepyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		685142D004D4CE1A4CFB384A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1698,7 +1737,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		63EF771DCB24AC63052134BD /* [CP] Check Pods Manifest.lock */ = {
+		6A92EB006099CEEFFA4CDAA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87275C3011AA883FAB73651C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1714,45 +1770,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Zeepy-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B1572299F4325CC0E25AB60 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy-ZeepyUITests/Pods-Zeepy-ZeepyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B2C4169B462CADBDFB69E31C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZeepyTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1775,23 +1792,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
-		};
-		D8EFFEB7F0EBC30BD6DDD9FA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zeepy/Pods-Zeepy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2092,7 +2092,7 @@
 		};
 		A45F4F5425FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40B2AA02CB64AB4E6F646A9E /* Pods-Zeepy.develop.xcconfig */;
+			baseConfigurationReference = 04EE4B272352A2A1CA78232E /* Pods-Zeepy.develop.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2176,7 +2176,7 @@
 		};
 		A45F4F5525FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */;
+			baseConfigurationReference = CECD0D7F70EE5823C975DA37 /* Pods-ZeepyTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2203,7 +2203,7 @@
 		};
 		A45F4F5625FF281000FCEACF /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17A93F9977EDF2132841C44F /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
+			baseConfigurationReference = E7B37D095A179AB8ED3DFEC6 /* Pods-Zeepy-ZeepyUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2346,7 +2346,7 @@
 		};
 		DA61C42225F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79A58EAA620073C644655B4B /* Pods-Zeepy.debug.xcconfig */;
+			baseConfigurationReference = F71037420B4DEA23872FE42C /* Pods-Zeepy.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2429,7 +2429,7 @@
 		};
 		DA61C42325F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 332AAC39D0C60B3E81FFD324 /* Pods-Zeepy.release.xcconfig */;
+			baseConfigurationReference = F5FC64731C713582A8CC762A /* Pods-Zeepy.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2512,7 +2512,7 @@
 		};
 		DA61C42525F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C23594A479E9FCBA797E291 /* Pods-ZeepyTests.debug.xcconfig */;
+			baseConfigurationReference = D43D63EDF5E05CBF4FE5CE64 /* Pods-ZeepyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2539,7 +2539,7 @@
 		};
 		DA61C42625F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A4F69B5F92BC97BAA9AE4E3 /* Pods-ZeepyTests.release.xcconfig */;
+			baseConfigurationReference = B480FC887B926130CF08855F /* Pods-ZeepyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2566,7 +2566,7 @@
 		};
 		DA61C42825F32F450063263A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F396211683DDB8C468559F33 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */;
+			baseConfigurationReference = 74D12EB5111AD7FB33CE9AD5 /* Pods-Zeepy-ZeepyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2587,7 +2587,7 @@
 		};
 		DA61C42925F32F450063263A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 760E30D20C0640C3ED5E1CE9 /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
+			baseConfigurationReference = BB17897D853CB07C031F8EDD /* Pods-Zeepy-ZeepyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2652,7 +2652,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+		CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
 			requirement = {
@@ -2660,7 +2660,7 @@
 				kind = branch;
 			};
 		};
-		CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -2668,7 +2668,7 @@
 				minimumVersion = 3.2.3;
 			};
 		};
-		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
+		CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -2676,7 +2676,7 @@
 				minimumVersion = 2.7.0;
 			};
 		};
-		DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -2684,7 +2684,7 @@
 				minimumVersion = 6.2.1;
 			};
 		};
-		DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		DA4744592612144800709883 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -2695,29 +2695,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC0429C226C7E87F00C5D498 /* YPImagePicker */ = {
+		CC0429C226C7E87F00C5D498 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			package = CC0429C126C7E87E00C5D498 /* RemoteSwiftPackageReference */;
 			productName = YPImagePicker;
 		};
-		CC3E413F26D76D5E00304959 /* Lottie */ = {
+		CC3E413F26D76D5E00304959 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = CC3E413E26D76D5E00304959 /* RemoteSwiftPackageReference */;
 			productName = Lottie;
 		};
-		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
+		CC79C2B9262B1EAF00CA9A0A /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */;
+			package = CC79C2B8262B1EAF00CA9A0A /* RemoteSwiftPackageReference */;
 			productName = Then;
 		};
-		DA2EDB7A262C5A7D00620B7E /* Kingfisher */ = {
+		DA2EDB7A262C5A7D00620B7E /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = DA2EDB79262C5A7D00620B7E /* RemoteSwiftPackageReference */;
 			productName = Kingfisher;
 		};
-		DA47445A2612144800709883 /* SnapKit */ = {
+		DA47445A2612144800709883 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA4744592612144800709883 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = DA4744592612144800709883 /* RemoteSwiftPackageReference */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
