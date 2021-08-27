@@ -19,6 +19,7 @@ class CustomTextView: UITextView {
     self.setRounded(radius: 8)
     self.font = .nanumRoundRegular(fontSize: 14)
     self.textContainerInset = UIEdgeInsets(top: 16, left: 10, bottom: 16, right: 10)
+    self.enablesReturnKeyAutomatically = true
   }
   
   required init?(coder: NSCoder) {

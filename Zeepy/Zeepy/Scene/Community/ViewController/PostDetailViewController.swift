@@ -315,6 +315,18 @@ extension PostDetailViewControlelr {
             $0.width.equalTo(self.achivementView.targetAmountView.snp.width).multipliedBy(offset)
           }
         }
+        if model.communityCategory == "JOINTPURCHASE" {
+          self.postDetail.purchaseInfo.isHidden  = false
+          self.postDetail.purchaseInfo.productNameText.text = model.productName ?? ""
+          self.postDetail.purchaseInfo.priceInfoText.text = model.productPrice ?? ""
+          self.postDetail.purchaseInfo.productPlaceText.text = model.purchasePlace ?? ""
+          
+          self.postDetail.purchaseInfo.tradeMethodText.text = model.sharingMethod ?? ""
+          
+          self.postDetail.purchaseInfo.snp.updateConstraints{
+            $0.height.equalTo(100)
+          }
+        }
         else {
           self.commentView.snp.remakeConstraints{
             $0.top.equalTo(self.postDetail.snp.bottom)
@@ -500,7 +512,9 @@ internal class PostDetailView : UIView{
   let postReportBtn = UIButton().then {
     $0.setImage(UIImage(named: "btnSos"), for: .normal)
   }
-  let purchaseInfo = PurchaseInfoView()
+  let purchaseInfo = PurchaseInfoView().then {
+    $0.isHidden = true
+  }
   var postImageCollectionView : UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let width = 100 * (UIScreen.main.bounds.width/375)
@@ -558,10 +572,15 @@ internal class PostDetailView : UIView{
       $0.top.equalTo(postTitle.snp.bottom).offset(14)
       $0.trailing.equalToSuperview().offset(-16)
     }
+    purchaseInfo.snp.makeConstraints{
+      $0.top.equalTo(postContent.snp.bottom).offset(24)
+      $0.leading.trailing.equalToSuperview()
+      $0.height.equalTo(0)
+    }
     postImageCollectionView.snp.makeConstraints{
       let width = 100 * (UIScreen.main.bounds.width/375)
       
-      $0.top.equalTo(postContent.snp.bottom).offset(24)
+      $0.top.equalTo(purchaseInfo.snp.bottom).offset(24)
       $0.leading.trailing.equalToSuperview()
       $0.height.equalTo(width)
     }
@@ -729,6 +748,12 @@ internal class PurchaseInfoView : UIView{
   let productNameText = UILabel().then {
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
   }
+  private let priceInfo = UILabel().then {
+    $0.setupLabel(text: "제품 금액", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
+  }
+  let priceInfoText = UILabel().then {
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+  }
   
   private let productPlace = UILabel().then {
     $0.setupLabel(text: "구매처", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
@@ -744,12 +769,7 @@ internal class PurchaseInfoView : UIView{
     $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
   }
   
-  private let InfoNotice = UILabel().then {
-    $0.setupLabel(text: "안내", color: .blackText, font: .nanumRoundExtraBold(fontSize: 12))
-  }
-  let InfoNoticeText = UILabel().then {
-    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
-  }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.adds([productName,
@@ -758,8 +778,8 @@ internal class PurchaseInfoView : UIView{
                productPlaceText,
                tradeMethod,
                tradeMethodText,
-               InfoNotice,
-               InfoNoticeText])
+               priceInfo,
+               priceInfoText])
     productName.snp.makeConstraints{
       $0.leading.equalToSuperview().offset(16)
       $0.top.equalToSuperview().offset(8)
@@ -768,9 +788,17 @@ internal class PurchaseInfoView : UIView{
       $0.centerY.equalTo(productName)
       $0.leading.equalTo(productName.snp.trailing).offset(8)
     }
-    productPlace.snp.makeConstraints{
+    priceInfo.snp.makeConstraints{
       $0.leading.equalTo(productName)
       $0.top.equalTo(productName.snp.bottom).offset(8)
+    }
+    priceInfoText.snp.makeConstraints{
+      $0.centerY.equalTo(priceInfo)
+      $0.leading.equalTo(priceInfo.snp.trailing).offset(8)
+    }
+    productPlace.snp.makeConstraints{
+      $0.leading.equalTo(productName)
+      $0.top.equalTo(priceInfo.snp.bottom).offset(8)
     }
     productPlaceText.snp.makeConstraints{
       $0.centerY.equalTo(productPlace)
@@ -783,14 +811,6 @@ internal class PurchaseInfoView : UIView{
     tradeMethodText.snp.makeConstraints{
       $0.centerY.equalTo(tradeMethod)
       $0.leading.equalTo(tradeMethod.snp.trailing).offset(8)
-    }
-    InfoNotice.snp.makeConstraints{
-      $0.leading.equalTo(productName)
-      $0.top.equalTo(tradeMethod.snp.bottom).offset(8)
-    }
-    InfoNoticeText.snp.makeConstraints{
-      $0.centerY.equalTo(InfoNotice)
-      $0.leading.equalTo(InfoNotice.snp.trailing).offset(8)
     }
   }
   

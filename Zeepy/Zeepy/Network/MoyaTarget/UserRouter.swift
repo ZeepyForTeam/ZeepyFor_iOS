@@ -116,8 +116,11 @@ extension UserRouter : TargetType {
   var headers: [String : String]? {
     switch self {
     default :
+      guard let accessToken = UserDefaultHandler.accessToken else {
+        return ["Content-Type": "application/json"]
+      }
       return ["Content-Type": "application/json",
-              "X-AUTH-TOKEN" : UserDefaultHandler.accessToken!]
+              "X-AUTH-TOKEN" : accessToken]
     }
   }
 }
