@@ -84,7 +84,7 @@ class ConditionViewController: UIViewController {
     var selectedTransaction : String? = ""
     var selectedOptions : [String]?
     
-    func variableForServer() {
+    func variableForServer() -> BuildingRequest {
         struct BuildingRequestModel {
           let eqRoomCount: String? //원룸 투룸 Type 물어보기
           let geDeposit: Int?
@@ -113,8 +113,8 @@ class ConditionViewController: UIViewController {
         print("le Monthly", selectedRentMax)
         print("ge Monthly", selectedRentMin)
         
-        var buildingRequest = [BuildingRequestModel(eqRoomCount: selectedBuilding, geDeposit: selectedDepositMin, geMonthly: selectedRentMin, inFurnitures: selectedOptions, leDeposit: selectedDepositMax, leMonthly: selectedRentMax, neType: selectedTransaction)]
-        
+        var buildingRequest = BuildingRequest(eqRoomCount: selectedBuilding, geDeposit: selectedDepositMin, geMonthly: selectedRentMin, inFurnitures: selectedOptions, leDeposit: selectedDepositMax, leMonthly: selectedRentMax, neType: selectedTransaction)
+        return buildingRequest
     }
     // MARK: - Variable
 //    var selectedNumber = 100
@@ -316,6 +316,13 @@ class ConditionViewController: UIViewController {
         addConstraints()
         self.initCollectionView()
         setupNavigation()
+      nextButton.addAction(for: .touchUpInside, closure: {[weak self] _ in
+        let model = self?.variableForServer() ?? .init()
+        if let closure = self?.resultClosure {
+          closure(model)
+        }
+        self?.popViewController()
+      })
     }
     private func setupNavigation() {
         self.setupNavigationBar(.white)
@@ -644,7 +651,6 @@ class ConditionViewController: UIViewController {
     @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
         setDepositRange(PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
-        variableForServer()
 //        priceRange[0].depositMax = Int(sender.selectedMaxValue)
 //        priceRange[0].depositMin = Int(sender.selectedMinValue)
     }
@@ -654,7 +660,6 @@ class ConditionViewController: UIViewController {
 //        priceRange[0].rentMax = Int(sender.selectedMaxValue)
 //        priceRange[0].rentMin = Int(sender.selectedMinValue)
         rentPriceLabel.reloadInputViews()
-        variableForServer()
     }
     
 }

@@ -14,6 +14,7 @@ struct BuildingModel {
   let review : ReviewInfo
   let filters : [String]
 }
+
 struct ReviewInfo {
   let reviewrName: String
   let review: String
