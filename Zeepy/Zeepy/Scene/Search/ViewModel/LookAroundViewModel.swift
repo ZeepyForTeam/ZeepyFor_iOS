@@ -13,7 +13,7 @@ import Moya
 final class LookAroundViewModel: Services {
   private let service = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins: [NetworkLoggerPlugin()]))
   struct Input {
-    let loadTrigger: Observable<Void>
+    let loadTrigger: Observable<Int>
     let filterAction: Observable<Void>
     let ownerFilterAction : Observable<ValidateType?>
     let mapSelectAction: Observable<Void>
@@ -32,8 +32,8 @@ extension LookAroundViewModel {
     var filterOriginUsecase : [FilterModel] = []
 
     
-    let buildingUsecase = inputs.loadTrigger.flatMapLatest{ _ in
-      weakSelf?.service.fetchBuildingList(param: .init()) ?? .empty()
+    let buildingUsecase = inputs.loadTrigger.flatMapLatest{ page in
+      weakSelf?.service.fetchBuildingList(param: .init(pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
     }.map{$0.map{$0.toModel()}}
   
     let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),

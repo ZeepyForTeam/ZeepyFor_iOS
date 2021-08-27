@@ -233,7 +233,7 @@ class HomeViewController : BaseViewController {
     communityType.bind{[weak self] type in
       self?.tabBarController?.selectedIndex = 2
       if let community = self?.tabBarController?.selectedViewController?.children.first as? CommunityViewController {
-        
+        community.fromHome(type: type)
         print(type)
         
       }

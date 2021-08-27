@@ -70,7 +70,7 @@ class LookAroundTableViewCell: UITableViewCell {
       self.thumbNail.kf.setImage(with: URL(string: img))
     }
     else {
-      self.thumbNail.backgroundColor = .gray228
+      self.thumbNail.image = UIImage(named: "reviewdummy")
     }
     Observable.just(model.filters)
       .bind(to: optionsCollectionView.rx.items(cellIdentifier: SimpleLabelCollectionViewCell.identifier,
