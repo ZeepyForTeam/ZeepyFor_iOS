@@ -38,7 +38,7 @@ struct BuildingModelByAddress: Decodable {
   let id: Int?
   let exclusivePrivateArea: Float
   let latitude, longitude: Double?
-  let reviews: [ReviewModel]
+  let reviews: [ReviewReview]
 
   let shortAddress: String
 }

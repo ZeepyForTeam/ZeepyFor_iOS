@@ -76,6 +76,7 @@ extension ManageReviewViewController {
       $0.snp.makeConstraints {
         $0.top.equalTo(self.navigationView.snp.bottom).offset(24)
         $0.leading.equalTo(self.view.snp.leading).offset(16)
+        $0.height.equalTo(18)
       }
     }
   }
@@ -85,13 +86,14 @@ extension ManageReviewViewController {
       $0.backgroundColor = .clear
       $0.setRounded(radius: 8)
       $0.separatorStyle = .none
-      $0.estimatedRowHeight = 94
+      $0.estimatedRowHeight = 140
       $0.rowHeight = UITableView.automaticDimension
       $0.snp.makeConstraints {
         $0.top.equalTo(self.addressTitleLabel.snp.bottom).offset(16)
         $0.leading.equalTo(self.addressTitleLabel.snp.leading)
         $0.centerX.equalToSuperview()
         $0.height.equalTo(Int(self.tableViewRowHeight) * self.tableViewRowCount)
+        $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
       }
     }
   }
@@ -274,6 +276,7 @@ extension ManageReviewViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let reviewID = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
     if let id = reviewID {
+      print(id)
       selectCell(reviewID: id)
     }
   }
