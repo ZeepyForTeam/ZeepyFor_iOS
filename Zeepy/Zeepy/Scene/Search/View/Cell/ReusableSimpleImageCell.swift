@@ -12,7 +12,7 @@ import RxSwift
 class ReusableSimpleImageCell  : UICollectionViewCell{
   let disposebag = DisposeBag()
   private let imageView = UIImageView().then{
-    $0.backgroundColor = .blue
+    $0.backgroundColor = .gray244
   }
   private let plusImage = UIImageView().then{
     $0.image = UIImage(named: "btnOpacityAdd")

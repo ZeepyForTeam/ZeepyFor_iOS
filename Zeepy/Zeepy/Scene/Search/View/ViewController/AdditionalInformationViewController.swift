@@ -256,7 +256,6 @@ extension AdditionalInformationViewController {
     
     
     let navigation = self.navigationController
-    //let nextViewController = ReviewPhotoViewController()
     reviewModel.totalEvaluation = assessTextList[selectedNumber].1
     reviewModel.review = reviewTextField.text ?? ""
     guard let nextViewController = AddPhotoViewController(nibName: nil, bundle: nil, viewModel: nil, reviewModel: reviewModel) else {return}

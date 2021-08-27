@@ -92,6 +92,9 @@ class ConditionViewController: UIViewController {
     var buildingSelectedNumber = 100
     
     // MARK: - Components
+  private let naviView = CustomNavigationBar().then {
+    $0.setUp(title: "조건 검색")
+  }
     let scrollView = UIScrollView()
     let contentView = UIView()
     let buildingTitle = UILabel().then {
@@ -299,9 +302,14 @@ class ConditionViewController: UIViewController {
     
     func addConstraints()
     {
+      self.view.add(naviView)
+      naviView.snp.makeConstraints{
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
         scrollView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
+          $0.top.equalTo(naviView.snp.bottom)
         }
         
         scrollView.addSubview(contentView)

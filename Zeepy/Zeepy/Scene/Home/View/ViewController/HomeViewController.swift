@@ -12,6 +12,7 @@ import RxCocoa
 class HomeViewController : BaseViewController {
   private let headerView: UIView = {
     let v = UIView()
+    v.addUnderBar()
     v.backgroundColor = .white
     return v
   }()
@@ -110,7 +111,7 @@ class HomeViewController : BaseViewController {
     ])
     headerView.snp.makeConstraints{
       $0.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide)
-      $0.height.equalTo(60)
+      $0.height.equalTo(68)
     }
     scrollView.snp.makeConstraints{
       $0.leading.trailing.bottom.equalToSuperview()
@@ -186,6 +187,7 @@ class HomeViewController : BaseViewController {
     layout.scrollDirection = .horizontal
     layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     selectTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.backgroundColor = .white
     selectTypeCollectionView.register(SelectTypeCollectionViewCell.self,
                                       forCellWithReuseIdentifier: SelectTypeCollectionViewCell.identifier)
@@ -230,13 +232,13 @@ class HomeViewController : BaseViewController {
     communityType.bind{[weak self] type in
       self?.tabBarController?.selectedIndex = 2
       if let community = self?.tabBarController?.selectedViewController?.children.first as? CommunityViewController {
-        
+        community.fromHome(type: type)
         print(type)
         
       }
     }
     .disposed(by: disposeBag)
-    locationDropDown.rx.tap.bind{[weak self] in
+    locationDropDown.rx.tap.filter{!UserManager.shared.address.isEmpty}.bind{[weak self] in
       Dropdown.shared.addDropDown(items: UserManager.shared.address,
                                   disposeBag: self!.disposeBag,
                                   dissmissAction: { [weak self] in

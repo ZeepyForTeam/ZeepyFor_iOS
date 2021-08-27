@@ -70,7 +70,7 @@ extension PopUpView {
       $0.leading.trailing.top.bottom.equalToSuperview()
     }
     if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
-      let transform = CGAffineTransform(translationX: 0, y: 300)
+      let transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
       backgroundView.transform = transform
       blackView.alpha = 0
       UIView.animate(withDuration: 0.7,

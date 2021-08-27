@@ -35,7 +35,8 @@ struct BuildingModelByAddress: Decodable {
   let areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]
   let buildingLikes: [BuildingLike]
-  let exclusivePrivateArea, id: Int?
+  let id: Int?
+  let exclusivePrivateArea: Float
   let latitude, longitude: Double?
   let reviews: [ReviewModel]
 
@@ -332,7 +333,7 @@ extension BuildingContent {
   func toModel() -> BuildingModel {
     let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
     let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
-    }.first ?? .business
+    }.first ?? .unknown
     var tagTypes : TagType {
       buildingType?.tagTypes ?? .unknown
     }

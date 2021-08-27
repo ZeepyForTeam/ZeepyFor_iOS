@@ -20,7 +20,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         var buttonTitle = String()
         var selected = Bool()
     }
-    
     struct mapDetailViewModel {
         var id = Int()
         var address = String()
@@ -59,6 +58,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: - variable
     var selectedName = ""
     // MARK: - Components
+  
+  private let naviView = CustomNavigationBar().then {
+    $0.setUp(title: "지도")
+  }
     var tendencyButton = UIView().then{
         $0.frame.size = CGSize(width: 60, height: 70)
     }
@@ -508,6 +511,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         self.view.add(mapDetailView)
         self.view.add(closedFloatingView)
         self.view.add(openFloatingCollectionView)
+      self.view.add(naviView)
         initMapView()
         addConstraints()
         initCollectionview()
@@ -525,9 +529,13 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
     }
     func addConstraints() {
+      naviView.snp.makeConstraints{
+        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        $0.height.equalTo(68)
+      }
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-          $0.top.equalTo(self.view.safeAreaLayoutGuide)//?
+          $0.top.equalTo(naviView.snp.bottom)//?
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)

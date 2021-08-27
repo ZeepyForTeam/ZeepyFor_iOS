@@ -13,9 +13,10 @@ class CommunityViewModel : Services, ViewModelType{
   struct Input {
     let currentTab: Observable<Int>
     let loadView : Observable<Void>
-    let filterSelect: Observable<(IndexPath, (PostType, Bool))>
     let filterSelect2: Observable<PostType>
     let resetAddress : Observable<[Addresses]>
+    let pageNumber: Observable<Int?>
+
   }
   struct Output {
     let postUsecase : Observable<[PostModel]>
@@ -36,9 +37,9 @@ extension CommunityViewModel {
     let resetAddressResult = input.resetAddress.flatMapLatest{ address in
       weakSelf?.userService.addAddress(param: .init(addresses: address)) ?? .empty()
     }
-    let postListObservable = Observable.combineLatest(input.currentTab, input.filterSelect2).flatMapLatest{ tab, type -> Observable<[PostModel]> in
+    let postListObservable = Observable.combineLatest(input.currentTab, input.filterSelect2, input.pageNumber).flatMapLatest{ tab, type, page -> Observable<[PostModel]> in
       if tab == 0 {
-      let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: nil, pageSize: nil, paged: nil))
+      let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: page, pageSize: nil, paged: nil))
         .map{
           $0.map{
               $0.toPostModel()
@@ -60,7 +61,7 @@ extension CommunityViewModel {
     }.map{$0.map{$0.toPostModel()}}
     let filterUsecase = input.loadView
       .flatMapLatest{ _ -> Observable<[(PostType, Bool)]> in
-        return weakSelf?.modifyFilter(tapAction: input.filterSelect, origin: self.filterList) ?? .empty()
+        return weakSelf?.modifyFilter(tapAction: input.filterSelect2, origin: self.filterList) ?? .empty()
       }
     return .init(
       postUsecase: postListObservable,
@@ -92,10 +93,10 @@ extension CommunityViewModel {
 //      .startWith(origin)
 //  }
   func modifyFilter(
-    tapAction: Observable<(IndexPath, (PostType, Bool))>,
+    tapAction: Observable<PostType>,
     origin: [(PostType, Bool)]) -> Observable< [(PostType, Bool)] > {
     enum Action {
-      case tapAction(indexPath : IndexPath, model: (PostType, Bool))
+      case tapAction(model: PostType)
     }
     
     return tapAction
@@ -106,7 +107,8 @@ extension CommunityViewModel {
           for i in 0..<state.count {
             state[i].1 = false
           }
-          state[model.0.row].1.toggle()
+          guard let firstIndex = state.firstIndex(where: {$0.0 == model}) else {return}
+          state[firstIndex].1.toggle()
         }
       }
       .startWith(origin)
