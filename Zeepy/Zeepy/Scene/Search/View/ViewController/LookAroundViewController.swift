@@ -40,14 +40,26 @@ final class LookAroundViewController: BaseViewController {
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
   private var currentPage = 0
   let filterTrigger = PublishSubject<ValidateType?>()
+  private let refreshController = UIRefreshControl()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.isNavigationBarHidden = true
     setupCollectionView()
     setupTableView()
     layout()
+    refreshCell()
     bind()
     bindAction()
+  }
+  private func refreshCell() {
+      refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.refreshControl = refreshController
+  }
+  @objc
+  private func refreshData() {
+    loadViewTrigger.onNext(0)
+    refreshController.endRefreshing()
   }
   @objc
   private func didReceiveNotification(_ notification: Notification) {

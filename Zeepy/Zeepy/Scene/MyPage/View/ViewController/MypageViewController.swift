@@ -95,7 +95,6 @@ extension MypageViewController {
   
   private func layoutNavigationView() {
     view.add(navigationView) {
-      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
         $0.height.equalTo(68)
@@ -328,18 +327,21 @@ extension MypageViewController {
   @objc
   private func addressButtonClicked() {
     let addressVC = ManageAddressViewController()
+    addressVC.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(addressVC, animated: true)
   }
   
   @objc
   private func reviewButtonClicked() {
     let reviewVC = ManageReviewViewController()
+    reviewVC.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(reviewVC, animated: true)
   }
   
   @objc
   private func favoriteButtonClicked() {
     let favoriteVC = FavoriteListViewConroller()
+    favoriteVC.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(favoriteVC, animated: true)
   }
   
@@ -358,6 +360,7 @@ extension MypageViewController {
       let modifyVC = ModifyInformationViewController()
       modifyVC.userName = userName
       modifyVC.socialEmail = userEmail
+      modifyVC.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
   }
@@ -397,6 +400,7 @@ extension MypageViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0 {
       let modifyVC = SettingsViewController()
+      modifyVC.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
     if indexPath.row == 1 {
@@ -404,6 +408,7 @@ extension MypageViewController: UITableViewDataSource {
     }
     if indexPath.row == 2 {
       let creditVC = CreditViewController()
+      creditVC.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(creditVC, animated: true)
     }
   }

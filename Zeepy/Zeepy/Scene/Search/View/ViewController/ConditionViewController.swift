@@ -113,6 +113,7 @@ class ConditionViewController: UIViewController {
 //    var selectedNumber = 100
     var dealSelectedNumber = 0
     var buildingSelectedNumber = 0
+    var resultClosure: ((String) -> ())?
     
     // MARK: - Components
   private let naviView = CustomNavigationBar().then {
@@ -587,7 +588,7 @@ class ConditionViewController: UIViewController {
     func activateBuildingButton(index: Int){
         
     }
-    
+
 //    @objc func onTapBuildingButton(sender: UIButton) {
 //
 //        buildingList[sender.tag].selected.toggle()

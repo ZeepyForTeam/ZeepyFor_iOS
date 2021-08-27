@@ -22,7 +22,7 @@ class PersonalTermsViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    request(url: "http://www.naver.com")
+    request(url: "https://zeepy.creatorlink.net/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8")
     setupNavigation()
     self.view.adds([navigationView,
                     webView])
@@ -41,7 +41,6 @@ class PersonalTermsViewController: BaseViewController {
   }
   
   private func setupNavigation() {
-    navigationView.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
     navigationView.naviTitle.text = "개인정보 이용약관"
   }
 }

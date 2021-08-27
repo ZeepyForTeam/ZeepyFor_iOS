@@ -65,6 +65,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var tendencyButton = UIView().then{
         $0.frame.size = CGSize(width: 60, height: 70)
     }
+  
+  var searchCoordinates = MTMapPointGeo(latitude: 0, longitude: 0)
     
     var circleButton = UIButton()
     
@@ -480,8 +482,12 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         findCurrentMarker()
     }
     
-    func reAdjustMapCenter(name: String){
-        print("여기서 서버 불러와서 center 다시 잡자.")
+    func reAdjustMapCenter(){
+      let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
+      print("여기야여기")
+      print(mapPoint?.mapPointGeo().latitude)
+      print(mapPoint?.mapPointGeo().longitude)
+      mapView.setMapCenter(mapPoint, animated: true)
     }
     
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
@@ -534,7 +540,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         $0.height.equalTo(68)
       }
         searchView.snp.makeConstraints{
-            $0.trailing.leading.equalToSuperview()
+          $0.leading.equalToSuperview().offset(19)
+          $0.trailing.equalToSuperview().offset(-13)
           $0.top.equalTo(naviView.snp.bottom)//?
             $0.height.equalTo(40)
         }

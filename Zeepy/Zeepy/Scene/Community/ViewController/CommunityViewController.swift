@@ -20,12 +20,13 @@ class CommunityViewController : BaseViewController {
   private let naviTitle = UILabel().then{
     $0.text = "한강로동 2가"
     $0.font = .nanumRoundExtraBold(fontSize: 20)
+    $0.textColor = .blackText
   }
   private let writeBtn = UIButton().then{
     $0.setImage(UIImage(named:"btn_write"), for: .normal)
   }
   private let viewModel = CommunityViewModel()
-  private let selectedType = BehaviorSubject<PostType>(value: .total)
+  let selectedType = BehaviorSubject<PostType>(value: .total)
   private let resetAddress = PublishSubject<[Addresses]>()
   private let pagenation = BehaviorSubject<Int?>(value: 0)
   var currentPage = 0
@@ -41,7 +42,7 @@ class CommunityViewController : BaseViewController {
     }
     naviView.adds([naviTitle,dropDown,writeBtn])
     naviTitle.snp.makeConstraints{
-      $0.bottom.equalToSuperview().offset(-20)
+      $0.centerY.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
     }
     dropDown.snp.makeConstraints{
