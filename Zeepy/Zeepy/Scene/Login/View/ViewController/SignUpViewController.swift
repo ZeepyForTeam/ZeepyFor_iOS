@@ -154,9 +154,6 @@ class SignUpViewController: BaseViewController {
     setupNavigation()
   }
   private func setupNavigation() {
-    navigationView.backBtn.addTarget(self,
-                                     action: #selector(self.backButtonClicked),
-                                     for: .touchUpInside)
     navigationView.naviTitle.text = "회원가입"
   }
   private let viewModel = SignUpViewModel()
