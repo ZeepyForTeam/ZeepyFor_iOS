@@ -271,10 +271,10 @@ extension ManageReviewViewController: UITableViewDataSource {
     self.viewWillLayoutSubviews()
   }
   
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let buildingId = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
-//    selectCell(reviewID: id)
-//  }
-  
-  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let reviewID = self.reviewModel?.simpleReviewDtoList[indexPath.row].id
+    if let id = reviewID {
+      selectCell(reviewID: id)
+    }
+  }
 }

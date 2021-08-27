@@ -134,6 +134,8 @@ class LoginEmailViewController: BaseViewController {
         
         rootNav.viewControllers = [rootVC]
         rootNav.modalPresentationStyle = .fullScreen
+        UserManager.shared.fetchUserAddress()
+
         self?.present(rootNav, animated: true, completion: nil)
         
       case .failure(let errorType) :
@@ -165,6 +167,8 @@ class LoginEmailViewController: BaseViewController {
         
         rootNav.viewControllers = [rootVC]
         rootNav.modalPresentationStyle = .fullScreen
+        UserManager.shared.fetchUserAddress()
+
         self?.present(rootNav, animated: true, completion: nil)
         
       case .failure(let errorType) :
@@ -197,7 +201,7 @@ class LoginEmailViewController: BaseViewController {
         rootNav.viewControllers = [rootVC]
         rootNav.modalPresentationStyle = .fullScreen
         self?.present(rootNav, animated: true, completion: nil)
-        
+        UserManager.shared.fetchUserAddress()
       case .failure(let errorType) :
         var errMessage : String = ""
         
