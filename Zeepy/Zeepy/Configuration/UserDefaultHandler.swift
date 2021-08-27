@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class UserDefaultHandler {
   static var accessToken: String? {
     return UserDefaultHelper<String>.value(forKey: .accessToken)
@@ -21,6 +22,14 @@ class UserDefaultHandler {
   static var userId: Int? {
     return UserDefaultHelper<Int>.value(forKey: .userId)
   }
+  
+  static var history: [MTMapPointGeo]? {
+    return UserDefaultHelper<[MTMapPointGeo]>.value(forKey: .history)
+  }
+  
+  static var historyName: [String]? {
+    return UserDefaultHelper<String>.value(forKey: .historyName)
+  }
 }
 
 class UserDefaultHelper<T> {
@@ -32,6 +41,7 @@ class UserDefaultHelper<T> {
       return nil
     }
   }
+
   class func value(forkey key: DataKeys) -> [T]? {
     if let data = UserDefaults.standard.array(forKey: key.rawValue) as? [T]? {
       return data
@@ -40,7 +50,12 @@ class UserDefaultHelper<T> {
       return nil
     }
   }
+
   class func set(_ value: T, forKey key: DataKeys) {
+    UserDefaults.standard.set(value, forKey : key.rawValue)
+  }
+  
+  class func set(_ value: [T], forKey key: DataKeys) {
     UserDefaults.standard.set(value, forKey : key.rawValue)
   }
   
@@ -56,6 +71,8 @@ enum DataKeys: String {
   case refreshToken = "refreshToken"
   case userId = "userId"
   case loginType = "loginType"
+  case history = "history"
+  case historyName = "historyName"
 }
 enum LoginType: String {
   case kakao = "kakao"
