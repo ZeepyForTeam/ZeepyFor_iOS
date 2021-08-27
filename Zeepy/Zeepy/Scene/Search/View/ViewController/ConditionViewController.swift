@@ -74,7 +74,6 @@ class ConditionViewController: UIViewController {
                                     MoneyModel(price: 750000, name: "75만"),
                                     MoneyModel(price: 1000000, name: "100만"),
                                     MoneyModel(price: 1250000, name: "125만"),
-                                    MoneyModel(price: 1500000, name: "150만"),
                                     MoneyModel(price: nil, name: nil)]
     func variableForServer() {
         print("this is variableForServer")
@@ -308,7 +307,6 @@ class ConditionViewController: UIViewController {
         addConstraints()
         self.initCollectionView()
         setupNavigation()
-        variableForServer()
     }
     private func setupNavigation() {
         self.setupNavigationBar(.white)
@@ -316,13 +314,6 @@ class ConditionViewController: UIViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    func depositIndexToNumber(index : Int) -> Int?{
-        return depositRange[index].price
-    }
-    
-    func rentIndexToNumber(index: Int) -> Int?{
-        return rentRange[index].price
     }
     
     func addConstraints()
@@ -547,6 +538,8 @@ class ConditionViewController: UIViewController {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
+        priceRange[0].depositMax = depositRange[maxValue].price
+        priceRange[0].depositMin = depositRange[minValue].price
         
     }
     
@@ -582,8 +575,6 @@ class ConditionViewController: UIViewController {
         }
         priceRange[0].rentMax = rentRange[maxValue].price
         priceRange[0].rentMin = rentRange[minValue].price
-        priceRange[0].depositMax = depositRange[maxValue].price
-        priceRange[0].depositMin = depositRange[minValue].price
     }
     func activateBuildingButton(index: Int){
         
@@ -701,6 +692,7 @@ class ConditionViewController: UIViewController {
     @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
         setDepositRange(PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
+        variableForServer()
 //        priceRange[0].depositMax = Int(sender.selectedMaxValue)
 //        priceRange[0].depositMin = Int(sender.selectedMinValue)
     }
