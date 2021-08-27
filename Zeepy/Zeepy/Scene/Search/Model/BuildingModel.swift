@@ -49,6 +49,7 @@ enum ValidateType: String {
   case free = "방목형"
   case cute = "츤데레형"
   case bad = "할많하않"
+  case unknown = "미지의 인물형"
 }
 enum TagType: String {
   case one = "원룸"
@@ -71,6 +72,8 @@ extension ValidateType {
       return "emoji4"
     case .bad:
       return "emoji5"
+    case .unknown:
+      return "emoji5"
     }
   }
   var inEnglish: String {
@@ -85,6 +88,8 @@ extension ValidateType {
       return "Softy"
     case .bad:
       return "Bad"
+    case .unknown:
+      return self.rawValue
     }
   }
   var color: UIColor {
@@ -99,6 +104,8 @@ extension ValidateType {
       return UIColor.rgb(137, 169, 255)
     case .bad:
       return UIColor.rgb(196, 196, 196)
+    case .unknown:
+      return .clear
     }
   }
 }

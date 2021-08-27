@@ -236,6 +236,9 @@ extension CommunityViewController : UICollectionViewDelegate{
     setupCollectionView()
     bind()
   }
+  private func fromHome(type: PostType) {
+    
+  }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"

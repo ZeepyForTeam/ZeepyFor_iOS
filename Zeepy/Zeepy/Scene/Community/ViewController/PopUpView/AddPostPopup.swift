@@ -13,15 +13,17 @@ class AddPostPopup : UIView {
   private let disposeBag = DisposeBag()
   var popUpView = PopUpView.shared
   typealias customAction = () -> Void
-  private var mainColor: UIColor!
-  convenience init(mainColor: UIColor) {
+  private var isCommunity: Bool!
+  convenience init(isCommunity: Bool) {
     self.init(frame: .zero)
-    self.mainColor = mainColor
+    self.isCommunity = isCommunity
+    
+    layout()
+    bind()
   }
   override init(frame: CGRect) {
     super.init(frame: frame)
-    layout()
-    bind()
+
   }
   
   required init?(coder: NSCoder) {
@@ -89,13 +91,26 @@ class AddPostPopup : UIView {
       $0.width.equalTo(okButton)
       $0.height.equalTo(48)
     }
-    okButton.setTitleColor(.white, for: .normal)
-    okButton.backgroundColor = mainColor
-    cancleBtn.setTitleColor(mainColor, for: .normal)
-    cancleBtn.backgroundColor = .gray244
+
   }
   private func bind() {
-
+    if isCommunity {
+      titleLabel.text = "글을 등록하시겠습니까"
+      notice1.text = """
+        *공동구매 글의 경우 참여자가 1명 이상일
+        경우 글을 삭제하거나 수정하실 수 없습니다.
+        """
+      okButton.setTitleColor(.white, for: .normal)
+      okButton.backgroundColor = .communityGreen
+      cancleBtn.setTitleColor(.communityGreen, for: .normal)
+      cancleBtn.backgroundColor = .gray244
+    }
+    else {
+      okButton.setTitleColor(.white, for: .normal)
+      okButton.backgroundColor = .mainBlue
+      cancleBtn.setTitleColor(.mainBlue, for: .normal)
+      cancleBtn.backgroundColor = .gray244
+    }
     okButton.rx.tap.map{return true}
       .bind{[weak self] content in
           if let closure = self?.resultClosure {

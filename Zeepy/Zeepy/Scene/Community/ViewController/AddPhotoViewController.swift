@@ -198,7 +198,7 @@ class AddPhotoViewController : BaseViewController {
         }
       }.disposed(by: disposeBag)
       nextButton.rx.tap.bind{[weak self] in
-        let view = AddPostPopup(mainColor: .communityGreen)
+        let view = AddPostPopup.init(isCommunity: true)
         view.resultClosure = {result in
           if result {
             self?.postTrigger.onNext(())
@@ -345,8 +345,8 @@ extension AddPhotoViewController {
       self?.imageArray = $0
     }.disposed(by: disposeBag)
     nextButton.rx.tap.bind{[weak self] in
-      let view = AddPostPopup(mainColor: .mainBlue)
-      view.resultClosure = {result in
+      let view = AddPostPopup.init(isCommunity: false)
+      view.resultClosure = { result in
         if result {
           self?.postTrigger.onNext(())
         }

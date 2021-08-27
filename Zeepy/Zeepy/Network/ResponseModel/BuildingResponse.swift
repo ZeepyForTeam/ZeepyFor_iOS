@@ -333,7 +333,7 @@ extension BuildingContent {
   func toModel() -> BuildingModel {
     let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
     let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
-    }.first ?? .business
+    }.first ?? .unknown
     var tagTypes : TagType {
       buildingType?.tagTypes ?? .unknown
     }

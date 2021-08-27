@@ -281,7 +281,22 @@ class DetailReviewViewContoller : BaseViewController {
       self?.houseReview.text = "\(reviewModel.review ?? "")"
     }.disposed(by: disposeBag)
     
-    
+    ownerReview.rx.observeWeakly(CGSize.self, "contentSize")
+      .compactMap{$0?.height}
+      .distinctUntilChanged()
+      .bind{ [weak self] height in
+        self?.ownerReviewBackground.snp.updateConstraints{
+          $0.height.equalTo(height)
+        }
+      }.disposed(by: disposeBag)
+    houseReview.rx.observeWeakly(CGSize.self, "contentSize")
+      .compactMap{$0?.height}
+      .distinctUntilChanged()
+      .bind{ [weak self] height in
+        self?.houseReviewBackground.snp.updateConstraints{
+          $0.height.equalTo(height)
+        }
+      }.disposed(by: disposeBag)
     writeReviewBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()
       self?.navigationController?.pushViewController(vc, animated: true)
