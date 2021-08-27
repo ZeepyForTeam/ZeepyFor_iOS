@@ -185,9 +185,9 @@ extension FavoriteListTableViewCell {
     assessContentLabel.setupLabel(text: totalEvaluation,
                                   color: .blackText,
                                   font: .nanumRoundRegular(fontSize: 10))
-    buildingImageView.imageFromUrl(buildingImageURL, defaultImageName: "AppIcon")
+    buildingImageView.imageFromUrl(buildingImageURL, defaultImageName: "reviewdummy")
     if buildingImageView.image.isNil {
-      buildingImageView.image = UIImage(named: "AppIcon")
+      buildingImageView.image = UIImage(named: "reviewdummy")
     }
     self.roomCount = roomCount
     self.buildingType = buildingType
