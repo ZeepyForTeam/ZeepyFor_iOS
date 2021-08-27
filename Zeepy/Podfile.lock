@@ -134,6 +134,7 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.2)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - DLRadioButton (~> 1.4)
@@ -150,6 +151,7 @@ DEPENDENCIES:
   - RxKakaoSDKAuth
   - RxKakaoSDKCommon
   - RxKakaoSDKUser
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
@@ -182,6 +184,7 @@ SPEC REPOS:
     - RxKakaoSDKUser
     - RxRelay
     - RxSwift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
@@ -213,7 +216,8 @@ SPEC CHECKSUMS:
   RxKakaoSDKUser: 088d321b0b959b66bbb112f8db278aae2a83e6bf
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: ba0e0fd275ca32f06acffb93c459aac621278277
+PODFILE CHECKSUM: 8caa0ea42be58b75f386462131afae7a85ca07c2
 
 COCOAPODS: 1.10.1

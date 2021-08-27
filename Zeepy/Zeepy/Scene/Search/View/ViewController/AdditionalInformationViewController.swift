@@ -325,7 +325,6 @@ extension AdditionalInformationViewController: UITableViewDataSource {
     activateNextButton()
     tableView.reloadData()
   }
-  
 }
 
 // MARK: - UITextView Delegate

@@ -5,6 +5,7 @@
 //  Created by JUEUN KIM on 2021/08/27.
 //
 
+
 //import Foundation
 //
 //public struct Place{
@@ -71,3 +72,4 @@ struct KakaoSameName: Codable {
         case selectedRegion = "selected_region"
     }
 }
+
