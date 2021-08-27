@@ -14,10 +14,10 @@ import Moya
 class ConditionViewController: UIViewController {
     // MARK: - Structs
     struct ListModel {
-        var title = String()
-        var englishName = String()
-        var image = String()
-        var selected = Bool()
+        var title : String
+        var englishName : String?
+        var image : String
+        var selected : Bool
     }
     
     struct OptionModel {
@@ -31,42 +31,65 @@ class ConditionViewController: UIViewController {
         var rentMin: Int?
         var rentMax: Int?
     }
+    
+    struct MoneyModel {
+        var price : Int?
+        var name : String?
+    }
+    
     // MARK: - Arrays
-    var buildingList: [ListModel] = [ListModel(title: "원룸", englishName: "ONE", image: "btnOption1", selected: true),
-                                     ListModel(title: "투룸", englishName: "TWO", image: "btnOption2", selected: true),
-                                     ListModel(title: "오피스텔", englishName: "THREEORMORE", image: "btnReady", selected: true)]
+    var buildingList: [ListModel] = [ListModel(title: "전체", englishName: nil, image: "btnOption1", selected: true),
+                                     ListModel(title: "연립다세대", englishName: "ROWHOUSE", image: "btnOption2", selected: false),
+                                     ListModel(title: "오피스텔", englishName: "THREEORMORE", image: "btnOption3", selected: false)]
     
-    var transactionList: [ListModel] = [ListModel(title: "월세", englishName: "MONTHLY", image: "btnOption1", selected: true),
-                                        ListModel(title: "전세", englishName : "JEONSE", image: "btnOption2", selected: true),
-                                        ListModel(title: "매매", englishName : "DEAL", image: "btnReady", selected: true)]
+    var transactionList: [ListModel] = [ListModel(title: "전체", englishName : nil , image: "btnOption1", selected: true),
+                                        ListModel(title: "월세", englishName: "MONTHLY", image: "btnOption2", selected: false),
+                                        ListModel(title: "전세", englishName : "JEONSE", image: "btnOption3", selected: false),
+                                        ListModel(title: "매매", englishName : "DEAL", image: "btnReady", selected: false),
+    ]
     
-    var optionList : [OptionModel] = [OptionModel(name: "에어컨",englishName: "AIRCONDITIONAL", selected: true),
-                                      OptionModel(name: "세탁기",englishName: "WASHINGMACHINE", selected: true),
-                                      OptionModel(name: "침대",englishName: "BED", selected: true),
-                                      OptionModel(name: "옷장",englishName: "CLOSET", selected: true),
-                                      OptionModel(name: "책상",englishName: "DESK", selected: true),
-                                      OptionModel(name: "냉장고",englishName: "REFRIDGERATOR", selected: true),
-                                      OptionModel(name: "인덕션",englishName: "INDUCTION", selected: true),
-                                      OptionModel(name: "가스레인지",englishName: "BURNER", selected: true),
-                                      OptionModel(name: "전자레인지",englishName: "MICROWAVE", selected: true)]
+    var optionList : [OptionModel] = [OptionModel(name: "에어컨",englishName: "AIRCONDITIONAL", selected: false),
+                                      OptionModel(name: "세탁기",englishName: "WASHINGMACHINE", selected: false),
+                                      OptionModel(name: "침대",englishName: "BED", selected: false),
+                                      OptionModel(name: "옷장",englishName: "CLOSET", selected: false),
+                                      OptionModel(name: "책상",englishName: "DESK", selected: false),
+                                      OptionModel(name: "냉장고",englishName: "REFRIDGERATOR", selected: false),
+                                      OptionModel(name: "인덕션",englishName: "INDUCTION", selected: false),
+                                      OptionModel(name: "가스레인지",englishName: "BURNER", selected: false),
+                                      OptionModel(name: "전자레인지",englishName: "MICROWAVE", selected: false)]
     
-    var priceRange : [PriceRangeModel] = [PriceRangeModel(depositMin: 0, depositMax: 3, rentMin: 0, rentMax: 3)]
-  func variableForServer() {
-    var selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName}
-    var selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName}
-    var selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
+    var priceRange : [PriceRangeModel] = [PriceRangeModel(depositMin: 0, depositMax: 6, rentMin: 0, rentMax: 6)]
     
-    var selectedDepositMin = depositIndexToNumber(index: priceRange[0].depositMin)
-    var selectedDepositMax = depositIndexToNumber(index: priceRange[0].depositMax)
-    var selectedRentMin = rentIndexToNumber(index: priceRange[0].rentMin)
-    var selectedRentMax = rentIndexToNumber(index: priceRange[0].rentMax)
-  }
+    var depositRange : [MoneyModel] = [MoneyModel(price: nil, name: nil),
+                                       MoneyModel(price: 5000000, name: "5백만"),
+                                       MoneyModel(price: 10000000, name: "1천만"),
+                                       MoneyModel(price: 25000000, name: "2천5백만"),
+                                       MoneyModel(price: 50000000, name: "5천만"),
+                                       MoneyModel(price: 100000000, name: "1억"),
+                                       MoneyModel(price: nil, name: nil)]
+    
+    var rentRange : [MoneyModel] = [MoneyModel(price: nil, name: nil),
+                                    MoneyModel(price: 250000, name: "25만"),
+                                    MoneyModel(price: 500000, name: "50만"),
+                                    MoneyModel(price: 250000, name: "75만"),
+                                    MoneyModel(price: 250000, name: "100만"),
+                                    MoneyModel(price: 250000, name: "125만"),
+                                    MoneyModel(price: 250000, name: "25만"),
+                                    MoneyModel(price: nil, name: nil)]
+    func variableForServer() {
+        var selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName}
+        var selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName}
+        var selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
+        
+        var selectedDepositMin = priceRange[0].depositMin
+        var selectedDepositMax = priceRange[0].depositMax
+        var selectedRentMin = priceRange[0].rentMin
+        var selectedRentMax = priceRange[0].rentMax
+    }
+    
     // MARK: - Components
     let scrollView = UIScrollView()
     let contentView = UIView()
-    private let naviView = CustomNavigationBar().then {
-      $0.setUp(title: "조건검색")
-    }
     let buildingTitle = UILabel().then {
         $0.text = "건물유형"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
@@ -115,23 +138,22 @@ class ConditionViewController: UIViewController {
     let depositTitle = UILabel().then {
         $0.text = "보증금"
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 12.0)
-        $0.textColor = .mainBlue
     }
     let depositPriceShowView = UIView().then {
         $0.backgroundColor = UIColor(white: 247.0 / 255.0, alpha: 1.0)
         $0.setRounded(radius: 20)
     }
     let depositPriceLabel = UILabel().then {
-        $0.text = "보증금 무관"
+        $0.text = "가격상관없이"
         $0.textColor = .black
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let depositPriceSliderView = UIView()
     let depositPriceSlider = RangeSeekSlider().then {
         $0.minValue = 0
-        $0.maxValue = 3
+        $0.maxValue = 6
         $0.selectedMinValue = 0
-        $0.selectedMaxValue = 3
+        $0.selectedMaxValue = 6
         $0.lineHeight = 10
         $0.colorBetweenHandles = .mainBlue
         $0.tintColor = .mainYellow
@@ -175,16 +197,16 @@ class ConditionViewController: UIViewController {
         $0.setRounded(radius: 20)
     }
     let rentPriceLabel = UILabel().then {
-        $0.text = "월세 무관"
+        $0.text = "가격상관없이"
         $0.textColor = .black
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let rentPriceSliderView = UIView()
     let rentPriceSlider = RangeSeekSlider().then {
         $0.minValue = 0
-        $0.maxValue = 3
+        $0.maxValue = 6
         $0.selectedMinValue = 0
-        $0.selectedMaxValue = 3
+        $0.selectedMaxValue = 6
         $0.lineHeight = 10
         $0.colorBetweenHandles = .mainBlue
         $0.tintColor = .mainYellow
@@ -242,12 +264,13 @@ class ConditionViewController: UIViewController {
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.white.cgColor
-        $0.setTitle("다음으로", for: .normal)
+        $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
+        self.tabBarController?.tabBar.isHidden = true
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.view.addSubview(scrollView)
@@ -256,56 +279,25 @@ class ConditionViewController: UIViewController {
         setupNavigation()
     }
     private func setupNavigation() {
-      self.setupNavigationBar(.white)
-      self.setupNavigationItem(titleText: "조건검색")
+        self.setupNavigationBar(.white)
+        self.setupNavigationItem(titleText: "조건검색")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    func depositIndexToNumber(index : Int?) -> Int?{
-        var number : Int?
-        
-        if index == 0 {
-            number = 0
-        }else if index == 1 {
-            number = 10000000
-        }
-        else if index == 2 {
-            number = 50000000
-        }
-        else if index == 3 {
-            number = 0
-        }
-        return number
+    func depositIndexToNumber(index : Int) -> Int?{
+        return depositRange[index].price
     }
     
-    func rentIndexToNumber(index: Int?) -> Int?{
-        var number : Int?
-        
-        if index == 0 {
-            number = 0
-        }else if index == 1 {
-            number = 500000
-        }
-        else if index == 2 {
-            number = 1000000
-        }
-        else if index == 3 {
-            number = 0
-        }
-        return number
+    func rentIndexToNumber(index: Int) -> Int?{
+        return rentRange[index].price
     }
     
     func addConstraints()
     {
-      self.view.add(naviView)
-      naviView.snp.makeConstraints{
-        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-        $0.height.equalTo(68)
-      }
         scrollView.snp.makeConstraints {
-          $0.leading.trailing.bottom.equalToSuperview()
-          $0.top.equalTo(naviView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)
         }
         
         scrollView.addSubview(contentView)
@@ -334,7 +326,8 @@ class ConditionViewController: UIViewController {
         
         transactionCollectionView.snp.makeConstraints {
             $0.top.equalTo(transactionTitle.snp.bottom)
-            $0.leading.trailing.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(150)
         }
         
@@ -485,51 +478,76 @@ class ConditionViewController: UIViewController {
         }
     }
     
-    func setPriceRange(firstSection: String, secondSection: String, thirdSection: String, fourthSection: String, PriceRangeLabel: UILabel, minValue: Int, maxValue: Int) {
+    func setDepositRange(PriceRangeLabel: UILabel, minValue: Int, maxValue: Int) {
         var minimum = ""
         var maximum = ""
         
-        if minValue == 0 {
-            minimum = firstSection
-        }
-        if minValue == 1 {
-            minimum = secondSection
-        }
-        if minValue == 2 {
-            minimum = thirdSection
+        if minValue > 0 && minValue < 6 {
+            minimum = depositRange[minValue].name!
         }
         
-        if maxValue == 1 {
-            maximum = secondSection
-        }
-        if maxValue == 2 {
-            maximum = thirdSection
+        if maxValue > 0 && maxValue < 6{
+            maximum = depositRange[maxValue].name!
         }
         PriceRangeLabel.halfTextColorChange(fullText: "\(minimum) ~ \(maximum)", changeText: "~")
-        if maxValue == 3 {
+        if maxValue == 6 {
             PriceRangeLabel.halfTextColorChange(fullText: "\(minimum)부터", changeText: "부터")
         }
         
         if minValue == maxValue {
             PriceRangeLabel.text = "\(minimum)"
-            if maxValue == 3 {
+            if maxValue == 6 {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
         if minValue == 0 {
             PriceRangeLabel.halfTextColorChange(fullText: "\(maximum)까지", changeText: "까지")
-            if maxValue == 3 {
-                if PriceRangeLabel == depositPriceLabel {
-                    PriceRangeLabel.text = "보증금 무관"
-                }
-                if PriceRangeLabel == rentPriceLabel {
-                    PriceRangeLabel.text = "월세 무관"
-                }
+            if maxValue == 6 {
+                PriceRangeLabel.text = "가격상관없이"
+                PriceRangeLabel.textColor = .black
             }
             if maxValue == 0 {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
+        
+    }
+    
+    func setRentRange(PriceRangeLabel: UILabel, minValue: Int, maxValue: Int) {
+        var minimum = ""
+        var maximum = ""
+        if minValue > 0 && minValue < 6 {
+            minimum = rentRange[minValue].name!
+        }
+        if maxValue > 0 && maxValue < 6{
+            maximum = rentRange[maxValue].name!
+        }
+        PriceRangeLabel.halfTextColorChange(fullText: "\(minimum) ~ \(maximum)", changeText: "~")
+        if maxValue == 6 {
+            PriceRangeLabel.halfTextColorChange(fullText: "\(minimum)부터", changeText: "부터")
+        }
+        
+        if minValue == maxValue {
+            PriceRangeLabel.text = "\(minimum)"
+            if maxValue == 6 {
+                PriceRangeLabel.text = "유효한 값을 선택해주세요"
+            }
+        }
+        if minValue == 0 {
+            PriceRangeLabel.halfTextColorChange(fullText: "\(maximum)까지", changeText: "까지")
+            if maxValue == 6 {
+                PriceRangeLabel.text = "가격상관없이"
+                PriceRangeLabel.textColor = .black
+            }
+            if maxValue == 0 {
+                PriceRangeLabel.text = "유효한 값을 선택해주세요"
+            }
+        }
+        priceRange[0].rentMax = rentRange[maxValue].price
+        priceRange[0].rentMin = rentRange[minValue].price
+        priceRange[0].depositMax = depositRange[maxValue].price
+        priceRange[0].depositMin = depositRange[minValue].price
+        
     }
     
     @objc func onTapBuildingButton(sender: UIButton) {
@@ -541,7 +559,8 @@ class ConditionViewController: UIViewController {
     @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
         sender.isSelected.toggle()
         transactionList[sender.tag].selected = !sender.isSelected
-        if (transactionList[0].selected && !transactionList[1].selected) || (transactionList[0].selected && transactionList[1].selected){ // 월세만 선택하거나 둘 다 모두 선택했을 경우 // 보증금 월세 모두 보여주기
+        
+        if transactionList[1].selected{ // 월세만 선택했을 경우 // 보증금 월세 모두 보여주기
             rentPriceShowView.isHidden = false
             rentPriceSliderView.isHidden = false
             rentTitle.isHidden = false
@@ -554,7 +573,7 @@ class ConditionViewController: UIViewController {
                 $0.leading.trailing.equalToSuperview().offset(16)
             }
         }
-        if !transactionList[0].selected && transactionList[1].selected{ // 전세만 선택한 경우
+        if transactionList[2].selected{ // 전세만 선택한 경우
             rentPriceShowView.isHidden = true
             rentPriceSliderView.isHidden = true
             rentTitle.isHidden = true
@@ -567,13 +586,14 @@ class ConditionViewController: UIViewController {
                 $0.leading.trailing.equalToSuperview().offset(16)
             }
         }
-        if !transactionList[0].selected && !transactionList[1].selected {// 둘 다 선택하지 않은 경우
+        if transactionList[0].selected {// 전체를 선택한 경우
             priceTitle.isHidden = true
             rentPriceShowView.isHidden = true
             rentPriceSliderView.isHidden = true
             rentTitle.isHidden = true
             depositPriceShowView.isHidden = true
             depositPriceSliderView.isHidden = true
+            rentPriceShowView.isHidden = true
             depositTitle.isHidden = true
             addConstraints()
             optionTitle.snp.remakeConstraints{
@@ -582,21 +602,27 @@ class ConditionViewController: UIViewController {
             }
         }
         transactionCollectionView.reloadInputViews()
+        
+        print("여기서 보는 transactionList")
+        print(transactionList)
+        
     }
+    
     @objc func onTapOptionButton(sender: UIButton) {
         optionList[sender.tag].selected.toggle()
-        sender.isSelected.toggle()
-        if sender.isSelected {
-            sender.backgroundColor = .mainYellow
-            
-        } else {
-            sender.backgroundColor = .mainBlue
-        }
-        optionCollectionView.reloadInputViews()
+        //        sender.isSelected.toggle()
+        //        if sender.isSelected {
+        //            sender.backgroundColor = .mainYellow
+        //
+        //        } else {
+        //            sender.backgroundColor = .mainBlue
+        //        }
+        optionCollectionView.reloadData()
+        //        optionCollectionView.reloadInputViews()
     }
     
     @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
-        setPriceRange(firstSection: depositFirstSection.text!, secondSection: depositSecondSection.text!, thirdSection: depositThirdSection.text!, fourthSection: depositFourthSection.text!, PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
+        setDepositRange(PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
         priceRange[0].depositMax = Int(sender.selectedMaxValue)
         priceRange[0].depositMin = Int(sender.selectedMinValue)
@@ -604,7 +630,7 @@ class ConditionViewController: UIViewController {
     }
     
     @objc func sliderRentValuechanged(sender: RangeSeekSlider){
-        setPriceRange(firstSection: rentFirstSection.text!, secondSection: rentSecondSection.text!, thirdSection: rentThirdSection.text!, fourthSection: rentFourthSection.text!, PriceRangeLabel: rentPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
+        setRentRange(PriceRangeLabel: rentPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         priceRange[0].rentMax = Int(sender.selectedMaxValue)
         priceRange[0].rentMin = Int(sender.selectedMinValue)
         rentPriceLabel.reloadInputViews()
@@ -618,7 +644,7 @@ extension ConditionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 7
     }
     
 }
@@ -662,9 +688,11 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         
         if(collectionView == self.buildingCollectionView) {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
+            if indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 {
+                cell?.circleButton.isSelected = true
+            }
             cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
-
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.tag = indexPath.row
             cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
@@ -678,11 +706,19 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .selected)
             cell?.buttonTitle.text = transactionList[indexPath.row].title
             cell?.circleButton.addTarget(self, action: #selector(onTapTransactionButton), for: .touchUpInside)
-            
             return cell!
         }
         else if(collectionView == self.optionCollectionView) {
             optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableOptionCell.identifier, for:indexPath) as? ReusableOptionCell)
+            
+            if optionList[indexPath.row].selected {
+                optioncell?.squareButton.backgroundColor = .mainBlue
+                optioncell?.buttonTitle.textColor = .white
+            }
+            else {
+                optioncell?.squareButton.backgroundColor = .whiteGray
+                optioncell?.buttonTitle.textColor = .black
+            }
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
             optioncell?.squareButton.tag = indexPath.row
@@ -691,3 +727,6 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         return UICollectionViewCell()
     }
 }
+
+
+//radioButton으로 구현하기.

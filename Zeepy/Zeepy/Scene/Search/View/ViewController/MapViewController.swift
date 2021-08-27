@@ -406,13 +406,17 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                     self.badItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
                                 }
                             }
+                            
                             self.items += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
+                            print("items 몇 개일까?")
+                            print(self.items)
                         }
                         self.findCurrentMarker()
                         print("count의 갯수는")
                         print(count)
                     }
                     catch {
+                        print("fetchMapPointError")
                         print(error)
                     }
                 }
