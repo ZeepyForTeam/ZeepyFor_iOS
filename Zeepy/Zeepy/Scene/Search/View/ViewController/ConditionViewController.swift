@@ -110,9 +110,10 @@ class ConditionViewController: UIViewController {
     }
     // MARK: - Variable
 //    var selectedNumber = 100
+
     var dealSelectedNumber = 0
     var buildingSelectedNumber = 0
-    var resultClosure: ((String) -> ())?
+    var resultClosure: ((BuildingRequest) -> ())?
     
     // MARK: - Components
   private let naviView = CustomNavigationBar().then {
