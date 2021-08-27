@@ -18,6 +18,7 @@
 		3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* LoginEmailViewController.swift */; };
+		37A847A426D878B7005F1132 /* KakaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A847A326D878B7005F1132 /* KakaoResponse.swift */; };
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */; };
 		37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75BA526B69D2900DF851E /* LoginViewModel.swift */; };
@@ -51,6 +52,13 @@
 		CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */; };
 		CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */; };
 		CC2BB29D26B3DD46007BC269 /* KakaoAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */; };
+		CC3E413726D76C4900304959 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413626D76C4900304959 /* OnboardingViewController.swift */; };
+		CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */; };
+		CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */; };
+		CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */; };
+		CC3E414026D76D5E00304959 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC3E413F26D76D5E00304959 /* Lottie */; };
+		CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414126D7971800304959 /* ServiceTermsViewController.swift */; };
+		CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3E414326D7972400304959 /* PersonalTermsViewController.swift */; };
 		CC4C0684263EEC53004C1EFA /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */; };
 		CC4C0689263EF75D004C1EFA /* CommunicationTendencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */; };
 		CC4C068E263F04FE004C1EFA /* LenderInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */; };
@@ -305,6 +313,7 @@
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
 		378456192692145C00F59074 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		3798C1A42692917100616311 /* LoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmailViewController.swift; sourceTree = "<group>"; };
+		37A847A326D878B7005F1132 /* KakaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoResponse.swift; sourceTree = "<group>"; };
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTableViewCell.swift; sourceTree = "<group>"; };
 		37D75BA526B69D2900DF851E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -342,6 +351,12 @@
 		CC2BB29626B3C3FF007BC269 /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		CC2BB29A26B3DB23007BC269 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		CC2BB29C26B3DD46007BC269 /* KakaoAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAddressModel.swift; sourceTree = "<group>"; };
+		CC3E413626D76C4900304959 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC3E414126D7971800304959 /* ServiceTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTermsViewController.swift; sourceTree = "<group>"; };
+		CC3E414326D7972400304959 /* PersonalTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTermsViewController.swift; sourceTree = "<group>"; };
 		CC4C0683263EEC53004C1EFA /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CC4C0688263EF75D004C1EFA /* CommunicationTendencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationTendencyViewController.swift; sourceTree = "<group>"; };
 		CC4C068D263F04FE004C1EFA /* LenderInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenderInformationViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2EDB7B262C5A7D00620B7E /* Kingfisher in Frameworks */,
+				CC3E414026D76D5E00304959 /* Lottie in Frameworks */,
 				CCB5ECDB261C4CE900CE4F2C /* libsqlite3.tbd in Frameworks */,
 				CCB5ECDA261C4CDF00CE4F2C /* libxml2.tbd in Frameworks */,
 				CCB5ECD6261C4CD700CE4F2C /* libc++.tbd in Frameworks */,
@@ -679,7 +695,9 @@
 			children = (
 				37BF2647268B13AB001E4079 /* LoginViewController.swift */,
 				37EB8BB72692FF260052047B /* SignUpViewController.swift */,
+				CC3E414126D7971800304959 /* ServiceTermsViewController.swift */,
 				3798C1A42692917100616311 /* LoginEmailViewController.swift */,
+				CC3E414326D7972400304959 /* PersonalTermsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -733,6 +751,24 @@
 				ACD66BBF395AB04D1E8EA816 /* Pods-ZeepyTests.develop.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CC3E413426D76C2D00304959 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CC3E413626D76C4900304959 /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CC3E413526D76C3700304959 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC3E413826D76CC800304959 /* FirstOnboardingCollectionViewCell.swift */,
+				CC3E413A26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift */,
+				CC3E413C26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CC79C2A2262B1D7C00CA9A0A /* View */ = {
@@ -1082,6 +1118,7 @@
 				DA40E1E026B4CDED00102EED /* DealResponse.swift */,
 				DA66095D26BBAF1F0019D7F7 /* AuthResponse.swift */,
 				CC7C391D26C36DD70015CA0B /* UserResponse.swift */,
+				37A847A326D878B7005F1132 /* KakaoResponse.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1196,6 +1233,8 @@
 		DA4745C3261B297D00709883 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				CC3E413526D76C3700304959 /* Cell */,
+				CC3E413426D76C2D00304959 /* ViewController */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1443,6 +1482,7 @@
 				CC79C2B9262B1EAF00CA9A0A /* Then */,
 				DA2EDB7A262C5A7D00620B7E /* Kingfisher */,
 				CC0429C226C7E87F00C5D498 /* YPImagePicker */,
+				CC3E413F26D76D5E00304959 /* Lottie */,
 			);
 			productName = Zeepy;
 			productReference = DA61C3F425F32F440063263A /* Zeepy.app */;
@@ -1524,6 +1564,7 @@
 				CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */,
 				DA2EDB79262C5A7D00620B7E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = DA61C3F525F32F440063263A /* Products */;
 			projectDirPath = "";
@@ -1761,6 +1802,7 @@
 			files = (
 				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
+				37A847A426D878B7005F1132 /* KakaoResponse.swift in Sources */,
 				DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */,
 				DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
@@ -1773,8 +1815,10 @@
 				DAF4D3EC265A2ECD00B281E2 /* PostDetailViewModel.swift in Sources */,
 				DA4C7834265A01F00040010F /* PostModel.swift in Sources */,
 				DA40E1C526B12F0A00102EED /* NetworkLoggerPlugin.swift in Sources */,
+				CC3E414426D7972400304959 /* PersonalTermsViewController.swift in Sources */,
 				DA51E4FD26D4AF570049051C /* ModifyCommentView.swift in Sources */,
 				37F37E1426A858890031ADC3 /* MapSearchTableViewCell.swift in Sources */,
+				CC3E414226D7971800304959 /* ServiceTermsViewController.swift in Sources */,
 				CC0429C726CA495A00C5D498 /* DeleteAddressPopupViewController.swift in Sources */,
 				CCFDC6BE26A85AC80038ABD5 /* MypageViewController.swift in Sources */,
 				DA4744CA2619894800709883 /* LoadingHud.swift in Sources */,
@@ -1859,6 +1903,7 @@
 				CC8D7247264AD3C1002BB7FF /* ThirdSectionCollectionReusableView.swift in Sources */,
 				CCB6C10026AC31B5006E7032 /* FavoriteListViewController.swift in Sources */,
 				DAA2F4B026ABDE97003E9EAE /* DetailReviewViewContoller.swift in Sources */,
+				CC3E413726D76C4900304959 /* OnboardingViewController.swift in Sources */,
 				DA61C40225F32F440063263A /* Zeepy.xcdatamodeld in Sources */,
 				DA40E1CD26B1354C00102EED /* CommunityResponse.swift in Sources */,
 				DA66091B26BA296B0019D7F7 /* ConditionModel.swift in Sources */,
@@ -1896,11 +1941,13 @@
 				CC2BB29726B3C3FF007BC269 /* ReviewModel.swift in Sources */,
 				37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */,
 				DA40E1E326B4CE6A00102EED /* DealRouter.swift in Sources */,
+				CC3E413B26D76CD500304959 /* SecondOnboardingCollectionViewCell.swift in Sources */,
 				DAF4D3B3265A274800B281E2 /* CommentSectionModel.swift in Sources */,
 				CC7C390E26C12A770015CA0B /* AddressLimitPopupViewController.swift in Sources */,
 				DA51E50326D4C9AE0049051C /* ReportNoticeView.swift in Sources */,
 				A45F4F4C25FF278B00FCEACF /* UITextField+.swift in Sources */,
 				DA40E1D726B3D5CE00102EED /* Encodable+.swift in Sources */,
+				CC3E413926D76CC800304959 /* FirstOnboardingCollectionViewCell.swift in Sources */,
 				CC8D724C264AD3C9002BB7FF /* EmptySectionCollectionReusableView.swift in Sources */,
 				CC8D7238264A544A002BB7FF /* ReviewCollectionViewCell.swift in Sources */,
 				CCA65AB226D36F25000660BD /* ReportTableViewCell.swift in Sources */,
@@ -1917,6 +1964,7 @@
 				CCFDC6C426A9F97B0038ABD5 /* MypageTableViewCell.swift in Sources */,
 				DA2EDB6C262C58F500620B7E /* LookAroundViewController.swift in Sources */,
 				CC7C391226C218EA0015CA0B /* SelectAddressEmptyTableViewCell.swift in Sources */,
+				CC3E413D26D76CEC00304959 /* ThirdOnboardingCollectionViewCell.swift in Sources */,
 				A45F4FAB25FF360E00FCEACF /* UILabel+.swift in Sources */,
 				DA61C46125F3620D0063263A /* UIView+.swift in Sources */,
 				CC7C391426C24D630015CA0B /* ReviewPhotoViewController.swift in Sources */,
@@ -2612,6 +2660,14 @@
 				kind = branch;
 			};
 		};
+		CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.3;
+			};
+		};
 		CC79C2B8262B1EAF00CA9A0A /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
@@ -2643,6 +2699,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC0429C126C7E87E00C5D498 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
 			productName = YPImagePicker;
+		};
+		CC3E413F26D76D5E00304959 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC3E413E26D76D5E00304959 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		CC79C2B9262B1EAF00CA9A0A /* Then */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -317,6 +317,12 @@ extension MypageViewController {
       }, onCompleted: {}).disposed(by: disposeBag)
   }
   
+  private func mailToUs() {
+    let email = "zeepy_official@gmail.com"
+    if let url = URL(string: "mailto:\(email)") {
+      UIApplication.shared.open(url)
+    }
+  }
   // MARK: - Action Helpers
   
   @objc
@@ -394,8 +400,7 @@ extension MypageViewController: UITableViewDataSource {
       self.navigationController?.pushViewController(modifyVC, animated: true)
     }
     if indexPath.row == 1 {
-      let reportVC = ReportViewController()
-      self.navigationController?.pushViewController(reportVC, animated: true)
+      self.mailToUs()
     }
     if indexPath.row == 2 {
       let creditVC = CreditViewController()

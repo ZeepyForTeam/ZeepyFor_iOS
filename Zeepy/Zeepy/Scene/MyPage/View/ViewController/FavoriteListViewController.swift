@@ -278,6 +278,17 @@ extension FavoriteListViewConroller {
     }
     return roomCountSet
   }
+  
+  func registerButtonClicked() {
+    self.tabBarController?.selectedIndex = 2
+  }
+  
+  func didSelectCell(buildingID: Int) {
+    let navigation = self.navigationController
+    guard let nextViewController = LookAroundDetailViewController(nibName: nil, bundle: nil, model: buildingID) else { return }
+    nextViewController.hidesBottomBarWhenPushed = true
+    navigation?.pushViewController(nextViewController, animated: true)
+  }
 }
 
 // MARK: - reviewTableView Delegate
@@ -335,4 +346,10 @@ extension FavoriteListViewConroller: UITableViewDataSource {
     self.viewWillLayoutSubviews()
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let buildingID = self.userLikeModel?.content[indexPath.row].id
+    if let id = buildingID {
+      self.didSelectCell(buildingID: id)
+    }
+  }
 }

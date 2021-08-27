@@ -86,5 +86,11 @@ extension EmptyManageAddressTableViewCell {
     if let rootVC = rootViewController as? ManageAddressViewController {
       rootVC.registerButtonClicked()
     }
+    if let rootVC = rootViewController as? ManageReviewViewController {
+      rootVC.registerButtonClicked()
+    }
+    if let rootVC = rootViewController as? FavoriteListViewConroller {
+      rootVC.registerButtonClicked()
+    }
   }
 }

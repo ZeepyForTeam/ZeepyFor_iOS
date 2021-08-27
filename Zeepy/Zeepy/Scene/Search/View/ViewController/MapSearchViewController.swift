@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Alamofire
 
 class MapSearchViewController: UIViewController {
     
@@ -50,24 +51,16 @@ class MapSearchViewController: UIViewController {
     //    var deleteTableViewCellLabel = UILabel().then{
     //        $0.text = "최근 검색 기록 삭제"
     //    }
-  private let naviView = CustomNavigationBar().then {
-    $0.setUp(title: "지도")
-  }
   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchRecordTableView.delegate = self
         self.searchRecordTableView.dataSource = self
         self.view.backgroundColor = .white
-        self.view.adds([searchView, searchRecordTableView, naviView])
+        self.view.adds([searchView, searchRecordTableView])
         addConstraints()
         cellsRegister()
         lastRegister()
-        setupNavigation()
-    }
-    private func setupNavigation() {
-      self.setupNavigationBar(.white)
-      self.setupNavigationItem(titleText: "지도")
     }
     
     func cellsRegister() {
@@ -80,14 +73,10 @@ class MapSearchViewController: UIViewController {
         return searchContent
     }
     func addConstraints(){
-        naviView.snp.makeConstraints{
-          $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-          $0.height.equalTo(68)
-        }
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-            $0.top.equalTo(naviView.snp.bottom)//?
-            $0.height.equalTo(40)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide)//?
+            $0.height.equalTo(30)
         }
         searchView.addSubview(searchImageView)
         searchView.addSubview(searchTextField)
@@ -112,6 +101,7 @@ class MapSearchViewController: UIViewController {
         }
         //        makeDeleteTableViewCell()
     }
+    
     @objc func TableViewCellSelected(sender: UIButton)-> String{
         sender.backgroundColor = UIColor(red: 95.0 / 255.0, green: 134.0 / 255.0, blue: 241.0 / 255.0, alpha: 0.15)
 //        sender.addSubview(shadowView)
