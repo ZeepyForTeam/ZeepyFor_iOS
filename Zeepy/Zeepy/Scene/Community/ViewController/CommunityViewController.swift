@@ -203,7 +203,7 @@ extension CommunityViewController : UICollectionViewDelegate{
       .map{[unowned self] in self.segmentCollectionView.contentOffset.x}
       .bind(onNext: { [unowned self] in
         let itemIndex = Int(($0 / UIScreen.main.bounds.width).rounded())
-        let indicatorWidth = 167
+        let indicatorWidth= 167
         UIView.animate(withDuration: 0.2) {
           setTabView(tabIndex: itemIndex)
           indicator.frame.origin.x = CGFloat(itemIndex) * (CGFloat(indicatorWidth + offset * 2)) + CGFloat(offset)
