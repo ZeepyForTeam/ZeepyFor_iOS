@@ -105,22 +105,27 @@ extension LookAroundViewController {
     let outputs = viewModel.transForm(inputs: inputs)
     
     outputs.buildingUsecase
-      .filter{!$0.isEmpty}
+//      .map{ items -> [BuildingModel] in
+//        if items.isEmpty {
+//          return [.init(buildingId: -1, buildingName: "", buildingImage: nil, ownderInfo: .bad, review: .init(reviewrName: "", review: ""), filters: [])]
+//        }
+//        else {
+//          return items
+//        }
+//      }
       .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
                                    cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
-        cell.bind(model: data)
-        print(row)
-        if row > 18 * ((self?.currentPage ?? 0) + 1) {
-          
-          self?.loadViewTrigger.onNext((self?.currentPage ?? 0) + 1)
+        if data.buildingId == -1 {
+          cell.bind()
         }
-      }.disposed(by: disposeBag)
-    outputs.buildingUsecase
-      .filter{$0.isEmpty}
-      .map{_ in return ["empty"]}
-      .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
-                                   cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
-        cell.bind()
+        else {
+          cell.bind(model: data)
+          print(row)
+          if row > 18 * ((self?.currentPage ?? 0) + 1) {
+            
+            self?.loadViewTrigger.onNext((self?.currentPage ?? 0) + 1)
+          }
+        }
       }.disposed(by: disposeBag)
     loadViewTrigger.bind{[weak self] page in
       self?.currentPage = page
@@ -143,6 +148,8 @@ extension LookAroundViewController {
     filterButton.rx.tap.bind{[weak self] in
       if self?.filterButton.isSelected == true {
         self?.conditionFilter.onNext(nil)
+        self?.filterButton.isSelected = false
+        
       }
       else {
         let vc = ConditionViewController(nibName: nil, bundle: nil)

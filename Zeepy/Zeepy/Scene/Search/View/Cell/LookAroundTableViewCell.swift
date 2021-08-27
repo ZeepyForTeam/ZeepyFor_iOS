@@ -61,6 +61,9 @@ class LookAroundTableViewCell: UITableViewCell {
     
     // Configure the view for the selected state
   }
+  override func prepareForReuse() {
+    super.prepareForReuse()
+  }
   func bind() {
     setupCollectionView()
     setEmptyView()
@@ -68,7 +71,7 @@ class LookAroundTableViewCell: UITableViewCell {
   func bind(model : BuildingModel) {
     setupCollectionView()
     layout()
-    
+
     self.buildingName.text = model.buildingName
     self.userName.text = model.review.reviewrName
     self.statusLabel.text = model.ownderInfo.rawValue
@@ -156,6 +159,16 @@ class LookAroundTableViewCell: UITableViewCell {
       $0.top.equalTo(vaildationLabel.snp.bottom).offset(8)
       $0.bottom.equalToSuperview()
     }
+    buildingName.isHidden = false
+    userName.isHidden = false
+    ownerStatus.isHidden = false
+    statusImage.isHidden = false
+    statusLabel.isHidden = false
+    vaildateBuilding.isHidden = false
+    vaildationLabel.isHidden = false
+    //optionsCollectionView.isHidden = true
+    thumbNail.isHidden = false
+    emptyView.isHidden = true
   }
   private func setEmptyView() {
     buildingName.isHidden = true
@@ -165,9 +178,11 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = true
     vaildateBuilding.isHidden = true
     vaildationLabel.isHidden = true
-    optionsCollectionView.isHidden = true
+    //optionsCollectionView.isHidden = true
     thumbNail.isHidden = true
+    emptyView.isHidden = false
     cellBackground.add(emptyView)
+    
     emptyView.snp.makeConstraints{
       $0.centerX.centerY.equalToSuperview()
     }
