@@ -21,7 +21,7 @@ target 'Zeepy' do
   pod 'RxKakaoSDKAuth'  # 카카오 로그인
   pod 'RxKakaoSDKUser'  # 사용자 관리
   pod 'naveridlogin-sdk-ios' #네이버 로그인
-
+  pod 'DLRadioButton', '~> 1.4'
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
