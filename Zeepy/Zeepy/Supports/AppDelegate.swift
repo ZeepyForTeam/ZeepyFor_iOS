@@ -59,9 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = TabbarViewContorller()
     print(UserDefaultHandler.loginType)
     print(UserDefaultHandler.userId)
-    UserManager.shared.fetchUserAddress()
     rootNav.viewControllers = [rootVC]
     if LoginManager.shared.isLogin() == true {
+      UserManager.shared.fetchUserAddress()
       window?.rootViewController = rootNav
       window?.makeKeyAndVisible()
     }
