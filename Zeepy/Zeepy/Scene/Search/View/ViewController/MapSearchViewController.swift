@@ -16,22 +16,29 @@ import RxSwift
 import Moya
 
 class MapSearchViewController: BaseViewController {
-
+  
   private let s3service = S3Service(
     provider: MoyaProvider<S3Router>(
       plugins: [NetworkLoggerPlugin(verbose: true)]))
   
   private var kakaoAddressModel: ResponseKakaoAddressModel?
+  /// history = 0, search = 1
+  var historyOrSearch = 0
   
   private let navigationView = CustomNavigationBar()
   var selectedName = ""
-  var searchRecordList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
+  var searchRecordList: [MTMapPointGeo] = []
+  var searchRecordPlaceList: [String] = []
   //    var searchRecommendList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
   
   var searchView = UIView().then{
     $0.backgroundColor = .white
     $0.setRounded(radius: 15)
     $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
+  }
+  
+  var betweenBackgroundView = UIView().then {
+    $0.backgroundColor = .whiteGray
   }
   
   var searchImageView = UIImageView().then{
@@ -55,7 +62,6 @@ class MapSearchViewController: BaseViewController {
     $0.rowHeight = UITableView.automaticDimension
     $0.separatorStyle = .none
     $0.isScrollEnabled = false
-    $0.setRounded(radius: 16)
   }
   var shadowView = UIView().then{
     $0.backgroundColor = .mainBlue
@@ -74,11 +80,12 @@ class MapSearchViewController: BaseViewController {
     self.searchRecordTableView.dataSource = self
     self.view.backgroundColor = .white
     navigationView.naviTitle.text = "지도"
-    self.view.adds([navigationView, searchView, searchRecordTableView])
+    self.view.adds([navigationView, searchView, betweenBackgroundView, searchRecordTableView])
     addConstraints()
     self.view.bringSubviewToFront(searchView)
     cellsRegister()
     lastRegister()
+    fetchHistory()
     searchButton.addTarget(self, action: #selector(self.searchButtonClicked), for: .touchUpInside)
   }
   
@@ -90,6 +97,9 @@ class MapSearchViewController: BaseViewController {
   }
   func returnSearchContent(searchContent: String) -> String{
     return searchContent
+  }
+  func reloadTableView() {
+    self.searchRecordTableView.reloadData()
   }
   func addConstraints(){
     navigationView.snp.makeConstraints {
@@ -117,9 +127,16 @@ class MapSearchViewController: BaseViewController {
       $0.top.bottom.equalTo(searchView)
       $0.trailing.equalToSuperview().inset(5)
     }
+    betweenBackgroundView.snp.makeConstraints {
+      $0.top.equalTo(self.searchView.snp.centerY)
+      $0.leading.trailing.equalTo(self.searchView)
+      $0.height.equalTo(20)
+    }
+    searchRecordTableView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    searchRecordTableView.layer.cornerRadius = 16
     searchRecordTableView.snp.makeConstraints{
       $0.leading.trailing.equalTo(self.searchView)
-      $0.top.equalTo(searchView.snp.centerY)
+      $0.top.equalTo(betweenBackgroundView.snp.bottom)
       $0.bottom.equalToSuperview()
     }
     //        makeDeleteTableViewCell()
@@ -136,6 +153,7 @@ class MapSearchViewController: BaseViewController {
             let data = try decoder.decode(ResponseKakaoAddressModel.self,
                                           from: response.data)
             self.kakaoAddressModel = data
+            self.historyOrSearch = 1
             self.searchRecordTableView.reloadData()
           }
           catch {
@@ -145,6 +163,12 @@ class MapSearchViewController: BaseViewController {
       }, onError: { error in
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)
+  }
+  
+  private func fetchHistory() {
+    self.searchRecordList = UserDefaultHandler.history ?? []
+    self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
+    self.reloadTableView()
   }
   @objc func TableViewCellSelected(sender: UIButton)-> String{
     sender.backgroundColor = UIColor(red: 95.0 / 255.0, green: 134.0 / 255.0, blue: 241.0 / 255.0, alpha: 0.15)
@@ -163,21 +187,51 @@ class MapSearchViewController: BaseViewController {
 
 extension MapSearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 40
+    if historyOrSearch == 0 && indexPath.row == searchRecordList.count-1 {
+      return 21
+    }
+    else if historyOrSearch == 1 && indexPath.row == 5 {
+      return 21
+    }
+    else {
+      return 30
+    }
   }
 }
 
 extension MapSearchViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.searchRecordList.count + 1
+    if historyOrSearch == 0 && self.searchRecordList.count >= 5 {
+      return 6
+    }
+    else if historyOrSearch == 0 && self.searchRecordList.count < 5 {
+      return self.searchRecordList.count + 1
+    }
+    else {
+      return 6
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row < searchRecordList.count {
+    if historyOrSearch == 0 && indexPath.row == searchRecordList.count {
+      guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
+      MapSearchTableViewCell.addConstraints()
+      return MapSearchTableViewCell
+    }
+    
+    else if historyOrSearch == 1 && indexPath.row == 5 {
+      guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
+      MapSearchTableViewCell.addConstraints()
+      return MapSearchTableViewCell
+    }
+    
+    else if historyOrSearch == 1 {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell else { return UITableViewCell() }
       let list = self.kakaoAddressModel?.documents[indexPath.row]
       MapSearchTableViewCell.addConstraints()
+      MapSearchTableViewCell.rootViewController = self
+      MapSearchTableViewCell.selectionStyle = .blue
       MapSearchTableViewCell.cellContentView.setTitle(list?.placeName, for: .normal)
       MapSearchTableViewCell.cellContentView.setTitleColor(.clear, for: .normal)
       MapSearchTableViewCell.searchRecordLabel.setupLabel(text: list?.placeName ?? "", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
@@ -185,35 +239,62 @@ extension MapSearchViewController: UITableViewDataSource {
       return MapSearchTableViewCell
       
     }
-    else {
-      guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
+    
+    else if historyOrSearch == 0 {
+      guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell else { return UITableViewCell()
+      }
+      let list = self.searchRecordPlaceList[indexPath.row]
       MapSearchTableViewCell.addConstraints()
+      MapSearchTableViewCell.rootViewController = self
+      MapSearchTableViewCell.selectionStyle = .blue
+      MapSearchTableViewCell.cellContentView.setTitle(list, for: .normal)
+      MapSearchTableViewCell.cellContentView.setTitleColor(.clear, for: .normal)
+      MapSearchTableViewCell.searchRecordLabel.setupLabel(text: list, color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+      MapSearchTableViewCell.cellContentView.addTarget(self, action: #selector(TableViewCellSelected), for: .touchUpInside)
       return MapSearchTableViewCell
     }
-    tableView.reloadData()
-    tableView.reloadInputViews()
+    else {
+      return UITableViewCell()
+    }
   }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.row < searchRecordList.count {
-      let list = self.kakaoAddressModel?.documents[indexPath.row]
-      let navigationCount = (self.navigationController?.children.count)!
-      let mapVC = self.navigationController?.children[navigationCount-2] as? MapViewController
+    
+    let navigationCount = (self.navigationController?.children.count)!
+    let mapVC = self.navigationController?.children[navigationCount-2] as? MapViewController
+    
+    if indexPath.row < 5 && historyOrSearch == 1 {
       let docs = self.kakaoAddressModel?.documents[indexPath.row]
       if let doc = docs {
-        mapVC?.searchCoordinates = MTMapPointGeo(latitude: Double(doc.x)!, longitude: Double(doc.y)!)
+        let geo = MTMapPointGeo(latitude: Double(doc.x)!, longitude: Double(doc.y)!)
+        let geoPlace = doc.placeName
+        mapVC?.searchCoordinates = geo
         mapVC?.reAdjustMapCenter()
-        self.selectedName = list?.placeName ?? ""
+        self.searchRecordList.append(geo)
+        UserDefaultHelper<[MTMapPointGeo]>.set(self.searchRecordList, forKey: .history)
+      
+        self.searchRecordPlaceList.append(geoPlace)
+        UserDefaultHelper<String>.set(geoPlace, forKey: .historyName)
         self.navigationController?.popViewController(animated: true)
       }
+    }
+    
+    else if indexPath.row < searchRecordList.count && historyOrSearch == 0 {
+      let geo = self.searchRecordList[indexPath.row]
+      mapVC?.searchCoordinates = geo
+      mapVC?.reAdjustMapCenter()
+        self.navigationController?.popViewController(animated: true)
     }
     else {
       let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell
       MapSearchTableViewCell!.backgroundColor = .mainBlue
       searchRecordList.removeAll()
+      searchRecordPlaceList.removeAll()
+      UserDefaultHelper<[MTMapPointGeo]>.set(self.searchRecordList, forKey: .history)
+      UserDefaultHelper<String>.set(self.searchRecordPlaceList, forKey: .historyName)
+      fetchHistory()
     }
     //        returnSearchContent(searchContent: searchRecordList[indexPath.row])
-    tableView.reloadData()
-    tableView.awakeFromNib()
   }
 }
 
