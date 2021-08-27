@@ -54,7 +54,9 @@ extension LookAroundViewModel {
     let filterUsecase = bindTrigger.flatMapLatest{ _ -> Observable<[FilterModel]> in
       return weakSelf?.configureCurrentFilter(tapAction: inputs.filterSelect, origin: filterOriginUsecase) ?? .empty()
     }
-    return .init(buildingUsecase: buildingUsecase,
+    return .init(
+      buildingUsecase: buildingUsecase,
+//      buildingUsecase: Observable.just([]),
                  buildingDetailParam: inputs.buildingSelect.map{$0.1},
                  filterUsecase: filterUsecase
                  )

@@ -11,6 +11,10 @@ import RxCocoa
 import Kingfisher
 import Then
 class LookAroundTableViewCell: UITableViewCell {
+  private let emptyView = UILabel().then {
+    $0.setupLabel(text: "아직 등록된 건물이 없어요 :(", color: .grayText, font: .nanumRoundExtraBold(fontSize: 14))
+    $0.isHidden = true
+  }
   private let cellBackground = UIView().then{
     $0.backgroundColor = .gray244
     $0.setRounded(radius: 10)
@@ -47,16 +51,20 @@ class LookAroundTableViewCell: UITableViewCell {
   }
   let disposeBag = DisposeBag()
   private var optionsCollectionView: UICollectionView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    
+    // Configure the view for the selected state
+  }
+  func bind() {
+    setupCollectionView()
+    setEmptyView()
+  }
   func bind(model : BuildingModel) {
     setupCollectionView()
     layout()
@@ -99,14 +107,14 @@ class LookAroundTableViewCell: UITableViewCell {
       $0.centerY.centerX.equalToSuperview()
     }
     self.cellBackground.adds([buildingName,
-                           userName,
-                           ownerStatus,
-                           statusImage,
-                           statusLabel,
-                           vaildateBuilding,
-                           vaildationLabel,
-                           optionsCollectionView,
-                           thumbNail])
+                              userName,
+                              ownerStatus,
+                              statusImage,
+                              statusLabel,
+                              vaildateBuilding,
+                              vaildationLabel,
+                              optionsCollectionView,
+                              thumbNail])
     thumbNail.snp.makeConstraints{
       $0.width.height.equalTo(92)
       $0.centerY.equalToSuperview()
@@ -147,6 +155,21 @@ class LookAroundTableViewCell: UITableViewCell {
       $0.trailing.equalTo(thumbNail.snp.leading).offset(-16)
       $0.top.equalTo(vaildationLabel.snp.bottom).offset(8)
       $0.bottom.equalToSuperview()
+    }
+  }
+  private func setEmptyView() {
+    buildingName.isHidden = true
+    userName.isHidden = true
+    ownerStatus.isHidden = true
+    statusImage.isHidden = true
+    statusLabel.isHidden = true
+    vaildateBuilding.isHidden = true
+    vaildationLabel.isHidden = true
+    optionsCollectionView.isHidden = true
+    thumbNail.isHidden = true
+    cellBackground.add(emptyView)
+    emptyView.snp.makeConstraints{
+      $0.centerX.centerY.equalToSuperview()
     }
   }
 }
