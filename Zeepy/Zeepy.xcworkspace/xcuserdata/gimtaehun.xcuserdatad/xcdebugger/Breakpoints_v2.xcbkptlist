@@ -52,5 +52,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "548AD341-78EB-4AD9-B44B-8CD99A170A9C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zeepy/Scene/Login/View/ViewController/LoginEmailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "getNaverInfo()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "548AD341-78EB-4AD9-B44B-8CD99A170A9C - 6c3b6530e957ad62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Zeepy_dev.LoginEmailViewController.getNaverInfo() -&gt; ()"
+                  moduleName = "Zeepy.dev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gimtaehun/Desktop/ZeepyFor_iOS/Zeepy/Zeepy/Scene/Login/View/ViewController/LoginEmailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "844">
+               </Location>
+               <Location
+                  uuid = "548AD341-78EB-4AD9-B44B-8CD99A170A9C - 6186f00d333b0456"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in Zeepy_dev.LoginEmailViewController.getNaverInfo() -&gt; ()"
+                  moduleName = "Zeepy.dev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gimtaehun/Desktop/ZeepyFor_iOS/Zeepy/Zeepy/Scene/Login/View/ViewController/LoginEmailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "319"
+                  endingLineNumber = "319"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EACA6AC-88DB-4D89-BF16-8F7CF74B3B29"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zeepy/Scene/Login/View/ViewController/LoginEmailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "getNaverInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

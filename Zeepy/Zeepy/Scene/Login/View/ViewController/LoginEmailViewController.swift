@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import AuthenticationServices
 import CryptoKit
+import NaverThirdPartyLogin
+import Alamofire
 
 class LoginEmailViewController: BaseViewController {
   
@@ -84,6 +86,8 @@ class LoginEmailViewController: BaseViewController {
   let naverLoginButton = UIButton().then{
     $0.setImage(UIImage(named: "logoNaver"), for: .normal)
   }
+  private let appleRequest = PublishSubject<AppleLoginParam>()
+  private let naverToken = PublishSubject<String>()
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.addSubview(contentView)
@@ -110,7 +114,9 @@ class LoginEmailViewController: BaseViewController {
     let input = LoginViewModel.Input(emailText: idTextField.rx.text.orEmpty.asObservable(),
                                      passwordText: pwTextField.rx.text.orEmpty.asObservable(),
                                      loginButtonDidTap: loginButton.rx.tap.asObservable(),
-                                     kakaoLogin: kakaoLoginButton.rx.tap.asObservable())
+                                     kakaoLogin: kakaoLoginButton.rx.tap.asObservable(),
+                                     appleLogin: appleRequest,
+                                     naverLogin: naverToken)
     let output = viewModel.transform(inputs: input)
     output.isLoginSuccess.bind{[weak self] result in
       switch result {
@@ -143,7 +149,7 @@ class LoginEmailViewController: BaseViewController {
         })
       }
     }.disposed(by: disposeBag)
-    output.socialLoginSuccess.bind{[weak self] result in
+    output.kakaoLoginResult.bind{[weak self] result in
       switch result {
       case .success(let result) :
         LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .kakao, userId: result.userId)
@@ -174,10 +180,77 @@ class LoginEmailViewController: BaseViewController {
         })
       }
     }.disposed(by: disposeBag)
+    output.appleLoginResult.bind{[weak self] result in
+      switch result {
+      case .success(let result) :
+        LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .apple, userId: result.userId)
+        let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+        let rootVC = TabbarViewContorller()
+        
+        rootNav.viewControllers = [rootVC]
+        rootNav.modalPresentationStyle = .fullScreen
+        self?.present(rootNav, animated: true, completion: nil)
+        
+      case .failure(let errorType) :
+        var errMessage : String = ""
+        
+        switch errorType {
+        case .auth :
+          errMessage = "잘못된 이메일 혹은 비밀번호입니다."
+        case .notfound:
+          errMessage = "존재하지 않는 계정입니다."
+        case .server:
+          errMessage = "서버 점검 중입니다."
+        default :
+          errMessage = "서버 오류가 발생했습니다."
+        }
+        MessageAlertView.shared.showAlertView(title: errMessage, grantMessage: "확인",okAction: {
+          self?.idTextField.text = ""
+          self?.pwTextField.text = ""
+        })
+      }
+    }.disposed(by: disposeBag)
+    output.naverLoginResult.bind{[weak self] result in
+      switch result {
+      case .success(let result) :
+        LoginManager.shared.makeLoginStatus(accessToken: result.accessToken, refreshToken: result.refreshToken, loginType: .naver, userId: result.userId)
+        let rootNav = UINavigationController()
+        rootNav.navigationBar.isHidden = true
+        let rootVC = TabbarViewContorller()
+        
+        rootNav.viewControllers = [rootVC]
+        rootNav.modalPresentationStyle = .fullScreen
+        self?.present(rootNav, animated: true, completion: nil)
+        
+      case .failure(let errorType) :
+        var errMessage : String = ""
+        
+        switch errorType {
+        case .auth :
+          errMessage = "잘못된 이메일 혹은 비밀번호입니다."
+        case .notfound:
+          errMessage = "존재하지 않는 계정입니다."
+        case .server:
+          errMessage = "서버 점검 중입니다."
+        default :
+          errMessage = "서버 오류가 발생했습니다."
+        }
+        MessageAlertView.shared.showAlertView(title: errMessage, grantMessage: "확인",okAction: {
+          self?.idTextField.text = ""
+          self?.pwTextField.text = ""
+        })
+      }
+    }.disposed(by: disposeBag)
+    naverLoginButton.rx.tap.bind{[weak self] in
+      self?.naverLogin()
+    }.disposed(by: disposeBag)
     appleLoginButton.rx.tap.bind{ [weak self] in
       self?.appleLogin()
     }.disposed(by: disposeBag)
   }
+  
+  
   
   private func randomNonceString(length: Int = 32) -> String {
     precondition(length > 0)
@@ -220,6 +293,45 @@ class LoginEmailViewController: BaseViewController {
 
     return hashString
   }
+  let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+
+  private func naverLogin() {
+//    loginInstance?.requestDeleteToken()
+    loginInstance?.delegate = self
+    loginInstance?.requestThirdPartyLogin()
+  }
+  private func getNaverInfo() {
+      guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+      
+      if !isValidAccessToken {
+        return
+      }
+      
+      guard let tokenType = loginInstance?.tokenType else { return }
+      guard let accessToken = loginInstance?.accessToken else { return }
+      let urlStr = "https://openapi.naver.com/v1/nid/me"
+      let url = URL(string: urlStr)!
+      
+      let authorization = "\(tokenType) \(accessToken)"
+      
+      let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+      
+      req.responseJSON { [weak self] response in
+        switch response.result {
+        case .success(let value) :
+          print(value)
+          guard let result = value as? [String: Any] else { return }
+          guard let object = result["response"] as? [String: Any] else { return }
+          guard let name = object["name"] as? String else { return }
+          guard let email = object["email"] as? String else { return }
+          print(accessToken)
+          self?.naverToken.onNext(accessToken)
+        case .failure(let err) :
+          self?.loginInstance?.requestThirdPartyLogin()
+          print(err)
+        }
+      }
+    }
   private func appleLogin() {
     let nonce = randomNonceString()
 //    신규발급
@@ -347,17 +459,22 @@ extension LoginEmailViewController : ASAuthorizationControllerDelegate {
       let userIdentifier = appleIDCredential.user
       let fullName = appleIDCredential.fullName
       let email = appleIDCredential.email
-      guard let idToken = appleIDCredential.identityToken else {return}
-      let tokenStr = String(data: idToken, encoding: .utf8)
-      guard let code = appleIDCredential.authorizationCode else { return }
-      let codeStr = String(data: code, encoding: .utf8)
+      guard
+        let idToken = appleIDCredential.identityToken ,
+        let tokenStr = String(data: idToken, encoding: .utf8),
+        let code = appleIDCredential.authorizationCode,
+        let codeStr = String(data: code, encoding: .utf8)  else { return }
       let state = appleIDCredential.state
       print("User ID : \(userIdentifier)")
       print("token: \(tokenStr)")
       print("refresh: \(codeStr)")
       print("state: \(state)")
-      
-      
+
+      let param = AppleLoginParam(code: codeStr,
+                                  id_token: tokenStr,
+                                  state: state,
+                                  user: userIdentifier)
+      appleRequest.onNext(param)
     default:
       break
     }
@@ -367,5 +484,25 @@ extension LoginEmailViewController : ASAuthorizationControllerDelegate {
   func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
     // Handle error.
     
+  }
+}
+extension LoginEmailViewController: NaverThirdPartyLoginConnectionDelegate {
+  // 로그인 버튼을 눌렀을 경우 열게 될 브라우저
+  func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
+  }
+  // 로그인에 성공했을 경우 호출
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+      print("[Success] : Success Naver Login")
+      getNaverInfo()
+    }
+  // 접근 토큰 갱신
+  func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+    
+  }
+  func oauth20ConnectionDidFinishDeleteToken() {
+    loginInstance?.requestDeleteToken()
+  }
+  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+    print("[Error] :", error.localizedDescription)
   }
 }
