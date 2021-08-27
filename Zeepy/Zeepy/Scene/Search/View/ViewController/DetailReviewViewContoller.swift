@@ -16,6 +16,8 @@ class DetailReviewViewContoller : BaseViewController {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
   private let viewModel = ReviewDetailViewModel()
+  private let width = 109 * (UIScreen.main.bounds.width / 375)
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -88,10 +90,10 @@ class DetailReviewViewContoller : BaseViewController {
   private var collectionView : UICollectionView!
   private func setCollectionView() {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 72, height: 72)
+    layout.itemSize = CGSize(width: width, height: width)
     layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 9
-    layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    layout.minimumLineSpacing = 8
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.register(ReusableSimpleImageCell.self,
@@ -169,12 +171,12 @@ class DetailReviewViewContoller : BaseViewController {
       $0.centerX.equalToSuperview()
       $0.leading.equalTo(reviewerName)
       $0.top.equalTo(ownerReviewNotice.snp.bottom).offset(8)
-  
-      $0.height.equalTo(80)
-    }
+      }
     ownerReview.snp.makeConstraints{
       $0.centerX.centerY.equalToSuperview()
       $0.leading.trailing.equalTo(12)
+      $0.top.equalToSuperview().offset(10)
+      $0.bottom.equalToSuperview().offset(-10)
     }
     houseReviewNotice.snp.makeConstraints{
       $0.top.equalTo(ownerReviewBackground.snp.bottom).offset(32)
@@ -184,12 +186,13 @@ class DetailReviewViewContoller : BaseViewController {
       $0.centerX.equalToSuperview()
       $0.leading.equalTo(reviewerName)
       $0.top.equalTo(houseReviewNotice.snp.bottom).offset(8)
-      $0.height.equalTo(80)
 
     }
     houseReview.snp.makeConstraints{
       $0.centerX.centerY.equalToSuperview()
       $0.leading.trailing.equalTo(12)
+      $0.top.equalToSuperview().offset(10)
+      $0.bottom.equalToSuperview().offset(-10)
     }
     photoReviewNotice.snp.makeConstraints{
 
@@ -263,11 +266,10 @@ class DetailReviewViewContoller : BaseViewController {
           $0.height.equalTo(height + 32)
         }
       }.disposed(by: disposeBag)
-    let width = 109 * (UIScreen.main.bounds.width / 375)
     output.reviewInfo.map{$0.imageUrls ?? [] }
       .bind(to: collectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
-                                           cellType: ReusableSimpleImageCell.self)) {row, data, cell in
-      cell.bindCell(model: data, width: width)
+                                           cellType: ReusableSimpleImageCell.self)) {[weak self] row, data, cell in
+        cell.bindCell(model: data, width: self?.width ?? 109)
     }.disposed(by: disposeBag)
     output.reviewInfo.bind{[weak self ] reviewModel in
       let attributedString = NSMutableAttributedString(string: "\(reviewModel.user.name)님의 후기", attributes: [
@@ -280,23 +282,6 @@ class DetailReviewViewContoller : BaseViewController {
       self?.ownerReview.text = "\(reviewModel.lessorReview ?? "")"
       self?.houseReview.text = "\(reviewModel.review ?? "")"
     }.disposed(by: disposeBag)
-    
-    ownerReview.rx.observeWeakly(CGSize.self, "contentSize")
-      .compactMap{$0?.height}
-      .distinctUntilChanged()
-      .bind{ [weak self] height in
-        self?.ownerReviewBackground.snp.updateConstraints{
-          $0.height.equalTo(height)
-        }
-      }.disposed(by: disposeBag)
-    houseReview.rx.observeWeakly(CGSize.self, "contentSize")
-      .compactMap{$0?.height}
-      .distinctUntilChanged()
-      .bind{ [weak self] height in
-        self?.houseReviewBackground.snp.updateConstraints{
-          $0.height.equalTo(height)
-        }
-      }.disposed(by: disposeBag)
     writeReviewBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()
       self?.navigationController?.pushViewController(vc, animated: true)

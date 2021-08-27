@@ -236,8 +236,8 @@ extension CommunityViewController : UICollectionViewDelegate{
     setupCollectionView()
     bind()
   }
-  private func fromHome(type: PostType) {
-    
+  func fromHome(type: PostType) {
+    selectedType.onNext(type)
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -253,7 +253,6 @@ extension CommunityViewController : UICollectionViewDelegate{
                                     postFilterCollectionView.rx.modelSelected((PostType, Bool).self))
     let input = CommunityViewModel.Input(currentTab:currentTab,
                                          loadView: loadViewTrigger,
-                                         filterSelect: selection,
                                          filterSelect2: selectedType,
                                          resetAddress: resetAddress,
                                          pageNumber: pagenation)
