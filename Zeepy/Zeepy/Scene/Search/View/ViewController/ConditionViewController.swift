@@ -74,9 +74,19 @@ class ConditionViewController: UIViewController {
                                     MoneyModel(price: 750000, name: "75만"),
                                     MoneyModel(price: 1000000, name: "100만"),
                                     MoneyModel(price: 1250000, name: "125만"),
-                                    MoneyModel(price: 1500000, name: "150만"),
                                     MoneyModel(price: nil, name: nil)]
     func variableForServer() {
+        
+        struct BuildingRequestModel {
+          let eqRoomCount: String? //원룸 투룸 Type 물어보기
+          let geDeposit: Int?
+          let geMonthly: Int?
+          let inFurnitures: [String]?
+          let leDeposit: Int?
+          let leMonthly: Int?
+          let neType: String? // 거래종류
+        }
+            
         print("this is variableForServer")
         
         var selectedDepositMin : Int?
@@ -86,7 +96,7 @@ class ConditionViewController: UIViewController {
         
         var selectedBuilding : String?
         var selectedTransaction : String?
-        var selectedOptions : [String?]
+        var selectedOptions : [String]?
         
         selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName ?? ""}.joined()
         selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName ?? ""}.joined()
@@ -104,9 +114,8 @@ class ConditionViewController: UIViewController {
         print("ge Deposit", selectedDepositMin)
         print("le Monthly", selectedRentMax)
         print("ge Monthly", selectedRentMin)
-//        print("this is selectedTransaction", selectedTransaction)
-//        print("this is selectedTransaction", selectedTransaction)
         
+        var buildingRequest = [BuildingRequestModel(eqRoomCount: selectedBuilding, geDeposit: selectedDepositMin, geMonthly: selectedRentMin, inFurnitures: selectedOptions, leDeposit: selectedDepositMax, leMonthly: selectedRentMax, neType: selectedTransaction)]
         
     }
     // MARK: - Variable
@@ -309,7 +318,6 @@ class ConditionViewController: UIViewController {
         addConstraints()
         self.initCollectionView()
         setupNavigation()
-        variableForServer()
     }
     private func setupNavigation() {
         self.setupNavigationBar(.white)
@@ -317,13 +325,6 @@ class ConditionViewController: UIViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    func depositIndexToNumber(index : Int) -> Int?{
-        return depositRange[index].price
-    }
-    
-    func rentIndexToNumber(index: Int) -> Int?{
-        return rentRange[index].price
     }
     
     func addConstraints()
@@ -548,6 +549,8 @@ class ConditionViewController: UIViewController {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
+        priceRange[0].depositMax = depositRange[maxValue].price
+        priceRange[0].depositMin = depositRange[minValue].price
         
     }
     
@@ -583,8 +586,6 @@ class ConditionViewController: UIViewController {
         }
         priceRange[0].rentMax = rentRange[maxValue].price
         priceRange[0].rentMin = rentRange[minValue].price
-        priceRange[0].depositMax = depositRange[maxValue].price
-        priceRange[0].depositMin = depositRange[minValue].price
     }
     func activateBuildingButton(index: Int){
         
@@ -702,6 +703,7 @@ class ConditionViewController: UIViewController {
     @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
         setDepositRange(PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
+        variableForServer()
 //        priceRange[0].depositMax = Int(sender.selectedMaxValue)
 //        priceRange[0].depositMin = Int(sender.selectedMinValue)
     }
