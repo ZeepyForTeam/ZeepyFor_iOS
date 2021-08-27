@@ -90,7 +90,7 @@ class ConditionViewController: UIViewController {
 //    var selectedNumber = 100
     var dealSelectedNumber = 100
     var buildingSelectedNumber = 100
-    var resultClosure: ((String) -> ())?
+    var resultClosure: ((BuildingRequest) -> ())?
 
     
     // MARK: - Components
