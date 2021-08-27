@@ -107,9 +107,10 @@ class MapSearchViewController: BaseViewController {
       $0.height.equalTo(68)
     }
     searchView.snp.makeConstraints{
-      $0.trailing.leading.equalToSuperview().inset(16)
-      $0.top.equalTo(self.navigationView.snp.bottom).offset(12)//?
-      $0.height.equalTo(32)
+      $0.leading.equalToSuperview().offset(19)
+      $0.trailing.equalToSuperview().offset(-13)
+      $0.top.equalTo(navigationView.snp.bottom)//?
+      $0.height.equalTo(40)
     }
     searchView.addSubview(searchImageView)
     searchView.addSubview(searchTextField)

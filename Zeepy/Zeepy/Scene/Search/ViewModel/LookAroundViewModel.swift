@@ -31,7 +31,7 @@ extension LookAroundViewModel {
   func transForm(inputs: Input) -> Output {
     weak var weakSelf = self
     var filterOriginUsecase : [FilterModel] = []
-
+    
     
     let buildingUsecase = Observable.combineLatest( inputs.loadTrigger , inputs.conditionFilter).flatMapLatest{ (page, conditionmodel) -> Observable<[BuildingContent]> in
       if let model = conditionmodel {
@@ -41,29 +41,30 @@ extension LookAroundViewModel {
         return weakSelf?.service.fetchBuildingList(param: .init(pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
       }
     }.map{$0.map{$0.toModel()}}
-  
+    
     let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),
-                                         FilterModel(title: "기본순", selected: false),
-                                         FilterModel(title: "방음굿", selected: false),
-                                         FilterModel(title: "해충 제로", selected: false),
-                                         FilterModel(title: "채광 좋은", selected: false),
-                                         FilterModel(title: "수압 완벽", selected: false)])
+                                       FilterModel(title: "기본순", selected: false),
+                                       FilterModel(title: "방음굿", selected: false),
+                                       FilterModel(title: "해충 제로", selected: false),
+                                       FilterModel(title: "채광 좋은", selected: false),
+                                       FilterModel(title: "수압 완벽", selected: false)])
     let bindTrigger = filterDummy.map{ model in
       filterOriginUsecase = model
     }
     let filterUsecase = bindTrigger.flatMapLatest{ _ -> Observable<[FilterModel]> in
       return weakSelf?.configureCurrentFilter(tapAction: inputs.filterSelect, origin: filterOriginUsecase) ?? .empty()
     }
-    return .init(buildingUsecase: buildingUsecase,
-                 buildingDetailParam: inputs.buildingSelect.map{$0.1},
-                 filterUsecase: filterUsecase
-                 )
+    return .init(
+      buildingUsecase: buildingUsecase,
+      buildingDetailParam: inputs.buildingSelect.map{$0.1},
+      filterUsecase: filterUsecase
+    )
   }
 }
 extension LookAroundViewModel {
   func configureCurrentFilter(
     tapAction: Observable<(IndexPath, FilterModel)>,
-  origin: [FilterModel]) -> Observable<[FilterModel]> {
+    origin: [FilterModel]) -> Observable<[FilterModel]> {
     enum Action {
       case tapAction(indexPath : IndexPath, model:FilterModel)
     }

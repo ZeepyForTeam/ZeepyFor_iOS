@@ -384,7 +384,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     private func fetchMapPoints() {
         buildingService.fetchAllBuildings()
-            .subscribe(onNext: { response in
+            .subscribe(onNext: { [self] response in
                 if response.statusCode == 200 {
                     do {
                         let decoder = JSONDecoder()
@@ -416,6 +416,11 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                         }
                         self.findCurrentMarker()
                         print("count의 갯수는", count)
+                        print("Business List는", self.businessItems)
+                        print("Kind List는",self.kindItems)
+                        print("graze List는", self.grazeItems)
+                        print("softy List는", self.softyItems)
+                        print("bad List는", self.badItems)
                     }
                     catch {
                         print("fetchMapPointError")
@@ -450,12 +455,11 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     func returnList(index : Int) -> Array<String>{
         selectedList = collectionViewCellList.filter{$0.selected}.map{$0.englishName}
-        filterItemsToShowItems(theTag: index)
+        filterItemsToShowItems()
         return selectedList
     }
     
-    func filterItemsToShowItems(theTag: Int){
-        showItems = []
+    func filterItemsToShowItems(){
         if selectedList.contains("BUSINESS") {
             showItems += businessItems
         }
@@ -474,7 +478,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         items = showItems
         mapView.removeAllPOIItems()
-        mapView.addPOIItems(items)
+        mapView.addPOIItems(showItems)
         print("this is showItems")
         print(showItems)
         print("this is businessItems")
@@ -502,6 +506,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 currentMarkers.append(marker)
             }
         }
+        print("여기서 보는 ITEmS!!")
         print("currentMarker개수는?")
         print(currentMarkers.count)
         mapView.removeAllPOIItems()
@@ -760,11 +765,12 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
         cell?.circleButton.setImage(UIImage(named: collectionViewCellList[indexPath.row].imageName), for: .normal)
         cell?.buttonTitle.text = collectionViewCellList[indexPath.row].buttonTitle
         cell?.circleButton.tag = indexPath.row
+        filterItemsToShowItems()
         var selectedTag = 6
         if collectionViewCellList[indexPath.row].selected == true {
             cell?.backgroundColor = .mainYellow
             selectedTag = indexPath.row
-            filterItemsToShowItems(theTag: selectedTag)
+            
         }else if collectionViewCellList[indexPath.row].selected != true {
             cell?.backgroundColor = .white
         }
