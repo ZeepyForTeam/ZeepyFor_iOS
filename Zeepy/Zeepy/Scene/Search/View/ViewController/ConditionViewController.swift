@@ -40,7 +40,7 @@ class ConditionViewController: UIViewController {
     // MARK: - Arrays
     var buildingList: [ListModel] = [ListModel(title: "전체", englishName: nil, image: "btnOption1", selected: true),
                                      ListModel(title: "연립다세대", englishName: "ROWHOUSE", image: "btnOption2", selected: false),
-                                     ListModel(title: "오피스텔", englishName: "THREEORMORE", image: "btnOption3", selected: false)]
+                                     ListModel(title: "오피스텔", englishName: "OFFICETEL", image: "btnOption3", selected: false)]
     
     var transactionList: [ListModel] = [ListModel(title: "전체", englishName : nil , image: "btnOption1", selected: true),
                                         ListModel(title: "월세", englishName: "MONTHLY", image: "btnOption2", selected: false),
@@ -71,27 +71,50 @@ class ConditionViewController: UIViewController {
     var rentRange : [MoneyModel] = [MoneyModel(price: nil, name: nil),
                                     MoneyModel(price: 250000, name: "25만"),
                                     MoneyModel(price: 500000, name: "50만"),
-                                    MoneyModel(price: 250000, name: "75만"),
-                                    MoneyModel(price: 250000, name: "100만"),
-                                    MoneyModel(price: 250000, name: "125만"),
-                                    MoneyModel(price: 250000, name: "25만"),
+                                    MoneyModel(price: 750000, name: "75만"),
+                                    MoneyModel(price: 1000000, name: "100만"),
+                                    MoneyModel(price: 1250000, name: "125만"),
+                                    MoneyModel(price: 1500000, name: "150만"),
                                     MoneyModel(price: nil, name: nil)]
     func variableForServer() {
-        var selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName}
-        var selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName}
-        var selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
+        print("this is variableForServer")
         
-        var selectedDepositMin = priceRange[0].depositMin
-        var selectedDepositMax = priceRange[0].depositMax
-        var selectedRentMin = priceRange[0].rentMin
-        var selectedRentMax = priceRange[0].rentMax
+        var selectedDepositMin : Int?
+        var selectedDepositMax : Int?
+        var selectedRentMin : Int?
+        var selectedRentMax : Int?
+        
+        var selectedBuilding : String?
+        var selectedTransaction : String?
+        var selectedOptions : [String?]
+        
+        selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName ?? ""}.joined()
+        selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName ?? ""}.joined()
+        selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
+        
+        selectedDepositMin = priceRange[0].depositMin
+        selectedDepositMax = priceRange[0].depositMax
+        selectedRentMin = priceRange[0].rentMin
+        selectedRentMax = priceRange[0].rentMax
+        
+        print("eqRoomCount" , selectedBuilding)
+        print("neType", selectedTransaction)
+        print("in Furniture", selectedOptions)
+        print("le Deposit", selectedDepositMax)
+        print("ge Deposit", selectedDepositMin)
+        print("le Monthly", selectedRentMax)
+        print("ge Monthly", selectedRentMin)
+//        print("this is selectedTransaction", selectedTransaction)
+//        print("this is selectedTransaction", selectedTransaction)
+        
+        
     }
     // MARK: - Variable
 //    var selectedNumber = 100
-    var dealSelectedNumber = 100
-    var buildingSelectedNumber = 100
-    var resultClosure: ((BuildingRequest) -> ())?
 
+    var dealSelectedNumber = 0
+    var buildingSelectedNumber = 0
+    var resultClosure: ((BuildingRequest) -> ())?
     
     // MARK: - Components
   private let naviView = CustomNavigationBar().then {
@@ -286,6 +309,7 @@ class ConditionViewController: UIViewController {
         addConstraints()
         self.initCollectionView()
         setupNavigation()
+        variableForServer()
     }
     private func setupNavigation() {
         self.setupNavigationBar(.white)
@@ -678,15 +702,16 @@ class ConditionViewController: UIViewController {
     @objc func sliderDepositValuechanged(sender: RangeSeekSlider){
         setDepositRange(PriceRangeLabel: depositPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
         depositPriceLabel.reloadInputViews()
-        priceRange[0].depositMax = Int(sender.selectedMaxValue)
-        priceRange[0].depositMin = Int(sender.selectedMinValue)
+//        priceRange[0].depositMax = Int(sender.selectedMaxValue)
+//        priceRange[0].depositMin = Int(sender.selectedMinValue)
     }
     
     @objc func sliderRentValuechanged(sender: RangeSeekSlider){
         setRentRange(PriceRangeLabel: rentPriceLabel, minValue: Int(sender.selectedMinValue), maxValue: Int(sender.selectedMaxValue))
-        priceRange[0].rentMax = Int(sender.selectedMaxValue)
-        priceRange[0].rentMin = Int(sender.selectedMinValue)
+//        priceRange[0].rentMax = Int(sender.selectedMaxValue)
+//        priceRange[0].rentMin = Int(sender.selectedMinValue)
         rentPriceLabel.reloadInputViews()
+        variableForServer()
     }
     
 }
@@ -753,9 +778,12 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         
         if (collectionView == self.buildingCollectionView) {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
-            
+            if indexPath.row == 0 {
+                cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
+            }
             if buildingSelectedNumber == indexPath.item{
                 cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
+                buildingList[buildingSelectedNumber].selected.toggle()
             }
             else {
                 cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .normal)
@@ -767,15 +795,14 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         
         else if (collectionView == self.transactionCollectionView) {
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell)
-            
-            
+        
+            transactionList[indexPath.row].selected.toggle()
             if dealSelectedNumber == indexPath.item {
                 cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
-                print("이미지 바뀌나 확인해보자잇~~")
+                transactionList[dealSelectedNumber].selected.toggle()
             }
             else {
                 cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .normal)
-                print("이미지 바뀌나 확인해보자")
             }
             cell?.circleButton.tag = indexPath.row
             cell?.buttonTitle.text = transactionList[indexPath.row].title
@@ -802,8 +829,4 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         return UICollectionViewCell()
     }
     
-    
 }
-
-//radioButton으로 구현하기.
-//다른 거 선택했을 때 다른 애들 deselected되도록
