@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 class TapCell: UICollectionViewCell {
+  private let refreshController = UIRefreshControl()
+
   var viewModel: CommunityViewModel!
   var disposeBag = DisposeBag()
   var currentTab: Int!
@@ -25,6 +27,17 @@ class TapCell: UICollectionViewCell {
   }
 }
 extension TapCell {
+  private func refreshCell() {
+      refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    postCollectionView.refreshControl = refreshController
+  }
+  @objc
+  private func refreshData() {
+    if let communityVC = UIApplication.shared.topViewController() as? CommunityViewController {
+      communityVC.selectedType.onNext(.total)
+    }
+      refreshController.endRefreshing()
+  }
   func layout() {
     self.contentView.add(postCollectionView)
     postCollectionView.snp.remakeConstraints{
@@ -67,6 +80,7 @@ extension TapCell {
     }
   }
   func bind(output : CommunityViewModel.Output, dispose : DisposeBag) {
+    refreshCell()
     output.postUsecase.bind(to: postCollectionView.rx
                               .items(cellIdentifier: postSimpleCollectionViewCell.identifier,
                                      cellType: postSimpleCollectionViewCell.self)) {row, data, cell in

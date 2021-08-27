@@ -17,6 +17,7 @@ final class LookAroundViewModel: Services {
     let filterAction: Observable<Void>
     let ownerFilterAction : Observable<ValidateType?>
     let mapSelectAction: Observable<Void>
+    let conditionFilter: Observable<BuildingRequest?>
     let buildingSelect: Observable<(IndexPath, BuildingModel)>
     let filterSelect: Observable<(IndexPath, FilterModel)>
   }
@@ -32,8 +33,13 @@ extension LookAroundViewModel {
     var filterOriginUsecase : [FilterModel] = []
 
     
-    let buildingUsecase = inputs.loadTrigger.flatMapLatest{ page in
-      weakSelf?.service.fetchBuildingList(param: .init(pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
+    let buildingUsecase = Observable.combineLatest( inputs.loadTrigger , inputs.conditionFilter).flatMapLatest{ (page, conditionmodel) -> Observable<[BuildingContent]> in
+      if let model = conditionmodel {
+        return weakSelf?.service.fetchBuildingList(param: model) ?? .empty()
+      }
+      else {
+        return weakSelf?.service.fetchBuildingList(param: .init(pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
+      }
     }.map{$0.map{$0.toModel()}}
   
     let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),

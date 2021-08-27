@@ -37,17 +37,30 @@ final class LookAroundViewController: BaseViewController {
   private var tableViewHeader: UICollectionView!
   private let tableView = UITableView()
   private let loadViewTrigger = BehaviorSubject<Int>(value: 0)
+  private let conditionFilter = BehaviorSubject<BuildingRequest?>(value: nil)
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
   private var currentPage = 0
   let filterTrigger = PublishSubject<ValidateType?>()
+  private let refreshController = UIRefreshControl()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.isNavigationBarHidden = true
     setupCollectionView()
     setupTableView()
     layout()
+    refreshCell()
     bind()
     bindAction()
+  }
+  private func refreshCell() {
+      refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.refreshControl = refreshController
+  }
+  @objc
+  private func refreshData() {
+    loadViewTrigger.onNext(0)
+    refreshController.endRefreshing()
   }
   @objc
   private func didReceiveNotification(_ notification: Notification) {
@@ -86,6 +99,7 @@ extension LookAroundViewController {
                                            filterAction: filterButton.rx.tap.asObservable(),
                                            ownerFilterAction: filterTrigger,
                                            mapSelectAction: mapButton.rx.tap.asObservable(),
+                                           conditionFilter: conditionFilter,
                                            buildingSelect: buildingSelection,
                                            filterSelect: filterSelectUsecase)
     let outputs = viewModel.transForm(inputs: inputs)
@@ -119,9 +133,18 @@ extension LookAroundViewController {
     }.disposed(by: disposeBag)
     
     filterButton.rx.tap.bind{[weak self] in
+      if self?.filterButton.isSelected == true {
+        self?.conditionFilter.onNext(nil)
+      }
+      else {
       let vc = ConditionViewController(nibName: nil, bundle: nil)
       vc.hidesBottomBarWhenPushed = true
+      vc.resultClosure = {[weak self] requestModel in
+        self?.conditionFilter.onNext(requestModel)
+        self?.filterButton.isSelected = true
+      }
       self?.navigationController?.pushViewController(vc, animated : true)
+      }
     }.disposed(by: disposeBag)
     mapButton.rx.tap.bind{[weak self] in
       let vc = MapViewController(nibName: nil, bundle: nil)
