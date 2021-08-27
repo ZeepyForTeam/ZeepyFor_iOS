@@ -33,6 +33,7 @@ class AddPhotoViewController : BaseViewController {
   private var imageArray: [YPMediaPhoto] = []
   private let imagePublisher = PublishSubject<[YPMediaPhoto]>()
   private let deleteImage = PublishSubject<YPMediaPhoto>()
+  private let postTrigger = PublishSubject<Void>()
   private let noticeLabel = UILabel().then {
     $0.numberOfLines = 2
   }
@@ -186,7 +187,7 @@ class AddPhotoViewController : BaseViewController {
       let input = AddPostViewModel.Input(loadTrigger: Observable.just(()),
                                          currentImages: imagePublisher,
                                          deleteImage: deleteImage,
-                                         post: nextButton.rx.tap.asObservable())
+                                         post: postTrigger)
       let output = viewModel?.transform(input: input)
       output?.postResult.bind{[weak self] result in
         if result {
@@ -196,7 +197,16 @@ class AddPhotoViewController : BaseViewController {
           MessageAlertView.shared.showAlertView(title: "실패했습니다", grantMessage: "확인")
         }
       }.disposed(by: disposeBag)
-      
+      nextButton.rx.tap.bind{[weak self] in
+        let view = AddPostPopup.init(isCommunity: true)
+        view.resultClosure = {result in
+          if result {
+            self?.postTrigger.onNext(())
+          }
+        }
+        PopUpView.shared.appearPopUpView(subView: view)
+
+      }.disposed(by: disposeBag)
       imagePublisher.bind{print($0)}.disposed(by: disposeBag)
       output?.currentImage.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
                                                                          cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
@@ -211,6 +221,7 @@ class AddPhotoViewController : BaseViewController {
       
       output?.currentImage.bind{[weak self] in
         self?.imageArray = $0
+        self?.nextButton.setTitle( $0.isEmpty ? "건너뛰기" : "등록하기", for: .normal)
       }.disposed(by: disposeBag)
     }
     addFromLib.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImage(gesture:))))
@@ -333,7 +344,17 @@ extension AddPhotoViewController {
     current.bind{[weak self] in
       self?.imageArray = $0
     }.disposed(by: disposeBag)
-    let makeRequsetModel = nextButton.rx.tap.flatMapLatest{[weak self] _ -> Observable<ReviewModel> in
+    nextButton.rx.tap.bind{[weak self] in
+      let view = AddPostPopup.init(isCommunity: false)
+      view.resultClosure = { result in
+        if result {
+          self?.postTrigger.onNext(())
+        }
+      }
+      PopUpView.shared.appearPopUpView(subView: view)
+    }.disposed(by: disposeBag)
+    let makeRequsetModel = postTrigger.flatMapLatest{[weak self] _ -> Observable<ReviewModel> in
+      
       if self?.imageArray.isEmpty == true {
         self?.reviewModel?.imageUrls = []
         return .just((self?.reviewModel)!)

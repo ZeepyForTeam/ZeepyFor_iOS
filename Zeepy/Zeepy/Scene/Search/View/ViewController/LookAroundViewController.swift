@@ -15,6 +15,7 @@ final class LookAroundViewController: BaseViewController {
   private let headerView: UIView = {
     let v = UIView()
     v.backgroundColor = .white
+    v.addUnderBar()
     return v
   }()
   private let currentLocation = UILabel().then{
@@ -165,13 +166,14 @@ extension LookAroundViewController {
     
     headerView.snp.makeConstraints{
       $0.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide)
-      $0.height.equalTo(60)
+      $0.height.equalTo(68)
     }
     tableViewHeader.snp.makeConstraints{
       $0.top.equalTo(headerView.snp.bottom)
       $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(44)
+      $0.height.equalTo(0)
     }
+    tableViewHeader.isHidden = true
     tableView.snp.makeConstraints{
       $0.top.equalTo(tableViewHeader.snp.bottom)
       $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
