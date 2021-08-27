@@ -10,6 +10,7 @@ import Then
 import SnapKit
 import Moya
 import CoreLocation
+import SwiftyJSON
 
 class MapViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: - Struct
@@ -55,6 +56,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                             count : 0)
     
     
+    // MARK: - variable
+    var selectedName = ""
     // MARK: - Components
     var tendencyButton = UIView().then{
         $0.frame.size = CGSize(width: 60, height: 70)
@@ -280,7 +283,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         tendencyImage.image = poiItem.customImage
         return false
     }
-    
+
     func mapView(_ mapView: MTMapView!, singleTapOn mapPoint: MTMapPoint!) {
         mapDetailView.isHidden = true
         closedFloatingView.isHidden = false
@@ -405,12 +408,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                             }
                             
                             self.items += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
-                            print("items 몇 개일까?")
-                            print(self.items)
                         }
                         self.findCurrentMarker()
-                        print("count의 갯수는")
-                        print(count)
+                        print("count의 갯수는", count)
                     }
                     catch {
                         print("fetchMapPointError")
@@ -475,7 +475,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         print("this is businessItems")
         print(businessItems)
         findCurrentMarker()
-        
+    }
+    
+    func reAdjustMapCenter(name: String){
+        print("여기서 서버 불러와서 center 다시 잡자.")
     }
     
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
@@ -507,21 +510,19 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         self.view.add(openFloatingCollectionView)
         initMapView()
         addConstraints()
-        //    declarePOIItems()
         initCollectionview()
         searchTextField.rx.tap.bind{[weak self] in
             let vc = MapSearchViewController()
             self?.navigationController?.pushViewController(vc, animated: false)
         }.disposed(by: disposeBag)
         fetchMapPoints()
+        
         //    fetchMapDetail()
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        //    self.locationManagerDidChangeAuthorization?(CLLocationManager)
-        //    self.locationManager.requestWhenInUseAuthorization()
     }
     func addConstraints() {
         searchView.snp.makeConstraints{
@@ -614,7 +615,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             //                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
             //                    mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
             //                }
-            
         }
         print("change center")
         self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.587493119, longitude: 127.034183377)), zoomLevel: 4, animated: true)
@@ -623,8 +623,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
             print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
         }
-        //        mapView.fitAreaToShowAllPOIItems()
     }
+    
   @objc func lookingAroundButtonTapped(sender: UIButton){
     if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: sender.tag) {
       self.navigationController?.pushViewController(vc, animated: true)

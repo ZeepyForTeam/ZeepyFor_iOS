@@ -22,6 +22,7 @@ target 'Zeepy' do
   pod 'RxKakaoSDKUser'  # 사용자 관리
   pod 'naveridlogin-sdk-ios' #네이버 로그인
   pod 'DLRadioButton', '~> 1.4'
+  pod 'SwiftyJSON', '~> 4.0'
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 

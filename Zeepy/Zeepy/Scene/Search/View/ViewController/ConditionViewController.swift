@@ -86,6 +86,10 @@ class ConditionViewController: UIViewController {
         var selectedRentMin = priceRange[0].rentMin
         var selectedRentMax = priceRange[0].rentMax
     }
+    // MARK: - Variable
+//    var selectedNumber = 100
+    var dealSelectedNumber = 100
+    var buildingSelectedNumber = 100
     
     // MARK: - Components
     let scrollView = UIScrollView()
@@ -548,58 +552,36 @@ class ConditionViewController: UIViewController {
         priceRange[0].depositMax = depositRange[maxValue].price
         priceRange[0].depositMin = depositRange[minValue].price
     }
-    
-    @objc func onTapBuildingButton(sender: UIButton) {
-        buildingList[sender.tag].selected.toggle()
+    func activateBuildingButton(index: Int){
         
-        if sender.tag == 0 {
-            buildingList[1].selected = false
-            buildingList[2].selected = false
-        }
-        
-        if sender.tag == 1 {
-            buildingList[0].selected = false
-            buildingList[2].selected = false
-        }
-        
-        if sender.tag == 2 {
-            buildingList[1].selected = false
-            buildingList[0].selected = false
-        }
-//        sender.isSelected.toggle()
-        
-        buildingCollectionView.reloadInputViews()
-        buildingCollectionView.reloadData()
-//        buildingList[sender.tag].selected.toggle()
     }
-    func determineSlider(){
-        if transactionList[1].selected{ // 월세만 선택했을 경우 // 보증금 월세 모두 보여주기
-            rentPriceShowView.isHidden = false
-            rentPriceSliderView.isHidden = false
-            rentTitle.isHidden = false
-            depositPriceShowView.isHidden = false
-            depositPriceSliderView.isHidden = false
-            depositTitle.isHidden = false
-            addConstraints()
-            optionTitle.snp.remakeConstraints{
-                $0.top.equalTo(rentPriceRange.snp.bottom).offset(16)
-                $0.leading.trailing.equalToSuperview().offset(16)
-            }
-        }
-        if transactionList[2].selected{ // 전세만 선택한 경우
-            rentPriceShowView.isHidden = true
-            rentPriceSliderView.isHidden = true
-            rentTitle.isHidden = true
-            depositPriceShowView.isHidden = false
-            depositPriceSliderView.isHidden = false
-            depositTitle.isHidden = false
-            addConstraints()
-            optionTitle.snp.remakeConstraints{
-                $0.top.equalTo(depositPriceRange.snp.bottom).offset(16)
-                $0.leading.trailing.equalToSuperview().offset(16)
-            }
-        }
-        if transactionList[0].selected {// 전체를 선택한 경우
+    
+//    @objc func onTapBuildingButton(sender: UIButton) {
+//
+//        buildingList[sender.tag].selected.toggle()
+//
+//        if sender.tag == 0 {
+//            buildingList[1].selected = false
+//            buildingList[2].selected = false
+//        }
+//
+//        if sender.tag == 1 {
+//            buildingList[0].selected = false
+//            buildingList[2].selected = false
+//        }
+//
+//        if sender.tag == 2 {
+//            buildingList[1].selected = false
+//            buildingList[0].selected = false
+//        }
+////        sender.isSelected.toggle()
+//
+//        buildingCollectionView.reloadInputViews()
+//        buildingCollectionView.reloadData()
+////        buildingList[sender.tag].selected.toggle()
+//    }
+    func determineSlider(index: Int){
+        if index == 0 {// 전체를 선택한 경우
             priceTitle.isHidden = true
             rentPriceShowView.isHidden = true
             rentPriceSliderView.isHidden = true
@@ -615,41 +597,68 @@ class ConditionViewController: UIViewController {
                 $0.leading.trailing.equalToSuperview().offset(16)
             }
         }
-    }
-    @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
-        
-//        sender.isSelected.toggle()
-        transactionList[sender.tag].selected.toggle()
-        
-        if sender.tag == 0 {
-            transactionList[1].selected = false
-            transactionList[2].selected = false
-            transactionList[3].selected = false
+        else if index == 1 { // 월세만 선택했을 경우 // 보증금 월세 모두 보여주기
+            rentPriceShowView.isHidden = false
+            rentPriceSliderView.isHidden = false
+            rentTitle.isHidden = false
+            depositPriceShowView.isHidden = false
+            depositPriceSliderView.isHidden = false
+            depositTitle.isHidden = false
+            addConstraints()
+            optionTitle.snp.remakeConstraints{
+                $0.top.equalTo(rentPriceRange.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().offset(16)
+            }
         }
-        
-        if sender.tag == 1 {
-            transactionList[0].selected = false
-            transactionList[2].selected = false
-            transactionList[3].selected = false
-        }
-        
-        if sender.tag == 2 {
-            transactionList[1].selected = false
-            transactionList[0].selected = false
-            transactionList[3].selected = false
-            
-        }
-        
-        if sender.tag == 3 {
-            transactionList[1].selected = false
-            transactionList[2].selected = false
-            transactionList[0].selected = false
+        else if index == 2{ // 전세만 선택한 경우
+            rentPriceShowView.isHidden = true
+            rentPriceSliderView.isHidden = true
+            rentTitle.isHidden = true
+            depositPriceShowView.isHidden = false
+            depositPriceSliderView.isHidden = false
+            depositTitle.isHidden = false
+            addConstraints()
+            optionTitle.snp.remakeConstraints{
+                $0.top.equalTo(depositPriceRange.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().offset(16)
+            }
         }
 
-        determineSlider()
-        transactionCollectionView.reloadInputViews()
-        transactionCollectionView.reloadData()
     }
+//    @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
+//
+////        sender.isSelected.toggle()
+//        transactionList[sender.tag].selected.toggle()
+//
+//        if sender.tag == 0 {
+//            transactionList[1].selected = false
+//            transactionList[2].selected = false
+//            transactionList[3].selected = false
+//        }
+//
+//        if sender.tag == 1 {
+//            transactionList[0].selected = false
+//            transactionList[2].selected = false
+//            transactionList[3].selected = false
+//        }
+//
+//        if sender.tag == 2 {
+//            transactionList[1].selected = false
+//            transactionList[0].selected = false
+//            transactionList[3].selected = false
+//
+//        }
+//
+//        if sender.tag == 3 {
+//            transactionList[1].selected = false
+//            transactionList[2].selected = false
+//            transactionList[0].selected = false
+//        }
+//
+//        determineSlider(index: indexNumber)
+//        transactionCollectionView.reloadInputViews()
+//        transactionCollectionView.reloadData()
+//    }
     
     @objc func onTapOptionButton(sender: UIButton) {
         optionList[sender.tag].selected.toggle()
@@ -713,51 +722,57 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         }
         return count
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == buildingCollectionView{
+            buildingSelectedNumber = indexPath.item
+            collectionView.reloadData()
+            print(#function)
+        }
+        else if collectionView == transactionCollectionView{
+            if indexPath.item != 3{
+            dealSelectedNumber = indexPath.item
+            determineSlider(index: indexPath.item)
+            collectionView.reloadData()
+            print(#function)
+            }
+        }
+    }
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: ReusableButtonCell?
         var optioncell: ReusableOptionCell?
         
-        if(collectionView == self.buildingCollectionView) {
+        if (collectionView == self.buildingCollectionView) {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
             
-            if buildingList[indexPath.row].selected {
-                cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .selected)
+            if buildingSelectedNumber == indexPath.item{
                 cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
             }
             else {
-                cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .selected)
                 cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .normal)
             }
             cell?.buttonTitle.text = buildingList[indexPath.row].title
             cell?.circleButton.tag = indexPath.row
-            cell?.circleButton.addTarget(self, action: #selector(onTapBuildingButton), for: .touchUpInside)
             return cell!
         }
         
-        else if(collectionView == self.transactionCollectionView) {
+        else if (collectionView == self.transactionCollectionView) {
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell)
+            
+            
+            if dealSelectedNumber == indexPath.item {
+                cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
+                print("이미지 바뀌나 확인해보자잇~~")
+            }
+            else {
+                cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .normal)
+                print("이미지 바뀌나 확인해보자")
+            }
             cell?.circleButton.tag = indexPath.row
             cell?.buttonTitle.text = transactionList[indexPath.row].title
             
-            if transactionList[indexPath.row].selected {
-                cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .selected)
-                cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
-            }
-            else {
-                cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .selected)
-                cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .normal)
-            }
-            
-//            if indexPath.row == 3{
-//                cell?.circleButton.isUserInteractionEnabled = false
-//            } //이렇게 하면 왜 전체버튼까지 안되어버리는지....???;;;;;
-            
-            cell?.circleButton.addTarget(self, action: #selector(onTapTransactionButton), for: .touchUpInside)
-            determineSlider()
-            
             return cell!
         }
+        
         else if(collectionView == self.optionCollectionView) {
             optioncell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableOptionCell.identifier, for:indexPath) as? ReusableOptionCell)
             
@@ -776,6 +791,8 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         }
         return UICollectionViewCell()
     }
+    
+    
 }
 
 //radioButton으로 구현하기.

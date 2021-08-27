@@ -9,9 +9,12 @@ import UIKit
 import SnapKit
 import Then
 import Alamofire
+import SwiftyJSON
+import RxSwift
 
-class MapSearchViewController: UIViewController {
+class MapSearchViewController: BaseViewController {
     
+    var selectedName = ""
     var searchRecordList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
     //    var searchRecommendList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
     
@@ -40,6 +43,7 @@ class MapSearchViewController: UIViewController {
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.rowHeight = UITableView.automaticDimension
         $0.separatorStyle = .none
+        $0.isScrollEnabled = false
     }
     var shadowView = UIView().then{
         $0.backgroundColor = .mainBlue
@@ -130,7 +134,6 @@ extension MapSearchViewController: UITableViewDataSource {
             MapSearchTableViewCell.addConstraints()
             MapSearchTableViewCell.cellContentView.setTitle(searchRecordList[indexPath.row], for: .normal)
             MapSearchTableViewCell.cellContentView.setTitleColor(.clear, for: .normal)
-    
             MapSearchTableViewCell.searchRecordLabel.setupLabel(text: self.searchRecordList[indexPath.row], color: .blackText, font: .nanumRoundRegular(fontSize: 14))
             MapSearchTableViewCell.cellContentView.addTarget(self, action: #selector(TableViewCellSelected), for: .touchUpInside)
             return MapSearchTableViewCell
@@ -147,8 +150,12 @@ extension MapSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < searchRecordList.count {
             let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell
+            self.selectedName = searchRecordList[indexPath.row]
+//            guard let vc = self.presentingViewController as? UIViewController else {return}
+//            vc.selectedName.text = selectedName
+//            self.navigationController?.popViewController(animated: true)
+            print("pop해줘~!!")
             print(searchRecordList[indexPath.row])
-
         }
         else {
             let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell
