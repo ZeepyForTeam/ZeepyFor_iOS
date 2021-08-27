@@ -63,7 +63,6 @@ extension ManageReviewViewController {
   
   private func layoutNavigationView() {
     view.add(navigationView) {
-      $0.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
         $0.height.equalTo(68)

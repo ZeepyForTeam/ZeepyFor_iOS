@@ -21,9 +21,7 @@ class DetailReviewViewContoller : BaseViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  private let naviView = CustomNavigationBar().then {
-    $0.backBtn.addTarget(self, action: #selector(popViewController), for: .touchUpInside)
-  }
+  private let naviView = CustomNavigationBar()
   private let writeReviewBtn = UIButton().then {
     $0.setImage(UIImage(named:"btn_write"), for: .normal)
   }

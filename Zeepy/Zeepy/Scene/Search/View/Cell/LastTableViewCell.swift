@@ -17,6 +17,7 @@ class LastTableViewCell: UITableViewCell {
     }
     
     func addConstraints(){
+      self.contentView.setRounded(radius: 16)
         self.backgroundColor = .gray228
         self.addSubview(deleteTableViewCellLabel)
         deleteTableViewCellLabel.snp.makeConstraints{

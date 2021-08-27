@@ -22,7 +22,7 @@ class ServiceTermsViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    request(url: "http://www.naver.com")
+    request(url: "https://zeepy.creatorlink.net/%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80")
     setupNavigation()
     self.view.adds([navigationView,
                     webView])
@@ -41,7 +41,6 @@ class ServiceTermsViewController: BaseViewController {
   }
   
   private func setupNavigation() {
-    navigationView.backBtn.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
     navigationView.naviTitle.text = "서비스 이용약관"
   }
 }
