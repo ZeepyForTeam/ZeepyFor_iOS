@@ -49,14 +49,14 @@ class DetailReviewViewContoller : BaseViewController {
     $0.setupLabel(text: "임대인", color: .blueText, font: .nanumRoundExtraBold(fontSize: 12))
   }
   private let simpleInfoOwnerLabel = UILabel().then {
-    $0.setupLabel(text: "30대 남자로 보여요", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
   }
   private let simpleInfoCommunicationNotice = UILabel().then {
     $0.setupLabel(text: "임대인 소통 성향", color: .blueText, font: .nanumRoundExtraBold(fontSize: 12))
   }
   private let simpleInfoCommunicationImg = UIImageView()
   private let simpleInfoCommunicationLabel = UILabel().then {
-    $0.setupLabel(text: "츤데레형", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
+    $0.setupLabel(text: "", color: .blackText, font: .nanumRoundRegular(fontSize: 12))
   }
   private let simpleInfoHouseNotice = UILabel().then {
     $0.setupLabel(text: "집", color: .blueText, font: .nanumRoundExtraBold(fontSize: 12))
@@ -280,6 +280,7 @@ class DetailReviewViewContoller : BaseViewController {
       
       self?.reviewerName.attributedText = attributedString
       self?.ownerReview.text = "\(reviewModel.lessorReview ?? "")"
+      
       self?.houseReview.text = "\(reviewModel.review ?? "")"
     }.disposed(by: disposeBag)
     writeReviewBtn.rx.tap.bind{[weak self] in
