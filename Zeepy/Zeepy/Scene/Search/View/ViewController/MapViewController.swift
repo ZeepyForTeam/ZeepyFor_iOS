@@ -84,9 +84,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         $0.setRounded(radius: 15)
         $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
     }
-    private let naviView = CustomNavigationBar().then {
-      $0.setUp(title: "지도")
-    }
     var searchImageView = UIImageView().then{
         $0.frame.size = CGSize(width: 5, height: 5)
         $0.image = UIImage(named: "iconSearch")
@@ -516,7 +513,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             let vc = MapSearchViewController()
             self?.navigationController?.pushViewController(vc, animated: false)
         }.disposed(by: disposeBag)
-        setupNavigation()
         fetchMapPoints()
         //    fetchMapDetail()
         locationManager = CLLocationManager()
@@ -527,19 +523,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         //    self.locationManagerDidChangeAuthorization?(CLLocationManager)
         //    self.locationManager.requestWhenInUseAuthorization()
     }
-    private func setupNavigation() {
-        self.setupNavigationBar(.white)
-        self.setupNavigationItem(titleText: "지도")
-    }
     func addConstraints() {
-      self.view.add(naviView)
-      naviView.snp.makeConstraints{
-        $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-        $0.height.equalTo(68)
-      }
         searchView.snp.makeConstraints{
             $0.trailing.leading.equalToSuperview()
-          $0.top.equalTo(naviView.snp.bottom)//?
+          $0.top.equalTo(self.view.safeAreaLayoutGuide)//?
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)

@@ -18,6 +18,7 @@
 		3784561C2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3784561D2692154E00F59074 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 378456192692145C00F59074 /* Gilroy-ExtraBold.otf */; };
 		3798C1A52692917100616311 /* LoginEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3798C1A42692917100616311 /* LoginEmailViewController.swift */; };
+		37A847A426D878B7005F1132 /* KakaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A847A326D878B7005F1132 /* KakaoResponse.swift */; };
 		37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2647268B13AB001E4079 /* LoginViewController.swift */; };
 		37D554C426AD370A00C6BE57 /* LastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */; };
 		37D75BA626B69D2900DF851E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75BA526B69D2900DF851E /* LoginViewModel.swift */; };
@@ -312,6 +313,7 @@
 		37625BFA263A602100D72302 /* ReusableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableButtonCell.swift; sourceTree = "<group>"; };
 		378456192692145C00F59074 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		3798C1A42692917100616311 /* LoginEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmailViewController.swift; sourceTree = "<group>"; };
+		37A847A326D878B7005F1132 /* KakaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoResponse.swift; sourceTree = "<group>"; };
 		37BF2647268B13AB001E4079 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		37D554C326AD370A00C6BE57 /* LastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTableViewCell.swift; sourceTree = "<group>"; };
 		37D75BA526B69D2900DF851E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -1116,6 +1118,7 @@
 				DA40E1E026B4CDED00102EED /* DealResponse.swift */,
 				DA66095D26BBAF1F0019D7F7 /* AuthResponse.swift */,
 				CC7C391D26C36DD70015CA0B /* UserResponse.swift */,
+				37A847A326D878B7005F1132 /* KakaoResponse.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1799,6 +1802,7 @@
 			files = (
 				37BF2648268B13AB001E4079 /* LoginViewController.swift in Sources */,
 				DA61A0E2265A01870059B879 /* LookAroundViewModel.swift in Sources */,
+				37A847A426D878B7005F1132 /* KakaoResponse.swift in Sources */,
 				DA40E1EF26B7BB9600102EED /* UserManager.swift in Sources */,
 				DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */,
 				CCD0D99A265CEDD0001B15DE /* TendencyTableViewCell.swift in Sources */,
