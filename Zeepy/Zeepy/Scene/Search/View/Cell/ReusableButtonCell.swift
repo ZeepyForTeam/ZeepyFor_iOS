@@ -14,6 +14,8 @@ class ReusableButtonCell: UICollectionViewCell {
     
     let circleButton = UIButton().then{
         $0.frame.size = CGSize(width: 82, height: 82)
+//        $0.isEnabled = false
+        $0.isUserInteractionEnabled = false
         //$0.addTarget(self, action: #selector(onTapButton), for: .touchUpInside)
     }
     let buttonTitle = UILabel().then{
