@@ -12,16 +12,17 @@ import Then
 class LastTableViewCell: UITableViewCell {
     var deleteTableViewCellLabel = UILabel().then{
         $0.text = "최근 검색 목록 삭제"
-        $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 12)
+        $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 8)
         $0.textColor = .grayText
     }
     
     func addConstraints(){
-      self.contentView.setRounded(radius: 16)
-        self.backgroundColor = .gray228
+        self.backgroundColor = .whiteGray
         self.addSubview(deleteTableViewCellLabel)
         deleteTableViewCellLabel.snp.makeConstraints{
-            $0.center.equalToSuperview()
+          $0.top.equalToSuperview().offset(4)
+          $0.bottom.equalToSuperview().offset(-8)
+          $0.centerX.equalToSuperview()
         }
     }
 }

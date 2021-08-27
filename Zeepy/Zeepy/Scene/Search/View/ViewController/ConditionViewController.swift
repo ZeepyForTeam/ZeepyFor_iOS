@@ -74,22 +74,30 @@ class ConditionViewController: UIViewController {
                                     MoneyModel(price: 750000, name: "75만"),
                                     MoneyModel(price: 1000000, name: "100만"),
                                     MoneyModel(price: 1250000, name: "125만"),
-                                    MoneyModel(price: 1500000, name: "150만"),
                                     MoneyModel(price: nil, name: nil)]
-    func variableForServer() {
+    var selectedDepositMin : Int?
+    var selectedDepositMax : Int?
+    var selectedRentMin : Int?
+    var selectedRentMax : Int?
+    
+    var selectedBuilding : String? = ""
+    var selectedTransaction : String? = ""
+    var selectedOptions : [String]?
+    
+    func variableForServer() -> BuildingRequest {
+        struct BuildingRequestModel {
+          let eqRoomCount: String? //원룸 투룸 Type 물어보기
+          let geDeposit: Int?
+          let geMonthly: Int?
+          let inFurnitures: [String]?
+          let leDeposit: Int?
+          let leMonthly: Int?
+          let neType: String? // 거래종류
+        }
+            
         print("this is variableForServer")
         
-        var selectedDepositMin : Int?
-        var selectedDepositMax : Int?
-        var selectedRentMin : Int?
-        var selectedRentMax : Int?
         
-        var selectedBuilding : String?
-        var selectedTransaction : String?
-        var selectedOptions : [String?]
-        
-        selectedBuilding = buildingList.filter{$0.selected}.map{$0.englishName ?? ""}.joined()
-        selectedTransaction = transactionList.filter{!$0.selected}.map{$0.englishName ?? ""}.joined()
         selectedOptions = optionList.filter{$0.selected}.map{$0.englishName}
         
         selectedDepositMin = priceRange[0].depositMin
@@ -104,10 +112,9 @@ class ConditionViewController: UIViewController {
         print("ge Deposit", selectedDepositMin)
         print("le Monthly", selectedRentMax)
         print("ge Monthly", selectedRentMin)
-//        print("this is selectedTransaction", selectedTransaction)
-//        print("this is selectedTransaction", selectedTransaction)
         
-        
+        var buildingRequest = BuildingRequest(eqRoomCount: selectedBuilding, geDeposit: selectedDepositMin, geMonthly: selectedRentMin, inFurnitures: selectedOptions, leDeposit: selectedDepositMax, leMonthly: selectedRentMax, neType: selectedTransaction)
+        return buildingRequest
     }
     // MARK: - Variable
 //    var selectedNumber = 100
@@ -309,7 +316,13 @@ class ConditionViewController: UIViewController {
         addConstraints()
         self.initCollectionView()
         setupNavigation()
-        variableForServer()
+      nextButton.addAction(for: .touchUpInside, closure: {[weak self] _ in
+        let model = self?.variableForServer() ?? .init()
+        if let closure = self?.resultClosure {
+          closure(model)
+        }
+        self?.popViewController()
+      })
     }
     private func setupNavigation() {
         self.setupNavigationBar(.white)
@@ -317,13 +330,6 @@ class ConditionViewController: UIViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    func depositIndexToNumber(index : Int) -> Int?{
-        return depositRange[index].price
-    }
-    
-    func rentIndexToNumber(index: Int) -> Int?{
-        return rentRange[index].price
     }
     
     func addConstraints()
@@ -548,6 +554,8 @@ class ConditionViewController: UIViewController {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
             }
         }
+        priceRange[0].depositMax = depositRange[maxValue].price
+        priceRange[0].depositMin = depositRange[minValue].price
         
     }
     
@@ -583,37 +591,12 @@ class ConditionViewController: UIViewController {
         }
         priceRange[0].rentMax = rentRange[maxValue].price
         priceRange[0].rentMin = rentRange[minValue].price
-        priceRange[0].depositMax = depositRange[maxValue].price
-        priceRange[0].depositMin = depositRange[minValue].price
     }
     func activateBuildingButton(index: Int){
         
     }
 
-//    @objc func onTapBuildingButton(sender: UIButton) {
-//
-//        buildingList[sender.tag].selected.toggle()
-//
-//        if sender.tag == 0 {
-//            buildingList[1].selected = false
-//            buildingList[2].selected = false
-//        }
-//
-//        if sender.tag == 1 {
-//            buildingList[0].selected = false
-//            buildingList[2].selected = false
-//        }
-//
-//        if sender.tag == 2 {
-//            buildingList[1].selected = false
-//            buildingList[0].selected = false
-//        }
-////        sender.isSelected.toggle()
-//
-//        buildingCollectionView.reloadInputViews()
-//        buildingCollectionView.reloadData()
-////        buildingList[sender.tag].selected.toggle()
-//    }
+
     func determineSlider(index: Int){
         if index == 0 {// 전체를 선택한 경우
             priceTitle.isHidden = true
@@ -659,40 +642,6 @@ class ConditionViewController: UIViewController {
         }
 
     }
-//    @objc func onTapTransactionButton(sender: UIButton, indexNumber: Int) {
-//
-////        sender.isSelected.toggle()
-//        transactionList[sender.tag].selected.toggle()
-//
-//        if sender.tag == 0 {
-//            transactionList[1].selected = false
-//            transactionList[2].selected = false
-//            transactionList[3].selected = false
-//        }
-//
-//        if sender.tag == 1 {
-//            transactionList[0].selected = false
-//            transactionList[2].selected = false
-//            transactionList[3].selected = false
-//        }
-//
-//        if sender.tag == 2 {
-//            transactionList[1].selected = false
-//            transactionList[0].selected = false
-//            transactionList[3].selected = false
-//
-//        }
-//
-//        if sender.tag == 3 {
-//            transactionList[1].selected = false
-//            transactionList[2].selected = false
-//            transactionList[0].selected = false
-//        }
-//
-//        determineSlider(index: indexNumber)
-//        transactionCollectionView.reloadInputViews()
-//        transactionCollectionView.reloadData()
-//    }
     
     @objc func onTapOptionButton(sender: UIButton) {
         optionList[sender.tag].selected.toggle()
@@ -711,7 +660,6 @@ class ConditionViewController: UIViewController {
 //        priceRange[0].rentMax = Int(sender.selectedMaxValue)
 //        priceRange[0].rentMin = Int(sender.selectedMinValue)
         rentPriceLabel.reloadInputViews()
-        variableForServer()
     }
     
 }
@@ -777,6 +725,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         var optioncell: ReusableOptionCell?
         
         if (collectionView == self.buildingCollectionView) {
+            
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell
             if indexPath.row == 0 {
                 cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
@@ -784,6 +733,8 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             if buildingSelectedNumber == indexPath.item{
                 cell?.circleButton.setImage(UIImage(named: buildingList[indexPath.row].image), for: .normal)
                 buildingList[buildingSelectedNumber].selected.toggle()
+                selectedBuilding = buildingList[indexPath.row].englishName
+                variableForServer()
             }
             else {
                 cell?.circleButton.setImage(UIImage(named: "\(buildingList[indexPath.row].image)Inact"), for: .normal)
@@ -795,17 +746,19 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         
         else if (collectionView == self.transactionCollectionView) {
             cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReusableButtonCell.identifier, for:indexPath) as? ReusableButtonCell)
-        
+            variableForServer()
             transactionList[indexPath.row].selected.toggle()
             if dealSelectedNumber == indexPath.item {
                 cell?.circleButton.setImage(UIImage(named: transactionList[indexPath.row].image), for: .normal)
                 transactionList[dealSelectedNumber].selected.toggle()
+                selectedTransaction =  transactionList[indexPath.row].englishName
             }
             else {
                 cell?.circleButton.setImage(UIImage(named: "\(transactionList[indexPath.row].image)Inact"), for: .normal)
             }
             cell?.circleButton.tag = indexPath.row
             cell?.buttonTitle.text = transactionList[indexPath.row].title
+            
             
             return cell!
         }
