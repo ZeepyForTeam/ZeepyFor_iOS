@@ -151,9 +151,9 @@ extension MapSearchViewController: UITableViewDataSource {
         if indexPath.row < searchRecordList.count {
             let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell
             self.selectedName = searchRecordList[indexPath.row]
-//            guard let vc = self.presentingViewController as? UIViewController else {return}
+            guard let vc = self.presentingViewController as? BaseViewController else {return}
 //            vc.selectedName.text = selectedName
-//            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
             print("pop해줘~!!")
             print(searchRecordList[indexPath.row])
         }

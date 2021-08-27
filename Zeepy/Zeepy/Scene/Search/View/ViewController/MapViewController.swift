@@ -617,15 +617,15 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
             let currentLocation = location?.mapPointGeo()
             print("현위치")
-            //            print(currentLocation?.latitude)
-            //                if let latitude = currentLocation?.latitude,
-            //                   let longitude = currentLocation?.longitude{
-            //                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-            //                    mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
-            //                }
+            print(currentLocation?.latitude)
+            if let latitude = currentLocation?.latitude,
+               let longitude = currentLocation?.longitude{
+                print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
+                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
+            }
         }
         print("change center")
-        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.587493119, longitude: 127.034183377)), zoomLevel: 4, animated: true)
+//        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.587493119, longitude: 127.034183377)), zoomLevel: 4, animated: true)
         findCurrentMarker()
         
         func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
