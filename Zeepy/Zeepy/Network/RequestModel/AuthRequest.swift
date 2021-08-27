@@ -21,3 +21,9 @@ struct RegisterRequset: Encodable, Equatable {
   let nickname: String
   let sendMailCheck: Bool
 }
+struct AppleLoginParam: Encodable {
+  let code: String
+  let id_token: String
+  let state: String?
+  let user: String
+}

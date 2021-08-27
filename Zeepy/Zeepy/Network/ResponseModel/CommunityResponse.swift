@@ -54,6 +54,8 @@ struct CommunityContent: Decodable {
   let isCompleted, isLiked, isParticipant: Bool?
   let participants: [ParticipationList]?
   let productName: String?
+  let purchasePlace: String?
+  let productPrice: String?
   let sharingMethod: String?
   let targetNumberOfPeople: Int?
   let title: String?
