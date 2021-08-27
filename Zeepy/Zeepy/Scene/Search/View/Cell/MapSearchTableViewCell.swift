@@ -15,6 +15,7 @@ class MapSearchTableViewCell: UITableViewCell {
     
     var cellContentView = UIButton().then{
         $0.backgroundColor = .gray228
+        $0.isUserInteractionEnabled = false
     }
     var clockImageView = UIImageView().then{
         $0.image = UIImage(named: "vector")
