@@ -40,7 +40,7 @@ class postSimpleCollectionViewCell: UICollectionViewCell {
   private let content = UILabel().then {
     $0.font = .nanumRoundRegular(fontSize: 12)
     $0.textColor = .blackText
-    $0.numberOfLines = 0
+    $0.numberOfLines = 2
   }
   private let postedAt = UILabel().then {
     $0.font = .nanumRoundRegular(fontSize: 12)

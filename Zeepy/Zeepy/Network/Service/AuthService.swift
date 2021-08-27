@@ -26,6 +26,16 @@ extension AuthService {
       .filterError()
       .mapResult(AuthResponse.self)
   }
+  func naverLogin(token : String) -> Observable<Result<AuthResponse,APIError>> {
+    provider.rx.request(.naverLogin(token: token))
+      .filterError()
+      .mapResult(AuthResponse.self)
+  }
+  func appleLogin(param : AppleLoginParam) -> Observable<Result<AppleResponse,APIError>> {
+    provider.rx.request(.appleLogin(param: param))
+      .filterError()
+      .mapResult(AppleResponse.self)
+  }
   func checkEmail(email: String) -> Observable<Bool> {
     provider.rx.request(.emailCheck(email: email))
       .successFlag()

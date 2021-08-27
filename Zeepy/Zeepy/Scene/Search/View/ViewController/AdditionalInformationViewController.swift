@@ -252,11 +252,14 @@ extension AdditionalInformationViewController {
   
   // MARK: - Action Helpers
   @objc func nextButtonClicked() {
+    
+    
+    
     let navigation = self.navigationController
-    let nextViewController = ReviewPhotoViewController()
+    //let nextViewController = ReviewPhotoViewController()
     reviewModel.totalEvaluation = assessTextList[selectedNumber].1
     reviewModel.review = reviewTextField.text ?? ""
-    nextViewController.reviewModel = reviewModel
+    guard let nextViewController = AddPhotoViewController(nibName: nil, bundle: nil, viewModel: nil, reviewModel: reviewModel) else {return}
     nextViewController.hidesBottomBarWhenPushed = false
     navigation?.pushViewController(nextViewController, animated: false)
   }

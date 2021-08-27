@@ -15,6 +15,8 @@ enum AuthRouter {
   case logout
   case refreshToken(param : RefreshRequest)
   case kakaoLogin(token: String)
+  case appleLogin(param: AppleLoginParam)
+  case naverLogin(token: String)
 }
 
 extension AuthRouter : TargetType {
@@ -37,6 +39,10 @@ extension AuthRouter : TargetType {
       return "/auth/reissue"
     case .kakaoLogin(token: let token):
       return "/auth/login/kakao"
+    case .appleLogin:
+      return "/auth/login/apple"
+    case .naverLogin:
+      return "/auth/login/naver"
     }
   }
   var method: Moya.Method {
@@ -54,6 +60,9 @@ extension AuthRouter : TargetType {
     case .refreshToken(param: let param):
       return .post
     case .kakaoLogin(token: let token):
+      return .post
+    case .appleLogin,
+         .naverLogin:
       return .post
     }
   }
@@ -80,7 +89,13 @@ extension AuthRouter : TargetType {
     case .kakaoLogin(token: let token):
       let param = ["accessToken" : token]
       return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
+    case .appleLogin(param: let param):
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
+    case .naverLogin(token: let token):
+      let param = ["accessToken" : token]
+      return .requestParameters(parameters: try! param.asParameter(), encoding: JSONEncoding.default)
     }
+    
   }
   var headers: [String : String]? {
     switch self {

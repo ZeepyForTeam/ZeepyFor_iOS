@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.4.2)
   - Differentiator (4.0.1)
+  - DLRadioButton (1.4.12)
   - Firebase/Analytics (7.9.0):
     - Firebase/Core
   - Firebase/Core (7.9.0):
@@ -135,6 +136,7 @@ PODS:
   - RxSwift (5.1.2)
 
 DEPENDENCIES:
+  - DLRadioButton (~> 1.4)
   - Firebase/Analytics
   - Firebase/Messaging
   - KakaoSDKAuth
@@ -153,6 +155,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Differentiator
+    - DLRadioButton
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -183,6 +186,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Firebase: d8bd6bd34b4c7ed57bfdd056c66ff5adcdde53ab
   FirebaseAnalytics: 31b1269830dfe16687db3c60b76082c12bd6d527
   FirebaseCore: 0798738ad1ae0fda67e17c7b9081241c431c6859
@@ -210,6 +214,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 7763e605ca889a1a7aa3d613ad7b0ab34857cc18
+PODFILE CHECKSUM: ba0e0fd275ca32f06acffb93c459aac621278277
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0

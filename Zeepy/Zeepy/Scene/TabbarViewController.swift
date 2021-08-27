@@ -36,7 +36,6 @@ extension TabbarViewContorller : UITabBarControllerDelegate {
 
     let tab2NavigationController = UINavigationController()
     tab2NavigationController.viewControllers = [LookAroundViewController()]
-    
     let tab3NavigationController = UINavigationController()
     tab3NavigationController.viewControllers = [CommunityViewController()]
     let tab4NavigationController = UINavigationController()

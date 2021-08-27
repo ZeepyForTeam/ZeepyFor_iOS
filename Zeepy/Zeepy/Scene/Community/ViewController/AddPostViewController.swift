@@ -42,7 +42,9 @@ class AddPostViewContoller : BaseViewController {
   private let contentNotice = UILabel().then {
     $0.setupLabel(text: "공구 소개", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
   }
-  private let contentTextView = CustomTextView()
+  private let contentTextView = CustomTextView().then {
+    $0.isScrollEnabled = true
+  }
   private var placeholder: String = ""
   private let infoNotice = UILabel().then{
     $0.text = "구매정보 입력"
@@ -202,7 +204,7 @@ extension AddPostViewContoller {
     contentTextView.snp.makeConstraints{
       $0.centerX.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
-      $0.height.equalTo(90)
+      $0.height.equalTo(90).priority(.medium)
       $0.top.equalTo(contentNotice.snp.bottom).offset(10)
     }
     
@@ -406,6 +408,18 @@ extension AddPostViewContoller {
         self?.nextButton.setTitleColor(.blackText, for: .normal)
       }
     }.disposed(by: disposeBag)
+    contentTextView.rx.observeWeakly(CGSize.self, "contentSize")
+      .compactMap { $0?.height }
+      .filter{$0 > 90}
+      .distinctUntilChanged()
+      .bind{ [weak self] height in
+        self?.contentTextView.snp.updateConstraints{
+          $0.height.equalTo(height).priority(.medium)
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    
     productNameCheckBox.checkBtn.rx.tap.map{_ -> CheckBoxContent in
       return .productNameCheckBox
     }.bind(to: memberCheckInfo).disposed(by: disposeBag)

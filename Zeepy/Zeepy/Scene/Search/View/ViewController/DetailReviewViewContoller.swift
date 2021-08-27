@@ -10,12 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 class DetailReviewViewContoller : BaseViewController {
-  private let reviewModel : ReviewResponses!
-  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, review : ReviewResponses) {
-    self.reviewModel = review
+  private let reviewId : Int!
+  init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, reviewId : Int) {
+    self.reviewId = reviewId
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
-  
+  private let viewModel = ReviewDetailViewModel()
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -237,6 +237,8 @@ class DetailReviewViewContoller : BaseViewController {
     
   }
   private func bind(){
+    let input = ReviewDetailViewModel.Input(loadView: Observable.just(reviewId))
+    let output = viewModel.transform(input: input)
     collectionView.rx.observeWeakly(CGSize.self, "contentSize")
       .compactMap{$0?.height}
       .distinctUntilChanged()
@@ -262,22 +264,23 @@ class DetailReviewViewContoller : BaseViewController {
         }
       }.disposed(by: disposeBag)
     let width = 109 * (UIScreen.main.bounds.width / 375)
-
-    Observable.just(reviewModel.imageUrls ?? [])
+    output.reviewInfo.map{$0.imageUrls ?? [] }
       .bind(to: collectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
                                            cellType: ReusableSimpleImageCell.self)) {row, data, cell in
       cell.bindCell(model: data, width: width)
     }.disposed(by: disposeBag)
+    output.reviewInfo.bind{[weak self ] reviewModel in
+      let attributedString = NSMutableAttributedString(string: "\(reviewModel.user.name)님의 후기", attributes: [
+        .font: UIFont.nanumRoundExtraBold(fontSize: 16),
+        .foregroundColor: UIColor.blackText
+      ])
+      attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: reviewModel.user.name.count))
+      
+      self?.reviewerName.attributedText = attributedString
+      self?.ownerReview.text = "\(reviewModel.lessorReview ?? "")"
+      self?.houseReview.text = "\(reviewModel.review ?? "")"
+    }.disposed(by: disposeBag)
     
-    let attributedString = NSMutableAttributedString(string: "\(reviewModel.user.name)님의 후기", attributes: [
-      .font: UIFont.nanumRoundExtraBold(fontSize: 16),
-      .foregroundColor: UIColor.blackText
-    ])
-    attributedString.addAttribute(.foregroundColor, value: UIColor.blueText, range: NSRange(location: 0, length: reviewModel.user.name.count))
-    
-    reviewerName.attributedText = attributedString
-    ownerReview.text = "\(reviewModel.lessorReview ?? "")"
-    houseReview.text = "\(reviewModel.review ?? "")"
     
     writeReviewBtn.rx.tap.bind{[weak self] in
       let vc = SelectAddressViewController()
@@ -285,6 +288,4 @@ class DetailReviewViewContoller : BaseViewController {
       
     }.disposed(by: disposeBag)
   }
-  
-  
 }
