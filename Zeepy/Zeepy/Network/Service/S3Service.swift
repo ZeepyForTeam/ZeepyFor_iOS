@@ -59,4 +59,9 @@ extension S3Service {
     }
     return Observable.zip(observables)
   }
+  
+  private func fetchKakaoAddress(keyword: String) -> Observable<Response> {
+    provider.rx.request(.fetchKakaoAddress(keyword: keyword))
+      .asObservable()
+  }
 }

@@ -88,13 +88,13 @@ class CommunityViewController : BaseViewController {
     segmentView.snp.makeConstraints{
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(naviView.snp.bottom)
-      $0.height.equalTo(52)
+      $0.height.equalTo(56)
     }
     
     indicator.snp.makeConstraints{
       $0.width.equalTo(167)
       $0.height.equalTo(4)
-      $0.bottom.equalToSuperview().offset(-12)
+      $0.bottom.equalToSuperview().offset(-8)
       $0.leading.equalToSuperview().offset(16)
     }
     postTab.snp.makeConstraints{
@@ -216,14 +216,14 @@ extension CommunityViewController : UICollectionViewDelegate{
     
     self.view.adds([segmentCollectionView, postFilterCollectionView])
     segmentCollectionView.snp.makeConstraints{
-      $0.top.equalTo(segmentView.snp.bottom)
+      $0.top.equalTo(segmentView.snp.bottom).offset(4)
       $0.width.equalTo(self.view.frame.width)
       $0.centerX.equalTo(self.view.safeAreaLayoutGuide)
       $0.leading.equalTo(self.view.safeAreaLayoutGuide)
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
     postFilterCollectionView.snp.makeConstraints{
-      $0.top.equalTo(segmentView.snp.bottom)
+      $0.top.equalTo(segmentView.snp.bottom).offset(4)
       $0.width.equalTo(self.view.frame.width)
       $0.centerX.equalToSuperview()
       $0.height.equalTo(44)

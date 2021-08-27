@@ -36,8 +36,9 @@ final class LookAroundViewController: BaseViewController {
   }
   private var tableViewHeader: UICollectionView!
   private let tableView = UITableView()
-  private let loadViewTrigger = PublishSubject<Void>()
+  private let loadViewTrigger = BehaviorSubject<Int>(value: 0)
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
+  private var currentPage = 0
   let filterTrigger = PublishSubject<ValidateType?>()
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,7 +53,7 @@ final class LookAroundViewController: BaseViewController {
   private func didReceiveNotification(_ notification: Notification) {
     if self.currentLocation.text != UserManager.shared.currentAddress?.primaryAddress {
       self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
-      loadViewTrigger.onNext(())
+      loadViewTrigger.onNext(0)
     }
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +61,7 @@ final class LookAroundViewController: BaseViewController {
     self.navigationController?.isNavigationBarHidden = true
     NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
     if self.currentLocation.text != UserManager.shared.currentAddress?.primaryAddress {
-      loadViewTrigger.onNext(())
+      loadViewTrigger.onNext(0)
     }
     self.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
 
@@ -93,7 +94,16 @@ extension LookAroundViewController {
       .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
                                                         cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
         cell.bind(model: data)
+        print(row)
+        if row > 18 * ((self?.currentPage ?? 0) + 1) {
+          
+          self?.loadViewTrigger.onNext((self?.currentPage ?? 0) + 1)
+        }
       }.disposed(by: disposeBag)
+    loadViewTrigger.bind{[weak self] page in
+      self?.currentPage = page
+      print(page)
+    }.disposed(by: disposeBag)
     outputs.buildingDetailParam
       .bind{ [weak self] model in
         if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model.buildingId) {
@@ -132,7 +142,6 @@ extension LookAroundViewController {
       ])
     }.disposed(by: disposeBag)
   
-    loadViewTrigger.onNext(())
   }
   private func bindAction() {
     

@@ -189,6 +189,7 @@ class HomeViewController : BaseViewController {
     selectTypeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.backgroundColor = .white
+    selectTypeCollectionView.showsHorizontalScrollIndicator = false
     selectTypeCollectionView.register(SelectTypeCollectionViewCell.self,
                                       forCellWithReuseIdentifier: SelectTypeCollectionViewCell.identifier)
   }
