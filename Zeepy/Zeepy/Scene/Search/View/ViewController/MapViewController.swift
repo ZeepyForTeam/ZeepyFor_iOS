@@ -89,7 +89,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var currentMarkers = [MTMapPOIItem]()
     var selectedList = [String]()
     var searchView = UIView().then{
-        $0.setRounded(radius: 15)
+        $0.setRounded(radius: 16)
         $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
     }
     var searchImageView = UIImageView().then{
@@ -100,7 +100,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var searchTextField = UIButton().then{
         $0.setTitle("지역, 동, 지하철역으로 입력해주세요.", for: .normal)
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
-        $0.setTitleColor(.gray244, for: .normal)
+        $0.setTitleColor(.blackText, for: .normal)
     }
     
     var searchButton = UIButton().then{
@@ -488,9 +488,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     func reAdjustMapCenter(){
       let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
-      print("여기야여기")
-      print(mapPoint?.mapPointGeo().latitude)
-      print(mapPoint?.mapPointGeo().longitude)
       mapView.setMapCenter(mapPoint, animated: true)
     }
     
@@ -547,7 +544,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         searchView.snp.makeConstraints{
           $0.leading.equalToSuperview().offset(19)
           $0.trailing.equalToSuperview().offset(-13)
-          $0.top.equalTo(naviView.snp.bottom)//?
+          $0.top.equalTo(naviView.snp.bottom).offset(5)
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)
@@ -556,7 +553,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         searchImageView.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(5)
+          $0.leading.equalToSuperview().offset(12.5)
+          $0.width.height.equalTo(16)
         }
         searchTextField.snp.makeConstraints{
             $0.top.bottom.equalTo(searchView)
@@ -564,7 +562,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         searchButton.snp.makeConstraints{
             $0.top.bottom.equalTo(searchView)
-            $0.trailing.equalToSuperview().inset(5)
+            $0.trailing.equalToSuperview().inset(15)
         }
         mapView.addSubview(myLocationView)
         

@@ -23,12 +23,16 @@ class UserDefaultHandler {
     return UserDefaultHelper<Int>.value(forKey: .userId)
   }
   
-  static var history: [MTMapPointGeo]? {
-    return UserDefaultHelper<[MTMapPointGeo]>.value(forKey: .history)
+  static var historyLatitude: [Double]? {
+    return UserDefaultHelper<Double>.value(forkey: .historyLatitude)
+  }
+  
+  static var historyLongitude: [Double]? {
+    return UserDefaultHelper<Double>.value(forkey: .historyLongitude)
   }
   
   static var historyName: [String]? {
-    return UserDefaultHelper<String>.value(forKey: .historyName)
+    return UserDefaultHelper<String>.value(forkey: .historyName)
   }
 }
 
@@ -71,7 +75,8 @@ enum DataKeys: String {
   case refreshToken = "refreshToken"
   case userId = "userId"
   case loginType = "loginType"
-  case history = "history"
+  case historyLatitude = "historyLatitude"
+  case historyLongitude = "historyLongitude"
   case historyName = "historyName"
 }
 enum LoginType: String {
