@@ -602,6 +602,7 @@ class ConditionViewController: UIViewController {
             priceTitle.isHidden = true
             rentPriceShowView.isHidden = true
             rentPriceSliderView.isHidden = true
+
             rentPriceRange.isHidden = true
             rentTitle.isHidden = true
             depositPriceShowView.isHidden = true
