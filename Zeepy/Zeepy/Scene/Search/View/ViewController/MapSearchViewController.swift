@@ -168,7 +168,7 @@ class MapSearchViewController: BaseViewController {
   
   private func fetchHistory() {
     self.searchRecordList = UserDefaultHandler.history ?? []
-    self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
+//    self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
     self.reloadTableView()
   }
   @objc func TableViewCellSelected(sender: UIButton)-> String{

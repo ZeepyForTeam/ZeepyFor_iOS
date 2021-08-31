@@ -27,9 +27,9 @@ class UserDefaultHandler {
     return UserDefaultHelper<[MTMapPointGeo]>.value(forKey: .history)
   }
   
-  static var historyName: [String]? {
-    return UserDefaultHelper<String>.value(forKey: .historyName)
-  }
+//  static var historyName: [String]? {
+//    return UserDefaultHelper<String>.value(forKey: .historyName)
+//  }
 }
 
 class UserDefaultHelper<T> {
