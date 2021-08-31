@@ -27,6 +27,8 @@ class MapSearchViewController: BaseViewController {
   
   private let navigationView = CustomNavigationBar()
   var selectedName = ""
+  var searchRecordLatitude: [Double] = []
+  var searchRecordLongitude: [Double] = []
   var searchRecordList: [MTMapPointGeo] = []
   var searchRecordPlaceList: [String] = []
   //    var searchRecommendList = ["잠실새내역", "잠실종합운동장역", "잠실역"]
@@ -47,8 +49,11 @@ class MapSearchViewController: BaseViewController {
   }
   
   var searchTextField = UITextField().then{
-    $0.placeholder = "지역, 동, 지하철역으로 입력해주세요."
     $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
+    $0.attributedPlaceholder = NSAttributedString(
+      string: "지역, 동, 지하철역으로 입력해주세요.",
+      attributes: [.font: UIFont.nanumRoundRegular(fontSize: 12),
+                   .foregroundColor: UIColor.blackText])
   }
   
   var searchButton = UIButton().then{
@@ -109,7 +114,7 @@ class MapSearchViewController: BaseViewController {
     searchView.snp.makeConstraints{
       $0.leading.equalToSuperview().offset(19)
       $0.trailing.equalToSuperview().offset(-13)
-      $0.top.equalTo(navigationView.snp.bottom)//?
+      $0.top.equalTo(navigationView.snp.bottom).offset(5)
       $0.height.equalTo(40)
     }
     searchView.addSubview(searchImageView)
@@ -118,7 +123,8 @@ class MapSearchViewController: BaseViewController {
     
     searchImageView.snp.makeConstraints{
       $0.centerY.equalToSuperview()
-      $0.leading.equalToSuperview().offset(5)
+      $0.leading.equalToSuperview().offset(12)
+      $0.width.height.equalTo(16)
     }
     searchTextField.snp.makeConstraints{
       $0.top.bottom.equalTo(searchView)
@@ -126,12 +132,12 @@ class MapSearchViewController: BaseViewController {
     }
     searchButton.snp.makeConstraints{
       $0.top.bottom.equalTo(searchView)
-      $0.trailing.equalToSuperview().inset(5)
+      $0.trailing.equalToSuperview().inset(15)
     }
     betweenBackgroundView.snp.makeConstraints {
       $0.top.equalTo(self.searchView.snp.centerY)
       $0.leading.trailing.equalTo(self.searchView)
-      $0.height.equalTo(20)
+      $0.height.equalTo(30)
     }
     searchRecordTableView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     searchRecordTableView.layer.cornerRadius = 16
@@ -144,8 +150,6 @@ class MapSearchViewController: BaseViewController {
   }
   
   private func fetchAddress() {
-    print("여기야여기")
-    print(self.searchTextField.text)
     s3service.fetchKakaoAddress(keyword: self.searchTextField.text ?? "")
       .subscribe(onNext: { response in
         if response.statusCode == 200 {
@@ -168,7 +172,10 @@ class MapSearchViewController: BaseViewController {
   
   private func fetchHistory() {
     self.searchRecordList = UserDefaultHandler.history ?? []
-//    self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
+    self.searchRecordLongitude = UserDefaultHandler.historyLongitude ?? []
+    self.searchRecordLatitude = UserDefaultHandler.historyLatitude ?? []
+    self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
+    print("history :\n \(self.searchRecordPlaceList)")
     self.reloadTableView()
   }
   @objc func TableViewCellSelected(sender: UIButton)-> String{
@@ -188,7 +195,7 @@ class MapSearchViewController: BaseViewController {
 
 extension MapSearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if historyOrSearch == 0 && indexPath.row == searchRecordList.count-1 {
+    if historyOrSearch == 0 && indexPath.row == searchRecordPlaceList.count-1 {
       return 21
     }
     else if historyOrSearch == 1 && indexPath.row == 5 {
@@ -203,11 +210,11 @@ extension MapSearchViewController: UITableViewDelegate {
 extension MapSearchViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if historyOrSearch == 0 && self.searchRecordList.count >= 5 {
+    if historyOrSearch == 0 && self.searchRecordPlaceList.count >= 5 {
       return 6
     }
-    else if historyOrSearch == 0 && self.searchRecordList.count < 5 {
-      return self.searchRecordList.count + 1
+    else if historyOrSearch == 0 && self.searchRecordPlaceList.count < 5 {
+      return self.searchRecordPlaceList.count + 1
     }
     else {
       return 6
@@ -215,7 +222,7 @@ extension MapSearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if historyOrSearch == 0 && indexPath.row == searchRecordList.count {
+    if historyOrSearch == 0 && indexPath.row == searchRecordPlaceList.count {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
       MapSearchTableViewCell.addConstraints()
       return MapSearchTableViewCell
@@ -271,18 +278,23 @@ extension MapSearchViewController: UITableViewDataSource {
         let geoPlace = doc.placeName
         mapVC?.searchCoordinates = geo
         mapVC?.reAdjustMapCenter()
-        self.searchRecordList.append(geo)
-        UserDefaultHelper<[MTMapPointGeo]>.set(self.searchRecordList, forKey: .history)
+        self.searchRecordLatitude.append(Double(doc.x)!)
+        self.searchRecordLongitude.append(Double(doc.y)!)
+        UserDefaultHelper<[Double]>.set(self.searchRecordLatitude, forKey: .historyLatitude)
+        UserDefaultHelper<[Double]>.set(self.searchRecordLongitude, forKey: .historyLongitude)
       
         self.searchRecordPlaceList.append(geoPlace)
-        UserDefaultHelper<String>.set(geoPlace, forKey: .historyName)
+        print(geoPlace)
+        UserDefaultHelper<[String]>.set(self.searchRecordPlaceList, forKey: .historyName)
+        print(UserDefaultHandler.historyName as? [String])
         self.navigationController?.popViewController(animated: true)
       }
     }
     
-    else if indexPath.row < searchRecordList.count && historyOrSearch == 0 {
-      let geo = self.searchRecordList[indexPath.row]
-      mapVC?.searchCoordinates = geo
+    else if indexPath.row < searchRecordLatitude.count && historyOrSearch == 0 {
+      let lat = self.searchRecordLatitude[indexPath.row]
+      let lon = self.searchRecordLongitude[indexPath.row]
+      mapVC?.searchCoordinates = MTMapPointGeo(latitude: lat, longitude: lon)
       mapVC?.reAdjustMapCenter()
         self.navigationController?.popViewController(animated: true)
     }
@@ -291,8 +303,9 @@ extension MapSearchViewController: UITableViewDataSource {
       MapSearchTableViewCell!.backgroundColor = .mainBlue
       searchRecordList.removeAll()
       searchRecordPlaceList.removeAll()
-      UserDefaultHelper<[MTMapPointGeo]>.set(self.searchRecordList, forKey: .history)
-      UserDefaultHelper<String>.set(self.searchRecordPlaceList, forKey: .historyName)
+      UserDefaultHelper<[Double]>.set(self.searchRecordLatitude, forKey: .historyLatitude)
+      UserDefaultHelper<[Double]>.set(self.searchRecordLongitude, forKey: .historyLongitude)
+      UserDefaultHelper<[String]>.set(self.searchRecordPlaceList, forKey: .historyName)
       fetchHistory()
     }
     //        returnSearchContent(searchContent: searchRecordList[indexPath.row])

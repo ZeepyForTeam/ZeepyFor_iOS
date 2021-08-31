@@ -19,6 +19,10 @@ class LastTableViewCell: UITableViewCell {
     func addConstraints(){
         self.backgroundColor = .whiteGray
         self.addSubview(deleteTableViewCellLabel)
+      self.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+      self.layer.cornerRadius = 16
+      contentView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+      contentView.layer.cornerRadius = 16
         deleteTableViewCellLabel.snp.makeConstraints{
           $0.top.equalToSuperview().offset(4)
           $0.bottom.equalToSuperview().offset(-8)
