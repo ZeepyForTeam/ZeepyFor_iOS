@@ -80,6 +80,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     }
     //[ BUSINESS, KIND, GRAZE, SOFTY, BAD ]
     var items = [MTMapPOIItem]()
+    var AllItems = [MTMapPOIItem]()
     var businessItems = [MTMapPOIItem]()
     var kindItems = [MTMapPOIItem]()
     var grazeItems = [MTMapPOIItem]()
@@ -87,7 +88,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var badItems = [MTMapPOIItem]()
     var showItems = [MTMapPOIItem]()
     var currentMarkers = [MTMapPOIItem]()
-    var selectedList = [String]()
+    var selectedList : [String] = ["BUSINESS", "GRAZE", "SOFTY", "BAD", "KIND"]
     var searchView = UIView().then{
         $0.setRounded(radius: 16)
         $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
@@ -412,10 +413,12 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                 }
                             }
                             
-                            self.items += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
+                            self.AllItems += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
                         }
-                        self.findCurrentMarker()
+                        mapView.addPOIItems(AllItems)
+                        self.items = AllItems
                         print("count의 갯수는", count)
+                        print("items는~? ", self.items)
                         print("Business List는", self.businessItems)
                         print("Kind List는",self.kindItems)
                         print("graze List는", self.grazeItems)
@@ -429,7 +432,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 }
             }, onError: { error in
                 print(error)
-            }, onCompleted: {}).disposed(by: disposeBag)
+            }, onCompleted: {
+                self.findCurrentMarker()
+            }).disposed(by: disposeBag)
     }
     
     private func fetchMapDetail(id : Int) { //이거는 선택됐을 때 실행하자.
@@ -460,6 +465,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     }
     
     func filterItemsToShowItems(){
+        showItems = []
         if selectedList.contains("BUSINESS") {
             showItems += businessItems
         }
@@ -482,11 +488,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         print("this is showItems")
         print(showItems)
         print("this is businessItems")
-        print(businessItems)
         findCurrentMarker()
     }
     
-    func reAdjustMapCenter(){
+    final func reAdjustMapCenter(){
       let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
       mapView.setMapCenter(mapPoint, animated: true)
     }
@@ -499,15 +504,19 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             if marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().latitude < (northEast?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().longitude > (southWest?.mapPointGeo().longitude)! &&
-                marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)! {
+                marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)!{
                 currentMarkers.append(marker)
             }
         }
-        print("여기서 보는 ITEmS!!")
+        if mapView.poiItems.count > 0 {
+            mapView.removeAllPOIItems()
+        }
+        mapView.addPOIItems(currentMarkers)
+        print("여기서 보는 Items!!")
+        print(items)
         print("currentMarker개수는?")
         print(currentMarkers.count)
-        mapView.removeAllPOIItems()
-        mapView.addPOIItems(currentMarkers)
+        
     }
     
     // MARK: - LifeCycle
@@ -523,6 +532,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         initMapView()
         addConstraints()
         initCollectionview()
+        
+        
         searchTextField.rx.tap.bind{[weak self] in
             let vc = MapSearchViewController()
             self?.navigationController?.pushViewController(vc, animated: false)
@@ -535,6 +546,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     func addConstraints() {
       naviView.snp.makeConstraints{
@@ -578,7 +590,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         myLocationView.snp.makeConstraints{
             $0.top.equalTo(searchView.snp.bottom).offset(16)
-            $0.leading.equalTo(searchView.snp.leading).offset(16)
+            $0.leading.equalToSuperview().offset(16)
         }
         
         myLocationButton.snp.makeConstraints{
@@ -586,7 +598,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
     }
     
-    func operateFloatingButton(){
+    final func operateFloatingButton(){
         if !closedFloatingView.isHidden{
             closedFloatingView.translatesAutoresizingMaskIntoConstraints = false
             closedFloatingView.snp.makeConstraints{
@@ -625,13 +637,16 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     @objc func myLocationButtonTapped(){
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-            let currentLocation = location?.mapPointGeo()
-            print("현위치")
-            print(currentLocation?.latitude)
-            if let latitude = currentLocation?.latitude,
-               let longitude = currentLocation?.longitude{
+            let coor = locationManager.location?.coordinate
+            let currentLocation = location.mapPointGeo()
+            print("여기 Latitude 이거야~~")
+            print(coor?.latitude)
+//            mapView.currentLocationTrackingMode = .onWithoutHeadingWithoutMapMoving //이건뭐지?? 테스트 해보고 싶다
+            mapView.currentLocationTrackingMode = .onWithoutHeading
+            if let latitude = coor?.latitude,
+               let longitude = coor?.longitude{
                 print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
+                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation), zoomLevel: 4, animated: true)
             }
         }
         print("change center")
@@ -654,7 +669,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         mapDetailView.isHidden = false
         mapDetailView.snp.makeConstraints{
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(self.view.snp.bottom)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
             $0.height.equalTo(210)
             $0.width.equalTo(self.view.snp.width)
@@ -674,6 +689,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         buildingDetail.snp.makeConstraints{
             $0.leading.equalTo(buildingDetailTitle.snp.trailing).offset(15)
+            $0.trailing.equalTo(self.view.safeAreaLayoutGuide) // 여기바꿔봤음.
             $0.centerY.equalTo(buildingDetailTitle)
         }
         ownerTitle.snp.makeConstraints{
@@ -773,7 +789,7 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
             cell?.backgroundColor = .white
         }
         print("selected된 것만 보여줘잇~~")
-        returnList(index : selectedTag)
+        selectedList = returnList(index : selectedTag)
         print(collectionViewCellList.filter{$0.selected}.map{$0.englishName})
         return cell!
     }
@@ -792,7 +808,7 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 9
+        return (collectionView.bounds.width - 60*5)/6
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
