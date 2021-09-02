@@ -38,7 +38,7 @@ class tableViewHeaderCollectionViewCell: UICollectionViewCell {
     }
   func bindCell(_ model : FilterModel , first: Bool) {
       layout()
-      label.text = model.title
+    label.text = model.title.rawValue
     self.container.layer.backgroundColor = model.selected ? UIColor.softBlue.cgColor : UIColor.gray244.cgColor
     self.label.textColor = model.selected ? .white : .blackText
     self.label.font = .nanumRoundBold(fontSize: 12)
