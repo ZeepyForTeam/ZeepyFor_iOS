@@ -171,7 +171,6 @@ class MapSearchViewController: BaseViewController {
   }
   
   private func fetchHistory() {
-    self.searchRecordList = UserDefaultHandler.history ?? []
     self.searchRecordLongitude = UserDefaultHandler.historyLongitude ?? []
     self.searchRecordLatitude = UserDefaultHandler.historyLatitude ?? []
     self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []

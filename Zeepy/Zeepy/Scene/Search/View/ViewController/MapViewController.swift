@@ -509,7 +509,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             }
         }
         if mapView.poiItems.count > 0 {
-        mapView.removeAllPOIItems()
+            mapView.removeAllPOIItems()
         }
         mapView.addPOIItems(currentMarkers)
         print("여기서 보는 Items!!")
@@ -789,7 +789,7 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
             cell?.backgroundColor = .white
         }
         print("selected된 것만 보여줘잇~~")
-        returnList(index : selectedTag)
+        selectedList = returnList(index : selectedTag)
         print(collectionViewCellList.filter{$0.selected}.map{$0.englishName})
         return cell!
     }
@@ -808,7 +808,7 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 9
+        return (collectionView.bounds.width - 60*5)/6
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
