@@ -22,6 +22,9 @@ class JoinPopUpView : UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  deinit {
+    print("DEINIT: \(self.className)")
+  }
   private let titleLabel = UILabel().then {
     let attributedString = NSMutableAttributedString(string: "(필수) 아래 내용 입력 후 참여를 확정하세요!", attributes: [
       .font: UIFont.nanumRoundExtraBold(fontSize: 14),
@@ -44,6 +47,7 @@ class JoinPopUpView : UIView {
     $0.setTitleColor(.white, for: .normal)
     $0.setTitleColor(.gray196, for: .disabled)
     $0.backgroundColor = .gray244
+    $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
     $0.setRounded(radius: 8)
   }
   var resultClosure: ((String) -> ())?
@@ -66,11 +70,15 @@ class JoinPopUpView : UIView {
       $0.bottom.equalToSuperview().offset(-16)
       $0.height.equalTo(48)
     }
+
   }
   private func bind() {
+    contentTextView.setPlaceholder(placeholder: "[닉네임/제품명/구매개수/총가격]을 남겨주세요.", disposeBag: disposeBag)
     contentTextView.rx.text.map{$0?.isEmpty == false}
-      .bind(to: addJoinBtn.rx.isEnabled)
-      .disposed(by: disposeBag)
+      .bind{[weak self] in
+        self?.addJoinBtn.isEnabled = $0
+        self?.addJoinBtn.backgroundColor = $0 ? .communityGreen : .gray244
+      }.disposed(by: disposeBag)
     addJoinBtn.rx.tap
       .withLatestFrom(contentTextView.rx.text)
       .bind{[weak self] content in

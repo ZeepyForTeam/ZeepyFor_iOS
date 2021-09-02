@@ -15,11 +15,10 @@ final class LookAroundViewModel: Services {
   struct Input {
     let loadTrigger: Observable<Int>
     let filterAction: Observable<Void>
-    let ownerFilterAction : Observable<ValidateType?>
     let mapSelectAction: Observable<Void>
     let conditionFilter: Observable<BuildingRequest?>
     let buildingSelect: Observable<(IndexPath, BuildingModel)>
-    let filterSelect: Observable<(IndexPath, FilterModel)>
+    let filterSelect: Observable<FilterModel>
   }
   struct Output {
     let buildingUsecase: Observable<[BuildingModel]>
@@ -32,28 +31,31 @@ extension LookAroundViewModel {
     weak var weakSelf = self
     var filterOriginUsecase : [FilterModel] = []
     
-    
-    let buildingUsecase = Observable.combineLatest( inputs.loadTrigger , inputs.conditionFilter).flatMapLatest{ (page, conditionmodel) -> Observable<[BuildingContent]> in
-      if let model = conditionmodel {
-        return weakSelf?.service.fetchBuildingList(param: model) ?? .empty()
-      }
-      else {
-        return weakSelf?.service.fetchBuildingList(param: .init(pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
-      }
-    }.map{$0.map{$0.toModel()}}
-    
-    let filterDummy = Observable.just([FilterModel(title: "전체", selected: true),
-                                       FilterModel(title: "기본순", selected: false),
-                                       FilterModel(title: "방음굿", selected: false),
-                                       FilterModel(title: "해충 제로", selected: false),
-                                       FilterModel(title: "채광 좋은", selected: false),
-                                       FilterModel(title: "수압 완벽", selected: false)])
+    let filterDummy = Observable.just([FilterModel(title: .total, selected: true),
+                                       FilterModel(title: .business, selected: false),
+                                       FilterModel(title: .free, selected: false),
+                                       FilterModel(title: .kind, selected: false),
+                                       FilterModel(title: .cute, selected: false),
+                                       FilterModel(title: .bad, selected: false)])
     let bindTrigger = filterDummy.map{ model in
       filterOriginUsecase = model
     }
     let filterUsecase = bindTrigger.flatMapLatest{ _ -> Observable<[FilterModel]> in
       return weakSelf?.configureCurrentFilter(tapAction: inputs.filterSelect, origin: filterOriginUsecase) ?? .empty()
     }
+    let buildingUsecase = Observable.combineLatest( inputs.loadTrigger,
+                                                    inputs.conditionFilter,
+                                                    filterUsecase)
+      .flatMapLatest{(page, conditionmodel, filter) -> Observable<[BuildingContent]> in
+        let currentType = filter.first(where: {$0.selected})?.title ?? .total
+        if var model = conditionmodel {
+          model.eqCommunicationTendency = currentType.request
+          return weakSelf?.service.fetchBuildingList(param: model) ?? .empty()
+        }
+        else {
+          return weakSelf?.service.fetchBuildingList(param: .init(eqCommunicationTendency : currentType.request ,pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
+        }
+      }.map{$0.map{$0.toModel()}}
     return .init(
       buildingUsecase: buildingUsecase,
       buildingDetailParam: inputs.buildingSelect.map{$0.1},
@@ -63,24 +65,24 @@ extension LookAroundViewModel {
 }
 extension LookAroundViewModel {
   func configureCurrentFilter(
-    tapAction: Observable<(IndexPath, FilterModel)>,
+    tapAction: Observable<FilterModel>,
     origin: [FilterModel]) -> Observable<[FilterModel]> {
     enum Action {
-      case tapAction(indexPath : IndexPath, model:FilterModel)
+      case tapAction( model:FilterModel)
     }
     
     return tapAction
       .map(Action.tapAction)
       .scan(into: origin) { state, action in
         switch action {
-        case let .tapAction(IndexPath, model):
-          
-          if state[IndexPath.row].title == model.title {
-            for i in 0..<state.count {
-              state[i].selected = false
-            }
-            state[IndexPath.row].selected.toggle()
+        case let .tapAction(model):
+          guard let index = state.firstIndex(where: {$0.title == model.title}) else {
+            return
           }
+          for i in 0..<state.count {
+            state[i].selected = false
+          }
+          state[index].selected.toggle()
         }
       }
       .startWith(origin)

@@ -250,6 +250,7 @@
 		DA66096626BBD3060019D7F7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */; };
 		DA67E66B26CF7288001A1CEF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67E66A26CF7288001A1CEF /* ViewModel.swift */; };
 		DA84292F26D8965800AC1E40 /* AddPostPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA84292E26D8965800AC1E40 /* AddPostPopup.swift */; };
+		DA932F4C26E0FD56008B6E03 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA932F4B26E0FD56008B6E03 /* NSObject+.swift */; };
 		DA94C55326D795420020C6E6 /* ReviewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */; };
 		DAA2F4A426AACFD9003E9EAE /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A326AACFD9003E9EAE /* Optional+.swift */; };
 		DAA2F4A626AAEDD4003E9EAE /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */; };
@@ -566,6 +567,7 @@
 		DA66096526BBD3060019D7F7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DA67E66A26CF7288001A1CEF /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		DA84292E26D8965800AC1E40 /* AddPostPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPopup.swift; sourceTree = "<group>"; };
+		DA932F4B26E0FD56008B6E03 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		DA94C55226D795420020C6E6 /* ReviewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewModel.swift; sourceTree = "<group>"; };
 		DAA2F4A326AACFD9003E9EAE /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		DAA2F4A526AAEDD4003E9EAE /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -1404,6 +1406,7 @@
 				DA47449E261976B000709883 /* UITextView+RxCocoa.swift */,
 				DA4744D12619899200709883 /* UIApplication+.swift */,
 				DAA2F4B526ABF39A003E9EAE /* UITableViewCell+.swift */,
+				DA932F4B26E0FD56008B6E03 /* NSObject+.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -1898,6 +1901,7 @@
 				CC2BB29B26B3DB23007BC269 /* AddressTableViewCell.swift in Sources */,
 				DA51080A26D619F600076527 /* S3Router.swift in Sources */,
 				CC8D722E264A4FEC002BB7FF /* DetailInformationViewController.swift in Sources */,
+				DA932F4C26E0FD56008B6E03 /* NSObject+.swift in Sources */,
 				CCB6C10626ACD99E006E7032 /* CreditViewController.swift in Sources */,
 				CC8D723D264A7BB3002BB7FF /* FirstSectionCollectionReusableView.swift in Sources */,
 				DA37C79C269BDB260031A17B /* PostViewController.swift in Sources */,

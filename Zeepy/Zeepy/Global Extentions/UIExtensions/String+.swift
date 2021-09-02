@@ -185,6 +185,8 @@ extension String {
       return .free
     case "SOFTY" :
       return .cute
+    case "UNKNOWN":
+      return .unknown
     default :
       return ValidateType.bad
     }

@@ -40,7 +40,7 @@ final class LookAroundViewController: BaseViewController {
   private let conditionFilter = BehaviorSubject<BuildingRequest?>(value: nil)
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
   private var currentPage = 0
-  let filterTrigger = PublishSubject<ValidateType?>()
+  let filterTrigger = PublishSubject<FilterModel>()
   private let refreshController = UIRefreshControl()
   
   override func viewDidLoad() {
@@ -52,6 +52,9 @@ final class LookAroundViewController: BaseViewController {
     refreshCell()
     bind()
     bindAction()
+  }
+  func fromHome(type: FilterModel) {
+    filterTrigger.onNext(type)
   }
   private func refreshCell() {
     refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -92,16 +95,14 @@ extension LookAroundViewController {
     let buildingSelection = Observable.zip(tableView.rx.itemSelected,
                                            tableView.rx.modelSelected(BuildingModel.self).asObservable())
     
-    let filterSelectUsecase = Observable.zip(tableViewHeader.rx.itemSelected,
-                                             tableViewHeader.rx.modelSelected(FilterModel.self).asObservable())
+    let filterSelectUsecase = tableViewHeader.rx.modelSelected(FilterModel.self).asObservable()
     
     let inputs = LookAroundViewModel.Input(loadTrigger: loadViewTrigger,
                                            filterAction: filterButton.rx.tap.asObservable(),
-                                           ownerFilterAction: filterTrigger,
                                            mapSelectAction: mapButton.rx.tap.asObservable(),
                                            conditionFilter: conditionFilter,
                                            buildingSelect: buildingSelection,
-                                           filterSelect: filterSelectUsecase)
+                                           filterSelect: filterTrigger)
     let outputs = viewModel.transForm(inputs: inputs)
     
     outputs.buildingUsecase
@@ -142,7 +143,7 @@ extension LookAroundViewController {
     outputs.filterUsecase
       .bind(to: tableViewHeader.rx.items(cellIdentifier: tableViewHeaderCollectionViewCell.identifier,
                                          cellType: tableViewHeaderCollectionViewCell.self)) {row, data, cell in
-        cell.bindCell(data, first: row == 0 && data.title == "전체")
+        cell.bindCell(data, first: row == 0 && data.title.rawValue == "전체")
       }.disposed(by: disposeBag)
     
     filterButton.rx.tap.bind{[weak self] in
@@ -170,15 +171,18 @@ extension LookAroundViewController {
       let view = SettingView()
       HalfAppearView.shared.appearHalfView(subView: view)
       
-      view.setUpTableView([("전체",{self?.filterTrigger.onNext(nil)}),
-                           ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.business)}),
-                           ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.kind)}),
-                           ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.free)}),
-                           ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.cute)}),
-                           ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.bad)}),
+      view.setUpTableView([("전체",{self?.filterTrigger.onNext(.init(title: .total, selected: false))}),
+                           ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.init(title: .business, selected: false))}),
+                           ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.init(title: .kind, selected: false))}),
+                           ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.init(title: .free, selected: false))}),
+                           ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.init(title: .cute, selected: false))}),
+                           ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.init(title: .bad, selected: false))}),
                            
       ])
     }.disposed(by: disposeBag)
+    filterSelectUsecase
+      .bind(to: filterTrigger)
+      .disposed(by: disposeBag)
     
   }
   private func bindAction() {
@@ -218,9 +222,9 @@ extension LookAroundViewController {
     tableViewHeader.snp.makeConstraints{
       $0.top.equalTo(headerView.snp.bottom)
       $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(0)
+      $0.height.equalTo(50)
     }
-    tableViewHeader.isHidden = true
+//    tableViewHeader.isHidden = true
     tableView.snp.makeConstraints{
       $0.top.equalTo(tableViewHeader.snp.bottom)
       $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)

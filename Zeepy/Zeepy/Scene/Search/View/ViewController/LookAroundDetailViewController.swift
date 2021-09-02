@@ -376,9 +376,11 @@ extension LookAroundDetailViewController {
       }.disposed(by: disposeBag)
     output.likeResult.bind{[weak self] result in
       if result {
-        self?.likeBtn.isSelected.toggle()
         
         self?.loadTrigger.onNext((self?.buildingId)!)
+      }
+      else {
+        MessageAlertView.shared.showAlertView(title: "잠시 후 다시 시도해주세요", grantMessage: "확인")
       }
     }.disposed(by: disposeBag)
     output.buildingDetailUsecase.bind{ [weak self] model in
@@ -388,6 +390,7 @@ extension LookAroundDetailViewController {
       self.addressLabel.text = model.buildingAddress
       self.buildingTypeLabel.text = model.buildingType
       self.tradeTypeLabel.text = model.contractType
+      self.likeBtn.isSelected = model.buildingLikes
       self.options.text = model.options.map{$0}.reduce(into : ""){$0 + "," + $1}
       for i in 0..<self.ownerTypes.count {
         self.ownerTypes[i].typeLabel.text = model.ownerInfo[i].type.rawValue

@@ -30,11 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     instance?.consumerKey = kConsumerKey
     instance?.consumerSecret = kConsumerSecret
     instance?.appName = kServiceAppName
+    #if RELEASE
+    print("릴ㄹ리즈 버전")
+    #endif
     NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
       print("Revoked Notification")
       LoginManager.shared.makeLogoutStatus()
       // 로그인 페이지로 이동
     }
+
     if #available(iOS 10.0, *) {
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self

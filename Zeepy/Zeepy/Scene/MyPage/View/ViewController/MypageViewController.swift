@@ -317,7 +317,7 @@ extension MypageViewController {
   }
   
   private func mailToUs() {
-    let email = "zeepy_official@gmail.com"
+    let email = "zeepy.official@gmail.com"
     if let url = URL(string: "mailto:\(email)") {
       UIApplication.shared.open(url)
     }

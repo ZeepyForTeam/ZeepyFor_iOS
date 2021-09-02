@@ -18,7 +18,10 @@ class ReportNoticeView : UIView {
     layout()
     bind()
   }
-  
+  deinit {
+    print("DEINIT: \(self.className)")
+
+  }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

@@ -69,7 +69,7 @@ struct DealDateClass: Codable {
 struct BuildingLike: Codable {
   let id: Int
   let likeDate: String
-  let email: String
+  let userId: Int
 }
 
 struct BuildingLikes: Codable {
@@ -319,6 +319,7 @@ extension BuildingContent {
                        createdAt: "")
       reviewInfos.append(reviewInfo)
     }
+    let like = buildingLikes?.contains(where: {$0.userId == UserDefaultHandler.userId}) ?? false
     return .init(buildingId: id ?? -1,
                  buildingName: apartmentName ?? "",
                  buildingImages: images,
@@ -328,7 +329,8 @@ extension BuildingContent {
                  options: [],
                  ownerInfo: ownerTypes,
                  review: reviewInfos,
-                 filters: [])
+                 filters: [],
+                 buildingLikes: like)
   }
   func toModel() -> BuildingModel {
     let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
