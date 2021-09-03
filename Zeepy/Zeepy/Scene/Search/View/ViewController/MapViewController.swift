@@ -495,7 +495,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
       let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
       mapView.setMapCenter(mapPoint, animated: true)
     }
-    
+  func reAdjustMapCenter(by point: MTMapPointGeo){
+    let mapPoint = MTMapPoint(geoCoord: point)
+    mapView.setMapCenter(mapPoint, animated: false)
+  }
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
         let bounds = self.mapView.mapBounds
         let southWest = bounds?.bottomLeft
@@ -536,6 +539,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         searchTextField.rx.tap.bind{[weak self] in
             let vc = MapSearchViewController()
+          vc.pointClosure = { [weak self] point in
+            self?.reAdjustMapCenter(by: point)
+          }
             self?.navigationController?.pushViewController(vc, animated: false)
         }.disposed(by: disposeBag)
         fetchMapPoints()

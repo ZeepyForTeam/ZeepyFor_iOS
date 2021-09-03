@@ -101,7 +101,7 @@ extension BaseAlert {
         buttonStackView.heightAnchor.constraint(equalToConstant: 48),
         buttonStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 0),
         buttonStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: 0),
-        buttonStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: 0)
+        buttonStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10)
       ])
     }
   }

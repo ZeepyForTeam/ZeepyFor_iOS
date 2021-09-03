@@ -67,7 +67,6 @@ class LookAroundTableViewCell: UITableViewCell {
 
   }
   func bind() {
-    setupCollectionView()
     setEmptyView()
   }
   func bind(model : BuildingModel) {
@@ -167,7 +166,7 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = false
     vaildateBuilding.isHidden = false
     vaildationLabel.isHidden = false
-    //optionsCollectionView.isHidden = true
+    optionsCollectionView.isHidden = false
     thumbNail.isHidden = false
     emptyView.removeFromSuperview()
     emptyView.isHidden = true
@@ -180,11 +179,11 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = true
     vaildateBuilding.isHidden = true
     vaildationLabel.isHidden = true
-    //optionsCollectionView.isHidden = true
+    optionsCollectionView.removeFromSuperview()
+    optionsCollectionView.isHidden = true
     thumbNail.isHidden = true
     emptyView.isHidden = false
     cellBackground.add(emptyView)
-    
     emptyView.snp.remakeConstraints{
       $0.centerX.centerY.equalToSuperview()
     }

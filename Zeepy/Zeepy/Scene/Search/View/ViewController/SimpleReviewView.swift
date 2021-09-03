@@ -109,7 +109,7 @@ class SimpleReviewView : UITableViewCell {
     self.isUserInteractionEnabled = true
     content.backgroundColor = .gray244
     self.setRounded(radius: 5)
-    self.add(content)
+    self.contentView.add(content)
     content.snp.makeConstraints{
       $0.leading.trailing.top.equalToSuperview()
       $0.bottom.equalToSuperview().offset(-10)
@@ -198,8 +198,8 @@ class SimpleReviewView : UITableViewCell {
 
 extension SimpleReviewView {
   func bind(model : ReviewResponses) {
-
-    roomNumber.text = "\(model.address ?? "")에 거주한"
+    let room = String(model.address?.split(separator: " ").last ?? "")
+    roomNumber.text = "\(room)에 거주한"
     
     let attributedString = NSMutableAttributedString(string: "\(model.user.name)님의 후기", attributes: [
       .font: UIFont.nanumRoundExtraBold(fontSize: 18),

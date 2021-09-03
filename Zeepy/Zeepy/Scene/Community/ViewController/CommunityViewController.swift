@@ -238,6 +238,8 @@ extension CommunityViewController : UICollectionViewDelegate{
     bind()
   }
   func fromHome(type: PostType) {
+    setTabView(tabIndex: 0)
+    moveColletionViewNextPage(tabIndex: 0)
     selectedType.onNext(type)
   }
   override func viewWillAppear(_ animated: Bool) {

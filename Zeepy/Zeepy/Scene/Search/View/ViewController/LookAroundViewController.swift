@@ -106,14 +106,14 @@ extension LookAroundViewController {
     let outputs = viewModel.transForm(inputs: inputs)
     
     outputs.buildingUsecase
-//      .map{ items -> [BuildingModel] in
-//        if items.isEmpty {
-//          return [.init(buildingId: -1, buildingName: "", buildingImage: nil, ownderInfo: .bad, review: .init(reviewrName: "", review: ""), filters: [])]
-//        }
-//        else {
-//          return items
-//        }
-//      }
+      .map{ items -> [BuildingModel] in
+        if items.isEmpty {
+          return [.init(buildingId: -1, buildingName: "", buildingImage: nil, ownderInfo: .bad, review: .init(reviewrName: "", review: ""), filters: [])]
+        }
+        else {
+          return items
+        }
+      }
       .bind(to: tableView.rx.items(cellIdentifier: LookAroundTableViewCell.identifier,
                                    cellType: LookAroundTableViewCell.self)) { [weak self] row, data, cell in
         if data.buildingId == -1 {

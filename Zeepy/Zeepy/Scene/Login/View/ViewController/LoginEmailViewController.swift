@@ -19,9 +19,6 @@ class LoginEmailViewController: BaseViewController {
   
   let contentView = UIView()
   
-  let backButton = UIButton().then{
-    $0.setImage(UIImage(named: "btnBack"), for: .normal)
-  }
   let viewTitle = UIImageView().then{
     $0.image = UIImage(named: "group926")
   }
@@ -55,11 +52,13 @@ class LoginEmailViewController: BaseViewController {
     $0.setTitle("아이디찾기", for: .normal)
     $0.setTitleColor(.grayText, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    $0.isHidden = true
   }
   let findPWButton = UIButton().then{
     $0.setTitle("비밀번호 찾기", for: .normal)
     $0.setTitleColor(.grayText, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
+    $0.isHidden = true 
   }
   let signUpButton = UIButton().then{
     $0.setTitle("회원가입", for: .normal)
@@ -361,15 +360,11 @@ class LoginEmailViewController: BaseViewController {
       $0.top.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
     }
     
-    contentView.adds([backButton,viewTitle,signInTitle,idTextFieldBackGroundView,pwTextFieldBackGroundView,findIDButton,findPWButton,signUpButton,loginButton,seperateBar,snsLoginLabel,snsStackView])
+    contentView.adds([viewTitle,signInTitle,idTextFieldBackGroundView,pwTextFieldBackGroundView,findIDButton,findPWButton,signUpButton,loginButton,seperateBar,snsLoginLabel,snsStackView])
     
-    backButton.snp.makeConstraints{
-      $0.top.equalToSuperview().offset(30)
-      $0.leading.equalToSuperview().offset(15)
-    }
     viewTitle.snp.makeConstraints{
       $0.top.equalToSuperview().offset(30)
-      $0.leading.equalTo(backButton).offset(30)
+      $0.leading.equalToSuperview().offset(45)
       $0.height.equalTo(70)
       $0.width.equalTo(220)
     }
