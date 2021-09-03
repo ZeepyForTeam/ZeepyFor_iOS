@@ -412,8 +412,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                     self.badItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
                                 }
                             }
-                            
-                            self.AllItems += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
                         }
                         
                         print("count의 갯수는", count)
@@ -432,7 +430,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             }, onError: { error in
                 print(error)
             }, onCompleted: {
-//                mapView.addPOIItems(AllItems)
+                self.AllItems = self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems
                 self.items = self.AllItems
                 self.findCurrentMarker()
             }).disposed(by: disposeBag)
@@ -506,12 +504,15 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)!{
                 currentMarkers.append(marker)
             }
-            print("currentMarker입니다",currentMarkers)
         }
+        print("items입니다", items)
+        print("currentMarker입니다",currentMarkers)
+//        print("bounds의 latitude입니다", northEast?.mapPointGeo().latitude)
         if mapView.poiItems.count > 0 {
             mapView.removeAllPOIItems()
         }
         mapView.addPOIItems(currentMarkers)
+        currentMarkers = []
     }
     
     // MARK: - LifeCycle
@@ -637,7 +638,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
             let coor = locationManager.location?.coordinate
             let currentLocation = location.mapPointGeo()
-            print("여기 Latitude 이거야~~", coor?.latitude)
+
 //            mapView.currentLocationTrackingMode = .onWithoutHeadingWithoutMapMoving //이건뭐지?? 테스트 해보고 싶다
             mapView.currentLocationTrackingMode = .onWithoutHeading
             if let latitude = coor?.latitude,
@@ -779,7 +780,6 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
         cell?.circleButton.setImage(UIImage(named: collectionViewCellList[indexPath.row].imageName), for: .normal)
         cell?.buttonTitle.text = collectionViewCellList[indexPath.row].buttonTitle
         cell?.circleButton.tag = indexPath.row
-        filterItemsToShowItems()
         var selectedTag = 6
         if collectionViewCellList[indexPath.row].selected == true {
             cell?.backgroundColor = .mainYellow
