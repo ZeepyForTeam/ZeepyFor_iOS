@@ -86,7 +86,7 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
   public func retryWithAuthIfNeeded() -> Single<Response> {
     // 둘다 없으면 로그아웃하고 Error
     if UserDefaultHandler.accessToken == nil && UserDefaultHandler.refreshToken == nil {
-      LoginManager.shared.makeLogoutStatus()
+      LoginManager.shared.unAuthorizeAction()
       return Single.error(AuthError.notLogin)
     }
     else {

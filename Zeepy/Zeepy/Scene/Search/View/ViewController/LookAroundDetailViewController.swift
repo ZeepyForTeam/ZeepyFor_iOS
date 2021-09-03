@@ -461,10 +461,6 @@ extension LookAroundDetailViewController {
         self?.navigationController?.pushViewController(vc, animated: true)
       }
     }.disposed(by: disposeBag)
-
-    reviewView.content.reviewDirectBtn.rx.tap.bind{
-      print("클릭됨?")
-    }.disposed(by: disposeBag)
     reviewView.reportBtn.rx.tap.bind{[weak self] in
       let vc = ReportViewController()
       guard
@@ -472,6 +468,8 @@ extension LookAroundDetailViewController {
       else {return}
         
       vc.reportModel.reportUser = userid
+      vc.reportModel.targetTableType = "REVIEW"
+
       self?.navigationController?.pushViewController(vc, animated: true)
     }.disposed(by:  reviewView.disposeBag)
     

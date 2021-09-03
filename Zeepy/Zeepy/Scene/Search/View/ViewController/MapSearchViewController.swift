@@ -24,7 +24,7 @@ class MapSearchViewController: BaseViewController {
   private var kakaoAddressModel: ResponseKakaoAddressModel?
   /// history = 0, search = 1
   var historyOrSearch = 0
-  
+  var pointClosure: ((MTMapPointGeo) -> ())?
   private let navigationView = CustomNavigationBar()
   var selectedName = ""
   var searchRecordLatitude: [Double] = []
@@ -91,7 +91,13 @@ class MapSearchViewController: BaseViewController {
     cellsRegister()
     lastRegister()
     fetchHistory()
+    setUpKeyboard()
     searchButton.addTarget(self, action: #selector(self.searchButtonClicked), for: .touchUpInside)
+    searchTextField.rx.text.orEmpty.asObservable()
+      .bind{[weak self] _ in
+        self?.fetchAddress()
+      }.disposed(by: disposeBag)
+    searchTextField.becomeFirstResponder()
   }
   
   func cellsRegister() {
@@ -165,6 +171,12 @@ class MapSearchViewController: BaseViewController {
             print(error)
           }
         }
+        else {
+          self.historyOrSearch = 0
+          self.kakaoAddressModel = nil
+          self.searchRecordTableView.reloadData()
+
+        }
       }, onError: { error in
         print(error)
       }, onCompleted: {}).disposed(by: disposeBag)
@@ -176,6 +188,11 @@ class MapSearchViewController: BaseViewController {
     self.searchRecordPlaceList = UserDefaultHandler.historyName ?? []
     print("history :\n \(self.searchRecordPlaceList)")
     self.reloadTableView()
+  }
+  private func hideHistory() {
+    self.searchRecordLongitude = []
+    self.searchRecordLatitude = []
+    self.searchRecordPlaceList = []
   }
   @objc func TableViewCellSelected(sender: UIButton)-> String{
     sender.backgroundColor = UIColor(red: 95.0 / 255.0, green: 134.0 / 255.0, blue: 241.0 / 255.0, alpha: 0.15)
@@ -216,18 +233,19 @@ extension MapSearchViewController: UITableViewDataSource {
       return self.searchRecordPlaceList.count + 1
     }
     else {
-      return 6
+      return (self.kakaoAddressModel?.documents.count ?? 0) < 6 ?  (self.kakaoAddressModel?.documents.count ?? 0) + 1 : 6
     }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let lastIndex = (self.kakaoAddressModel?.documents.count ?? 0) < 6 ?  (self.kakaoAddressModel?.documents.count ?? 0) : 5
     if historyOrSearch == 0 && indexPath.row == searchRecordPlaceList.count {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
       MapSearchTableViewCell.addConstraints()
       return MapSearchTableViewCell
     }
-    
-    else if historyOrSearch == 1 && indexPath.row == 5 {
+
+    else if historyOrSearch == 1 && indexPath.row == lastIndex {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: LastTableViewCell.identifier, for: indexPath) as? LastTableViewCell else { return UITableViewCell() }
       MapSearchTableViewCell.addConstraints()
       return MapSearchTableViewCell
@@ -235,13 +253,21 @@ extension MapSearchViewController: UITableViewDataSource {
     
     else if historyOrSearch == 1 {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell else { return UITableViewCell() }
-      let list = self.kakaoAddressModel?.documents[indexPath.row]
+      if self.kakaoAddressModel.isNil {
+        return UITableViewCell()
+      }
+      guard let list = self.kakaoAddressModel?.documents else { return UITableViewCell() }
+      if indexPath.row >= list.count {
+        return UITableViewCell()
+      }
+      MapSearchTableViewCell.clockImageView.isHidden = true
+
       MapSearchTableViewCell.addConstraints()
       MapSearchTableViewCell.rootViewController = self
       MapSearchTableViewCell.selectionStyle = .blue
-      MapSearchTableViewCell.cellContentView.setTitle(list?.placeName, for: .normal)
+      MapSearchTableViewCell.cellContentView.setTitle(list[indexPath.row].placeName, for: .normal)
       MapSearchTableViewCell.cellContentView.setTitleColor(.clear, for: .normal)
-      MapSearchTableViewCell.searchRecordLabel.setupLabel(text: list?.placeName ?? "", color: .blackText, font: .nanumRoundRegular(fontSize: 14))
+      MapSearchTableViewCell.searchRecordLabel.setupLabel(text: list[indexPath.row].placeName , color: .blackText, font: .nanumRoundRegular(fontSize: 14))
       MapSearchTableViewCell.cellContentView.addTarget(self, action: #selector(TableViewCellSelected), for: .touchUpInside)
       return MapSearchTableViewCell
       
@@ -250,6 +276,7 @@ extension MapSearchViewController: UITableViewDataSource {
     else if historyOrSearch == 0 {
       guard let MapSearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: MapSearchTableViewCell.identifier, for: indexPath) as? MapSearchTableViewCell else { return UITableViewCell()
       }
+      MapSearchTableViewCell.clockImageView.isHidden = false
       let list = self.searchRecordPlaceList[indexPath.row]
       MapSearchTableViewCell.addConstraints()
       MapSearchTableViewCell.rootViewController = self
@@ -276,7 +303,7 @@ extension MapSearchViewController: UITableViewDataSource {
         let geo = MTMapPointGeo(latitude: Double(doc.x)!, longitude: Double(doc.y)!)
         let geoPlace = doc.placeName
         mapVC?.searchCoordinates = geo
-        mapVC?.reAdjustMapCenter()
+        mapVC?.reAdjustMapCenter(by: geo)
         self.searchRecordLatitude.append(Double(doc.x)!)
         self.searchRecordLongitude.append(Double(doc.y)!)
         UserDefaultHelper<[Double]>.set(self.searchRecordLatitude, forKey: .historyLatitude)
@@ -286,6 +313,9 @@ extension MapSearchViewController: UITableViewDataSource {
         print(geoPlace)
         UserDefaultHelper<[String]>.set(self.searchRecordPlaceList, forKey: .historyName)
         print(UserDefaultHandler.historyName as? [String])
+        if let closure = pointClosure {
+          closure(geo)
+        }
         self.navigationController?.popViewController(animated: true)
       }
     }
@@ -293,8 +323,12 @@ extension MapSearchViewController: UITableViewDataSource {
     else if indexPath.row < searchRecordLatitude.count && historyOrSearch == 0 {
       let lat = self.searchRecordLatitude[indexPath.row]
       let lon = self.searchRecordLongitude[indexPath.row]
+      let geo = MTMapPointGeo(latitude: lat, longitude: lon)
       mapVC?.searchCoordinates = MTMapPointGeo(latitude: lat, longitude: lon)
       mapVC?.reAdjustMapCenter()
+      if let closure = pointClosure {
+        closure(geo)
+      }
         self.navigationController?.popViewController(animated: true)
     }
     else {
@@ -308,6 +342,30 @@ extension MapSearchViewController: UITableViewDataSource {
       fetchHistory()
     }
     //        returnSearchContent(searchContent: searchRecordList[indexPath.row])
+  }
+  func setUpKeyboard() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(commentkeyboardWillShow),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(commentkeyboardWillHide(_:)),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
+  }
+  @objc func commentkeyboardWillShow(_ notification: Notification) {
+    if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+      let keyboardRectangle = keyboardFrame.cgRectValue
+      let keyboardHeight = keyboardRectangle.height
+      self.fetchHistory()
+    }
+  }
+  @objc func commentkeyboardWillHide(_ notification: Notification) {
+    hideHistory()
   }
 }
 
