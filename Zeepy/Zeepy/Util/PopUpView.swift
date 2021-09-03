@@ -105,6 +105,7 @@ extension PopUpView {
           self.blackView.removeFromSuperview()
           self.backgroundView.removeFromSuperview()
           self.backgroundView.removeFromSuperview()
+          self.addedSubView.removeFromSuperview()
           self.addedSubView = nil
           
         })

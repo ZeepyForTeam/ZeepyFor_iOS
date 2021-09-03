@@ -38,6 +38,19 @@ class LoginManager: NSObject {
     UserDefaults.standard.set(false, forKey: login)
     UserDefaults.standard.synchronize()
   }
+  func unAuthorizeAction() {
+    MessageAlertView.shared.showAlertView(title: "기능 제한 없이 Zeepy의\n모든 기능을 즐겨보세요!", grantMessage: "확인", denyMessage: "취소", okAction: {
+      LoginManager.shared.makeLogoutStatus()
+      let root = LoginEmailViewController()
+      let rootNav = UINavigationController()
+      rootNav.navigationBar.isHidden = true
+      
+      rootNav.viewControllers = [root]
+      if let window = (UIApplication.shared.delegate as! AppDelegate).window {
+        window.rootViewController = rootNav
+      }
+    })
+  }
   func sendLogInPage() {
     MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: {
       LoginManager.shared.makeLogoutStatus()

@@ -7,6 +7,6 @@
 
 import Foundation
 struct FilterModel {
-  let title: String
+  let title: ValidateType
   var selected: Bool
 }

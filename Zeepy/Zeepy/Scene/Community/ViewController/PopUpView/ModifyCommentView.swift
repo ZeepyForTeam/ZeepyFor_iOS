@@ -24,7 +24,7 @@ class ModifyCommentView : UIView {
 
   }
   deinit {
-    print("댓글 수정 deinit")
+    print("DEINIT: \(self.className)")
   }
   
   required init?(coder: NSCoder) {

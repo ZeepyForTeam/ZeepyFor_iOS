@@ -99,7 +99,7 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    print("deinit")
+    print("DEINIT: \(self.className)")
   }
   
   override func didReceiveMemoryWarning() {

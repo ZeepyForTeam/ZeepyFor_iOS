@@ -185,6 +185,8 @@ extension String {
       return .free
     case "SOFTY" :
       return .cute
+    case "UNKNOWN":
+      return .unknown
     default :
       return ValidateType.bad
     }
@@ -265,7 +267,7 @@ extension String {
     switch self {
     case "MALE":
       return "남자"
-    case "FEMAIL":
+    case "FEMALE":
       return "여자"
     default :
       return self

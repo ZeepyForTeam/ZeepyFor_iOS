@@ -44,6 +44,10 @@ class SearchAddressViewController: BaseViewController {
     layout()
     register()
     setupNavigation()
+    searchTextField.rx.text.orEmpty.asObservable()
+      .bind{ [weak self] _ in
+      self?.fetchAddresses()
+    }.disposed(by: disposeBag)
   }
 
 }
