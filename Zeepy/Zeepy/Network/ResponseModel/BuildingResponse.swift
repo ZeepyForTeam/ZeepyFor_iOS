@@ -75,7 +75,7 @@ struct BuildingLike: Codable {
 struct BuildingLikes: Codable {
   let id: Int
   let likeDate: String
-  let email: String
+//  let email: String
 }
 struct ReviewResponses: Decodable {
   let id: Int
