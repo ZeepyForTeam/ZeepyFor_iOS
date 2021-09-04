@@ -116,7 +116,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     var closedFloatingView = UIView().then{
         $0.backgroundColor = .white
-        $0.setRounded(radius: 5)
+        $0.setRounded(radius: 20)
     }
     
     var closedFloatingButton = UIButton().then{
@@ -155,7 +155,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         collectionView.isScrollEnabled = true
         collectionView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.setRounded(radius: 10)
+        collectionView.setRounded(radius: 20)
         collectionView.backgroundColor = .white
         collectionView.setBorder(borderColor: .gray244, borderWidth: 3)
         collectionView.isUserInteractionEnabled = true
@@ -487,7 +487,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     final func reAdjustMapCenter(){
       let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
-      mapView.setMapCenter(mapPoint, animated: true)
+        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: searchCoordinates.latitude, longitude: searchCoordinates.longitude)), animated: false)
     }
   func reAdjustMapCenter(by point: MTMapPointGeo){
     let mapPoint = MTMapPoint(geoCoord: point)
@@ -524,7 +524,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         self.view.add(mapDetailView)
         self.view.add(closedFloatingView)
         self.view.add(openFloatingCollectionView)
-      self.view.add(naviView)
+        self.view.add(naviView)
+
         initMapView()
         addConstraints()
         initCollectionview()
@@ -541,6 +542,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         //    fetchMapDetail()
         locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -588,7 +590,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         myLocationView.addSubview(myLocationButton)
         
         myLocationView.snp.makeConstraints{
-            $0.top.equalTo(searchView.snp.bottom).offset(16)
+            $0.top.equalTo(searchView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(16)
         }
         
@@ -634,27 +636,28 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         operateFloatingButton()
     }
     
-    @objc func myLocationButtonTapped(){
+    @objc func myLocationButtonTapped(){ //수정필요해! 동작안함...!!!!
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-            let coor = locationManager.location?.coordinate
-            let currentLocation = location.mapPointGeo()
-
-//            mapView.currentLocationTrackingMode = .onWithoutHeadingWithoutMapMoving //이건뭐지?? 테스트 해보고 싶다
-            mapView.currentLocationTrackingMode = .onWithoutHeading
-            if let latitude = coor?.latitude,
-               let longitude = coor?.longitude{
-                print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation), zoomLevel: 4, animated: true)
+            
+                let currentLocation = location?.mapPointGeo()
+                print("currentLocation입니다", currentLocation)
+                if let latitude = currentLocation?.latitude, let longitude = currentLocation?.longitude{
+                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
+                    }
+                }
+            func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
+                print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
             }
-        }
-        print("change center")
-//        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.587493119, longitude: 127.034183377)), zoomLevel: 4, animated: true)
-        findCurrentMarker()
         
-        func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
-            print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
-        }
+        let currentLocation = locationManager.location?.coordinate
+        let lat = currentLocation?.latitude.binade ?? 37.5663
+        let lng = currentLocation?.longitude.binade ?? 126.9779
+        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
+        findCurrentMarker()
+        print("이게 latitude임~~~~~", lat)
+        print("현위치 트래킹")
     }
+    
     func mapView(_ mapView: MTMapView!, centerPointMovedTo mapCenterPoint: MTMapPoint!) {
         findCurrentMarker()
     }
@@ -672,7 +675,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             $0.bottom.equalTo(self.view.snp.bottom)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
-            $0.height.equalTo(210)
+            $0.height.equalTo(230)
             $0.width.equalTo(self.view.snp.width)
         }
         mapDetailView.adds([tendencyImage, addressLabel, buildingDetailTitle, buildingDetail,ownerTitle, owner, soundProofTitle, soundProof, cleanlinessTitle, cleanliness, sunLightTitle, sunLight, waterPressureTitle, waterPressure, overallTitle, overall, lookingAroundButton])
@@ -701,6 +704,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             $0.leading.equalTo(ownerTitle.snp.trailing).offset(15)
             $0.centerY.equalTo(ownerTitle)
         }
+        
         soundProofTitle.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(16)
             $0.top.equalTo(ownerTitle.snp.bottom).offset(15)
@@ -744,7 +748,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         lookingAroundButton.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.top.equalTo(overall.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().offset(-13)
         }
     }
   override func swipeRecognizer() {
@@ -782,10 +787,12 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
         cell?.circleButton.tag = indexPath.row
         var selectedTag = 6
         if collectionViewCellList[indexPath.row].selected == true {
+            
+            cell?.buttonTitle.textColor = .blackText
             cell?.backgroundColor = .mainYellow
             selectedTag = indexPath.row
-            
         }else if collectionViewCellList[indexPath.row].selected != true {
+            cell?.buttonTitle.textColor = .grayText
             cell?.backgroundColor = .white
         }
         print("selected된 것만 보여줘잇~~")
@@ -804,7 +811,7 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
 extension MapViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 70)
+        return CGSize(width: collectionView.bounds.width / 6, height: 70)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
