@@ -25,7 +25,8 @@ struct BuildingRequest: Encodable {
   let pageSize: Int?
   let paged: Bool?
   let unpaged: Bool?
-  init(eqCommunicationTendency: String? = nil, eqLightning: String? = nil,eqPest: String? = nil ,eqSoundInsulation: String? = nil,eqWaterPressure: String? = nil, eqRoomCount: String? = nil, geDeposit: Int? = nil, geMonthly: Int? = nil, inFurnitures: [String]? = nil, leDeposit: Int? = nil, leMonthly: Int? = nil, neType: String? = nil, offset: Int? = nil, pageNumber: Int? = nil, pageSize: Int? = nil, paged: Bool? = nil, unpaged:  Bool? = nil) {
+  var shortAddress: String?
+  init(eqCommunicationTendency: String? = nil, eqLightning: String? = nil,eqPest: String? = nil ,eqSoundInsulation: String? = nil,eqWaterPressure: String? = nil, eqRoomCount: String? = nil, geDeposit: Int? = nil, geMonthly: Int? = nil, inFurnitures: [String]? = nil, leDeposit: Int? = nil, leMonthly: Int? = nil, neType: String? = nil, offset: Int? = nil, pageNumber: Int? = nil, pageSize: Int? = nil, paged: Bool? = nil, unpaged:  Bool? = nil, shortAddress: String? = nil) {
     self.eqCommunicationTendency = eqCommunicationTendency
     self.eqLightning = eqLightning
     self.eqPest = eqPest
@@ -43,7 +44,7 @@ struct BuildingRequest: Encodable {
     self.pageSize = pageSize
     self.paged = paged
     self.unpaged = unpaged
-
+    self.shortAddress = shortAddress
   }
 }
 

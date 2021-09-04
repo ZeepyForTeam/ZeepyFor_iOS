@@ -250,7 +250,10 @@ class HomeViewController : BaseViewController {
     }.disposed(by: disposeBag)
     locationDropDown.rx.tap.filter{UserManager.shared.address.isEmpty}
       .bind{[weak self] in
-        UserManager.shared.fetchUserAddress()
+        let vc = ManageAddressViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.setNavigationBarHidden(true, animated: false)
+        self?.navigationController?.pushViewController(vc, animated: true)
       }.disposed(by: disposeBag)
     buyButton.rx.tap.map{return PostType.deal}.bind(to: communityType).disposed(by: disposeBag)
     shareButton.rx.tap.map{return PostType.share}.bind(to: communityType).disposed(by: disposeBag)

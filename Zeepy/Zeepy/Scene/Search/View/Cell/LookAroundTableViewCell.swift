@@ -64,13 +64,37 @@ class LookAroundTableViewCell: UITableViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     layout()
+  }
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setupCollectionView()
 
+    self.selectionStyle = .none
+    self.contentView.add(cellBackground)
+    
+    cellBackground.snp.makeConstraints{
+      $0.top.equalToSuperview().offset(8)
+      $0.leading.equalToSuperview().offset(16)
+      $0.centerY.centerX.equalToSuperview()
+    }
+    self.cellBackground.adds([buildingName,
+                              userName,
+                              ownerStatus,
+                              statusImage,
+                              statusLabel,
+                              vaildateBuilding,
+                              vaildationLabel,
+                              optionsCollectionView,
+                              thumbNail])
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   func bind() {
     setEmptyView()
   }
   func bind(model : BuildingModel) {
-    setupCollectionView()
 
     self.buildingName.text = model.buildingName
     self.userName.text = model.review.reviewrName
@@ -102,22 +126,8 @@ class LookAroundTableViewCell: UITableViewCell {
                                         forCellWithReuseIdentifier: SimpleLabelCollectionViewCell.identifier)
   }
   private func layout() {
-    self.selectionStyle = .none
-    self.contentView.add(cellBackground)
-    cellBackground.snp.makeConstraints{
-      $0.top.equalToSuperview().offset(8)
-      $0.leading.equalToSuperview().offset(16)
-      $0.centerY.centerX.equalToSuperview()
-    }
-    self.cellBackground.adds([buildingName,
-                              userName,
-                              ownerStatus,
-                              statusImage,
-                              statusLabel,
-                              vaildateBuilding,
-                              vaildationLabel,
-                              optionsCollectionView,
-                              thumbNail])
+
+
     thumbNail.snp.remakeConstraints{
       $0.width.height.equalTo(92)
       $0.centerY.equalToSuperview()
@@ -179,7 +189,6 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = true
     vaildateBuilding.isHidden = true
     vaildationLabel.isHidden = true
-    optionsCollectionView.removeFromSuperview()
     optionsCollectionView.isHidden = true
     thumbNail.isHidden = true
     emptyView.isHidden = false

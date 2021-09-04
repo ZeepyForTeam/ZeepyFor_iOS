@@ -192,6 +192,7 @@ extension SearchAddressViewController {
       .subscribe(onNext: { result in
         if result {
           do {
+            UserManager.shared.fetchUserAddress()
             self.navigationController?.popViewController(animated: true)
           }
           catch {

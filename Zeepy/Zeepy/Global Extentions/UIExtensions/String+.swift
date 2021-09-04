@@ -187,8 +187,10 @@ extension String {
       return .cute
     case "UNKNOWN":
       return .unknown
+    case "BAD":
+      return .bad
     default :
-      return ValidateType.bad
+      return ValidateType.unknown
     }
   }
   var furnitures: String {

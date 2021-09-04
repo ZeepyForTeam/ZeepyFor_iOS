@@ -41,6 +41,8 @@ final class LookAroundViewController: BaseViewController {
   private let viewModel: LookAroundViewModel = LookAroundViewModel()
   private var currentPage = 0
   let filterTrigger = PublishSubject<FilterModel>()
+  private let resetAddress = PublishSubject<[Addresses]>()
+  
   private let refreshController = UIRefreshControl()
   
   override func viewDidLoad() {
@@ -102,7 +104,8 @@ extension LookAroundViewController {
                                            mapSelectAction: mapButton.rx.tap.asObservable(),
                                            conditionFilter: conditionFilter,
                                            buildingSelect: buildingSelection,
-                                           filterSelect: filterTrigger)
+                                           filterSelect: filterTrigger,
+                                           resetAddress: resetAddress)
     let outputs = viewModel.transForm(inputs: inputs)
     
     outputs.buildingUsecase
@@ -134,9 +137,14 @@ extension LookAroundViewController {
     }.disposed(by: disposeBag)
     outputs.buildingDetailParam
       .bind{ [weak self] model in
-        if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model.buildingId) {
-          vc.hidesBottomBarWhenPushed = true
-          self?.navigationController?.pushViewController(vc, animated: true)
+        if model.buildingId == -1 {
+          
+        }
+        else {
+          if let vc = LookAroundDetailViewController(nibName: nil, bundle: nil, model: model.buildingId) {
+            vc.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(vc, animated: true)
+          }
         }
       }.disposed(by: disposeBag)
     
@@ -145,7 +153,9 @@ extension LookAroundViewController {
                                          cellType: tableViewHeaderCollectionViewCell.self)) {row, data, cell in
         cell.bindCell(data, first: row == 0 && data.title.rawValue == "전체")
       }.disposed(by: disposeBag)
-    
+    outputs.resetResult.bind{
+      print($0)
+    }.disposed(by: disposeBag)
     filterButton.rx.tap.bind{[weak self] in
       if self?.filterButton.isSelected == true {
         self?.conditionFilter.onNext(nil)
@@ -167,19 +177,38 @@ extension LookAroundViewController {
       vc.hidesBottomBarWhenPushed = true
       self?.navigationController?.pushViewController(vc, animated : true)
     }.disposed(by: disposeBag)
-    locationDropDown.rx.tap.bind{[weak self] in
-      let view = SettingView()
-      HalfAppearView.shared.appearHalfView(subView: view)
-      
-      view.setUpTableView([("전체",{self?.filterTrigger.onNext(.init(title: .total, selected: false))}),
-                           ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.init(title: .business, selected: false))}),
-                           ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.init(title: .kind, selected: false))}),
-                           ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.init(title: .free, selected: false))}),
-                           ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.init(title: .cute, selected: false))}),
-                           ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.init(title: .bad, selected: false))}),
-                           
-      ])
+    //    locationDropDown.rx.tap.bind{[weak self] in
+    //      let view = SettingView()
+    //      HalfAppearView.shared.appearHalfView(subView: view)
+    //
+    //      view.setUpTableView([("전체",{self?.filterTrigger.onNext(.init(title: .total, selected: false))}),
+    //                           ("칼 같은 우리 사이, 비즈니스형",{self?.filterTrigger.onNext(.init(title: .business, selected: false))}),
+    //                           ("따뜻해 녹아내리는 중! 친절형",{self?.filterTrigger.onNext(.init(title: .kind, selected: false))}),
+    //                           ("자유롭게만 살아다오, 방목형",{self?.filterTrigger.onNext(.init(title: .free, selected: false))}),
+    //                           ("겉은 바삭 속은 촉촉! 츤데레형",{self?.filterTrigger.onNext(.init(title: .cute, selected: false))}),
+    //                           ("할말은 많지만 하지 않을래요 :(",{self?.filterTrigger.onNext(.init(title: .bad, selected: false))}),
+    //
+    //      ])
+    //    }.disposed(by: disposeBag)
+    locationDropDown.rx.tap.filter{!UserManager.shared.address.isEmpty}.bind{[weak self] in
+      Dropdown.shared.addDropDown(items: UserManager.shared.address,
+                                  disposeBag: self!.disposeBag,
+                                  dissmissAction: { [weak self] in
+                                    self?.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 선택"
+                                    self?.resetAddress.onNext(UserManager.shared.address)
+                                  },
+                                  currentItemKey: UserManager.shared.currentAddress,
+                                  color: .mainBlue)
     }.disposed(by: disposeBag)
+    locationDropDown.rx.tap
+      .bind{[weak self] in
+        if UserManager.shared.address.isEmpty {
+          let vc = ManageAddressViewController()
+          vc.hidesBottomBarWhenPushed = true
+          vc.navigationController?.setNavigationBarHidden(true, animated: false)
+          self?.navigationController?.pushViewController(vc, animated: true)
+        }
+      }.disposed(by: disposeBag)
     filterSelectUsecase
       .bind(to: filterTrigger)
       .disposed(by: disposeBag)
@@ -224,7 +253,7 @@ extension LookAroundViewController {
       $0.leading.trailing.equalToSuperview()
       $0.height.equalTo(50)
     }
-//    tableViewHeader.isHidden = true
+    //    tableViewHeader.isHidden = true
     tableView.snp.makeConstraints{
       $0.top.equalTo(tableViewHeader.snp.bottom)
       $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)

@@ -115,6 +115,11 @@ class PostViewController : BaseViewController {
   private let postType = PublishSubject<PostType>()
   override func viewDidLoad() {
     super.viewDidLoad()
+    if UserManager.shared.address.isEmpty {
+      MessageAlertView.shared.showAlertView(title: "현재 주소가 없습니다!\n주소를 등록해주세요!", grantMessage: "확인",mainColor: .communityGreen, okAction: { [weak self] in
+        self?.popViewController()
+      })
+    }
     layout()
     bind()
 
