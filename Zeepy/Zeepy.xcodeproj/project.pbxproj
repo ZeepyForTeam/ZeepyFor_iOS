@@ -2178,7 +2178,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zeepy.com.Zeepy.dev;
 				PRODUCT_NAME = "$(TARGET_NAME).dev";
-				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Dev Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Zeepy Release Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Zeepy/Supports/Map/KakaoMap-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
