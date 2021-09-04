@@ -104,6 +104,8 @@ extension ConfirmDeletePopupViewController {
       .subscribe(onNext: { [weak self] result in
         if result {
           do {
+            UserManager.shared.fetchUserAddress()
+
             self?.dismiss(animated: true, completion: {
               self?.registerResult = true
               if let closure = self?.resultClosure {

@@ -11,12 +11,14 @@ import RxCocoa
 
 class TapCell: UICollectionViewCell {
   private let refreshController = UIRefreshControl()
-
+  
   var viewModel: CommunityViewModel!
   var disposeBag = DisposeBag()
   var currentTab: Int!
   private var postCollectionView : UICollectionView!
   private let refreshTrigger = PublishSubject<Void>()
+  private var currentPage: Int? = 0
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     setUpCollectionView()
@@ -28,7 +30,7 @@ class TapCell: UICollectionViewCell {
 }
 extension TapCell {
   private func refreshCell() {
-      refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     postCollectionView.refreshControl = refreshController
   }
   @objc
@@ -36,7 +38,7 @@ extension TapCell {
     if let communityVC = UIApplication.shared.topViewController() as? CommunityViewController {
       communityVC.selectedType.onNext(.total)
     }
-      refreshController.endRefreshing()
+    refreshController.endRefreshing()
   }
   func layout() {
     self.contentView.add(postCollectionView)
@@ -81,19 +83,50 @@ extension TapCell {
   }
   func bind(output : CommunityViewModel.Output, dispose : DisposeBag) {
     refreshCell()
-    output.postUsecase.bind(to: postCollectionView.rx
-                              .items(cellIdentifier: postSimpleCollectionViewCell.identifier,
-                                     cellType: postSimpleCollectionViewCell.self)) {row, data, cell in
-      cell.bindCell(model: data)
-    }.disposed(by: dispose)
-    
+    output.postUsecase
+      .map{ items -> [PostModel] in
+        if items.isEmpty {
+          return [.init(id: -1, type: .deal, status: false, postTitle: "", postConent: "", postedAt: "")]
+        }
+        else {
+          return items
+        }
+      }
+      .bind(to: postCollectionView.rx
+              .items(cellIdentifier: postSimpleCollectionViewCell.identifier,
+                     cellType: postSimpleCollectionViewCell.self)) {[weak self] row, data, cell in
+        if data.id == -1 {
+          cell.bindEmpty()
+        }
+        else {
+          cell.bindCell(model: data)
+          if row > 18 * ((self?.currentPage ?? 0) + 1) {
+            if let communityVC = UIApplication.shared.topViewController() as? CommunityViewController {
+              communityVC.pagenation.onNext((self?.currentPage ?? 0) + 1)
+            }
+          }
+        }
+      }.disposed(by: dispose)
+    if let communityVC = UIApplication.shared.topViewController() as? CommunityViewController {
+      communityVC.pagenation.bind{[weak self] page in
+        self?.currentPage = page
+      }.disposed(by: disposeBag)
+    }
     
     postCollectionView.rx.modelSelected(PostModel.self)
       .bind{[weak self] model in
-        if let vc = PostDetailViewControlelr(nibName: nil, bundle: nil, postId: model.id) {
+        if model.id == -1 {
+          let vc = PostViewController()
           vc.hidesBottomBarWhenPushed = true
           vc.navigationController?.setNavigationBarHidden(true, animated: false)
           UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+        }
+        else {
+          if let vc = PostDetailViewControlelr(nibName: nil, bundle: nil, postId: model.id) {
+            vc.hidesBottomBarWhenPushed = true
+            vc.navigationController?.setNavigationBarHidden(true, animated: false)
+            UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+          }
         }
       }.disposed(by: dispose)
   }

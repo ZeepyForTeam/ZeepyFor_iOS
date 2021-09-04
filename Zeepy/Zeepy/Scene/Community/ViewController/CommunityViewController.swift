@@ -28,7 +28,7 @@ class CommunityViewController : BaseViewController {
   private let viewModel = CommunityViewModel()
   let selectedType = BehaviorSubject<PostType>(value: .total)
   private let resetAddress = PublishSubject<[Addresses]>()
-  private let pagenation = BehaviorSubject<Int?>(value: 0)
+  let pagenation = BehaviorSubject<Int?>(value: 0)
   var currentPage = 0
   private let loadViewTrigger = PublishSubject<Void>()
   private let currentTab = BehaviorSubject<Int>(value: 0)
@@ -296,7 +296,11 @@ extension CommunityViewController : UICollectionViewDelegate{
     }.disposed(by: disposeBag)
     dropDown.rx.tap.filter{UserManager.shared.address.isEmpty}
       .bind{[weak self] in
-        UserManager.shared.fetchUserAddress()
+        let vc = ManageAddressViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.setNavigationBarHidden(true, animated: false)
+        self?.navigationController?.pushViewController(vc, animated: true)
+        
       }.disposed(by: disposeBag)
     writeBtn.rx.tap.bind{[weak self] in
       let vc = PostViewController()

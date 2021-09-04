@@ -19,7 +19,14 @@ struct BuildingResponseModel: Decodable {
 
 // MARK: - BuildingContent
 struct BuildingContent: Decodable {
-  let address, apartmentName: String?
+  let address,
+      apartmentName,
+      averageCommunicationTendency,
+      averageSoundInsulation,
+      averagePest,
+      averageLightning,
+      averageWaterPressure
+      : String?
   let id, areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]?
   let buildingLikes: [BuildingLike]?
@@ -330,12 +337,17 @@ extension BuildingContent {
                  ownerInfo: ownerTypes,
                  review: reviewInfos,
                  filters: [],
-                 buildingLikes: like)
+                 buildingLikes: like,
+                 averageCommunicationTendency: averageCommunicationTendency?.validateType.rawValue,
+                 averageSoundInsulation: averageSoundInsulation?.HouseValidateImg,
+                 averagePest: averagePest?.HouseValidateImg,
+                 averageLightning: averageLightning?.HouseValidateImg,
+                 averageWaterPressure: averageWaterPressure?.HouseValidateImg
+                 )
   }
   func toModel() -> BuildingModel {
     let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
-    let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
-    }.first ?? .unknown
+    let ownerType = self.averageCommunicationTendency?.validateType ?? .unknown
     var tagTypes : TagType {
       buildingType?.tagTypes ?? .unknown
     }

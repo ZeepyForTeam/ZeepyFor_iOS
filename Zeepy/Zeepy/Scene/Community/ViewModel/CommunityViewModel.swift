@@ -34,12 +34,16 @@ extension CommunityViewModel {
   func transform(input: Input) -> Output {
     weak var weakSelf = self
     var postList : [PostModel] = []
+    let currentAddress = UserManager.shared.currentAddress?.cityDistinct
     let resetAddressResult = input.resetAddress.flatMapLatest{ address in
       weakSelf?.userService.addAddress(param: .init(addresses: address)) ?? .empty()
     }
-    let postListObservable = Observable.combineLatest(input.currentTab, input.filterSelect2, input.pageNumber).flatMapLatest{ tab, type, page -> Observable<[PostModel]> in
+    let postListObservable = Observable.combineLatest(input.currentTab,
+                                                      input.filterSelect2,
+                                                      input.pageNumber)
+      .flatMapLatest{ tab, type, page -> Observable<[PostModel]> in
       if tab == 0 {
-      let response = weakSelf?.service.fetchPostList(param: .init(address: nil, communityType: type.requestEnum, offset: nil, pageNumber: page, pageSize: nil, paged: nil))
+        let response = weakSelf?.service.fetchPostList(param: .init(address: currentAddress, communityType: type.requestEnum, offset: nil, pageNumber: page, pageSize: nil, paged: nil))
         .map{
           $0.map{
               $0.toPostModel()

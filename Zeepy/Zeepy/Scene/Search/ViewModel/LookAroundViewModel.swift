@@ -19,11 +19,14 @@ final class LookAroundViewModel: Services {
     let conditionFilter: Observable<BuildingRequest?>
     let buildingSelect: Observable<(IndexPath, BuildingModel)>
     let filterSelect: Observable<FilterModel>
+    let resetAddress: Observable<[Addresses]>
   }
   struct Output {
     let buildingUsecase: Observable<[BuildingModel]>
     let buildingDetailParam: Observable<BuildingModel>
     let filterUsecase: Observable<[FilterModel]>
+    let resetResult : Observable<Bool>
+
   }
 }
 extension LookAroundViewModel {
@@ -48,18 +51,24 @@ extension LookAroundViewModel {
                                                     filterUsecase)
       .flatMapLatest{(page, conditionmodel, filter) -> Observable<[BuildingContent]> in
         let currentType = filter.first(where: {$0.selected})?.title ?? .total
+        let currentShortAddress = UserManager.shared.currentAddress?.cityDistinct
         if var model = conditionmodel {
           model.eqCommunicationTendency = currentType.request
+          model.shortAddress = currentShortAddress
           return weakSelf?.service.fetchBuildingList(param: model) ?? .empty()
         }
         else {
-          return weakSelf?.service.fetchBuildingList(param: .init(eqCommunicationTendency : currentType.request ,pageNumber:page, pageSize: 20, paged: true)) ?? .empty()
+          return weakSelf?.service.fetchBuildingList(param: .init(eqCommunicationTendency : currentType.request ,pageNumber:page, pageSize: 20, paged: true, shortAddress: currentShortAddress)) ?? .empty()
         }
       }.map{$0.map{$0.toModel()}}
+    let result = inputs.resetAddress.flatMapLatest{ address in
+      weakSelf?.userService.addAddress(param: .init(addresses: address)) ?? .empty()
+    }
     return .init(
       buildingUsecase: buildingUsecase,
       buildingDetailParam: inputs.buildingSelect.map{$0.1},
-      filterUsecase: filterUsecase
+      filterUsecase: filterUsecase,
+      resetResult: result
     )
   }
 }

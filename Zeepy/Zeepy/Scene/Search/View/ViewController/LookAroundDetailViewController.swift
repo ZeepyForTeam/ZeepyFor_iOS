@@ -300,7 +300,7 @@ extension LookAroundDetailViewController {
     for i in 0..<buildingTypes.count {
       buildingTypes[i].setup()
       buildingTypes[i].snp.makeConstraints{
-        $0.centerX.equalToSuperview().offset((CGFloat(i) - 1.5) * 90)
+        $0.centerX.equalToSuperview().offset((CGFloat(i) - 1.8) * 90)
         $0.top.bottom.equalToSuperview()
       }
     }
@@ -392,6 +392,11 @@ extension LookAroundDetailViewController {
       self.tradeTypeLabel.text = model.contractType
       self.likeBtn.isSelected = model.buildingLikes
       self.options.text = model.options.map{$0}.reduce(into : ""){$0 + "," + $1}
+      self.buildingTypes[0].typeImage.image = model.averageSoundInsulation
+      self.buildingTypes[1].typeImage.image = model.averagePest
+      self.buildingTypes[2].typeImage.image = model.averageLightning
+      self.buildingTypes[3].typeImage.image = model.averageWaterPressure
+
       for i in 0..<self.ownerTypes.count {
         self.ownerTypes[i].typeLabel.text = model.ownerInfo[i].type.rawValue
         self.ownerTypes[i].typeCount.text = "\(model.ownerInfo[i].count) 개"

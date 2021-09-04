@@ -31,6 +31,12 @@ struct BuildingDetailInfo {
   let review: [ReviewDetailInfo]
   let filters : [String]
   let buildingLikes: Bool
+  var averageCommunicationTendency: String?
+  var averageSoundInsulation,
+      averagePest,
+      averageLightning,
+      averageWaterPressure : UIImage?
+      
 }
 struct ReviewDetailInfo {
   let reviewrName: String
