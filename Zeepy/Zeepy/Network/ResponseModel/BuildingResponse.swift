@@ -19,7 +19,14 @@ struct BuildingResponseModel: Decodable {
 
 // MARK: - BuildingContent
 struct BuildingContent: Decodable {
-  let address, apartmentName: String?
+  let address,
+      apartmentName,
+      averageCommunicationTendency,
+      averageSoundInsulation,
+      averagePest,
+      averageLightning,
+      averageWaterPressure
+      : String?
   let id, areaCode, buildYear: Int?
   let buildingDeals: [BuildingDeal]?
   let buildingLikes: [BuildingLike]?
@@ -69,13 +76,13 @@ struct DealDateClass: Codable {
 struct BuildingLike: Codable {
   let id: Int
   let likeDate: String
-  let email: String
+  let userId: Int
 }
 
 struct BuildingLikes: Codable {
   let id: Int
   let likeDate: String
-  let email: String
+//  let email: String
 }
 struct ReviewResponses: Decodable {
   let id: Int
@@ -319,6 +326,7 @@ extension BuildingContent {
                        createdAt: "")
       reviewInfos.append(reviewInfo)
     }
+    let like = buildingLikes?.contains(where: {$0.userId == UserDefaultHandler.userId}) ?? false
     return .init(buildingId: id ?? -1,
                  buildingName: apartmentName ?? "",
                  buildingImages: images,
@@ -328,12 +336,18 @@ extension BuildingContent {
                  options: [],
                  ownerInfo: ownerTypes,
                  review: reviewInfos,
-                 filters: [])
+                 filters: [],
+                 buildingLikes: like,
+                 averageCommunicationTendency: averageCommunicationTendency?.validateType.rawValue,
+                 averageSoundInsulation: averageSoundInsulation?.HouseValidateImg,
+                 averagePest: averagePest?.HouseValidateImg,
+                 averageLightning: averageLightning?.HouseValidateImg,
+                 averageWaterPressure: averageWaterPressure?.HouseValidateImg
+                 )
   }
   func toModel() -> BuildingModel {
     let firstImg = self.reviews?.flatMap{$0.imageUrls}.first
-    let ownerType = self.reviews?.flatMap{$0.communcationTendency}.map{ String($0).validateType
-    }.first ?? .unknown
+    let ownerType = self.averageCommunicationTendency?.validateType ?? .unknown
     var tagTypes : TagType {
       buildingType?.tagTypes ?? .unknown
     }

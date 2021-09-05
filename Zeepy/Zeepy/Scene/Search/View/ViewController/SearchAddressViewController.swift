@@ -44,6 +44,10 @@ class SearchAddressViewController: BaseViewController {
     layout()
     register()
     setupNavigation()
+    searchTextField.rx.text.orEmpty.asObservable()
+      .bind{ [weak self] _ in
+      self?.fetchAddresses()
+    }.disposed(by: disposeBag)
   }
 
 }
@@ -188,6 +192,7 @@ extension SearchAddressViewController {
       .subscribe(onNext: { result in
         if result {
           do {
+            UserManager.shared.fetchUserAddress()
             self.navigationController?.popViewController(animated: true)
           }
           catch {

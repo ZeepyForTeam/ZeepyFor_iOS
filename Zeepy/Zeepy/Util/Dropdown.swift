@@ -116,6 +116,7 @@ extension Dropdown {
                       self.container.transform = transform
                       self.container.alpha = 0
                       self.blackView.alpha = 0
+                      self.point.alpha = 0
                      }, completion: { _ in
                       self.blackView.removeFromSuperview()
                       self.container.removeFromSuperview()
@@ -142,6 +143,7 @@ extension Dropdown {
                       self.container.transform = transform
                       self.container.alpha = 0
                       self.blackView.alpha = 0
+                      self.point.alpha = 0
                      }, completion: { _ in
                       self.blackView.removeFromSuperview()
                       self.container.removeFromSuperview()
@@ -161,7 +163,8 @@ extension Dropdown {
   func addDropDown(items : [Addresses],
                   disposeBag : DisposeBag,
                   dissmissAction: dropDownAction? = nil ,
-                  currentItemKey: Addresses? = nil) {
+                  currentItemKey: Addresses? = nil,
+                  color: UIColor = .communityGreen) {
     initializeMainView()
     titles = items.map{$0.primaryAddress}
     Observable.just(items).bind(to: dropdown.rx.items(cellIdentifier: dropdownCell.identifier,
@@ -170,7 +173,7 @@ extension Dropdown {
       cell.titlelabel.text = data.primaryAddress
       if let currentitem = currentItemKey {
         if data == currentitem {
-          cell.titlelabel.textColor = .communityGreen
+          cell.titlelabel.textColor = color
         }
       }
     }.disposed(by: disposeBag)
@@ -201,6 +204,7 @@ extension Dropdown {
                      animations: {
                       self.blackView.alpha = 0.5
                       self.container.transform = .identity
+                      self.point.alpha = 1
                      }, completion: nil)
     }
   }
@@ -249,6 +253,7 @@ extension Dropdown {
                      animations: {
                       self.blackView.alpha = 0.5
                       self.container.transform = .identity
+                      self.point.alpha = 1
                      }, completion: nil)
     }
   }

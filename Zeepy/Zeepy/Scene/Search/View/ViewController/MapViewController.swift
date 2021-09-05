@@ -80,6 +80,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     }
     //[ BUSINESS, KIND, GRAZE, SOFTY, BAD ]
     var items = [MTMapPOIItem]()
+    var AllItems = [MTMapPOIItem]()
     var businessItems = [MTMapPOIItem]()
     var kindItems = [MTMapPOIItem]()
     var grazeItems = [MTMapPOIItem]()
@@ -87,9 +88,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var badItems = [MTMapPOIItem]()
     var showItems = [MTMapPOIItem]()
     var currentMarkers = [MTMapPOIItem]()
-    var selectedList = [String]()
+    var selectedList : [String] = ["BUSINESS", "GRAZE", "SOFTY", "BAD", "KIND"]
     var searchView = UIView().then{
-        $0.setRounded(radius: 15)
+        $0.setRounded(radius: 16)
         $0.setBorder(borderColor: .mainBlue, borderWidth: 2)
     }
     var searchImageView = UIImageView().then{
@@ -100,7 +101,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var searchTextField = UIButton().then{
         $0.setTitle("지역, 동, 지하철역으로 입력해주세요.", for: .normal)
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFR", size: 12.0)
-        $0.setTitleColor(.gray244, for: .normal)
+        $0.setTitleColor(.blackText, for: .normal)
     }
     
     var searchButton = UIButton().then{
@@ -115,7 +116,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     var closedFloatingView = UIView().then{
         $0.backgroundColor = .white
-        $0.setRounded(radius: 5)
+        $0.setRounded(radius: 20)
     }
     
     var closedFloatingButton = UIButton().then{
@@ -154,7 +155,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         collectionView.isScrollEnabled = true
         collectionView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.setRounded(radius: 10)
+        collectionView.setRounded(radius: 20)
         collectionView.backgroundColor = .white
         collectionView.setBorder(borderColor: .gray244, borderWidth: 3)
         collectionView.isUserInteractionEnabled = true
@@ -411,11 +412,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                                     self.badItems.append(self.poiItem(id: ele.id, latitude: ele.latitude, longitude: ele.longitude, imageName: self.stringtoLessorImageName(name: ele.reviews[0].communcationTendency)))
                                 }
                             }
-                            
-                            self.items += (self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems)
                         }
-                        self.findCurrentMarker()
+                        
                         print("count의 갯수는", count)
+                        print("items는~? ", self.items)
                         print("Business List는", self.businessItems)
                         print("Kind List는",self.kindItems)
                         print("graze List는", self.grazeItems)
@@ -429,7 +429,11 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
                 }
             }, onError: { error in
                 print(error)
-            }, onCompleted: {}).disposed(by: disposeBag)
+            }, onCompleted: {
+                self.AllItems = self.businessItems + self.kindItems + self.grazeItems + self.softyItems + self.badItems
+                self.items = self.AllItems
+                self.findCurrentMarker()
+            }).disposed(by: disposeBag)
     }
     
     private func fetchMapDetail(id : Int) { //이거는 선택됐을 때 실행하자.
@@ -460,6 +464,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     }
     
     func filterItemsToShowItems(){
+        showItems = []
         if selectedList.contains("BUSINESS") {
             showItems += businessItems
         }
@@ -475,25 +480,19 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         if selectedList.contains("SOFTY") {
             showItems += softyItems
         }
-        
-        items = showItems
         mapView.removeAllPOIItems()
-        mapView.addPOIItems(showItems)
-        print("this is showItems")
-        print(showItems)
-        print("this is businessItems")
-        print(businessItems)
+        items = showItems
         findCurrentMarker()
     }
     
-    func reAdjustMapCenter(){
+    final func reAdjustMapCenter(){
       let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
-      print("여기야여기")
-      print(mapPoint?.mapPointGeo().latitude)
-      print(mapPoint?.mapPointGeo().longitude)
-      mapView.setMapCenter(mapPoint, animated: true)
+        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: searchCoordinates.latitude, longitude: searchCoordinates.longitude)), animated: false)
     }
-    
+  func reAdjustMapCenter(by point: MTMapPointGeo){
+    let mapPoint = MTMapPoint(geoCoord: point)
+    mapView.setMapCenter(mapPoint, animated: false)
+  }
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
         let bounds = self.mapView.mapBounds
         let southWest = bounds?.bottomLeft
@@ -502,15 +501,18 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             if marker.mapPoint.mapPointGeo().latitude > (southWest?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().latitude < (northEast?.mapPointGeo().latitude)! &&
                 marker.mapPoint.mapPointGeo().longitude > (southWest?.mapPointGeo().longitude)! &&
-                marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)! {
+                marker.mapPoint.mapPointGeo().longitude < (northEast?.mapPointGeo().longitude)!{
                 currentMarkers.append(marker)
             }
         }
-        print("여기서 보는 ITEmS!!")
-        print("currentMarker개수는?")
-        print(currentMarkers.count)
-        mapView.removeAllPOIItems()
+        print("items입니다", items)
+        print("currentMarker입니다",currentMarkers)
+//        print("bounds의 latitude입니다", northEast?.mapPointGeo().latitude)
+        if mapView.poiItems.count > 0 {
+            mapView.removeAllPOIItems()
+        }
         mapView.addPOIItems(currentMarkers)
+        currentMarkers = []
     }
     
     // MARK: - LifeCycle
@@ -522,22 +524,30 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         self.view.add(mapDetailView)
         self.view.add(closedFloatingView)
         self.view.add(openFloatingCollectionView)
-      self.view.add(naviView)
+        self.view.add(naviView)
+
         initMapView()
         addConstraints()
         initCollectionview()
+        
+        
         searchTextField.rx.tap.bind{[weak self] in
             let vc = MapSearchViewController()
+          vc.pointClosure = { [weak self] point in
+            self?.reAdjustMapCenter(by: point)
+          }
             self?.navigationController?.pushViewController(vc, animated: false)
         }.disposed(by: disposeBag)
         fetchMapPoints()
         
         //    fetchMapDetail()
         locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     func addConstraints() {
       naviView.snp.makeConstraints{
@@ -547,7 +557,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         searchView.snp.makeConstraints{
           $0.leading.equalToSuperview().offset(19)
           $0.trailing.equalToSuperview().offset(-13)
-          $0.top.equalTo(naviView.snp.bottom)//?
+          $0.top.equalTo(naviView.snp.bottom).offset(5)
             $0.height.equalTo(40)
         }
         searchView.addSubview(searchImageView)
@@ -556,7 +566,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         searchImageView.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(5)
+          $0.leading.equalToSuperview().offset(12.5)
+          $0.width.height.equalTo(16)
         }
         searchTextField.snp.makeConstraints{
             $0.top.bottom.equalTo(searchView)
@@ -564,7 +575,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         searchButton.snp.makeConstraints{
             $0.top.bottom.equalTo(searchView)
-            $0.trailing.equalToSuperview().inset(5)
+            $0.trailing.equalToSuperview().inset(15)
         }
         mapView.addSubview(myLocationView)
         
@@ -579,8 +590,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         myLocationView.addSubview(myLocationButton)
         
         myLocationView.snp.makeConstraints{
-            $0.top.equalTo(searchView.snp.bottom).offset(16)
-            $0.leading.equalTo(searchView.snp.leading).offset(16)
+            $0.top.equalTo(searchView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(16)
         }
         
         myLocationButton.snp.makeConstraints{
@@ -588,7 +599,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
     }
     
-    func operateFloatingButton(){
+    final func operateFloatingButton(){
         if !closedFloatingView.isHidden{
             closedFloatingView.translatesAutoresizingMaskIntoConstraints = false
             closedFloatingView.snp.makeConstraints{
@@ -625,24 +636,30 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         operateFloatingButton()
     }
     
-    @objc func myLocationButtonTapped(){
+    @objc func myLocationButtonTapped(){ //수정필요해! 동작안함...!!!!
         func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-            let currentLocation = location?.mapPointGeo()
-            print("현위치")
-            print(currentLocation?.latitude)
-            if let latitude = currentLocation?.latitude,
-               let longitude = currentLocation?.longitude{
-                print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-                mapView.setMapCenter(MTMapPoint(geoCoord: currentLocation!), zoomLevel: 4, animated: true)
+            
+                let currentLocation = location?.mapPointGeo()
+                print("currentLocation입니다", currentLocation)
+                if let latitude = currentLocation?.latitude, let longitude = currentLocation?.longitude{
+                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
+                    }
+                }
+            func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
+                print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
             }
-        }
-        print("change center")
-//        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: 37.587493119, longitude: 127.034183377)), zoomLevel: 4, animated: true)
-        findCurrentMarker()
         
-        func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
-            print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
-        }
+        let currentLocation = locationManager.location?.coordinate
+        let lat = currentLocation?.latitude.binade ?? 37.5663
+        let lng = currentLocation?.longitude.binade ?? 126.9779
+        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
+        findCurrentMarker()
+        print("이게 latitude임~~~~~", lat)
+        print("현위치 트래킹")
+    }
+    
+    func mapView(_ mapView: MTMapView!, centerPointMovedTo mapCenterPoint: MTMapPoint!) {
+        findCurrentMarker()
     }
     
   @objc func lookingAroundButtonTapped(sender: UIButton){
@@ -656,9 +673,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         mapDetailView.isHidden = false
         mapDetailView.snp.makeConstraints{
             $0.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(self.view.snp.bottom)
             $0.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
-            $0.height.equalTo(210)
+            $0.height.equalTo(230)
             $0.width.equalTo(self.view.snp.width)
         }
         mapDetailView.adds([tendencyImage, addressLabel, buildingDetailTitle, buildingDetail,ownerTitle, owner, soundProofTitle, soundProof, cleanlinessTitle, cleanliness, sunLightTitle, sunLight, waterPressureTitle, waterPressure, overallTitle, overall, lookingAroundButton])
@@ -676,6 +693,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         buildingDetail.snp.makeConstraints{
             $0.leading.equalTo(buildingDetailTitle.snp.trailing).offset(15)
+            $0.trailing.equalTo(self.view.safeAreaLayoutGuide) // 여기바꿔봤음.
             $0.centerY.equalTo(buildingDetailTitle)
         }
         ownerTitle.snp.makeConstraints{
@@ -686,6 +704,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             $0.leading.equalTo(ownerTitle.snp.trailing).offset(15)
             $0.centerY.equalTo(ownerTitle)
         }
+        
         soundProofTitle.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(16)
             $0.top.equalTo(ownerTitle.snp.bottom).offset(15)
@@ -729,7 +748,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         lookingAroundButton.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.top.equalTo(overall.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().offset(-13)
         }
     }
   override func swipeRecognizer() {
@@ -765,17 +785,18 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
         cell?.circleButton.setImage(UIImage(named: collectionViewCellList[indexPath.row].imageName), for: .normal)
         cell?.buttonTitle.text = collectionViewCellList[indexPath.row].buttonTitle
         cell?.circleButton.tag = indexPath.row
-        filterItemsToShowItems()
         var selectedTag = 6
         if collectionViewCellList[indexPath.row].selected == true {
+            
+            cell?.buttonTitle.textColor = .blackText
             cell?.backgroundColor = .mainYellow
             selectedTag = indexPath.row
-            
         }else if collectionViewCellList[indexPath.row].selected != true {
+            cell?.buttonTitle.textColor = .grayText
             cell?.backgroundColor = .white
         }
         print("selected된 것만 보여줘잇~~")
-        returnList(index : selectedTag)
+        selectedList = returnList(index : selectedTag)
         print(collectionViewCellList.filter{$0.selected}.map{$0.englishName})
         return cell!
     }
@@ -790,11 +811,11 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
 extension MapViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 70)
+        return CGSize(width: collectionView.bounds.width / 6, height: 70)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 9
+        return (collectionView.bounds.width - 60*5)/6
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 class AddPostPopup : UIView {
-  private let disposeBag = DisposeBag()
+  private var disposeBag = DisposeBag()
   var popUpView = PopUpView.shared
   typealias customAction = () -> Void
   private var isCommunity: Bool!
@@ -21,9 +21,12 @@ class AddPostPopup : UIView {
     layout()
     bind()
   }
+  deinit {
+    print("DEINIT: \(self.className)")
+  }
   override init(frame: CGRect) {
     super.init(frame: frame)
-
+    
   }
   
   required init?(coder: NSCoder) {
@@ -91,7 +94,7 @@ class AddPostPopup : UIView {
       $0.width.equalTo(okButton)
       $0.height.equalTo(48)
     }
-
+    
   }
   private func bind() {
     if isCommunity {
@@ -113,17 +116,19 @@ class AddPostPopup : UIView {
     }
     okButton.rx.tap.map{return true}
       .bind{[weak self] content in
-          if let closure = self?.resultClosure {
-            closure(content)
-          }
-          self?.popUpView.dissmissFromSuperview()
+        if let closure = self?.resultClosure {
+          closure(content)
+        }
+//        self?.disposeBag = DisposeBag()
+        self?.popUpView.dissmissFromSuperview()
       }.disposed(by: disposeBag)
     cancleBtn.rx.tap.map{return false}
       .bind{[weak self] content in
-          if let closure = self?.resultClosure {
-            closure(content)
-          }
-          self?.popUpView.dissmissFromSuperview()
+        if let closure = self?.resultClosure {
+          closure(content)
+        }
+//        self?.disposeBag = DisposeBag()
+        self?.popUpView.dissmissFromSuperview()
       }.disposed(by: disposeBag)
   }
 }

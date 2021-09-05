@@ -30,6 +30,13 @@ struct BuildingDetailInfo {
   let ownerInfo: [OwnerTypeCount]
   let review: [ReviewDetailInfo]
   let filters : [String]
+  let buildingLikes: Bool
+  var averageCommunicationTendency: String?
+  var averageSoundInsulation,
+      averagePest,
+      averageLightning,
+      averageWaterPressure : UIImage?
+      
 }
 struct ReviewDetailInfo {
   let reviewrName: String
@@ -51,6 +58,7 @@ enum ValidateType: String {
   case cute = "츤데레형"
   case bad = "할많하않"
   case unknown = "미지의 인물형"
+  case total = "전체"
 }
 enum TagType: String {
   case one = "원룸"
@@ -75,6 +83,8 @@ extension ValidateType {
       return "emoji5"
     case .unknown:
       return "emoji5"
+    default :
+      return "emoji5"
     }
   }
   var inEnglish: String {
@@ -91,6 +101,8 @@ extension ValidateType {
       return "Bad"
     case .unknown:
       return self.rawValue
+    default :
+      return "Total"
     }
   }
   var color: UIColor {
@@ -105,8 +117,26 @@ extension ValidateType {
       return UIColor.rgb(137, 169, 255)
     case .bad:
       return UIColor.rgb(196, 196, 196)
-    case .unknown:
-      return .clear
+    case .total:
+      return UIColor.rgb(254, 251, 242)
+    default :
+      return UIColor.rgb(196, 196, 196)
+    }
+  }
+  var request: String? {
+    switch self {
+    case .business :
+      return "BUSINESS"
+    case .kind :
+      return "KIND"
+    case .free:
+      return "GRAZE"
+    case .cute :
+      return "SOFTY"
+    case .bad :
+      return "BAD"
+    default :
+      return nil
     }
   }
 }

@@ -63,14 +63,38 @@ class LookAroundTableViewCell: UITableViewCell {
   }
   override func prepareForReuse() {
     super.prepareForReuse()
+    layout()
+  }
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setupCollectionView()
+
+    self.selectionStyle = .none
+    self.contentView.add(cellBackground)
+    
+    cellBackground.snp.makeConstraints{
+      $0.top.equalToSuperview().offset(8)
+      $0.leading.equalToSuperview().offset(16)
+      $0.centerY.centerX.equalToSuperview()
+    }
+    self.cellBackground.adds([buildingName,
+                              userName,
+                              ownerStatus,
+                              statusImage,
+                              statusLabel,
+                              vaildateBuilding,
+                              vaildationLabel,
+                              optionsCollectionView,
+                              thumbNail])
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   func bind() {
-    setupCollectionView()
     setEmptyView()
   }
   func bind(model : BuildingModel) {
-    setupCollectionView()
-    layout()
 
     self.buildingName.text = model.buildingName
     self.userName.text = model.review.reviewrName
@@ -102,58 +126,44 @@ class LookAroundTableViewCell: UITableViewCell {
                                         forCellWithReuseIdentifier: SimpleLabelCollectionViewCell.identifier)
   }
   private func layout() {
-    self.selectionStyle = .none
-    self.contentView.add(cellBackground)
-    cellBackground.snp.makeConstraints{
-      $0.top.equalToSuperview().offset(8)
-      $0.leading.equalToSuperview().offset(16)
-      $0.centerY.centerX.equalToSuperview()
-    }
-    self.cellBackground.adds([buildingName,
-                              userName,
-                              ownerStatus,
-                              statusImage,
-                              statusLabel,
-                              vaildateBuilding,
-                              vaildationLabel,
-                              optionsCollectionView,
-                              thumbNail])
-    thumbNail.snp.makeConstraints{
+
+
+    thumbNail.snp.remakeConstraints{
       $0.width.height.equalTo(92)
       $0.centerY.equalToSuperview()
       $0.top.equalToSuperview().offset(10)
       $0.trailing.equalToSuperview().offset(-10)
     }
-    buildingName.snp.makeConstraints{
+    buildingName.snp.remakeConstraints{
       $0.leading.equalToSuperview().offset(16)
       $0.top.equalToSuperview().offset(13)
     }
-    userName.snp.makeConstraints{
+    userName.snp.remakeConstraints{
       $0.leading.equalTo(buildingName.snp.trailing).offset(8)
       $0.bottom.equalTo(buildingName.snp.bottom)
     }
-    ownerStatus.snp.makeConstraints{
+    ownerStatus.snp.remakeConstraints{
       $0.leading.equalToSuperview().offset(16)
       $0.top.equalTo(buildingName.snp.bottom).offset(10)
     }
-    statusImage.snp.makeConstraints{
+    statusImage.snp.remakeConstraints{
       $0.centerY.equalTo(ownerStatus)
       $0.leading.equalTo(ownerStatus.snp.trailing).offset(4)
       $0.width.height.equalTo(16)
     }
-    statusLabel.snp.makeConstraints{
+    statusLabel.snp.remakeConstraints{
       $0.bottom.equalTo(ownerStatus.snp.bottom)
       $0.leading.equalTo(statusImage.snp.trailing).offset(4)
     }
-    vaildateBuilding.snp.makeConstraints{
+    vaildateBuilding.snp.remakeConstraints{
       $0.leading.equalToSuperview().offset(16)
       $0.top.equalTo(ownerStatus.snp.bottom).offset(7)
     }
-    vaildationLabel.snp.makeConstraints{
+    vaildationLabel.snp.remakeConstraints{
       $0.centerY.equalTo(vaildateBuilding)
       $0.leading.equalTo(vaildateBuilding.snp.trailing).offset(4)
     }
-    optionsCollectionView.snp.makeConstraints{
+    optionsCollectionView.snp.remakeConstraints{
       $0.leading.equalToSuperview().offset(16)
       $0.trailing.equalTo(thumbNail.snp.leading).offset(-16)
       $0.top.equalTo(vaildationLabel.snp.bottom).offset(8)
@@ -166,8 +176,9 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = false
     vaildateBuilding.isHidden = false
     vaildationLabel.isHidden = false
-    //optionsCollectionView.isHidden = true
+    optionsCollectionView.isHidden = false
     thumbNail.isHidden = false
+    emptyView.removeFromSuperview()
     emptyView.isHidden = true
   }
   private func setEmptyView() {
@@ -178,12 +189,11 @@ class LookAroundTableViewCell: UITableViewCell {
     statusLabel.isHidden = true
     vaildateBuilding.isHidden = true
     vaildationLabel.isHidden = true
-    //optionsCollectionView.isHidden = true
+    optionsCollectionView.isHidden = true
     thumbNail.isHidden = true
     emptyView.isHidden = false
     cellBackground.add(emptyView)
-    
-    emptyView.snp.makeConstraints{
+    emptyView.snp.remakeConstraints{
       $0.centerX.centerY.equalToSuperview()
     }
   }

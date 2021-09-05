@@ -201,7 +201,8 @@ class HomeViewController : BaseViewController {
                                        ValidateType.kind,
                                        ValidateType.free,
                                        ValidateType.cute,
-                                       ValidateType.bad])
+                                       ValidateType.bad,
+                                       ValidateType.total])
   private func bind() {
     
     
@@ -224,8 +225,7 @@ class HomeViewController : BaseViewController {
       .bind{[weak self] type in
         self?.tabBarController?.selectedIndex = 1
         if let lookaround = self?.tabBarController?.selectedViewController?.children.first as? LookAroundViewController {
-          
-          lookaround.filterTrigger.onNext(type)
+          lookaround.fromHome(type: .init(title: type, selected: false))
           
         }
       }
@@ -248,6 +248,13 @@ class HomeViewController : BaseViewController {
                                   },
                                   currentItemKey: UserManager.shared.currentAddress)
     }.disposed(by: disposeBag)
+    locationDropDown.rx.tap.filter{UserManager.shared.address.isEmpty}
+      .bind{[weak self] in
+        let vc = ManageAddressViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.navigationController?.setNavigationBarHidden(true, animated: false)
+        self?.navigationController?.pushViewController(vc, animated: true)
+      }.disposed(by: disposeBag)
     buyButton.rx.tap.map{return PostType.deal}.bind(to: communityType).disposed(by: disposeBag)
     shareButton.rx.tap.map{return PostType.share}.bind(to: communityType).disposed(by: disposeBag)
     friendButton.rx.tap.map{return PostType.friend}.bind(to: communityType).disposed(by: disposeBag)
@@ -273,7 +280,10 @@ class SelectTypeCollectionViewCell : UICollectionViewCell {
     super.init(frame: frame)
     layout()
   }
-  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    layout()
+  }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -282,25 +292,49 @@ class SelectTypeCollectionViewCell : UICollectionViewCell {
     self.adds([iconImage,
                iconName,
                iconNameKr])
-    iconImage.snp.makeConstraints{
+    iconImage.snp.remakeConstraints{
       $0.centerX.equalToSuperview()
       $0.top.leading.equalToSuperview().offset(16)
       $0.width.height.equalTo(109)
     }
-    iconName.snp.makeConstraints{
+    iconName.snp.remakeConstraints{
       $0.centerX.equalToSuperview()
       $0.top.equalTo(iconImage.snp.bottom).offset(13)
     }
-    iconNameKr.snp.makeConstraints{
+    iconNameKr.snp.remakeConstraints{
       $0.centerX.equalToSuperview()
       $0.top.equalTo(iconName.snp.bottom).offset(6)
       $0.bottom.equalToSuperview().offset(-16)
     }
   }
   func bind(type: ValidateType) {
-    self.iconImage.image = UIImage(named: type.image)
-    self.backgroundColor = type.color
-    self.iconName.text = type.inEnglish
-    self.iconNameKr.text = type.rawValue
+    let text = UILabel().then {
+      $0.setupLabel(text: "유형 모두 보기", color: .blackText, font: .nanumRoundExtraBold(fontSize: 14))
+    }
+    if type == .total {
+      self.iconName.isHidden = true
+      self.iconImage.isHidden = true
+      self.iconNameKr.isHidden = true
+      self.add(text)
+      self.backgroundColor = type.color
+
+      text.isHidden = false
+      text.snp.remakeConstraints{
+        $0.centerX.centerY.equalToSuperview()
+      }
+    }
+    else {
+      self.iconName.isHidden = false
+      self.iconImage.isHidden = false
+      self.iconNameKr.isHidden = false
+      text.isHidden = true
+//      text.snp.removeConstraints()
+      text.removeFromSuperview()
+
+      self.iconImage.image = UIImage(named: type.image)
+      self.backgroundColor = type.color
+      self.iconName.text = type.inEnglish
+      self.iconNameKr.text = type.rawValue
+    }
   }
 }
