@@ -281,6 +281,8 @@ extension MypageViewController {
   private func setupNavigation() {
     self.navigationController?.navigationBar.isHidden = true
     navigationView.setUp(title: "마이페이지")
+    navigationView.backBtn.isHidden = true
+    navigationView.backBtn.isEnabled = false   
   }
   
   func reloadTableView() {
