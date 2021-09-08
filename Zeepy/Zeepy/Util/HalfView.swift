@@ -128,6 +128,7 @@ extension HalfAppearView {
                            }, completion: { _ in
                             self.blackView.removeFromSuperview()
                             self.halfView.removeFromSuperview()
+                            self.addedSubView.removeFromSuperview()
                             self.addedSubView = nil
                            })
         }
@@ -149,6 +150,7 @@ extension HalfAppearView {
                             self.blackView.removeFromSuperview()
                             self.halfView.removeFromSuperview()
                             self.customAction!()
+                            self.addedSubView.removeFromSuperview()
                             self.addedSubView = nil
 
                            })
