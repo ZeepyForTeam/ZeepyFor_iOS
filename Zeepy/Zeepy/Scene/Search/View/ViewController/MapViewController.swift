@@ -542,7 +542,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         //    fetchMapDetail()
         locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -648,10 +647,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
                 print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
             }
-        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         let currentLocation = locationManager.location?.coordinate
-        let lat = currentLocation?.latitude.binade ?? 37.5663
-        let lng = currentLocation?.longitude.binade ?? 126.9779
+        let lat = currentLocation?.latitude.magnitude ?? 37.5663
+        let lng = currentLocation?.longitude.magnitude ?? 126.9779
         self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
         findCurrentMarker()
         print("이게 latitude임~~~~~", lat)
