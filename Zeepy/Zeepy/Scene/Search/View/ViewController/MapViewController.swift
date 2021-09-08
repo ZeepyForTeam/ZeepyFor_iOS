@@ -649,8 +649,8 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         let currentLocation = locationManager.location?.coordinate
-        let lat = currentLocation?.latitude.binade ?? 37.5663
-        let lng = currentLocation?.longitude.binade ?? 126.9779
+        let lat = currentLocation?.latitude.magnitude ?? 37.5663
+        let lng = currentLocation?.longitude.magnitude ?? 126.9779
         self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
         findCurrentMarker()
         print("이게 latitude임~~~~~", lat)
