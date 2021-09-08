@@ -44,7 +44,7 @@ class ConditionViewController: UIViewController {
     
     var transactionList: [ListModel] = [ListModel(title: "전체", englishName : nil , image: "btnOption1", selected: true),
                                         ListModel(title: "월세", englishName: "MONTHLY", image: "btnOption2", selected: false),
-                                        ListModel(title: "전세", englishName : "JEONSE", image: "btnOption3", selected: false),
+                                        ListModel(title: "전세", englishName : "JEONSE", image: "btnOption6", selected: false),
                                         ListModel(title: "매매", englishName : "DEAL", image: "btnReady", selected: false),
     ]
     
