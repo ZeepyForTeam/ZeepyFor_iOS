@@ -484,14 +484,21 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         items = showItems
         findCurrentMarker()
     }
-    
+
     final func reAdjustMapCenter(){
-      let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
-        self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: searchCoordinates.latitude, longitude: searchCoordinates.longitude)), animated: false)
+//      let mapPoint = MTMapPoint(geoCoord: self.searchCoordinates)
+        mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: searchCoordinates.latitude, longitude: searchCoordinates.longitude)), animated: false)
+    print("reAdjustMap에서 lat은~? ", searchCoordinates.latitude)
+    print("reAdjustMap에서 lng은~? ", searchCoordinates.longitude)
+    //이거에 따르면 mapcenter가 안바뀌는데?...
+    //그래서 mapview가 mapviewcontroller꺼가 아닌가? 햇는데 그것도 아니야.
+    print("mapView.mapCenterPoint latitude 알려줘잇~!!!!!", mapView.mapCenterPoint.mapPointGeo().latitude)
+        
     }
   func reAdjustMapCenter(by point: MTMapPointGeo){
     let mapPoint = MTMapPoint(geoCoord: point)
     mapView.setMapCenter(mapPoint, animated: false)
+    mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: searchCoordinates.latitude, longitude: searchCoordinates.longitude)), animated: false)
   }
     private func findCurrentMarker() { //현재 보이는 맵에 있는 Marker들만 보여주기~!!
         let bounds = self.mapView.mapBounds
@@ -542,7 +549,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         
         //    fetchMapDetail()
         locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -648,10 +654,10 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
             func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
                 print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
             }
-        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         let currentLocation = locationManager.location?.coordinate
-        let lat = currentLocation?.latitude.binade ?? 37.5663
-        let lng = currentLocation?.longitude.binade ?? 126.9779
+        let lat = currentLocation?.latitude.magnitude ?? 37.5663
+        let lng = currentLocation?.longitude.magnitude ?? 126.9779
         self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
         findCurrentMarker()
         print("이게 latitude임~~~~~", lat)
@@ -787,13 +793,10 @@ extension MapViewController : UICollectionViewDelegate, UICollectionViewDataSour
         cell?.circleButton.tag = indexPath.row
         var selectedTag = 6
         if collectionViewCellList[indexPath.row].selected == true {
-            
             cell?.buttonTitle.textColor = .blackText
-            cell?.backgroundColor = .mainYellow
             selectedTag = indexPath.row
         }else if collectionViewCellList[indexPath.row].selected != true {
             cell?.buttonTitle.textColor = .grayText
-            cell?.backgroundColor = .white
         }
         print("selected된 것만 보여줘잇~~")
         selectedList = returnList(index : selectedTag)
@@ -815,7 +818,7 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return (collectionView.bounds.width - 60*5)/6
+        return (collectionView.bounds.width - 60*5)/6.6
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
