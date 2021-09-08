@@ -184,7 +184,7 @@ class ConditionViewController: UIViewController {
     }
     let depositPriceLabel = UILabel().then {
         $0.text = "가격상관없이"
-        $0.textColor = .black
+        $0.textColor = .blackText
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let depositPriceSliderView = UIView()
@@ -237,7 +237,7 @@ class ConditionViewController: UIViewController {
     }
     let rentPriceLabel = UILabel().then {
         $0.text = "가격상관없이"
-        $0.textColor = .black
+        $0.textColor = .blackText
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 16.0)
     }
     let rentPriceSliderView = UIView()
@@ -511,7 +511,7 @@ class ConditionViewController: UIViewController {
         seperateLine.snp.makeConstraints {
             $0.top.equalTo(optionCollectionView.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(3)
+            $0.height.equalTo(1)
         }
         nextButton.snp.makeConstraints {
             $0.top.equalTo(seperateLine.snp.bottom).offset(10)
@@ -548,7 +548,7 @@ class ConditionViewController: UIViewController {
             PriceRangeLabel.halfTextColorChange(fullText: "\(maximum)까지", changeText: "까지")
             if maxValue == 6 {
                 PriceRangeLabel.text = "가격상관없이"
-                PriceRangeLabel.textColor = .black
+                PriceRangeLabel.textColor = .blackText
             }
             if maxValue == 0 {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
@@ -583,7 +583,7 @@ class ConditionViewController: UIViewController {
             PriceRangeLabel.halfTextColorChange(fullText: "\(maximum)까지", changeText: "까지")
             if maxValue == 6 {
                 PriceRangeLabel.text = "가격상관없이"
-                PriceRangeLabel.textColor = .black
+                PriceRangeLabel.textColor = .blackText
             }
             if maxValue == 0 {
                 PriceRangeLabel.text = "유효한 값을 선택해주세요"
@@ -773,7 +773,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             }
             else {
                 optioncell?.squareButton.backgroundColor = .whiteGray
-                optioncell?.buttonTitle.textColor = .black
+                optioncell?.buttonTitle.textColor = .blackText
             }
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
