@@ -12,7 +12,7 @@ import Then
 class LastTableViewCell: UITableViewCell {
     var deleteTableViewCellLabel = UILabel().then{
         $0.text = "최근 검색 목록 삭제"
-        $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 8)
+        $0.font = UIFont(name: "NanumSquareRoundOTFR", size: 10)
         $0.textColor = .grayText
     }
     
