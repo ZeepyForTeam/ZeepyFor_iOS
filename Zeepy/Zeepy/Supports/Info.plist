@@ -40,6 +40,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+
 	<string>1685</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
@@ -54,7 +55,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>Location When In Use Usage Description</key>
-	<string>현재 위치정보가 필요합니다.</string>
+	<string>주변에 등록된 빌딩 정보를 확인하기 위해 현재 위치정보가 필요합니다.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -63,9 +64,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>새로운 포스트를 올리기 위해 카메라 앱에 접근이 필요합니다</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
+	<string>주변에 등록된 빌딩 정보를 확인하기 위해 현재 위치정보가 필요합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Zeepy 사용을 위해서는 위치 권한이 필요합니다.</string>
+	<string>주변에 등록된 빌딩 정보를 확인하기 위해 현재 위치정보가 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>새로운 포스트를 올리기 위해 사진 앱에 접근이 필요합니다</string>
 	<key>UIAppFonts</key>

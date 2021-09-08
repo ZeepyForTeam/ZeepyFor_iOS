@@ -140,8 +140,11 @@ extension BuildingRouter : TargetType {
   var headers: [String : String]? {
     switch self {
     default:
-      return ["Content-Type":"application/json",
-              "X-AUTH-TOKEN" : UserDefaultHandler.accessToken!]
+      guard let accessToken = UserDefaultHandler.accessToken else {
+        return ["Content-Type": "application/json"]
+      }
+      return ["Content-Type": "application/json",
+              "X-AUTH-TOKEN" : accessToken]
     }
   }
 }

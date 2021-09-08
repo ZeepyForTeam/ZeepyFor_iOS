@@ -68,8 +68,11 @@ extension S3Router : TargetType {
       return ["Content-Type": "application/json",
               "Authorization": "KakaoAK 82fbfb142396c7168cdb5e97cb3e1d8e"]
     default:
-      return ["Content-Type":"application/json",
-              "X-AUTH-TOKEN" : UserDefaultHandler.accessToken!]
+      guard let accessToken = UserDefaultHandler.accessToken else {
+        return ["Content-Type": "application/json"]
+      }
+      return ["Content-Type": "application/json",
+              "X-AUTH-TOKEN" : accessToken]
     }
   }
 }

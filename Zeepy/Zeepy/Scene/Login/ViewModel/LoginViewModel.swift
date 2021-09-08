@@ -52,7 +52,7 @@ extension LoginViewModel {
         return UserApi.shared.rx.loginWithKakaoTalk()
       }
       else {
-        return .empty()
+        return UserApi.shared.rx.loginWithKakaoAccount()
       }
     }.flatMapLatest{ token in
       self?.service.kakaoLogin(token: token.accessToken) ?? .empty()
@@ -67,6 +67,8 @@ extension LoginViewModel {
     return .init(isLoginSuccess: result,
                  kakaoLoginResult: socialLogin,
                  naverLoginResult: naverLogin,
-                 appleLoginResult: appleResult)
+//                 appleLoginResult: .empty()
+                 appleLoginResult: appleResult
+    )
   }
 }

@@ -58,7 +58,7 @@ class LoginEmailViewController: BaseViewController {
     $0.setTitle("비밀번호 찾기", for: .normal)
     $0.setTitleColor(.grayText, for: .normal)
     $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 10.0)
-    $0.isHidden = true 
+    $0.isHidden = true
   }
   let signUpButton = UIButton().then{
     $0.setTitle("회원가입", for: .normal)
@@ -118,7 +118,9 @@ class LoginEmailViewController: BaseViewController {
   func bind() {
     let input = LoginViewModel.Input(emailText: idTextField.rx.text.orEmpty.asObservable(),
                                      passwordText: pwTextField.rx.text.orEmpty.asObservable(),
-                                     loginButtonDidTap: loginButton.rx.tap.asObservable(),
+                                     loginButtonDidTap: loginButton.rx.tap.filter{[weak self] in
+                                      self?.idTextField.text?.isEmpty == false && self?.pwTextField.text?.isEmpty == false
+                                    }.asObservable(),
                                      kakaoLogin: kakaoLoginButton.rx.tap.asObservable(),
                                      appleLogin: appleRequest,
                                      naverLogin: naverToken)
@@ -256,6 +258,12 @@ class LoginEmailViewController: BaseViewController {
     }.disposed(by: disposeBag)
     appleLoginButton.rx.tap.bind{ [weak self] in
       self?.appleLogin()
+    }.disposed(by: disposeBag)
+    
+    loginButton.rx.tap.filter{[weak self] in
+     self?.idTextField.text?.isEmpty == true && self?.pwTextField.text?.isEmpty == true
+    }.bind{
+      MessageAlertView.shared.showAlertView(title: "아이디와 비밀번호를\n입력해주세요", grantMessage: "확인")
     }.disposed(by: disposeBag)
   }
   
@@ -474,6 +482,7 @@ extension LoginEmailViewController : ASAuthorizationControllerDelegate {
       print("token: \(tokenStr)")
       print("refresh: \(codeStr)")
       print("state: \(state)")
+      print("\(appleIDCredential)")
 
       let param = AppleLoginParam(code: codeStr,
                                   id_token: tokenStr,

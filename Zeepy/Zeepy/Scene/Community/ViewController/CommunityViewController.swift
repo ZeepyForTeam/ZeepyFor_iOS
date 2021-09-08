@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 class CommunityViewController : BaseViewController {
+  var type: PostType?
   private let naviView = UIView().then{
     $0.backgroundColor = .white
     $0.addUnderBar()
@@ -237,13 +238,18 @@ extension CommunityViewController : UICollectionViewDelegate{
     setupCollectionView()
     bind()
   }
-  func fromHome(type: PostType) {
-    setTabView(tabIndex: 0)
-    moveColletionViewNextPage(tabIndex: 0)
-    selectedType.onNext(type)
+  func fromHome() {
+    if let t = type {
+      setTabView(tabIndex: 0)
+      moveColletionViewNextPage(tabIndex: 0)
+      selectedType.onNext(t)
+      type = nil
+    }
   }
   override func viewWillAppear(_ animated: Bool) {
+    
     super.viewWillAppear(animated)
+    fromHome()
     self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
     NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
   }
@@ -273,6 +279,7 @@ extension CommunityViewController : UICollectionViewDelegate{
 
       }
     }.disposed(by: disposeBag)
+    
     Observable.just([0, 1])
       .bind(to: segmentCollectionView.rx.items(cellIdentifier: TapCell.identifier,
                                                cellType: TapCell.self)) { [weak self] row, data, cell in
