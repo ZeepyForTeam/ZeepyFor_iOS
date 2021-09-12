@@ -32,6 +32,7 @@ class ModifyInformationViewController: BaseViewController {
   private let logoutButton = UIButton()
   private let drououtButton = UIButton()
   let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    
   // MARK: - Variables
   private let userService = UserService(
     provider: MoyaProvider<UserRouter>(
@@ -314,7 +315,7 @@ extension ModifyInformationViewController {
   //로그아웃기능 임시
   private func temp() {
     logoutButton.rx.tap.bind{
-      MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", okAction: { [weak self] in
+        MessageAlertView.shared.showAlertView(title: "정말 로그아웃 하시겠습니까?", grantMessage: "확인", denyMessage: "취소", mainColor: .pointYellow, okAction: { [weak self] in
         if UserDefaultHandler.loginType == "naver" {
           self?.loginInstance?.requestDeleteToken()
         }

@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseMessaging
 import KakaoSDKCommon 
 import RxKakaoSDKCommon
 import RxKakaoSDKAuth

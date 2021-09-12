@@ -26,7 +26,7 @@ class BaseAlert: UIView {
   }(UIView(frame: .zero))
   
   let titleLabel: UILabel = {
-    $0.font = .systemFont(ofSize: 20, weight: .medium)
+    $0.font = .nanumRoundExtraBold(fontSize: 16)
     $0.textColor = UIColor.black
     $0.textAlignment = .center
     $0.numberOfLines = 0
@@ -36,7 +36,7 @@ class BaseAlert: UIView {
   
   let grantButton: UIButton = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
     $0.backgroundColor = UIColor.white
     $0.setTitleColor(UIColor.mainBlue, for: .normal)
     $0.setTitle("", for: .normal)
@@ -45,7 +45,7 @@ class BaseAlert: UIView {
   
   let denyButton: UIButton = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
     $0.backgroundColor = UIColor.mainBlue
     $0.setTitleColor(UIColor.white, for: .normal)
     $0.setTitle("", for: .normal)
@@ -99,8 +99,8 @@ extension BaseAlert {
         titleLabel.centerYAnchor.constraint(equalTo: alertView.centerYAnchor, constant: -24),
         
         buttonStackView.heightAnchor.constraint(equalToConstant: 48),
-        buttonStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 0),
-        buttonStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: 0),
+        buttonStackView.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 12),
+        buttonStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -12),
         buttonStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10)
       ])
     }
