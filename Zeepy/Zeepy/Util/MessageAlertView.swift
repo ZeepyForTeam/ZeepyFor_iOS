@@ -34,6 +34,8 @@ extension MessageAlertView {
     okAction: PopupDialogButtonAction? = nil
   ) {
     initializeMainView()
+    denyButton.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
+    grantButton.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
     denyButton.backgroundColor = mainColor
     grantButton.setTitleColor(mainColor, for: .normal)
     denyButton.isHidden = denyMessage == ""
@@ -55,7 +57,10 @@ extension MessageAlertView {
     style.lineSpacing = 28/20
     style.alignment = .center
     
-    let attributeString: [NSAttributedString.Key: Any] = [.paragraphStyle : style]
+    let attributeString: [NSAttributedString.Key: Any] = [
+        .paragraphStyle : style,
+        .font: UIFont.nanumRoundExtraBold(fontSize: 16)
+    ]
     titleLabel.attributedText = NSAttributedString(
       string: title,
       attributes: attributeString
