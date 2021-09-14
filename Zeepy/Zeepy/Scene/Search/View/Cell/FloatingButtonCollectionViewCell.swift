@@ -21,11 +21,8 @@ class FloatingButtonCollectionViewCell: UICollectionViewCell {
     
 
     var circleButton = UIButton().then{
-
         $0.isSelected = true
-
         $0.isUserInteractionEnabled = false
-
     }
 
     var buttonTitle = UILabel().then{
@@ -56,6 +53,9 @@ class FloatingButtonCollectionViewCell: UICollectionViewCell {
 
         setUpCollectionViewCell()
 
+        if circleButton.isFocused {
+            self.backgroundColor = .mainYellow
+        }
     }
 
     

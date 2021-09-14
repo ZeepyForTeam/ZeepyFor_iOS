@@ -80,7 +80,8 @@ class LoginEmailViewController: BaseViewController {
     $0.font = UIFont(name: "Gilroy-ExtraBold", size: 16.0)
   }
   
-  let snsStackView = UIStackView()
+    let snsStackView = UIStackView()
+    
   let appleLoginButton = UIButton().then{
     $0.setImage(UIImage(named: "logoApple"), for: .normal)
   }
@@ -431,11 +432,11 @@ class LoginEmailViewController: BaseViewController {
       $0.leading.equalToSuperview().offset(30)
     }
     snsStackView.adds([appleLoginButton, kakaoLoginButton, naverLoginButton])
+//    snsStackView.addarrangedsubview
     snsStackView.snp.makeConstraints{
       $0.top.equalTo(snsLoginLabel.snp.bottom).offset(16)
       $0.height.equalTo(40)
-      $0.leading.equalToSuperview().offset(125)
-      $0.trailing.equalToSuperview().inset(125)
+      $0.centerX.equalToSuperview()
     }
     appleLoginButton.snp.makeConstraints{
       $0.top.equalToSuperview()
