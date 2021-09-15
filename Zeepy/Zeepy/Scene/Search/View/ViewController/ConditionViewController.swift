@@ -157,8 +157,8 @@ class ConditionViewController: UIViewController {
     let transactionCollectionView: UICollectionView = {
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         let size:CGSize = UIScreen.main.bounds.size
-        
-        layout.itemSize = CGSize(width: 82, height: 125)
+        let cellWidth = UIScreen.main.bounds.width-80
+        layout.itemSize = CGSize(width: cellWidth/4, height: 125)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 16
         layout.scrollDirection = .vertical
