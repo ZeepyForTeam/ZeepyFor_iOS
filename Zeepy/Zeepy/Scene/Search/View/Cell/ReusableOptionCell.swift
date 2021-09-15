@@ -28,20 +28,20 @@ class ReusableOptionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setupViews() {
-        let cellWidth = self.frame.width - 48
+        let cellWidth = UIScreen.main.bounds.width
         self.addSubview(squareButton)
         self.addSubview(buttonTitle)
         
         squareButton.snp.makeConstraints{
-//            $0.width.equalTo(115) //엥
-//            $0.height.equalTo(30) //엥
-            $0.centerY.equalToSuperview()
-            $0.top.equalToSuperview()
+            $0.width.equalTo(cellWidth/3) //엥
+            $0.height.equalTo(30) //엥
+            $0.center.top.trailing.leading.equalToSuperview()
         }
         
         buttonTitle.snp.makeConstraints{
             $0.centerX.equalTo(squareButton)
             $0.centerY.equalTo(squareButton)
+            
             $0.bottom.equalToSuperview()
         }
     }

@@ -285,8 +285,8 @@ class ConditionViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.isPagingEnabled = true
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        let cellWidth = UIScreen.main.bounds.size.width - 16
-        layout.itemSize = CGSize(width: cellWidth/3.1 , height: cellWidth*48/109)
+        let cellWidth = UIScreen.main.bounds.width-48
+        layout.itemSize = CGSize(width: cellWidth/3 , height: (cellWidth/3)*(48/109))
         layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .vertical
         collectionView.backgroundColor = .white
@@ -687,15 +687,15 @@ class ConditionViewController: UIViewController {
     
 }
 // MARK: - Extensions
-//extension ConditionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//            return 8
-//    }
-//}
+extension ConditionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 8
+    }
+}
 
 extension ConditionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     public func initCollectionView() {
@@ -798,6 +798,7 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
             optioncell?.squareButton.tag = indexPath.row
+
             return optioncell!
         }
         return UICollectionViewCell()
