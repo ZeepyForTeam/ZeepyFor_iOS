@@ -139,7 +139,7 @@ class ConditionViewController: UIViewController {
         
         layout.itemSize = CGSize(width: 82, height: 125)
         layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = 16
         layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -285,11 +285,9 @@ class ConditionViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.isPagingEnabled = true
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        let size:CGSize = UIScreen.main.bounds.size
-        
-        layout.itemSize = CGSize(width: 110, height: 50)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0//엥?
+        let cellWidth = UIScreen.main.bounds.size.width - 16
+        layout.itemSize = CGSize(width: cellWidth/3.1 , height: cellWidth*48/109)
+        layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .vertical
         collectionView.backgroundColor = .white
         collectionView.setCollectionViewLayout(layout, animated: false)
@@ -406,7 +404,7 @@ class ConditionViewController: UIViewController {
             $0.top.equalTo(depositPriceShowView.snp.bottom)
             $0.leading.equalToSuperview().offset(8)
             $0.trailing.equalToSuperview().offset(-8)
-            $0.height.equalTo(80)
+            $0.height.equalTo(50)
         }
         
         depositPriceSliderView.addSubview(depositPriceSlider)
@@ -465,7 +463,7 @@ class ConditionViewController: UIViewController {
             $0.centerX.equalTo(depositPriceSliderView)
             $0.leading.equalToSuperview().offset(8)
             $0.trailing.equalToSuperview().offset(-8)
-            $0.height.equalTo(80)
+            $0.height.equalTo(50)
         }
         
         rentPriceSliderView.addSubview(rentPriceSlider)
@@ -689,15 +687,15 @@ class ConditionViewController: UIViewController {
     
 }
 // MARK: - Extensions
-extension ConditionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 8
-    }
-}
+//extension ConditionViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 8
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//            return 8
+//    }
+//}
 
 extension ConditionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     public func initCollectionView() {
@@ -734,14 +732,12 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         if collectionView == buildingCollectionView{
             buildingSelectedNumber = indexPath.item
             collectionView.reloadData()
-            print(#function)
         }
         else if collectionView == transactionCollectionView{
             if indexPath.item != 3{
             dealSelectedNumber = indexPath.item
             determineSlider(index: indexPath.item)
             collectionView.reloadData()
-            print(#function)
             }
         }
     }
@@ -806,5 +802,8 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         }
         return UICollectionViewCell()
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
 }
