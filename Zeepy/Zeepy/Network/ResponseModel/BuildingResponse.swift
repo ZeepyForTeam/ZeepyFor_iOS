@@ -258,7 +258,7 @@ struct BuildingDealUserLike: Codable {
 
 // MARK: - BuildingLike
 struct BuildingLikeUserLike: Codable {
-  let email: String
+  let userId: Int
   let id: Int
   let likeDate: String
 }

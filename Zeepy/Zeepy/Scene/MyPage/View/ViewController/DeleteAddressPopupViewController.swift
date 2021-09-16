@@ -79,7 +79,7 @@ extension DeleteAddressPopupViewController {
       $0.snp.makeConstraints {
         $0.bottom.equalTo(self.containerView.snp.bottom).offset(-12)
         $0.leading.equalTo(self.containerView.snp.centerX).offset(5)
-        $0.trailing.equalTo(self.containerView.snp.leading).offset(-12)
+        $0.trailing.equalTo(self.containerView.snp.trailing).offset(-12)
         $0.height.equalTo(self.view.frame.width * 48/375)
       }
     }

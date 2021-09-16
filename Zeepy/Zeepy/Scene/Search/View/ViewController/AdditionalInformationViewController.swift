@@ -248,6 +248,14 @@ extension AdditionalInformationViewController {
       name: UITextView.textDidChangeNotification,
       object: self.reviewTextField)
   }
+    
+    private func configTextView() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        reviewTextField.typingAttributes = attributes
+    }
   
   // MARK: - Action Helpers
   @objc func nextButtonClicked() {
