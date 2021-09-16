@@ -60,6 +60,8 @@ class LenderInformationViewController: BaseViewController {
     layout()
     setupNavigation()
     notifyTextView()
+    addGestureRecognizer()
+    configTextView()
   }
 }
 // MARK: - Extensions
@@ -187,7 +189,7 @@ extension LenderInformationViewController {
   private func layoutAgeButton() {
     self.ageView.add(self.ageButton) {
       $0.setBackgroundImage(UIImage(named: "toggleAge"), for: .normal)
-      $0.addTarget(self, action: #selector(self.clickedAgeButton), for: .touchUpInside)
+//      $0.addTarget(self, action: #selector(self.clickedAgeButton), for: .touchUpInside)
       $0.snp.makeConstraints {
         $0.centerY.equalTo(self.ageView.snp.centerY)
         $0.trailing.equalTo(self.ageView.snp.trailing).offset(-3)
@@ -407,6 +409,19 @@ extension LenderInformationViewController {
       nextButton.isUserInteractionEnabled = true
     }
   }
+    
+    private func addGestureRecognizer() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.clickedAgeButton))
+        ageView.addGestureRecognizer(gesture)
+    }
+    
+    private func configTextView() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.paragraphStyle: paragraphStyle]
+        detailTextField.typingAttributes = attributes
+    }
   
   private func notifyTextView() {
     NotificationCenter.default.addObserver(
