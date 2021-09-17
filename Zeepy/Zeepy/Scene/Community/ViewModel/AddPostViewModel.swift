@@ -31,7 +31,7 @@ class AddPostViewModel:Services, ViewModelType {
     let contentText : Observable<String?>
     
     let productTitle : Observable<String?>
-    let productPrice : Observable<Int?>
+    let productPrice : Observable<String?>
     let productMall : Observable<String?>
     let tradeType : Observable<String?>
     
@@ -61,7 +61,7 @@ class AddPostViewModel:Services, ViewModelType {
     var contentText: String?
     
     var productTitle : String?
-    var productPrice :Int?
+    var productPrice :String?
     var productMall :String?
     var tradeType : String?
     
@@ -107,13 +107,19 @@ extension AddPostViewModel {
                                            input.tradeType).map{ member, mall, price, product, count, title, content, type  -> Bool in
                                             self?.state.memberInfo = member
                                             self?.state.productMall = mall
-                                            self?.state.productPrice = price
+                                            if price?.contains("원") == true {
+                                              self?.state.productPrice = price
+                                            }
+                                            else {
+                                              if let value = Int(price!) {
+                                                self?.state.productPrice = NumberFormatter().makeDecimalFormat(value) + "원"
+                                              }
+                                            }
                                             self?.state.productTitle = product
                                             self?.state.targetMember = count
                                             self?.state.titleText = title
                                             self?.state.contentText = content
                                             self?.state.tradeType = type
-                                          
                                             if mall?.isEmpty == false && price.isNotNil && product?.isEmpty == false && count.isNotNil && title?.isEmpty == false && content?.isEmpty == false && type?.isEmpty == false {
                                               return true
                                             }

@@ -191,6 +191,8 @@ class AddPhotoViewController : BaseViewController {
       let output = viewModel?.transform(input: input)
       output?.postResult.bind{[weak self] result in
         if result {
+          LoadingHUD.rx.isAnimating.onNext(false)
+
           self?.popToRootViewController()
         }
         else {
@@ -202,6 +204,7 @@ class AddPhotoViewController : BaseViewController {
         view.resultClosure = {result in
           if result {
             self?.postTrigger.onNext(())
+            LoadingHUD.rx.isAnimating.onNext(true)
           }
         }
         PopUpView.shared.appearPopUpView(subView: view)

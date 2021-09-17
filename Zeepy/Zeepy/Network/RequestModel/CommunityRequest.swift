@@ -19,7 +19,7 @@ struct SaveCommunityRequest : Encodable {
   let address, communityCategory, content, title: String
   let imageUrls: [String]?
   let instructions, productName: String?
-  let productPrice: Int?
+  let productPrice: String?
   let purchasePlace, sharingMethod: String?
   let targetNumberOfPeople: Int?
 }

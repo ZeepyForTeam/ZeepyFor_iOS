@@ -34,18 +34,27 @@ extension PostDetailViewModel {
   func transform(input : Input) -> Output {
     weak var `self` = self
     var postId: Int = 0
-
+    
     let usecase = input.loadView.flatMapLatest{ id -> Observable<CommunityContent> in
       postId = id
       return self?.service.fetchPostDetail(id: id) ?? .empty()
     }.share()
-    let comments = usecase.map{$0.comments ?? []}.map{
-      $0.map{($0.toCommentModel(), $0.subComments ?? [])}
-        .map{comment, subComment in
-          CommentSectionType.init(model: comment, items: subComment.map{$0.toCommentModel()})
+    let commentResponse = usecase.map{$0.comments}
+    let postUser = usecase.map{$0.user?.id}
+    let comments = Observable.zip(commentResponse, postUser)
+      .map{comment, userId -> [CommentSectionType]in
+        let commentType = comment.map{
+          $0.map{($0.toCommentModel(postUser : userId), $0.subComments ?? [])}
+            .map{comment, subComment in
+              
+              CommentSectionType.init(model: comment, items: subComment.map{$0.toCommentModel(postUser : userId)})
+            }
         }
-    }
-
+        return commentType ?? []
+      }
+    
+    
+    
     let likePost = input.likePost.flatMapLatest{ param in
       self?.service.addPostLike(param: param) ?? .empty()
     }.share()

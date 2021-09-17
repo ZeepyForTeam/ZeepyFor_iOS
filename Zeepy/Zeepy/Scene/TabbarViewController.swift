@@ -19,7 +19,8 @@ class TabbarViewContorller : UITabBarController {
     self.view.backgroundColor = .white
     self.selectedIndex = defaultIndex
     self.tabBar.layer.borderWidth = 0.6
-//    self.tabBar.layer.borderColor = lineColor.cgColor
+    
+    self.tabBar.layer.borderColor = UIColor.gray244.cgColor
   }
 
 }
