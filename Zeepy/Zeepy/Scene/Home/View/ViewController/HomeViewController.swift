@@ -246,7 +246,8 @@ class HomeViewController : BaseViewController {
                                     self?.currentLocation.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 선택"
                                     self?.resetAddress.onNext(UserManager.shared.address)
                                   },
-                                  currentItemKey: UserManager.shared.currentAddress)
+                                  currentItemKey: UserManager.shared.currentAddress,
+                                  color: UIColor.mainYellow)
     }.disposed(by: disposeBag)
     locationDropDown.rx.tap.filter{UserManager.shared.address.isEmpty}
       .bind{[weak self] in

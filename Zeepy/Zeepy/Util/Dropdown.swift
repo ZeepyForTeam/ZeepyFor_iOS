@@ -166,21 +166,38 @@ extension Dropdown {
                   currentItemKey: Addresses? = nil,
                   color: UIColor = .communityGreen) {
     initializeMainView()
-    titles = items.map{$0.primaryAddress}
-    Observable.just(items).bind(to: dropdown.rx.items(cellIdentifier: dropdownCell.identifier,
+    var itemUsecase = items
+    let addition = Addresses(cityDistinct: "", primaryAddress: "주소 변경하기", isAddressCheck: false)
+    itemUsecase.append(addition)
+    titles = itemUsecase.map{$0.primaryAddress}
+    Observable.just(itemUsecase).bind(to: dropdown.rx.items(cellIdentifier: dropdownCell.identifier,
                                                        cellType: dropdownCell.self) ) {row, data,cell in
       cell.layout()
       cell.titlelabel.text = data.primaryAddress
       if let currentitem = currentItemKey {
-        if data == currentitem {
+        if data.cityDistinct == "" {
+          cell.titlelabel.textColor = color
+        }
+        else if data == currentitem {
           cell.titlelabel.textColor = color
         }
       }
     }.disposed(by: disposeBag)
     dropdown.rx.modelSelected(Addresses.self)
       .bind{[weak self] address in
-        UserManager.shared.changeCurrent(by: address)
-        self?.dissmiss(with: dissmissAction)
+        if address.cityDistinct == "" {
+          let additionAction : dropDownAction = {
+            let vc = ManageAddressViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.navigationController?.setNavigationBarHidden(true, animated: false)
+            UIApplication.shared.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+          }
+          self?.dissmiss(with: additionAction)
+        }
+        else {
+          UserManager.shared.changeCurrent(by: address)
+          self?.dissmiss(with: dissmissAction)
+        }
       }.disposed(by: dispose)
     dropdown.rx
         .observeWeakly(CGSize.self, "contentSize")
@@ -261,7 +278,7 @@ extension Dropdown {
 
 class dropdownCell : UITableViewCell {
   let titlelabel =  UILabel().then{
-    $0.font = .nanumRoundBold(fontSize: 12)
+    $0.font = .nanumRoundExtraBold(fontSize: 12)
     $0.textColor = .blackText
   }
   func layout() {

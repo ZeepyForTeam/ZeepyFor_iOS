@@ -56,7 +56,7 @@ class PostDetailViewControlelr : BaseViewController {
     $0.backgroundColor = .white
   }
   private let commentCheckBox = UIButton().then {
-    $0.setImage(UIImage(named: "checkBoxOutlineBlank"), for: .normal)
+    $0.setImage(UIImage(named: "checkBoxOutlineBlank2"), for: .normal)
     $0.setImage(UIImage(named: "checkBoxSelected"), for: .selected)
     $0.isSelected = false
   }
@@ -182,23 +182,24 @@ extension PostDetailViewControlelr : UITableViewDelegate {
     guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommentView.identifier) as? CommentView else {
       return nil
     }
-    view.profileBtn.kf.setImage(with: URL(string:  dataSource[section].model.profile),for: .normal)
-    view.userName.text = dataSource[section].model.userName
-    if dataSource[section].model.isMember {
+    let model = dataSource[section].model
+    view.profileBtn.kf.setImage(with: URL(string:  model.profile),for: .normal)
+    view.userName.text = model.userName
+    if model.isMember {
       view.userTag.isHidden = false
       view.userTag.text = "참여자"
     }
-    else if dataSource[section].model.userId == UserDefaultHandler.userId{
+    else if model.userId == model.postUser{
       view.userTag.isHidden = false
       view.userTag.text = "글쓴이"
     }
     else {
       view.userTag.isHidden = true
     }
-    view.commentLabel.text = dataSource[section].model.hidden ? "비밀 댓글입니다." : dataSource[section].model.comment
+    view.commentLabel.text = model.hidden ? "비밀 댓글입니다." : model.comment
     
-    view.commentedAt.text = dataSource[section].model.postedAt.asDate(format: .iso8601)?.detailTime
-    if dataSource[section].model.userId == UserDefaultHandler.userId {
+    view.commentedAt.text = model.postedAt.asDate(format: .iso8601)?.detailTime
+    if model.userId == UserDefaultHandler.userId {
       view.reportOrModifyBtn.setTitle("수정", for: .normal)
       view.reportOrModifyBtn.rx.tap
         .takeUntil(view.rx.methodInvoked(#selector(UITableViewHeaderFooterView.prepareForReuse)))
@@ -301,7 +302,11 @@ extension PostDetailViewControlelr {
         self.postDetail.profileImage.kf.setImage(with: URL(string: model.user?.profileImage ?? ""), for: .normal)
         self.achivementView.emptyAchivement.isHidden = model.targetNumberOfPeople.isNotNil
         self.achivementView.participateBtn.isSelected = model.isParticipant == true
-        
+        if model.imageUrls?.isEmpty == true {
+          self.postDetail.postImageCollectionView.snp.updateConstraints{
+            $0.height.equalTo(0)
+          }
+        }
         if let targetNumber = model.targetNumberOfPeople {
           self.commentView.snp.remakeConstraints{
             $0.top.equalTo(self.achivementView.snp.bottom)
@@ -333,6 +338,10 @@ extension PostDetailViewControlelr {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-116)
           }
+          self.postDetail.purchaseInfo.snp.updateConstraints{
+            $0.height.equalTo(0)
+          }
+
         }
         //self?.achivementView.currentPrice.text = String(model.productPrice ?? 0)
         

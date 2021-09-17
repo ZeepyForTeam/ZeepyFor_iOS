@@ -14,8 +14,8 @@
             filePath = "Zeepy/Scene/Community/ViewController/AddPhotoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "getImage(gesture:)"
             landmarkType = "7">
          </BreakpointContent>

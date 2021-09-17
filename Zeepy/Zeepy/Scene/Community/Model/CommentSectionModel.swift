@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxDataSources
 struct CommentSectionModel : IdentifiableType {
+  var postUser: Int
   let identity : Int
   let profile : String
   let userName : String

@@ -362,7 +362,7 @@ extension AddPostViewContoller {
                                               productTitle: productTitle.rx.text.asObservable(),
                                               productPrice: productPrice.rx.text.map{
                                                 if $0.isNotNil {
-                                                  return Int($0!)
+                                                  return $0
                                                 }
                                                 else {
                                                   return nil
@@ -418,8 +418,30 @@ extension AddPostViewContoller {
         }
       }
       .disposed(by: disposeBag)
-    
-    
+    productPrice.rx.controlEvent(.editingDidEnd)
+      .map{[weak self] in
+        self?.productPrice.text ?? ""
+      }.bind{[weak self] price in
+        if price.contains("원") == true {
+          //이미 전환됨
+        }
+        else {
+          if let value = Int(price) {
+            self?.productPrice.text = NumberFormatter().makeDecimalFormat(value) + "원"
+          }
+        }
+      }.disposed(by: disposeBag)
+    productPrice.rx.controlEvent(.editingDidBegin)
+      .map{[weak self] in
+        self?.productPrice.text ?? ""
+      }.bind{[weak self] price in
+        if price.contains("원") == true {
+          var current = price
+          current.removeLast()
+          let splits = current.split(separator: ",").map{String($0)}.reduce(""){$0 + $1}
+          self?.productPrice.text = splits
+        }
+      }.disposed(by: disposeBag)
     productNameCheckBox.checkBtn.rx.tap.map{_ -> CheckBoxContent in
       return .productNameCheckBox
     }.bind(to: memberCheckInfo).disposed(by: disposeBag)

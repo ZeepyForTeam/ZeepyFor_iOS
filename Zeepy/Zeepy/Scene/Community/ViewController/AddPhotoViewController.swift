@@ -192,56 +192,52 @@ class AddPhotoViewController : BaseViewController {
         
         bind()
     }
-    
+
     private func bind() {
         if let reviewModel = reviewModel {
             //리뷰작성 레이블 추가
             //maincolor 변경
             reviewLayout()
             reviewActions()
-            
+          else {
+      let input = AddPostViewModel.Input(loadTrigger: Observable.just(()),
+                                         currentImages: imagePublisher,
+                                         deleteImage: deleteImage,
+                                         post: postTrigger)
+      let output = viewModel?.transform(input: input)
+      output?.postResult.bind{[weak self] result in
+        if result {
+          LoadingHUD.rx.isAnimating.onNext(false)
+
+          self?.popToRootViewController()
+      }.disposed(by: disposeBag)
+      nextButton.rx.tap.bind{[weak self] in
+        let view = AddPostPopup.init(isCommunity: true)
+        view.resultClosure = {result in
+          if result {
+            self?.postTrigger.onNext(())
+            LoadingHUD.rx.isAnimating.onNext(true)
+          }
         }
-        else {
-            let input = AddPostViewModel.Input(loadTrigger: Observable.just(()),
-                                               currentImages: imagePublisher,
-                                               deleteImage: deleteImage,
-                                               post: postTrigger)
-            let output = viewModel?.transform(input: input)
-            output?.postResult.bind{[weak self] result in
-                if result {
-                    self?.popToRootViewController()
-                }
-                else {
-                    MessageAlertView.shared.showAlertView(title: "실패했습니다", grantMessage: "확인")
-                }
-            }.disposed(by: disposeBag)
-            nextButton.rx.tap.bind{[weak self] in
-                let view = AddPostPopup.init(isCommunity: true)
-                view.resultClosure = {result in
-                    if result {
-                        self?.postTrigger.onNext(())
-                    }
-                }
-                PopUpView.shared.appearPopUpView(subView: view)
-                
-            }.disposed(by: disposeBag)
-            imagePublisher.bind{print($0)}.disposed(by: disposeBag)
-            output?.currentImage.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
-                                                                               cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
-                guard let self = self else {return}
-                cell.bindCell(model: data.image,width: 72)
-                cell.deleteBtn.rx.tap
-                    .takeUntil(cell.rx.methodInvoked(#selector(UICollectionViewCell.prepareForReuse)))
-                    .bind{[weak self] in
-                        self?.deleteImage.onNext(data)
-                    }.disposed(by: cell.disposebag)
-            }.disposed(by: disposeBag)
-            
-            output?.currentImage.bind{[weak self] in
-                self?.imageArray = $0
-                self?.nextButton.setTitle( $0.isEmpty ? "건너뛰기" : "등록하기", for: .normal)
-            }.disposed(by: disposeBag)
-        }
+        PopUpView.shared.appearPopUpView(subView: view)
+
+      }.disposed(by: disposeBag)
+      imagePublisher.bind{print($0)}.disposed(by: disposeBag)
+      output?.currentImage.bind(to: selectedImageCollectionView.rx.items(cellIdentifier: ReusableSimpleImageCell.identifier,
+                                                                         cellType: ReusableSimpleImageCell.self)) { [weak self] row, data, cell in
+        guard let self = self else {return}
+        cell.bindCell(model: data.image,width: 72)
+        cell.deleteBtn.rx.tap
+          .takeUntil(cell.rx.methodInvoked(#selector(UICollectionViewCell.prepareForReuse)))
+          .bind{[weak self] in
+            self?.deleteImage.onNext(data)
+          }.disposed(by: cell.disposebag)
+      }.disposed(by: disposeBag)
+      
+      output?.currentImage.bind{[weak self] in
+        self?.imageArray = $0
+        self?.nextButton.setTitle( $0.isEmpty ? "건너뛰기" : "등록하기", for: .normal)
+      }.disposed(by: disposeBag)
         addFromLib.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImage(gesture:))))
         addFromCamera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getCamera(gesture:))))
     }

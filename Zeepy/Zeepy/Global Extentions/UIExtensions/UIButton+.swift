@@ -71,7 +71,7 @@ extension UIButton {
 }
 class checkBox : UIView {
   let checkBtn = UIButton().then {
-    $0.setImageByName("checkBoxOutlineBlank", "checkBoxSelected")
+    $0.setImageByName("checkBoxOutlineBlank2", "checkBoxSelected")
   }
   let checkLabel = UILabel().then {
     $0.font = .nanumRoundRegular(fontSize: 14)

@@ -105,8 +105,8 @@ struct Comment: Decodable {
   
 }
 extension Comment {
-  func toCommentModel() -> CommentSectionModel {
-    return .init(identity: id, profile: writer.profileImage ?? "", userName: writer.name ?? "비공개", userId: writer.id ?? -1, comment: comment, hidden: isSecret == true, postedAt: createdTime ,isMember: isParticipation == true)
+  func toCommentModel(postUser : Int? = nil) -> CommentSectionModel {
+    return .init(postUser: postUser ?? -1, identity: id, profile: writer.profileImage ?? "", userName: writer.name ?? "비공개", userId: writer.id ?? -1, comment: comment, hidden: isSecret == true, postedAt: createdTime ,isMember: isParticipation == true)
   }
 }
 // MARK: - Community
