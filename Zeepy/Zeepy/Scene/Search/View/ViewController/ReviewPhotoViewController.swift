@@ -73,9 +73,20 @@ class ReviewPhotoViewController : BaseViewController {
     $0.addline(at: .top)
     $0.backgroundColor = .white
   }
+    
+    private let jumpButton = UIButton().then {
+        $0.setupButton(
+            title: "건너뛰기",
+            color: .grayText,
+            font: .nanumRoundExtraBold(fontSize: 14),
+            backgroundColor: .clear,
+            state: .normal,
+            radius: 0
+        )
+    }
   
   private let nextButton = UIButton().then{
-    $0.setTitle("건너뛰기", for: .normal)
+    $0.setTitle("다음으로", for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.titleLabel?.font = .nanumRoundExtraBold(fontSize: 16)
     $0.setRounded(radius: 8)
@@ -106,6 +117,7 @@ class ReviewPhotoViewController : BaseViewController {
                     addFromCamera,
                     titleNotice,
                     selectedImageCollectionView,
+                    jumpButton,
                     nextButtonBackground
     ])
     
@@ -140,6 +152,12 @@ class ReviewPhotoViewController : BaseViewController {
       $0.leading.trailing.bottom.equalToSuperview()
       $0.height.equalTo(102)
     }
+    jumpButton.snp.makeConstraints {
+        $0.centerX.equalToSuperview()
+        $0.bottom.equalTo(self.nextButtonBackground.snp.top).offset(-4)
+        $0.width.equalTo(80)
+        $0.height.equalTo(44)
+    }
     nextButton.snp.makeConstraints{
       $0.centerX.equalToSuperview()
       $0.leading.equalToSuperview().offset(16)
@@ -161,6 +179,19 @@ class ReviewPhotoViewController : BaseViewController {
     super.viewDidLoad()
     layout()
     nextButton.rx.tap.bind{[weak self] in
+      let nextVC = RegisterReviewPopupViewController()
+      nextVC.reviewModel = self!.reviewModel
+      nextVC.resultClosure = { result in
+        weak var `self` = self
+        if result {
+          self?.popToRootViewController()
+        }
+      }
+      nextVC.modalPresentationStyle = .overFullScreen
+      self?.present(nextVC, animated: true, completion: nil)
+    }.disposed(by: disposeBag)
+    
+    jumpButton.rx.tap.bind{[weak self] in
       let nextVC = RegisterReviewPopupViewController()
       nextVC.reviewModel = self!.reviewModel
       nextVC.resultClosure = { result in

@@ -139,7 +139,7 @@ class ConditionViewController: UIViewController {
         
         layout.itemSize = CGSize(width: 82, height: 125)
         layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = 16
         layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -157,8 +157,8 @@ class ConditionViewController: UIViewController {
     let transactionCollectionView: UICollectionView = {
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         let size:CGSize = UIScreen.main.bounds.size
-        
-        layout.itemSize = CGSize(width: 82, height: 125)
+        let cellWidth = UIScreen.main.bounds.width-80
+        layout.itemSize = CGSize(width: cellWidth/4, height: 125)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 16
         layout.scrollDirection = .vertical
@@ -176,6 +176,7 @@ class ConditionViewController: UIViewController {
     }
     let depositTitle = UILabel().then {
         $0.text = "보증금"
+        $0.textColor = .mainBlue
         $0.font = UIFont(name: "NanumSquareRoundOTFEB", size: 12.0)
     }
     let depositPriceShowView = UIView().then {
@@ -195,7 +196,7 @@ class ConditionViewController: UIViewController {
         $0.selectedMaxValue = 6
         $0.lineHeight = 10
         $0.colorBetweenHandles = .mainBlue
-        $0.tintColor = .mainYellow
+        $0.tintColor = .whiteGray
         $0.hideLabels = true
         $0.handleImage = UIImage(named:"togglePriceMedium")
         $0.enableStep = true
@@ -248,7 +249,7 @@ class ConditionViewController: UIViewController {
         $0.selectedMaxValue = 6
         $0.lineHeight = 10
         $0.colorBetweenHandles = .mainBlue
-        $0.tintColor = .mainYellow
+        $0.tintColor = .whiteGray
         $0.hideLabels = true
         $0.handleImage = UIImage(named:"togglePriceMedium")
         $0.enableStep = true
@@ -284,11 +285,9 @@ class ConditionViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.isPagingEnabled = true
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        let size:CGSize = UIScreen.main.bounds.size
-        
-        layout.itemSize = CGSize(width: 110, height: 50)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0//엥?
+        let cellWidth = UIScreen.main.bounds.width-48
+        layout.itemSize = CGSize(width: cellWidth/3 , height: (cellWidth/3)*(48/109))
+        layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .vertical
         collectionView.backgroundColor = .white
         collectionView.setCollectionViewLayout(layout, animated: false)
@@ -323,7 +322,9 @@ class ConditionViewController: UIViewController {
         }
         self?.popViewController()
       })
+        initialSlider()
     }
+    
     private func setupNavigation() {
         self.setupNavigationBar(.white)
         self.setupNavigationItem(titleText: "조건검색")
@@ -387,7 +388,7 @@ class ConditionViewController: UIViewController {
         
         depositPriceShowView.snp.makeConstraints {
             $0.top.equalTo(depositTitle.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview().offset(8)
             $0.height.equalTo(30)
         }
         
@@ -401,9 +402,9 @@ class ConditionViewController: UIViewController {
         
         depositPriceSliderView.snp.makeConstraints {
             $0.top.equalTo(depositPriceShowView.snp.bottom)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(80)
+            $0.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+            $0.height.equalTo(50)
         }
         
         depositPriceSliderView.addSubview(depositPriceSlider)
@@ -445,10 +446,11 @@ class ConditionViewController: UIViewController {
             $0.leading.equalToSuperview().offset(16)
         }
         rentPriceShowView.snp.makeConstraints {
-            $0.top.equalTo(rentTitle.snp.bottom).offset(5)
+            $0.top.equalTo(rentTitle.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
-            $0.height.equalTo(20)
+            $0.height.equalTo(30)
         }
+        
         rentPriceShowView.addSubview(rentPriceLabel)
         
         rentPriceLabel.snp.makeConstraints {
@@ -459,9 +461,9 @@ class ConditionViewController: UIViewController {
         rentPriceSliderView.snp.makeConstraints {
             $0.top.equalTo(rentPriceShowView.snp.bottom)
             $0.centerX.equalTo(depositPriceSliderView)
-            $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(80)
+            $0.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+            $0.height.equalTo(50)
         }
         
         rentPriceSliderView.addSubview(rentPriceSlider)
@@ -597,6 +599,23 @@ class ConditionViewController: UIViewController {
     }
 
 
+    func initialSlider(){
+        priceTitle.isHidden = true
+        rentPriceShowView.isHidden = true
+        rentPriceSliderView.isHidden = true
+
+        rentPriceRange.isHidden = true
+        rentTitle.isHidden = true
+        depositPriceShowView.isHidden = true
+        depositPriceSliderView.isHidden = true
+        rentPriceShowView.isHidden = true
+        depositTitle.isHidden = true
+        addConstraints()
+        optionTitle.snp.remakeConstraints{
+            $0.top.equalTo(transactionCollectionView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().offset(16)
+        }
+    }
     func determineSlider(index: Int){
         if index == 0 {// 전체를 선택한 경우
             priceTitle.isHidden = true
@@ -616,8 +635,10 @@ class ConditionViewController: UIViewController {
             }
         }
         else if index == 1 { // 월세만 선택했을 경우 // 보증금 월세 모두 보여주기
+            priceTitle.isHidden = false
             rentPriceShowView.isHidden = false
             rentPriceSliderView.isHidden = false
+            rentPriceRange.isHidden = false
             rentTitle.isHidden = false
             depositPriceShowView.isHidden = false
             depositPriceSliderView.isHidden = false
@@ -629,6 +650,7 @@ class ConditionViewController: UIViewController {
             }
         }
         else if index == 2{ // 전세만 선택한 경우
+            priceTitle.isHidden = false
             rentPriceShowView.isHidden = true
             rentPriceSliderView.isHidden = true
             rentTitle.isHidden = true
@@ -667,11 +689,11 @@ class ConditionViewController: UIViewController {
 // MARK: - Extensions
 extension ConditionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 8
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 7
+            return 8
     }
 }
 
@@ -710,14 +732,12 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
         if collectionView == buildingCollectionView{
             buildingSelectedNumber = indexPath.item
             collectionView.reloadData()
-            print(#function)
         }
         else if collectionView == transactionCollectionView{
             if indexPath.item != 3{
             dealSelectedNumber = indexPath.item
             determineSlider(index: indexPath.item)
             collectionView.reloadData()
-            print(#function)
             }
         }
     }
@@ -778,9 +798,13 @@ extension ConditionViewController: UICollectionViewDataSource, UICollectionViewD
             optioncell?.buttonTitle.text = optionList[indexPath.row].name
             optioncell?.squareButton.addTarget(self, action: #selector(onTapOptionButton), for: .touchUpInside)
             optioncell?.squareButton.tag = indexPath.row
+
             return optioncell!
         }
         return UICollectionViewCell()
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
 }

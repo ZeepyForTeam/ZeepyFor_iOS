@@ -112,6 +112,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     var mapView = MTMapView().then{
         $0.baseMapType = .standard
+        $0.showCurrentLocationMarker = true
     }
     
     var closedFloatingView = UIView().then{
@@ -132,10 +133,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     var openFloatingCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
-        
         // MARK: - Components
-        
         var tendencyButton = UIView().then{
             $0.frame.size = CGSize(width: 60, height: 70)
         }
@@ -152,7 +150,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         }
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.isScrollEnabled = true
+//        collectionView.isScrollEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.setRounded(radius: 20)
@@ -260,7 +260,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     
     var lookingAroundButton = UIButton().then(){
         $0.backgroundColor = .mainBlue
-        $0.setTitle("건물 리뷰 25건 보러가기", for: .normal)
         $0.titleLabel?.font = UIFont(name: "NanumSquareRoundOTFEB", size: 14.0)
         $0.titleLabel?.textColor = .white
         $0.setRounded(radius: 10)
@@ -269,7 +268,12 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     func makeLookingAroundButton(count : Int){
         lookingAroundButton.setTitle("건물리뷰 " + String(count) + "건 보러가기", for: .normal)
     }
-    var locationManager:CLLocationManager!
+    var locationManager : CLLocationManager!
+    var currentShowMarker = MTMapLocationMarkerItem().then{
+//        $0.customDirectionImageName = "iconMapAct"
+        $0.customTrackingImageName = "nowLocateShadow"
+//        $0.customImageName = "iconMapAct"
+    }
     private let buildingService = BuildingService(provider: MoyaProvider<BuildingRouter>(plugins:[NetworkLoggerPlugin()]))
     
     func poiItem(id: Int, latitude: Double, longitude: Double, imageName: String) -> MTMapPOIItem {
@@ -283,7 +287,7 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         item.showAnimationType = .noAnimation
         return item
     }
-    
+
     func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
         fetchMapDetail(id: poiItem.tag)
         tendencyImage.image = poiItem.customImage
@@ -525,6 +529,9 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.showCurrentLocationMarker = true
+        mapView.updateCurrentLocationMarker(currentShowMarker)
+//        var theImage = UIImage(named: "nowLocation")
         self.view.backgroundColor = .white
         self.view.add(searchView)
         self.view.add(mapView)
@@ -536,7 +543,6 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         initMapView()
         addConstraints()
         initCollectionview()
-        
         
         searchTextField.rx.tap.bind{[weak self] in
             let vc = MapSearchViewController()
@@ -642,24 +648,20 @@ class MapViewController: BaseViewController, CLLocationManagerDelegate {
         operateFloatingButton()
     }
     
-    @objc func myLocationButtonTapped(){ //수정필요해! 동작안함...!!!!
-        func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
-            
-                let currentLocation = location?.mapPointGeo()
-                print("currentLocation입니다", currentLocation)
-                if let latitude = currentLocation?.latitude, let longitude = currentLocation?.longitude{
-                    print("MTMapView updateCurrentLocation (\(latitude),\(longitude)) accuracy (\(accuracy))")
-                    }
-                }
-            func mapView(_ mapView: MTMapView?, updateDeviceHeading headingAngle: MTMapRotationAngle) {
-                print("MTMapView updateDeviceHeading (\(headingAngle)) degrees")
-            }
+    @objc func myLocationButtonTapped(){
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         let currentLocation = locationManager.location?.coordinate
         let lat = currentLocation?.latitude.magnitude ?? 37.5663
         let lng = currentLocation?.longitude.magnitude ?? 126.9779
+        
         self.mapView.setMapCenter(MTMapPoint(geoCoord: MTMapPointGeo(latitude: lat, longitude: lng)), animated: false)
+        mapView.showCurrentLocationMarker = true
+//        let currentMarker = [poiItem(id: AllItems.count + 1, latitude: lat, longitude: lng, imageName: "nowLocacate")]
         findCurrentMarker()
+        mapView.currentLocationTrackingMode = .onWithoutHeading
+        mapView.updateCurrentLocationMarker(currentShowMarker)
+//        locationManager.showsBackgroundLocationIndicator = true
         print("이게 latitude임~~~~~", lat)
         print("현위치 트래킹")
     }

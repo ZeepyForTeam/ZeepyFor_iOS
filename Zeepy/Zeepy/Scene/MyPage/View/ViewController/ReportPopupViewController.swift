@@ -76,7 +76,7 @@ extension ReportPopupViewController {
   
   private func layoutTitleLabel() {
     cardView.add(titleLabel) {
-      $0.setupLabel(text: "리뷰를 등록하시겠습니까?",
+      $0.setupLabel(text: "정말로 신고하시겠습니까?",
                     color: .blackText,
                     font: .nanumRoundExtraBold(fontSize: 18))
       $0.snp.makeConstraints {
@@ -133,7 +133,7 @@ extension ReportPopupViewController {
   private func layoutCancelButton() {
     cardView.add(cancelButton) {
       $0.setupButton(title: "취소",
-                     color: .pastelYellow,
+                     color: .pointYellow,
                      font: .nanumRoundExtraBold(fontSize: 14),
                      backgroundColor: .gray249,
                      state: .normal,
