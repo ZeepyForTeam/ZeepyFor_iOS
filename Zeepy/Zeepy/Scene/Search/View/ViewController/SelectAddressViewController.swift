@@ -49,12 +49,12 @@ class SelectAddressViewController: BaseViewController {
   var addressModel: ResponseGetAddress?
   private var tableViewRowHeight: CGFloat = 94
   private var tableViewRowCount = 1
+    private var isEmptyCell = false
   
   // MARK: - LifeCycles
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .white
-    layout()
     register()
     setupNavigation()
   }
@@ -62,6 +62,7 @@ class SelectAddressViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     fetchAddress()
+    layout()
   }
   
   override func viewDidLayoutSubviews() {
@@ -350,9 +351,14 @@ extension SelectAddressViewController: UITableViewDataSource {
       emptyCell.awakeFromNib()
       emptyCell.registerButton.setTitleColor(.mainBlue, for: .normal)
       emptyCell.rootViewController = self
+        isEmptyCell = true
+        nextButton.backgroundColor = .gray244
+        nextButton.setTitleColor(.grayText, for: .normal)
+        nextButton.isUserInteractionEnabled = false
       return emptyCell
     }
     else {
+        isEmptyCell = false
       addressCell.awakeFromNib()
       addressCell.index = indexPath.row
       let address = addressModel?.addresses[indexPath.row]
@@ -372,11 +378,13 @@ extension SelectAddressViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectedIndex = indexPath.row
-    nextButton.backgroundColor = .mainBlue
-    nextButton.setTitleColor(.white, for: .normal)
-    nextButton.isUserInteractionEnabled = true
-    tableView.reloadData()
+    if !isEmptyCell {
+        selectedIndex = indexPath.row
+        nextButton.backgroundColor = .mainBlue
+        nextButton.setTitleColor(.white, for: .normal)
+        nextButton.isUserInteractionEnabled = true
+        tableView.reloadData()
+    }
   }
 }
 
