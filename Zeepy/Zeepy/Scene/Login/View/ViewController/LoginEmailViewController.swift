@@ -413,17 +413,21 @@ class LoginEmailViewController: BaseViewController {
       $0.top.equalTo(pwTextField.snp.bottom).offset(8)
     }
     signUpButton.snp.makeConstraints{
-      $0.leading.equalTo(findPWButton.snp.trailing).offset(15)
-      $0.top.equalTo(pwTextField.snp.bottom).offset(8)
+//      $0.leading.equalTo(findPWButton.snp.trailing).offset(15)
+      $0.centerX.equalToSuperview()
+      $0.top.equalTo(loginButton.snp.bottom).offset(8)
     }
     loginButton.snp.makeConstraints{
       $0.centerX.equalToSuperview()
-      $0.top.equalTo(signUpButton.snp.bottom).offset(10)
+      $0.top.equalTo(pwTextField.snp.bottom).offset(8)
+
+//      $0.top.equalTo(signUpButton.snp.bottom).offset(10)
       $0.leading.trailing.equalToSuperview().inset(20)
       $0.height.equalTo(50)
     }
     seperateBar.snp.makeConstraints{
-      $0.top.equalTo(loginButton.snp.bottom).offset(30)
+//      $0.top.equalTo(loginButton.snp.bottom).offset(30)
+      $0.top.equalTo(signUpButton.snp.bottom).offset(30)
       $0.leading.trailing.equalToSuperview()
       $0.height.equalTo(5)
     }
@@ -441,6 +445,8 @@ class LoginEmailViewController: BaseViewController {
     appleLoginButton.snp.makeConstraints{
       $0.top.equalToSuperview()
       $0.leading.equalToSuperview()
+      $0.width.height.equalTo(40)
+
     }
     kakaoLoginButton.snp.makeConstraints{
       $0.top.equalToSuperview()
@@ -449,7 +455,11 @@ class LoginEmailViewController: BaseViewController {
     }
     naverLoginButton.snp.makeConstraints{
       $0.top.equalToSuperview()
+      $0.leading.equalTo(kakaoLoginButton.snp.trailing).offset(10)
+
       $0.trailing.equalToSuperview()
+      $0.width.height.equalTo(40)
+
     }
   }
 }

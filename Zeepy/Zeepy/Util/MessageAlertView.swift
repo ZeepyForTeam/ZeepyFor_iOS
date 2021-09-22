@@ -14,7 +14,7 @@ class MessageAlertView: BaseAlert {
   static let shared = MessageAlertView()
   
   var buttonAction: PopupDialogButtonAction?
-  
+  var cancelAction: PopupDialogButtonAction?
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -31,7 +31,8 @@ extension MessageAlertView {
     grantMessage: String,
     denyMessage: String = "",
     mainColor: UIColor = .mainBlue,
-    okAction: PopupDialogButtonAction? = nil
+    okAction: PopupDialogButtonAction? = nil,
+    denyAction: PopupDialogButtonAction? = nil
   ) {
     initializeMainView()
     denyButton.titleLabel?.font = .nanumRoundExtraBold(fontSize: 14)
@@ -52,6 +53,7 @@ extension MessageAlertView {
     ]
     denyButton.layer.cornerRadius = 10
     buttonAction = okAction
+    cancelAction = denyAction
     
     let style = NSMutableParagraphStyle()
     style.lineSpacing = 28/20
@@ -67,9 +69,17 @@ extension MessageAlertView {
     )
     
     denyButton.setTitle(denyMessage, for: .normal)
+    if cancelAction.isNil {
     denyButton.addTarget(self,
                          action: #selector(dismissFromSuperview),
                          for: .allTouchEvents)
+    }
+    else {
+      denyButton.addTarget(self,
+                           action: #selector(dismissAlertViewCancel),
+                           for: .allTouchEvents)
+      
+    }
     grantButton.setTitle(grantMessage, for: .normal)
     grantButton.addTarget(self,
                           action: #selector(dismissAlertView),
@@ -108,6 +118,26 @@ extension MessageAlertView {
                       self.blackView.alpha = 0
                      }, completion: { _ in
                       self.buttonAction?()
+                      self.blackView.removeFromSuperview()
+                      self.alertView.removeFromSuperview()
+                     })
+    }
+  }
+  @objc
+  func dismissAlertViewCancel() {
+    if UIApplication.shared.windows.first(where: { $0.isKeyWindow }) != nil {
+      let transform = CGAffineTransform(translationX: 0, y: -200)
+      UIView.animate(withDuration: 0.3,
+                     delay: 0,
+                     usingSpringWithDamping: 1,
+                     initialSpringVelocity: 1,
+                     options: .curveEaseOut,
+                     animations: { [unowned self] in
+                      self.alertView.transform = transform
+                      self.alertView.alpha = 0
+                      self.blackView.alpha = 0
+                     }, completion: { _ in
+                      self.cancelAction?()
                       self.blackView.removeFromSuperview()
                       self.alertView.removeFromSuperview()
                      })
