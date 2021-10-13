@@ -247,11 +247,13 @@ extension CommunityViewController : UICollectionViewDelegate{
     }
   }
   override func viewWillAppear(_ animated: Bool) {
-    
     super.viewWillAppear(animated)
-    fromHome()
     self.naviTitle.text = UserManager.shared.currentAddress?.primaryAddress ?? "주소 없음"
     NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification), name: Notification.Name("address"), object: nil)
+  }
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    fromHome()
   }
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
