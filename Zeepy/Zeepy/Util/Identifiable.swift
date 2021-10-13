@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol Identifiable {
+protocol Identiifiable {
   static var identifier: String { get }
 }
 
